@@ -40,6 +40,10 @@ namespace Trainer
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
             services.AddTransient<DbContext, aspnetITIMVCMovieStore20160318014639Context>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +59,7 @@ namespace Trainer
             }
      
             app.UseHttpsRedirection();
+            app.UseCors("AllowAllOrigins");
             app.UseMvc();
         }
     }
