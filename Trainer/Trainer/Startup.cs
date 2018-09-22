@@ -13,7 +13,6 @@ using Microsoft.Extensions.Options;
 using test.core;
 using Trainer.EF;
 using Microsoft.EntityFrameworkCore;
-using Trainer.EF.Models;
 using System.Reflection;
 using test.core.Services;
 using test.core.Interfaces;
@@ -34,11 +33,10 @@ namespace Trainer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=aspnet-ITI.MVC.MovieStore-20160318014639;Trusted_Connection=True";
-            //sservices.AddDbContext<aspnetITIMVCMovieStore20160318014639Context>(options => options.UseSqlServer(connection));
+            var connection = @"Server=DESKTOP-55PE9HK\MOHAMEDMAGDY;Database=EFS_Dev;Trusted_Connection=True";
             services.AddScoped<ITestManager, TestManager>();
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<DbContext, aspnetITIMVCMovieStore20160318014639Context>();
+            services.AddTransient<DbContext, EFSdbContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors(options =>
             {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Trainer.EF.Models
+namespace Trainer.Models
 {
     public partial class MigrationHistory
     {
