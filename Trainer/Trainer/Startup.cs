@@ -18,6 +18,7 @@ using test.core.Services;
 using test.core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Shared.Core;
+using Trainer.EF.Models;
 
 namespace Trainer
 {
@@ -36,7 +37,7 @@ namespace Trainer
             var connection = @"Server=DESKTOP-55PE9HK\MOHAMEDMAGDY;Database=EFS_Dev;Trusted_Connection=True";
             services.AddScoped<ITestManager, TestManager>();
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<DbContext, EFSdbContext>();
+            services.AddTransient<DbContext, EFS_DevContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors(options =>
             {

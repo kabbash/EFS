@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Trainer.Models
+namespace Trainer.EF.Models
 {
-    public partial class ClientsImages
+    public partial class ClientsOverloads
     {
-        public short Id { get; set; }
-        public string Path { get; set; }
-        public string Name { get; set; }
+        public int Id { get; set; }
+        public byte TypeId { get; set; }
+        public decimal Value { get; set; }
         public DateTime Date { get; set; }
         public string ClientId { get; set; }
 

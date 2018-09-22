@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Trainer.Models
+namespace Trainer.EF.Models
 {
     public partial class EFS_DevContext : DbContext
     {

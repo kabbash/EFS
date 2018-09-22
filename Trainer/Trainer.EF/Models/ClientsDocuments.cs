@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Trainer.Models
+namespace Trainer.EF.Models
 {
     public partial class ClientsDocuments
     {

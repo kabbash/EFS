@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Trainer.Models
+namespace Trainer.EF.Models
 {
-    public partial class Overloads
+    public partial class Measurments
     {
         public byte Id { get; set; }
         public string Name { get; set; }
