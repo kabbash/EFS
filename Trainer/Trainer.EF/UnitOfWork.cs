@@ -15,7 +15,7 @@ namespace Trainer.EF
 
         #region repositories
         private TestRepository _testRepo;
-        public IRepository<Movies, int> TestRepository
+        public IRepository<Articles, int> TestRepository
         {
             get
             {

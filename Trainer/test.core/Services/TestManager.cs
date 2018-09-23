@@ -15,7 +15,7 @@ namespace test.core.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public IQueryable<Movies> getAllMovies()
+        public IQueryable<Articles> getAllArticles()
         {
             return _unitOfWork.TestRepository.GetAll();
         }

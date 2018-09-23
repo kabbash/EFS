@@ -6,7 +6,7 @@ namespace Shared.Core
 {
     public interface IUnitOfWork : IDisposable
     {
-         IRepository<Movies, int> TestRepository { get; }
+         IRepository<Articles, int> TestRepository { get; }
         /// <summary>
         /// Commits all changes
         /// </summary>

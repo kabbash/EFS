@@ -19,9 +19,9 @@ namespace Trainer.Controllers
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<Movies>> Get()
+        public ActionResult<IEnumerable<Articles>> Get()
         {
-            return _Manager.getAllMovies().ToList();
+            return _Manager.getAllArticles().ToList();
         }
 
         // GET api/values/5

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace test.core
 {
-    public abstract class ITestRepository: IRepository<Movies, int>
+    public abstract class ITestRepository: IRepository<Articles, int>
     {
     }
 }

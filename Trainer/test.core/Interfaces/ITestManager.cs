@@ -8,6 +8,6 @@ namespace test.core.Interfaces
 {
     public interface ITestManager
     {
-        IQueryable<Movies> getAllMovies();
+        IQueryable<Articles> getAllArticles();
     }
 }

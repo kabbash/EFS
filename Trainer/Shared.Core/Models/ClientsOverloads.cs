@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Trainer.EF.Models
+namespace Shared.Core.Models
 {
-    public partial class ClientsMeasurments
+    public partial class ClientsOverloads
     {
         public int Id { get; set; }
         public byte TypeId { get; set; }

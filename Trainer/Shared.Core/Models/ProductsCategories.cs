@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Trainer.EF.Models
+namespace Shared.Core.Models
 {
     public partial class ProductsCategories
     {

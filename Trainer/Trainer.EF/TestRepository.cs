@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Trainer.EF
 {
-    public class TestRepository: Repository<Movies, int>
+    public class TestRepository: Repository<Articles, int>
     {
         public TestRepository(DbContext context): base(context)
         {
