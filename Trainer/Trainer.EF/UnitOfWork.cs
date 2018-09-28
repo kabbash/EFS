@@ -14,14 +14,14 @@ namespace Trainer.EF
         private readonly DbContext _dbContext;
 
         #region repositories
-        private TestRepository _testRepo;
-        public IRepository<Movies, int> TestRepository
+        private IRepository<Calories> _testRepo;
+        public IRepository<Calories> TestRepository
         {
             get
             {
                 if (_testRepo == null)
                 {
-                    _testRepo = new TestRepository(_dbContext);
+                    _testRepo = new Repository<Calories>(_dbContext);
                 }
                 return _testRepo;
             }
