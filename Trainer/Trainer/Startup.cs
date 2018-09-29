@@ -23,10 +23,9 @@ namespace Trainer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<EFSContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICaloriesManager, CaloriesManager>();
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
-            services.AddSingleton<DbContext, EFSContext>();
+            services.AddSingleton<DbContext, EFS_DevContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors(options =>
             {
