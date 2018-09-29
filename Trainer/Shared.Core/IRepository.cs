@@ -1,23 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Shared.Core
 {
-    public abstract class IRepository<T, Y>
+    public interface IRepository<TEntity>
 
     {
 
-        public abstract T GetById(Y id);
+        IEnumerable<TEntity> Get(
+        Expression<Func<TEntity, bool>> filter = null,
+        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+        string includeProperties = "");
 
-        public abstract IQueryable<T> GetAll();
+        TEntity GetById(object id);
 
-        public abstract void Edit(T entity);
+        void Insert(TEntity entity);
 
-        public abstract void Insert(T entity);
+        void Delete(object id);
 
-        public abstract void Delete(T entity);
+        void Delete(TEntity entityToDelete);
+
+        void Update(TEntity entityToUpdate);
 
     }
 }
