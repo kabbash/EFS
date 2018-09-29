@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Trainer.EF.Migrations
 {
-    [DbContext(typeof(EFS_DevContext))]
+    [DbContext(typeof(EFSContext))]
     [Migration("20180922175749_InitDB")]
     partial class InitDB
     {
