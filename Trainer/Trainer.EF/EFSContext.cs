@@ -5,16 +5,15 @@ using Shared.Core.Models;
 
 namespace Trainer.EF
 {
-    public partial class EFS_DevContext : DbContext
+    public partial class EFSContext : DbContext
     {
-        public EFS_DevContext()
+        public EFSContext()
         {
         }
 
-        public EFS_DevContext(DbContextOptions<EFS_DevContext> options)
+        public EFSContext(DbContextOptions<EFSContext> options)
             : base(options)
         {
-            Database.Migrate();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }
@@ -44,14 +43,15 @@ namespace Trainer.EF
         public virtual DbSet<Trainers> Trainers { get; set; }
         public virtual DbSet<TrainersPrograms> TrainersPrograms { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=EFS_Dev;Trusted_Connection=True;");
-            }
-        }
+
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=EFS_Dev;Trusted_Connection=True;");
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
