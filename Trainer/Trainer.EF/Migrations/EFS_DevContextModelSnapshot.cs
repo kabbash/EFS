@@ -4,12 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
-    [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(EFS_DevContext))]
+    partial class EFS_DevContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
