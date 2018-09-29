@@ -14,6 +14,7 @@ namespace Trainer.EF
         public EFS_DevContext(DbContextOptions<EFS_DevContext> options)
             : base(options)
         {
+            Database.Migrate();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }

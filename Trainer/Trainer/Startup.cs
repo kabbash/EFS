@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using test.core;
 using Trainer.EF;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 using test.core.Services;
 using test.core.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Shared.Core;
 
 namespace Trainer
@@ -33,8 +23,7 @@ namespace Trainer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=(localdb)\\mssqllocaldb;Database=EFS_Dev;Trusted_Connection=True";
-            services.AddScoped<ITestManager, TestManager>();
+            services.AddScoped<ICaloriesManager, CaloriesManager>();
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<DbContext, EFS_DevContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
