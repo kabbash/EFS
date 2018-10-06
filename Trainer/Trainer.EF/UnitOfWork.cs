@@ -26,9 +26,22 @@ namespace Trainer.EF
                 return _testRepo;
             }
         }
-        
-        
-    
+
+        private IRepository<AspNetUsers> _usersRepo;
+        public IRepository<AspNetUsers> UsersRepository
+        {
+            get
+            {
+                if (_testRepo == null)
+                {
+                    _testRepo = new Repository<Calories>(_dbContext);
+                }
+                return _usersRepo;
+            }
+        }
+
+
+
         #endregion
 
         public UnitOfWork(DbContext context)
