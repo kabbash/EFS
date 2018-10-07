@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
@@ -18,7 +19,7 @@ namespace Trainer.EF.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Trainer.EF.Models.Articles", b =>
+            modelBuilder.Entity("Shared.Core.Models.Articles", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,7 +62,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ArticlesCategories", b =>
+            modelBuilder.Entity("Shared.Core.Models.ArticlesCategories", b =>
                 {
                     b.Property<byte>("Id")
                         .ValueGeneratedOnAdd()
@@ -79,7 +80,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.AspNetRoles", b =>
+            modelBuilder.Entity("Shared.Core.Models.AspNetRoles", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(128);
@@ -93,7 +94,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.AspNetUserClaims", b =>
+            modelBuilder.Entity("Shared.Core.Models.AspNetUserClaims", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -114,7 +115,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.AspNetUserLogins", b =>
+            modelBuilder.Entity("Shared.Core.Models.AspNetUserLogins", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasMaxLength(128);
@@ -132,7 +133,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.AspNetUserRoles", b =>
+            modelBuilder.Entity("Shared.Core.Models.AspNetUserRoles", b =>
                 {
                     b.Property<string>("UserId")
                         .HasMaxLength(128);
@@ -147,12 +148,15 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.AspNetUsers", b =>
+            modelBuilder.Entity("Shared.Core.Models.AspNetUsers", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(128);
 
                     b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
@@ -193,9 +197,11 @@ namespace Trainer.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.Calories", b =>
+            modelBuilder.Entity("Shared.Core.Models.Calories", b =>
                 {
                     b.Property<short>("Id")
                         .ValueGeneratedOnAdd()
@@ -217,7 +223,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Calories");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.Championships", b =>
+            modelBuilder.Entity("Shared.Core.Models.Championships", b =>
                 {
                     b.Property<short>("Id")
                         .ValueGeneratedOnAdd()
@@ -256,7 +262,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Championships");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.Clients", b =>
+            modelBuilder.Entity("Shared.Core.Models.Clients", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(128);
@@ -266,7 +272,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ClientsDocuments", b =>
+            modelBuilder.Entity("Shared.Core.Models.ClientsDocuments", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -306,7 +312,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Clients_Documents");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ClientsImages", b =>
+            modelBuilder.Entity("Shared.Core.Models.ClientsImages", b =>
                 {
                     b.Property<short>("Id")
                         .ValueGeneratedOnAdd()
@@ -333,7 +339,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Clients_Images");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ClientsMeasurments", b =>
+            modelBuilder.Entity("Shared.Core.Models.ClientsMeasurments", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -358,7 +364,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Clients_Measurments");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ClientsOverloads", b =>
+            modelBuilder.Entity("Shared.Core.Models.ClientsOverloads", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -383,7 +389,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Clients_Overloads");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.Measurments", b =>
+            modelBuilder.Entity("Shared.Core.Models.Measurments", b =>
                 {
                     b.Property<byte>("Id")
                         .ValueGeneratedOnAdd()
@@ -400,7 +406,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Measurments");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.MigrationHistory", b =>
+            modelBuilder.Entity("Shared.Core.Models.MigrationHistory", b =>
                 {
                     b.Property<string>("MigrationId")
                         .HasMaxLength(150);
@@ -420,7 +426,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("__MigrationHistory");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.Overloads", b =>
+            modelBuilder.Entity("Shared.Core.Models.Overloads", b =>
                 {
                     b.Property<byte>("Id")
                         .ValueGeneratedOnAdd()
@@ -437,7 +443,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Overloads");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.Products", b =>
+            modelBuilder.Entity("Shared.Core.Models.Products", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -491,7 +497,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ProductsCategories", b =>
+            modelBuilder.Entity("Shared.Core.Models.ProductsCategories", b =>
                 {
                     b.Property<byte>("Id")
                         .ValueGeneratedOnAdd()
@@ -508,7 +514,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Products_Categories");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ProductsImages", b =>
+            modelBuilder.Entity("Shared.Core.Models.ProductsImages", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -530,20 +536,24 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Products_Images");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ProductsOwners", b =>
+            modelBuilder.Entity("Shared.Core.Models.ProductsOwners", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(128);
+
+                    b.Property<string>("AspNetUsersId");
 
                     b.Property<string>("ContactInfo")
                         .IsRequired();
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AspNetUsersId");
+
                     b.ToTable("Products_Owners");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ProductsSubcategories", b =>
+            modelBuilder.Entity("Shared.Core.Models.ProductsSubcategories", b =>
                 {
                     b.Property<byte>("Id")
                         .ValueGeneratedOnAdd()
@@ -564,7 +574,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Products_Subcategories");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ProgramsImages", b =>
+            modelBuilder.Entity("Shared.Core.Models.ProgramsImages", b =>
                 {
                     b.Property<short>("Id");
 
@@ -586,7 +596,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Programs_Images");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ProgramsPrices", b =>
+            modelBuilder.Entity("Shared.Core.Models.ProgramsPrices", b =>
                 {
                     b.Property<byte>("Id")
                         .ValueGeneratedOnAdd()
@@ -608,20 +618,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Programs_Prices");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.Trainers", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(128);
-
-                    b.Property<string>("Bio")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Trainers");
-                });
-
-            modelBuilder.Entity("Trainer.EF.Models.TrainersPrograms", b =>
+            modelBuilder.Entity("Shared.Core.Models.TrainersPrograms", b =>
                 {
                     b.Property<byte>("Id")
                         .ValueGeneratedOnAdd()
@@ -648,153 +645,170 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Trainers_Programs");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.Articles", b =>
+            modelBuilder.Entity("Shared.Core.Models.Trainers", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.AspNetUsers", "Author")
+                    b.HasBaseType("Shared.Core.Models.AspNetUsers");
+
+                    b.Property<string>("Bio")
+                        .IsRequired();
+
+                    b.ToTable("Trainers");
+
+                    b.HasDiscriminator().HasValue("Trainers");
+                });
+
+            modelBuilder.Entity("Shared.Core.Models.Articles", b =>
+                {
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "Author")
                         .WithMany("Articles")
                         .HasForeignKey("AuthorId")
                         .HasConstraintName("FK_Articles_AspNetUsers");
 
-                    b.HasOne("Trainer.EF.Models.ArticlesCategories", "Category")
+                    b.HasOne("Shared.Core.Models.ArticlesCategories", "Category")
                         .WithMany("Articles")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Articles_Articles_Categories");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.AspNetUserClaims", b =>
+            modelBuilder.Entity("Shared.Core.Models.AspNetUserClaims", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.AspNetUsers", "User")
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "User")
                         .WithMany("AspNetUserClaims")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.AspNetUserLogins", b =>
+            modelBuilder.Entity("Shared.Core.Models.AspNetUserLogins", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.AspNetUsers", "User")
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "User")
                         .WithMany("AspNetUserLogins")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.AspNetUserRoles", b =>
+            modelBuilder.Entity("Shared.Core.Models.AspNetUserRoles", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.AspNetRoles", "Role")
+                    b.HasOne("Shared.Core.Models.AspNetRoles", "Role")
                         .WithMany("AspNetUserRoles")
                         .HasForeignKey("RoleId")
                         .HasConstraintName("FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Trainer.EF.Models.AspNetUsers", "User")
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "User")
                         .WithMany("AspNetUserRoles")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.AspNetUsers", b =>
+            modelBuilder.Entity("Shared.Core.Models.Clients", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.Clients", "IdNavigation")
-                        .WithOne("AspNetUsers")
-                        .HasForeignKey("Trainer.EF.Models.AspNetUsers", "Id")
-                        .HasConstraintName("FK_AspNetUsers_Clients");
-
-                    b.HasOne("Trainer.EF.Models.ProductsOwners", "Id1")
-                        .WithOne("AspNetUsers")
-                        .HasForeignKey("Trainer.EF.Models.AspNetUsers", "Id")
-                        .HasConstraintName("FK_AspNetUsers_Products_Owners");
-
-                    b.HasOne("Trainer.EF.Models.Trainers", "Id2")
-                        .WithOne("AspNetUsers")
-                        .HasForeignKey("Trainer.EF.Models.AspNetUsers", "Id")
-                        .HasConstraintName("FK_AspNetUsers_Trainers");
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "AspNetUsers")
+                        .WithOne("Clinet")
+                        .HasForeignKey("Shared.Core.Models.Clients", "Id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ClientsDocuments", b =>
+            modelBuilder.Entity("Shared.Core.Models.ClientsDocuments", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.Clients", "Client")
+                    b.HasOne("Shared.Core.Models.Clients", "Client")
                         .WithMany("ClientsDocuments")
                         .HasForeignKey("ClientId")
                         .HasConstraintName("FK_Clients_Documents_Clients");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ClientsImages", b =>
+            modelBuilder.Entity("Shared.Core.Models.ClientsImages", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.Clients", "Client")
+                    b.HasOne("Shared.Core.Models.Clients", "Client")
                         .WithMany("ClientsImages")
                         .HasForeignKey("ClientId")
                         .HasConstraintName("FK_Clients_Images_Clients");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ClientsMeasurments", b =>
+            modelBuilder.Entity("Shared.Core.Models.ClientsMeasurments", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.Clients", "Client")
+                    b.HasOne("Shared.Core.Models.Clients", "Client")
                         .WithMany("ClientsMeasurments")
                         .HasForeignKey("ClientId")
                         .HasConstraintName("FK_Clients_Measurments_Clients");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ClientsOverloads", b =>
+            modelBuilder.Entity("Shared.Core.Models.ClientsOverloads", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.Clients", "Client")
+                    b.HasOne("Shared.Core.Models.Clients", "Client")
                         .WithMany("ClientsOverloads")
                         .HasForeignKey("ClientId")
                         .HasConstraintName("FK_Clients_Overloads_Clients");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.Products", b =>
+            modelBuilder.Entity("Shared.Core.Models.Products", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.ProductsOwners", "Owner")
+                    b.HasOne("Shared.Core.Models.ProductsOwners", "Owner")
                         .WithMany("Products")
                         .HasForeignKey("OwnerId")
                         .HasConstraintName("FK_Products_Products_Owners");
 
-                    b.HasOne("Trainer.EF.Models.ProductsSubcategories", "Subcategory")
+                    b.HasOne("Shared.Core.Models.ProductsSubcategories", "Subcategory")
                         .WithMany("Products")
                         .HasForeignKey("SubcategoryId")
                         .HasConstraintName("FK_Products_Products_Subcategories");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ProductsImages", b =>
+            modelBuilder.Entity("Shared.Core.Models.ProductsImages", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.Products", "Product")
+                    b.HasOne("Shared.Core.Models.Products", "Product")
                         .WithMany("ProductsImages")
                         .HasForeignKey("ProductId")
                         .HasConstraintName("FK_Products_Images_Products");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ProductsSubcategories", b =>
+            modelBuilder.Entity("Shared.Core.Models.ProductsOwners", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.ProductsCategories", "Category")
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "AspNetUsers")
+                        .WithMany()
+                        .HasForeignKey("AspNetUsersId");
+                });
+
+            modelBuilder.Entity("Shared.Core.Models.ProductsSubcategories", b =>
+                {
+                    b.HasOne("Shared.Core.Models.ProductsCategories", "Category")
                         .WithMany("ProductsSubcategories")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Products_Subcategories_Products_Categories");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ProgramsImages", b =>
+            modelBuilder.Entity("Shared.Core.Models.ProgramsImages", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.TrainersPrograms", "Program")
+                    b.HasOne("Shared.Core.Models.TrainersPrograms", "Program")
                         .WithMany("ProgramsImages")
                         .HasForeignKey("ProgramId")
                         .HasConstraintName("FK_Programs_Images_Trainers_Programs");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.ProgramsPrices", b =>
+            modelBuilder.Entity("Shared.Core.Models.ProgramsPrices", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.TrainersPrograms", "Program")
+                    b.HasOne("Shared.Core.Models.TrainersPrograms", "Program")
                         .WithMany("ProgramsPrices")
                         .HasForeignKey("ProgramId")
                         .HasConstraintName("FK_Programs_Prices_Trainers_Programs");
                 });
 
-            modelBuilder.Entity("Trainer.EF.Models.TrainersPrograms", b =>
+            modelBuilder.Entity("Shared.Core.Models.TrainersPrograms", b =>
                 {
-                    b.HasOne("Trainer.EF.Models.Trainers", "Trainer")
+                    b.HasOne("Shared.Core.Models.Trainers", "Trainer")
                         .WithMany("TrainersPrograms")
                         .HasForeignKey("TrainerId")
                         .HasConstraintName("FK_Trainers_Programs_Trainers");
+                });
+
+            modelBuilder.Entity("Shared.Core.Models.Trainers", b =>
+                {
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "AspNetUsers")
+                        .WithOne("Trainer")
+                        .HasForeignKey("Shared.Core.Models.Trainers", "Id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

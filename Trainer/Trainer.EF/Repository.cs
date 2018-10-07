@@ -18,7 +18,7 @@ namespace Trainer.EF
             _dbSet = _context.Set<T>();
         }
 
-        public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
+        public IQueryable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
         {
             IQueryable<T> query = _dbSet;
 
@@ -35,11 +35,11 @@ namespace Trainer.EF
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                return orderBy(query);
             }
             else
             {
-                return query.ToList();
+                return query;
             }
         }
 
