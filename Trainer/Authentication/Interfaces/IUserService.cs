@@ -9,5 +9,8 @@ namespace Authentication.Interfaces
     {
         User Authenticate(string username, string password);
         IEnumerable<User> GetAll();
+        bool AddRoleToUser(AddRoleToUserDto data);
+        bool AddRole(RoleDto data);
+        bool DeleteRole(string data);
     }
 }
