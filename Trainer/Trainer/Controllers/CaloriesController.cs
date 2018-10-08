@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Core.Models;
@@ -20,6 +21,7 @@ namespace Trainer.Controllers
             _Manager = manager;
         }
         // GET api/values
+        [Authorize]
         [HttpGet]
         public ActionResult<IEnumerable<CaloriesDto>> Get()
         {

@@ -11,7 +11,7 @@ namespace Trainer.EF
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _dbContext;
+        private readonly EFSContext _dbContext;
 
         #region repositories
         private IRepository<Calories> _testRepo;
@@ -32,9 +32,9 @@ namespace Trainer.EF
         {
             get
             {
-                if (_testRepo == null)
+                if (_usersRepo == null)
                 {
-                    _testRepo = new Repository<Calories>(_dbContext);
+                    _usersRepo = new Repository<AspNetUsers>(_dbContext);
                 }
                 return _usersRepo;
             }
@@ -44,7 +44,7 @@ namespace Trainer.EF
 
         #endregion
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(EFSContext context)
         {
             _dbContext = context;
         }
