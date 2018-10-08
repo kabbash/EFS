@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Core.Models;
@@ -23,6 +25,7 @@ namespace Trainer.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<CaloriesDto>> Get()
         {
+            var user = (HttpContext.User.Identity) as ClaimsIdentity;
             return _Manager.GetAll().ToList();
         }
         [HttpPost]

@@ -7,6 +7,12 @@ namespace Shared.Core
     public interface IUnitOfWork : IDisposable
     {
          IRepository<Calories> TestRepository { get; }
+        IRepository<AspNetUsers> UsersRepository { get; }
+        IRepository<AspNetRoles> RolesRepository { get; }
+        IRepository<AspNetUserRoles> UsersRolesRepository { get; }
+
+
+
         /// <summary>
         /// Commits all changes
         /// </summary>

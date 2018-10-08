@@ -11,7 +11,7 @@ namespace Trainer.EF
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _dbContext;
+        private readonly EFSContext _dbContext;
 
         #region repositories
         private IRepository<Calories> _testRepo;
@@ -26,12 +26,53 @@ namespace Trainer.EF
                 return _testRepo;
             }
         }
+
+        private IRepository<AspNetUsers> _usersRepo;
+        public IRepository<AspNetUsers> UsersRepository
+        {
+            get
+            {
+                if (_usersRepo == null)
+                {
+                    _usersRepo = new Repository<AspNetUsers>(_dbContext);
+                }
+                return _usersRepo;
+            }
+        }
+
+        private IRepository<AspNetRoles> _rolesRepo;
+        public IRepository<AspNetRoles> RolesRepository
+        {
+            get
+            {
+                if (_rolesRepo == null)
+                {
+                    _rolesRepo = new Repository<AspNetRoles>(_dbContext);
+                }
+                return _rolesRepo;
+            }
+        }
+
+        private IRepository<AspNetUserRoles> _usersRolesRepo;
+        public IRepository<AspNetUserRoles> UsersRolesRepository
+        {
+            get
+            {
+                if (_usersRolesRepo == null)
+                {
+                    _usersRolesRepo = new Repository<AspNetUserRoles>(_dbContext);
+                }
+                return _usersRolesRepo;
+            }
+        }
+
         
-        
-    
+
+
+
         #endregion
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(EFSContext context)
         {
             _dbContext = context;
         }
