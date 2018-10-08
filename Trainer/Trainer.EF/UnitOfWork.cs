@@ -40,6 +40,34 @@ namespace Trainer.EF
             }
         }
 
+        private IRepository<AspNetRoles> _rolesRepo;
+        public IRepository<AspNetRoles> RolesRepository
+        {
+            get
+            {
+                if (_rolesRepo == null)
+                {
+                    _rolesRepo = new Repository<AspNetRoles>(_dbContext);
+                }
+                return _rolesRepo;
+            }
+        }
+
+        private IRepository<AspNetUserRoles> _usersRolesRepo;
+        public IRepository<AspNetUserRoles> UsersRolesRepository
+        {
+            get
+            {
+                if (_usersRolesRepo == null)
+                {
+                    _usersRolesRepo = new Repository<AspNetUserRoles>(_dbContext);
+                }
+                return _usersRolesRepo;
+            }
+        }
+
+        
+
 
 
         #endregion

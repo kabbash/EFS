@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Trainer.Controllers
 {
     [Route("api/authentication")]
-    public class AuthenticationController: ControllerBase
+    public class AuthenticationController : ControllerBase
     {
         protected IUserService _userService;
         public AuthenticationController(IUserService userService)
@@ -28,12 +28,49 @@ namespace Trainer.Controllers
 
             return Ok(user);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult GetAll()
         {
             var users = _userService.GetAll();
             return Ok(users);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [Route("AddRoleToUser")]
+        public IActionResult AddRoleToUser([FromBody] AddRoleToUserDto data)
+        {
+            var result = _userService.AddRoleToUser(data);
+            if (result)
+                return Ok();
+            else
+                return BadRequest();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [Route("AddRole")]
+        public IActionResult AddRole([FromBody] RoleDto data)
+        {
+            var result = _userService.AddRole(data);
+            if (result)
+                return Ok();
+            else
+                return BadRequest();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete]
+        [Route("DeleteRole/{roleName}")]
+        public IActionResult DeleteRole(string roleName)
+        {
+            var result = _userService.DeleteRole(roleName);
+            if (result)
+                return Ok();
+            else
+                return BadRequest();
+
         }
     }
 }
