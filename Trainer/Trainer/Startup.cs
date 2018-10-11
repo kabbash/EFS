@@ -14,6 +14,9 @@ using Authentication.Services;
 using Authentication.Interfaces;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using test.core.Model;
+using FluentValidation;
+using test.core.Validators;
 
 namespace Trainer
 {
@@ -59,7 +62,12 @@ namespace Trainer
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddTransient<IValidator<CaloriesDto>, CaloriesDtoValidator>();
+
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
@@ -77,7 +85,7 @@ namespace Trainer
             {
                 app.UseHsts();
             }
-     
+
             app.UseHttpsRedirection();
             app.UseCors("AllowAllOrigins");
             app.UseAuthentication();
