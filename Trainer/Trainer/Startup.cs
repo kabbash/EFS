@@ -8,6 +8,15 @@ using Microsoft.EntityFrameworkCore;
 using test.core.Services;
 using test.core.Interfaces;
 using Shared.Core;
+using Authentication;
+using Microsoft.IdentityModel.Tokens;
+using Authentication.Services;
+using Authentication.Interfaces;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using test.core.Model;
+using FluentValidation;
+using test.core.Validators;
 
 namespace Trainer
 {
@@ -23,10 +32,42 @@ namespace Trainer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<EFSContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICaloriesManager, CaloriesManager>();
-            services.AddSingleton<IUnitOfWork, UnitOfWork>();
-            services.AddSingleton<DbContext, EFS_DevContext>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            // configure strongly typed settings objects
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AuthenticationSettings>(appSettingsSection);
+            var appSettings = appSettingsSection.Get<AuthenticationSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
+            // configure DI for application services
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddTransient<IValidator<CaloriesDto>, CaloriesDtoValidator>();
+
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
@@ -44,9 +85,10 @@ namespace Trainer
             {
                 app.UseHsts();
             }
-     
+
             app.UseHttpsRedirection();
             app.UseCors("AllowAllOrigins");
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

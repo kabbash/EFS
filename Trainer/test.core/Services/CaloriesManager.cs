@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using FluentValidation;
+using Mapster;
 using Microsoft.AspNetCore.JsonPatch;
 using Shared.Core;
 using Shared.Core.Models;
@@ -14,9 +15,11 @@ namespace test.core.Services
     public class CaloriesManager: ICaloriesManager
     {
         protected IUnitOfWork _unitOfWork;
-        public CaloriesManager(IUnitOfWork unitOfWork)
+        private readonly IValidator<CaloriesDto> _validator;
+        public CaloriesManager(IUnitOfWork unitOfWork, IValidator<CaloriesDto> validator)
         {
             _unitOfWork = unitOfWork;
+            _validator = validator;
         }
         public IEnumerable<CaloriesDto> GetAll()
         {
@@ -27,6 +30,11 @@ namespace test.core.Services
 
         public bool Insert(CaloriesDto calory)
         {
+            var validationResult = _validator.Validate(calory);
+
+            if (!validationResult.IsValid)
+                return false;
+
             try {
 
                 _unitOfWork.TestRepository.Insert(calory.Adapt<Calories>());
