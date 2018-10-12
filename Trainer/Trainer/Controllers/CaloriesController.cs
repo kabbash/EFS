@@ -29,9 +29,9 @@ namespace Trainer.Controllers
             return _Manager.GetAll().ToList();
         }
         [HttpPost]
-        public ActionResult post([FromBody] CaloriesDto article)
-        {
-            Boolean success = _Manager.Insert(article);
+        public ActionResult Post([FromBody] CaloriesDto calories)
+        {            
+            var success = _Manager.Insert(calories);
             if (success)
             {
                 return Ok();
