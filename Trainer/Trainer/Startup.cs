@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using test.core.Model;
 using FluentValidation;
 using test.core.Validators;
+using Authentication.Validators;
+using Authentication.Models;
 
 namespace Trainer
 {
@@ -66,6 +68,8 @@ namespace Trainer
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddTransient<IValidator<CaloriesDto>, CaloriesDtoValidator>();
+            services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
+
 
 
             services.AddCors(options =>

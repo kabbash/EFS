@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Shared.Core.Models
+namespace Trainer.EF.Models
 {
     public partial class Trainers
     {

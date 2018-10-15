@@ -42,12 +42,25 @@ namespace Trainer.EF
         public virtual DbSet<ProgramsImages> ProgramsImages { get; set; }
         public virtual DbSet<ProgramsPrices> ProgramsPrices { get; set; }
         public virtual DbSet<Trainers> Trainers { get; set; }
-        public virtual DbSet<TrainersPrograms> TrainersPrograms { get; set; }      
+        public virtual DbSet<TrainersPrograms> TrainersPrograms { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=EFS_Dev;Trusted_Connection=True;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Articles>(entity =>
             {
+                entity.HasIndex(e => e.AuthorId);
+
+                entity.HasIndex(e => e.CategoryId);
+
                 entity.Property(e => e.AuthorId)
                     .IsRequired()
                     .HasMaxLength(128);
@@ -107,6 +120,8 @@ namespace Trainer.EF
 
             modelBuilder.Entity<AspNetUserClaims>(entity =>
             {
+                entity.HasIndex(e => e.UserId);
+
                 entity.Property(e => e.UserId)
                     .IsRequired()
                     .HasMaxLength(128);
@@ -120,6 +135,8 @@ namespace Trainer.EF
             modelBuilder.Entity<AspNetUserLogins>(entity =>
             {
                 entity.HasKey(e => new { e.LoginProvider, e.ProviderKey, e.UserId });
+
+                entity.HasIndex(e => e.UserId);
 
                 entity.Property(e => e.LoginProvider).HasMaxLength(128);
 
@@ -136,6 +153,8 @@ namespace Trainer.EF
             modelBuilder.Entity<AspNetUserRoles>(entity =>
             {
                 entity.HasKey(e => new { e.UserId, e.RoleId });
+
+                entity.HasIndex(e => e.RoleId);
 
                 entity.Property(e => e.UserId).HasMaxLength(128);
 
@@ -173,24 +192,6 @@ namespace Trainer.EF
                 entity.Property(e => e.UserName)
                     .IsRequired()
                     .HasMaxLength(256);
-
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.AspNetUsers)
-                    .HasForeignKey<AspNetUsers>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_AspNetUsers_Clients");
-
-                entity.HasOne(d => d.Id1)
-                    .WithOne(p => p.AspNetUsers)
-                    .HasForeignKey<AspNetUsers>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_AspNetUsers_Products_Owners");
-
-                entity.HasOne(d => d.Id2)
-                    .WithOne(p => p.AspNetUsers)
-                    .HasForeignKey<AspNetUsers>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_AspNetUsers_Trainers");
             });
 
             modelBuilder.Entity<Calories>(entity =>
@@ -204,6 +205,7 @@ namespace Trainer.EF
                     .HasMaxLength(128);
 
                 entity.Property(e => e.Value).HasColumnType("decimal(10, 2)");
+                entity.HasIndex(e => e.Name).IsUnique();
             });
 
             modelBuilder.Entity<Championships>(entity =>
@@ -234,11 +236,18 @@ namespace Trainer.EF
                 entity.Property(e => e.Id)
                     .HasMaxLength(128)
                     .ValueGeneratedNever();
+
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.Clients)
+                    .HasForeignKey<Clients>(d => d.Id)
+                    .HasConstraintName("FK_Clients_dbo.AspNetUsers");
             });
 
             modelBuilder.Entity<ClientsDocuments>(entity =>
             {
                 entity.ToTable("Clients_Documents");
+
+                entity.HasIndex(e => e.ClientId);
 
                 entity.Property(e => e.ClientId)
                     .IsRequired()
@@ -272,6 +281,8 @@ namespace Trainer.EF
             {
                 entity.ToTable("Clients_Images");
 
+                entity.HasIndex(e => e.ClientId);
+
                 entity.Property(e => e.ClientId)
                     .IsRequired()
                     .HasMaxLength(128);
@@ -295,6 +306,8 @@ namespace Trainer.EF
             {
                 entity.ToTable("Clients_Measurments");
 
+                entity.HasIndex(e => e.ClientId);
+
                 entity.Property(e => e.ClientId)
                     .IsRequired()
                     .HasMaxLength(128);
@@ -313,6 +326,8 @@ namespace Trainer.EF
             modelBuilder.Entity<ClientsOverloads>(entity =>
             {
                 entity.ToTable("Clients_Overloads");
+
+                entity.HasIndex(e => e.ClientId);
 
                 entity.Property(e => e.ClientId)
                     .IsRequired()
@@ -366,6 +381,10 @@ namespace Trainer.EF
 
             modelBuilder.Entity<Products>(entity =>
             {
+                entity.HasIndex(e => e.OwnerId);
+
+                entity.HasIndex(e => e.SubcategoryId);
+
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
                 entity.Property(e => e.CreatedBy)
@@ -420,6 +439,8 @@ namespace Trainer.EF
             {
                 entity.ToTable("Products_Images");
 
+                entity.HasIndex(e => e.ProductId);
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100);
@@ -442,11 +463,18 @@ namespace Trainer.EF
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.ContactInfo).IsRequired();
+
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.ProductsOwners)
+                    .HasForeignKey<ProductsOwners>(d => d.Id)
+                    .HasConstraintName("FK_Products_Owners_dbo.AspNetUsers");
             });
 
             modelBuilder.Entity<ProductsSubcategories>(entity =>
             {
                 entity.ToTable("Products_Subcategories");
+
+                entity.HasIndex(e => e.CategoryId);
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
@@ -464,6 +492,8 @@ namespace Trainer.EF
             modelBuilder.Entity<ProgramsImages>(entity =>
             {
                 entity.ToTable("Programs_Images");
+
+                entity.HasIndex(e => e.ProgramId);
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -483,6 +513,8 @@ namespace Trainer.EF
             modelBuilder.Entity<ProgramsPrices>(entity =>
             {
                 entity.ToTable("Programs_Prices");
+
+                entity.HasIndex(e => e.ProgramId);
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
@@ -506,11 +538,18 @@ namespace Trainer.EF
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.Bio).IsRequired();
+
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.Trainers)
+                    .HasForeignKey<Trainers>(d => d.Id)
+                    .HasConstraintName("FK_Trainers_dbo_AspNetUsers");
             });
 
             modelBuilder.Entity<TrainersPrograms>(entity =>
             {
                 entity.ToTable("Trainers_Programs");
+
+                entity.HasIndex(e => e.TrainerId);
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 

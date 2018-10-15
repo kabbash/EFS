@@ -14,6 +14,7 @@ namespace Shared.Core.Utilities
     {
         Error = 0,
         Success = 1,
-        Warning = 2
+        Warning = 2,
+        InvalidData = 3
     }
 }
