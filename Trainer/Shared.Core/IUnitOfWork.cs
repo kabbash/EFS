@@ -6,12 +6,12 @@ namespace Shared.Core
 {
     public interface IUnitOfWork : IDisposable
     {
-         IRepository<Calories> TestRepository { get; }
+        IRepository<Calories> TestRepository { get; }
         IRepository<AspNetUsers> UsersRepository { get; }
         IRepository<AspNetRoles> RolesRepository { get; }
         IRepository<AspNetUserRoles> UsersRolesRepository { get; }
-
-
+        IRepository<ProductsCategories> ProductsCategoriesRepository { get; }
+        IRepository<ProductsSubcategories> ProductsSubCategoriesRepository { get; }
 
         /// <summary>
         /// Commits all changes

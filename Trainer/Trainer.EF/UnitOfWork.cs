@@ -66,9 +66,31 @@ namespace Trainer.EF
             }
         }
 
-        
+        private IRepository<ProductsCategories> _productsCategoriesRepo;
+        public IRepository<ProductsCategories> ProductsCategoriesRepository
+        {
+            get
+            {
+                if (_productsCategoriesRepo == null)
+                {
+                    _productsCategoriesRepo = new Repository<ProductsCategories>(_dbContext);
+                }
+                return _productsCategoriesRepo;
+            }
+        }
 
-
+        private IRepository<ProductsSubcategories> _productsSubCategoriesRepo;
+        public IRepository<ProductsSubcategories> ProductsSubCategoriesRepository
+        {
+            get
+            {
+                if (_productsSubCategoriesRepo == null)
+                {
+                    _productsSubCategoriesRepo = new Repository<ProductsSubcategories>(_dbContext);
+                }
+                return _productsSubCategoriesRepo;
+            }
+        }
 
         #endregion
 
