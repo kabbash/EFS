@@ -17,6 +17,19 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using test.core.Model;
 using FluentValidation;
 using test.core.Validators;
+using Shared.Core.Resources;
+using Attachments.Core.Models;
+using Attachments.Core.Validators;
+using Attachments.Core.Interfaces;
+using Attachments.Core.Services;
+using Products.Categories.Core.Interfaces;
+using Products.Categories.Core.Services;
+using Products.Categories.Core.Models;
+using Products.Categories.Core.Validators;
+using Products.SubCategories.Core.Interfaces;
+using Products.SubCategories.Core.Services;
+using Products.SubCategories.Core.Models;
+using Products.SubCategories.Core.Validators;
 using Authentication.Validators;
 using Authentication.Models;
 
@@ -24,18 +37,20 @@ namespace Trainer
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<EFSContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ICaloriesManager, CaloriesManager>();
+            services.AddScoped<IAttachmentsManager, AttachmentsManager>();
+            services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
+            services.AddScoped<IProductsSubCategoriesManager, ProductsSubCategoriesManager>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // configure strongly typed settings objects
@@ -61,6 +76,12 @@ namespace Trainer
                 };
             });
 
+            var resources = Configuration.GetSection("Resources");
+            services.Configure<AttachmentsResources>(resources.GetSection("AttachmentsResources"));
+            services.Configure<TestResources>(resources.GetSection("TestResources"));
+            services.Configure<ProductsResources>(resources.GetSection("ProductsResources"));
+            
+
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
 
@@ -68,7 +89,11 @@ namespace Trainer
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddTransient<IValidator<CaloriesDto>, CaloriesDtoValidator>();
+            services.AddTransient<IValidator<UploadFileDto>, UploadFileDtoValidator>();
+            services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
+            services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();
             services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
+
 
 
 

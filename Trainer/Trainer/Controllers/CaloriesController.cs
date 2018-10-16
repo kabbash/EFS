@@ -32,14 +32,15 @@ namespace Trainer.Controllers
         public ActionResult Post([FromBody] CaloriesDto calories)
         {            
             var success = _Manager.Insert(calories);
-            if (success)
-            {
-                return Ok();
-            }
-            else
-            {
-                return NotFound();
-            }
+            return Ok(success);
+            //if (success)
+            //{
+            //    return Ok();
+            //}
+            //else
+            //{
+            //    return NotFound();
+            //}
         }
 
         // GET api/calories/5

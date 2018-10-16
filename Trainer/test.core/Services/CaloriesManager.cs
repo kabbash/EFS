@@ -1,8 +1,10 @@
 ﻿using FluentValidation;
 using Mapster;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.Extensions.Options;
 using Shared.Core;
 using Shared.Core.Models;
+using Shared.Core.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +18,12 @@ namespace test.core.Services
     {
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<CaloriesDto> _validator;
-        public CaloriesManager(IUnitOfWork unitOfWork, IValidator<CaloriesDto> validator)
+        private readonly IOptions<TestResources> _testResources;
+        public CaloriesManager(IUnitOfWork unitOfWork, IValidator<CaloriesDto> validator, IOptions<TestResources> testResources)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
+            _testResources = testResources;
         }
         public IEnumerable<CaloriesDto> GetAll()
         {
@@ -28,22 +32,22 @@ namespace test.core.Services
             return result;
         }
 
-        public bool Insert(CaloriesDto calory)
+        public string Insert(CaloriesDto calory)
         {
             var validationResult = _validator.Validate(calory);
 
             if (!validationResult.IsValid)
-                return false;
+                return "";
 
             try {
 
                 _unitOfWork.TestRepository.Insert(calory.Adapt<Calories>());
                 _unitOfWork.Commit();
-                return true;
+                return _testResources.Value.SuccessMsg;
             }
             catch(Exception error)
             {
-                return false;
+                return "false";
             }
         }
 

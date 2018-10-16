@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Attachments.Core.Interfaces;
+using Attachments.Core.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,10 +18,17 @@ namespace Trainer.Controllers
         {
             _attachmentManager = attachmentManager;
         }
-        public JsonResult UploadFile(byte[] pFileBytess, string pFileName)
+        [HttpPost("UploadFile")]
+        public ActionResult UploadFile(UploadFileDto uploadedFile)
         {
-            //validate here or in manager ?!
-            return new JsonResult(_attachmentManager.Upload(pFileBytess, pFileName));
+            return Ok(_attachmentManager.Upload(uploadedFile));
         }
+
+        [HttpPost]
+        public ActionResult SaveFile(SaveFileDto fileDto)
+        {
+            return Ok(_attachmentManager.Move(fileDto));
+        }
+
     }
 }

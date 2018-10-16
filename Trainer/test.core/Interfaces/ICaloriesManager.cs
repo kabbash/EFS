@@ -11,7 +11,7 @@ namespace test.core.Interfaces
     public interface ICaloriesManager
     {
         IEnumerable<CaloriesDto> GetAll();
-        Boolean Insert(CaloriesDto calory);
+        string Insert(CaloriesDto calory);
         CaloriesDto GetById(short id);
         bool Update(CaloriesDto calory, short id);
         bool Delete(short id);
