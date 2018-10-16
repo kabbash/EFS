@@ -1,4 +1,5 @@
 ﻿using Authentication.Models;
+using Shared.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,5 +13,6 @@ namespace Authentication.Interfaces
         bool AddRoleToUser(AddRoleToUserDto data);
         bool AddRole(RoleDto data);
         bool DeleteRole(string data);
+        ResultMessage Register(RegisterDto userData);
     }
 }

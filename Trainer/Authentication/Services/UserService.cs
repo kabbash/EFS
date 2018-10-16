@@ -11,6 +11,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using Microsoft.Extensions.Options;
 using Shared.Core.Models;
+using Shared.Core.Utilities;
+using FluentValidation;
 
 namespace Authentication.Services
 {
@@ -18,10 +20,12 @@ namespace Authentication.Services
     {
         protected IUnitOfWork _unitOfWork;
         private readonly AuthenticationSettings _settings;
-        public UserService(IUnitOfWork unitOfWork, IOptions<AuthenticationSettings> settings)
+        private readonly IValidator<RegisterDto> _validator;
+        public UserService(IUnitOfWork unitOfWork, IOptions<AuthenticationSettings> settings, IValidator<RegisterDto>validator)
         {
             _unitOfWork = unitOfWork;
             _settings = settings.Value;
+            _validator = validator;
         }
         public User Authenticate(string username, string password)
         {
@@ -143,6 +147,50 @@ namespace Authentication.Services
 
                 return false;
             }
+        }
+        public ResultMessage Register(RegisterDto userData)
+        {
+            var validatationResult = _validator.Validate(userData);
+            if (!validatationResult.IsValid)
+            {
+                var message = "";
+                if (validatationResult.Errors.Count > 0)
+                {
+                    message = validatationResult.Errors.Select(e => e.ErrorMessage).Aggregate((i, j) => i + '\n' + j);
+                }
+                return new ResultMessage { Status = (int)ResultStatus.InvalidData, Message = message };
+            }
+            try
+            {
+                var userEntity = userData.Adapt<AspNetUsers>();
+                userEntity.Id = Guid.NewGuid().ToString();
+                userEntity.UserName = userEntity.Email;
+                _unitOfWork.UsersRepository.Insert(userEntity);
+                _unitOfWork.Commit();
+                switch (userData.Type)
+                {
+                    case Enums.UserEnum.Clinet:
+                        _unitOfWork.ClientsRepository.Insert(new Clients { Id = userEntity.Id });
+                        _unitOfWork.Commit();
+                        break;
+                    case Enums.UserEnum.ProductOwner:
+                        _unitOfWork.ProductOwnersRepository.Insert(new ProductsOwners { Id = userEntity.Id });
+                        _unitOfWork.Commit();
+                        break;
+                    case Enums.UserEnum.Trainer:
+                        _unitOfWork.TrainersRepository.Insert(new Trainers { Id = userEntity.Id });
+                        _unitOfWork.Commit();
+                        break;
+                }
+                return new ResultMessage { Status = (int)ResultStatus.Success };
+            }
+            catch (Exception ex)
+            {
+
+                return new ResultMessage { Status = (int)ResultStatus.Error};
+            }
+
+
         }
     }
 }

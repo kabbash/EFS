@@ -10,6 +10,10 @@ namespace Shared.Core
         IRepository<AspNetUsers> UsersRepository { get; }
         IRepository<AspNetRoles> RolesRepository { get; }
         IRepository<AspNetUserRoles> UsersRolesRepository { get; }
+        IRepository<Clients> ClientsRepository { get; }
+        IRepository<ProductsOwners> ProductOwnersRepository { get; }
+        IRepository<Trainers> TrainersRepository { get; }
+
 
 
 
