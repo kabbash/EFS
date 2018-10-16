@@ -12,7 +12,7 @@ namespace test.core.Validators
         {
             RuleFor(model => model.Name).NotEmpty();
             RuleFor(model => model.Value).NotEmpty();
-            RuleFor(model => model.Description).NotEmpty().EmailAddress();
+            RuleFor(model => model.Description).NotEmpty();
         }
     }
 }

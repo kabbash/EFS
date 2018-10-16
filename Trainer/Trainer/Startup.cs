@@ -30,6 +30,8 @@ using Products.SubCategories.Core.Interfaces;
 using Products.SubCategories.Core.Services;
 using Products.SubCategories.Core.Models;
 using Products.SubCategories.Core.Validators;
+using Authentication.Validators;
+using Authentication.Models;
 
 namespace Trainer
 {
@@ -90,6 +92,10 @@ namespace Trainer
             services.AddTransient<IValidator<UploadFileDto>, UploadFileDtoValidator>();
             services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
             services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();
+            services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
+
+
+
 
             services.AddCors(options =>
             {

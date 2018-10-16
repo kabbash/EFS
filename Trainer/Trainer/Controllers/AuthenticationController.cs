@@ -2,6 +2,7 @@
 using Authentication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,6 +72,24 @@ namespace Trainer.Controllers
             else
                 return BadRequest();
 
+        }
+        [HttpPost]
+        [Route("Register")]
+        public IActionResult Register([FromBody] RegisterDto userData)
+        {
+            var result = _userService.Register(userData);
+            switch (result.Status)
+            {
+                case (int) ResultStatus.InvalidData:
+                    return BadRequest(result);
+
+                case (int)ResultStatus.Error:
+                    return StatusCode(500, result);
+
+                case (int)ResultStatus.Success:
+                    return Ok(result);
+            }
+            return StatusCode(500 , result);
         }
     }
 }

@@ -40,6 +40,45 @@ namespace Trainer.EF
             }
         }
 
+        private IRepository<Clients> _clientsRepo;
+        public IRepository<Clients> ClientsRepository
+        {
+            get
+            {
+                if (_clientsRepo == null)
+                {
+                    _clientsRepo = new Repository<Clients>(_dbContext);
+                }
+                return _clientsRepo;
+            }
+        }
+
+        private IRepository<Trainers> _trainersRepo;
+        public IRepository<Trainers> TrainersRepository
+        {
+            get
+            {
+                if (_trainersRepo == null)
+                {
+                    _trainersRepo = new Repository<Trainers>(_dbContext);
+                }
+                return _trainersRepo;
+            }
+        }
+
+        private IRepository<ProductsOwners> _productOwnersRepo;
+        public IRepository<ProductsOwners> ProductOwnersRepository
+        {
+            get
+            {
+                if (_productOwnersRepo == null)
+                {
+                    _productOwnersRepo = new Repository<ProductsOwners>(_dbContext);
+                }
+                return _productOwnersRepo;
+            }
+        }
+
         private IRepository<AspNetRoles> _rolesRepo;
         public IRepository<AspNetRoles> RolesRepository
         {

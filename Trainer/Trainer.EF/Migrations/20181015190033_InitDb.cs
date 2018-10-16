@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Trainer.EF.Migrations
 {
-    public partial class InitDB : Migration
+    public partial class InitDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,6 +49,32 @@ namespace Trainer.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(maxLength: 128, nullable: false),
+                    Hometown = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEndDateUtc = table.Column<DateTime>(type: "datetime", nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    LastName = table.Column<string>(maxLength: 50, nullable: false),
+                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
+                    ProfilePicture = table.Column<string>(nullable: true),
+                    UserName = table.Column<string>(maxLength: 256, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Calories",
                 columns: table => new
                 {
@@ -82,17 +108,6 @@ namespace Trainer.EF.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Championships", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Clients",
-                columns: table => new
-                {
-                    Id = table.Column<string>(maxLength: 128, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clients", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -135,246 +150,6 @@ namespace Trainer.EF.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products_Categories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Products_Owners",
-                columns: table => new
-                {
-                    Id = table.Column<string>(maxLength: 128, nullable: false),
-                    ContactInfo = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products_Owners", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Trainers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(maxLength: 128, nullable: false),
-                    Bio = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Trainers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Clients_Documents",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
-                    Path = table.Column<string>(nullable: false),
-                    ClientID = table.Column<string>(maxLength: 128, nullable: false),
-                    SentToClient = table.Column<bool>(nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
-                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime", nullable: true),
-                    ModifiedBy = table.Column<string>(maxLength: 128, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clients_Documents", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Clients_Documents_Clients",
-                        column: x => x.ClientID,
-                        principalTable: "Clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Clients_Images",
-                columns: table => new
-                {
-                    Id = table.Column<short>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Path = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
-                    Date = table.Column<DateTime>(type: "date", nullable: false),
-                    ClientId = table.Column<string>(maxLength: 128, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clients_Images", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Clients_Images_Clients",
-                        column: x => x.ClientId,
-                        principalTable: "Clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Clients_Measurments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    TypeId = table.Column<byte>(nullable: false),
-                    Value = table.Column<decimal>(type: "decimal(8, 2)", nullable: false),
-                    Date = table.Column<DateTime>(type: "date", nullable: false),
-                    ClientId = table.Column<string>(maxLength: 128, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clients_Measurments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Clients_Measurments_Clients",
-                        column: x => x.ClientId,
-                        principalTable: "Clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Clients_Overloads",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    TypeId = table.Column<byte>(nullable: false),
-                    Value = table.Column<decimal>(type: "decimal(8, 2)", nullable: false),
-                    Date = table.Column<DateTime>(type: "date", nullable: false),
-                    ClientId = table.Column<string>(maxLength: 128, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clients_Overloads", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Clients_Overloads_Clients",
-                        column: x => x.ClientId,
-                        principalTable: "Clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Products_Subcategories",
-                columns: table => new
-                {
-                    Id = table.Column<byte>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 100, nullable: false),
-                    CategoryId = table.Column<byte>(nullable: false),
-                    ProfilePicture = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products_Subcategories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Products_Subcategories_Products_Categories",
-                        column: x => x.CategoryId,
-                        principalTable: "Products_Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUsers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(maxLength: 128, nullable: false),
-                    Hometown = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEndDateUtc = table.Column<DateTime>(type: "datetime", nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    LastName = table.Column<string>(maxLength: 50, nullable: false),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
-                    ProfilePicture = table.Column<string>(nullable: true),
-                    UserName = table.Column<string>(maxLength: 256, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUsers_Clients",
-                        column: x => x.Id,
-                        principalTable: "Clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AspNetUsers_Products_Owners",
-                        column: x => x.Id,
-                        principalTable: "Products_Owners",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AspNetUsers_Trainers",
-                        column: x => x.Id,
-                        principalTable: "Trainers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Trainers_Programs",
-                columns: table => new
-                {
-                    Id = table.Column<byte>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
-                    Description = table.Column<string>(nullable: false),
-                    TrainerId = table.Column<string>(maxLength: 128, nullable: false),
-                    ProfilePicture = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Trainers_Programs", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Trainers_Programs_Trainers",
-                        column: x => x.TrainerId,
-                        principalTable: "Trainers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 100, nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    ExpDate = table.Column<DateTime>(type: "date", nullable: true),
-                    ProdDate = table.Column<DateTime>(type: "date", nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
-                    OwnerId = table.Column<string>(maxLength: 128, nullable: false),
-                    ProfilePicture = table.Column<string>(nullable: false),
-                    SubcategoryId = table.Column<byte>(nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime", nullable: true),
-                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
-                    ModifiedBy = table.Column<string>(maxLength: 128, nullable: true),
-                    IsActive = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Products_Products_Owners",
-                        column: x => x.OwnerId,
-                        principalTable: "Products_Owners",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Products_Products_Subcategories",
-                        column: x => x.SubcategoryId,
-                        principalTable: "Products_Subcategories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -475,6 +250,231 @@ namespace Trainer.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Clients",
+                columns: table => new
+                {
+                    Id = table.Column<string>(maxLength: 128, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clients", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Clients_dbo.AspNetUsers",
+                        column: x => x.Id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products_Owners",
+                columns: table => new
+                {
+                    Id = table.Column<string>(maxLength: 128, nullable: false),
+                    ContactInfo = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products_Owners", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Owners_dbo.AspNetUsers",
+                        column: x => x.Id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trainers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(maxLength: 128, nullable: false),
+                    Bio = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trainers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Trainers_dbo_AspNetUsers",
+                        column: x => x.Id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products_Subcategories",
+                columns: table => new
+                {
+                    Id = table.Column<byte>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    CategoryId = table.Column<byte>(nullable: false),
+                    ProfilePicture = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products_Subcategories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Subcategories_Products_Categories",
+                        column: x => x.CategoryId,
+                        principalTable: "Products_Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Clients_Documents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    Path = table.Column<string>(nullable: false),
+                    ClientID = table.Column<string>(maxLength: 128, nullable: false),
+                    SentToClient = table.Column<bool>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime", nullable: true),
+                    ModifiedBy = table.Column<string>(maxLength: 128, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clients_Documents", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Clients_Documents_Clients",
+                        column: x => x.ClientID,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Clients_Images",
+                columns: table => new
+                {
+                    Id = table.Column<short>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Path = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    Date = table.Column<DateTime>(type: "date", nullable: false),
+                    ClientId = table.Column<string>(maxLength: 128, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clients_Images", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Clients_Images_Clients",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Clients_Measurments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    TypeId = table.Column<byte>(nullable: false),
+                    Value = table.Column<decimal>(type: "decimal(8, 2)", nullable: false),
+                    Date = table.Column<DateTime>(type: "date", nullable: false),
+                    ClientId = table.Column<string>(maxLength: 128, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clients_Measurments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Clients_Measurments_Clients",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Clients_Overloads",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    TypeId = table.Column<byte>(nullable: false),
+                    Value = table.Column<decimal>(type: "decimal(8, 2)", nullable: false),
+                    Date = table.Column<DateTime>(type: "date", nullable: false),
+                    ClientId = table.Column<string>(maxLength: 128, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clients_Overloads", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Clients_Overloads_Clients",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trainers_Programs",
+                columns: table => new
+                {
+                    Id = table.Column<byte>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    Description = table.Column<string>(nullable: false),
+                    TrainerId = table.Column<string>(maxLength: 128, nullable: false),
+                    ProfilePicture = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trainers_Programs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Trainers_Programs_Trainers",
+                        column: x => x.TrainerId,
+                        principalTable: "Trainers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    ExpDate = table.Column<DateTime>(type: "date", nullable: true),
+                    ProdDate = table.Column<DateTime>(type: "date", nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
+                    OwnerId = table.Column<string>(maxLength: 128, nullable: false),
+                    ProfilePicture = table.Column<string>(nullable: false),
+                    SubcategoryId = table.Column<byte>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime", nullable: true),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
+                    ModifiedBy = table.Column<string>(maxLength: 128, nullable: true),
+                    IsActive = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Products_Owners",
+                        column: x => x.OwnerId,
+                        principalTable: "Products_Owners",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Products_Products_Subcategories",
+                        column: x => x.SubcategoryId,
+                        principalTable: "Products_Subcategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Programs_Images",
                 columns: table => new
                 {
@@ -561,6 +561,12 @@ namespace Trainer.EF.Migrations
                 name: "IX_AspNetUserRoles_RoleId",
                 table: "AspNetUserRoles",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Calories_Name",
+                table: "Calories",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Clients_Documents_ClientID",
@@ -675,16 +681,13 @@ namespace Trainer.EF.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Clients");
 
             migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Trainers_Programs");
-
-            migrationBuilder.DropTable(
-                name: "Clients");
 
             migrationBuilder.DropTable(
                 name: "Products_Owners");
@@ -697,6 +700,9 @@ namespace Trainer.EF.Migrations
 
             migrationBuilder.DropTable(
                 name: "Products_Categories");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

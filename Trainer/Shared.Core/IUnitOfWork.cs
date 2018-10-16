@@ -12,6 +12,13 @@ namespace Shared.Core
         IRepository<AspNetUserRoles> UsersRolesRepository { get; }
         IRepository<ProductsCategories> ProductsCategoriesRepository { get; }
         IRepository<ProductsSubcategories> ProductsSubCategoriesRepository { get; }
+        IRepository<Clients> ClientsRepository { get; }
+        IRepository<ProductsOwners> ProductOwnersRepository { get; }
+        IRepository<Trainers> TrainersRepository { get; }
+
+
+
+
 
         /// <summary>
         /// Commits all changes
