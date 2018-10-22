@@ -32,6 +32,9 @@ using Products.SubCategories.Core.Models;
 using Products.SubCategories.Core.Validators;
 using Authentication.Validators;
 using Authentication.Models;
+using MailProvider.Core;
+using MailProvider.Core.Interfaces;
+using MailProvider.Core.Services;
 
 namespace Trainer
 {
@@ -56,6 +59,7 @@ namespace Trainer
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AuthenticationSettings>(appSettingsSection);
+            services.Configure<MailSettings>(Configuration.GetSection("Email"));
             var appSettings = appSettingsSection.Get<AuthenticationSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
@@ -93,12 +97,15 @@ namespace Trainer
             services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
             services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();
             services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
+            services.AddTransient<IEmailService, MailService>();
+
 
 
 
 
             services.AddCors(options =>
             {
+                options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
                 options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
         }

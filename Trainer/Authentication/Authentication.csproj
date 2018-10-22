@@ -12,6 +12,8 @@
 
   <ItemGroup>
 
+    <ProjectReference Include="..\MailProvider.Core\MailProvider.Core.csproj" />
+
     <ProjectReference Include="..\Shared.Core\Shared.Core.csproj" />
   </ItemGroup>
 
