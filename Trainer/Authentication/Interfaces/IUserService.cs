@@ -8,11 +8,12 @@ namespace Authentication.Interfaces
 {
     public interface IUserService
     {
-        User Authenticate(string username, string password);
+        ResultMessage Authenticate(string username, string password);
         IEnumerable<User> GetAll();
         bool AddRoleToUser(AddRoleToUserDto data);
         bool AddRole(RoleDto data);
         bool DeleteRole(string data);
         ResultMessage Register(RegisterDto userData);
+        ResultMessage VerifyEmail(string token);
     }
 }

@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attachments.Core", "Attachm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "Authentication\Authentication.csproj", "{E81F552E-36D8-467C-9425-174242F17B1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.Categories.Core", "Products.Categories.Core\Products.Categories.Core.csproj", "{5EE85FD7-1811-4635-A932-D290AB21D6D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Categories.Core", "Products.Categories.Core\Products.Categories.Core.csproj", "{5EE85FD7-1811-4635-A932-D290AB21D6D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.SubCategories.Core", "Products.SubCategories.Core\Products.SubCategories.Core.csproj", "{E9EF5AA5-6192-442C-B874-2221A09F2AEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.SubCategories.Core", "Products.SubCategories.Core\Products.SubCategories.Core.csproj", "{E9EF5AA5-6192-442C-B874-2221A09F2AEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailProvider.Core", "MailProvider.Core\MailProvider.Core.csproj", "{F5B6E228-F27B-4236-A2F9-5D415719A8D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{E9EF5AA5-6192-442C-B874-2221A09F2AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9EF5AA5-6192-442C-B874-2221A09F2AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9EF5AA5-6192-442C-B874-2221A09F2AEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5B6E228-F27B-4236-A2F9-5D415719A8D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5B6E228-F27B-4236-A2F9-5D415719A8D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5B6E228-F27B-4236-A2F9-5D415719A8D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5B6E228-F27B-4236-A2F9-5D415719A8D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{E81F552E-36D8-467C-9425-174242F17B1F} = {BA3D3C89-BCA6-49AA-916D-FD02A6EDEBF7}
 		{5EE85FD7-1811-4635-A932-D290AB21D6D3} = {BA3D3C89-BCA6-49AA-916D-FD02A6EDEBF7}
 		{E9EF5AA5-6192-442C-B874-2221A09F2AEA} = {BA3D3C89-BCA6-49AA-916D-FD02A6EDEBF7}
+		{F5B6E228-F27B-4236-A2F9-5D415719A8D0} = {BA3D3C89-BCA6-49AA-916D-FD02A6EDEBF7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B031EEC4-9AEF-45C2-B1B2-BF07D68CC966}

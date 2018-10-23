@@ -91,5 +91,25 @@ namespace Trainer.Controllers
             }
             return StatusCode(500 , result);
         }
+
+        [HttpGet]
+        [Route("VerifyEmail")]
+        public IActionResult VerifyEmail([FromQuery]string activationToken)
+        {
+            var result = _userService.VerifyEmail(activationToken);
+            switch (result.Status)
+            {
+                case (int)ResultStatus.InvalidData:
+                    return BadRequest(result);
+
+                case (int)ResultStatus.Error:
+                    return StatusCode(500, result);
+
+                case (int)ResultStatus.Success:
+                    return Ok(result);
+            }
+            return StatusCode(500, result);
+        }
+
     }
 }
