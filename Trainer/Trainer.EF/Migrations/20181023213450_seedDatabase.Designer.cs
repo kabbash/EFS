@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181023213450_seedDatabase")]
+    partial class seedDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,11 +96,11 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "de32ca95-5bfe-4c54-bfc4-c899c4273733", Name = "Admin" },
-                        new { Id = "64dfc179-5ede-4ac3-a55f-f6b7bc45bf13", Name = "Client" },
-                        new { Id = "fe8823f8-9f24-4229-9e7e-76539677a298", Name = "ProductOwner" },
-                        new { Id = "df734017-2c9b-4821-82c3-3de4af5daedf", Name = "RegularUser" },
-                        new { Id = "d9d39ecb-1284-4ce8-ab95-d19d699041e8", Name = "Trainer" }
+                        new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
+                        new { Id = "6c8dc9f2-810c-4282-8744-d339ce028204", Name = "Client" },
+                        new { Id = "9f8bb3ef-6ff6-4b2e-8d3c-dbea250b5bfc", Name = "ProductOwner" },
+                        new { Id = "77ddd36b-f0ba-4587-8e47-6a7ed18ed487", Name = "RegularUser" },
+                        new { Id = "2751a61a-89cd-4491-8849-0224e226cccd", Name = "Trainer" }
                     );
                 });
 
@@ -201,17 +203,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique()
-                        .HasFilter("[Email] IS NOT NULL");
-
-                    b.HasIndex("UserName")
-                        .IsUnique();
-
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "f5eb3741-85a5-430e-a236-31105d860799", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FirstName = "ahmed", LastName = "kabbash", LockoutEnabled = false, PasswordHash = "1234", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "Admin" }
+                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FirstName = "ahmed", LastName = "kabbash", LockoutEnabled = false, PasswordHash = "1234", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "Admin" }
                     );
                 });
 

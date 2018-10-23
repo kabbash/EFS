@@ -184,16 +184,39 @@ namespace Authentication.Services
                     case Enums.UserEnum.Clinet:
                         _unitOfWork.ClientsRepository.Insert(new Clients { Id = userEntity.Id });
                         _unitOfWork.Commit();
+                        AddRoleToUser(new AddRoleToUserDto
+                        {
+                            RoleName = "Client",
+                            Username = userData.Email
+                        });
                         break;
                     case Enums.UserEnum.ProductOwner:
                         _unitOfWork.ProductOwnersRepository.Insert(new ProductsOwners { Id = userEntity.Id });
                         _unitOfWork.Commit();
+                        AddRoleToUser(new AddRoleToUserDto
+                        {
+                            RoleName = "ProductOwner",
+                            Username = userData.Email
+                        });
                         break;
                     case Enums.UserEnum.Trainer:
                         _unitOfWork.TrainersRepository.Insert(new Trainers { Id = userEntity.Id });
                         _unitOfWork.Commit();
+                        AddRoleToUser(new AddRoleToUserDto
+                        {
+                            RoleName = "RegularUser",
+                            Username = userData.Email
+                        });
+                        break;
+                    default:
+                        AddRoleToUser(new AddRoleToUserDto
+                        {
+                            RoleName = "RegularUser",
+                            Username = userData.Email
+                        });
                         break;
                 }
+                
                 var mailBody = _emailSettings.Body.Replace("{0}", userEntity.FirstName).Replace("{1}", _emailSettings.VerifyEmailUrl.Replace("{0}", userEntity.SecurityStamp));
                 _emailService.SendEmailAsync(userEntity.Email, _emailSettings.Subject, mailBody);
                 return new ResultMessage { Status = (int)ResultStatus.Success };
