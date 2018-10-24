@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Trainer.EF.Migrations
 {
-    public partial class InitDb : Migration
+    public partial class InitDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,10 +26,14 @@ namespace Trainer.EF.Migrations
                 name: "Articles_Categories",
                 columns: table => new
                 {
-                    Id = table.Column<byte>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
-                    ProfilePicture = table.Column<string>(nullable: false)
+                    ProfilePicture = table.Column<string>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
+                    UpdatedBy = table.Column<string>(maxLength: 128, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,11 +82,15 @@ namespace Trainer.EF.Migrations
                 name: "Calories",
                 columns: table => new
                 {
-                    Id = table.Column<short>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 128, nullable: false),
                     Value = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
-                    Description = table.Column<string>(maxLength: 100, nullable: false)
+                    Description = table.Column<string>(maxLength: 100, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
+                    UpdatedBy = table.Column<string>(maxLength: 128, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -93,7 +101,7 @@ namespace Trainer.EF.Migrations
                 name: "Championships",
                 columns: table => new
                 {
-                    Id = table.Column<short>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: false),
                     ProfilePicture = table.Column<string>(nullable: false),
@@ -102,8 +110,8 @@ namespace Trainer.EF.Migrations
                     Description = table.Column<string>(nullable: false),
                     CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime", nullable: true),
-                    ModifiedBy = table.Column<string>(maxLength: 128, nullable: true)
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
+                    UpdatedBy = table.Column<string>(maxLength: 128, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -142,10 +150,14 @@ namespace Trainer.EF.Migrations
                 name: "Products_Categories",
                 columns: table => new
                 {
-                    Id = table.Column<byte>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
-                    ProfilePicture = table.Column<string>(nullable: true)
+                    ProfilePicture = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
+                    UpdatedBy = table.Column<string>(maxLength: 128, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -160,13 +172,13 @@ namespace Trainer.EF.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: false),
-                    CategoryId = table.Column<byte>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false),
                     ProfilePicture = table.Column<string>(nullable: false),
                     AuthorId = table.Column<string>(maxLength: 128, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
                     CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
-                    ModifiedBy = table.Column<string>(maxLength: 128, nullable: true)
+                    UpdatedBy = table.Column<string>(maxLength: 128, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -306,11 +318,15 @@ namespace Trainer.EF.Migrations
                 name: "Products_Subcategories",
                 columns: table => new
                 {
-                    Id = table.Column<byte>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
-                    CategoryId = table.Column<byte>(nullable: false),
-                    ProfilePicture = table.Column<string>(nullable: true)
+                    CategoryId = table.Column<int>(nullable: false),
+                    ProfilePicture = table.Column<string>(nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
+                    UpdatedBy = table.Column<string>(maxLength: 128, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -334,9 +350,7 @@ namespace Trainer.EF.Migrations
                     ClientID = table.Column<string>(maxLength: 128, nullable: false),
                     SentToClient = table.Column<bool>(nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
-                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime", nullable: true),
-                    ModifiedBy = table.Column<string>(maxLength: 128, nullable: true)
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -358,7 +372,9 @@ namespace Trainer.EF.Migrations
                     Path = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 128, nullable: false),
                     Date = table.Column<DateTime>(type: "date", nullable: false),
-                    ClientId = table.Column<string>(maxLength: 128, nullable: false)
+                    ClientId = table.Column<string>(maxLength: 128, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -380,7 +396,11 @@ namespace Trainer.EF.Migrations
                     TypeId = table.Column<byte>(nullable: false),
                     Value = table.Column<decimal>(type: "decimal(8, 2)", nullable: false),
                     Date = table.Column<DateTime>(type: "date", nullable: false),
-                    ClientId = table.Column<string>(maxLength: 128, nullable: false)
+                    ClientId = table.Column<string>(maxLength: 128, nullable: false),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    UpdatedBy = table.Column<string>(maxLength: 128, nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -402,7 +422,11 @@ namespace Trainer.EF.Migrations
                     TypeId = table.Column<byte>(nullable: false),
                     Value = table.Column<decimal>(type: "decimal(8, 2)", nullable: false),
                     Date = table.Column<DateTime>(type: "date", nullable: false),
-                    ClientId = table.Column<string>(maxLength: 128, nullable: false)
+                    ClientId = table.Column<string>(maxLength: 128, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
+                    UpdatedBy = table.Column<string>(maxLength: 128, nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -419,12 +443,16 @@ namespace Trainer.EF.Migrations
                 name: "Trainers_Programs",
                 columns: table => new
                 {
-                    Id = table.Column<byte>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 128, nullable: false),
                     Description = table.Column<string>(nullable: false),
                     TrainerId = table.Column<string>(maxLength: 128, nullable: false),
-                    ProfilePicture = table.Column<string>(nullable: false)
+                    ProfilePicture = table.Column<string>(nullable: false),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
+                    UpdatedBy = table.Column<string>(maxLength: 128, nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -450,11 +478,11 @@ namespace Trainer.EF.Migrations
                     Price = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
                     OwnerId = table.Column<string>(maxLength: 128, nullable: false),
                     ProfilePicture = table.Column<string>(nullable: false),
-                    SubcategoryId = table.Column<byte>(nullable: false),
+                    SubcategoryId = table.Column<int>(nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "datetime", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
                     CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
-                    ModifiedBy = table.Column<string>(maxLength: 128, nullable: true),
+                    UpdatedBy = table.Column<string>(maxLength: 128, nullable: true),
                     IsActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -478,11 +506,13 @@ namespace Trainer.EF.Migrations
                 name: "Programs_Images",
                 columns: table => new
                 {
-                    Id = table.Column<short>(nullable: false),
+                    Id = table.Column<int>(nullable: false),
                     Path = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    ProgramId = table.Column<byte>(nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false)
+                    ProgramId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -499,11 +529,15 @@ namespace Trainer.EF.Migrations
                 name: "Programs_Prices",
                 columns: table => new
                 {
-                    Id = table.Column<byte>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Price = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
                     Duration = table.Column<string>(maxLength: 128, nullable: false),
-                    ProgramId = table.Column<byte>(nullable: false)
+                    ProgramId = table.Column<int>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false),
+                    UpdatedBy = table.Column<string>(maxLength: 128, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -524,7 +558,9 @@ namespace Trainer.EF.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Path = table.Column<string>(nullable: false),
-                    ProductId = table.Column<int>(nullable: false)
+                    ProductId = table.Column<int>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    CreatedBy = table.Column<string>(maxLength: 128, nullable: false)
                 },
                 constraints: table =>
                 {

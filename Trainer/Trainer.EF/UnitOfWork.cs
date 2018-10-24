@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using test.core;
+using Trainer.EF;
 
 namespace Trainer.EF
 {
@@ -128,6 +129,19 @@ namespace Trainer.EF
                     _productsSubCategoriesRepo = new Repository<ProductsSubcategories>(_dbContext);
                 }
                 return _productsSubCategoriesRepo;
+            }
+        }
+
+        private IRepository<Products> _productsRepo;
+        public IRepository<Products> ProductsRepository
+        {
+            get
+            {
+                if (_productsRepo == null)
+                {
+                    _productsRepo = new Repository<Products>(_dbContext);
+                }
+                return _productsRepo;
             }
         }
 

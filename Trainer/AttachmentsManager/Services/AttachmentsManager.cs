@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using Microsoft.Extensions.Options;
 using FluentValidation;
+using System.Net;
 
 namespace Attachments.Core.Services
 {
@@ -34,7 +35,7 @@ namespace Attachments.Core.Services
 
                 return new ResultMessage
                 {
-                    Status = (int)ResultStatus.Validation,
+                    Status = HttpStatusCode.BadRequest,
                     ValidationMessages = errors
                 };
             }
@@ -55,8 +56,7 @@ namespace Attachments.Core.Services
                 return new ResultMessage()
                 {
                     Data = fullPath,
-                    Message = _attachmentsResources.Value.UploadErrorMsg,
-                    Status = (int)ResultStatus.Success
+                    Status = HttpStatusCode.OK
                 };
             }
             catch (Exception ex)
@@ -64,12 +64,12 @@ namespace Attachments.Core.Services
                 //log ex error in file
                 return new ResultMessage()
                 {
-                    Message = _attachmentsResources.Value.UploadErrorMsg,
-                    Status = (int)ResultStatus.Error
+                    ErrorCode = ErrorsCodeEnum.AttachmentsUploadError,
+                    Status = HttpStatusCode.InternalServerError
                 };
             }
         }
-        public bool Move(SaveFileDto file)
+        public bool Save(SaveFileDto file)
         {
             try
             {                

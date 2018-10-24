@@ -18,11 +18,11 @@ namespace Shared.Core.Models
         public decimal Price { get; set; }
         public string OwnerId { get; set; }
         public string ProfilePicture { get; set; }
-        public byte SubcategoryId { get; set; }
+        public int SubcategoryId { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime? ModifiedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         public string CreatedBy { get; set; }
-        public string ModifiedBy { get; set; }
+        public string UpdatedBy { get; set; }
         public bool IsActive { get; set; }
 
         public ProductsOwners Owner { get; set; }

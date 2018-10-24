@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Shared.Core.Models;
 using Shared.Core.Utilities;
 using FluentValidation;
+using System.Net;
 
 namespace Authentication.Services
 {
@@ -152,14 +153,11 @@ namespace Authentication.Services
         {
             var validatationResult = _validator.Validate(userData);
             if (!validatationResult.IsValid)
-            {
-                var message = "";
-                if (validatationResult.Errors.Count > 0)
+                return new ResultMessage()
                 {
-                    message = validatationResult.Errors.Select(e => e.ErrorMessage).Aggregate((i, j) => i + '\n' + j);
-                }
-                return new ResultMessage { Status = (int)ResultStatus.InvalidData, Message = message };
-            }
+                    Status = HttpStatusCode.BadRequest,
+                    ValidationMessages = validatationResult.GetErrorsList()
+                };
             try
             {
                 var userEntity = userData.Adapt<AspNetUsers>();
@@ -182,12 +180,12 @@ namespace Authentication.Services
                         _unitOfWork.Commit();
                         break;
                 }
-                return new ResultMessage { Status = (int)ResultStatus.Success };
+                return new ResultMessage { Status = HttpStatusCode.OK };
             }
             catch (Exception ex)
             {
 
-                return new ResultMessage { Status = (int)ResultStatus.Error};
+                return new ResultMessage { Status = HttpStatusCode.InternalServerError};
             }
 
 

@@ -22,14 +22,10 @@ using Attachments.Core.Models;
 using Attachments.Core.Validators;
 using Attachments.Core.Interfaces;
 using Attachments.Core.Services;
-using Products.Categories.Core.Interfaces;
-using Products.Categories.Core.Services;
-using Products.Categories.Core.Models;
-using Products.Categories.Core.Validators;
-using Products.SubCategories.Core.Interfaces;
-using Products.SubCategories.Core.Services;
-using Products.SubCategories.Core.Models;
-using Products.SubCategories.Core.Validators;
+using Products.Core.Interfaces;
+using Products.Core.Services;
+using Products.Core.Models;
+using Products.Core.Validators;
 using Authentication.Validators;
 using Authentication.Models;
 
@@ -51,6 +47,7 @@ namespace Trainer
             services.AddScoped<IAttachmentsManager, AttachmentsManager>();
             services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
             services.AddScoped<IProductsSubCategoriesManager, ProductsSubCategoriesManager>();
+            services.AddScoped<IProductsManager, ProductsManager>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // configure strongly typed settings objects
@@ -93,6 +90,7 @@ namespace Trainer
             services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
             services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();
             services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
+            services.AddTransient<IValidator<ProductsDto>, ProductsDtoValidator>();
 
 
 

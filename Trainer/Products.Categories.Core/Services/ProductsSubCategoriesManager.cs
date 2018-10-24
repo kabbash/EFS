@@ -1,7 +1,5 @@
 ﻿using FluentValidation;
-using Mapster;
 using Microsoft.Extensions.Options;
-using Products.Core.Interfaces;
 using Products.Core.Models;
 using Shared.Core;
 using Shared.Core.Models;
@@ -9,16 +7,18 @@ using Shared.Core.Resources;
 using Shared.Core.Utilities;
 using System;
 using System.Collections.Generic;
+using Mapster;
+using Products.Core.Interfaces;
 using System.Net;
 
 namespace Products.Core.Services
 {
-    public class ProductsCategoriesManager : IProductsCategoriesManager
+    public class ProductsSubCategoriesManager: IProductsSubCategoriesManager
     {
         protected IUnitOfWork _unitOfWork;
-        private readonly IValidator<ProductsCategoryDto> _validator;
+        private readonly IValidator<ProductsSubCategoryDto> _validator;
         private readonly IOptions<ProductsResources> _productsResources;
-        public ProductsCategoriesManager(IUnitOfWork unitOfWork, IValidator<ProductsCategoryDto> validator, IOptions<ProductsResources> productsResources)
+        public ProductsSubCategoriesManager(IUnitOfWork unitOfWork, IValidator<ProductsSubCategoryDto> validator, IOptions<ProductsResources> productsResources)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
@@ -28,8 +28,8 @@ namespace Products.Core.Services
         {
             try
             {
-                IEnumerable<ProductsCategoryDto> result = new List<ProductsCategoryDto>();
-                result = _unitOfWork.ProductsCategoriesRepository.Get().Adapt(result);
+                IEnumerable<ProductsSubCategoryDto> result = new List<ProductsSubCategoryDto>();
+                result = _unitOfWork.ProductsSubCategoriesRepository.Get().Adapt(result);
 
                 return new ResultMessage()
                 {
@@ -42,27 +42,29 @@ namespace Products.Core.Services
                 //log ex
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.ProductsCategoriesGetAllError,
+                    ErrorCode = ErrorsCodeEnum.ProductsSubCategoriesGetAllError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
         }
-        public ResultMessage Insert(ProductsCategoryDto category)
+        public ResultMessage Insert(ProductsSubCategoryDto category)
         {
             var validationResult = _validator.Validate(category);
             if (!validationResult.IsValid)
+            {
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.BadRequest,
                     ValidationMessages = validationResult.GetErrorsList()
                 };
+            }
 
             try
             {
-                _unitOfWork.ProductsCategoriesRepository.Insert(category.Adapt<ProductsCategories>());                
+                _unitOfWork.ProductsSubCategoriesRepository.Insert(category.Adapt<ProductsSubcategories>());
                 _unitOfWork.Commit();
                 return new ResultMessage()
-                {                    
+                {
                     Status = HttpStatusCode.OK
                 };
             }
@@ -70,7 +72,7 @@ namespace Products.Core.Services
             {
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.ProductsCategoriesInsertError,
+                    ErrorCode = ErrorsCodeEnum.ProductsSubCategoriesInsertError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -79,18 +81,18 @@ namespace Products.Core.Services
         {
             try
             {
-                var category = _unitOfWork.ProductsCategoriesRepository.GetById(id);
-                if(category !=null)
-                return new ResultMessage()
-                {
-                    Data = category.Adapt<ProductsCategoryDto>(),
-                    Status = HttpStatusCode.OK
-                };
+                var category = _unitOfWork.ProductsSubCategoriesRepository.GetById(id);
+                if (category != null)
+                    return new ResultMessage()
+                    {
+                        Data = category.Adapt<ProductsSubCategoryDto>(),
+                        Status = HttpStatusCode.OK
+                    };
                 else
                     return new ResultMessage()
-                    {                        
-                        Status = HttpStatusCode.NotFound,
-                        ErrorCode = ErrorsCodeEnum.ProductsCategoriesNotFoundError
+                    {
+                        Status = HttpStatusCode.InternalServerError,
+                        ErrorCode = ErrorsCodeEnum.ProductsSubCategoriesNotFoundError
                     };
             }
             catch (Exception ex)
@@ -98,29 +100,31 @@ namespace Products.Core.Services
                 //log ex
                 return new ResultMessage()
                 {
-                    ErrorCode =ErrorsCodeEnum.ProductsCategoriesGetByIdError,
+                    ErrorCode = ErrorsCodeEnum.ProductsGetByIdError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
         }
-        public ResultMessage Update(ProductsCategoryDto category, byte id)
+        public ResultMessage Update(ProductsSubCategoryDto category, byte id)
         {
             var validationResult = _validator.Validate(category);
             if (!validationResult.IsValid)
+            {
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.BadRequest,
                     ValidationMessages = validationResult.GetErrorsList()
                 };
+            }
 
             try
             {
-                var oldCategory = _unitOfWork.ProductsCategoriesRepository.GetById(id);
+                var oldCategory = _unitOfWork.ProductsSubCategoriesRepository.GetById(id);
                 if (oldCategory != null)
                 {
                     oldCategory.Name = category.Name;
                     oldCategory.ProfilePicture = category.ProfilePicture;
-                    _unitOfWork.ProductsCategoriesRepository.Update(oldCategory);
+                    _unitOfWork.ProductsSubCategoriesRepository.Update(oldCategory);
                     _unitOfWork.Commit();
                     return new ResultMessage
                     {
@@ -132,7 +136,7 @@ namespace Products.Core.Services
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound,
-                        ErrorCode = ErrorsCodeEnum.ProductsCategoriesNotFoundError
+                        ErrorCode = ErrorsCodeEnum.ProductsSubCategoriesNotFoundError
                     };
                 }
             }
@@ -141,7 +145,7 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    ErrorCode = ErrorsCodeEnum.ProductsCategoriesUpdateError
+                    ErrorCode = ErrorsCodeEnum.ProductsSubCategoriesUpdateError
                 };
             }
         }
@@ -149,9 +153,9 @@ namespace Products.Core.Services
         {
             try
             {
-                _unitOfWork.ProductsCategoriesRepository.Delete(id);
+                _unitOfWork.ProductsSubCategoriesRepository.Delete(id);
                 _unitOfWork.Commit();
-                return new ResultMessage ()
+                return new ResultMessage()
                 {
                     Status = HttpStatusCode.OK
                 };
@@ -161,7 +165,7 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    ErrorCode = ErrorsCodeEnum.ProductsCategoriesDeleteError
+                    ErrorCode = ErrorsCodeEnum.ProductsSubCategoriesDeleteError
                 };
             }
         }

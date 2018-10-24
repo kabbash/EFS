@@ -14,7 +14,6 @@ namespace Trainer.EF
         public EFSContext(DbContextOptions<EFSContext> options)
             : base(options)
         {
-            //Database.Migrate();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }
@@ -49,7 +48,7 @@ namespace Trainer.EF
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=EFS_Dev;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-55PE9HK\\MOHAMEDMAGDY;Database=EFS_Dev;Trusted_Connection=True;");
             }
         }
 
@@ -73,13 +72,13 @@ namespace Trainer.EF
 
                 entity.Property(e => e.Description).IsRequired();
 
-                entity.Property(e => e.ModifiedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.ModifiedBy).HasMaxLength(128);
-
                 entity.Property(e => e.Name).IsRequired();
 
                 entity.Property(e => e.ProfilePicture).IsRequired();
+
+                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
 
                 entity.HasOne(d => d.Author)
                     .WithMany(p => p.Articles)
@@ -98,13 +97,21 @@ namespace Trainer.EF
             {
                 entity.ToTable("Articles_Categories");
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(128);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100);
 
                 entity.Property(e => e.ProfilePicture).IsRequired();
+
+                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
             });
 
             modelBuilder.Entity<AspNetRoles>(entity =>
@@ -196,6 +203,15 @@ namespace Trainer.EF
 
             modelBuilder.Entity<Calories>(entity =>
             {
+                entity.HasIndex(e => e.Name)
+                    .IsUnique();
+
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(128);
+
                 entity.Property(e => e.Description)
                     .IsRequired()
                     .HasMaxLength(100);
@@ -204,8 +220,11 @@ namespace Trainer.EF
                     .IsRequired()
                     .HasMaxLength(128);
 
+                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
+
                 entity.Property(e => e.Value).HasColumnType("decimal(10, 2)");
-                entity.HasIndex(e => e.Name).IsUnique();
             });
 
             modelBuilder.Entity<Championships>(entity =>
@@ -220,15 +239,15 @@ namespace Trainer.EF
 
                 entity.Property(e => e.Description).IsRequired();
 
-                entity.Property(e => e.ModifiedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.ModifiedBy).HasMaxLength(128);
-
                 entity.Property(e => e.Name).IsRequired();
 
                 entity.Property(e => e.Place).IsRequired();
 
                 entity.Property(e => e.ProfilePicture).IsRequired();
+
+                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
             });
 
             modelBuilder.Entity<Clients>(entity =>
@@ -260,10 +279,6 @@ namespace Trainer.EF
                     .IsRequired()
                     .HasMaxLength(128);
 
-                entity.Property(e => e.ModifiedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.ModifiedBy).HasMaxLength(128);
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(128);
@@ -284,6 +299,12 @@ namespace Trainer.EF
                 entity.HasIndex(e => e.ClientId);
 
                 entity.Property(e => e.ClientId)
+                    .IsRequired()
+                    .HasMaxLength(128);
+
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasMaxLength(128);
 
@@ -312,7 +333,17 @@ namespace Trainer.EF
                     .IsRequired()
                     .HasMaxLength(128);
 
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(128);
+
                 entity.Property(e => e.Date).HasColumnType("date");
+
+                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
 
                 entity.Property(e => e.Value).HasColumnType("decimal(8, 2)");
 
@@ -333,7 +364,17 @@ namespace Trainer.EF
                     .IsRequired()
                     .HasMaxLength(128);
 
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(128);
+
                 entity.Property(e => e.Date).HasColumnType("date");
+
+                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
 
                 entity.Property(e => e.Value).HasColumnType("decimal(8, 2)");
 
@@ -393,10 +434,6 @@ namespace Trainer.EF
 
                 entity.Property(e => e.ExpDate).HasColumnType("date");
 
-                entity.Property(e => e.ModifiedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.ModifiedBy).HasMaxLength(128);
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100);
@@ -410,6 +447,10 @@ namespace Trainer.EF
                 entity.Property(e => e.ProdDate).HasColumnType("date");
 
                 entity.Property(e => e.ProfilePicture).IsRequired();
+
+                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
 
                 entity.HasOne(d => d.Owner)
                     .WithMany(p => p.Products)
@@ -428,11 +469,19 @@ namespace Trainer.EF
             {
                 entity.ToTable("Products_Categories");
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(128);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100);
+
+                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
             });
 
             modelBuilder.Entity<ProductsImages>(entity =>
@@ -440,6 +489,12 @@ namespace Trainer.EF
                 entity.ToTable("Products_Images");
 
                 entity.HasIndex(e => e.ProductId);
+
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(128);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -476,11 +531,19 @@ namespace Trainer.EF
 
                 entity.HasIndex(e => e.CategoryId);
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(128);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100);
+
+                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.ProductsSubcategories)
@@ -496,6 +559,12 @@ namespace Trainer.EF
                 entity.HasIndex(e => e.ProgramId);
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(128);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -516,13 +585,21 @@ namespace Trainer.EF
 
                 entity.HasIndex(e => e.ProgramId);
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(128);
 
                 entity.Property(e => e.Duration)
                     .IsRequired()
                     .HasMaxLength(128);
 
                 entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
+
+                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
 
                 entity.HasOne(d => d.Program)
                     .WithMany(p => p.ProgramsPrices)
@@ -551,7 +628,11 @@ namespace Trainer.EF
 
                 entity.HasIndex(e => e.TrainerId);
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(128);
 
                 entity.Property(e => e.Description).IsRequired();
 
@@ -564,6 +645,10 @@ namespace Trainer.EF
                 entity.Property(e => e.TrainerId)
                     .IsRequired()
                     .HasMaxLength(128);
+
+                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
 
                 entity.HasOne(d => d.Trainer)
                     .WithMany(p => p.TrainersPrograms)
