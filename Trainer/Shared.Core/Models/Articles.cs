@@ -8,13 +8,13 @@ namespace Shared.Core.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public byte CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public string ProfilePicture { get; set; }
         public string AuthorId { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime? ModifiedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         public string CreatedBy { get; set; }
-        public string ModifiedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         public AspNetUsers Author { get; set; }
         public ArticlesCategories Category { get; set; }

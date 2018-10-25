@@ -6,12 +6,12 @@ using System.Text;
 
 namespace Products.Core.Interfaces
 {
-    public interface IProductsCategoriesManager
+    public interface IProductsSubCategoriesManager
     {
         ResultMessage GetAll();
-        ResultMessage Insert(ProductsCategoryDto category);
+        ResultMessage Insert(ProductsSubCategoryDto subCategory);
         ResultMessage GetById(byte id);
-        ResultMessage Update(ProductsCategoryDto category, byte id);
+        ResultMessage Update(ProductsSubCategoryDto subCategory, byte id);
         ResultMessage Delete(byte id);
     }
 }

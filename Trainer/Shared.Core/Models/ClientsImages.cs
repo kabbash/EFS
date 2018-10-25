@@ -10,6 +10,8 @@ namespace Shared.Core.Models
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public string ClientId { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
 
         public Clients Client { get; set; }
     }

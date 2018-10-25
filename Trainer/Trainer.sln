@@ -19,11 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Attachments.Core", "Attachm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "Authentication\Authentication.csproj", "{E81F552E-36D8-467C-9425-174242F17B1F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Categories.Core", "Products.Categories.Core\Products.Categories.Core.csproj", "{5EE85FD7-1811-4635-A932-D290AB21D6D3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.SubCategories.Core", "Products.SubCategories.Core\Products.SubCategories.Core.csproj", "{E9EF5AA5-6192-442C-B874-2221A09F2AEA}"
-EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Core", "Products.Categories.Core\Products.Core.csproj", "{5EE85FD7-1811-4635-A932-D290AB21D6D3}"
+
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailProvider.Core", "MailProvider.Core\MailProvider.Core.csproj", "{F5B6E228-F27B-4236-A2F9-5D415719A8D0}"
+
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,12 +6,13 @@ using System.Text;
 
 namespace Products.Core.Validators
 {
-    public class ProductsCategoryDtoValidator : AbstractValidator<ProductsCategoryDto>
+    public class ProductsSubCategoryDtoValidator : AbstractValidator<ProductsSubCategoryDto>
     {
-        public ProductsCategoryDtoValidator()
+        public ProductsSubCategoryDtoValidator()
         {
             RuleFor(c => c.Name).NotEmpty();
             RuleFor(c => c.ProfilePicture).NotEmpty();
+            RuleFor(c => c.CategoryId).NotEmpty();
         }
     }
 }

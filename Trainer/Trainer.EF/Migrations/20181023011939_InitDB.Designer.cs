@@ -10,8 +10,8 @@ using Trainer.EF;
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    [Migration("20181015190033_InitDb")]
-    partial class InitDb
+    [Migration("20181023011939_InitDB")]
+    partial class InitDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,7 +31,7 @@ namespace Trainer.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(128);
 
-                    b.Property<byte>("CategoryId");
+                    b.Property<int>("CategoryId");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime");
@@ -43,17 +43,17 @@ namespace Trainer.EF.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasMaxLength(128);
-
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(128);
 
                     b.HasKey("Id");
 
@@ -66,9 +66,16 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.ArticlesCategories", b =>
                 {
-                    b.Property<byte>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(128);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -76,6 +83,12 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(128);
 
                     b.HasKey("Id");
 
@@ -200,9 +213,16 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.Calories", b =>
                 {
-                    b.Property<short>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(128);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -210,6 +230,12 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(128);
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
                         .HasMaxLength(128);
 
                     b.Property<decimal>("Value")
@@ -225,7 +251,7 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.Championships", b =>
                 {
-                    b.Property<short>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -242,12 +268,6 @@ namespace Trainer.EF.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasMaxLength(128);
-
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -256,6 +276,12 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(128);
 
                     b.HasKey("Id");
 
@@ -290,12 +316,6 @@ namespace Trainer.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(128);
 
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasMaxLength(128);
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(128);
@@ -319,6 +339,13 @@ namespace Trainer.EF.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClientId")
+                        .IsRequired()
+                        .HasMaxLength(128);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasMaxLength(128);
 
@@ -349,10 +376,23 @@ namespace Trainer.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(128);
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(128);
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
 
                     b.Property<byte>("TypeId");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(128);
 
                     b.Property<decimal>("Value")
                         .HasColumnType("decimal(8, 2)");
@@ -374,10 +414,23 @@ namespace Trainer.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(128);
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(128);
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
 
                     b.Property<byte>("TypeId");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(128);
 
                     b.Property<decimal>("Value")
                         .HasColumnType("decimal(8, 2)");
@@ -463,12 +516,6 @@ namespace Trainer.EF.Migrations
 
                     b.Property<bool>("IsActive");
 
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasMaxLength(128);
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100);
@@ -486,7 +533,13 @@ namespace Trainer.EF.Migrations
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
 
-                    b.Property<byte>("SubcategoryId");
+                    b.Property<int>("SubcategoryId");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(128);
 
                     b.HasKey("Id");
 
@@ -499,15 +552,28 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.ProductsCategories", b =>
                 {
-                    b.Property<byte>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(128);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100);
 
                     b.Property<string>("ProfilePicture");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(128);
 
                     b.HasKey("Id");
 
@@ -519,6 +585,13 @@ namespace Trainer.EF.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(128);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -551,17 +624,30 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.ProductsSubcategories", b =>
                 {
-                    b.Property<byte>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<byte>("CategoryId");
+                    b.Property<int>("CategoryId");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(128);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100);
 
                     b.Property<string>("ProfilePicture");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(128);
 
                     b.HasKey("Id");
 
@@ -572,7 +658,14 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.ProgramsImages", b =>
                 {
-                    b.Property<short>("Id");
+                    b.Property<int>("Id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(128);
 
                     b.Property<string>("Description");
 
@@ -583,7 +676,7 @@ namespace Trainer.EF.Migrations
                     b.Property<string>("Path")
                         .IsRequired();
 
-                    b.Property<byte>("ProgramId");
+                    b.Property<int>("ProgramId");
 
                     b.HasKey("Id");
 
@@ -594,9 +687,16 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.ProgramsPrices", b =>
                 {
-                    b.Property<byte>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(128);
 
                     b.Property<string>("Duration")
                         .IsRequired()
@@ -605,7 +705,13 @@ namespace Trainer.EF.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(10, 2)");
 
-                    b.Property<byte>("ProgramId");
+                    b.Property<int>("ProgramId");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(128);
 
                     b.HasKey("Id");
 
@@ -629,9 +735,16 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.TrainersPrograms", b =>
                 {
-                    b.Property<byte>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(128);
 
                     b.Property<string>("Description")
                         .IsRequired();
@@ -645,6 +758,12 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("TrainerId")
                         .IsRequired()
+                        .HasMaxLength(128);
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedBy")
                         .HasMaxLength(128);
 
                     b.HasKey("Id");

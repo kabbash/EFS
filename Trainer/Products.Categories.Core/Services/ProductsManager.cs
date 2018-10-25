@@ -9,16 +9,18 @@ using Shared.Core.Resources;
 using Shared.Core.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Linq;
 using System.Net;
 
 namespace Products.Core.Services
 {
-    public class ProductsCategoriesManager : IProductsCategoriesManager
+    public class ProductsManager : IProductsManager
     {
         protected IUnitOfWork _unitOfWork;
-        private readonly IValidator<ProductsCategoryDto> _validator;
+        private readonly IValidator<ProductsDto> _validator;
         private readonly IOptions<ProductsResources> _productsResources;
-        public ProductsCategoriesManager(IUnitOfWork unitOfWork, IValidator<ProductsCategoryDto> validator, IOptions<ProductsResources> productsResources)
+        public ProductsManager(IUnitOfWork unitOfWork, IValidator<ProductsDto> validator, IOptions<ProductsResources> productsResources)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
@@ -28,8 +30,8 @@ namespace Products.Core.Services
         {
             try
             {
-                IEnumerable<ProductsCategoryDto> result = new List<ProductsCategoryDto>();
-                result = _unitOfWork.ProductsCategoriesRepository.Get().Adapt(result);
+                IEnumerable<ProductsDto> result = new List<ProductsDto>();
+                result = _unitOfWork.ProductsRepository.Get().Adapt(result);
 
                 return new ResultMessage()
                 {
@@ -42,14 +44,14 @@ namespace Products.Core.Services
                 //log ex
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.ProductsCategoriesGetAllError,
+                    ErrorCode = ErrorsCodeEnum.ProductsGetAllError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
         }
-        public ResultMessage Insert(ProductsCategoryDto category)
+        public ResultMessage Insert(ProductsDto newProduct)
         {
-            var validationResult = _validator.Validate(category);
+            var validationResult = _validator.Validate(newProduct);
             if (!validationResult.IsValid)
                 return new ResultMessage
                 {
@@ -59,10 +61,10 @@ namespace Products.Core.Services
 
             try
             {
-                _unitOfWork.ProductsCategoriesRepository.Insert(category.Adapt<ProductsCategories>());                
+                _unitOfWork.ProductsRepository.Insert(newProduct.Adapt<Shared.Core.Models.Products>());
                 _unitOfWork.Commit();
                 return new ResultMessage()
-                {                    
+                {
                     Status = HttpStatusCode.OK
                 };
             }
@@ -70,27 +72,27 @@ namespace Products.Core.Services
             {
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.ProductsCategoriesInsertError,
+                    ErrorCode = ErrorsCodeEnum.ProductsInsertError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
         }
-        public ResultMessage GetById(byte id)
+        public ResultMessage GetById(int id)
         {
             try
             {
-                var category = _unitOfWork.ProductsCategoriesRepository.GetById(id);
-                if(category !=null)
-                return new ResultMessage()
-                {
-                    Data = category.Adapt<ProductsCategoryDto>(),
-                    Status = HttpStatusCode.OK
-                };
+                var product = _unitOfWork.ProductsRepository.GetById(id);
+                if (product != null)
+                    return new ResultMessage()
+                    {
+                        Data = product.Adapt<ProductsDto>(),
+                        Status = HttpStatusCode.OK
+                    };
                 else
                     return new ResultMessage()
-                    {                        
+                    {
                         Status = HttpStatusCode.NotFound,
-                        ErrorCode = ErrorsCodeEnum.ProductsCategoriesNotFoundError
+                        ErrorCode = ErrorsCodeEnum.ProductsNotFoundError
                     };
             }
             catch (Exception ex)
@@ -98,14 +100,14 @@ namespace Products.Core.Services
                 //log ex
                 return new ResultMessage()
                 {
-                    ErrorCode =ErrorsCodeEnum.ProductsCategoriesGetByIdError,
+                    ErrorCode = ErrorsCodeEnum.ProductsGetByIdError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
         }
-        public ResultMessage Update(ProductsCategoryDto category, byte id)
+        public ResultMessage Update(ProductsDto product, int id)
         {
-            var validationResult = _validator.Validate(category);
+            var validationResult = _validator.Validate(product);
             if (!validationResult.IsValid)
                 return new ResultMessage
                 {
@@ -115,12 +117,12 @@ namespace Products.Core.Services
 
             try
             {
-                var oldCategory = _unitOfWork.ProductsCategoriesRepository.GetById(id);
-                if (oldCategory != null)
+                var oldProduct = _unitOfWork.ProductsRepository.GetById(id);
+                if (oldProduct != null)
                 {
-                    oldCategory.Name = category.Name;
-                    oldCategory.ProfilePicture = category.ProfilePicture;
-                    _unitOfWork.ProductsCategoriesRepository.Update(oldCategory);
+                    oldProduct.Name = product.Name;
+                    oldProduct.ProfilePicture = product.ProfilePicture;
+                    _unitOfWork.ProductsRepository.Update(oldProduct);
                     _unitOfWork.Commit();
                     return new ResultMessage
                     {
@@ -132,7 +134,7 @@ namespace Products.Core.Services
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound,
-                        ErrorCode = ErrorsCodeEnum.ProductsCategoriesNotFoundError
+                        ErrorCode = ErrorsCodeEnum.ProductsNotFoundError
                     };
                 }
             }
@@ -141,17 +143,17 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    ErrorCode = ErrorsCodeEnum.ProductsCategoriesUpdateError
+                    ErrorCode = ErrorsCodeEnum.ProductsUpdateError
                 };
             }
         }
-        public ResultMessage Delete(byte id)
+        public ResultMessage Delete(int id)
         {
             try
             {
-                _unitOfWork.ProductsCategoriesRepository.Delete(id);
+                _unitOfWork.ProductsRepository.Delete(id);
                 _unitOfWork.Commit();
-                return new ResultMessage ()
+                return new ResultMessage()
                 {
                     Status = HttpStatusCode.OK
                 };
@@ -161,9 +163,9 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    ErrorCode = ErrorsCodeEnum.ProductsCategoriesDeleteError
+                    ErrorCode = ErrorsCodeEnum.ProductsDeleteError
                 };
             }
-        }
+        }       
     }
 }

@@ -9,6 +9,8 @@ namespace Shared.Core.Models
         public string Name { get; set; }
         public string Path { get; set; }
         public int ProductId { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
 
         public Products Product { get; set; }
     }

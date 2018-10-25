@@ -11,7 +11,7 @@ namespace Trainer.Controllers
 {
     [Route("api/Attachments")]
     [ApiController]
-    public class AttachmentsController : ControllerBase
+    public class AttachmentsController : BaseController
     {
         private readonly IAttachmentsManager _attachmentManager;
         public AttachmentsController(IAttachmentsManager attachmentManager)
@@ -21,14 +21,13 @@ namespace Trainer.Controllers
         [HttpPost("UploadFile")]
         public ActionResult UploadFile(UploadFileDto uploadedFile)
         {
-            return Ok(_attachmentManager.Upload(uploadedFile));
+            return GetStatusCodeResult(_attachmentManager.Upload(uploadedFile));
         }
 
         [HttpPost]
         public ActionResult SaveFile(SaveFileDto fileDto)
         {
-            return Ok(_attachmentManager.Move(fileDto));
+            return Ok(_attachmentManager.Save(fileDto));
         }
-
     }
 }

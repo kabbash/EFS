@@ -9,6 +9,6 @@ namespace Attachments.Core.Interfaces
     public interface IAttachmentsManager
     {
         ResultMessage Upload(UploadFileDto uploadedFile);
-        bool Move(SaveFileDto savedFile);
+        bool Save(SaveFileDto savedFile);
     }
 }

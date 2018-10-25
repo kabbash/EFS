@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Trainer.Controllers
 {
     [Route("api/authentication")]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : BaseController
     {
         protected IUserService _userService;
         public AuthenticationController(IUserService userService)
@@ -77,19 +77,7 @@ namespace Trainer.Controllers
         [Route("Register")]
         public IActionResult Register([FromBody] RegisterDto userData)
         {
-            var result = _userService.Register(userData);
-            switch (result.Status)
-            {
-                case (int) ResultStatus.InvalidData:
-                    return BadRequest(result);
-
-                case (int)ResultStatus.Error:
-                    return StatusCode(500, result);
-
-                case (int)ResultStatus.Success:
-                    return Ok(result);
-            }
-            return StatusCode(500 , result);
+            return GetStatusCodeResult(_userService.Register(userData));
         }
 
         [HttpGet]

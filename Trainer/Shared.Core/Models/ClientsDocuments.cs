@@ -12,8 +12,6 @@ namespace Shared.Core.Models
         public bool SentToClient { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime? ModifiedAt { get; set; }
-        public string ModifiedBy { get; set; }
 
         public Clients Client { get; set; }
     }
