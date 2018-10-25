@@ -123,6 +123,18 @@ namespace Trainer.EF
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(256);
+                entity.HasData(new AspNetRoles[] {
+                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "Admin"},
+                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "Client"},
+                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "ProductOwner"},
+                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "RegularUser"},
+                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "Trainer"}
+
+
+
+
+                }
+                    );
             });
 
             modelBuilder.Entity<AspNetUserClaims>(entity =>
@@ -199,6 +211,19 @@ namespace Trainer.EF
                 entity.Property(e => e.UserName)
                     .IsRequired()
                     .HasMaxLength(256);
+                entity.HasIndex(e => e.UserName).IsUnique();
+                entity.HasIndex(e => e.Email).IsUnique();
+                entity.HasData(new AspNetUsers
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Email = "ahmedkabbash@gmail.com",
+                    EmailConfirmed = true,
+                    FirstName = "ahmed",
+                    LastName = "kabbash",
+                    UserName = "Admin",
+                    PasswordHash = "1234",
+
+                });
             });
 
             modelBuilder.Entity<Calories>(entity =>

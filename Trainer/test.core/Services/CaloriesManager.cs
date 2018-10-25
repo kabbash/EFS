@@ -14,7 +14,7 @@ using test.core.Model;
 
 namespace test.core.Services
 {
-    public class CaloriesManager: ICaloriesManager
+    public class CaloriesManager : ICaloriesManager
     {
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<CaloriesDto> _validator;
@@ -28,7 +28,7 @@ namespace test.core.Services
         public IEnumerable<CaloriesDto> GetAll()
         {
             IEnumerable<CaloriesDto> result = new List<CaloriesDto>();
-            result =  _unitOfWork.TestRepository.Get().Adapt(result);
+            result = _unitOfWork.TestRepository.Get().Adapt(result);
             return result;
         }
 
@@ -39,13 +39,14 @@ namespace test.core.Services
             if (!validationResult.IsValid)
                 return "";
 
-            try {
+            try
+            {
 
                 _unitOfWork.TestRepository.Insert(calory.Adapt<Calories>());
                 _unitOfWork.Commit();
                 return _testResources.Value.SuccessMsg;
             }
-            catch(Exception error)
+            catch (Exception error)
             {
                 return "false";
             }
@@ -110,7 +111,7 @@ namespace test.core.Services
             try
             {
                 var calory = _unitOfWork.TestRepository.GetById(id);
-         
+
                 if (calory != null)
                 {
                     var caloryDto = calory.Adapt<CaloriesDto>();
@@ -128,7 +129,7 @@ namespace test.core.Services
             {
 
                 return false;
-            }  
+            }
         }
     }
 }

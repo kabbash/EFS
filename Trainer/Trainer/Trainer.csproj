@@ -25,7 +25,11 @@
   <ItemGroup>
     <ProjectReference Include="..\AttachmentsManager\Attachments.Core.csproj" />
     <ProjectReference Include="..\Authentication\Authentication.csproj" />
+
     <ProjectReference Include="..\Products.Categories.Core\Products.Core.csproj" />
+
+    <ProjectReference Include="..\MailProvider.Core\MailProvider.Core.csproj" />
+   
     <ProjectReference Include="..\Shared.Core\Shared.Core.csproj" />
     <ProjectReference Include="..\test.core\test.core.csproj" />
     <ProjectReference Include="..\Trainer.EF\Trainer.EF.csproj" />

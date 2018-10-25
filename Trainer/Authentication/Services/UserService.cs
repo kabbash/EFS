@@ -14,6 +14,8 @@ using Shared.Core.Models;
 using Shared.Core.Utilities;
 using FluentValidation;
 using System.Net;
+using MailProvider.Core.Interfaces;
+using MailProvider.Core;
 
 namespace Authentication.Services
 {
@@ -22,18 +24,26 @@ namespace Authentication.Services
         protected IUnitOfWork _unitOfWork;
         private readonly AuthenticationSettings _settings;
         private readonly IValidator<RegisterDto> _validator;
-        public UserService(IUnitOfWork unitOfWork, IOptions<AuthenticationSettings> settings, IValidator<RegisterDto>validator)
+        private readonly IEmailService _emailService;
+        private readonly MailSettings _emailSettings;
+        public UserService(IUnitOfWork unitOfWork,
+            IOptions<AuthenticationSettings> settings,
+            IValidator<RegisterDto>validator,
+            IEmailService emailService,
+            IOptions<MailSettings> mailSettings)
         {
             _unitOfWork = unitOfWork;
             _settings = settings.Value;
             _validator = validator;
+            _emailService = emailService;
+            _emailSettings = mailSettings.Value;
         }
-        public User Authenticate(string username, string password)
+        public ResultMessage Authenticate(string username, string password)
         {
-            var userEntity = _unitOfWork.UsersRepository.Get(usr => usr.UserName == username && usr.PasswordHash == password,null, "AspNetUserRoles").SingleOrDefault();
+            var userEntity = _unitOfWork.UsersRepository.Get(usr => usr.UserName == username && usr.PasswordHash == password,null, "AspNetUserRoles").FirstOrDefault();
             if (userEntity == null)
             {
-                return null;
+                return new ResultMessage { Status = (int)ResultStatus.Error, Message="wrong user name or password"};
             }
             var userRoles = new List<string>();
             if (userEntity.AspNetUserRoles != null && userEntity.AspNetUserRoles.Count > 0)
@@ -53,7 +63,8 @@ namespace Authentication.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
             user.Password = null;
-            return user;
+            return new ResultMessage { Status = (int)ResultStatus.Success, Data = user };
+
         }
 
         private Claim[] setUserClaims(string userId, List<string> userRoles)
@@ -163,6 +174,7 @@ namespace Authentication.Services
                 var userEntity = userData.Adapt<AspNetUsers>();
                 userEntity.Id = Guid.NewGuid().ToString();
                 userEntity.UserName = userEntity.Email;
+                userEntity.SecurityStamp = Helper.GenerateToken();
                 _unitOfWork.UsersRepository.Insert(userEntity);
                 _unitOfWork.Commit();
                 switch (userData.Type)
@@ -170,17 +182,41 @@ namespace Authentication.Services
                     case Enums.UserEnum.Clinet:
                         _unitOfWork.ClientsRepository.Insert(new Clients { Id = userEntity.Id });
                         _unitOfWork.Commit();
+                        AddRoleToUser(new AddRoleToUserDto
+                        {
+                            RoleName = "Client",
+                            Username = userData.Email
+                        });
                         break;
                     case Enums.UserEnum.ProductOwner:
                         _unitOfWork.ProductOwnersRepository.Insert(new ProductsOwners { Id = userEntity.Id });
                         _unitOfWork.Commit();
+                        AddRoleToUser(new AddRoleToUserDto
+                        {
+                            RoleName = "ProductOwner",
+                            Username = userData.Email
+                        });
                         break;
                     case Enums.UserEnum.Trainer:
                         _unitOfWork.TrainersRepository.Insert(new Trainers { Id = userEntity.Id });
                         _unitOfWork.Commit();
+                        AddRoleToUser(new AddRoleToUserDto
+                        {
+                            RoleName = "RegularUser",
+                            Username = userData.Email
+                        });
+                        break;
+                    default:
+                        AddRoleToUser(new AddRoleToUserDto
+                        {
+                            RoleName = "RegularUser",
+                            Username = userData.Email
+                        });
                         break;
                 }
-                return new ResultMessage { Status = HttpStatusCode.OK };
+                var mailBody = _emailSettings.Body.Replace("{0}", userEntity.FirstName).Replace("{1}", _emailSettings.VerifyEmailUrl.Replace("{0}", userEntity.SecurityStamp));
+                _emailService.SendEmailAsync(userEntity.Email, _emailSettings.Subject, mailBody);
+                return new ResultMessage { Status = (int)ResultStatus.Success };
             }
             catch (Exception ex)
             {
@@ -189,6 +225,26 @@ namespace Authentication.Services
             }
 
 
+        }
+        public ResultMessage VerifyEmail(string token)
+        {
+            try
+            {
+
+                var user = _unitOfWork.UsersRepository.Get(u => u.SecurityStamp == token).First();
+                if (user == null)
+                    return new ResultMessage { Status = (int)ResultStatus.Error, Message = "invalid activation token" };
+                user.EmailConfirmed = true;
+                _unitOfWork.UsersRepository.Update(user);
+                _unitOfWork.Commit();
+                return Authenticate(user.UserName, user.PasswordHash);
+            }
+            catch (Exception ex)
+            {
+
+                    return new ResultMessage { Status = (int)ResultStatus.Error, Message = "invalid activation token" };
+
+            }
         }
     }
 }
