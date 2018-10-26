@@ -45,73 +45,18 @@ namespace Trainer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            #region Dependecy Injection
-            services.AddDbContext<EFSContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<ICaloriesManager, CaloriesManager>();
-            services.AddScoped<IAttachmentsManager, AttachmentsManager>();
-            services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
-            services.AddScoped<IProductsSubCategoriesManager, ProductsSubCategoriesManager>();
-            services.AddScoped<IProductsManager, ProductsManager>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IUserService, UserService>();
+            ConfigureConnectionString(services);
+            ConfigureManagers(services);
+            ConfigureSettings(services);
+            ConfigureValidations(services);
+            ConfigureJwtAuthentication(services);
 
             services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddTransient<IValidator<CaloriesDto>, CaloriesDtoValidator>();
-            services.AddTransient<IValidator<UploadFileDto>, UploadFileDtoValidator>();
-            services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
-            services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();
-            services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
-            services.AddTransient<IEmailService, MailService>();
-
-
-            #endregion
-            #region Jwt authentication
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            var appSettings = appSettingsSection.Get<AuthenticationSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
-            #endregion
-
-
-            #region Settings objects
-            services.Configure<AuthenticationSettings>(Configuration.GetSection("AppSettings"));
-            services.Configure<MailSettings>(Configuration.GetSection("Email"));
-            var resources = Configuration.GetSection("Resources");
-            services.Configure<AttachmentsResources>(resources.GetSection("AttachmentsResources"));
-            services.Configure<TestResources>(resources.GetSection("TestResources"));
-            services.Configure<ProductsResources>(resources.GetSection("ProductsResources"));
-
-            #endregion
-
-            services.AddTransient<IValidator<CaloriesDto>, CaloriesDtoValidator>();
-            services.AddTransient<IValidator<UploadFileDto>, UploadFileDtoValidator>();
-            services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
-            services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();
-            services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
-            services.AddTransient<IValidator<ProductsDto>, ProductsDtoValidator>();
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);            
 
             // to be changed to client side app origin only
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
                 options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
         }
@@ -133,5 +78,64 @@ namespace Trainer
             app.UseAuthentication();
             app.UseMvc();
         }
+
+        #region Custom Configurations
+        private void ConfigureConnectionString(IServiceCollection services)
+        {
+            services.AddDbContext<EFSContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        }
+        private void ConfigureManagers(IServiceCollection services)
+        {
+            services.AddScoped<ICaloriesManager, CaloriesManager>();
+            services.AddScoped<IAttachmentsManager, AttachmentsManager>();
+            services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
+            services.AddScoped<IProductsSubCategoriesManager, ProductsSubCategoriesManager>();
+            services.AddScoped<IProductsManager, ProductsManager>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddTransient<IEmailService, MailService>();
+        }
+        private void ConfigureSettings(IServiceCollection services)
+        {
+            services.Configure<AuthenticationSettings>(Configuration.GetSection("AppSettings"));
+            services.Configure<MailSettings>(Configuration.GetSection("Email"));
+            var resources = Configuration.GetSection("Resources");
+            services.Configure<AttachmentsResources>(resources.GetSection("AttachmentsResources"));
+            services.Configure<TestResources>(resources.GetSection("TestResources"));
+            services.Configure<ProductsResources>(resources.GetSection("ProductsResources"));
+        }
+        private void ConfigureValidations(IServiceCollection services)
+        {
+            services.AddTransient<IValidator<CaloriesDto>, CaloriesDtoValidator>();
+            services.AddTransient<IValidator<UploadFileDto>, UploadFileDtoValidator>();
+            services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
+            services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();
+            services.AddTransient<IValidator<ProductsDto>, ProductsDtoValidator>();
+            services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
+        } 
+        private void ConfigureJwtAuthentication(IServiceCollection services)
+        {
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            var appSettings = appSettingsSection.Get<AuthenticationSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+        }
+        #endregion
     }
 }

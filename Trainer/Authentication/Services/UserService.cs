@@ -28,7 +28,7 @@ namespace Authentication.Services
         private readonly MailSettings _emailSettings;
         public UserService(IUnitOfWork unitOfWork,
             IOptions<AuthenticationSettings> settings,
-            IValidator<RegisterDto>validator,
+            IValidator<RegisterDto> validator,
             IEmailService emailService,
             IOptions<MailSettings> mailSettings)
         {
@@ -40,10 +40,10 @@ namespace Authentication.Services
         }
         public ResultMessage Authenticate(string username, string password)
         {
-            var userEntity = _unitOfWork.UsersRepository.Get(usr => usr.UserName == username && usr.PasswordHash == password,null, "AspNetUserRoles").FirstOrDefault();
+            var userEntity = _unitOfWork.UsersRepository.Get(usr => usr.UserName == username && usr.PasswordHash == password, null, "AspNetUserRoles").FirstOrDefault();
             if (userEntity == null)
             {
-                return new ResultMessage { Status = (int)ResultStatus.Error, Message="wrong user name or password"};
+                return new ResultMessage { Status = HttpStatusCode.BadRequest , ErrorCode = ErrorsCodeEnum.AuthenticationError };
             }
             var userRoles = new List<string>();
             if (userEntity.AspNetUserRoles != null && userEntity.AspNetUserRoles.Count > 0)
@@ -63,14 +63,14 @@ namespace Authentication.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
             user.Password = null;
-            return new ResultMessage { Status = (int)ResultStatus.Success, Data = user };
+            return new ResultMessage { Status = HttpStatusCode.OK, Data = user };
 
         }
 
         private Claim[] setUserClaims(string userId, List<string> userRoles)
         {
             var claims = new List<Claim>();
-            foreach(var role in userRoles)
+            foreach (var role in userRoles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
@@ -78,7 +78,7 @@ namespace Authentication.Services
             return claims.ToArray();
         }
 
-        private List<string> GetUserRoles (List<string> rolesIds)
+        private List<string> GetUserRoles(List<string> rolesIds)
         {
             var userRoles = new List<string>();
             foreach (var roleId in rolesIds)
@@ -146,7 +146,7 @@ namespace Authentication.Services
                     return false;
                 }
                 var usersInRole = _unitOfWork.UsersRolesRepository.Get(x => x.RoleId == roleEntity.Id);
-                foreach(var userRole in usersInRole)
+                foreach (var userRole in usersInRole)
                 {
                     _unitOfWork.UsersRolesRepository.Delete(userRole);
                 }
@@ -216,12 +216,12 @@ namespace Authentication.Services
                 }
                 var mailBody = _emailSettings.Body.Replace("{0}", userEntity.FirstName).Replace("{1}", _emailSettings.VerifyEmailUrl.Replace("{0}", userEntity.SecurityStamp));
                 _emailService.SendEmailAsync(userEntity.Email, _emailSettings.Subject, mailBody);
-                return new ResultMessage { Status = (int)ResultStatus.Success };
+                return new ResultMessage { Status = HttpStatusCode.OK };
             }
             catch (Exception ex)
             {
 
-                return new ResultMessage { Status = HttpStatusCode.InternalServerError};
+                return new ResultMessage { Status = HttpStatusCode.InternalServerError };
             }
 
 
@@ -233,7 +233,7 @@ namespace Authentication.Services
 
                 var user = _unitOfWork.UsersRepository.Get(u => u.SecurityStamp == token).First();
                 if (user == null)
-                    return new ResultMessage { Status = (int)ResultStatus.Error, Message = "invalid activation token" };
+                    return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = ErrorsCodeEnum.AuthenticationError };
                 user.EmailConfirmed = true;
                 _unitOfWork.UsersRepository.Update(user);
                 _unitOfWork.Commit();
@@ -241,9 +241,7 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
-
-                    return new ResultMessage { Status = (int)ResultStatus.Error, Message = "invalid activation token" };
-
+                return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = ErrorsCodeEnum.AuthenticationError };
             }
         }
     }
