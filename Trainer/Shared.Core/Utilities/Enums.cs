@@ -25,5 +25,6 @@ namespace Shared.Core.Utilities
         ProductsSubCategoriesUpdateError,
         ProductsSubCategoriesDeleteError,
         AttachmentsUploadError,
+        AuthenticationError,
     }
 }
