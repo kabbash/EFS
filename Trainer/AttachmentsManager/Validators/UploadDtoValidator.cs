@@ -15,7 +15,7 @@ namespace Attachments.Core.Validators
         {
             _attachmentsResources = attachmentsResources;
             RuleFor(c => c.Bytes).NotEmpty().WithMessage(attachmentsResources.Value.UploadFileBytesEmptyValidation);
-            RuleFor(c => c.Name).NotEmpty().WithMessage(attachmentsResources.Value.UploadFileNameEmptyValidation);
+            RuleFor(c => c.FileName).NotEmpty().WithMessage(attachmentsResources.Value.UploadFileNameEmptyValidation);
         }
     }
 }

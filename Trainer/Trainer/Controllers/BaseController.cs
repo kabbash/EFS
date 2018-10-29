@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Shared.Core.Utilities;
 
 namespace Trainer.Controllers
-{
+{       
     [ApiController]
     public class BaseController : ControllerBase
     {
+        [NonAction]
         public ActionResult GetStatusCodeResult(ResultMessage resultMessage)
         {
             return StatusCode((int)resultMessage.Status, resultMessage);

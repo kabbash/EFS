@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Attachments.Core.Interfaces;
@@ -21,6 +22,18 @@ namespace Trainer.Controllers
         [HttpPost("UploadFile")]
         public ActionResult UploadFile(UploadFileDto uploadedFile)
         {
+
+            //uploadedFile.Bytes = System.IO.File.ReadAllBytes(Path.Combine(@"I:\EFS_Project\EFS\Trainer\Trainer\Tmp\m.jpg")); ;
+            //uploadedFile.FileName = "magdy.jpg";
+            ////_attachmentManager.Upload(uploadedFile);
+            //_attachmentManager.Save(new SaveFileDto()
+            //{
+            //    attachmentType = Shared.Core.Utilities.AttachmentTypes.Product,
+            //    FileName = "Product1.jpg",
+            //    SubFolderName = "1",
+            //    TempPath = _attachmentManager.Upload(uploadedFile).Data.ToString()
+            //});
+
             return GetStatusCodeResult(_attachmentManager.Upload(uploadedFile));
         }
 
