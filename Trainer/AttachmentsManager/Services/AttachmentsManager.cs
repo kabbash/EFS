@@ -28,26 +28,27 @@ namespace Attachments.Core.Services
         {
             var validationResult = _validator.Validate(file);
             if (!validationResult.IsValid)
-            {
-                List<string> errors = new List<string>();
-                foreach (var error in validationResult.Errors)
-                    errors.Add(error.ErrorMessage);
-
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.BadRequest,
-                    ValidationMessages = errors
+                    ValidationMessages = validationResult.GetErrorsList()
                 };
-            }
 
             try
             {
-                string fullPath = Path.Combine(uploadTempPath, file.Name);
 
-                if (File.Exists(fullPath))
-                    File.Delete(fullPath);
+                var rootPath = System.IO.Directory.GetCurrentDirectory();
+                Directory.CreateDirectory(Path.Combine(rootPath, uploadTempPath));
+                string filefullPath = Path.Combine( rootPath , uploadTempPath, file.FileName);
 
-                FileStream fileStream = new FileStream(fullPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                //var x = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                //var z = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location).LocalPath);
+
+
+                if (File.Exists(filefullPath))
+                    File.Delete(filefullPath);
+
+                FileStream fileStream = new FileStream(filefullPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
 
                 using (System.IO.FileStream fs = fileStream)
                 {
@@ -55,7 +56,7 @@ namespace Attachments.Core.Services
                 }
                 return new ResultMessage()
                 {
-                    Data = fullPath,
+                    Data = filefullPath,
                     Status = HttpStatusCode.OK
                 };
             }
@@ -72,20 +73,35 @@ namespace Attachments.Core.Services
         public bool Save(SaveFileDto file)
         {
             try
-            {                
-                Directory.CreateDirectory(file.NewPath);
-
-                var fileDestinationPath = Path.Combine(file.NewPath, file.SavedName);
-                var tempFilePath = Path.Combine(_attachmentsResources.Value.TempPath, file.TempName);
-                if (File.Exists(file.TempName))
+            {
+                var rootPath = System.IO.Directory.GetCurrentDirectory();
+                var saveFolder = GetAttachmentTypePath(file.attachmentType);
+                Directory.CreateDirectory(Path.Combine(rootPath, saveFolder, file.SubFolderName ?? ""));
+                var fileDestinationPath = Path.Combine(rootPath, saveFolder, file.SubFolderName ?? "", file.FileName);
+                if (File.Exists(file.TempPath))
                 {
-                    File.Move(tempFilePath , fileDestinationPath);
+                    File.Move(file.TempPath , fileDestinationPath);
+                    return true;
                 }
-                return true;
+                return false;
             }
             catch (Exception ex)
             {
                 return false;
+            }
+        }
+        private string GetAttachmentTypePath(AttachmentTypes type)
+        {
+            switch (type)
+            {
+                case AttachmentTypes.Product:
+                    return _attachmentsResources.Value.ProductsFolder;
+                case AttachmentTypes.Category:
+                    return _attachmentsResources.Value.CategoriesFolder;
+                case AttachmentTypes.SubCategory:
+                    return _attachmentsResources.Value.SubCategoriesFolder;
+                default:
+                    return string.Empty;
             }
         }
 

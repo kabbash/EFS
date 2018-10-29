@@ -27,4 +27,11 @@ namespace Shared.Core.Utilities
         AttachmentsUploadError,
         AuthenticationError,
     }
+
+    public enum AttachmentTypes
+    {
+        Product,
+        Category,
+        SubCategory
+    }
 }
