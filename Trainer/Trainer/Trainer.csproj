@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AttachmentsManager\Attachments.Core.csproj" />
     <ProjectReference Include="..\Authentication\Authentication.csproj" />
+    <ProjectReference Include="..\Lookups.Core\Lookups.Core.csproj" />
 
     <ProjectReference Include="..\Products.Categories.Core\Products.Core.csproj" />
 

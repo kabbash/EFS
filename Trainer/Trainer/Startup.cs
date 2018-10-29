@@ -31,6 +31,9 @@ using Authentication.Models;
 using MailProvider.Core;
 using MailProvider.Core.Interfaces;
 using MailProvider.Core.Services;
+using Lookups.Core.Interfaces;
+using Shared.Core.Models;
+using Lookups.Core.Services;
 
 namespace Trainer
 {
@@ -46,9 +49,9 @@ namespace Trainer
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigureConnectionString(services);
+            ConfigureValidations(services);
             ConfigureManagers(services);
             ConfigureSettings(services);
-            ConfigureValidations(services);
             ConfigureJwtAuthentication(services);
 
             services.AddMvc()
@@ -94,6 +97,7 @@ namespace Trainer
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
+            services.AddScoped<ILookupService<CaloriesDto, Calories>, LookupService<CaloriesDto, Calories> >();
         }
         private void ConfigureSettings(IServiceCollection services)
         {
