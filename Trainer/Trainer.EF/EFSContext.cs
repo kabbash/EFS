@@ -124,7 +124,7 @@ namespace Trainer.EF
                     .IsRequired()
                     .HasMaxLength(256);
                 entity.HasData(new AspNetRoles[] {
-                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "Admin"},
+                    new AspNetRoles { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin"},
                     new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "Client"},
                     new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "ProductOwner"},
                     new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "RegularUser"},
@@ -215,7 +215,7 @@ namespace Trainer.EF
                 entity.HasIndex(e => e.Email).IsUnique();
                 entity.HasData(new AspNetUsers
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "7c654344-ad42-4428-a77a-00a8c1299c3f",
                     Email = "ahmedkabbash@gmail.com",
                     EmailConfirmed = true,
                     FirstName = "ahmed",

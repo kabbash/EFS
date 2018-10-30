@@ -19,7 +19,8 @@ namespace Shared.Core
 
 
 
-
+        object getRepoByType(Type type);
+        
 
         /// <summary>
         /// Commits all changes

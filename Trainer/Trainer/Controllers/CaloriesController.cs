@@ -3,30 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Lookups.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Core.Models;
+using Shared.Core.Utilities;
 using test.core.Interfaces;
 using test.core.Model;
+using test.core.Validators;
 
 namespace Trainer.Controllers
 {
     [Route("api/calories")]
     [ApiController]
-    public class CaloriesController : ControllerBase
+    public class CaloriesController : BaseController
     {
-        protected ICaloriesManager _Manager;
-        public CaloriesController(ICaloriesManager manager)
+        protected ILookupService<CaloriesDto, Calories> _Manager;
+        public CaloriesController(ILookupService<CaloriesDto, Calories> manager)
         {
             _Manager = manager;
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<CaloriesDto>> Get()
+        public ActionResult<ResultMessage> Get()
         {
-            var user = (HttpContext.User.Identity) as ClaimsIdentity;
-            return _Manager.GetAll().ToList();
+            return GetStatusCodeResult(_Manager.GetAll());
         }
         [HttpPost]
         public ActionResult Post([FromBody] CaloriesDto calories)
@@ -45,62 +47,26 @@ namespace Trainer.Controllers
 
         // GET api/calories/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(short id)
+        public ActionResult<ResultMessage> Get(byte id)
         {
 
-            var result = _Manager.GetById(id);
-            if (result != null)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return NotFound();
-            }
+            return GetStatusCodeResult(_Manager.GetById(id));
         }
 
 
         // PUT api/calories/5
         [HttpPut("{id}")]
-        public ActionResult Put(short id, [FromBody] CaloriesDto value)
+        public ActionResult<ResultMessage> Put(int id, [FromBody] CaloriesDto value)
         {
-            var result = _Manager.Update(value, id);
-            if (result)
-            {
-                return Ok();
-            }
-            else
-            {
-                return NotFound();
-            }
+            return GetStatusCodeResult(_Manager.Update(value, id));
         }
 
         // DELETE api/calories/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(short id)
+        public ActionResult Delete(byte id)
         {
-            var result = _Manager.Delete(id);
-            if (result)
-            {
-                return Ok();
-            }
-            else
-            {
-                return NotFound();
-            }
+            return GetStatusCodeResult(_Manager.Delete(id));
         }
-        [HttpPatch("{id}")]
-        public ActionResult Patch(short id, [FromBody]JsonPatchDocument<CaloriesDto> personPatch)
-        {
-            var result = _Manager.Patch(id, personPatch);
-            if (result)
-            {
-                return Ok();
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
+       
     }
 }

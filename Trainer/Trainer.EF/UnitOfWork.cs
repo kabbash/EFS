@@ -4,6 +4,7 @@ using Shared.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using test.core;
 using Trainer.EF;
@@ -178,6 +179,23 @@ namespace Trainer.EF
                         break;
                 }
             }
+        }
+
+        public object getRepoByType(Type type)
+        {
+            PropertyInfo[] properties = typeof(UnitOfWork).GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                if (property.PropertyType == type)
+                {
+
+
+                    return property.GetValue(this);
+
+                }
+            }
+
+            return null;
         }
     }
 
