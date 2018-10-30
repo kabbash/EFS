@@ -33,7 +33,6 @@ namespace Trainer.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var x = User;
             var users = _userService.GetAll();
             return Ok(users);
         }
