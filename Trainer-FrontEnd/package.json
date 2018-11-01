@@ -27,6 +27,8 @@
     "@angular/router": "^6.1.0",
     "@nguniversal/express-engine": "^6.1.0",
     "@nguniversal/module-map-ngfactory-loader": "^6.1.0",
+    "@ngx-translate/core": "^11.0.0",
+    "@ngx-translate/http-loader": "^4.0.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.2.0",
     "ts-loader": "^5.1.1",

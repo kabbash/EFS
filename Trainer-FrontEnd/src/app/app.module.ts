@@ -6,6 +6,12 @@ import { AppComponent } from './app.component';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../app/shared/shared.module';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+export function CreateTranslateLoader (http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -15,7 +21,15 @@ import { SharedModule } from '../app/shared/shared.module';
     BrowserModule.withServerTransition({appId: 'trainer'}),
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (CreateTranslateLoader),
+        deps: [HttpClient]
+
+      }
+    })
   ],
   providers: [],
   exports: [
