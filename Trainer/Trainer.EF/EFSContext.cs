@@ -128,7 +128,9 @@ namespace Trainer.EF
                     new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "Client"},
                     new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "ProductOwner"},
                     new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "RegularUser"},
-                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "Trainer"}
+                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "Trainer"},
+                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "ArticleWriter"}
+
 
 
 
