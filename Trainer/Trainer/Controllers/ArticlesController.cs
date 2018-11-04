@@ -20,21 +20,18 @@ namespace Trainer.Controllers
         {
             _articlesService = articlesService;
         }
-        // GET: api/ProductsCategories
         [HttpGet]
         public ActionResult Get()
         {
             return GetStatusCodeResult(_articlesService.GetAll());
         }
 
-        // GET: api/ProductsCategories/5
         [HttpGet("{id}")]
         public ActionResult Get(byte id)
         {
             return GetStatusCodeResult(_articlesService.GetById(id));
         }
 
-        // POST: api/ProductsCategories
         [HttpPost]
         [Authorize(Roles = "Admin, ArticleWriter")]
         public ActionResult Post([FromBody] ArticleAddDto articleDto)
@@ -47,7 +44,6 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_articlesService.Insert(articleDto, userIdClaim.Value));
         }
 
-        // PUT: api/ProductsCategories/5
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin, ArticleWriter")]
 
@@ -61,7 +57,6 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_articlesService.Update(articleDto, id, userIdClaim.Value));
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin, ArticleWriter")]
 
