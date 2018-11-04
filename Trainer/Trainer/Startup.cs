@@ -34,6 +34,10 @@ using MailProvider.Core.Services;
 using Lookups.Core.Interfaces;
 using Shared.Core.Models;
 using Lookups.Core.Services;
+using Articles.Core.Models;
+using Articles.Core.Validators;
+using Articles.Core.Services;
+using Articles.Core.Interfaces;
 
 namespace Trainer
 {
@@ -98,6 +102,8 @@ namespace Trainer
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
             services.AddScoped<ILookupService<CaloriesDto, Calories>, LookupService<CaloriesDto, Calories> >();
+            services.AddScoped<IArticlesService, ArticleService>();
+
         }
         private void ConfigureSettings(IServiceCollection services)
         {
@@ -116,7 +122,9 @@ namespace Trainer
             services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();
             services.AddTransient<IValidator<ProductsDto>, ProductsDtoValidator>();
             services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
-        } 
+            services.AddTransient<IValidator<ArticleAddDto>, ArticleAddDtoValidator>();
+
+        }
         private void ConfigureJwtAuthentication(IServiceCollection services)
         {
             var appSettingsSection = Configuration.GetSection("AppSettings");
