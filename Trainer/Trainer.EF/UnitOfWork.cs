@@ -146,6 +146,19 @@ namespace Trainer.EF
             }
         }
 
+        private IRepository<ProductsRating> _productRatingRepo;
+        public IRepository<ProductsRating> ProductsRatingRepository
+        {
+            get
+            {
+                if (_productRatingRepo == null)
+                {
+                    _productRatingRepo = new Repository<ProductsRating>(_dbContext);
+                }
+                return _productRatingRepo;
+            }
+        }
+
         #endregion
 
         public UnitOfWork(EFSContext context)

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181102171802_ProductsRating")]
+    partial class ProductsRating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,10 +110,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "3ea04402-1b6a-4239-bde4-ef514521d7b8", Name = "Client" },
-                        new { Id = "24375a82-6a48-4dc5-98cc-ffc4d9930e92", Name = "ProductOwner" },
-                        new { Id = "36414a7f-ef7f-485e-9ccb-ea884193b06e", Name = "RegularUser" },
-                        new { Id = "e1b95863-759a-434e-b9dc-2f3bd70e343b", Name = "Trainer" }
+                        new { Id = "9f4d24f9-e67e-461d-a9f2-61c7603ce619", Name = "Client" },
+                        new { Id = "fda1869e-f714-47a8-a456-77def1d1fa38", Name = "ProductOwner" },
+                        new { Id = "cab84034-ba13-4d47-b7b0-d6973e30ce84", Name = "RegularUser" },
+                        new { Id = "5cfc83f8-9682-4e26-8682-a3bd8055a0c1", Name = "Trainer" }
                     );
                 });
 
@@ -549,8 +551,6 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
-
-                    b.Property<decimal>("Rate");
 
                     b.Property<int>("SubcategoryId");
 

@@ -94,6 +94,7 @@ namespace Trainer
             services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
             services.AddScoped<IProductsSubCategoriesManager, ProductsSubCategoriesManager>();
             services.AddScoped<IProductsManager, ProductsManager>();
+            services.AddScoped<IProductsRatingManager, ProductsRatingManager>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
@@ -115,6 +116,7 @@ namespace Trainer
             services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
             services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();
             services.AddTransient<IValidator<ProductsDto>, ProductsDtoValidator>();
+            services.AddTransient<IValidator<ProductsRatingDto>, ProductsRatingDtoValidator>();
             services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
         } 
         private void ConfigureJwtAuthentication(IServiceCollection services)
