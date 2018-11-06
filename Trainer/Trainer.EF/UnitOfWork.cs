@@ -146,6 +146,18 @@ namespace Trainer.EF
             }
         }
 
+        private IRepository<ProductsRating> _productRatingRepo;
+        public IRepository<ProductsRating> ProductsRatingRepository
+        {
+            get
+            {
+                if (_productRatingRepo == null)
+                {
+                    _productRatingRepo = new Repository<ProductsRating>(_dbContext);
+                }
+                return _productRatingRepo;
+                }
+        }
         private IRepository<Articles> _articleRepo;
         public IRepository<Articles> ArticlesRepository
         {
@@ -156,8 +168,7 @@ namespace Trainer.EF
                     _articleRepo = new Repository<Articles>(_dbContext);
                 }
                 return _articleRepo;
-            }
-        }
+            
 
         #endregion
 

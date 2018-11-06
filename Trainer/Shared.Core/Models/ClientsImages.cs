@@ -5,7 +5,7 @@ namespace Shared.Core.Models
 {
     public partial class ClientsImages
     {
-        public short Id { get; set; }
+        public int Id { get; set; }
         public string Path { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }

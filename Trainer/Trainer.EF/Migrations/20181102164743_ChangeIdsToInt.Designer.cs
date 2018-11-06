@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181102164743_ChangeIdsToInt")]
+    partial class ChangeIdsToInt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,12 +110,11 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "c9f7dd5a-871e-44a2-a6c3-9896435d1c78", Name = "Client" },
-                        new { Id = "91edb06f-7864-4966-98c8-66d0ea9b02d2", Name = "ProductOwner" },
-                        new { Id = "5ee8b329-1f81-457a-befa-517db0ffb122", Name = "RegularUser" },
-                        new { Id = "f37dbadc-71b2-46f8-8e7a-a16127046bc2", Name = "Trainer" },
-                        new { Id = "448f01a9-aec3-4e74-a92d-519d39465289", Name = "ArticleWriter" }
-                 );
+                        new { Id = "a7c62486-4265-483d-9231-f60fdebf2d0a", Name = "Client" },
+                        new { Id = "0b8f61f4-7d5a-4b74-89ee-d0d11dc126e2", Name = "ProductOwner" },
+                        new { Id = "bfedd55d-46c3-4e06-b29d-00bdb18bab47", Name = "RegularUser" },
+                        new { Id = "36714f5a-e957-4876-83d9-873a590531dd", Name = "Trainer" }
+                    );
                 });
 
             modelBuilder.Entity("Shared.Core.Models.AspNetUserClaims", b =>
@@ -551,8 +552,6 @@ namespace Trainer.EF.Migrations
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
 
-                    b.Property<decimal>("Rate");
-
                     b.Property<int>("SubcategoryId");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -640,29 +639,6 @@ namespace Trainer.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products_Owners");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProductsRating", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Comment");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<string>("CreatedBy");
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<int>("Rate");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductsRatings");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ProductsSubcategories", b =>
@@ -930,14 +906,6 @@ namespace Trainer.EF.Migrations
                         .WithOne("ProductsOwners")
                         .HasForeignKey("Shared.Core.Models.ProductsOwners", "Id")
                         .HasConstraintName("FK_Products_Owners_dbo.AspNetUsers")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProductsRating", b =>
-                {
-                    b.HasOne("Shared.Core.Models.Products", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

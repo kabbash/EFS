@@ -5,7 +5,7 @@ namespace Shared.Core.Models
 {
     public partial class Overloads
     {
-        public byte Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public byte TypeId { get; set; }
     }

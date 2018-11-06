@@ -20,5 +20,6 @@ namespace Products.Core.Models
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public bool IsActive { get; set; }
+        public decimal Rate { get; set; }
     }
 }

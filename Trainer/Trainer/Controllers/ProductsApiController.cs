@@ -14,9 +14,11 @@ namespace Trainer.Controllers
     public class ProductsApiController : BaseController
     {
         private readonly IProductsManager _productsManager;
-        public ProductsApiController(IProductsManager productsManager)
+        private readonly IProductsRatingManager _productsRatingManager;
+        public ProductsApiController(IProductsManager productsManager, IProductsRatingManager productsRatingManager)
         {
             _productsManager = productsManager;
+            _productsRatingManager = productsRatingManager;
         }
 
         // GET: api/ProductsCategories
@@ -52,6 +54,12 @@ namespace Trainer.Controllers
         public ActionResult Delete(byte id)
         {
             return GetStatusCodeResult(_productsManager.Delete(id));
+        }
+
+        [HttpPost("AddRate")]
+        public ActionResult AddRate(ProductsRatingDto newRate)
+        {
+            return GetStatusCodeResult(_productsRatingManager.AddOrUpdate(newRate));
         }
     }
 }

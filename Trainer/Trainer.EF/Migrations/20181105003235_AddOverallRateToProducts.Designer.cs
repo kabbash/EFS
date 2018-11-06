@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181105003235_AddOverallRateToProducts")]
+    partial class AddOverallRateToProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,12 +110,11 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "c9f7dd5a-871e-44a2-a6c3-9896435d1c78", Name = "Client" },
-                        new { Id = "91edb06f-7864-4966-98c8-66d0ea9b02d2", Name = "ProductOwner" },
-                        new { Id = "5ee8b329-1f81-457a-befa-517db0ffb122", Name = "RegularUser" },
-                        new { Id = "f37dbadc-71b2-46f8-8e7a-a16127046bc2", Name = "Trainer" },
-                        new { Id = "448f01a9-aec3-4e74-a92d-519d39465289", Name = "ArticleWriter" }
-                 );
+                        new { Id = "3ea04402-1b6a-4239-bde4-ef514521d7b8", Name = "Client" },
+                        new { Id = "24375a82-6a48-4dc5-98cc-ffc4d9930e92", Name = "ProductOwner" },
+                        new { Id = "36414a7f-ef7f-485e-9ccb-ea884193b06e", Name = "RegularUser" },
+                        new { Id = "e1b95863-759a-434e-b9dc-2f3bd70e343b", Name = "Trainer" }
+                    );
                 });
 
             modelBuilder.Entity("Shared.Core.Models.AspNetUserClaims", b =>

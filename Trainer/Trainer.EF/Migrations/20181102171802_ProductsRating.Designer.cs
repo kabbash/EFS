@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181102171802_ProductsRating")]
+    partial class ProductsRating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,12 +110,11 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "c9f7dd5a-871e-44a2-a6c3-9896435d1c78", Name = "Client" },
-                        new { Id = "91edb06f-7864-4966-98c8-66d0ea9b02d2", Name = "ProductOwner" },
-                        new { Id = "5ee8b329-1f81-457a-befa-517db0ffb122", Name = "RegularUser" },
-                        new { Id = "f37dbadc-71b2-46f8-8e7a-a16127046bc2", Name = "Trainer" },
-                        new { Id = "448f01a9-aec3-4e74-a92d-519d39465289", Name = "ArticleWriter" }
-                 );
+                        new { Id = "9f4d24f9-e67e-461d-a9f2-61c7603ce619", Name = "Client" },
+                        new { Id = "fda1869e-f714-47a8-a456-77def1d1fa38", Name = "ProductOwner" },
+                        new { Id = "cab84034-ba13-4d47-b7b0-d6973e30ce84", Name = "RegularUser" },
+                        new { Id = "5cfc83f8-9682-4e26-8682-a3bd8055a0c1", Name = "Trainer" }
+                    );
                 });
 
             modelBuilder.Entity("Shared.Core.Models.AspNetUserClaims", b =>
@@ -550,8 +551,6 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
-
-                    b.Property<decimal>("Rate");
 
                     b.Property<int>("SubcategoryId");
 
