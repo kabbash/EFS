@@ -156,8 +156,19 @@ namespace Trainer.EF
                     _productRatingRepo = new Repository<ProductsRating>(_dbContext);
                 }
                 return _productRatingRepo;
-            }
+                }
         }
+        private IRepository<Articles> _articleRepo;
+        public IRepository<Articles> ArticlesRepository
+        {
+            get
+            {
+                if (_articleRepo == null)
+                {
+                    _articleRepo = new Repository<Articles>(_dbContext);
+                }
+                return _articleRepo;
+            
 
         #endregion
 

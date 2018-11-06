@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181104131836_AddArticleWriterRole")]
+    partial class AddArticleWriterRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,7 +115,7 @@ namespace Trainer.EF.Migrations
                         new { Id = "5ee8b329-1f81-457a-befa-517db0ffb122", Name = "RegularUser" },
                         new { Id = "f37dbadc-71b2-46f8-8e7a-a16127046bc2", Name = "Trainer" },
                         new { Id = "448f01a9-aec3-4e74-a92d-519d39465289", Name = "ArticleWriter" }
-                 );
+                    );
                 });
 
             modelBuilder.Entity("Shared.Core.Models.AspNetUserClaims", b =>
@@ -352,7 +354,7 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.ClientsImages", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<short>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -462,7 +464,7 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.Measurments", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<byte>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -499,7 +501,7 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.Overloads", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<byte>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -550,8 +552,6 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
-
-                    b.Property<decimal>("Rate");
 
                     b.Property<int>("SubcategoryId");
 
@@ -640,29 +640,6 @@ namespace Trainer.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products_Owners");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProductsRating", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Comment");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<string>("CreatedBy");
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<int>("Rate");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductsRatings");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ProductsSubcategories", b =>
@@ -930,14 +907,6 @@ namespace Trainer.EF.Migrations
                         .WithOne("ProductsOwners")
                         .HasForeignKey("Shared.Core.Models.ProductsOwners", "Id")
                         .HasConstraintName("FK_Products_Owners_dbo.AspNetUsers")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProductsRating", b =>
-                {
-                    b.HasOne("Shared.Core.Models.Products", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
