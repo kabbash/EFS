@@ -1,2 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Cairo:300,400,600,700|Tajawal:300,400,500,700&amp;subset=arabic,latin-ext');
+
+html,
+body {
+  overflow-x: hidden;
+  direction: rtl;
+  font-family: 'Cairo', sans-serif !important;
+  text-align: right !important;
+}
+
+body {
+  padding-top: 56px;
+}
+
+.lh-100 {
+  line-height: 1;
+}
+
+.lh-125 {
+  line-height: 1.25;
+}
+
+.lh-150 {
+  line-height: 1.5;
+}
+.button-stroke a {
+border: 2px solid #007bff;
+padding: 10px 20px;
+border-radius: 3px;
+color: #fff;
+}

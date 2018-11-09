@@ -8,8 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../app/shared/shared.module';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { HeaderComponent } from './layoutComponents/header/header.component';
-import { HeroPanerComponent } from './layoutComponents/hero-paner/hero-paner.component';
+import { HomeModule } from 'src/app/home/home.module';
 
 export function CreateTranslateLoader (http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -18,14 +17,13 @@ export function CreateTranslateLoader (http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    HeroPanerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'trainer'}),
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    HomeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -36,9 +34,6 @@ export function CreateTranslateLoader (http: HttpClient) {
     })
   ],
   providers: [],
-  exports: [
-    SharedModule
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
