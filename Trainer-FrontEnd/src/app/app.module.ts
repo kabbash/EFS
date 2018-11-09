@@ -6,16 +6,18 @@ import { AppComponent } from './app.component';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../app/shared/shared.module';
+import { ArticlesModule } from './articles/articles.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'trainer'}),
+    BrowserModule.withServerTransition({ appId: 'trainer' }),
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ArticlesModule
   ],
   providers: [],
   exports: [
