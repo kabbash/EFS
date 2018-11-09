@@ -3,17 +3,17 @@ WORKDIR /app
 
 # copy csproj and restore as distinct layers
 COPY *.sln .
-COPY Trainer/*.csproj ./Trainer/
+COPY Shared.Core/*.csproj ./Shared.Core/
+COPY Trainer.EF/*.csproj ./Trainer.EF/
+COPY Authentication/*.csproj ./Authentication/
 COPY Articles.Core/*.csproj ./Articles.Core/
 COPY AttachmentsManager/*.csproj ./AttachmentsManager/
-COPY Authentication/*.csproj ./Authentication/
 COPY Lookups.Core/*.csproj ./Lookups.Core/
 COPY MailProvider.Core/*.csproj ./MailProvider.Core/
 COPY Products.Categories.Core/*.csproj ./Products.Categories.Core/
 COPY Products.SubCategories.Core/*.csproj ./Products.SubCategories.Core/
-COPY Shared.Core/*.csproj ./Shared.Core/
 COPY test.core/*.csproj ./test.core/
-COPY Trainer.EF/*.csproj ./Trainer.EF/
+COPY Trainer/*.csproj ./Trainer/
 RUN dotnet restore
 
 # copy everything else and build app
@@ -30,7 +30,7 @@ COPY test.core/. ./test.core/
 COPY Trainer.EF/. ./Trainer.EF/
 
 WORKDIR /app/Trainer
-RUN dotnet publish -c Release -o out
+RUN dotnet publish -c Release -o ./out
 
 
 FROM microsoft/dotnet:2.1-aspnetcore-runtime AS runtime
