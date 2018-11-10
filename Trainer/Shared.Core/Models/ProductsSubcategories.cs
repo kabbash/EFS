@@ -10,10 +10,14 @@ namespace Shared.Core.Models
             Products = new HashSet<Products>();
         }
 
-        public byte Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public byte CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public string ProfilePicture { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public string UpdatedBy { get; set; }
 
         public ProductsCategories Category { get; set; }
         public ICollection<Products> Products { get; set; }

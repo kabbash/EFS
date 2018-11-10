@@ -4,14 +4,16 @@ using Shared.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using test.core;
+using Trainer.EF;
 
 namespace Trainer.EF
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _dbContext;
+        private readonly EFSContext _dbContext;
 
         #region repositories
         private IRepository<Calories> _testRepo;
@@ -26,12 +28,151 @@ namespace Trainer.EF
                 return _testRepo;
             }
         }
-        
-        
-    
+
+        private IRepository<AspNetUsers> _usersRepo;
+        public IRepository<AspNetUsers> UsersRepository
+        {
+            get
+            {
+                if (_usersRepo == null)
+                {
+                    _usersRepo = new Repository<AspNetUsers>(_dbContext);
+                }
+                return _usersRepo;
+            }
+        }
+
+        private IRepository<Clients> _clientsRepo;
+        public IRepository<Clients> ClientsRepository
+        {
+            get
+            {
+                if (_clientsRepo == null)
+                {
+                    _clientsRepo = new Repository<Clients>(_dbContext);
+                }
+                return _clientsRepo;
+            }
+        }
+
+        private IRepository<Trainers> _trainersRepo;
+        public IRepository<Trainers> TrainersRepository
+        {
+            get
+            {
+                if (_trainersRepo == null)
+                {
+                    _trainersRepo = new Repository<Trainers>(_dbContext);
+                }
+                return _trainersRepo;
+            }
+        }
+
+        private IRepository<ProductsOwners> _productOwnersRepo;
+        public IRepository<ProductsOwners> ProductOwnersRepository
+        {
+            get
+            {
+                if (_productOwnersRepo == null)
+                {
+                    _productOwnersRepo = new Repository<ProductsOwners>(_dbContext);
+                }
+                return _productOwnersRepo;
+            }
+        }
+
+        private IRepository<AspNetRoles> _rolesRepo;
+        public IRepository<AspNetRoles> RolesRepository
+        {
+            get
+            {
+                if (_rolesRepo == null)
+                {
+                    _rolesRepo = new Repository<AspNetRoles>(_dbContext);
+                }
+                return _rolesRepo;
+            }
+        }
+
+        private IRepository<AspNetUserRoles> _usersRolesRepo;
+        public IRepository<AspNetUserRoles> UsersRolesRepository
+        {
+            get
+            {
+                if (_usersRolesRepo == null)
+                {
+                    _usersRolesRepo = new Repository<AspNetUserRoles>(_dbContext);
+                }
+                return _usersRolesRepo;
+            }
+        }
+
+        private IRepository<ProductsCategories> _productsCategoriesRepo;
+        public IRepository<ProductsCategories> ProductsCategoriesRepository
+        {
+            get
+            {
+                if (_productsCategoriesRepo == null)
+                {
+                    _productsCategoriesRepo = new Repository<ProductsCategories>(_dbContext);
+                }
+                return _productsCategoriesRepo;
+            }
+        }
+
+        private IRepository<ProductsSubcategories> _productsSubCategoriesRepo;
+        public IRepository<ProductsSubcategories> ProductsSubCategoriesRepository
+        {
+            get
+            {
+                if (_productsSubCategoriesRepo == null)
+                {
+                    _productsSubCategoriesRepo = new Repository<ProductsSubcategories>(_dbContext);
+                }
+                return _productsSubCategoriesRepo;
+            }
+        }
+
+        private IRepository<Products> _productsRepo;
+        public IRepository<Products> ProductsRepository
+        {
+            get
+            {
+                if (_productsRepo == null)
+                {
+                    _productsRepo = new Repository<Products>(_dbContext);
+                }
+                return _productsRepo;
+            }
+        }
+
+        private IRepository<ProductsRating> _productRatingRepo;
+        public IRepository<ProductsRating> ProductsRatingRepository
+        {
+            get
+            {
+                if (_productRatingRepo == null)
+                {
+                    _productRatingRepo = new Repository<ProductsRating>(_dbContext);
+                }
+                return _productRatingRepo;
+                }
+        }
+        private IRepository<Articles> _articleRepo;
+        public IRepository<Articles> ArticlesRepository
+        {
+            get
+            {
+                if (_articleRepo == null)
+                {
+                    _articleRepo = new Repository<Articles>(_dbContext);
+                }
+                return _articleRepo;
+            }
+        }
         #endregion
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(EFSContext context)
         {
             _dbContext = context;
         }
@@ -62,6 +203,23 @@ namespace Trainer.EF
                         break;
                 }
             }
+        }
+
+        public object getRepoByType(Type type)
+        {
+            PropertyInfo[] properties = typeof(UnitOfWork).GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                if (property.PropertyType == type)
+                {
+
+
+                    return property.GetValue(this);
+
+                }
+            }
+
+            return null;
         }
     }
 

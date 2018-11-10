@@ -30,9 +30,9 @@ namespace Shared.Core.Models
         public string ProfilePicture { get; set; }
         public string UserName { get; set; }
 
-        public ProductsOwners Id1 { get; set; }
-        public Trainers Id2 { get; set; }
-        public Clients IdNavigation { get; set; }
+        public Clients Clients { get; set; }
+        public ProductsOwners ProductsOwners { get; set; }
+        public Trainers Trainers { get; set; }
         public ICollection<Articles> Articles { get; set; }
         public ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }

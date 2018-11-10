@@ -1,7 +1,10 @@
-﻿using Mapster;
+﻿using FluentValidation;
+using Mapster;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.Extensions.Options;
 using Shared.Core;
 using Shared.Core.Models;
+using Shared.Core.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,31 +14,41 @@ using test.core.Model;
 
 namespace test.core.Services
 {
-    public class CaloriesManager: ICaloriesManager
+    public class CaloriesManager : ICaloriesManager
     {
         protected IUnitOfWork _unitOfWork;
-        public CaloriesManager(IUnitOfWork unitOfWork)
+        private readonly IValidator<CaloriesDto> _validator;
+        private readonly IOptions<TestResources> _testResources;
+        public CaloriesManager(IUnitOfWork unitOfWork, IValidator<CaloriesDto> validator, IOptions<TestResources> testResources)
         {
             _unitOfWork = unitOfWork;
+            _validator = validator;
+            _testResources = testResources;
         }
         public IEnumerable<CaloriesDto> GetAll()
         {
             IEnumerable<CaloriesDto> result = new List<CaloriesDto>();
-            result =  _unitOfWork.TestRepository.Get().Adapt(result);
+            result = _unitOfWork.TestRepository.Get().Adapt(result);
             return result;
         }
 
-        public bool Insert(CaloriesDto calory)
+        public string Insert(CaloriesDto calory)
         {
-            try {
+            var validationResult = _validator.Validate(calory);
+
+            if (!validationResult.IsValid)
+                return "";
+
+            try
+            {
 
                 _unitOfWork.TestRepository.Insert(calory.Adapt<Calories>());
                 _unitOfWork.Commit();
-                return true;
+                return _testResources.Value.SuccessMsg;
             }
-            catch(Exception error)
+            catch (Exception error)
             {
-                return false;
+                return "false";
             }
         }
 
@@ -98,7 +111,7 @@ namespace test.core.Services
             try
             {
                 var calory = _unitOfWork.TestRepository.GetById(id);
-         
+
                 if (calory != null)
                 {
                     var caloryDto = calory.Adapt<CaloriesDto>();
@@ -116,7 +129,7 @@ namespace test.core.Services
             {
 
                 return false;
-            }  
+            }
         }
     }
 }

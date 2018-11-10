@@ -15,7 +15,7 @@ namespace Shared.Core.Models
 
         public string Id { get; set; }
 
-        public AspNetUsers AspNetUsers { get; set; }
+        public AspNetUsers IdNavigation { get; set; }
         public ICollection<ClientsDocuments> ClientsDocuments { get; set; }
         public ICollection<ClientsImages> ClientsImages { get; set; }
         public ICollection<ClientsMeasurments> ClientsMeasurments { get; set; }

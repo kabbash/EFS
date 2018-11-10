@@ -6,7 +6,25 @@ namespace Shared.Core
 {
     public interface IUnitOfWork : IDisposable
     {
-         IRepository<Calories> TestRepository { get; }
+        IRepository<Calories> TestRepository { get; }
+        IRepository<AspNetUsers> UsersRepository { get; }
+        IRepository<AspNetRoles> RolesRepository { get; }
+        IRepository<AspNetUserRoles> UsersRolesRepository { get; }
+        IRepository<ProductsCategories> ProductsCategoriesRepository { get; }
+        IRepository<ProductsSubcategories> ProductsSubCategoriesRepository { get; }
+        IRepository<Products> ProductsRepository { get; }
+        IRepository<ProductsRating> ProductsRatingRepository { get; }
+        IRepository<Clients> ClientsRepository { get; }
+        IRepository<ProductsOwners> ProductOwnersRepository { get; }
+        IRepository<Trainers> TrainersRepository { get; }
+        IRepository<Articles> ArticlesRepository { get; }
+
+
+
+
+        object getRepoByType(Type type);
+        
+
         /// <summary>
         /// Commits all changes
         /// </summary>

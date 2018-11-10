@@ -6,23 +6,36 @@ import { AppComponent } from './app.component';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../app/shared/shared.module';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { HomeModule } from 'src/app/home/home.module';
 import { ArticlesModule } from './articles/articles.module';
+
+export function CreateTranslateLoader (http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'trainer' }),
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    ArticlesModule
+    HomeModule,
+    ArticlesModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (CreateTranslateLoader),
+        deps: [HttpClient]
+
+      }
+    })
   ],
   providers: [],
-  exports: [
-    SharedModule
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

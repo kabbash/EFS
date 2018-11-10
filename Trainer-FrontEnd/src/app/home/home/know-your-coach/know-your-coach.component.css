@@ -1,0 +1,32 @@
+
+/* know your coach */
+.Coach {
+    /* The image used */
+    background-image: url("./../../../../assets/images/homepage-trainer.png");
+  
+    /* Set a specific height */
+    height: 500px;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .Coach .header-section h3 {
+    color: #fff !important;
+    font-size: 40px;
+    font-weight: 800;
+  }
+  
+  .coach-data {
+    padding-top: 55px;
+    color: #fff;
+  }
+  .button-stroke a:hover {
+   text-decoration: unset;
+   color: white;
+}
+  

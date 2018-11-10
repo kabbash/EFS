@@ -11,10 +11,13 @@ const routes: Routes = [
   },
   {
     path: 'test',
-    loadChildren: './test/test.module#TestModule'
+    loadChildren: "./test/test.module#TestModule"
   },
-  { path: '404', component: NotfoundComponent },
-  { path: '**', redirectTo: '/404' }
+  {
+    path: 'home',
+    loadChildren: "./home/home.module#HomeModule"
+  },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

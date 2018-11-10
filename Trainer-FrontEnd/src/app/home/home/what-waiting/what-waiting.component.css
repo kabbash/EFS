@@ -1,0 +1,14 @@
+/* section why  */
+.why-sect {
+    height: 50px;
+    background-color: #028798;
+    line-height: 50px !important;
+  
+  }
+  
+  .why-sect p {
+    color: #fff;
+    margin: 0;
+    height: 50px;
+    font-size: 25px
+  }

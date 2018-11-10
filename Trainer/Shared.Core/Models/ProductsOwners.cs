@@ -13,7 +13,7 @@ namespace Shared.Core.Models
         public string Id { get; set; }
         public string ContactInfo { get; set; }
 
-        public AspNetUsers AspNetUsers { get; set; }
+        public AspNetUsers IdNavigation { get; set; }
         public ICollection<Products> Products { get; set; }
     }
 }
