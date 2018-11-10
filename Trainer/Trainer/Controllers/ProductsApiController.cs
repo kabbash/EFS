@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Products.Core.Interfaces;
 using Products.Core.Models;
+using Rating.Core.Interfaces;
+using Rating.Core.Models;
 
 namespace Trainer.Controllers
 {
@@ -14,11 +16,11 @@ namespace Trainer.Controllers
     public class ProductsApiController : BaseController
     {
         private readonly IProductsManager _productsManager;
-        private readonly IProductsRatingManager _productsRatingManager;
-        public ProductsApiController(IProductsManager productsManager, IProductsRatingManager productsRatingManager)
+        private readonly IRatingManager<Shared.Core.Models.Products> _ratingManager;
+        public ProductsApiController(IProductsManager productsManager, IRatingManager<Shared.Core.Models.Products> ratingManager)
         {
             _productsManager = productsManager;
-            _productsRatingManager = productsRatingManager;
+            _ratingManager = ratingManager;
         }
 
         // GET: api/ProductsCategories
@@ -57,9 +59,10 @@ namespace Trainer.Controllers
         }
 
         [HttpPost("AddRate")]
-        public ActionResult AddRate(ProductsRatingDto newRate)
+        public ActionResult AddRate(RatingDto newRate)
         {
-            return GetStatusCodeResult(_productsRatingManager.AddOrUpdate(newRate));
+            //Sent Type Id            
+            return GetStatusCodeResult(_ratingManager.AddOrUpdate(newRate));
         }
     }
 }

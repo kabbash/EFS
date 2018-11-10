@@ -90,15 +90,15 @@ namespace Attachments.Core.Services
                 return false;
             }
         }
-        private string GetAttachmentTypePath(AttachmentTypes type)
+        private string GetAttachmentTypePath(AttachmentTypesEnum type)
         {
             switch (type)
             {
-                case AttachmentTypes.Product:
+                case AttachmentTypesEnum.Product:
                     return _attachmentsResources.Value.ProductsFolder;
-                case AttachmentTypes.Category:
+                case AttachmentTypesEnum.Category:
                     return _attachmentsResources.Value.CategoriesFolder;
-                case AttachmentTypes.SubCategory:
+                case AttachmentTypesEnum.SubCategory:
                     return _attachmentsResources.Value.SubCategoriesFolder;
                 default:
                     return string.Empty;

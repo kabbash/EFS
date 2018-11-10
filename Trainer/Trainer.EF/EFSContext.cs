@@ -42,7 +42,8 @@ namespace Trainer.EF
         public virtual DbSet<ProgramsPrices> ProgramsPrices { get; set; }
         public virtual DbSet<Trainers> Trainers { get; set; }
         public virtual DbSet<TrainersPrograms> TrainersPrograms { get; set; }
-        public virtual DbSet<ProductsRating> ProductsRatings { get; set; }
+        public virtual DbSet<EntityRating> EntityRatings { get; set; }
+        public virtual DbSet<EntityTypes> EntityTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
