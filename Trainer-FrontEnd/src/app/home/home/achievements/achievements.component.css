@@ -1,0 +1,59 @@
+
+/*  achievements */
+.achievements {
+    /* The image used */
+    background-image: url("./../../../../assets/images/homepage-counter.png");
+  
+    /* Set a specific height */
+    height: 500px;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  
+  .achievements .header-section h3 {
+    color: #00bcd4 !important;
+    font-size: 40px;
+    font-weight: 800;
+  }
+  
+  .achievements .header-section p {
+    color: white;
+  }
+  
+  .achievements .counter .count-text {
+    color: #00bcd4;
+    font-size: 28px;
+    margin-top: 30px;
+  }
+  
+  .achievements .counter .count-number {
+    font-size: 50px;
+    line-height: 50px;
+    margin-bottom: 5px;
+    color: white;
+  }
+  
+  .button-stroke {
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+  }
+  
+  .button-stroke a {
+    border: 2px solid #007bff;
+    padding: 10px 20px;
+    border-radius: 3px;
+    color: #fff;
+  }
+  
+  .button-stroke a:hover {
+    text-decoration: none;
+  }
+  
+  
