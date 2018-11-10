@@ -146,14 +146,14 @@ namespace Trainer.EF
             }
         }
 
-        private IRepository<ProductsRating> _productRatingRepo;
-        public IRepository<ProductsRating> ProductsRatingRepository
+        private IRepository<EntityRating> _productRatingRepo;
+        public IRepository<EntityRating> RatingRepository
         {
             get
             {
                 if (_productRatingRepo == null)
                 {
-                    _productRatingRepo = new Repository<ProductsRating>(_dbContext);
+                    _productRatingRepo = new Repository<EntityRating>(_dbContext);
                 }
                 return _productRatingRepo;
                 }
