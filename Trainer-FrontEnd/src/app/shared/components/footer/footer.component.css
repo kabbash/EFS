@@ -1,0 +1,61 @@
+/* footer */
+#Footer {
+    
+      /* The image used */
+      background-image: url("./../../../../assets/images/footer.png");
+      /* Create the parallax scrolling effect */
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding-top: 60px;  
+    }
+    
+    #Footer h4 {
+      color: #fff;
+    }
+    
+    #Footer ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    #Footer a {
+      color: #2991d6;
+    }
+    
+    .footer_copy {
+      background-color: #fff;
+      height: 50px;
+      line-height: 50px;
+      margin-top: 20px;
+    }
+    
+    #Footer .footer_copy .copyright {
+      float: left;
+    }
+    
+    #Footer .footer_copy .social {
+      float: right;
+      margin-right: 20px;
+    }
+    
+    #Footer .footer_copy .social li {
+      display: inline-block;
+      margin-right: 6px;
+    }
+    
+    #Footer .footer_copy .social li a {
+      color: rgba(0, 0, 0, .5);
+      font-size: 15px !important;
+      line-height: 15px !important;
+      -webkit-transition: all .3s ease-in-out;
+      -moz-transition: all .3s ease-in-out;
+      -o-transition: all .3s ease-in-out;
+      -ms-transition: all .3s ease-in-out;
+      transition: all .3s ease-in-out;
+    }
+    .fa{
+        font-size: 18px;
+    }

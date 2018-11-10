@@ -108,12 +108,12 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "c9f7dd5a-871e-44a2-a6c3-9896435d1c78", Name = "Client" },
-                        new { Id = "91edb06f-7864-4966-98c8-66d0ea9b02d2", Name = "ProductOwner" },
-                        new { Id = "5ee8b329-1f81-457a-befa-517db0ffb122", Name = "RegularUser" },
-                        new { Id = "f37dbadc-71b2-46f8-8e7a-a16127046bc2", Name = "Trainer" },
-                        new { Id = "448f01a9-aec3-4e74-a92d-519d39465289", Name = "ArticleWriter" }
-                 );
+                        new { Id = "1ff8417a-2f20-4070-b8dd-fd975f94ce70", Name = "Client" },
+                        new { Id = "bc566ce0-2f28-4c6d-b95f-7dd54be84d90", Name = "ProductOwner" },
+                        new { Id = "ed675a88-af4a-4da8-8bb1-649dab9fd2be", Name = "RegularUser" },
+                        new { Id = "5b9d4937-916e-4abd-a877-d25f12a4ad32", Name = "Trainer" },
+                        new { Id = "7275eed3-5ba9-466b-b7cc-3e4c764a5505", Name = "ArticleWriter" }
+                    );
                 });
 
             modelBuilder.Entity("Shared.Core.Models.AspNetUserClaims", b =>
@@ -460,6 +460,48 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Clients_Overloads");
                 });
 
+            modelBuilder.Entity("Shared.Core.Models.EntityRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Comment");
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<int>("EntityId");
+
+                    b.Property<int>("EntityTypeId");
+
+                    b.Property<DateTime?>("ModifiedAt");
+
+                    b.Property<string>("ModifiedBy");
+
+                    b.Property<int>("Rate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EntityTypeId");
+
+                    b.ToTable("EntityRatings");
+                });
+
+            modelBuilder.Entity("Shared.Core.Models.EntityTypes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EntityTypes");
+                });
+
             modelBuilder.Entity("Shared.Core.Models.Measurments", b =>
                 {
                     b.Property<int>("Id")
@@ -640,29 +682,6 @@ namespace Trainer.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products_Owners");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProductsRating", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Comment");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<string>("CreatedBy");
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<int>("Rate");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductsRatings");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ProductsSubcategories", b =>
@@ -903,6 +922,14 @@ namespace Trainer.EF.Migrations
                         .HasConstraintName("FK_Clients_Overloads_Clients");
                 });
 
+            modelBuilder.Entity("Shared.Core.Models.EntityRating", b =>
+                {
+                    b.HasOne("Shared.Core.Models.EntityTypes", "EntityType")
+                        .WithMany()
+                        .HasForeignKey("EntityTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Shared.Core.Models.Products", b =>
                 {
                     b.HasOne("Shared.Core.Models.ProductsOwners", "Owner")
@@ -930,14 +957,6 @@ namespace Trainer.EF.Migrations
                         .WithOne("ProductsOwners")
                         .HasForeignKey("Shared.Core.Models.ProductsOwners", "Id")
                         .HasConstraintName("FK_Products_Owners_dbo.AspNetUsers")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProductsRating", b =>
-                {
-                    b.HasOne("Shared.Core.Models.Products", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

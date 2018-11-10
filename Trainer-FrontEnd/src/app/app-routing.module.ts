@@ -5,7 +5,12 @@ const routes: Routes = [
   {
     path: 'test',
     loadChildren: "./test/test.module#TestModule"
-  }
+  },
+  {
+    path: 'home',
+    loadChildren: "./home/home.module#HomeModule"
+  },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

@@ -38,6 +38,10 @@ using Articles.Core.Models;
 using Articles.Core.Validators;
 using Articles.Core.Services;
 using Articles.Core.Interfaces;
+using Rating.Core.Interfaces;
+using Rating.Core.Services;
+using Rating.Core.Models;
+using Rating.Core.Validators;
 
 namespace Trainer
 {
@@ -98,7 +102,7 @@ namespace Trainer
             services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
             services.AddScoped<IProductsSubCategoriesManager, ProductsSubCategoriesManager>();
             services.AddScoped<IProductsManager, ProductsManager>();
-            services.AddScoped<IProductsRatingManager, ProductsRatingManager>();
+            services.AddScoped<IRatingManager<Shared.Core.Models.Products>, RatingManager<Shared.Core.Models.Products>>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
@@ -122,7 +126,7 @@ namespace Trainer
             services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
             services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();
             services.AddTransient<IValidator<ProductsDto>, ProductsDtoValidator>();
-            services.AddTransient<IValidator<ProductsRatingDto>, ProductsRatingDtoValidator>();
+            services.AddTransient<IValidator<RatingDto>, RatingDtoValidator>();
             services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
             services.AddTransient<IValidator<ArticleAddDto>, ArticleAddDtoValidator>();
 

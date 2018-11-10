@@ -13,7 +13,7 @@ namespace Shared.Core
         IRepository<ProductsCategories> ProductsCategoriesRepository { get; }
         IRepository<ProductsSubcategories> ProductsSubCategoriesRepository { get; }
         IRepository<Products> ProductsRepository { get; }
-        IRepository<ProductsRating> ProductsRatingRepository { get; }
+        IRepository<EntityRating> RatingRepository { get; }
         IRepository<Clients> ClientsRepository { get; }
         IRepository<ProductsOwners> ProductOwnersRepository { get; }
         IRepository<Trainers> TrainersRepository { get; }
