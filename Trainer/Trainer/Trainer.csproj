@@ -31,6 +31,8 @@
     <ProjectReference Include="..\Products.Categories.Core\Products.Core.csproj" />
 
     <ProjectReference Include="..\MailProvider.Core\MailProvider.Core.csproj" />
+
+    <ProjectReference Include="..\Rating.Core\Rating.Core.csproj" />
    
     <ProjectReference Include="..\Shared.Core\Shared.Core.csproj" />
     <ProjectReference Include="..\test.core\test.core.csproj" />
