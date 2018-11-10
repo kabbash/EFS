@@ -11,25 +11,25 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   SearchBox() {
-    var x = document.getElementById("search-box") as HTMLElement;
-    if (x.style.display === "none") {
-        x.style.display = "block";
+    const x = document.getElementById('search-box') as HTMLElement;
+    if (x.style.display === 'none') {
+      x.style.display = 'block';
     } else {
-        x.style.display = "none";
-    }
-  } 
-  Close(){
-    var x = document.getElementById("search-box") as HTMLElement;
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
+      x.style.display = 'none';
     }
   }
-  toggleClass(){
-    var x = document.getElementsByClassName("offcanvas-collapse")[0] as HTMLElement;
+  Close() {
+    const x = document.getElementById('search-box') as HTMLElement;
+    if (x.style.display === 'none') {
+      x.style.display = 'block';
+    } else {
+      x.style.display = 'none';
+    }
+  }
+  toggleClass() {
+    const x = document.getElementsByClassName('offcanvas-collapse')[0] as HTMLElement;
     x.classList.toggle('open');
   }
 

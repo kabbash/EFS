@@ -6,16 +6,16 @@ import { ArticlesComponent } from './articles/articles.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: ArticlesComponent,
-  },
-  {
     path: 'test',
-    loadChildren: "./test/test.module#TestModule"
+    loadChildren: './test/test.module#TestModule'
   },
   {
     path: 'home',
-    loadChildren: "./home/home.module#HomeModule"
+    loadChildren: './home/home.module#HomeModule'
+  },
+  {
+    path: config.articles.route,
+    loadChildren: './articles/articles.module#ArticlesModule',
   },
   { path: '**', redirectTo: 'home' }
 ];

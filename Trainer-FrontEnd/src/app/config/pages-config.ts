@@ -2,12 +2,20 @@ export let config = {
     'articles': {
         'name': 'articles',
         'route': 'articles',
-        'loadChildren': '../app/articles/articles.module#ArticlesModule',
+        'loadChildren': './articles/articles.module#ArticlesModule',
         // 'permissionList': ['Authorized'],
         /** this is capital to match routes for tagging  */
         'allArticles': {
             'name': 'allArticles',
-            'route': 'articles/allArticles',
+            'route': '/articles/allArticles',
+        },
+        'articlesCategories': {
+            'name': 'articlesCategories',
+            'route': '/articles/articlesCategories',
+        },
+        'articleDetails': {
+            'name': 'articleDetails',
+            'route': '/articles/articleDetails',
         }
     },
     'notfound': {
