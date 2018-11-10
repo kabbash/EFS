@@ -68,19 +68,6 @@ namespace Trainer.EF
             }
         }
 
-        private IRepository<ProductsOwners> _productOwnersRepo;
-        public IRepository<ProductsOwners> ProductOwnersRepository
-        {
-            get
-            {
-                if (_productOwnersRepo == null)
-                {
-                    _productOwnersRepo = new Repository<ProductsOwners>(_dbContext);
-                }
-                return _productOwnersRepo;
-            }
-        }
-
         private IRepository<AspNetRoles> _rolesRepo;
         public IRepository<AspNetRoles> RolesRepository
         {

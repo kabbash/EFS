@@ -28,7 +28,7 @@ namespace Trainer.Controllers
 
         // GET: api/ProductsCategories/5
         [HttpGet("{id}")]
-        public ActionResult Get(byte id)
+        public ActionResult Get(int id)
         {
             return GetStatusCodeResult(_categoriesManager.GetById(id));
         }
@@ -42,14 +42,14 @@ namespace Trainer.Controllers
 
         // PUT: api/ProductsCategories/5
         [HttpPut("{id}")]
-        public ActionResult Put(byte id, [FromBody] ProductsCategoryDto categoryDto)
+        public ActionResult Put(int id, [FromBody] ProductsCategoryDto categoryDto)
         {
             return GetStatusCodeResult(_categoriesManager.Update(categoryDto, id));
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(byte id)
+        public ActionResult Delete(int id)
         {
             return GetStatusCodeResult(_categoriesManager.Delete(id));
         }

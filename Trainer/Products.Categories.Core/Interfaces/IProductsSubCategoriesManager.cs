@@ -10,8 +10,8 @@ namespace Products.Core.Interfaces
     {
         ResultMessage GetAll();
         ResultMessage Insert(ProductsSubCategoryDto subCategory);
-        ResultMessage GetById(byte id);
-        ResultMessage Update(ProductsSubCategoryDto subCategory, byte id);
-        ResultMessage Delete(byte id);
+        ResultMessage GetById(int id);
+        ResultMessage Update(ProductsSubCategoryDto subCategory, int id);
+        ResultMessage Delete(int id);
     }
 }
