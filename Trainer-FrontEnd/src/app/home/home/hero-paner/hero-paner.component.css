@@ -53,3 +53,8 @@
   }
 
 }
+@media (max-width: 520px) {
+  .carousel-caption a{
+    font-size: 19px;
+  }
+}

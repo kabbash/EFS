@@ -34,6 +34,7 @@
     display: block;
     overflow: hidden;
     position: relative;
+    min-height: 100px;
   }
   
   .image-sect .image-wraper ul li a h3 {
@@ -114,6 +115,12 @@
   
   .image-sect .image-wraper ul li a:hover img {
     top: -15px;
+  }
+
+  @media (max-width: 520px) {
+    .image-sect .image-wraper ul li a img {
+      min-height: 100px;
+    }
   }
   
   

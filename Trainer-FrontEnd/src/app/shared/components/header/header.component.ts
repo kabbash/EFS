@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   
   SearchBox() {
     var x = document.getElementById("search-box") as HTMLElement;
-    if (x.style.display === "none") {
+    if (x.style.display === "none" || x.style.display === "") {
         x.style.display = "block";
     } else {
         x.style.display = "none";
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
     }
   }
   toggleClass(){
-    var x = document.getElementsByClassName("offcanvas-collapse")[0] as HTMLElement;
+    var x = document.getElementsByClassName("offcanvas-collapse")[0] ;
     x.classList.toggle('open');
   }
 

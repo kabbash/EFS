@@ -30,3 +30,12 @@ padding: 10px 20px;
 border-radius: 3px;
 color: #fff;
 }
+
+@media (max-width: 520px) {
+  h1 {
+    font-size: 1.9rem !important;
+  }
+  h3 {
+    font-size: 0.95rem !important;
+  }
+}
