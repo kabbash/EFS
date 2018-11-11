@@ -168,8 +168,9 @@ namespace Trainer.EF
                     _articleRepo = new Repository<Articles>(_dbContext);
                 }
                 return _articleRepo;
-            
 
+            }
+        }
         #endregion
 
         public UnitOfWork(EFSContext context)
