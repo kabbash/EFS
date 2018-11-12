@@ -14,6 +14,7 @@ namespace Trainer.EF
         public EFSContext(DbContextOptions<EFSContext> options)
             : base(options)
         {
+          //  Database.EnsureCreated();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }
@@ -50,7 +51,7 @@ namespace Trainer.EF
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=EFS_Dev;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=db;Database=EFS_DEV;User=sa;Password=1234;Trusted_Connection=True;");
             }
         }
 
