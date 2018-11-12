@@ -24,15 +24,20 @@ namespace Shared.Core.Utilities
         ProductsSubCategoriesGetByIdError,
         ProductsSubCategoriesUpdateError,
         ProductsSubCategoriesDeleteError,
-        ProductsRatingInsertError,
+        RatingInsertError,
         AttachmentsUploadError,
         AuthenticationError,
     }
 
-    public enum AttachmentTypes
+    public enum AttachmentTypesEnum
     {
         Product,
         Category,
         SubCategory
+    }
+
+    public enum EntityTypesEnum
+    {
+        Product = 1
     }
 }

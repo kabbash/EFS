@@ -56,4 +56,12 @@
     text-decoration: none;
   }
   
-  
+  @media (max-width: 520px) {
+    .achievements .counter .count-text{
+      font-size: 14px;
+      margin: 0px;
+    }
+    .button-stroke span{
+      font-size: 18px !important;
+    }
+  }
