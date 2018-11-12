@@ -1,5 +1,6 @@
 :host {
     display: flex;
+    justify-content: center;
     min-height: 520px;
     /* The image used */
     background-image: url("/assets/images/Sergi-Constance-Fitness-Model.png");
@@ -7,5 +8,5 @@
     background-attachment: fixed;
     background-position: 50% 100%;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 }
