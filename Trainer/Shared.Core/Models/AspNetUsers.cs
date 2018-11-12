@@ -31,7 +31,6 @@ namespace Shared.Core.Models
         public string UserName { get; set; }
 
         public Clients Clients { get; set; }
-        public ProductsOwners ProductsOwners { get; set; }
         public Trainers Trainers { get; set; }
         public ICollection<Articles> Articles { get; set; }
         public ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }

@@ -16,7 +16,6 @@ namespace Shared.Core.Models
         public DateTime? ExpDate { get; set; }
         public DateTime? ProdDate { get; set; }
         public decimal Price { get; set; }
-        public string OwnerId { get; set; }
         public string ProfilePicture { get; set; }
         public int SubcategoryId { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -25,7 +24,6 @@ namespace Shared.Core.Models
         public string UpdatedBy { get; set; }
         public bool IsActive { get; set; }
 
-        public ProductsOwners Owner { get; set; }
         public ProductsSubcategories Subcategory { get; set; }
         public ICollection<ProductsImages> ProductsImages { get; set; }
     }

@@ -188,15 +188,6 @@ namespace Authentication.Services
                             Username = userData.Email
                         });
                         break;
-                    case Enums.UserEnum.ProductOwner:
-                        _unitOfWork.ProductOwnersRepository.Insert(new ProductsOwners { Id = userEntity.Id });
-                        _unitOfWork.Commit();
-                        AddRoleToUser(new AddRoleToUserDto
-                        {
-                            RoleName = "ProductOwner",
-                            Username = userData.Email
-                        });
-                        break;
                     case Enums.UserEnum.Trainer:
                         _unitOfWork.TrainersRepository.Insert(new Trainers { Id = userEntity.Id });
                         _unitOfWork.Commit();

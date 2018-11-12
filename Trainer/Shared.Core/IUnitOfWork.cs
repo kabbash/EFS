@@ -15,7 +15,6 @@ namespace Shared.Core
         IRepository<Products> ProductsRepository { get; }
         IRepository<EntityRating> RatingRepository { get; }
         IRepository<Clients> ClientsRepository { get; }
-        IRepository<ProductsOwners> ProductOwnersRepository { get; }
         IRepository<Trainers> TrainersRepository { get; }
         IRepository<Articles> ArticlesRepository { get; }
 

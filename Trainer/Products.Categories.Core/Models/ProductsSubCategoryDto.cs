@@ -9,6 +9,6 @@ namespace Products.Core.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string ProfilePicture { get; set; }
-        public byte CategoryId { get; set; }
+        public int CategoryId { get; set; }
     }
 }

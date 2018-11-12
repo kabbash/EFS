@@ -59,7 +59,11 @@ namespace Products.Core.Services
 
             try
             {
-                _unitOfWork.ProductsCategoriesRepository.Insert(category.Adapt<ProductsCategories>());                
+                var newCategory = category.Adapt<ProductsCategories>();
+                newCategory.CreatedAt = DateTime.Now;
+                newCategory.CreatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
+
+                _unitOfWork.ProductsCategoriesRepository.Insert(newCategory);
                 _unitOfWork.Commit();
                 return new ResultMessage()
                 {                    
@@ -75,7 +79,7 @@ namespace Products.Core.Services
                 };
             }
         }
-        public ResultMessage GetById(byte id)
+        public ResultMessage GetById(int id)
         {
             try
             {
@@ -103,7 +107,7 @@ namespace Products.Core.Services
                 };
             }
         }
-        public ResultMessage Update(ProductsCategoryDto category, byte id)
+        public ResultMessage Update(ProductsCategoryDto category, int id)
         {
             var validationResult = _validator.Validate(category);
             if (!validationResult.IsValid)
@@ -120,6 +124,9 @@ namespace Products.Core.Services
                 {
                     oldCategory.Name = category.Name;
                     oldCategory.ProfilePicture = category.ProfilePicture;
+                    oldCategory.UpdatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
+                    oldCategory.UpdatedAt = DateTime.Now;
+
                     _unitOfWork.ProductsCategoriesRepository.Update(oldCategory);
                     _unitOfWork.Commit();
                     return new ResultMessage
@@ -145,7 +152,7 @@ namespace Products.Core.Services
                 };
             }
         }
-        public ResultMessage Delete(byte id)
+        public ResultMessage Delete(int id)
         {
             try
             {

@@ -8,7 +8,6 @@ namespace Authentication.Enums
     {
         Admin = 0,
         Clinet= 1,
-        Trainer = 2 ,
-        ProductOwner = 3
+        Trainer = 2 
     }
 }
