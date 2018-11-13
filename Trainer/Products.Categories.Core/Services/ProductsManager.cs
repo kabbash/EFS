@@ -49,9 +49,9 @@ namespace Products.Core.Services
                 };
             }
         }
-        public ResultMessage Insert(ProductsDto newProduct)
+        public ResultMessage Insert(ProductsDto newProductDto)
         {
-            var validationResult = _validator.Validate(newProduct);
+            var validationResult = _validator.Validate(newProductDto);
             if (!validationResult.IsValid)
                 return new ResultMessage
                 {
@@ -61,7 +61,11 @@ namespace Products.Core.Services
 
             try
             {
-                _unitOfWork.ProductsRepository.Insert(newProduct.Adapt<Shared.Core.Models.Products>());
+                var newProduct = newProductDto.Adapt<Shared.Core.Models.Products>();
+                newProduct.CreatedAt = DateTime.Now;
+                newProduct.CreatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
+
+                _unitOfWork.ProductsRepository.Insert(newProduct);
                 _unitOfWork.Commit();
                 return new ResultMessage()
                 {
@@ -122,6 +126,9 @@ namespace Products.Core.Services
                 {
                     oldProduct.Name = product.Name;
                     oldProduct.ProfilePicture = product.ProfilePicture;
+                    oldProduct.UpdatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
+                    oldProduct.UpdatedAt = DateTime.Now;
+
                     _unitOfWork.ProductsRepository.Update(oldProduct);
                     _unitOfWork.Commit();
                     return new ResultMessage
