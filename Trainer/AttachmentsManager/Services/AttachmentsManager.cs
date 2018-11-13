@@ -65,7 +65,7 @@ namespace Attachments.Core.Services
                 //log ex error in file
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.AttachmentsUploadError,
+                    ErrorCode = (int)AttachmentsErrorsCodeEnum.AttachmentsUploadError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }

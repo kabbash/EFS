@@ -103,6 +103,7 @@ namespace Trainer
             services.AddScoped<IProductsSubCategoriesManager, ProductsSubCategoriesManager>();
             services.AddScoped<IProductsManager, ProductsManager>();
             services.AddScoped<IRatingManager<Shared.Core.Models.Products>, RatingManager<Shared.Core.Models.Products>>();
+            //services.AddScoped<IRatingManager<Shared.Core.Models.Products>>(s => new RatingManager<Shared.Core.Models.Products>(10));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
