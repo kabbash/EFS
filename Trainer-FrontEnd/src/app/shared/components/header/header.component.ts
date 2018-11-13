@@ -11,21 +11,21 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   SearchBox() {
     var x = document.getElementById("search-box") as HTMLElement;
     if (x.style.display === "none" || x.style.display === "") {
         x.style.display = "block";
     } else {
-        x.style.display = "none";
+      x.style.display = 'none';
     }
-  } 
-  Close(){
-    var x = document.getElementById("search-box") as HTMLElement;
-    if (x.style.display === "none") {
-        x.style.display = "block";
+  }
+  Close() {
+    const x = document.getElementById('search-box') as HTMLElement;
+    if (x.style.display === 'none') {
+      x.style.display = 'block';
     } else {
-        x.style.display = "none";
+      x.style.display = 'none';
     }
   }
   toggleClass(){
