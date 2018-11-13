@@ -42,7 +42,7 @@ namespace Products.Core.Services
                 //log ex
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.ProductsSubCategoriesGetAllError,
+                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsSubCategoriesGetAllError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -76,7 +76,7 @@ namespace Products.Core.Services
             {
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.ProductsSubCategoriesInsertError,
+                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsSubCategoriesInsertError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -96,7 +96,7 @@ namespace Products.Core.Services
                     return new ResultMessage()
                     {
                         Status = HttpStatusCode.InternalServerError,
-                        ErrorCode = ErrorsCodeEnum.ProductsSubCategoriesNotFoundError
+                        ErrorCode = (int) ProductsErrorsCodeEnum.ProductsSubCategoriesNotFoundError
                     };
             }
             catch (Exception ex)
@@ -104,7 +104,7 @@ namespace Products.Core.Services
                 //log ex
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.ProductsGetByIdError,
+                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsGetByIdError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -143,7 +143,7 @@ namespace Products.Core.Services
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound,
-                        ErrorCode = ErrorsCodeEnum.ProductsSubCategoriesNotFoundError
+                        ErrorCode = (int) ProductsErrorsCodeEnum.ProductsSubCategoriesNotFoundError
                     };
                 }
             }
@@ -152,7 +152,7 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    ErrorCode = ErrorsCodeEnum.ProductsSubCategoriesUpdateError
+                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsSubCategoriesUpdateError
                 };
             }
         }
@@ -172,7 +172,7 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    ErrorCode = ErrorsCodeEnum.ProductsSubCategoriesDeleteError
+                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsSubCategoriesDeleteError
                 };
             }
         }

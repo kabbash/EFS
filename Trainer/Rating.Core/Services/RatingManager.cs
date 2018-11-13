@@ -20,9 +20,11 @@ namespace Rating.Core.Services
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<RatingDto> _validator;
         private readonly IRepository<TEntity> _ratedEntityRepository;
+        private readonly int _x;
 
-        public RatingManager(IUnitOfWork unitOfWork, IValidator<RatingDto> validator)
+        public RatingManager(int x ,IUnitOfWork unitOfWork, IValidator<RatingDto> validator)
         {
+            _x = x;
             _unitOfWork = unitOfWork;
             _validator = validator;
             _ratedEntityRepository = _unitOfWork.getRepoByType(typeof(IRepository<TEntity>)) as IRepository<TEntity>;
@@ -52,7 +54,7 @@ namespace Rating.Core.Services
             {
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.RatingInsertError,
+                    ErrorCode =(int) RatingErrorsCodeEnum.RatingInsertError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
