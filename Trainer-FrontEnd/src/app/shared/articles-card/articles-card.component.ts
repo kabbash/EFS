@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { url } from 'inspector';
 
 @Component({
   selector: 'app-articles-card',

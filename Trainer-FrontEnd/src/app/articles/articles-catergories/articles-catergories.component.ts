@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { config } from 'src/app/config/pages-config';
 
 @Component({
   selector: 'app-articles-catergories',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticlesCatergoriesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  articlesList() {
+    this.router.navigate([config.articles.allArticles.route]);
   }
 
 }

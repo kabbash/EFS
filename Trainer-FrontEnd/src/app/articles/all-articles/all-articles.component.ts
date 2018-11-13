@@ -10,7 +10,6 @@ export class AllArticlesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    alert('here');
   }
 
 }
