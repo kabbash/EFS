@@ -97,7 +97,6 @@ namespace Trainer
         }
         private void ConfigureManagers(IServiceCollection services)
         {
-            services.AddScoped<ICaloriesManager, CaloriesManager>();
             services.AddScoped<IAttachmentsManager, AttachmentsManager>();
             services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
             services.AddScoped<IProductsSubCategoriesManager, ProductsSubCategoriesManager>();
@@ -108,6 +107,7 @@ namespace Trainer
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
             services.AddScoped<ILookupService<CaloriesDto, Calories>, LookupService<CaloriesDto, Calories> >();
+            services.AddScoped<ILookupService<ArticlesCategoriesDto, ArticlesCategories>, LookupService<ArticlesCategoriesDto, ArticlesCategories>>();
             services.AddScoped<IArticlesService, ArticleService>();
 
         }
@@ -123,6 +123,7 @@ namespace Trainer
         private void ConfigureValidations(IServiceCollection services)
         {
             services.AddTransient<IValidator<CaloriesDto>, CaloriesDtoValidator>();
+            services.AddTransient<IValidator<ArticlesCategoriesDto>, ArticlesCategoriesValidator>();
             services.AddTransient<IValidator<UploadFileDto>, UploadFileDtoValidator>();
             services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
             services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();

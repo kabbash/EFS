@@ -17,6 +17,8 @@ namespace Shared.Core
         IRepository<Clients> ClientsRepository { get; }
         IRepository<Trainers> TrainersRepository { get; }
         IRepository<Articles> ArticlesRepository { get; }
+        IRepository<ArticlesCategories> ArticlesCategoriesRepository { get; }
+
 
 
 

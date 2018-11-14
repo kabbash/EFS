@@ -157,6 +157,19 @@ namespace Trainer.EF
                 return _articleRepo;
             }
         }
+
+        private IRepository<ArticlesCategories> _articleCategoriesRepo;
+        public IRepository<ArticlesCategories> ArticlesCategoriesRepository
+        {
+            get
+            {
+                if (_articleCategoriesRepo == null)
+                {
+                    _articleCategoriesRepo = new Repository<ArticlesCategories>(_dbContext);
+                }
+                return _articleCategoriesRepo;
+            }
+        }
         #endregion
 
         public UnitOfWork(EFSContext context)
