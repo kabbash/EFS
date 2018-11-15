@@ -84,7 +84,7 @@ namespace Trainer
                 app.UseHsts();
             }
 
-            // app.UseHttpsRedirection();
+          //  app.UseHttpsRedirection();
             app.UseCors("AllowAllOrigins");
             app.UseAuthentication();
             app.UseMvc();
