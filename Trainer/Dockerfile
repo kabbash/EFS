@@ -59,44 +59,46 @@
 # # ENTRYPOINT ["dotnet", "Trainer.dll"]
 
 
-# FROM microsoft/dotnet:2.1-sdk-alpine AS builder
-# WORKDIR /
-# COPY . .
-# RUN dotnet restore Trainer/Trainer.csproj
-# RUN dotnet publish Trainer/Trainer.csproj -o /dockerout/ -c Release
+FROM microsoft/dotnet:2.1-sdk-alpine AS builder
+WORKDIR /
+COPY . .
+RUN dotnet restore Trainer/Trainer.csproj
+RUN dotnet publish Trainer/Trainer.csproj -o /dockerout/ -c Release
 # RUN chmod +x ./entrypoint.sh
 # CMD /bin/bash ./entrypoint.sh
 
 
-# FROM microsoft/dotnet:2.1-aspnetcore-runtime-alpine
-# WORKDIR /app
-
-
-# COPY --from=builder /dockerout .
-# ENV ASPNETCORE_URLS https://*:80
-# EXPOSE 80/tcp
-# ENTRYPOINT ["dotnet", "Trainer.dll"]
-
-
-FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+FROM microsoft/dotnet:2.1-aspnetcore-runtime-alpine
 WORKDIR /app
+
+
+COPY --from=builder /dockerout .
+ENV ASPNETCORE_URLS https://*:80
+EXPOSE 80/tcp
 EXPOSE 59518
 EXPOSE 44364
-
-FROM microsoft/dotnet:2.1-sdk AS build
-WORKDIR /src
-#COPY Trainer/Trainer.csproj Trainer/
-COPY . .
-RUN dotnet restore Trainer/Trainer.csproj
-COPY . .
-WORKDIR /src/Trainer
-RUN dotnet build Trainer.csproj -c Release -o /app
-
-FROM build AS publish
-RUN dotnet publish Trainer.csproj -c Release -o /app
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "Trainer.dll"]
+
+
+# FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+# WORKDIR /app
+# EXPOSE 59518
+# EXPOSE 44364
+
+# FROM microsoft/dotnet:2.1-sdk AS build
+# WORKDIR /src
+# #COPY Trainer/Trainer.csproj Trainer/
+# COPY . .
+# RUN dotnet restore Trainer/Trainer.csproj
+# COPY . .
+# WORKDIR /src/Trainer
+# RUN dotnet build Trainer.csproj -c Release -o /app
+
+# FROM build AS publish
+# RUN dotnet publish Trainer.csproj -c Release -o /app
+
+# FROM base AS final
+# WORKDIR /app
+# COPY --from=publish /app .
+# ENTRYPOINT ["dotnet", "Trainer.dll"]
 
