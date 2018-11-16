@@ -12,7 +12,6 @@ namespace Products.Core.Models
         public DateTime? ExpDate { get; set; }
         public DateTime? ProdDate { get; set; }
         public decimal Price { get; set; }
-        public string OwnerId { get; set; }
         public string ProfilePicture { get; set; }
         public int SubcategoryId { get; set; }
         public DateTime CreatedAt { get; set; }

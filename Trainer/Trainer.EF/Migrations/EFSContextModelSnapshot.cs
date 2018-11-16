@@ -108,11 +108,11 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "1ff8417a-2f20-4070-b8dd-fd975f94ce70", Name = "Client" },
-                        new { Id = "bc566ce0-2f28-4c6d-b95f-7dd54be84d90", Name = "ProductOwner" },
-                        new { Id = "ed675a88-af4a-4da8-8bb1-649dab9fd2be", Name = "RegularUser" },
-                        new { Id = "5b9d4937-916e-4abd-a877-d25f12a4ad32", Name = "Trainer" },
-                        new { Id = "7275eed3-5ba9-466b-b7cc-3e4c764a5505", Name = "ArticleWriter" }
+                        new { Id = "9316308f-dd8a-4cfc-9390-2a3724ecb603", Name = "Client" },
+                        new { Id = "272e05d3-7035-4435-90eb-d08624f3c670", Name = "ProductOwner" },
+                        new { Id = "f09fdda7-1200-4d01-aac8-e4631bb4420c", Name = "RegularUser" },
+                        new { Id = "aa0fd9d9-0b39-4a32-85d2-0f629897f770", Name = "Trainer" },
+                        new { Id = "0240e6ae-5098-45ee-baf4-4eb76e805ec9", Name = "ArticleWriter" }
                     );
                 });
 
@@ -580,10 +580,6 @@ namespace Trainer.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<string>("OwnerId")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(10, 2)");
 
@@ -604,8 +600,6 @@ namespace Trainer.EF.Migrations
                         .HasMaxLength(128);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OwnerId");
 
                     b.HasIndex("SubcategoryId");
 
@@ -669,19 +663,6 @@ namespace Trainer.EF.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Products_Images");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProductsOwners", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(128);
-
-                    b.Property<string>("ContactInfo")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Products_Owners");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ProductsSubcategories", b =>
@@ -932,11 +913,6 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.Products", b =>
                 {
-                    b.HasOne("Shared.Core.Models.ProductsOwners", "Owner")
-                        .WithMany("Products")
-                        .HasForeignKey("OwnerId")
-                        .HasConstraintName("FK_Products_Products_Owners");
-
                     b.HasOne("Shared.Core.Models.ProductsSubcategories", "Subcategory")
                         .WithMany("Products")
                         .HasForeignKey("SubcategoryId")
@@ -949,15 +925,6 @@ namespace Trainer.EF.Migrations
                         .WithMany("ProductsImages")
                         .HasForeignKey("ProductId")
                         .HasConstraintName("FK_Products_Images_Products");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProductsOwners", b =>
-                {
-                    b.HasOne("Shared.Core.Models.AspNetUsers", "IdNavigation")
-                        .WithOne("ProductsOwners")
-                        .HasForeignKey("Shared.Core.Models.ProductsOwners", "Id")
-                        .HasConstraintName("FK_Products_Owners_dbo.AspNetUsers")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ProductsSubcategories", b =>

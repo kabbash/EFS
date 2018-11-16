@@ -42,7 +42,7 @@ namespace Products.Core.Services
                 //log ex
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.ProductsCategoriesGetAllError,
+                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesGetAllError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -59,7 +59,11 @@ namespace Products.Core.Services
 
             try
             {
-                _unitOfWork.ProductsCategoriesRepository.Insert(category.Adapt<ProductsCategories>());                
+                var newCategory = category.Adapt<ProductsCategories>();
+                newCategory.CreatedAt = DateTime.Now;
+                newCategory.CreatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
+
+                _unitOfWork.ProductsCategoriesRepository.Insert(newCategory);
                 _unitOfWork.Commit();
                 return new ResultMessage()
                 {                    
@@ -70,12 +74,12 @@ namespace Products.Core.Services
             {
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.ProductsCategoriesInsertError,
+                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesInsertError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
         }
-        public ResultMessage GetById(byte id)
+        public ResultMessage GetById(int id)
         {
             try
             {
@@ -90,7 +94,7 @@ namespace Products.Core.Services
                     return new ResultMessage()
                     {                        
                         Status = HttpStatusCode.NotFound,
-                        ErrorCode = ErrorsCodeEnum.ProductsCategoriesNotFoundError
+                        ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesNotFoundError
                     };
             }
             catch (Exception ex)
@@ -98,12 +102,12 @@ namespace Products.Core.Services
                 //log ex
                 return new ResultMessage()
                 {
-                    ErrorCode =ErrorsCodeEnum.ProductsCategoriesGetByIdError,
+                    ErrorCode =(int) ProductsErrorsCodeEnum.ProductsCategoriesGetByIdError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
         }
-        public ResultMessage Update(ProductsCategoryDto category, byte id)
+        public ResultMessage Update(ProductsCategoryDto category, int id)
         {
             var validationResult = _validator.Validate(category);
             if (!validationResult.IsValid)
@@ -120,6 +124,9 @@ namespace Products.Core.Services
                 {
                     oldCategory.Name = category.Name;
                     oldCategory.ProfilePicture = category.ProfilePicture;
+                    oldCategory.UpdatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
+                    oldCategory.UpdatedAt = DateTime.Now;
+
                     _unitOfWork.ProductsCategoriesRepository.Update(oldCategory);
                     _unitOfWork.Commit();
                     return new ResultMessage
@@ -132,7 +139,7 @@ namespace Products.Core.Services
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound,
-                        ErrorCode = ErrorsCodeEnum.ProductsCategoriesNotFoundError
+                        ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesNotFoundError
                     };
                 }
             }
@@ -141,11 +148,11 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    ErrorCode = ErrorsCodeEnum.ProductsCategoriesUpdateError
+                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesUpdateError
                 };
             }
         }
-        public ResultMessage Delete(byte id)
+        public ResultMessage Delete(int id)
         {
             try
             {
@@ -161,7 +168,7 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    ErrorCode = ErrorsCodeEnum.ProductsCategoriesDeleteError
+                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesDeleteError
                 };
             }
         }

@@ -38,7 +38,6 @@ namespace Trainer.EF
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<ProductsCategories> ProductsCategories { get; set; }
         public virtual DbSet<ProductsImages> ProductsImages { get; set; }
-        public virtual DbSet<ProductsOwners> ProductsOwners { get; set; }
         public virtual DbSet<ProductsSubcategories> ProductsSubcategories { get; set; }
         public virtual DbSet<ProgramsImages> ProgramsImages { get; set; }
         public virtual DbSet<ProgramsPrices> ProgramsPrices { get; set; }
@@ -453,8 +452,6 @@ namespace Trainer.EF
 
             modelBuilder.Entity<Products>(entity =>
             {
-                entity.HasIndex(e => e.OwnerId);
-
                 entity.HasIndex(e => e.SubcategoryId);
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
@@ -469,10 +466,6 @@ namespace Trainer.EF
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(e => e.OwnerId)
-                    .IsRequired()
-                    .HasMaxLength(128);
-
                 entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
 
                 entity.Property(e => e.ProdDate).HasColumnType("date");
@@ -482,12 +475,6 @@ namespace Trainer.EF
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
                 entity.Property(e => e.UpdatedBy).HasMaxLength(128);
-
-                entity.HasOne(d => d.Owner)
-                    .WithMany(p => p.Products)
-                    .HasForeignKey(d => d.OwnerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Products_Products_Owners");
 
                 entity.HasOne(d => d.Subcategory)
                     .WithMany(p => p.Products)
@@ -538,22 +525,6 @@ namespace Trainer.EF
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Products_Images_Products");
-            });
-
-            modelBuilder.Entity<ProductsOwners>(entity =>
-            {
-                entity.ToTable("Products_Owners");
-
-                entity.Property(e => e.Id)
-                    .HasMaxLength(128)
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.ContactInfo).IsRequired();
-
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.ProductsOwners)
-                    .HasForeignKey<ProductsOwners>(d => d.Id)
-                    .HasConstraintName("FK_Products_Owners_dbo.AspNetUsers");
             });
 
             modelBuilder.Entity<ProductsSubcategories>(entity =>

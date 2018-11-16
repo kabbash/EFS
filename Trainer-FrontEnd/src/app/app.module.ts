@@ -9,6 +9,7 @@ import { SharedModule } from '../app/shared/shared.module';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HomeModule } from 'src/app/home/home.module';
+import { ArticlesModule } from './articles/articles.module';
 
 export function CreateTranslateLoader (http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -19,11 +20,12 @@ export function CreateTranslateLoader (http: HttpClient) {
     AppComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'trainer'}),
+    BrowserModule.withServerTransition({ appId: 'trainer' }),
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
     HomeModule,
+    ArticlesModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

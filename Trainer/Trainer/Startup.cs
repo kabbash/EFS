@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -84,7 +85,7 @@ namespace Trainer
                 app.UseHsts();
             }
 
-          //  app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseCors("AllowAllOrigins");
             app.UseAuthentication();
             app.UseMvc();
@@ -97,16 +98,17 @@ namespace Trainer
         }
         private void ConfigureManagers(IServiceCollection services)
         {
-            services.AddScoped<ICaloriesManager, CaloriesManager>();
             services.AddScoped<IAttachmentsManager, AttachmentsManager>();
             services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
             services.AddScoped<IProductsSubCategoriesManager, ProductsSubCategoriesManager>();
             services.AddScoped<IProductsManager, ProductsManager>();
             services.AddScoped<IRatingManager<Shared.Core.Models.Products>, RatingManager<Shared.Core.Models.Products>>();
+            //services.AddScoped<IRatingManager<Shared.Core.Models.Products>>(s => new RatingManager<Shared.Core.Models.Products>(10));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
             services.AddScoped<ILookupService<CaloriesDto, Calories>, LookupService<CaloriesDto, Calories> >();
+            services.AddScoped<ILookupService<ArticlesCategoriesDto, ArticlesCategories>, LookupService<ArticlesCategoriesDto, ArticlesCategories>>();
             services.AddScoped<IArticlesService, ArticleService>();
 
         }
@@ -122,6 +124,7 @@ namespace Trainer
         private void ConfigureValidations(IServiceCollection services)
         {
             services.AddTransient<IValidator<CaloriesDto>, CaloriesDtoValidator>();
+            services.AddTransient<IValidator<ArticlesCategoriesDto>, ArticlesCategoriesValidator>();
             services.AddTransient<IValidator<UploadFileDto>, UploadFileDtoValidator>();
             services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
             services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();

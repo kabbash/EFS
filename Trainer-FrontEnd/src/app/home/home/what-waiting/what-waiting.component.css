@@ -12,3 +12,10 @@
     height: 50px;
     font-size: 25px
   }
+
+  
+  @media (max-width: 520px) {
+    .why-sect p {
+      font-size: 16px
+    } 
+   }

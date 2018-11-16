@@ -59,7 +59,7 @@ namespace Articles.Core.Services
 
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.ProductsGetAllError,
+                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsGetAllError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -123,7 +123,7 @@ namespace Articles.Core.Services
 
                 return new ResultMessage()
                 {
-                    ErrorCode = ErrorsCodeEnum.ProductsInsertError,
+                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsInsertError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }

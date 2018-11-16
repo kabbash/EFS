@@ -10,7 +10,7 @@ body {
 }
 
 body {
-  padding-top: 56px;
+  padding-top: 69px;
 }
 
 .lh-100 {
@@ -29,4 +29,13 @@ border: 2px solid #007bff;
 padding: 10px 20px;
 border-radius: 3px;
 color: #fff;
+}
+
+@media (max-width: 520px) {
+  h1 {
+    font-size: 1.9rem !important;
+  }
+  h3 {
+    font-size: 0.95rem !important;
+  }
 }

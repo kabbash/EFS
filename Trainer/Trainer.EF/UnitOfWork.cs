@@ -68,19 +68,6 @@ namespace Trainer.EF
             }
         }
 
-        private IRepository<ProductsOwners> _productOwnersRepo;
-        public IRepository<ProductsOwners> ProductOwnersRepository
-        {
-            get
-            {
-                if (_productOwnersRepo == null)
-                {
-                    _productOwnersRepo = new Repository<ProductsOwners>(_dbContext);
-                }
-                return _productOwnersRepo;
-            }
-        }
-
         private IRepository<AspNetRoles> _rolesRepo;
         public IRepository<AspNetRoles> RolesRepository
         {
@@ -168,6 +155,19 @@ namespace Trainer.EF
                     _articleRepo = new Repository<Articles>(_dbContext);
                 }
                 return _articleRepo;
+            }
+        }
+
+        private IRepository<ArticlesCategories> _articleCategoriesRepo;
+        public IRepository<ArticlesCategories> ArticlesCategoriesRepository
+        {
+            get
+            {
+                if (_articleCategoriesRepo == null)
+                {
+                    _articleCategoriesRepo = new Repository<ArticlesCategories>(_dbContext);
+                }
+                return _articleCategoriesRepo;
             }
         }
         #endregion

@@ -1,28 +1,4 @@
-/* header */
-@media (max-width: 991.98px) {
-    .offcanvas-collapse {
-      position: fixed;
-      top: 56px;
-      /* Height of navbar */
-      bottom: 0;
-      left: 100%;
-      width: 100%;
-      padding-right: 1rem;
-      padding-left: 1rem;
-      overflow-y: auto;
-      visibility: hidden;
-      background-color: #343a40;
-      transition-timing-function: ease-in-out;
-      transition-duration: .3s;
-      transition-property: left, visibility;
-    }
-  
-    .offcanvas-collapse.open {
-      left: 0;
-      visibility: visible;
-    }
-  }
-  
+/* header */  
   .navbar {
     font-family: 'Cairo', sans-serif;
   }
@@ -84,13 +60,21 @@
   .form-search input {
     background-color: transparent;
     color: #fff;
-    border-radius: 0;
+    border-radius: 5px;
     width: 100%;
     box-shadow: none;
     margin: 8px 0;
     border: navajowhite;
     position: relative;
   }
+  .form-search input:focus{
+    border: solid 1px white;
+    outline: 0px;
+    padding: 3px 20px;
+  }
+  .navbar-expand-md .navbar-toggler {
+    display: none;
+   }
   
   .form-search .fa.fa-times {
     position: absolute;
@@ -99,4 +83,54 @@
     color: #fff;
     cursor: pointer;
   }
+  .navbar-toggler:focus{
+    outline: 0px;
+    cursor: pointer;
+  }
+  @media (max-width: 991.98px) {
+    .offcanvas-collapse {
+      position: fixed;
+      top: 56px;
+      /* Height of navbar */
+      bottom: 0;
+      left: 100%;
+      width: 100%;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      overflow-y: auto;
+      visibility: hidden;
+      background-color: #343a40;
+      transition-timing-function: ease-in-out;
+      transition-duration: .3s;
+      transition-property: left, visibility;
+    }
+    .offcanvas-collapse ul{
+      padding: 40px 0px;
+      margin-top: 30px;
+      flex-direction: column;
+      margin-right: 0px !important;
+    }
   
+    .offcanvas-collapse.open {
+      left: 0;
+      visibility: visible;
+    }
+    .esf-nav a{
+      border-left: 0px !important;
+      height: 40px;
+    }
+    .esf-nav a:hover::before {
+      bottom: 5px !important;      
+    }
+    .nav-link{
+      color: white !important;
+    }
+    .form-search{
+      position: fixed;
+      left: 0;
+      bottom: 80px;
+    }
+    .navbar-expand-md .navbar-toggler {
+      display: inline-block;
+    }
+  }

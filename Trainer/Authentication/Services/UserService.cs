@@ -43,7 +43,7 @@ namespace Authentication.Services
             var userEntity = _unitOfWork.UsersRepository.Get(usr => usr.UserName == username && usr.PasswordHash == password, null, "AspNetUserRoles").FirstOrDefault();
             if (userEntity == null)
             {
-                return new ResultMessage { Status = HttpStatusCode.BadRequest , ErrorCode = ErrorsCodeEnum.AuthenticationError };
+                return new ResultMessage { Status = HttpStatusCode.BadRequest , ErrorCode = (int) AuthenticationErrorsCodeEnum.AuthenticationError };
             }
             var userRoles = new List<string>();
             if (userEntity.AspNetUserRoles != null && userEntity.AspNetUserRoles.Count > 0)
@@ -188,15 +188,6 @@ namespace Authentication.Services
                             Username = userData.Email
                         });
                         break;
-                    case Enums.UserEnum.ProductOwner:
-                        _unitOfWork.ProductOwnersRepository.Insert(new ProductsOwners { Id = userEntity.Id });
-                        _unitOfWork.Commit();
-                        AddRoleToUser(new AddRoleToUserDto
-                        {
-                            RoleName = "ProductOwner",
-                            Username = userData.Email
-                        });
-                        break;
                     case Enums.UserEnum.Trainer:
                         _unitOfWork.TrainersRepository.Insert(new Trainers { Id = userEntity.Id });
                         _unitOfWork.Commit();
@@ -233,7 +224,7 @@ namespace Authentication.Services
 
                 var user = _unitOfWork.UsersRepository.Get(u => u.SecurityStamp == token).First();
                 if (user == null)
-                    return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = ErrorsCodeEnum.AuthenticationError };
+                    return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode =(int) AuthenticationErrorsCodeEnum.AuthenticationError };
                 user.EmailConfirmed = true;
                 _unitOfWork.UsersRepository.Update(user);
                 _unitOfWork.Commit();
@@ -241,7 +232,7 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
-                return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = ErrorsCodeEnum.AuthenticationError };
+                return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int) AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
     }

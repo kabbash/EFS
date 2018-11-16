@@ -2,7 +2,7 @@
 #Footer {
     
       /* The image used */
-      background-image: url("./../../../../assets/images/footer.png");
+      background-image: url("/assets/images/footer.png");
       /* Create the parallax scrolling effect */
       background-attachment: fixed;
       background-position: center;
@@ -59,3 +59,9 @@
     .fa{
         font-size: 18px;
     }
+
+    @media (max-width: 520px) {
+      .footer_copy{
+       height: 100px;
+      } 
+     }
