@@ -75,8 +75,6 @@ WORKDIR /app
 COPY --from=builder /dockerout .
 ENV ASPNETCORE_URLS http://*:80
 EXPOSE 80/tcp
-EXPOSE 59518
-EXPOSE 44364
 ENTRYPOINT ["dotnet", "Trainer.dll"]
 
 

@@ -14,7 +14,7 @@ namespace Trainer.EF
         public EFSContext(DbContextOptions<EFSContext> options)
             : base(options)
         {
-         // Database.Migrate();
+            Database.Migrate();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }

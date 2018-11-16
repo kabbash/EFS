@@ -13,16 +13,16 @@ services:
     #     condition: on-failure
     ports:
       - "4400:80"
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
     networks:
       - webnet  
-  # db:
-  #   image: "microsoft/mssql-server-linux"
-  #   ports: 
-  #     - "1433:1433"
-  #   environment:
-  #       SA_PASSWORD: "1234"
-  #       ACCEPT_EULA: "Y"
+  db:
+    image: "microsoft/mssql-server-linux:2017-latest"
+    ports: 
+      - "5434:1433"
+    environment:
+        SA_PASSWORD: "1234"
+        ACCEPT_EULA: "Y"
 networks:
   webnet:
