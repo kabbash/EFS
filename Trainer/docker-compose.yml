@@ -3,14 +3,14 @@ services:
   web:
     # replace username/repo:tag with your name and image details
     image: trainer_web
-    # deploy:
-    #   replicas: 3
-    #   resources:
-    #     limits:
-    #       cpus: "0.1"
-    #       memory: 50M
-    #   restart_policy:
-    #     condition: on-failure
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
     ports:
       - "4400:80"
     depends_on:
@@ -18,11 +18,20 @@ services:
     networks:
       - webnet  
   db:
-    image: "microsoft/mssql-server-linux:2017-latest"
+    image: microsoft/mssql-server-linux:2017-latest
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 2000M
+      restart_policy:
+        condition: on-failure
     ports: 
-      - "5434:1433"
+      - "5433:1433"
     environment:
-        SA_PASSWORD: "1234"
+        SA_PASSWORD: "Password_123"
         ACCEPT_EULA: "Y"
+
 networks:
   webnet:
