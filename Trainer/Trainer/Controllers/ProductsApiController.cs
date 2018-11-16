@@ -61,7 +61,6 @@ namespace Trainer.Controllers
         [HttpPost("AddRate")]
         public ActionResult AddRate(RatingDto newRate)
         {
-            //Sent Type Id            
             return GetStatusCodeResult(_ratingManager.AddOrUpdate(newRate));
         }
     }

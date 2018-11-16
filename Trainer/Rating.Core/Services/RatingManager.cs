@@ -15,7 +15,7 @@ using Rating.Core.Helpers;
 
 namespace Rating.Core.Services
 {
-    public class RatingManager<TEntity> : IRatingManager<TEntity>  where TEntity : RateBase
+    public class RatingManager<TEntity> : IRatingManager<TEntity>  where TEntity : IRateBase
     {
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<RatingDto> _validator;
@@ -44,7 +44,6 @@ namespace Rating.Core.Services
                 AddorUpdateRate(ratingDto);
                 // To Be Thread
                 UpdateOverAllRate(ratingDto);
-                _unitOfWork.Commit();
                 return new ResultMessage()
                 {
                     Status = HttpStatusCode.OK
@@ -70,12 +69,15 @@ namespace Rating.Core.Services
             }
             else
                 _unitOfWork.RatingRepository.Insert(ratingDto.Adapt<EntityRating>());
+
+            _unitOfWork.Commit();
         }
         private void UpdateOverAllRate(RatingDto ratingDto)
         {
             var entity = _ratedEntityRepository.GetById(ratingDto.EntityId);            
             entity.Rate = CalculateRate(ratingDto);
             _ratedEntityRepository.Update(entity);
+            _unitOfWork.Commit();
         }
         private decimal CalculateRate(RatingDto ratingDto)
         {

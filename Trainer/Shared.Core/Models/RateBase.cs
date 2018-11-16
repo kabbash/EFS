@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Shared.Core.Models
 {
-    public class RateBase
+    public interface IRateBase
     {
-        public decimal Rate { get; set; }
+        decimal Rate { get; set; }
     }
 }
