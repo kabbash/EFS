@@ -28,7 +28,7 @@ namespace Trainer.Controllers
         [HttpGet]
         public ActionResult<ResultMessage> Get()
         {
-            return GetStatusCodeResult(_Manager.GetAll());
+           return GetStatusCodeResult(_Manager.GetAll());
         }
         [HttpPost]
         public ActionResult Post([FromBody] CaloriesDto calories)
