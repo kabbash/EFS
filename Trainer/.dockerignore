@@ -1,7 +1,7 @@
 # directories
 **/bin/
 **/obj/
-**/out/
+
 
 # files
 Dockerfile*
@@ -9,4 +9,3 @@ Dockerfile*
 **/*.md
 **/*.ps1
 **/*.cmd
-**/*.sh

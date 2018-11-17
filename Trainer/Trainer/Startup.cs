@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -84,7 +85,7 @@ namespace Trainer
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseCors("AllowAllOrigins");
             app.UseAuthentication();
             app.UseMvc();
