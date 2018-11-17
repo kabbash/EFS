@@ -17,6 +17,10 @@ const routes: Routes = [
     path: config.articles.route,
     loadChildren: './articles/articles.module#ArticlesModule',
   },
+  {
+    path: config.demos.route,
+    loadChildren: './demos/demos.module#DemosModule',
+  },
   { path: '**', redirectTo: 'home' }
 ];
 

@@ -21,5 +21,24 @@ export let config = {
     'notfound': {
         'name': 'notfound',
         'route': 'notfound',
-    }
+    },
+    'demos': {
+        'name': 'demos',
+        'route': 'demos',
+        'loadChildren': './demos/demos.module#DemosModule',
+        // 'permissionList': ['Authorized'],
+        /** this is capital to match routes for tagging  */
+        'allDemos': {
+            'name': 'allDemos',
+            'route': '/demos/allDemos',
+        },
+        'forms': {
+            'name': 'forms',
+            'route': '/demos/forms',
+        },
+        'dropdowns': {
+            'name': 'dropdowns',
+            'route': '/demos/dropdowns',
+        }
+    },
 };

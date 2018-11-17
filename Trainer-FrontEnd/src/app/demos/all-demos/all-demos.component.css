@@ -1,0 +1,17 @@
+:host {
+    display: FLEX;
+    background-color: black;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.block {
+    width: 200px;
+    height: 200px;
+    background-color: antiquewhite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 30px;
+}
