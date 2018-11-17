@@ -1,0 +1,16 @@
+:host {
+    display: FLEX;
+    flex-direction: column;
+    padding: 30px 8%;
+    background: black;
+    direction: ltr;
+    text-align: left;
+}
+
+.animated>.row {
+    margin-bottom: 30px;
+}
+
+.card {
+    margin-bottom: 20px;
+}

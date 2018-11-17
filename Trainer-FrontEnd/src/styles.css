@@ -13,6 +13,10 @@ body {
   padding-top: 69px;
 }
 
+.fr-box.fr-basic.fr-top .fr-wrapper{
+  min-height: 350px;
+}
+
 .lh-100 {
   line-height: 1;
 }
