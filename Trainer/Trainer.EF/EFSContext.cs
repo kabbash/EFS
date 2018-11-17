@@ -15,7 +15,7 @@ namespace Trainer.EF
             : base(options)
         {
             Database.EnsureCreatedAsync();
-            Database.Migrate();
+           // Database.Migrate();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }
@@ -55,11 +55,6 @@ namespace Trainer.EF
             //                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=EFS_Dev;Trusted_Connection=True;");
             //            }
 
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=tcp:192.168.99.100,5433;Initial Catalog=EFS_DEV;User Id=sa;Password=Password_123;MultipleActiveResultSets=true");
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
