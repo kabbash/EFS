@@ -15,7 +15,7 @@ namespace Trainer.EF
             : base(options)
         {
             Database.EnsureCreatedAsync();
-            Database.Migrate();
+           // Database.Migrate();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }
