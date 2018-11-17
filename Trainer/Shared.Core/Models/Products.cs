@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Shared.Core.Models
 {
-    public partial class Products : RateBase
+    public partial class Products : IRateBase
     {
         public Products()
         {
@@ -23,6 +23,7 @@ namespace Shared.Core.Models
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public bool IsActive { get; set; }
+        public decimal Rate { get; set; }
 
         public ProductsSubcategories Subcategory { get; set; }
         public ICollection<ProductsImages> ProductsImages { get; set; }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Rating.Core.Interfaces
 {
-    public interface IRatingManager<TEntity>  where TEntity : RateBase
+    public interface IRatingManager<TEntity>  where TEntity : IRateBase
     {
         ResultMessage AddOrUpdate(RatingDto entityRating);
     }
