@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { config } from 'src/app/config/pages-config';
 
 @Component({
   selector: 'app-articles-list-item',
@@ -22,9 +24,13 @@ export class ArticlesListItemComponent implements OnInit {
   فيلايت ايسسي كيوم نايهايل موليستايا كونسيكيواتيو,فيلايليوم كيواي دولوريم أيوم فيوجايات كيو
   فوليوبتاس نيولا باراياتيور؟`;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  articlesDetails() {
+    this.router.navigate([config.articles.articleDetails.route]);
   }
 
 }
