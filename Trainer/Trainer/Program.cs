@@ -18,7 +18,9 @@ namespace Trainer
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>().PreferHostingUrls(true);
+         WebHost.CreateDefaultBuilder(args)
+           .UseContentRoot(Directory.GetCurrentDirectory())
+           .UseStartup<Startup>()
+           .PreferHostingUrls(true);
     }
 }

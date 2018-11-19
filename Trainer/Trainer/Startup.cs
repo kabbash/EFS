@@ -6,8 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Trainer.EF;
 using Microsoft.EntityFrameworkCore;
-using test.core.Services;
-using test.core.Interfaces;
 using Shared.Core;
 using Authentication;
 using Microsoft.IdentityModel.Tokens;
@@ -43,6 +41,8 @@ using Rating.Core.Interfaces;
 using Rating.Core.Services;
 using Rating.Core.Models;
 using Rating.Core.Validators;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Trainer
 {
@@ -76,6 +76,14 @@ namespace Trainer
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseStaticFiles();
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //Path.Combine(Directory.GetCurrentDirectory(), "Test1")),
+            //    RequestPath = "/Test1"
+            //});
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
