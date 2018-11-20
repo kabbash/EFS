@@ -18,4 +18,12 @@ export class AllDemosComponent implements OnInit {
     this.router.navigate([config.demos.forms.route]);
   }
 
+  navigateDropdowns() {
+    this.router.navigate([config.demos.dropdowns.route]);
+  }
+
+  navigatePagination() {
+    this.router.navigate([config.demos.pagination.route]);
+  }
+
 }

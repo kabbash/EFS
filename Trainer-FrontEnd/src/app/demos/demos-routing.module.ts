@@ -5,6 +5,7 @@ import { DemosComponent } from './demos.component';
 import { AllDemosComponent } from './all-demos/all-demos.component';
 import { FormsComponent } from './forms/forms.component';
 import { DropdownsComponent } from './dropdowns/dropdowns.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: config.demos.dropdowns.name,
         component: DropdownsComponent
+      },
+      {
+        path: config.demos.pagination.name,
+        component: PaginationComponent
       }
 
     ]

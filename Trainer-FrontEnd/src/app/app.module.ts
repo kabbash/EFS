@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClient } from '@angular/common/http';
@@ -29,6 +29,9 @@ export function CreateTranslateLoader(http: HttpClient) {
     HomeModule,
     ArticlesModule,
     DemosModule,
+    NgbModule,
+    NgbPaginationModule,
+    NgbAlertModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     TranslateModule.forRoot({

@@ -39,6 +39,10 @@ export let config = {
         'dropdowns': {
             'name': 'dropdowns',
             'route': '/demos/dropdowns',
+        },
+        'pagination': {
+            'name': 'pagination',
+            'route': '/demos/pagination',
         }
     },
 };

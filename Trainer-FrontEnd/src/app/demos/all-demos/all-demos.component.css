@@ -3,6 +3,7 @@
     background-color: black;
     justify-content: center;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .block {
