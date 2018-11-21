@@ -1,5 +1,7 @@
-<app-articles-card (click)="articlesList()" [cardName]="'المكملات'" [cardImage]="'url(/assets/images/test/categoryone.png)'"></app-articles-card>
+<!-- <app-articles-card (click)="articlesList()" [cardName]="'المكملات'" [cardImage]="'url(/assets/images/test/categoryone.png)'"></app-articles-card>
 <app-articles-card (click)="articlesList()" [cardName]="'التخسيس'" [cardImage]="'url(/assets/images/test/categoryone.png)'"></app-articles-card>
 <app-articles-card (click)="articlesList()" [cardName]="'التغذيه'" [cardImage]="'url(/assets/images/test/categoryone.png)'"></app-articles-card>
-<app-articles-card (click)="articlesList()" [cardName]="'بناء العضلات'" [cardImage]="'url(/assets/images/test/categoryone.png)'"></app-articles-card>
+<app-articles-card (click)="articlesList()" [cardName]="'بناء العضلات'" [cardImage]="'url(/assets/images/test/categoryone.png)'"></app-articles-card> -->
+<app-articles-card *ngFor="let category of categories" (click)="articlesList()" [cardName]="category.name" [cardImage]="'url(' + category.profilePicture + ')'"></app-articles-card>
+
 <app-articles-paging></app-articles-paging>

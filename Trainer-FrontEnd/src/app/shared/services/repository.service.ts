@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders } from "@angular/common/http";
 import { HttpClient } from "@angular/common/http";
 import { apiUrl } from "src/config/api.config";
+import { ResultMessage } from "src/app/shared/models/result-message";
 
 @Injectable({
   providedIn: 'root'
@@ -10,29 +11,29 @@ export class RepositoryService {
 
   constructor(private http: HttpClient) { }
 
-  public getData(route: string) {
-    return this.http.get(this.createCompleteRoute(route));
+  public getData<T>(route: string) {
+    return this.http.get<ResultMessage<T>>(this.createCompleteRoute(route));
   }
 
-  public create(route: string, body) {
-    return this.http.post(this.createCompleteRoute(route), body, this.generateHeaders());
+  public create<T>(route: string, body) {
+    return this.http.post<ResultMessage<T>>(this.createCompleteRoute(route), body, this.generateHeaders());
   }
 
-  public update(route: string, body) {
-    return this.http.put(this.createCompleteRoute(route), body, this.generateHeaders());
+  public update<T>(route: string, body) {
+    return this.http.put<ResultMessage<T>>(this.createCompleteRoute(route), body, this.generateHeaders());
   }
 
-  public delete(route: string) {
-    return this.http.delete(this.createCompleteRoute(route));
+  public delete<T>(route: string) {
+    return this.http.delete<ResultMessage<T>>(this.createCompleteRoute(route));
   }
 
   private createCompleteRoute(route: string) {
-    return `${apiUrl.repository.base}/${route}`;
+    return `${apiUrl.repository.base}${route}`;
   }
 
   private generateHeaders() {
     return {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      // headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     }
   }
 }
