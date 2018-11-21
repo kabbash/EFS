@@ -18,6 +18,21 @@ export let config = {
             'route': '/articles/articleDetails',
         }
     },
+    'products': {
+        'name': 'products',
+        'route': 'products',
+        'loadChildren': './products/products.module#ProductsModule',
+        // 'permissionList': ['Authorized'],
+        /** this is capital to match routes for tagging  */
+        'allProducts': {
+            'name': 'allProducts',
+            'route': '/products/allProducts',
+        },
+        'productsCategories': {
+            'name': 'productsCategories',
+            'route': '/products/productsCategories',
+        }
+    },
     'notfound': {
         'name': 'notfound',
         'route': 'notfound',
