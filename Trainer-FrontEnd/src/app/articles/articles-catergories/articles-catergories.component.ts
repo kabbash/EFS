@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { config } from 'src/app/config/pages-config';
+import { RepositoryService } from "src/app/shared/services/repository.service";
 
 @Component({
   selector: 'app-articles-catergories',
@@ -9,13 +10,22 @@ import { config } from 'src/app/config/pages-config';
 })
 export class ArticlesCatergoriesComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  categories = []
+  constructor(private router: Router, private repositoryService: RepositoryService) { }
 
   ngOnInit() {
+    this.getCategories();
   }
 
   articlesList() {
     this.router.navigate([config.articles.allArticles.route]);
+  }
+
+  getCategories() {
+    this.repositoryService.getData<any>('articles/categories').subscribe(result => {
+      debugger;
+      this.categories = result.data;
+    });
   }
 
 }
