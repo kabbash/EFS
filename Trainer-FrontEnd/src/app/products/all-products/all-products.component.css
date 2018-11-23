@@ -5,3 +5,7 @@
     flex-wrap: wrap;
     padding-top: 40px
 }
+
+:host ::ng-deep div.card-img-container {
+    background-size: contain;
+}

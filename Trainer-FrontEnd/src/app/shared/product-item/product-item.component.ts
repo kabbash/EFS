@@ -10,8 +10,7 @@ export class ProductItemComponent implements OnInit {
   @Input() cardName: string;
   @Input() cardImage: string;
   @Input() price: string;
-  currentRate = 8;
-
+  @Input() currentRate: number;
   constructor() { }
 
   ngOnInit() {

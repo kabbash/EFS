@@ -1,14 +1,13 @@
 :host {
     width: 250px;
-    display: flex;
     margin: 0 15px 30px;
     background: rgba(255, 255, 255, .75);
     border-radius: 12px;
     box-shadow: 0 0px 19px 0px rgba(255, 255, 255, .5);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    cursor: pointer;
+    position: relative;
+    padding-bottom: 10px;
 }
 
 .card-img-container {
@@ -48,9 +47,33 @@ div.price-rating {
     direction: ltr;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .star {
     font-size: 1.5rem;
+    color: gray;
+}
+
+.filled {
     color: gold;
+}
+
+.buy-now {
+    width: 70px;
+    height: 39px;
+    right: 0;
+    background: #00bcd4;
+    left: 0;
+    bottom: -8px;
+    margin: auto;
+    position: absolute;
+    font-size: 14px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    padding-bottom: 3px;
 }

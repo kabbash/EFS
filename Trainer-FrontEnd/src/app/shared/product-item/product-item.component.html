@@ -9,8 +9,12 @@
 <div class="price-rating">
   <span>{{price}}</span>
   <span>
-    <ngb-rating [(rate)]="currentRate"></ngb-rating>
-    <hr>
-    <pre>Rate: <b>{{currentRate}}</b></pre>
+    <ngb-rating [(rate)]="currentRate" [readonly]="true" max="3" class="star">
+      <ng-template let-fill="fill" let-index="index">
+        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+      </ng-template>
+    </ngb-rating>
   </span>
 </div>
+
+<div class="buy-now">إشتري الان</div>
