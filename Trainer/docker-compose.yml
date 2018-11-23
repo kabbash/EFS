@@ -1,7 +1,25 @@
 version: "3"
 services:
-  web:
+ db:
+    image: microsoft/mssql-server-linux:2017-latest
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 2000M
+      restart_policy:
+        condition: on-failure
+    volumes:
+    - ./data/mssql:/opt/mssql/bin/sqls
+    ports: 
+      - "5433:1433"
+    environment:
+        SA_PASSWORD: "Password_123"
+        ACCEPT_EULA: "Y"
+  web_server:
     # replace username/repo:tag with your name and image details
+    build: ./
     image: trainer_web
     deploy:
       replicas: 1
@@ -17,21 +35,24 @@ services:
       - db
     networks:
       - webnet  
-  db:
-    image: microsoft/mssql-server-linux:2017-latest
+ 
+ web_frontend:
+    # replace username/repo:tag with your name and image details
+    build: ./Trainer-FrontEnd
+    image: trainer_frontend
     deploy:
       replicas: 1
       resources:
         limits:
           cpus: "0.1"
-          memory: 2000M
+          memory: 50M
       restart_policy:
         condition: on-failure
-    ports: 
-      - "5433:1433"
-    environment:
-        SA_PASSWORD: "Password_123"
-        ACCEPT_EULA: "Y"
-
+    ports:
+      - "4000:4000"
+    depends_on:
+      - web_server
+    networks:
+      - webnet
 networks:
   webnet:
