@@ -63,8 +63,6 @@ FROM microsoft/dotnet:2.1-sdk-alpine AS builder
 WORKDIR /
 COPY . .
 RUN dotnet publish Trainer/Trainer.csproj -o /dockerout/ -c Release
-WORKDIR /Trainer.EF
-RUN dotnet ef database update
 # RUN chmod +x ./entrypoint.sh
 # CMD /bin/bash ./entrypoint.sh
 
