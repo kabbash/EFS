@@ -45,10 +45,10 @@ services:
       # replace username/repo:tag with your name and image details
       build: ./Trainer-FrontEnd
       image: trainer_frontend
-      volumes:
-      - type: volume
-        source: frontend-data
-        target: /app
+      # volumes:
+      # - type: volume
+      #   source: frontend-data
+      #   target: /app
       deploy:
         replicas: 1
         resources:
@@ -66,7 +66,7 @@ services:
 networks:
   webnet:
 volumes:
-  frontend-data:
+  # frontend-data:
   # backend-data:
   database:
 
