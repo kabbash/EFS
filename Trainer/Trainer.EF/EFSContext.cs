@@ -14,6 +14,7 @@ namespace Trainer.EF
         public EFSContext(DbContextOptions<EFSContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
             Database.Migrate();
         }
 
