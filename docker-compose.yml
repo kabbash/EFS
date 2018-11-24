@@ -33,9 +33,7 @@ services:
       restart_policy:
         condition: on-failure
     volumes:
-      - type: volume
-        source: database
-        target: /var/opt/mssql
+      - /home/labuser/dockervolumes/lab01:/var/opt/mssql
     ports: 
       - "1433:1433"
     environment:
