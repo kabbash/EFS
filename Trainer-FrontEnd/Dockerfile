@@ -23,7 +23,7 @@ COPY --from=buildContainer /app/dist /app/dist
 
 # Expose the port the app runs in
 EXPOSE 80/tcp
-EXPOSE 4000
+# EXPOSE 4000
 
 # Serve the app
 CMD ["node", "dist/server"]
