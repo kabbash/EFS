@@ -17,7 +17,7 @@ services:
       restart_policy:
         condition: on-failure
     ports:
-      - "4400:80"
+      - "4400:4400"
     depends_on:
       - db
     networks:
