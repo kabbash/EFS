@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { config } from 'src/app/config/pages-config';
-import { RepositoryService } from "src/app/shared/services/repository.service";
+import { RepositoryService } from '../../shared/services/repository.service';
+import { config } from '../../config/pages-config';
 
 @Component({
   selector: 'app-articles-catergories',
@@ -23,7 +23,6 @@ export class ArticlesCatergoriesComponent implements OnInit {
 
   getCategories() {
     this.repositoryService.getData<any>('articles/categories').subscribe(result => {
-      debugger;
       this.categories = result.data;
     });
   }
