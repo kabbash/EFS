@@ -1,0 +1,22 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.comment-name {
+    font-weight: bold;
+}
+
+.star {
+    font-size: 1.3rem;
+    color: gray;
+}
+
+.filled {
+    color: gold;
+}
+
+.rate{
+    direction: ltr;
+}

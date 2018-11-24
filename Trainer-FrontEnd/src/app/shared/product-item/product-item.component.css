@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    cursor: pointer;
     padding-bottom: 10px;
 }
 
@@ -73,7 +74,6 @@ div.price-rating {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     color: white;
     padding-bottom: 3px;
 }

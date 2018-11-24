@@ -1,0 +1,79 @@
+:host {
+    width: 985px;
+}
+
+.image-container {
+    padding: 40px 0;
+}
+
+.with-img {
+    width: 250px;
+    margin: auto;
+    height: 300px;
+    background: rgba(255, 255, 255, .75);
+    border-radius: 12px;
+    box-shadow: 0 0px 19px 0px rgba(255, 255, 255, .5);
+    background-size: 60%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-image: url(/assets/images/test/whey.png);
+}
+
+.details-container {
+    min-height: 100px;
+    width: 100%;
+    color: #ffffffbf;
+}
+
+.product-rating-row {
+    margin-bottom: 20px;
+}
+
+.comments {
+    font-size: 23px;
+    margin-top: 50px;
+}
+
+.details-footer {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.star {
+    font-size: 4rem;
+    color: gray;
+}
+
+.filled {
+    color: gold;
+}
+
+.rate {
+    direction: ltr;
+}
+
+.form-control.product-rate-text-area {
+    background: transparent;
+    min-width: 310px;
+    color: white;
+}
+
+.email{
+    margin-bottom: 20px;
+}
+.add-comment{
+    width: 105px;
+    height: 50px;
+    background: #00bcd4;
+    font-size: 17px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 20px 0 30px;
+    cursor: pointer;
+}

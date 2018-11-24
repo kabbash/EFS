@@ -6,6 +6,7 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { AllProductsComponent } from './all-products/all-products.component';
 import { ProductsCatergoriesComponent } from './products-catergories/products-catergories.component';
 import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductRatingComponent } from './product-rating/product-rating.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng
     NgbPaginationModule,
     NgbAlertModule,
   ],
-  declarations: [ProductsComponent, AllProductsComponent, ProductsCatergoriesComponent]
+  declarations: [ProductsComponent, AllProductsComponent, ProductsCatergoriesComponent, ProductRatingComponent]
 })
 export class ProductsModule { }

@@ -31,6 +31,10 @@ export let config = {
         'productsCategories': {
             'name': 'productsCategories',
             'route': '/products/productsCategories',
+        },
+        'productRating': {
+            'name': 'productRating',
+            'route': '/products/productRating',
         }
     },
     'notfound': {
