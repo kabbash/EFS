@@ -1,7 +1,6 @@
 version: "3.2"
 services:
   web_server:
-    # replace username/repo:tag with your name and image details
     build: ./Trainer
     image: trainer_web
     # volumes:
@@ -42,7 +41,6 @@ services:
         SA_PASSWORD: "efs-app-123"
         ACCEPT_EULA: "Y"
   web_frontend:
-      # replace username/repo:tag with your name and image details
       build: ./Trainer-FrontEnd
       image: trainer_frontend
       # volumes:
