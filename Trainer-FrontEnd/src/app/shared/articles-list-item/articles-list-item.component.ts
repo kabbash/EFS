@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { config } from 'src/app/config/pages-config';
+import { config } from '../../config/pages-config';
 
 @Component({
   selector: 'app-articles-list-item',

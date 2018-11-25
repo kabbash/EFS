@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders } from "@angular/common/http";
-import { HttpClient } from "@angular/common/http";
-import { apiUrl } from "src/config/api.config";
-import { ResultMessage } from "src/app/shared/models/result-message";
+import { HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { ResultMessage } from '../models/result-message';
+import { apiUrl } from '../../../config/api.config';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +34,6 @@ export class RepositoryService {
   private generateHeaders() {
     return {
       // headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    }
+    };
   }
 }
