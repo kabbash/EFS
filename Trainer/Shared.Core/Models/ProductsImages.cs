@@ -12,6 +12,6 @@ namespace Shared.Core.Models
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
 
-        public Products Product { get; set; }
+        public virtual Products Product { get; set; }
     }
 }

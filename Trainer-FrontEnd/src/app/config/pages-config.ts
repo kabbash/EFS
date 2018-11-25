@@ -5,16 +5,16 @@ export let config = {
         'loadChildren': './articles/articles.module#ArticlesModule',
         // 'permissionList': ['Authorized'],
         /** this is capital to match routes for tagging  */
-        'allArticles': {
-            'name': 'allArticles',
-            'route': '/articles/allArticles',
+        'articlesList': {
+            'name': 'articlesList/:categoryId',
+            'route': '/articles/articlesList',            
         },
         'articlesCategories': {
             'name': 'articlesCategories',
             'route': '/articles/articlesCategories',
         },
-        'articleDetails': {
-            'name': 'articleDetails',
+        'articleDetails': {            
+            'name': 'articleDetails/:articleId',
             'route': '/articles/articleDetails',
         }
     },

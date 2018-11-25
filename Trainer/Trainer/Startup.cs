@@ -64,7 +64,10 @@ namespace Trainer
             ConfigureJwtAuthentication(services);
 
             services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);            
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                    .AddJsonOptions(
+            options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
             // to be changed to client side app origin only
             services.AddCors(options =>
@@ -102,7 +105,7 @@ namespace Trainer
         #region Custom Configurations
         private void ConfigureConnectionString(IServiceCollection services)
         {
-            services.AddDbContext<EFSContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<EFSContext>(options => options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
         private void ConfigureManagers(IServiceCollection services)
         {
@@ -115,7 +118,7 @@ namespace Trainer
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
-            services.AddScoped<ILookupService<CaloriesDto, Calories>, LookupService<CaloriesDto, Calories> >();
+            services.AddScoped<ILookupService<CaloriesDto, Calories>, LookupService<CaloriesDto, Calories>>();
             services.AddScoped<ILookupService<ArticlesCategoriesDto, ArticlesCategories>, LookupService<ArticlesCategoriesDto, ArticlesCategories>>();
             services.AddScoped<IArticlesService, ArticleService>();
 

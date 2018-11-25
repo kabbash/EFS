@@ -13,6 +13,6 @@ namespace Shared.Core.Models
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
 
-        public Clients Client { get; set; }
+        public virtual Clients Client { get; set; }
     }
 }

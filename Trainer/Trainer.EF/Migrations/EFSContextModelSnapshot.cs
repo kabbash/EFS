@@ -25,10 +25,6 @@ namespace Trainer.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AuthorId")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
                     b.Property<int>("CategoryId");
 
                     b.Property<DateTime>("CreatedAt")
@@ -55,9 +51,9 @@ namespace Trainer.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
-
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("CreatedBy");
 
                     b.ToTable("Articles");
                 });
@@ -93,6 +89,28 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
                 });
 
+            modelBuilder.Entity("Shared.Core.Models.ArticlesImages", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ArticleId");
+
+                    b.Property<string>("Path")
+                        .IsRequired();
+
+                    b.Property<string>("Text");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("ArticlesImages");
+                });
+
             modelBuilder.Entity("Shared.Core.Models.AspNetRoles", b =>
                 {
                     b.Property<string>("Id")
@@ -108,11 +126,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "9316308f-dd8a-4cfc-9390-2a3724ecb603", Name = "Client" },
-                        new { Id = "272e05d3-7035-4435-90eb-d08624f3c670", Name = "ProductOwner" },
-                        new { Id = "f09fdda7-1200-4d01-aac8-e4631bb4420c", Name = "RegularUser" },
-                        new { Id = "aa0fd9d9-0b39-4a32-85d2-0f629897f770", Name = "Trainer" },
-                        new { Id = "0240e6ae-5098-45ee-baf4-4eb76e805ec9", Name = "ArticleWriter" }
+                        new { Id = "f006c66e-85ac-4945-aa7d-937d68765031", Name = "Client" },
+                        new { Id = "6ee6ab0c-7dd6-46fe-8095-d507e336f448", Name = "RegularUser" },
+                        new { Id = "119ff683-82a6-4b3c-b43a-ad176e3327a4", Name = "Trainer" },
+                        new { Id = "b7e42906-c642-4944-ac09-068871e36340", Name = "ArticleWriter" }
                     );
                 });
 
@@ -589,7 +606,8 @@ namespace Trainer.EF.Migrations
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
 
-                    b.Property<decimal>("Rate");
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<int>("SubcategoryId");
 
@@ -818,15 +836,23 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.Articles", b =>
                 {
-                    b.HasOne("Shared.Core.Models.AspNetUsers", "Author")
-                        .WithMany("Articles")
-                        .HasForeignKey("AuthorId")
-                        .HasConstraintName("FK_Articles_AspNetUsers");
-
                     b.HasOne("Shared.Core.Models.ArticlesCategories", "Category")
                         .WithMany("Articles")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Articles_Articles_Categories");
+
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "Author")
+                        .WithMany("Articles")
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Shared.Core.Models.ArticlesImages", b =>
+                {
+                    b.HasOne("Shared.Core.Models.Articles", "Article")
+                        .WithMany("Images")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Shared.Core.Models.AspNetUserClaims", b =>

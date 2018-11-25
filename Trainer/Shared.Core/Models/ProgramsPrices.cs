@@ -14,6 +14,6 @@ namespace Shared.Core.Models
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
 
-        public TrainersPrograms Program { get; set; }
+        public virtual TrainersPrograms Program { get; set; }
     }
 }

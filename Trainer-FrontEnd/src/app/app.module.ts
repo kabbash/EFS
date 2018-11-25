@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../app/shared/shared.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HomeModule } from 'src/app/home/home.module';
+import { HomeModule } from './home/home.module';
 import { ArticlesModule } from './articles/articles.module';
 import { DemosModule } from './demos/demos.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';

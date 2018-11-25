@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Attachments\Articles Categories\**" />
+    <Compile Remove="wwwroot\Images\Articles Categories\**" />
+    <Content Remove="wwwroot\Attachments\Articles Categories\**" />
+    <Content Remove="wwwroot\Images\Articles Categories\**" />
+    <EmbeddedResource Remove="wwwroot\Attachments\Articles Categories\**" />
+    <EmbeddedResource Remove="wwwroot\Images\Articles Categories\**" />
+    <None Remove="wwwroot\Attachments\Articles Categories\**" />
+    <None Remove="wwwroot\Images\Articles Categories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.0.100" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.2" />
@@ -32,6 +43,10 @@
     <ProjectReference Include="..\Shared.Core\Shared.Core.csproj" />
     <ProjectReference Include="..\test.core\test.core.csproj" />
     <ProjectReference Include="..\Trainer.EF\Trainer.EF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Tmp\" />
   </ItemGroup>
 
 </Project>

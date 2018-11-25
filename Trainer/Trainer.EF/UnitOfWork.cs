@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using test.core;
 using Trainer.EF;
 
 namespace Trainer.EF

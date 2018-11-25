@@ -16,6 +16,6 @@ namespace Shared.Core.Models
         public DateTime? ModifiedAt { get; set; }
         public int EntityTypeId { get; set; }
 
-        public EntityTypes EntityType { get; set; }
+        public virtual EntityTypes EntityType { get; set; }
     }
 }

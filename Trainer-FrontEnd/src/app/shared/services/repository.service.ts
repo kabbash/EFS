@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from "@angular/common/http";
 import { HttpClient } from "@angular/common/http";
-import { apiUrl } from "src/config/api.config";
-import { ResultMessage } from "src/app/shared/models/result-message";
+import { apiUrl } from  "../../../config/api.config";
+import { ResultMessage } from "../../shared/models/result-message";
 
 @Injectable({
   providedIn: 'root'

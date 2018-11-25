@@ -13,12 +13,13 @@ namespace Trainer.EF
 
         public EFSContext(DbContextOptions<EFSContext> options)
             : base(options)
-        {
-            Database.EnsureCreatedAsync();
+        {            
+            //Database.EnsureCreatedAsync();
            // Database.Migrate();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }
+        public virtual DbSet<ArticlesImages> ArticlesImages { get; set; }
         public virtual DbSet<ArticlesCategories> ArticlesCategories { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
@@ -48,26 +49,13 @@ namespace Trainer.EF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
-            //            if (!optionsBuilder.IsConfigured)
-            //            {
-            //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            //                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=EFS_Dev;Trusted_Connection=True;");
-            //            }
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Articles>(entity =>
             {
-                entity.HasIndex(e => e.AuthorId);
-
                 entity.HasIndex(e => e.CategoryId);
-
-                entity.Property(e => e.AuthorId)
-                    .IsRequired()
-                    .HasMaxLength(128);
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
@@ -84,12 +72,6 @@ namespace Trainer.EF
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
                 entity.Property(e => e.UpdatedBy).HasMaxLength(128);
-
-                entity.HasOne(d => d.Author)
-                    .WithMany(p => p.Articles)
-                    .HasForeignKey(d => d.AuthorId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Articles_AspNetUsers");
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Articles)
@@ -131,15 +113,9 @@ namespace Trainer.EF
                 entity.HasData(new AspNetRoles[] {
                     new AspNetRoles { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin"},
                     new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "Client"},
-                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "ProductOwner"},
                     new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "RegularUser"},
                     new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "Trainer"},
                     new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "ArticleWriter"}
-
-
-
-
-
                 }
                     );
             });

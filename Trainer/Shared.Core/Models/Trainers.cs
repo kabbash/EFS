@@ -13,7 +13,7 @@ namespace Shared.Core.Models
         public string Id { get; set; }
         public string Bio { get; set; }
 
-        public AspNetUsers IdNavigation { get; set; }
-        public ICollection<TrainersPrograms> TrainersPrograms { get; set; }
+        public virtual AspNetUsers IdNavigation { get; set; }
+        public virtual ICollection<TrainersPrograms> TrainersPrograms { get; set; }
     }
 }

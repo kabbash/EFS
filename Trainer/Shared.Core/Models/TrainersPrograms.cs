@@ -21,8 +21,8 @@ namespace Shared.Core.Models
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
-        public Trainers Trainer { get; set; }
-        public ICollection<ProgramsImages> ProgramsImages { get; set; }
-        public ICollection<ProgramsPrices> ProgramsPrices { get; set; }
+        public virtual Trainers Trainer { get; set; }
+        public virtual ICollection<ProgramsImages> ProgramsImages { get; set; }
+        public virtual ICollection<ProgramsPrices> ProgramsPrices { get; set; }
     }
 }

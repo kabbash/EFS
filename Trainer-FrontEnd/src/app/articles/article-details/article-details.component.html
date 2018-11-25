@@ -1,26 +1,14 @@
-<div class="carousel-container">
-  <ngb-carousel *ngIf="images">
-    <ng-template ngbSlide>
-      <img [src]="images[0]" alt="Random first slide">
-      <div class="carousel-caption">
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <img [src]="images[1]" alt="Random second slide">
-      <div class="carousel-caption">
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <img [src]="images[2]" alt="Random third slide">
-      <div class="carousel-caption">
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-      </div>
-    </ng-template>
-  </ngb-carousel>
+<div class="article-container">
+  <div class="carousel-container">
+    <ngb-carousel *ngIf="article.images">
+      <ng-template ngbSlide *ngFor="let image of article.images">
+        <img [src]="baseurl + image.path" class="slider-img" alt="article images">
+        <div class="carousel-caption">
+          <h3>{{image.title}}</h3>
+          <p>{{image.text}}}</p>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+  <div class="article-details-container" [innerHTML]="articleBody"></div>
 </div>
-<div class="article-details-container" [innerHTML]="article"></div>

@@ -6,7 +6,7 @@ using Shared.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Text;
+using System.Linq;
 
 namespace Lookups.Core.Services
 {
@@ -38,7 +38,7 @@ namespace Lookups.Core.Services
 
                 return new ResultMessage()
                 {
-                    Data = result,
+                    Data = result.ToList(),
                     Status = HttpStatusCode.OK
                 };
             }

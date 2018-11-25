@@ -18,6 +18,6 @@ namespace Shared.Core.Models
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
 
-        public ICollection<Articles> Articles { get; set; }
+        public virtual ICollection<Articles> Articles { get; set; }
     }
 }
