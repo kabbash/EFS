@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://192.168.99.100:4400/api/'
+  baseUrl: 'http://ec2-34-211-170-40.us-west-2.compute.amazonaws.com:4400/api/'
 };
