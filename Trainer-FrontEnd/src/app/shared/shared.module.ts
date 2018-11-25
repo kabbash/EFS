@@ -7,16 +7,22 @@ import { ArticlesPagingComponent } from './articles-paging/articles-paging.compo
 import { ArticlesListItemComponent } from './articles-list-item/articles-list-item.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ProductItemComponent } from './product-item/product-item.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    NgbModule
   ],
   exports: [
     TranslateModule, HeaderComponent, FooterComponent,
-    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent
+    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
+    ProductItemComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
-    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent]
+    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
+    ProductItemComponent, ProductItemComponent]
 })
 export class SharedModule { }
