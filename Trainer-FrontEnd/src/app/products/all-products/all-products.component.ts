@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { config } from 'src/app/config/pages-config';
 
 @Component({
   selector: 'app-all-products',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllProductsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+
+  goToProductRating() {
+    this.router.navigate([config.products.productRating.route]);
+  }
 }

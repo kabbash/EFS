@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommentsComponent } from './comments/comments.component';
 
 
 @NgModule({
@@ -19,10 +20,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   exports: [
     TranslateModule, HeaderComponent, FooterComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
-    ProductItemComponent
+    ProductItemComponent, CommentsComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
-    ProductItemComponent, ProductItemComponent]
+    ProductItemComponent, ProductItemComponent, CommentsComponent]
 })
 export class SharedModule { }

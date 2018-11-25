@@ -6,7 +6,7 @@
     background-image: url("/assets/images/Sergi-Constance-Fitness-Model.png");
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
-    background-position: 50% 100%;
+    background-position: 50% 0%;
     background-repeat: no-repeat;
     background-size: 100%;
 }
