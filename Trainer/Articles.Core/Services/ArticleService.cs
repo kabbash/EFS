@@ -7,7 +7,7 @@ using Shared.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Text;
+using System.Linq;
 
 namespace Articles.Core.Services
 {
@@ -19,7 +19,6 @@ namespace Articles.Core.Services
         {
             _unitOfWork = unitOfWork;
             _Validator = validator;
-
         }
         public ResultMessage Delete(int id)
         {
@@ -41,7 +40,6 @@ namespace Articles.Core.Services
 
             }
         }
-
         public ResultMessage GetAll()
         {
             try
@@ -50,7 +48,7 @@ namespace Articles.Core.Services
                 result = _unitOfWork.ArticlesRepository.Get().Adapt(result);
                 return new ResultMessage
                 {
-                    Data = result,
+                    Data = result.ToList(),
                     Status = HttpStatusCode.OK
                 };
             }
@@ -59,12 +57,33 @@ namespace Articles.Core.Services
 
                 return new ResultMessage()
                 {
-                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsGetAllError,
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
         }
+        public ResultMessage GetByCategoryId(int id)
+        {
+            try
+            {
+                IEnumerable<ArticleGetDto> result = new List<ArticleGetDto>();
+                result = _unitOfWork.ArticlesRepository.Get(c => c.CategoryId == id).Adapt(result);
+                return new ResultMessage
+                {
+                    Data = result.ToList(),
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
 
+                return new ResultMessage()
+                {
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
+                    Status = HttpStatusCode.InternalServerError
+                };
+            }
+        }
         public ResultMessage GetById(int id)
         {
             try
@@ -77,22 +96,29 @@ namespace Articles.Core.Services
                         Status = HttpStatusCode.NotFound
                     };
                 }
+                var articleDto = article.Adapt<ArticleGetDto>();
+                if (article.Images != null)
+                    articleDto.Images = article.Images.Select(c => new ImageWithTextDto
+                    {
+                        Path = c.Path,
+                        Text = c.Text,
+                        Title = c.Title
+                    }).ToList();
+
                 return new ResultMessage
                 {
-                    Data = article.Adapt<ArticleGetDto>(),
+                    Data = articleDto,
                     Status = HttpStatusCode.OK
                 };
             }
             catch (Exception ex)
             {
-
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError
                 };
             }
         }
-
         public ResultMessage Insert(ArticleAddDto article, string userId)
         {
             var validationResult = _Validator.Validate(article);
@@ -108,9 +134,7 @@ namespace Articles.Core.Services
             {
                 var articleEntity = article.Adapt<Shared.Core.Models.Articles>();
                 articleEntity.CreatedAt = DateTime.Now;
-                articleEntity.AuthorId = userId;
-                var author = _unitOfWork.UsersRepository.GetById(userId);
-                articleEntity.CreatedBy = author.UserName;
+                articleEntity.CreatedBy = userId;
                 _unitOfWork.ArticlesRepository.Insert(articleEntity);
                 _unitOfWork.Commit();
                 return new ResultMessage
@@ -123,12 +147,11 @@ namespace Articles.Core.Services
 
                 return new ResultMessage()
                 {
-                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsInsertError,
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsInsertError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
         }
-
         public ResultMessage Update(ArticleAddDto article, int id, string userId)
         {
             var validationResult = _Validator.Validate(article);
@@ -154,12 +177,11 @@ namespace Articles.Core.Services
                 article.Adapt(articleData, typeof(ArticleAddDto), typeof(Shared.Core.Models.Articles));
                 articleData.Id = id;
                 articleData.UpdatedAt = DateTime.Now;
-                articleData.AuthorId = userId;
-                var author = _unitOfWork.UsersRepository.GetById(userId);
-                articleData.UpdatedBy = author.UserName;
+                articleData.UpdatedBy = userId;
                 _unitOfWork.ArticlesRepository.Update(articleData);
                 _unitOfWork.Commit();
-                return new ResultMessage {
+                return new ResultMessage
+                {
                     Status = HttpStatusCode.OK
                 };
 

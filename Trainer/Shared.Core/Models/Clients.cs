@@ -15,10 +15,10 @@ namespace Shared.Core.Models
 
         public string Id { get; set; }
 
-        public AspNetUsers IdNavigation { get; set; }
-        public ICollection<ClientsDocuments> ClientsDocuments { get; set; }
-        public ICollection<ClientsImages> ClientsImages { get; set; }
-        public ICollection<ClientsMeasurments> ClientsMeasurments { get; set; }
-        public ICollection<ClientsOverloads> ClientsOverloads { get; set; }
+        public virtual AspNetUsers IdNavigation { get; set; }
+        public virtual ICollection<ClientsDocuments> ClientsDocuments { get; set; }
+        public virtual ICollection<ClientsImages> ClientsImages { get; set; }
+        public virtual ICollection<ClientsMeasurments> ClientsMeasurments { get; set; }
+        public virtual ICollection<ClientsOverloads> ClientsOverloads { get; set; }
     }
 }

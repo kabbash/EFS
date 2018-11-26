@@ -18,6 +18,6 @@ namespace Shared.Core.Models
         public DateTime? UpdatedAt { get; set; }
         public string UpdatedBy { get; set; }
 
-        public ICollection<ProductsSubcategories> ProductsSubcategories { get; set; }
+        public virtual ICollection<ProductsSubcategories> ProductsSubcategories { get; set; }
     }
 }

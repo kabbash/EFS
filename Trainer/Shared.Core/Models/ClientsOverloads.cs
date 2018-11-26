@@ -15,6 +15,6 @@ namespace Shared.Core.Models
         public string UpdatedBy { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
-        public Clients Client { get; set; }
+        public virtual Clients Client { get; set; }
     }
 }

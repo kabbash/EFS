@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ArticlesComponent } from './articles.component';
 import { config } from '../config/pages-config';
-import { AllArticlesComponent } from './all-articles/all-articles.component';
 import { ArticlesCatergoriesComponent } from './articles-catergories/articles-catergories.component';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
+import { ArticlesListComponent } from './articles-list/articles-list.component';
 
 const routes: Routes = [
   {
@@ -12,8 +12,8 @@ const routes: Routes = [
     component: ArticlesComponent,
     children: [
       {
-        path: config.articles.allArticles.name,
-        component: AllArticlesComponent
+        path: config.articles.articlesList.name,
+        component: ArticlesListComponent
       },
       {
         path: config.articles.articlesCategories.name,

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shared.Core.Models
 {
@@ -10,13 +11,14 @@ namespace Shared.Core.Models
         public string Description { get; set; }
         public int CategoryId { get; set; }
         public string ProfilePicture { get; set; }
-        public string AuthorId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
 
-        public AspNetUsers Author { get; set; }
-        public ArticlesCategories Category { get; set; }
+        [ForeignKey("CreatedBy")]
+        public virtual AspNetUsers Author { get; set; }
+        public virtual ArticlesCategories Category { get; set; }
+        public virtual List<ArticlesImages> Images { get; set; }
     }
 }

@@ -27,9 +27,15 @@ namespace Trainer.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult Get(byte id)
+        public ActionResult Get(int id)
         {
             return GetStatusCodeResult(_articlesService.GetById(id));
+        }
+
+        [HttpGet("GetByCategory/{id}")]
+        public ActionResult GetByCategory(int id)
+        {
+            return GetStatusCodeResult(_articlesService.GetByCategoryId(id));
         }
 
         [HttpPost]
@@ -47,7 +53,7 @@ namespace Trainer.Controllers
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin, ArticleWriter")]
 
-        public ActionResult Put(byte id, [FromBody] ArticleAddDto articleDto)
+        public ActionResult Put(int id, [FromBody] ArticleAddDto articleDto)
         {
             var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
             if (userIdClaim == null)
@@ -60,7 +66,7 @@ namespace Trainer.Controllers
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin, ArticleWriter")]
 
-        public ActionResult Delete(byte id)
+        public ActionResult Delete(int id)
         {
             return GetStatusCodeResult(_articlesService.Delete(id));
         }

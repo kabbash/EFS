@@ -30,11 +30,11 @@ namespace Shared.Core.Models
         public string ProfilePicture { get; set; }
         public string UserName { get; set; }
 
-        public Clients Clients { get; set; }
-        public Trainers Trainers { get; set; }
-        public ICollection<Articles> Articles { get; set; }
-        public ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
+        public virtual Clients Clients { get; set; }
+        public virtual Trainers Trainers { get; set; }
+        public virtual ICollection<Articles> Articles { get; set; }
+        public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
     }
 }

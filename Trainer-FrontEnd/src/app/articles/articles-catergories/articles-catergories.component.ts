@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RepositoryService } from '../../shared/services/repository.service';
 import { config } from '../../config/pages-config';
+import { RepositoryService } from '../../shared/services/repository.service';
+import { environment } from '../../../environments/environment';
+import {articleCategoryDto} from '../../shared/models/article-category-dto';
+
 
 @Component({
   selector: 'app-articles-catergories',
@@ -10,19 +13,20 @@ import { config } from '../../config/pages-config';
 })
 export class ArticlesCatergoriesComponent implements OnInit {
 
-  categories = []
+  categories:articleCategoryDto[];
+  baseurl = environment.filesBaseUrl;
   constructor(private router: Router, private repositoryService: RepositoryService) { }
 
   ngOnInit() {
     this.getCategories();
   }
-
-  articlesList() {
-    this.router.navigate([config.articles.allArticles.route]);
+ 
+  articlesList(categoryId) {
+    this.router.navigate([config.articles.articlesList.route,categoryId]);
   }
 
   getCategories() {
-    this.repositoryService.getData<any>('articles/categories').subscribe(result => {
+    this.repositoryService.getData<articleCategoryDto[]>('articles/categories').subscribe(result => {
       this.categories = result.data;
     });
   }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shared.Core.Models
 {
@@ -23,9 +24,10 @@ namespace Shared.Core.Models
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public bool IsActive { get; set; }
+        [Column(TypeName = "decimal(10,2)")]
         public decimal Rate { get; set; }
 
-        public ProductsSubcategories Subcategory { get; set; }
-        public ICollection<ProductsImages> ProductsImages { get; set; }
+        public virtual ProductsSubcategories Subcategory { get; set; }
+        public virtual ICollection<ProductsImages> ProductsImages { get; set; }
     }
 }
