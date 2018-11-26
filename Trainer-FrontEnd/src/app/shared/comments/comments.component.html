@@ -1,0 +1,11 @@
+<div class="comment-name"><span>{{commentOwner}}</span></div>
+<div class="comment-date-rate"><span>{{commentDate}} &nbsp; &nbsp;</span>
+  <span class="rate">
+    <ngb-rating [(rate)]="currentRate" [readonly]="true" max="5" class="star">
+      <ng-template let-fill="fill" let-index="index">
+        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+      </ng-template>
+    </ngb-rating>
+  </span>
+</div>
+<div class="comment"><span>{{comment}}</span></div>

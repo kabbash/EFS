@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181124171836_addingAdminRoleToUserAdmin")]
+    partial class addingAdminRoleToUserAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,6 +26,10 @@ namespace Trainer.EF.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
+                        .HasMaxLength(128);
 
                     b.Property<int>("CategoryId");
 
@@ -51,9 +57,9 @@ namespace Trainer.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("AuthorId");
 
-                    b.HasIndex("CreatedBy");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Articles");
                 });
@@ -89,28 +95,6 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
                 });
 
-            modelBuilder.Entity("Shared.Core.Models.ArticlesImages", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ArticleId");
-
-                    b.Property<string>("Path")
-                        .IsRequired();
-
-                    b.Property<string>("Text");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArticleId");
-
-                    b.ToTable("ArticlesImages");
-                });
-
             modelBuilder.Entity("Shared.Core.Models.AspNetRoles", b =>
                 {
                     b.Property<string>("Id")
@@ -126,10 +110,11 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "f006c66e-85ac-4945-aa7d-937d68765031", Name = "Client" },
-                        new { Id = "6ee6ab0c-7dd6-46fe-8095-d507e336f448", Name = "RegularUser" },
-                        new { Id = "119ff683-82a6-4b3c-b43a-ad176e3327a4", Name = "Trainer" },
-                        new { Id = "b7e42906-c642-4944-ac09-068871e36340", Name = "ArticleWriter" }
+                        new { Id = "05ef3003-e275-480f-b35d-2c07fe539eec", Name = "Client" },
+                        new { Id = "ea7873ee-9e39-45e1-92cd-edfa5722684f", Name = "ProductOwner" },
+                        new { Id = "5e50f08e-7601-48d9-bbb7-a2f5a71dc264", Name = "RegularUser" },
+                        new { Id = "affb9f80-9a23-4390-a25a-e871fcb64b60", Name = "Trainer" },
+                        new { Id = "8053e39f-a18c-48b2-a147-6d4ac39147e2", Name = "ArticleWriter" }
                     );
                 });
 
@@ -610,8 +595,7 @@ namespace Trainer.EF.Migrations
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
 
-                    b.Property<decimal>("Rate")
-                        .HasColumnType("decimal(10,2)");
+                    b.Property<decimal>("Rate");
 
                     b.Property<int>("SubcategoryId");
 
@@ -840,23 +824,15 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.Articles", b =>
                 {
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "Author")
+                        .WithMany("Articles")
+                        .HasForeignKey("AuthorId")
+                        .HasConstraintName("FK_Articles_AspNetUsers");
+
                     b.HasOne("Shared.Core.Models.ArticlesCategories", "Category")
                         .WithMany("Articles")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Articles_Articles_Categories");
-
-                    b.HasOne("Shared.Core.Models.AspNetUsers", "Author")
-                        .WithMany("Articles")
-                        .HasForeignKey("CreatedBy")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ArticlesImages", b =>
-                {
-                    b.HasOne("Shared.Core.Models.Articles", "Article")
-                        .WithMany("Images")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Shared.Core.Models.AspNetUserClaims", b =>

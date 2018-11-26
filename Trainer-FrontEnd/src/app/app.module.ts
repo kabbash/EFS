@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbPaginationModule, NgbAlertModule, NgbRating } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClient } from '@angular/common/http';
@@ -8,10 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../app/shared/shared.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HomeModule } from './home/home.module';
 import { ArticlesModule } from './articles/articles.module';
 import { DemosModule } from './demos/demos.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { HomeModule } from './home/home.module';
+import { ProductsModule } from './products/products.module';
+
 
 export function CreateTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -28,10 +30,9 @@ export function CreateTranslateLoader(http: HttpClient) {
     SharedModule,
     HomeModule,
     ArticlesModule,
+    ProductsModule,
     DemosModule,
     NgbModule,
-    NgbPaginationModule,
-    NgbAlertModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     TranslateModule.forRoot({

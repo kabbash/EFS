@@ -1,0 +1,20 @@
+<div class="card-img-container" [ngStyle]="{'background-image': cardImage}"></div>
+<div class="card-separtator"></div>
+<div class="card-title-container">
+  <p>
+    {{cardName}}
+  </p>
+</div>
+
+<div class="price-rating">
+  <span>{{price}}</span>
+  <span>
+    <ngb-rating [(rate)]="currentRate" [readonly]="true" max="3" class="star">
+      <ng-template let-fill="fill" let-index="index">
+        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+      </ng-template>
+    </ngb-rating>
+  </span>
+</div>
+
+<div class="buy-now">إشتري الان</div>

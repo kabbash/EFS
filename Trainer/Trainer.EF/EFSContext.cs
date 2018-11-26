@@ -13,9 +13,8 @@ namespace Trainer.EF
 
         public EFSContext(DbContextOptions<EFSContext> options)
             : base(options)
-        {            
-            //Database.EnsureCreatedAsync();
-           // Database.Migrate();
+        {
+            Database.Migrate();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }
@@ -171,6 +170,11 @@ namespace Trainer.EF
                     .WithMany(p => p.AspNetUserRoles)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId");
+                entity.HasData(new AspNetUserRoles
+                {
+                    RoleId = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3",
+                    UserId = "7c654344-ad42-4428-a77a-00a8c1299c3f"
+                });
             });
 
             modelBuilder.Entity<AspNetUsers>(entity =>
