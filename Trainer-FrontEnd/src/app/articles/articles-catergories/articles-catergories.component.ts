@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { config } from '../../config/pages-config';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { environment } from '../../../environments/environment';
-import {articleCategoryDto} from '../../shared/models/article-category-dto';
+import { articleCategoryDto } from '../../shared/models/article-category-dto';
+import { AppService } from 'src/app/app.service';
 
 
 @Component({
@@ -13,16 +14,23 @@ import {articleCategoryDto} from '../../shared/models/article-category-dto';
 })
 export class ArticlesCatergoriesComponent implements OnInit {
 
-  categories:articleCategoryDto[];
+  categories: articleCategoryDto[];
   baseurl = environment.filesBaseUrl;
-  constructor(private router: Router, private repositoryService: RepositoryService) { }
+  constructor(private router: Router, private repositoryService: RepositoryService,
+    private appService: AppService) { }
 
   ngOnInit() {
+    // start loading
+    this.appService.loading = true;
+    setTimeout(() => {
+      // stop loading
+      this.appService.loading = false;
+    }, 3000);
     this.getCategories();
   }
- 
+
   articlesList(categoryId) {
-    this.router.navigate([config.articles.articlesList.route,categoryId]);
+    this.router.navigate([config.articles.articlesList.route, categoryId]);
   }
 
   getCategories() {

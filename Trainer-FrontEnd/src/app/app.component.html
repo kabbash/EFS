@@ -1,4 +1,8 @@
 <app-header></app-header>
-<router-outlet></router-outlet>
+<div class="loading-container">
+    <div class="loading-overlay" *ngIf="appService.loading">
+        <img src="assets/images/loading/indicator.gif" height="100">
+    </div>
+    <router-outlet></router-outlet>
+</div>
 <app-footer></app-footer>
-
