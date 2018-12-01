@@ -1,0 +1,24 @@
+:host {
+    height: 90px;
+    color: white;
+    direction: rtl;
+    width: 100%;
+    display: flex;
+}
+
+:host>div:last-child span.separator {
+    display: none;
+}
+
+:host>div:last-child span.page-name {
+    cursor: inherit;
+    color: #00bcd4;
+}
+
+.separator {
+    margin: 0 5px 0 9px;
+}
+
+.page-name {
+    cursor: pointer;
+}
