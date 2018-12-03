@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Shared.Core.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shared.Core.Models
 {
-    public partial class Products : IRateBase
+    public partial class Products : IRateBase,IBaseModel
     {
         public Products()
         {
@@ -18,7 +19,7 @@ namespace Shared.Core.Models
         public DateTime? ProdDate { get; set; }
         public decimal Price { get; set; }
         public string ProfilePicture { get; set; }
-        public int SubcategoryId { get; set; }
+        public int CategoryId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string CreatedBy { get; set; }
@@ -27,7 +28,8 @@ namespace Shared.Core.Models
         [Column(TypeName = "decimal(10,2)")]
         public decimal Rate { get; set; }
 
-        public virtual ProductsSubcategories Subcategory { get; set; }
+        [ForeignKey("CategoryId")]
+        public virtual ProductsCategories Category { get; set; }
         public virtual ICollection<ProductsImages> ProductsImages { get; set; }
     }
 }

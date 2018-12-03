@@ -1,17 +1,15 @@
 ﻿using FluentValidation;
 using Mapster;
-using Microsoft.Extensions.Options;
 using Shared.Core;
 using Shared.Core.Models;
 using Shared.Core.Utilities;
 using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Text;
 using System.Linq;
 using Rating.Core.Interfaces;
 using Rating.Core.Models;
 using Rating.Core.Helpers;
+using Shared.Core.Models.Base;
 
 namespace Rating.Core.Services
 {
@@ -20,11 +18,9 @@ namespace Rating.Core.Services
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<RatingDto> _validator;
         private readonly IRepository<TEntity> _ratedEntityRepository;
-        private readonly int _x;
 
-        public RatingManager(int x ,IUnitOfWork unitOfWork, IValidator<RatingDto> validator)
+        public RatingManager(IUnitOfWork unitOfWork, IValidator<RatingDto> validator)
         {
-            _x = x;
             _unitOfWork = unitOfWork;
             _validator = validator;
             _ratedEntityRepository = _unitOfWork.getRepoByType(typeof(IRepository<TEntity>)) as IRepository<TEntity>;

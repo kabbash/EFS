@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shared.Core.Models
+namespace Shared.Core.Models.Base
 {
     public interface IRateBase
     {

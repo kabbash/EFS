@@ -30,6 +30,12 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_productsManager.GetAll());
         }
 
+        [HttpGet("Category/{id}")]
+        public ActionResult GetByCategory(int id)
+        {
+            return GetStatusCodeResult(_productsManager.GetByCategoryId(id));
+        }
+
         // GET: api/ProductsCategories/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)

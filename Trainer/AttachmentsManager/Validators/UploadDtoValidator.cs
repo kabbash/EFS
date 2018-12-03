@@ -14,8 +14,8 @@ namespace Attachments.Core.Validators
         public UploadFileDtoValidator(IOptions<AttachmentsResources> attachmentsResources)
         {
             _attachmentsResources = attachmentsResources;
-            RuleFor(c => c.Bytes).NotEmpty().WithMessage(attachmentsResources.Value.UploadFileBytesEmptyValidation);
-            RuleFor(c => c.FileName).NotEmpty().WithMessage(attachmentsResources.Value.UploadFileNameEmptyValidation);
+            RuleFor(c => c.Bytes).NotEmpty();
+            RuleFor(c => c.FileName).NotEmpty();
         }
     }
 }

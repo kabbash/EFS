@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using Attachments.Core.Interfaces;
+using Attachments.Core.Models;
+using FluentValidation;
 using Mapster;
 using Microsoft.Extensions.Options;
 using Products.Core.Interfaces;
@@ -8,6 +10,7 @@ using Shared.Core.Models;
 using Shared.Core.Resources;
 using Shared.Core.Utilities;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Net;
 
@@ -18,11 +21,14 @@ namespace Products.Core.Services
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<ProductsCategoryDto> _validator;
         private readonly IOptions<ProductsResources> _productsResources;
-        public ProductsCategoriesManager(IUnitOfWork unitOfWork, IValidator<ProductsCategoryDto> validator, IOptions<ProductsResources> productsResources)
+        private readonly IAttachmentsManager _attachmentsManager;
+
+        public ProductsCategoriesManager(IUnitOfWork unitOfWork, IValidator<ProductsCategoryDto> validator, IOptions<ProductsResources> productsResources, IAttachmentsManager attachmentsManager)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
             _productsResources = productsResources;
+            _attachmentsManager = attachmentsManager;
         }
         public ResultMessage GetAll()
         {
@@ -62,7 +68,7 @@ namespace Products.Core.Services
                 var newCategory = category.Adapt<ProductsCategories>();
                 newCategory.CreatedAt = DateTime.Now;
                 newCategory.CreatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
-
+                newCategory.ProfilePicture = SaveFile(category.ProfilePicture);
                 _unitOfWork.ProductsCategoriesRepository.Insert(newCategory);
                 _unitOfWork.Commit();
                 return new ResultMessage()
@@ -124,6 +130,7 @@ namespace Products.Core.Services
                 {
                     oldCategory.Name = category.Name;
                     oldCategory.ProfilePicture = category.ProfilePicture;
+                    oldCategory.ParentId = category.ParentId;
                     oldCategory.UpdatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
                     oldCategory.UpdatedAt = DateTime.Now;
 
@@ -171,6 +178,16 @@ namespace Products.Core.Services
                     ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesDeleteError
                 };
             }
+        }
+
+        private string SaveFile(string tmpPath)
+        {
+            var fileDto = new SaveFileDto()
+            {
+                attachmentType = AttachmentTypesEnum.Products_Categories,
+                TempPath = tmpPath
+            };
+            return Uri.EscapeUriString(_attachmentsManager.Save(fileDto));
         }
     }
 }
