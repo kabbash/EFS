@@ -173,6 +173,29 @@ namespace Products.Core.Services
                     ErrorCode = (int) ProductsErrorsCodeEnum.ProductsDeleteError
                 };
             }
-        }       
+        }
+        public ResultMessage GetByCategoryId(int categoryId)
+        {
+            try
+            {
+                IEnumerable<ProductsDto> result = new List<ProductsDto>();
+                result = _unitOfWork.ProductsRepository.Get(c=>c.CategoryId == categoryId).Adapt(result);
+
+                return new ResultMessage()
+                {
+                    Data = result,
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                //log ex
+                return new ResultMessage()
+                {
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
+                    Status = HttpStatusCode.InternalServerError
+                };
+            }
+        }
     }
 }

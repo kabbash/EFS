@@ -6,13 +6,10 @@ namespace Shared.Core.Resources
 {
     public class AttachmentsResources
     {
-        public string TempPath { get; set; }
-        public string UploadSuccessMsg { get; set; }
-        public string UploadErrorMsg { get; set; }
+        public string TempFolder { get; set; }
+        public string ArticlesFolder { get; set; }
+        public string ArticlesCategoriesFolder { get; set; }
         public string ProductsFolder { get; set; }
-        public string CategoriesFolder { get; set; }
-        public string SubCategoriesFolder { get; set; }
-        public string UploadFileBytesEmptyValidation { get; set; }
-        public string UploadFileNameEmptyValidation { get; set; }
+        public string ProductsCategoriesFolder { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using Products.Core.Models;
 
 namespace Trainer.Controllers
 {
-    [Route("api/ProductsCategories")]
+    [Route("api/Products/Categories")]
     [ApiController]
     public class ProductsCategoriesApiController : BaseController
     {

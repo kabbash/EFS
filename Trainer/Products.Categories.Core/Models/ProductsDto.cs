@@ -13,7 +13,7 @@ namespace Products.Core.Models
         public DateTime? ProdDate { get; set; }
         public decimal Price { get; set; }
         public string ProfilePicture { get; set; }
-        public int SubcategoryId { get; set; }
+        public int CategoryId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string CreatedBy { get; set; }
