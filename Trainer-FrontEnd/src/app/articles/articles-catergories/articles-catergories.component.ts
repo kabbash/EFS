@@ -16,6 +16,11 @@ export class ArticlesCatergoriesComponent implements OnInit {
 
   categories: articleCategoryDto[];
   baseurl = environment.filesBaseUrl;
+
+  articlesMap = [{ name: 'المقالات', route: '/products/productsCategories' },
+  { name: 'العضلات', route: '/products/allProducts' },
+  { name: 'السمانه', route: 'anything it will not be routed because it is the last' }];
+
   constructor(private router: Router, private repositoryService: RepositoryService,
     private appService: AppService) { }
 
