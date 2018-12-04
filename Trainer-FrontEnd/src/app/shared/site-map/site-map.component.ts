@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-site-map',
@@ -6,14 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./site-map.component.css']
 })
 export class SiteMapComponent implements OnInit {
+  @Input() map = [];
 
-  map = [{ name: 'المقالات', route: 'go to route' },
-  { name: 'العضضلات', route: 'go to route' },
-  { name: 'السمانه', route: 'go to route' }];
-
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  navigateTo(route, index) {
+    if (index === this.map.length - 1) {
+      return;
+    }
+    this.router.navigate([route]);
   }
 
 }
