@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { config } from 'src/app/config/pages-config';
+import { config } from '../../config/pages-config';
 import { Router } from '@angular/router';
 
 @Component({
