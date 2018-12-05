@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, Route } from '@angular/router';
-import { config } from 'src/app/config/pages-config';
+import { config } from '../../config/pages-config';
 
 
 @Component({
