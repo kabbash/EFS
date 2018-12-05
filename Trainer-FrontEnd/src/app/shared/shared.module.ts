@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentsComponent } from './comments/comments.component';
+import { SiteMapComponent } from './site-map/site-map.component';
 
 
 @NgModule({
@@ -20,10 +21,10 @@ import { CommentsComponent } from './comments/comments.component';
   exports: [
     TranslateModule, HeaderComponent, FooterComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
-    ProductItemComponent, CommentsComponent
+    ProductItemComponent, CommentsComponent, SiteMapComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
-    ProductItemComponent, ProductItemComponent, CommentsComponent]
+    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent]
 })
 export class SharedModule { }
