@@ -15,7 +15,7 @@ namespace Products.Core.Validators
             RuleFor(c => c.ExpDate).NotEmpty();
             RuleFor(c => c.Price).NotEmpty();
             RuleFor(c => c.ProdDate).NotEmpty();
-            RuleFor(c => c.SubcategoryId).NotEmpty();
+            RuleFor(c => c.CategoryId).NotEmpty();
         }
     }
 }

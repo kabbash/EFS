@@ -6,9 +6,11 @@ namespace Shared.Core.Utilities
 {
     public enum AttachmentTypesEnum
     {
-        Product,
-        Category,
-        SubCategory
+        Products_Categories,
+        Products,
+        Articles_Categories,
+        Articles,
+        Temp
     }
     public enum EntityTypesEnum
     {

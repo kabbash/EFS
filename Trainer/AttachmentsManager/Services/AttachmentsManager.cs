@@ -5,7 +5,7 @@ using Shared.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using System.Linq;
 using Microsoft.Extensions.Options;
 using FluentValidation;
 using System.Net;
@@ -21,7 +21,7 @@ namespace Attachments.Core.Services
         public AttachmentsManager(IOptions<AttachmentsResources> attachmentsResources, IValidator<UploadFileDto> validator)
         {
             _attachmentsResources = attachmentsResources;
-            uploadTempPath = _attachmentsResources.Value.TempPath;
+            uploadTempPath = _attachmentsResources.Value.TempFolder;
             _validator = validator;
         }
         public ResultMessage Upload(UploadFileDto file)
@@ -39,10 +39,7 @@ namespace Attachments.Core.Services
 
                 var rootPath = System.IO.Directory.GetCurrentDirectory();
                 Directory.CreateDirectory(Path.Combine(rootPath, uploadTempPath));
-                string filefullPath = Path.Combine( rootPath , uploadTempPath, file.FileName);
-
-                //var x = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-                //var z = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location).LocalPath);
+                string filefullPath = Path.Combine(rootPath, uploadTempPath, file.FileName);
 
 
                 if (File.Exists(filefullPath))
@@ -70,40 +67,55 @@ namespace Attachments.Core.Services
                 };
             }
         }
-        public bool Save(SaveFileDto file)
+        public string Save(SaveFileDto file)
         {
             try
             {
-                var rootPath = System.IO.Directory.GetCurrentDirectory();
+                var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
                 var saveFolder = GetAttachmentTypePath(file.attachmentType);
+                var fileExtension = file.TempPath.Split('.').Last();
+                var newFileName = $"{Guid.NewGuid()}.{fileExtension}";
+
+                var relativeFilePath = Path.Combine(saveFolder, file.SubFolderName ?? "", newFileName);
+
                 Directory.CreateDirectory(Path.Combine(rootPath, saveFolder, file.SubFolderName ?? ""));
-                var fileDestinationPath = Path.Combine(rootPath, saveFolder, file.SubFolderName ?? "", file.FileName);
+                var fileDestinationPath = Path.Combine(rootPath, relativeFilePath);
+
                 if (File.Exists(file.TempPath))
                 {
-                    File.Move(file.TempPath , fileDestinationPath);
-                    return true;
+                    File.Move(file.TempPath, fileDestinationPath);
+                    return getRelativeURL(relativeFilePath);
                 }
-                return false;
+                return string.Empty;
             }
             catch (Exception ex)
             {
-                return false;
+                return string.Empty;
             }
         }
+
+        private string getRelativeURL(string relativeFilePath)
+        {
+            return relativeFilePath.Replace(@"\", "/");
+        }
+
         private string GetAttachmentTypePath(AttachmentTypesEnum type)
         {
             switch (type)
             {
-                case AttachmentTypesEnum.Product:
+                case AttachmentTypesEnum.Products_Categories:
+                    return _attachmentsResources.Value.ProductsCategoriesFolder;
+                case AttachmentTypesEnum.Products:
                     return _attachmentsResources.Value.ProductsFolder;
-                case AttachmentTypesEnum.Category:
-                    return _attachmentsResources.Value.CategoriesFolder;
-                case AttachmentTypesEnum.SubCategory:
-                    return _attachmentsResources.Value.SubCategoriesFolder;
+                case AttachmentTypesEnum.Articles_Categories:
+                    return _attachmentsResources.Value.ArticlesCategoriesFolder;
+                case AttachmentTypesEnum.Articles:
+                    return _attachmentsResources.Value.ArticlesFolder;
+                case AttachmentTypesEnum.Temp:
+                    return _attachmentsResources.Value.TempFolder;
                 default:
-                    return string.Empty;
+                    throw new NotImplementedException();
             }
         }
-
     }
 }

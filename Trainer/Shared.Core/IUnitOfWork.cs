@@ -11,7 +11,6 @@ namespace Shared.Core
         IRepository<AspNetRoles> RolesRepository { get; }
         IRepository<AspNetUserRoles> UsersRolesRepository { get; }
         IRepository<ProductsCategories> ProductsCategoriesRepository { get; }
-        IRepository<ProductsSubcategories> ProductsSubCategoriesRepository { get; }
         IRepository<Products> ProductsRepository { get; }
         IRepository<EntityRating> RatingRepository { get; }
         IRepository<Clients> ClientsRepository { get; }

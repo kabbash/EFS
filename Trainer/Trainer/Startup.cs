@@ -111,10 +111,8 @@ namespace Trainer
         {
             services.AddScoped<IAttachmentsManager, AttachmentsManager>();
             services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
-            services.AddScoped<IProductsSubCategoriesManager, ProductsSubCategoriesManager>();
             services.AddScoped<IProductsManager, ProductsManager>();
             services.AddScoped<IRatingManager<Shared.Core.Models.Products>, RatingManager<Shared.Core.Models.Products>>();
-            //services.AddScoped<IRatingManager<Shared.Core.Models.Products>>(s => new RatingManager<Shared.Core.Models.Products>(10));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
@@ -128,7 +126,7 @@ namespace Trainer
             services.Configure<AuthenticationSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<MailSettings>(Configuration.GetSection("Email"));
             var resources = Configuration.GetSection("Resources");
-            services.Configure<AttachmentsResources>(resources.GetSection("AttachmentsResources"));
+            services.Configure<AttachmentsResources>(resources.GetSection("FilesPaths").GetSection("Attachments"));            
             services.Configure<TestResources>(resources.GetSection("TestResources"));
             services.Configure<ProductsResources>(resources.GetSection("ProductsResources"));
         }
@@ -138,7 +136,6 @@ namespace Trainer
             services.AddTransient<IValidator<ArticlesCategoriesDto>, ArticlesCategoriesValidator>();
             services.AddTransient<IValidator<UploadFileDto>, UploadFileDtoValidator>();
             services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
-            services.AddTransient<IValidator<ProductsSubCategoryDto>, ProductsSubCategoryDtoValidator>();
             services.AddTransient<IValidator<ProductsDto>, ProductsDtoValidator>();
             services.AddTransient<IValidator<RatingDto>, RatingDtoValidator>();
             services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();

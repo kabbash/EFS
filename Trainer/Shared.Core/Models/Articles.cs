@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Shared.Core.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shared.Core.Models
 {
-    public partial class Articles
+    public partial class Articles : IBaseModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

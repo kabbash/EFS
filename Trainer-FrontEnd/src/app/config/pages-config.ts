@@ -24,9 +24,9 @@ export let config = {
         'loadChildren': './products/products.module#ProductsModule',
         // 'permissionList': ['Authorized'],
         /** this is capital to match routes for tagging  */
-        'allProducts': {
-            'name': 'allProducts',
-            'route': '/products/allProducts',
+        'productsList': {
+            'name': 'productsList/:categoryId',
+            'route': '/products/productsList',
         },
         'productsCategories': {
             'name': 'productsCategories',

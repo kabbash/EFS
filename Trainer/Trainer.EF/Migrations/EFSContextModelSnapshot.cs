@@ -126,10 +126,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "f006c66e-85ac-4945-aa7d-937d68765031", Name = "Client" },
-                        new { Id = "6ee6ab0c-7dd6-46fe-8095-d507e336f448", Name = "RegularUser" },
-                        new { Id = "119ff683-82a6-4b3c-b43a-ad176e3327a4", Name = "Trainer" },
-                        new { Id = "b7e42906-c642-4944-ac09-068871e36340", Name = "ArticleWriter" }
+                        new { Id = "1f684f9d-fbdc-4090-a3bc-550832e9c2a1", Name = "Client" },
+                        new { Id = "b10ad127-8580-4517-ab01-129cac89adc1", Name = "RegularUser" },
+                        new { Id = "c90f41c8-2503-44ed-8ffa-d0b383010da5", Name = "Trainer" },
+                        new { Id = "345a50c7-4b52-4552-b955-63c8a8ab86f0", Name = "ArticleWriter" }
                     );
                 });
 
@@ -391,12 +391,14 @@ namespace Trainer.EF.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
                     b.Property<string>("Path")
                         .IsRequired();
+
+                    b.Property<string>("Text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(128);
 
                     b.HasKey("Id");
 
@@ -497,11 +499,11 @@ namespace Trainer.EF.Migrations
 
                     b.Property<int>("EntityTypeId");
 
-                    b.Property<DateTime?>("ModifiedAt");
-
-                    b.Property<string>("ModifiedBy");
-
                     b.Property<int>("Rate");
+
+                    b.Property<DateTime?>("UpdatedAt");
+
+                    b.Property<string>("UpdatedBy");
 
                     b.HasKey("Id");
 
@@ -583,6 +585,8 @@ namespace Trainer.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CategoryId");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime");
 
@@ -613,8 +617,6 @@ namespace Trainer.EF.Migrations
                     b.Property<decimal>("Rate")
                         .HasColumnType("decimal(10,2)");
 
-                    b.Property<int>("SubcategoryId");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime");
 
@@ -623,7 +625,7 @@ namespace Trainer.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SubcategoryId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -645,6 +647,8 @@ namespace Trainer.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<int?>("ParentId");
+
                     b.Property<string>("ProfilePicture");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -655,6 +659,8 @@ namespace Trainer.EF.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ParentId");
+
                     b.ToTable("Products_Categories");
                 });
 
@@ -663,13 +669,6 @@ namespace Trainer.EF.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(128);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -687,61 +686,20 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Products_Images");
                 });
 
-            modelBuilder.Entity("Shared.Core.Models.ProductsSubcategories", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("ProfilePicture");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(128);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Products_Subcategories");
-                });
-
             modelBuilder.Entity("Shared.Core.Models.ProgramsImages", b =>
                 {
                     b.Property<int>("Id");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<string>("Description");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128);
 
                     b.Property<string>("Path")
                         .IsRequired();
 
                     b.Property<int>("ProgramId");
+
+                    b.Property<string>("Text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(128);
 
                     b.HasKey("Id");
 
@@ -756,13 +714,6 @@ namespace Trainer.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
                     b.Property<string>("Duration")
                         .IsRequired()
                         .HasMaxLength(128);
@@ -771,12 +722,6 @@ namespace Trainer.EF.Migrations
                         .HasColumnType("decimal(10, 2)");
 
                     b.Property<int>("ProgramId");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(128);
 
                     b.HasKey("Id");
 
@@ -943,10 +888,17 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.Products", b =>
                 {
-                    b.HasOne("Shared.Core.Models.ProductsSubcategories", "Subcategory")
+                    b.HasOne("Shared.Core.Models.ProductsCategories", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("SubcategoryId")
+                        .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Products_Products_Subcategories");
+                });
+
+            modelBuilder.Entity("Shared.Core.Models.ProductsCategories", b =>
+                {
+                    b.HasOne("Shared.Core.Models.ProductsCategories")
+                        .WithMany("Subcategories")
+                        .HasForeignKey("ParentId");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ProductsImages", b =>
@@ -955,14 +907,6 @@ namespace Trainer.EF.Migrations
                         .WithMany("ProductsImages")
                         .HasForeignKey("ProductId")
                         .HasConstraintName("FK_Products_Images_Products");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProductsSubcategories", b =>
-                {
-                    b.HasOne("Shared.Core.Models.ProductsCategories", "Category")
-                        .WithMany("ProductsSubcategories")
-                        .HasForeignKey("CategoryId")
-                        .HasConstraintName("FK_Products_Subcategories_Products_Categories");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ProgramsImages", b =>
