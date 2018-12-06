@@ -15,7 +15,8 @@ export class ProductsCatergoriesComponent implements OnInit {
   categories: ProductCategoryDTO[];
   baseurl = environment.filesBaseUrl;
   private allCategories: ProductCategoryDTO[];
-
+  userRate = 4;
+  
   constructor(private router: Router, private repositoryService: RepositoryService) { }
 
   ngOnInit() {
