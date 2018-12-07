@@ -6,8 +6,8 @@ using Shared.Core;
 using Shared.Core.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Linq;
+using System.Net;
 
 namespace Articles.Core.Services
 {

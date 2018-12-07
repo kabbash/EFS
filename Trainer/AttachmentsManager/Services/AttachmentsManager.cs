@@ -1,98 +1,98 @@
 ﻿using Attachments.Core.Interfaces;
 using Attachments.Core.Models;
+using FluentValidation;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Options;
 using Shared.Core.Resources;
 using Shared.Core.Utilities;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using Microsoft.Extensions.Options;
-using FluentValidation;
-using System.Net;
+using System.Threading.Tasks;
 
 namespace Attachments.Core.Services
 {
     public class AttachmentsManager : IAttachmentsManager
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IOptions<AttachmentsResources> _attachmentsResources;
-        private readonly string uploadTempPath;
         private readonly IValidator<UploadFileDto> _validator;
 
-        public AttachmentsManager(IOptions<AttachmentsResources> attachmentsResources, IValidator<UploadFileDto> validator)
+        public AttachmentsManager(IOptions<AttachmentsResources> attachmentsResources, IValidator<UploadFileDto> validator, IHostingEnvironment environment)
         {
             _attachmentsResources = attachmentsResources;
-            uploadTempPath = _attachmentsResources.Value.TempFolder;
             _validator = validator;
+            _hostingEnvironment = environment;
         }
-        public ResultMessage Upload(UploadFileDto file)
-        {
-            var validationResult = _validator.Validate(file);
-            if (!validationResult.IsValid)
-                return new ResultMessage
-                {
-                    Status = HttpStatusCode.BadRequest,
-                    ValidationMessages = validationResult.GetErrorsList()
-                };
 
-            try
-            {
-
-                var rootPath = System.IO.Directory.GetCurrentDirectory();
-                Directory.CreateDirectory(Path.Combine(rootPath, uploadTempPath));
-                string filefullPath = Path.Combine(rootPath, uploadTempPath, file.FileName);
-
-
-                if (File.Exists(filefullPath))
-                    File.Delete(filefullPath);
-
-                FileStream fileStream = new FileStream(filefullPath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-
-                using (System.IO.FileStream fs = fileStream)
-                {
-                    fs.Write(file.Bytes, 0, file.Bytes.Length);
-                }
-                return new ResultMessage()
-                {
-                    Data = filefullPath,
-                    Status = HttpStatusCode.OK
-                };
-            }
-            catch (Exception ex)
-            {
-                //log ex error in file
-                return new ResultMessage()
-                {
-                    ErrorCode = (int)AttachmentsErrorsCodeEnum.AttachmentsUploadError,
-                    Status = HttpStatusCode.InternalServerError
-                };
-            }
-        }
-        public string Save(SaveFileDto file)
+        /// <summary>
+        ///   Save file and return its relative path
+        /// </summary>
+        /// <param name="fileDto"></param>
+        /// <returns> relative path of file </returns>
+        public string Save(SavedFileDto fileDto)
         {
             try
             {
-                var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-                var saveFolder = GetAttachmentTypePath(file.attachmentType);
-                var fileExtension = file.TempPath.Split('.').Last();
-                var newFileName = $"{Guid.NewGuid()}.{fileExtension}";
+                //var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
-                var relativeFilePath = Path.Combine(saveFolder, file.SubFolderName ?? "", newFileName);
+                
+                var rootPath = _hostingEnvironment.WebRootPath;
 
-                Directory.CreateDirectory(Path.Combine(rootPath, saveFolder, file.SubFolderName ?? ""));
+                var fileName = fileDto.CanChangeName ? $"{Guid.NewGuid()}.{Path.GetExtension(fileDto.File.Name)}" : fileDto.File.Name;
+
+                var attachmentPath = Path.Combine(GetAttachmentTypePath(fileDto.attachmentType), fileDto.SubFolderName ?? "");
+                var relativeFilePath = Path.Combine(attachmentPath, fileName);
+
+                Directory.CreateDirectory(Path.Combine(rootPath, attachmentPath));
                 var fileDestinationPath = Path.Combine(rootPath, relativeFilePath);
 
-                if (File.Exists(file.TempPath))
+                using (var fileStream = new FileStream(fileDestinationPath, FileMode.Create))
                 {
-                    File.Move(file.TempPath, fileDestinationPath);
-                    return getRelativeURL(relativeFilePath);
+                    fileDto.File.CopyTo(fileStream);
                 }
-                return string.Empty;
+                
+                return getRelativeURL(relativeFilePath);
             }
             catch (Exception ex)
             {
                 return string.Empty;
             }
         }
+
+        /// <summary>
+        ///   Save file Async and return its relative path
+        /// </summary>
+        /// <param name="fileDto"></param>
+        /// <returns> relative path of file </returns>
+        public async Task<string> SaveAsync(SavedFileDto fileDto)
+        {
+            try
+            {
+                //var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+
+                var rootPath = _hostingEnvironment.WebRootPath;
+
+                var fileName = fileDto.CanChangeName ? $"{Guid.NewGuid()}.{Path.GetExtension(fileDto.File.Name)}" : fileDto.File.Name;
+
+                var attachmentPath = Path.Combine(GetAttachmentTypePath(fileDto.attachmentType), fileDto.SubFolderName ?? "");
+                var relativeFilePath = Path.Combine(attachmentPath, fileName);
+
+                Directory.CreateDirectory(Path.Combine(rootPath, attachmentPath));
+                var fileDestinationPath = Path.Combine(rootPath, relativeFilePath);
+
+                using (var fileStream = new FileStream(fileDestinationPath, FileMode.Create))
+                {
+                    await fileDto.File.CopyToAsync(fileStream);
+                }
+
+                return getRelativeURL(relativeFilePath);
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
+            }
+        }
+
 
         private string getRelativeURL(string relativeFilePath)
         {
@@ -111,8 +111,6 @@ namespace Attachments.Core.Services
                     return _attachmentsResources.Value.ArticlesCategoriesFolder;
                 case AttachmentTypesEnum.Articles:
                     return _attachmentsResources.Value.ArticlesFolder;
-                case AttachmentTypesEnum.Temp:
-                    return _attachmentsResources.Value.TempFolder;
                 default:
                     throw new NotImplementedException();
             }

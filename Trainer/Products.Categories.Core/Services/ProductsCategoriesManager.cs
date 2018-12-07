@@ -2,6 +2,9 @@
 using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Products.Core.Interfaces;
 using Products.Core.Models;
@@ -10,7 +13,6 @@ using Shared.Core.Models;
 using Shared.Core.Resources;
 using Shared.Core.Utilities;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Net;
 
@@ -22,13 +24,15 @@ namespace Products.Core.Services
         private readonly IValidator<ProductsCategoryDto> _validator;
         private readonly IOptions<ProductsResources> _productsResources;
         private readonly IAttachmentsManager _attachmentsManager;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public ProductsCategoriesManager(IUnitOfWork unitOfWork, IValidator<ProductsCategoryDto> validator, IOptions<ProductsResources> productsResources, IAttachmentsManager attachmentsManager)
+        public ProductsCategoriesManager(IUnitOfWork unitOfWork, IValidator<ProductsCategoryDto> validator, IOptions<ProductsResources> productsResources, IAttachmentsManager attachmentsManager, IHostingEnvironment hostingEnvironment)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
             _productsResources = productsResources;
             _attachmentsManager = attachmentsManager;
+            _hostingEnvironment = hostingEnvironment;
         }
         public ResultMessage GetAll()
         {
@@ -68,7 +72,7 @@ namespace Products.Core.Services
                 var newCategory = category.Adapt<ProductsCategories>();
                 newCategory.CreatedAt = DateTime.Now;
                 newCategory.CreatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
-                newCategory.ProfilePicture = SaveFile(category.ProfilePicture);
+                newCategory.ProfilePicture = Uri.EscapeUriString(_attachmentsManager.Save(GetFileDTO(category.profilePictureFile)));
                 _unitOfWork.ProductsCategoriesRepository.Insert(newCategory);
                 _unitOfWork.Commit();
                 return new ResultMessage()
@@ -180,14 +184,16 @@ namespace Products.Core.Services
             }
         }
 
-        private string SaveFile(string tmpPath)
+        private SavedFileDto GetFileDTO(IFormFile file)
         {
-            var fileDto = new SaveFileDto()
+            return new SavedFileDto
             {
                 attachmentType = AttachmentTypesEnum.Products_Categories,
-                TempPath = tmpPath
+                CanChangeName = true,
+                File = file,
+                FileName = file.FileName,
+                SubFolderName = string.Empty
             };
-            return Uri.EscapeUriString(_attachmentsManager.Save(fileDto));
         }
     }
 }

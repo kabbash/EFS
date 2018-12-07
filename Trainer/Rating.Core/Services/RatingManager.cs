@@ -1,15 +1,15 @@
 ﻿using FluentValidation;
 using Mapster;
-using Shared.Core;
-using Shared.Core.Models;
-using Shared.Core.Utilities;
-using System;
-using System.Net;
-using System.Linq;
+using Rating.Core.Helpers;
 using Rating.Core.Interfaces;
 using Rating.Core.Models;
-using Rating.Core.Helpers;
+using Shared.Core;
+using Shared.Core.Models;
 using Shared.Core.Models.Base;
+using Shared.Core.Utilities;
+using System;
+using System.Linq;
+using System.Net;
 
 namespace Rating.Core.Services
 {
