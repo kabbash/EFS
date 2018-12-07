@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { config } from 'src/app/config/pages-config';
 import { RepositoryService } from 'src/app/shared/services/repository.service';
 import { environment } from 'src/environments/environment';
 import { ProductCategoryDTO } from 'src/app/shared/models/product-category-dto';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-products-catergories',
@@ -16,19 +17,27 @@ export class ProductsCatergoriesComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   private allCategories: ProductCategoryDTO[];
 
-  constructor(private router: Router, private repositoryService: RepositoryService) { }
+  constructor(private router: Router,
+    private repositoryService: RepositoryService,
+    private route: ActivatedRoute,
+    private appSrevice: AppService) { }
 
   ngOnInit() {
-    this.getCategories();
+    this.route.data.subscribe(result => {
+      this.allCategories = result.categories.data;
+      this.appSrevice.loading = false;
+    });
+    // this.getCategories();
   }
 
   productsList(categoryId) {
 
-    let subCategories = this.getSubCategories(categoryId);
-    if (subCategories.length > 0)
+    const subCategories = this.getSubCategories(categoryId);
+    if (subCategories.length > 0) {
       this.categories = subCategories;
-    else
+    } else {
       this.router.navigate([config.products.productsList.route, categoryId]);
+    }
   }
 
   getCategories(): any {
@@ -38,9 +47,9 @@ export class ProductsCatergoriesComponent implements OnInit {
     });
   }
 
-  // HELP METHODS 
+  // HELP METHODS
   getSubCategories(categoryId: number): ProductCategoryDTO[] {
-    return this.allCategories.filter(c => c.parentId == categoryId);
+    return this.allCategories.filter(c => c.parentId === categoryId);
   }
-  //END HELP METHODS
+  // END HELP METHODS
 }

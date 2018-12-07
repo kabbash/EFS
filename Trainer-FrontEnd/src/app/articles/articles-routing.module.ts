@@ -5,6 +5,8 @@ import { config } from '../config/pages-config';
 import { ArticlesCatergoriesComponent } from './articles-catergories/articles-catergories.component';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
+import { ArticleCategoriesResolver } from './resolvers/article-categories.resolver';
+import { ArticleDetailsResolver } from './resolvers/article-details.resolver';
 
 const routes: Routes = [
   {
@@ -17,11 +19,13 @@ const routes: Routes = [
       },
       {
         path: config.articles.articlesCategories.name,
-        component: ArticlesCatergoriesComponent
+        component: ArticlesCatergoriesComponent,
+        resolve: {categories: ArticleCategoriesResolver}
       },
       {
         path: config.articles.articleDetails.name,
-        component: ArticleDetailsComponent
+        component: ArticleDetailsComponent,
+        resolve: {details: ArticleDetailsResolver}
       }
 
     ]

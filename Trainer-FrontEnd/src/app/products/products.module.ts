@@ -7,6 +7,8 @@ import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsCatergoriesComponent } from './products-catergories/products-catergories.component';
 import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductRatingComponent } from './product-rating/product-rating.component';
+import { ProductsCategoriesResolver } from './resolvers/products-categories.resolver';
+import { ProductsListResolver } from './resolvers/products-list.resolver';
 
 @NgModule({
   imports: [
@@ -17,6 +19,10 @@ import { ProductRatingComponent } from './product-rating/product-rating.componen
     NgbPaginationModule,
     NgbAlertModule,
   ],
-  declarations: [ProductsComponent, ProductsListComponent, ProductsCatergoriesComponent, ProductRatingComponent]
+  declarations: [ProductsComponent, ProductsListComponent, ProductsCatergoriesComponent, ProductRatingComponent],
+  providers: [
+    ProductsCategoriesResolver,
+    ProductsListResolver
+  ]
 })
 export class ProductsModule { }

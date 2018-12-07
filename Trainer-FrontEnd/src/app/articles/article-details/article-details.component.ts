@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { articleDetialsDto } from '../../shared/models/article-details-dto';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-article-details',
@@ -18,19 +19,28 @@ export class ArticleDetailsComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   articleId: number;
 
-  constructor(private router: Router, private route: ActivatedRoute, private repositoryService: RepositoryService) {
+  constructor(private router: Router,
+     private route: ActivatedRoute,
+      private repositoryService: RepositoryService,
+       private appService: AppService) {
     this.route.params.subscribe(params => {
       this.articleId = params['articleId'];
     });
   }
 
   ngOnInit() {
-    this.getArticleDetails();
+    this.route.data.subscribe(result => {
+      this.article = result.details.data;
+      this.articleBody = '<h2><center>' + result.data.name + '</center></h2><br/>' + result.data.description;
+      this.appService.loading = false;
+    });
+    // this.getArticleDetails();
   }
   getArticleDetails() {
     this.repositoryService.getData<articleDetialsDto>('articles/' + this.articleId).subscribe(result => {
       this.article = result.data;
       this.articleBody = '<h2><center>' + result.data.name + '</center></h2><br/>' + result.data.description;
+      this.appService.loading = false;
     });
   }
 }

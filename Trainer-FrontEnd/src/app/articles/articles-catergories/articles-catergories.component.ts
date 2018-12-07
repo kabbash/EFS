@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { config } from '../../config/pages-config';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { environment } from '../../../environments/environment';
@@ -22,16 +22,18 @@ export class ArticlesCatergoriesComponent implements OnInit {
   { name: 'السمانه', route: 'anything it will not be routed because it is the last' }];
 
   constructor(private router: Router, private repositoryService: RepositoryService,
-    private appService: AppService) { }
+    private appService: AppService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     // start loading
     this.appService.loading = true;
-    setTimeout(() => {
-      // stop loading
-      this.appService.loading = false;
-    }, 3000);
-    this.getCategories();
+    this.route.data.subscribe(result => {
+      this.categories = result.categories.data;
+    this.appService.loading = false;
+
+    });
+    // this.getCategories();
   }
 
   articlesList(categoryId) {
