@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { config } from 'src/app/config/pages-config';
-import { environment } from 'src/environments/environment';
-import { RepositoryService } from 'src/app/shared/services/repository.service';
-import { productListItemDto } from 'src/app/shared/models/product-list-item-dto';
 import { AppService } from '../../app.service';
+import { productListItemDto } from '../../shared/models/product-list-item-dto';
+import { environment } from '../../../environments/environment.prod';
+import { RepositoryService } from '../../shared/services/repository.service';
+import { config } from '../../config/pages-config';
 
 @Component({
   selector: 'app-all-products',

@@ -4,7 +4,7 @@ import { config } from '../../config/pages-config';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { environment } from '../../../environments/environment';
 import { articleCategoryDto } from '../../shared/models/article-category-dto';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../../app.service';
 
 
 @Component({

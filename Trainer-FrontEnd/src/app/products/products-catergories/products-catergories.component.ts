@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { config } from 'src/app/config/pages-config';
-import { RepositoryService } from 'src/app/shared/services/repository.service';
-import { environment } from 'src/environments/environment';
-import { ProductCategoryDTO } from 'src/app/shared/models/product-category-dto';
 import { AppService } from '../../app.service';
+import { ProductCategoryDTO } from '../../shared/models/product-category-dto';
+import { environment } from '../../../environments/environment.prod';
+import { RepositoryService } from '../../shared/services/repository.service';
+import { config } from '../../config/pages-config';
 
 @Component({
   selector: 'app-products-catergories',
