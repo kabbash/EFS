@@ -21,7 +21,7 @@ namespace Trainer.EF.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Email", "EmailConfirmed", "FirstName", "Hometown", "LastName", "LockoutEnabled", "LockoutEndDateUtc", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePicture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "7c654344-ad42-4428-a77a-00a8c1299c3f", 0, "ahmedkabbash@gmail.com", true, "ahmed", null, "kabbash", false, null, "1234", null, false, null, null, false, "Admin" });
+                values: new object[] { "7c654344-ad42-4428-a77a-00a8c1299c3f", 0, "ahmedkabbash@gmail.com", true, "ahmed", null, "kabbash", false, null,null, null, false, null, null, false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

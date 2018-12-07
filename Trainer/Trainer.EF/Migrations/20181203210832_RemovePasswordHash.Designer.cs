@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181203210832_RemovePasswordHash")]
+    partial class RemovePasswordHash
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,10 +128,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "532ff8ab-06bc-4329-9c7f-8a4fc4836e98", Name = "Client" },
-                        new { Id = "83abcde1-9040-478d-9298-24983178d1a9", Name = "RegularUser" },
-                        new { Id = "0227c673-327b-4341-92ea-8e23be5fcca8", Name = "Trainer" },
-                        new { Id = "87f64471-d488-4951-bf66-36985a48fbb8", Name = "ArticleWriter" }
+                        new { Id = "96fa7f57-7b44-4125-96e1-44bfea3f9ff3", Name = "Client" },
+                        new { Id = "16d1d211-f90d-4be0-acc0-6126931e8772", Name = "RegularUser" },
+                        new { Id = "51c7b80c-1d85-4ac8-8691-5288e6653fc9", Name = "Trainer" },
+                        new { Id = "a371df4a-6910-48de-ad55-5ec5a10d56ca", Name = "ArticleWriter" }
                     );
                 });
 
@@ -217,10 +219,6 @@ namespace Trainer.EF.Migrations
 
                     b.Property<DateTime?>("LockoutEndDateUtc")
                         .HasColumnType("datetime");
-
-                    b.Property<byte[]>("PasswordHash");
-
-                    b.Property<byte[]>("PasswordSalt");
 
                     b.Property<string>("PhoneNumber");
 
