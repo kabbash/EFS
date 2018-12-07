@@ -10,7 +10,7 @@ import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'Trainer-FrontEnd';
-  constructor(translate: TranslateService, private appService: AppService, private router: Router) {
+  constructor(translate: TranslateService, public appService: AppService, private router: Router) {
     translate.setDefaultLang('ar');
     translate.use('ar');
   }
