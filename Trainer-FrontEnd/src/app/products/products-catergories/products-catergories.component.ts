@@ -25,9 +25,9 @@ export class ProductsCatergoriesComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(result => {
       this.allCategories = result.categories.data;
+      this.categories = this.allCategories.filter(item => !item.parentId);
       this.appSrevice.loading = false;
     });
-    // this.getCategories();
   }
 
   productsList(categoryId) {
@@ -38,13 +38,6 @@ export class ProductsCatergoriesComponent implements OnInit {
     } else {
       this.router.navigate([config.products.productsList.route, categoryId]);
     }
-  }
-
-  getCategories(): any {
-    this.repositoryService.getData<ProductCategoryDTO[]>('products/categories').subscribe(result => {
-      this.allCategories = result.data;
-      this.categories = result.data.filter(item => !item.parentId);
-    });
   }
 
   // HELP METHODS

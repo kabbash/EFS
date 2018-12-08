@@ -29,15 +29,9 @@ export class ProductsListComponent implements OnInit {
       this.products = result.productList.data;
       this.appService.loading = false;
     });
-    this.getProducts();
   }
 
-  getProducts() {
-    this.repositoryService.getData<productListItemDto[]>('products/category/' + this.categoryId).subscribe(result => {
-      this.products = result.data;
-      console.log(this.products);
-    });
-  }
+
 
   goToProductRating() {
     this.router.navigate([config.products.productRating.route]);

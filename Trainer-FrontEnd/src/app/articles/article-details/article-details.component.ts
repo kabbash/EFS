@@ -34,13 +34,6 @@ export class ArticleDetailsComponent implements OnInit {
       this.articleBody = '<h2><center>' + this.article.name + '</center></h2><br/>' + this.article.description;
       this.appService.loading = false;
     });
-    // this.getArticleDetails();
   }
-  getArticleDetails() {
-    this.repositoryService.getData<articleDetialsDto>('articles/' + this.articleId).subscribe(result => {
-      this.article = result.data;
-      this.articleBody = '<h2><center>' + result.data.name + '</center></h2><br/>' + result.data.description;
-      this.appService.loading = false;
-    });
-  }
+
 }
