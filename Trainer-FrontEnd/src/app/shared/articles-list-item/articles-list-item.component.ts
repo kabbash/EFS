@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router} from '@angular/router';
 import { config } from '../../config/pages-config';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-articles-list-item',
@@ -13,12 +14,12 @@ export class ArticlesListItemComponent implements OnInit {
   @Input() cardShortDescription: string;
   articleId: number;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private appService: AppService) { }
 
   ngOnInit() {
   }
 
   articlesDetails() {
-    this.router.navigate([config.articles.articleDetails.route,this.articleId]);
+    this.router.navigate([config.articles.articleDetails.route, this.articleId]);
   }
 }

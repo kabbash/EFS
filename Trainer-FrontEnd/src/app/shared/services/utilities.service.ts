@@ -12,6 +12,6 @@ export class UtilitiesService {
     const month = splitDate[1];
     const day = splitDate[2].split('T')[0];
 
-    return day + '/' + month + '/' + (shortYear ? year.substring(2) : year);
+    return  (shortYear ? year.substring(2) : year) + '/' + month + '/' + day ;
   }
 }

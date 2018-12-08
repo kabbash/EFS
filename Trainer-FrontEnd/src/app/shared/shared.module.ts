@@ -12,12 +12,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentsComponent } from './comments/comments.component';
 import { SiteMapComponent } from './site-map/site-map.component';
 import { UtilitiesService } from './services/utilities.service';
-
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
-    NgbModule
+    NgbModule,
+    RouterModule
   ],
   exports: [
     TranslateModule, HeaderComponent, FooterComponent,
