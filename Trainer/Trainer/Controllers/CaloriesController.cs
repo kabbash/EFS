@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Lookups.Core.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.JsonPatch;
+﻿using Lookups.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Core.Models;
 using Shared.Core.Utilities;
-using test.core.Interfaces;
 using test.core.Model;
-using test.core.Validators;
 
 namespace Trainer.Controllers
 {

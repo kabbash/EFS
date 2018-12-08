@@ -14,7 +14,7 @@ namespace Trainer.EF
         public EFSContext(DbContextOptions<EFSContext> options)
             : base(options)
         {
-            Database.Migrate();
+           Database.Migrate();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }
@@ -202,8 +202,8 @@ namespace Trainer.EF
                     EmailConfirmed = true,
                     FirstName = "ahmed",
                     LastName = "kabbash",
-                    UserName = "Admin",
-                    PasswordHash = "1234",
+                    UserName = "Admin"
+                    //PasswordHash = "1234",
 
                 });
             });
