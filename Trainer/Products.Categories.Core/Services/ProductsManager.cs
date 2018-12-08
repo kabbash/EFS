@@ -4,13 +4,10 @@ using Microsoft.Extensions.Options;
 using Products.Core.Interfaces;
 using Products.Core.Models;
 using Shared.Core;
-using Shared.Core.Models;
 using Shared.Core.Resources;
 using Shared.Core.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 using System.Net;
 
 namespace Products.Core.Services

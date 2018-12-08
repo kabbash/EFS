@@ -2,11 +2,8 @@
 using Shared.Core;
 using Shared.Core.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using Trainer.EF;
 
 namespace Trainer.EF
 {

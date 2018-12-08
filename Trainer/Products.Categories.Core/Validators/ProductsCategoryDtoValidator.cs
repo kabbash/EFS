@@ -1,8 +1,5 @@
 ﻿using FluentValidation;
 using Products.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Products.Core.Validators
 {

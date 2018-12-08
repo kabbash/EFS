@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Attachments.Core.Models
+﻿namespace Attachments.Core.Models
 {
     public class UploadFileDto
     {

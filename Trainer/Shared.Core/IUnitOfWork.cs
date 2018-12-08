@@ -1,6 +1,5 @@
 ﻿using Shared.Core.Models;
 using System;
-using System.Collections.Generic;
 
 namespace Shared.Core
 {
