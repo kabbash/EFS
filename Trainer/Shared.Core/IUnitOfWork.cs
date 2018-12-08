@@ -1,6 +1,5 @@
 ﻿using Shared.Core.Models;
 using System;
-using System.Collections.Generic;
 
 namespace Shared.Core
 {
@@ -11,7 +10,6 @@ namespace Shared.Core
         IRepository<AspNetRoles> RolesRepository { get; }
         IRepository<AspNetUserRoles> UsersRolesRepository { get; }
         IRepository<ProductsCategories> ProductsCategoriesRepository { get; }
-        IRepository<ProductsSubcategories> ProductsSubCategoriesRepository { get; }
         IRepository<Products> ProductsRepository { get; }
         IRepository<EntityRating> RatingRepository { get; }
         IRepository<Clients> ClientsRepository { get; }

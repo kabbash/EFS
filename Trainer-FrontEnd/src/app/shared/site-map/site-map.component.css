@@ -1,0 +1,34 @@
+:host {
+    height: 50px;
+    color: white;
+    direction: rtl;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+:host>div:last-child span.separator {
+    display: none;
+}
+
+:host>div:last-child span.page-name {
+    cursor: inherit;
+    color: #00bcd4;
+}
+
+:host>div:last-child span.page-name:hover {
+    text-decoration: none;
+}
+
+.separator {
+    margin: 0 5px 0 9px;
+}
+
+.page-name {
+    cursor: pointer;
+}
+
+.page-name:hover {
+    text-decoration: underline;
+    text-decoration-color: #00bcd4;
+}

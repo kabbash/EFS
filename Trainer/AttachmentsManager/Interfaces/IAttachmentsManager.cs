@@ -1,14 +1,11 @@
 ﻿using Attachments.Core.Models;
-using Shared.Core.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Attachments.Core.Interfaces
 {
     public interface IAttachmentsManager
     {
-        ResultMessage Upload(UploadFileDto uploadedFile);
-        bool Save(SaveFileDto savedFile);
+        string Save(SavedFileDto savedFile);
+        Task<string> SaveAsync(SavedFileDto savedFile);
     }
 }

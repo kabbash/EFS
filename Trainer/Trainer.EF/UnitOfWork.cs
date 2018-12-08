@@ -2,11 +2,8 @@
 using Shared.Core;
 using Shared.Core.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using Trainer.EF;
 
 namespace Trainer.EF
 {
@@ -15,6 +12,7 @@ namespace Trainer.EF
         private readonly EFSContext _dbContext;
 
         #region repositories
+
         private IRepository<Calories> _testRepo;
         public IRepository<Calories> TestRepository
         {
@@ -103,19 +101,6 @@ namespace Trainer.EF
                     _productsCategoriesRepo = new Repository<ProductsCategories>(_dbContext);
                 }
                 return _productsCategoriesRepo;
-            }
-        }
-
-        private IRepository<ProductsSubcategories> _productsSubCategoriesRepo;
-        public IRepository<ProductsSubcategories> ProductsSubCategoriesRepository
-        {
-            get
-            {
-                if (_productsSubCategoriesRepo == null)
-                {
-                    _productsSubCategoriesRepo = new Repository<ProductsSubcategories>(_dbContext);
-                }
-                return _productsSubCategoriesRepo;
             }
         }
 

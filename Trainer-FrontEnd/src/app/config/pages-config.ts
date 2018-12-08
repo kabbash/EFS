@@ -7,13 +7,13 @@ export let config = {
         /** this is capital to match routes for tagging  */
         'articlesList': {
             'name': 'articlesList/:categoryId',
-            'route': '/articles/articlesList',            
+            'route': '/articles/articlesList',
         },
         'articlesCategories': {
             'name': 'articlesCategories',
             'route': '/articles/articlesCategories',
         },
-        'articleDetails': {            
+        'articleDetails': {
             'name': 'articleDetails/:articleId',
             'route': '/articles/articleDetails',
         }
@@ -24,9 +24,9 @@ export let config = {
         'loadChildren': './products/products.module#ProductsModule',
         // 'permissionList': ['Authorized'],
         /** this is capital to match routes for tagging  */
-        'allProducts': {
-            'name': 'allProducts',
-            'route': '/products/allProducts',
+        'productsList': {
+            'name': 'productsList/:categoryId',
+            'route': '/products/productsList',
         },
         'productsCategories': {
             'name': 'productsCategories',
@@ -35,6 +35,21 @@ export let config = {
         'productRating': {
             'name': 'productRating',
             'route': '/products/productRating',
+        }
+    },
+    'login': {
+        'name': 'login',
+        'route': 'login',
+        'loadChildren': './login/login.module#loginModule',
+        // 'permissionList': ['Authorized'],
+        /** this is capital to match routes for tagging  */
+        'loginPage': {
+            'name': 'loginPage',
+            'route': '/login/loginPage',
+        },
+        'register': {
+            'name': 'register',
+            'route': '/login/register',
         }
     },
     'notfound': {

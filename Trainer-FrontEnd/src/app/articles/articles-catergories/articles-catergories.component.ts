@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { config } from '../../config/pages-config';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { environment } from '../../../environments/environment';
-import {articleCategoryDto} from '../../shared/models/article-category-dto';
+import { articleCategoryDto } from '../../shared/models/article-category-dto';
+import { AppService } from '../../app.service';
 
 
 @Component({
@@ -13,16 +14,30 @@ import {articleCategoryDto} from '../../shared/models/article-category-dto';
 })
 export class ArticlesCatergoriesComponent implements OnInit {
 
-  categories:articleCategoryDto[];
+  categories: articleCategoryDto[];
   baseurl = environment.filesBaseUrl;
-  constructor(private router: Router, private repositoryService: RepositoryService) { }
+
+  articlesMap = [{ name: 'المقالات', route: '/products/productsCategories' },
+  { name: 'العضلات', route: '/products/allProducts' },
+  { name: 'السمانه', route: 'anything it will not be routed because it is the last' }];
+
+  constructor(private router: Router, private repositoryService: RepositoryService,
+    private appService: AppService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getCategories();
+    // start loading
+    this.appService.loading = true;
+    this.route.data.subscribe(result => {
+      this.categories = result.categories.data;
+    this.appService.loading = false;
+
+    });
+    // this.getCategories();
   }
- 
+
   articlesList(categoryId) {
-    this.router.navigate([config.articles.articlesList.route,categoryId]);
+    this.router.navigate([config.articles.articlesList.route, categoryId]);
   }
 
   getCategories() {

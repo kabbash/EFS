@@ -4,13 +4,10 @@ using Microsoft.Extensions.Options;
 using Products.Core.Interfaces;
 using Products.Core.Models;
 using Shared.Core;
-using Shared.Core.Models;
 using Shared.Core.Resources;
 using Shared.Core.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 using System.Net;
 
 namespace Products.Core.Services
@@ -173,6 +170,29 @@ namespace Products.Core.Services
                     ErrorCode = (int) ProductsErrorsCodeEnum.ProductsDeleteError
                 };
             }
-        }       
+        }
+        public ResultMessage GetByCategoryId(int categoryId)
+        {
+            try
+            {
+                IEnumerable<ProductsDto> result = new List<ProductsDto>();
+                result = _unitOfWork.ProductsRepository.Get(c=>c.CategoryId == categoryId).Adapt(result);
+
+                return new ResultMessage()
+                {
+                    Data = result,
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                //log ex
+                return new ResultMessage()
+                {
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
+                    Status = HttpStatusCode.InternalServerError
+                };
+            }
+        }
     }
 }

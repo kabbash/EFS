@@ -1,7 +1,4 @@
 ﻿using Attachments.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using FluentValidation;
 using Microsoft.Extensions.Options;
 using Shared.Core.Resources;
@@ -14,8 +11,8 @@ namespace Attachments.Core.Validators
         public UploadFileDtoValidator(IOptions<AttachmentsResources> attachmentsResources)
         {
             _attachmentsResources = attachmentsResources;
-            RuleFor(c => c.Bytes).NotEmpty().WithMessage(attachmentsResources.Value.UploadFileBytesEmptyValidation);
-            RuleFor(c => c.FileName).NotEmpty().WithMessage(attachmentsResources.Value.UploadFileNameEmptyValidation);
+            RuleFor(c => c.Bytes).NotEmpty();
+            RuleFor(c => c.FileName).NotEmpty();
         }
     }
 }

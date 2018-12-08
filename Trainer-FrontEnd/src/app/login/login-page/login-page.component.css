@@ -1,0 +1,25 @@
+:host {
+    width: 985px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.bg-primary-2 {
+    background: #00bcd4;
+}
+
+
+.main-color {
+    color: #14818f;
+}
+
+.ltr {
+    direction: ltr;
+}
+
+.rtl {
+    direction: rtl;
+}

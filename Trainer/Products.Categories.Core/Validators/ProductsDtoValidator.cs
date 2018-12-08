@@ -1,8 +1,5 @@
 ﻿using FluentValidation;
 using Products.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Products.Core.Validators
 {
@@ -15,7 +12,7 @@ namespace Products.Core.Validators
             RuleFor(c => c.ExpDate).NotEmpty();
             RuleFor(c => c.Price).NotEmpty();
             RuleFor(c => c.ProdDate).NotEmpty();
-            RuleFor(c => c.SubcategoryId).NotEmpty();
+            RuleFor(c => c.CategoryId).NotEmpty();
         }
     }
 }

@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products.component';
 import { config } from '../config/pages-config';
-import { AllProductsComponent } from './all-products/all-products.component';
+import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsCatergoriesComponent } from './products-catergories/products-catergories.component';
 import { ProductRatingComponent } from './product-rating/product-rating.component';
+import { ProductsListResolver } from './resolvers/products-list.resolver';
+import { ProductsCategoriesResolver } from './resolvers/products-categories.resolver';
 
 const routes: Routes = [
   {
@@ -12,12 +14,14 @@ const routes: Routes = [
     component: ProductsComponent,
     children: [
       {
-        path: config.products.allProducts.name,
-        component: AllProductsComponent
+        path: config.products.productsList.name,
+        component: ProductsListComponent,
+        resolve: {productList: ProductsListResolver}
       },
       {
         path: config.products.productsCategories.name,
-        component: ProductsCatergoriesComponent
+        component: ProductsCatergoriesComponent,
+        resolve: {categories: ProductsCategoriesResolver}
       },
       {
         path: config.products.productRating.name,

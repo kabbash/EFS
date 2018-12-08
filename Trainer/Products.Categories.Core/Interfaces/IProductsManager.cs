@@ -1,8 +1,5 @@
 ﻿using Products.Core.Models;
 using Shared.Core.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Products.Core.Interfaces
 {
@@ -11,6 +8,7 @@ namespace Products.Core.Interfaces
         ResultMessage GetAll();
         ResultMessage Insert(ProductsDto product);
         ResultMessage GetById(int id);
+        ResultMessage GetByCategoryId(int id);
         ResultMessage Update(ProductsDto product, int id);
         ResultMessage Delete(int id);
     }

@@ -1,15 +1,14 @@
-﻿using Shared.Core.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.AspNetCore.Http;
+using Shared.Core.Utilities;
 
 namespace Attachments.Core.Models
 {
-    public class SaveFileDto
+    public class SavedFileDto
     {
+        public IFormFile File { get; set; }
         public string FileName { get; set; }
         public AttachmentTypesEnum attachmentType { get; set; }
         public string SubFolderName { get; set; }
-        public string TempPath { get; set; }
+        public bool CanChangeName { get; set; }
     }
 }

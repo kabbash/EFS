@@ -14,7 +14,7 @@ namespace Trainer.EF
         public EFSContext(DbContextOptions<EFSContext> options)
             : base(options)
         {
-            Database.Migrate();
+           Database.Migrate();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }
@@ -38,17 +38,12 @@ namespace Trainer.EF
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<ProductsCategories> ProductsCategories { get; set; }
         public virtual DbSet<ProductsImages> ProductsImages { get; set; }
-        public virtual DbSet<ProductsSubcategories> ProductsSubcategories { get; set; }
         public virtual DbSet<ProgramsImages> ProgramsImages { get; set; }
         public virtual DbSet<ProgramsPrices> ProgramsPrices { get; set; }
         public virtual DbSet<Trainers> Trainers { get; set; }
         public virtual DbSet<TrainersPrograms> TrainersPrograms { get; set; }
         public virtual DbSet<EntityRating> EntityRatings { get; set; }
         public virtual DbSet<EntityTypes> EntityTypes { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -322,7 +317,7 @@ namespace Trainer.EF
 
                 entity.Property(e => e.Date).HasColumnType("date");
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.Title)
                     .IsRequired()
                     .HasMaxLength(128);
 
@@ -434,7 +429,7 @@ namespace Trainer.EF
 
             modelBuilder.Entity<Products>(entity =>
             {
-                entity.HasIndex(e => e.SubcategoryId);
+                entity.HasIndex(e => e.CategoryId);
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
@@ -458,9 +453,9 @@ namespace Trainer.EF
 
                 entity.Property(e => e.UpdatedBy).HasMaxLength(128);
 
-                entity.HasOne(d => d.Subcategory)
+                entity.HasOne(d => d.Category)
                     .WithMany(p => p.Products)
-                    .HasForeignKey(d => d.SubcategoryId)
+                    .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Products_Products_Subcategories");
             });
@@ -490,12 +485,6 @@ namespace Trainer.EF
 
                 entity.HasIndex(e => e.ProductId);
 
-                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.CreatedBy)
-                    .IsRequired()
-                    .HasMaxLength(128);
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(100);
@@ -509,33 +498,6 @@ namespace Trainer.EF
                     .HasConstraintName("FK_Products_Images_Products");
             });
 
-            modelBuilder.Entity<ProductsSubcategories>(entity =>
-            {
-                entity.ToTable("Products_Subcategories");
-
-                entity.HasIndex(e => e.CategoryId);
-
-                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.CreatedBy)
-                    .IsRequired()
-                    .HasMaxLength(128);
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
-
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.ProductsSubcategories)
-                    .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Products_Subcategories_Products_Categories");
-            });
-
             modelBuilder.Entity<ProgramsImages>(entity =>
             {
                 entity.ToTable("Programs_Images");
@@ -544,13 +506,7 @@ namespace Trainer.EF
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.CreatedBy)
-                    .IsRequired()
-                    .HasMaxLength(128);
-
-                entity.Property(e => e.Name)
+                entity.Property(e => e.Title)
                     .IsRequired()
                     .HasMaxLength(128);
 
@@ -569,21 +525,11 @@ namespace Trainer.EF
 
                 entity.HasIndex(e => e.ProgramId);
 
-                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.CreatedBy)
-                    .IsRequired()
-                    .HasMaxLength(128);
-
                 entity.Property(e => e.Duration)
                     .IsRequired()
                     .HasMaxLength(128);
 
                 entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
-
-                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.UpdatedBy).HasMaxLength(128);
 
                 entity.HasOne(d => d.Program)
                     .WithMany(p => p.ProgramsPrices)
