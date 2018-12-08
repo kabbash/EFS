@@ -13,6 +13,10 @@ using Authentication.Models;
 using Authentication.Services;
 using Authentication.Validators;
 using FluentValidation;
+using ItemsReview.Interfaces;
+using ItemsReview.Models;
+using ItemsReview.Services;
+using ItemsReview.Validators;
 using Lookups.Core.Interfaces;
 using Lookups.Core.Services;
 using MailProvider.Core;
@@ -78,12 +82,6 @@ namespace Trainer
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    FileProvider = new PhysicalFileProvider(
-            //Path.Combine(Directory.GetCurrentDirectory(), "Test1")),
-            //    RequestPath = "/Test1"
-            //});
 
             if (env.IsDevelopment())
             {
@@ -111,12 +109,14 @@ namespace Trainer
             services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
             services.AddScoped<IProductsManager, ProductsManager>();
             services.AddScoped<IRatingManager<Shared.Core.Models.Products>, RatingManager<Shared.Core.Models.Products>>();
+            services.AddScoped<IRatingManager<ItemsForReview>, RatingManager<ItemsForReview>>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
             services.AddScoped<ILookupService<CaloriesDto, Calories>, LookupService<CaloriesDto, Calories>>();
             services.AddScoped<ILookupService<ArticlesCategoriesDto, ArticlesCategories>, LookupService<ArticlesCategoriesDto, ArticlesCategories>>();
             services.AddScoped<IArticlesService, ArticleService>();
+            services.AddScoped<IItemsReviewsManager, ItemsReviewsManager>();
 
         }
         private void ConfigureSettings(IServiceCollection services)
@@ -124,8 +124,7 @@ namespace Trainer
             services.Configure<AuthenticationSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<MailSettings>(Configuration.GetSection("Email"));
             var resources = Configuration.GetSection("Resources");
-            services.Configure<AttachmentsResources>(resources.GetSection("FilesPaths").GetSection("Attachments"));            
-            services.Configure<TestResources>(resources.GetSection("TestResources"));
+            services.Configure<AttachmentsResources>(resources.GetSection("FilesPaths").GetSection("Attachments"));
             services.Configure<ProductsResources>(resources.GetSection("ProductsResources"));
         }
         private void ConfigureValidations(IServiceCollection services)
@@ -138,6 +137,7 @@ namespace Trainer
             services.AddTransient<IValidator<RatingDto>, RatingDtoValidator>();
             services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
             services.AddTransient<IValidator<ArticleAddDto>, ArticleAddDtoValidator>();
+            services.AddTransient<IValidator<ItemReviewDto>, ItemReviewDtoValidator>();
 
         }
         private void ConfigureJwtAuthentication(IServiceCollection services)
