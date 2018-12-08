@@ -52,7 +52,7 @@ namespace Products.Core.Services
                 //log ex
                 return new ResultMessage()
                 {
-                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesGetAllError,
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesGetAllError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -72,11 +72,17 @@ namespace Products.Core.Services
                 var newCategory = category.Adapt<ProductsCategories>();
                 newCategory.CreatedAt = DateTime.Now;
                 newCategory.CreatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
-                newCategory.ProfilePicture = Uri.EscapeUriString(_attachmentsManager.Save(GetFileDTO(category.profilePictureFile)));
+                newCategory.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
+                {
+                    File = category.profilePictureFile,
+                    attachmentType = AttachmentTypesEnum.Products_Categories,
+                    CanChangeName = true
+                });
+
                 _unitOfWork.ProductsCategoriesRepository.Insert(newCategory);
                 _unitOfWork.Commit();
                 return new ResultMessage()
-                {                    
+                {
                     Status = HttpStatusCode.OK
                 };
             }
@@ -84,7 +90,7 @@ namespace Products.Core.Services
             {
                 return new ResultMessage()
                 {
-                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesInsertError,
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesInsertError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -94,17 +100,17 @@ namespace Products.Core.Services
             try
             {
                 var category = _unitOfWork.ProductsCategoriesRepository.GetById(id);
-                if(category !=null)
-                return new ResultMessage()
-                {
-                    Data = category.Adapt<ProductsCategoryDto>(),
-                    Status = HttpStatusCode.OK
-                };
+                if (category != null)
+                    return new ResultMessage()
+                    {
+                        Data = category.Adapt<ProductsCategoryDto>(),
+                        Status = HttpStatusCode.OK
+                    };
                 else
                     return new ResultMessage()
-                    {                        
+                    {
                         Status = HttpStatusCode.NotFound,
-                        ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesNotFoundError
+                        ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesNotFoundError
                     };
             }
             catch (Exception ex)
@@ -112,7 +118,7 @@ namespace Products.Core.Services
                 //log ex
                 return new ResultMessage()
                 {
-                    ErrorCode =(int) ProductsErrorsCodeEnum.ProductsCategoriesGetByIdError,
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesGetByIdError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -150,7 +156,7 @@ namespace Products.Core.Services
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound,
-                        ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesNotFoundError
+                        ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesNotFoundError
                     };
                 }
             }
@@ -159,7 +165,7 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesUpdateError
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesUpdateError
                 };
             }
         }
@@ -169,7 +175,7 @@ namespace Products.Core.Services
             {
                 _unitOfWork.ProductsCategoriesRepository.Delete(id);
                 _unitOfWork.Commit();
-                return new ResultMessage ()
+                return new ResultMessage()
                 {
                     Status = HttpStatusCode.OK
                 };
@@ -179,21 +185,10 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsCategoriesDeleteError
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesDeleteError
                 };
             }
         }
 
-        private SavedFileDto GetFileDTO(IFormFile file)
-        {
-            return new SavedFileDto
-            {
-                attachmentType = AttachmentTypesEnum.Products_Categories,
-                CanChangeName = true,
-                File = file,
-                FileName = file.FileName,
-                SubFolderName = string.Empty
-            };
-        }
     }
 }
