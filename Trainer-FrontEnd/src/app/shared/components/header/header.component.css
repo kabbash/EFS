@@ -134,3 +134,17 @@
       display: inline-block;
     }
   }
+
+
+  .showList{
+    display: none;
+  }
+
+  .dropdown-list {
+    color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: -72px;
+    background: #f8f9fa;
+    width: 100%;
+    display: none;
+  }

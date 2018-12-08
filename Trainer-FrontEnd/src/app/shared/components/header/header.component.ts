@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   SearchBox() {
     var x = document.getElementById("search-box") as HTMLElement;
     if (x.style.display === "none" || x.style.display === "") {
-        x.style.display = "block";
+      x.style.display = "block";
     } else {
       x.style.display = 'none';
     }
@@ -28,9 +28,21 @@ export class HeaderComponent implements OnInit {
       x.style.display = 'none';
     }
   }
-  toggleClass(){
-    var x = document.getElementsByClassName("offcanvas-collapse")[0] ;
+  toggleClass() {
+    var x = document.getElementsByClassName("offcanvas-collapse")[0];
     x.classList.toggle('open');
   }
+
+  // showDropdown(element) {
+  //   $('li.nav-item').mouseover(function () {
+  //     $(this).find('.dropdown-list').slideDown();
+  //   });
+  // }
+
+  // hideDropdown(element) {
+  //   $('li.nav-item').mouseover(function () {
+  //     $(this).find('.dropdown-list').slideUp();
+  //   });
+  // }
 
 }

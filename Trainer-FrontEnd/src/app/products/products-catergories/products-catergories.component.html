@@ -1,2 +1,105 @@
-<app-articles-card *ngFor="let category of categories" (click)="productsList(category.id)" [cardName]="category.name" [cardImage]="'url(' + baseurl + category.profilePicture + ')'"></app-articles-card>
+<app-articles-card *ngFor="let category of categories" (click)="productsList(category.id)" [cardName]="category.name"
+    [cardImage]="'url(' + baseurl + category.profilePicture + ')'"></app-articles-card>
 <app-articles-paging></app-articles-paging>
+
+<div style="height:40px;" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Open Modal</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  " role="document">
+        <div class="modal-content bg-light">
+            <div class="modal-close-container">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-img">
+                    <div class="img-wrapper">
+                        <img src="/assets/images/test/whey.png">
+                    </div>
+                    <div>
+                        <span class="rate">
+                            <span class="rating-word">التقيم</span> &nbsp;
+                            <ngb-rating [(rate)]="userRate" [readonly]="true" max="5" class="star rating-stars">
+                                <ng-template let-fill="fill" let-index="index">
+                                    <span class="star" [class.filled-modal]="fill === 100">&#9733;</span>
+                                </ng-template>
+                            </ngb-rating>&nbsp;
+                            <span class="filled-modal">({{userRate}})</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="modal-description">
+                    <div class="modal-btn-buy">
+                        <div class="buy-price">السعر <span>&nbsp; 1500 &nbsp;</span> ج م</div>
+                    </div>
+                    <div class="desc-item">
+                        <div>
+                            <span class="desc-entity">الإسم</span>
+                            &nbsp;
+                            :
+                            &nbsp;
+                            whey protien gold
+                        </div>
+                    </div>
+                    <div class="desc-item">
+                        <div>
+                            <span class="desc-entity">الوصف</span>
+                            &nbsp;
+                            :
+                            &nbsp;
+                            whey protien gold whey protien gold whey protien gold
+                        </div>
+                    </div>
+                    <div class="desc-item">
+                        <div>
+                            <span class="desc-entity">تاريخ الإنتاج</span>
+                            &nbsp;
+                            :
+                            &nbsp;
+                            15/11/2013
+                        </div>
+                    </div>
+                    <div class="desc-item">
+                        <div>
+                            <span class="desc-entity">تاريخ الإنتهاء</span>
+                            &nbsp;
+                            :
+                            &nbsp;
+                            15/11/2013
+                        </div>
+                    </div>
+                    <div class="desc-item">
+                        <div>
+                            <span class="desc-entity">البائع</span>
+                            &nbsp;
+                            :
+                            &nbsp;
+                            Muhammad
+                        </div>
+                    </div>
+                    <div class="desc-item">
+                        <div>
+                            <span class="desc-entity">الرقم</span>
+                            &nbsp;
+                            :
+                            &nbsp;
+                            01010101010
+                        </div>
+                    </div>
+                    <div class="desc-item">
+                        <div>
+                            <span class="desc-entity">معلومات إضافيهس</span>
+                            &nbsp;
+                            :
+                            &nbsp;
+                            whey protien gold
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
