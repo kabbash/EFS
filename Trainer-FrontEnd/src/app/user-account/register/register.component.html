@@ -1,0 +1,38 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card mx-4">
+            <div class="card-body p-4">
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <h1>إنشاء حساب</h1>
+                <p class="text-muted">قم بإنشاء خسابك</p>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="إسم المستخدم" autocomplete="firstName" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" >
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="إسم المستخدم" autocomplete="lastName" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" >
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="البريد الإلكتروني" autocomplete="email"  formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" >
+                </div>
+                <div class="input-group mb-3">
+                  <input type="password" class="form-control" placeholder="كلمة المرور" autocomplete="new-password"
+                  formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" >
+                </div>
+                <div class="input-group mb-4">
+                  <input type="password" class="form-control" placeholder="تأكيد كلمة المرور" autocomplete="new-password"
+                  formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" >
+                </div>
+                <button type="submit" class="btn btn-block btn-success">إنشاء</button>
+                <br>
+                <button type="button" class="btn btn-block btn-primary-1" (click)="navigateToLogin()">تسجيل الدخول</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

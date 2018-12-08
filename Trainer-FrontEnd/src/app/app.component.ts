@@ -9,7 +9,7 @@ import { AppService } from './app.service';
 })
 export class AppComponent {
   title = 'Trainer-FrontEnd';
-  constructor(translate: TranslateService, private appService: AppService) {
+  constructor(translate: TranslateService, public appService: AppService) {
     translate.setDefaultLang('ar');
     translate.use('ar');
   }

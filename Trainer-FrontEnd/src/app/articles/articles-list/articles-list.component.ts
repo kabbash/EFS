@@ -28,7 +28,7 @@ export class ArticlesListComponent implements OnInit {
   }
 
   articlesDetails(articleId) {
-    debugger;
+    
     this.router.navigate([config.articles.articleDetails.route, articleId]);
   }
 

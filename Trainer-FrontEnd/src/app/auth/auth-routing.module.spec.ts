@@ -1,10 +1,10 @@
-import { LoginRoutingModule } from './login-routing.module';
+import { AuthRoutingModule } from './auth-routing.module';
 
 describe('LoginRoutingModule', () => {
-  let loginRoutingModule: LoginRoutingModule;
+  let loginRoutingModule: AuthRoutingModule;
 
   beforeEach(() => {
-    loginRoutingModule = new LoginRoutingModule();
+    loginRoutingModule = new AuthRoutingModule();
   });
 
   it('should create an instance', () => {

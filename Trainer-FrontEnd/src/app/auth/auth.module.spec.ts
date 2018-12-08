@@ -1,10 +1,10 @@
-import { LoginModule } from './login.module';
+import { AuthModule } from './auth.module';
 
 describe('ArticlesModule', () => {
-  let articlesModule: LoginModule;
+  let articlesModule: AuthModule;
 
   beforeEach(() => {
-    articlesModule = new LoginModule();
+    articlesModule = new AuthModule();
   });
 
   it('should create an instance', () => {
