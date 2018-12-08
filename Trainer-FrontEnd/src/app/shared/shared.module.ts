@@ -11,6 +11,7 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentsComponent } from './comments/comments.component';
 import { SiteMapComponent } from './site-map/site-map.component';
+import { UtilitiesService } from './services/utilities.service';
 
 
 @NgModule({
@@ -25,6 +26,9 @@ import { SiteMapComponent } from './site-map/site-map.component';
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
-    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent]
+    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent],
+  providers: [
+    UtilitiesService
+  ]
 })
 export class SharedModule { }
