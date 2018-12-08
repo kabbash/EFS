@@ -5,6 +5,8 @@ import { config } from '../config/pages-config';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsCatergoriesComponent } from './products-catergories/products-catergories.component';
 import { ProductRatingComponent } from './product-rating/product-rating.component';
+import { ProductsListResolver } from './resolvers/products-list.resolver';
+import { ProductsCategoriesResolver } from './resolvers/products-categories.resolver';
 
 const routes: Routes = [
   {
@@ -13,11 +15,13 @@ const routes: Routes = [
     children: [
       {
         path: config.products.productsList.name,
-        component: ProductsListComponent
+        component: ProductsListComponent,
+        resolve: {productList: ProductsListResolver}
       },
       {
         path: config.products.productsCategories.name,
-        component: ProductsCatergoriesComponent
+        component: ProductsCatergoriesComponent,
+        resolve: {categories: ProductsCategoriesResolver}
       },
       {
         path: config.products.productRating.name,
