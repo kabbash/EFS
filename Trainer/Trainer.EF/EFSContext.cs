@@ -202,8 +202,8 @@ namespace Trainer.EF
                     EmailConfirmed = true,
                     FirstName = "ahmed",
                     LastName = "kabbash",
-                    UserName = "Admin",
-                    PasswordHash = "1234",
+                    UserName = "Admin"
+                    //PasswordHash = "1234",
 
                 });
             });
