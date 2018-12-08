@@ -9,6 +9,7 @@ import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng
 import { ProductRatingComponent } from './product-rating/product-rating.component';
 import { ProductsCategoriesResolver } from './resolvers/products-categories.resolver';
 import { ProductsListResolver } from './resolvers/products-list.resolver';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { ProductsListResolver } from './resolvers/products-list.resolver';
     NgbPaginationModule,
     NgbAlertModule,
   ],
-  declarations: [ProductsComponent, ProductsListComponent, ProductsCatergoriesComponent, ProductRatingComponent],
+  declarations: [ProductsComponent, ProductsListComponent, ProductsCatergoriesComponent, ProductRatingComponent, ModalComponent],
   providers: [
     ProductsCategoriesResolver,
     ProductsListResolver

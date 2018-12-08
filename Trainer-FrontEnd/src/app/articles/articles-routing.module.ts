@@ -7,6 +7,7 @@ import { ArticleDetailsComponent } from './article-details/article-details.compo
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticleCategoriesResolver } from './resolvers/article-categories.resolver';
 import { ArticleDetailsResolver } from './resolvers/article-details.resolver';
+import { ArticleListResolver } from './resolvers/article-list.resolver';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
     children: [
       {
         path: config.articles.articlesList.name,
-        component: ArticlesListComponent
+        component: ArticlesListComponent,
+        resolve: {articleList: ArticleListResolver}
       },
       {
         path: config.articles.articlesCategories.name,
