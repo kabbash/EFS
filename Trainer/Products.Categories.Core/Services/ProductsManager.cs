@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using Attachments.Core.Interfaces;
+using Attachments.Core.Models;
+using FluentValidation;
 using Mapster;
 using Microsoft.Extensions.Options;
 using Products.Core.Interfaces;
@@ -17,11 +19,14 @@ namespace Products.Core.Services
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<ProductsDto> _validator;
         private readonly IOptions<ProductsResources> _productsResources;
-        public ProductsManager(IUnitOfWork unitOfWork, IValidator<ProductsDto> validator, IOptions<ProductsResources> productsResources)
+        private readonly IAttachmentsManager _attachmentsManager;
+
+        public ProductsManager(IUnitOfWork unitOfWork, IValidator<ProductsDto> validator, IOptions<ProductsResources> productsResources, IAttachmentsManager attachmentsManager)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
             _productsResources = productsResources;
+            _attachmentsManager = attachmentsManager;
         }
         public ResultMessage GetAll()
         {
@@ -41,7 +46,7 @@ namespace Products.Core.Services
                 //log ex
                 return new ResultMessage()
                 {
-                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsGetAllError,
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -58,13 +63,37 @@ namespace Products.Core.Services
 
             try
             {
+                var productFolderName = Guid.NewGuid().ToString();
                 var newProduct = newProductDto.Adapt<Shared.Core.Models.Products>();
                 newProduct.CreatedAt = DateTime.Now;
                 newProduct.CreatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
+                newProduct.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
+                {
+                    attachmentType = AttachmentTypesEnum.Products,
+                    CanChangeName = false,
+                    File = newProductDto.ProfilePictureFile,
+                    SubFolderName = productFolderName,
+                });
+
+                foreach (var image in newProductDto.ProductsImagesFiles)
+                {
+                    newProduct.ProductsImages.Add(new Shared.Core.Models.ProductsImages()
+                    {
+                        Name = image.Name,
+                        ProductId = newProduct.Id,
+                        Path = _attachmentsManager.Save(new SavedFileDto
+                        {
+                            attachmentType= AttachmentTypesEnum.Products,
+                            CanChangeName = false,
+                            File = image,
+                            SubFolderName = productFolderName
+                        })
+                    });
+                }
 
                 _unitOfWork.ProductsRepository.Insert(newProduct);
                 _unitOfWork.Commit();
-                return new ResultMessage()
+                return new ResultMessage
                 {
                     Status = HttpStatusCode.OK
                 };
@@ -73,7 +102,7 @@ namespace Products.Core.Services
             {
                 return new ResultMessage()
                 {
-                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsInsertError,
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsInsertError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -93,7 +122,7 @@ namespace Products.Core.Services
                     return new ResultMessage()
                     {
                         Status = HttpStatusCode.NotFound,
-                        ErrorCode = (int) ProductsErrorsCodeEnum.ProductsNotFoundError
+                        ErrorCode = (int)ProductsErrorsCodeEnum.ProductsNotFoundError
                     };
             }
             catch (Exception ex)
@@ -101,7 +130,7 @@ namespace Products.Core.Services
                 //log ex
                 return new ResultMessage()
                 {
-                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsGetByIdError,
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetByIdError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -138,7 +167,7 @@ namespace Products.Core.Services
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound,
-                        ErrorCode = (int) ProductsErrorsCodeEnum.ProductsNotFoundError
+                        ErrorCode = (int)ProductsErrorsCodeEnum.ProductsNotFoundError
                     };
                 }
             }
@@ -147,7 +176,7 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsUpdateError
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsUpdateError
                 };
             }
         }
@@ -167,7 +196,7 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    ErrorCode = (int) ProductsErrorsCodeEnum.ProductsDeleteError
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsDeleteError
                 };
             }
         }
@@ -176,7 +205,7 @@ namespace Products.Core.Services
             try
             {
                 IEnumerable<ProductsDto> result = new List<ProductsDto>();
-                result = _unitOfWork.ProductsRepository.Get(c=>c.CategoryId == categoryId).Adapt(result);
+                result = _unitOfWork.ProductsRepository.Get(c => c.CategoryId == categoryId).Adapt(result);
 
                 return new ResultMessage()
                 {
