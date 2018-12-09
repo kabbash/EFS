@@ -212,7 +212,7 @@ namespace Products.Core.Services
                 {
                     var data = resultData.FirstOrDefault(p => p.Id == product.Id);
                     product.Seller.Name = data.Seller.FirstName + ' ' + data.Seller.LastName;
-                    product.Seller.Phones = data.Seller.PhoneNumber;
+                    product.Seller.PhoneNumber = data.Seller.PhoneNumber;
                 }
 
                 return new ResultMessage()
