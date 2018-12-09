@@ -19,7 +19,6 @@ export class ModalComponent implements OnInit, OnChanges {
     if (changes['product'].currentValue) {
       this.product.expDate = this.utilService.getDateFormatted(this.product.expDate);
       this.product.prodDate = this.utilService.getDateFormatted(this.product.prodDate);
-      this.product.rate = 4;
     }
   }
 
