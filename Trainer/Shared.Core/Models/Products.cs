@@ -30,6 +30,10 @@ namespace Shared.Core.Models
 
         [ForeignKey("CategoryId")]
         public virtual ProductsCategories Category { get; set; }
+
+        [ForeignKey("CreatedBy")]
+        public virtual AspNetUsers Seller { get; set; }
+        
         public virtual ICollection<ProductsImages> ProductsImages { get; set; }
     }
 }

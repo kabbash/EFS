@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
 
 namespace Products.Core.Models
 {
@@ -11,6 +13,9 @@ namespace Products.Core.Models
         public DateTime? ProdDate { get; set; }
         public decimal Price { get; set; }
         public string ProfilePicture { get; set; }
+        public IFormFile ProfilePictureFile { get; set; }
+        public IList<IFormFile> ProductsImagesFiles { get; set; }
+        public string[] ProductsImages { get; set; }
         public int CategoryId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
@@ -18,5 +23,6 @@ namespace Products.Core.Models
         public string UpdatedBy { get; set; }
         public bool IsActive { get; set; }
         public decimal Rate { get; set; }
+        public SellerInfo Seller { get; set; }
     }
 }

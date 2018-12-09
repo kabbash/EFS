@@ -1,8 +1,11 @@
 ﻿using Articles.Core.Interfaces;
 using Articles.Core.Models;
+using Attachments.Core.Interfaces;
+using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
 using Shared.Core;
+using Shared.Core.Models;
 using Shared.Core.Utilities;
 using System;
 using System.Collections.Generic;
@@ -15,10 +18,13 @@ namespace Articles.Core.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IValidator<ArticleAddDto> _Validator;
-        public ArticleService(IUnitOfWork unitOfWork, IValidator<ArticleAddDto> validator)
+        private readonly IAttachmentsManager _attachmentsManager;
+
+        public ArticleService(IUnitOfWork unitOfWork, IValidator<ArticleAddDto> validator, IAttachmentsManager attachmentsManager)
         {
             _unitOfWork = unitOfWork;
             _Validator = validator;
+            _attachmentsManager = attachmentsManager;
         }
         public ResultMessage Delete(int id)
         {
@@ -132,9 +138,34 @@ namespace Articles.Core.Services
             }
             try
             {
+                var articleFolderName = Guid.NewGuid().ToString();
                 var articleEntity = article.Adapt<Shared.Core.Models.Articles>();
                 articleEntity.CreatedAt = DateTime.Now;
                 articleEntity.CreatedBy = userId;
+                articleEntity.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
+                {
+                    attachmentType = AttachmentTypesEnum.Articles,
+                    CanChangeName = false,
+                    File = article.ProfilePictureFile,
+                    SubFolderName = articleFolderName
+                });
+
+                foreach (var image in article.ImagesLstFiles)
+                {
+                    articleEntity.Images.Add(new ArticlesImages
+                    {
+                        ArticleId = articleEntity.Id,
+                        Path = _attachmentsManager.Save(new SavedFileDto
+                        {
+                            attachmentType = AttachmentTypesEnum.Articles,
+                            CanChangeName = false,
+                            File = image,
+                            SubFolderName = articleFolderName
+                        }),
+                        Title = image.Name
+                    });
+                } 
+
                 _unitOfWork.ArticlesRepository.Insert(articleEntity);
                 _unitOfWork.Commit();
                 return new ResultMessage

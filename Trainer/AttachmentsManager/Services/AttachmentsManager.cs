@@ -96,7 +96,7 @@ namespace Attachments.Core.Services
 
         private string getRelativeURL(string relativeFilePath)
         {
-            return relativeFilePath.Replace(@"\", "/");
+            return Uri.EscapeUriString(relativeFilePath.Replace(@"\", "/"));
         }
 
         private string GetAttachmentTypePath(AttachmentTypesEnum type)
@@ -115,5 +115,6 @@ namespace Attachments.Core.Services
                     throw new NotImplementedException();
             }
         }
+
     }
 }

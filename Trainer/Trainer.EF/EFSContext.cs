@@ -459,6 +459,12 @@ namespace Trainer.EF
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Products_Products_Subcategories");
+
+                entity.HasOne(d => d.Seller)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.CreatedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Products_AspNetUsers_CreatedBy");
             });
 
             modelBuilder.Entity<ProductsCategories>(entity =>

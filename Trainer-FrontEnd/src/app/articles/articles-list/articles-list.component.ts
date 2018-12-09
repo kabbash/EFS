@@ -18,24 +18,17 @@ export class ArticlesListComponent implements OnInit {
   categoryId: number;
 
   constructor(private router: Router, private route: ActivatedRoute, private repositoryService: RepositoryService) {
-    this.route.params.subscribe(params => {
-      this.categoryId = params['categoryId'];
-    });
   }
 
   ngOnInit() {
-    this.getArticles();
+    this.route.data.subscribe(result => {
+      this.articles = result.articleList.data;
+    });
   }
 
   articlesDetails(articleId) {
-    debugger;
     this.router.navigate([config.articles.articleDetails.route, articleId]);
   }
 
-  getArticles() {
-    this.repositoryService.getData<articleListItemDto[]>('articles/getbycategory/' + this.categoryId).subscribe(result => {
-      this.articles = result.data;
-    });
-  }
 
 }
