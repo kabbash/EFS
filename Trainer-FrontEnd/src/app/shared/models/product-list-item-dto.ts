@@ -9,4 +9,9 @@ export class productListItemDto{
     price: number;
     categoryId: number;
     rate: number;
+    seller: Seller;
+}
+export class Seller {
+  name: string;
+  phoneNumber: string;
 }

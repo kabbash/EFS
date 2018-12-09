@@ -17,11 +17,8 @@ export class ModalComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['product'].currentValue) {
-      console.log('enter changes');
-      console.log(this.product);
       this.product.expDate = this.utilService.getDateFormatted(this.product.expDate);
       this.product.prodDate = this.utilService.getDateFormatted(this.product.prodDate);
-      console.log(this.product.prodDate);
     }
   }
 

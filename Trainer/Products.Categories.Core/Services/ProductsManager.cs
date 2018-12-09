@@ -11,7 +11,7 @@ using Shared.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Net;
-
+using System.Linq;
 namespace Products.Core.Services
 {
     public class ProductsManager : IProductsManager
@@ -205,7 +205,15 @@ namespace Products.Core.Services
             try
             {
                 IEnumerable<ProductsDto> result = new List<ProductsDto>();
-                result = _unitOfWork.ProductsRepository.Get(c => c.CategoryId == categoryId).Adapt(result);
+                IEnumerable<Shared.Core.Models.Products> resultData = new List<Shared.Core.Models.Products>();
+                resultData = _unitOfWork.ProductsRepository.Get(c => c.CategoryId == categoryId, null, "Seller").ToList();
+                result = resultData.Adapt(result).ToList();
+                foreach(var product in result)
+                {
+                    var data = resultData.FirstOrDefault(p => p.Id == product.Id);
+                    product.Seller.Name = data.Seller.FirstName + ' ' + data.Seller.LastName;
+                    product.Seller.PhoneNumber = data.Seller.PhoneNumber;
+                }
 
                 return new ResultMessage()
                 {

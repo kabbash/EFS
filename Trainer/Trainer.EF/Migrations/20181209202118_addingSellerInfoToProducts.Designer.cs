@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181209202118_addingSellerInfoToProducts")]
+    partial class addingSellerInfoToProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,10 +128,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "662f74fe-9de9-4b4c-b778-ad2227e09dc5", Name = "Client" },
-                        new { Id = "1a3d5ce7-e06a-4092-8089-bb307bd8a8f4", Name = "RegularUser" },
-                        new { Id = "fb404ba2-13c9-4c54-ac59-b7b15f1e359c", Name = "Trainer" },
-                        new { Id = "b82395de-efa9-4569-800d-144c6f43baca", Name = "ArticleWriter" }
+                        new { Id = "2677c844-24f9-43e5-9694-640c163624fe", Name = "Client" },
+                        new { Id = "da2a8a88-fee2-4d52-b0f0-019863d33f76", Name = "RegularUser" },
+                        new { Id = "bd325567-d68d-4ba5-8423-90230ddba9b7", Name = "Trainer" },
+                        new { Id = "9d09f971-9a1e-4d2d-bb65-6deaaf205f30", Name = "ArticleWriter" }
                     );
                 });
 
@@ -898,9 +900,9 @@ namespace Trainer.EF.Migrations
                         .HasConstraintName("FK_Products_Products_Subcategories");
 
                     b.HasOne("Shared.Core.Models.AspNetUsers", "Seller")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CreatedBy")
-                        .HasConstraintName("FK_Products_AspNetUsers_CreatedBy");
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ProductsCategories", b =>

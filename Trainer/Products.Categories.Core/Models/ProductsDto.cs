@@ -23,5 +23,6 @@ namespace Products.Core.Models
         public string UpdatedBy { get; set; }
         public bool IsActive { get; set; }
         public decimal Rate { get; set; }
+        public SellerInfo Seller { get; set; }
     }
 }
