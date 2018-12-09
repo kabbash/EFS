@@ -14,7 +14,7 @@ namespace Trainer.EF
         public EFSContext(DbContextOptions<EFSContext> options)
             : base(options)
         {
-           Database.Migrate();
+            Database.Migrate();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }
@@ -44,6 +44,7 @@ namespace Trainer.EF
         public virtual DbSet<TrainersPrograms> TrainersPrograms { get; set; }
         public virtual DbSet<EntityRating> EntityRatings { get; set; }
         public virtual DbSet<EntityTypes> EntityTypes { get; set; }
+        public virtual DbSet<ItemsForReview> ItemsForReviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

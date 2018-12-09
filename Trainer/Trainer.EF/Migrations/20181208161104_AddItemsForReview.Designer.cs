@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181208161104_AddItemsForReview")]
+    partial class AddItemsForReview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,10 +128,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "662f74fe-9de9-4b4c-b778-ad2227e09dc5", Name = "Client" },
-                        new { Id = "1a3d5ce7-e06a-4092-8089-bb307bd8a8f4", Name = "RegularUser" },
-                        new { Id = "fb404ba2-13c9-4c54-ac59-b7b15f1e359c", Name = "Trainer" },
-                        new { Id = "b82395de-efa9-4569-800d-144c6f43baca", Name = "ArticleWriter" }
+                        new { Id = "ba272a71-af11-45c9-aae6-22446d1dedf8", Name = "Client" },
+                        new { Id = "7bc17a2d-58db-4c66-90c5-1c45ffc6f5e1", Name = "RegularUser" },
+                        new { Id = "4069377a-71c7-40f3-9517-a1f66a9b0616", Name = "Trainer" },
+                        new { Id = "3d548255-06cc-4026-bb6f-47e0123aff28", Name = "ArticleWriter" }
                     );
                 });
 
@@ -649,8 +651,6 @@ namespace Trainer.EF.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("CreatedBy");
-
                     b.ToTable("Products");
                 });
 
@@ -916,11 +916,6 @@ namespace Trainer.EF.Migrations
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Products_Products_Subcategories");
-
-                    b.HasOne("Shared.Core.Models.AspNetUsers", "Seller")
-                        .WithMany("Products")
-                        .HasForeignKey("CreatedBy")
-                        .HasConstraintName("FK_Products_AspNetUsers_CreatedBy");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ProductsCategories", b =>

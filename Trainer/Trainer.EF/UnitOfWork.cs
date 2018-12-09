@@ -154,6 +154,20 @@ namespace Trainer.EF
                 return _articleCategoriesRepo;
             }
         }
+
+        private IRepository<ItemsForReview> _itemsReviewRepo;
+        public IRepository<ItemsForReview> ItemsReviewsRepository
+        {
+            get
+            {
+                if (_itemsReviewRepo == null)
+                {
+                    _itemsReviewRepo = new Repository<ItemsForReview>(_dbContext);
+                }
+                return _itemsReviewRepo;
+            }
+        }
+
         #endregion
 
         public UnitOfWork(EFSContext context)
