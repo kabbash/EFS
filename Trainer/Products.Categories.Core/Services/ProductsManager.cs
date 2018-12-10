@@ -206,8 +206,8 @@ namespace Products.Core.Services
             {
                 IEnumerable<ProductsDto> result = new List<ProductsDto>();
                 IEnumerable<Shared.Core.Models.Products> resultData = new List<Shared.Core.Models.Products>();
-                resultData = _unitOfWork.ProductsRepository.Get(c => c.CategoryId == categoryId, null, "Seller");
-                result = resultData.Adapt(result);
+                resultData = _unitOfWork.ProductsRepository.Get(c => c.CategoryId == categoryId, null, "Seller").ToList();
+                result = resultData.Adapt(result).ToList();
                 foreach(var product in result)
                 {
                     var data = resultData.FirstOrDefault(p => p.Id == product.Id);
