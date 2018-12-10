@@ -5,6 +5,10 @@ export const apiUrl = {
         "get": environment.baseUrl + 'values'
     },
     "repository": {
-        "base": environment.baseUrl 
+        "base": environment.baseUrl
+    },
+    'userAccount': {
+        'login': 'authentication/login',
+        'register': 'authentication/Register'
     }
 }

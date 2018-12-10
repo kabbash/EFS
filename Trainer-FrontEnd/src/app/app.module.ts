@@ -13,6 +13,8 @@ import { DemosModule } from './demos/demos.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { HomeModule } from './home/home.module';
 import { ProductsModule } from './products/products.module';
+import { AuthModule } from './auth/auth.module';
+import { UserAccountModule } from './user-account/user-account.module';
 import { LoginModule } from './login/login.module';
 
 
@@ -31,8 +33,10 @@ export function CreateTranslateLoader(http: HttpClient) {
     SharedModule,
     HomeModule,
     ArticlesModule,
+    AuthModule.forRoot(),
     LoginModule,
     ProductsModule,
+    UserAccountModule,
     DemosModule,
     NgbModule,
     FroalaEditorModule.forRoot(),

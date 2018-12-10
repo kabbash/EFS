@@ -930,6 +930,13 @@ namespace Trainer.EF.Migrations
                         .HasForeignKey("ParentId");
                 });
 
+            modelBuilder.Entity("Shared.Core.Models.ProductsCategories", b =>
+                {
+                    b.HasOne("Shared.Core.Models.ProductsCategories")
+                        .WithMany("Subcategories")
+                        .HasForeignKey("ParentId");
+                });
+
             modelBuilder.Entity("Shared.Core.Models.ProductsImages", b =>
                 {
                     b.HasOne("Shared.Core.Models.Products", "Product")

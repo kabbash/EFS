@@ -37,19 +37,19 @@ export let config = {
             'route': '/products/productRating',
         }
     },
-    'login': {
-        'name': 'login',
-        'route': 'login',
-        'loadChildren': './login/login.module#loginModule',
+    'userAccount': {
+        'name': 'userAccount',
+        'route': 'userAccount',
+        'loadChildren': './user-account/user-account.module#UserAccountModule',
         // 'permissionList': ['Authorized'],
         /** this is capital to match routes for tagging  */
         'loginPage': {
             'name': 'loginPage',
-            'route': '/login/loginPage',
+            'route': '/userAccount/loginPage',
         },
         'register': {
             'name': 'register',
-            'route': '/login/register',
+            'route': '/userAccount/register',
         }
     },
     'notfound': {

@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   navigateToRegister() {
-    this.router.navigate([config.login.register.route]);
+    // this.router.navigate([config.login.register.route]);
   }
 
 }

@@ -13,6 +13,7 @@ using Shared.Core.Models;
 using Shared.Core.Resources;
 using Shared.Core.Utilities;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Net;
 

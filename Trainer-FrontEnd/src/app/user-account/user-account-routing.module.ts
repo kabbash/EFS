@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { config } from '../config/pages-config';
-import { LoginComponent } from './login.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterComponent } from './register/register.component';
+import { UserAccountComponent } from './user-account.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
-    // children: [
-    //   {
-    //     path: config.login.loginPage.name,
-    //     component: LoginPageComponent
-    //   },
-    //   {
-    //     path: config.login.register.name,
-    //     component: RegisterComponent
-    //   }
+    component: UserAccountComponent,
+    children: [
+      {
+        path: config.userAccount.loginPage.name,
+        component: LoginPageComponent
+      },
+      {
+        path: config.userAccount.register.name,
+        component: RegisterComponent
+      }
 
-    // ]
+    ]
   }
 ];
 
@@ -27,4 +27,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class LoginRoutingModule { }
+export class UserAccountRoutingModule { }
