@@ -28,7 +28,7 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_Manager.GetAll());
         }
         [HttpPost]
-        public ActionResult Post([FromBody] ArticlesCategoriesDto category)
+        public ActionResult Post([FromForm] ArticlesCategoriesDto category)
         {
             category.ProfilePicture = _attachmentManager.Save(new SavedFileDto
             {

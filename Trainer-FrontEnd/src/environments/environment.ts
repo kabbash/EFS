@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://ec2-34-211-80-6.us-west-2.compute.amazonaws.com:4400/api/',
-  filesBaseUrl : 'http://ec2-34-211-80-6.us-west-2.compute.amazonaws.com:4400/'
+  baseUrl: 'http://localhost:5000/api/',
+  filesBaseUrl : 'http://localhost:5000/'
 };
 
 /*

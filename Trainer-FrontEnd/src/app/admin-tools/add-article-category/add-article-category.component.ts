@@ -14,12 +14,12 @@ export class AddArticleCategoryComponent implements OnInit {
   ngOnInit() {
     this.categoryForm = this.fb.group({
       'name': ['', Validators.required],
-      'profilePicture': ['', Validators.required]
+      'profilePictureFile': [{}, Validators.required]
     });
   }
   addCategory() {
     if (this.categoryForm.valid) {
-      this.reposatoryService.create('Articles/Categories', this.categoryForm.value).subscribe(data => {
+      this.reposatoryService.create('Articles/Categories', this.prepareData()).subscribe(data => {
         alert('success');
       }, error => {
         alert(error);
@@ -27,6 +27,19 @@ export class AddArticleCategoryComponent implements OnInit {
     }
   }
   onSelectFile(file) {
-    this.categoryForm.controls['profilePicture'].setValue(file);
+    this.categoryForm.patchValue({
+      profilePictureFile: file
+    });
+    // this.categoryForm.controls['profilePicture'].setValue(file);
+  }
+
+  prepareData() {
+    const formModel = this.categoryForm.value;
+
+    const formData = new FormData();
+    formData.append('name', formModel.name);
+    formData.append('profilePictureFile', formModel.avatar);
+
+    return formData;
   }
 }
