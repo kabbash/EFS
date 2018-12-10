@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WhatWaitingComponent implements OnInit {
 
+  animation = false;
+
   constructor() { }
 
   ngOnInit() {
+
+    // setInterval(() => {
+    //   this.animation = !this.animation;
+    // }, 1500);
   }
 
 }

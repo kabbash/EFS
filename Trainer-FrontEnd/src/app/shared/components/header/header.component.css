@@ -148,3 +148,7 @@
     width: 100%;
     display: none;
   }
+
+  .app-search::placeholder{
+    color: #ffffff;
+  }

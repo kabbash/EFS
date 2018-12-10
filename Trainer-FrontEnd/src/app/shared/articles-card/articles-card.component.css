@@ -1,5 +1,5 @@
 :host {
-    width: 300px;
+    width: 400px;
     height: 300px;
     display: flex;
     margin: 0 15px 30px;
@@ -38,3 +38,7 @@
     font-size: 22px;
 }
 
+:host:hover .card-title-container p {
+    color: #00bcd4;
+    text-decoration: underline;
+}

@@ -1,5 +1,5 @@
 :host {
-    width: 250px;
+    width: 215px;
     margin: 0 15px 30px;
     background: rgba(255, 255, 255, .75);
     border-radius: 12px;
@@ -33,7 +33,7 @@
     color: #333;
     font-size: 15px;
     font-weight: bold;
-    text-align: left;
+    text-align: right;
     padding: 0 20px;
     line-height: 1.2;
 }

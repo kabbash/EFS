@@ -91,6 +91,12 @@
     margin-left: 10px;
   }
 
+  .trainees-carousel{
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+  }
+
   @media (max-width: 520px) {
    .carousel-item p{
     font-size: 0.9rem;

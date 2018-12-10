@@ -1,5 +1,6 @@
 .loading-container {
     position: relative;
+    min-height: 500px
 }
 
 .loading-overlay {
