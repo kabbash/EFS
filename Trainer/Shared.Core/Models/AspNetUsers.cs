@@ -17,7 +17,8 @@ namespace Shared.Core.Models
         public string Hometown { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
-        public string PasswordHash { get; set; }
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
         public string SecurityStamp { get; set; }
         public string PhoneNumber { get; set; }
         public bool PhoneNumberConfirmed { get; set; }
@@ -36,5 +37,6 @@ namespace Shared.Core.Models
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
+        public virtual ICollection<Products> Products {get; set;}
     }
 }

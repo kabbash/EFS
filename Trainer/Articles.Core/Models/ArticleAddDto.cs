@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Articles.Core.Models
 {
@@ -10,5 +9,7 @@ namespace Articles.Core.Models
         public string Description { get; set; }
         public int CategoryId { get; set; }
         public string ProfilePicture { get; set; }
+        public IFormFile ProfilePictureFile { get; set; }
+        public IList<IFormFile> ImagesLstFiles { get; set; }
     }
 }

@@ -1,2 +1,3 @@
-<app-articles-card *ngFor="let category of categories" (click)="productsList(category.id)" [cardName]="category.name" [cardImage]="'url(' + baseurl + category.profilePicture + ')'"></app-articles-card>
-<app-articles-paging></app-articles-paging>
+<app-articles-card *ngFor="let category of categories" (click)="productsList(category.id)" [cardName]="category.name"
+    [cardImage]="'url(' + baseurl + category.profilePicture + ')'"></app-articles-card>
+<!-- <app-articles-paging></app-articles-paging> -->

@@ -32,6 +32,7 @@
     <ProjectReference Include="..\Articles.Core\Articles.Core.csproj" />
     <ProjectReference Include="..\AttachmentsManager\Attachments.Core.csproj" />
     <ProjectReference Include="..\Authentication\Authentication.csproj" />
+    <ProjectReference Include="..\ItemsReview\ItemsReview.csproj" />
     <ProjectReference Include="..\Lookups.Core\Lookups.Core.csproj" />
 
     <ProjectReference Include="..\Products.Categories.Core\Products.Core.csproj" />

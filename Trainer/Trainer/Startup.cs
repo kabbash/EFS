@@ -1,48 +1,50 @@
 
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Trainer.EF;
-using Microsoft.EntityFrameworkCore;
-using Shared.Core;
-using Authentication;
-using Microsoft.IdentityModel.Tokens;
-using Authentication.Services;
-using Authentication.Interfaces;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using test.core.Model;
-using FluentValidation;
-using test.core.Validators;
-using Shared.Core.Resources;
-using Attachments.Core.Models;
-using Attachments.Core.Validators;
+using Articles.Core.Interfaces;
+using Articles.Core.Models;
+using Articles.Core.Services;
+using Articles.Core.Validators;
 using Attachments.Core.Interfaces;
+using Attachments.Core.Models;
 using Attachments.Core.Services;
-using Products.Core.Interfaces;
-using Products.Core.Services;
-using Products.Core.Models;
-using Products.Core.Validators;
-using Authentication.Validators;
+using Attachments.Core.Validators;
+using Authentication;
+using Authentication.Interfaces;
 using Authentication.Models;
+using Authentication.Services;
+using Authentication.Validators;
+using FluentValidation;
+using ItemsReview.Interfaces;
+using ItemsReview.Models;
+using ItemsReview.Services;
+using ItemsReview.Validators;
+using Lookups.Core.Interfaces;
+using Lookups.Core.Services;
 using MailProvider.Core;
 using MailProvider.Core.Interfaces;
 using MailProvider.Core.Services;
-using Lookups.Core.Interfaces;
-using Shared.Core.Models;
-using Lookups.Core.Services;
-using Articles.Core.Models;
-using Articles.Core.Validators;
-using Articles.Core.Services;
-using Articles.Core.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using Products.Core.Interfaces;
+using Products.Core.Models;
+using Products.Core.Services;
+using Products.Core.Validators;
 using Rating.Core.Interfaces;
-using Rating.Core.Services;
 using Rating.Core.Models;
+using Rating.Core.Services;
 using Rating.Core.Validators;
-using Microsoft.Extensions.FileProviders;
-using System.IO;
+using Shared.Core;
+using Shared.Core.Models;
+using Shared.Core.Resources;
+using System.Text;
+using test.core.Model;
+using test.core.Validators;
+using Trainer.EF;
 
 namespace Trainer
 {
@@ -80,12 +82,6 @@ namespace Trainer
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    FileProvider = new PhysicalFileProvider(
-            //Path.Combine(Directory.GetCurrentDirectory(), "Test1")),
-            //    RequestPath = "/Test1"
-            //});
 
             if (env.IsDevelopment())
             {
@@ -113,12 +109,14 @@ namespace Trainer
             services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
             services.AddScoped<IProductsManager, ProductsManager>();
             services.AddScoped<IRatingManager<Shared.Core.Models.Products>, RatingManager<Shared.Core.Models.Products>>();
+            services.AddScoped<IRatingManager<ItemsForReview>, RatingManager<ItemsForReview>>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
             services.AddScoped<ILookupService<CaloriesDto, Calories>, LookupService<CaloriesDto, Calories>>();
             services.AddScoped<ILookupService<ArticlesCategoriesDto, ArticlesCategories>, LookupService<ArticlesCategoriesDto, ArticlesCategories>>();
             services.AddScoped<IArticlesService, ArticleService>();
+            services.AddScoped<IItemsReviewsManager, ItemsReviewsManager>();
 
         }
         private void ConfigureSettings(IServiceCollection services)
@@ -126,8 +124,7 @@ namespace Trainer
             services.Configure<AuthenticationSettings>(Configuration.GetSection("AppSettings"));
             services.Configure<MailSettings>(Configuration.GetSection("Email"));
             var resources = Configuration.GetSection("Resources");
-            services.Configure<AttachmentsResources>(resources.GetSection("FilesPaths").GetSection("Attachments"));            
-            services.Configure<TestResources>(resources.GetSection("TestResources"));
+            services.Configure<AttachmentsResources>(resources.GetSection("FilesPaths").GetSection("Attachments"));
             services.Configure<ProductsResources>(resources.GetSection("ProductsResources"));
         }
         private void ConfigureValidations(IServiceCollection services)
@@ -140,6 +137,7 @@ namespace Trainer
             services.AddTransient<IValidator<RatingDto>, RatingDtoValidator>();
             services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
             services.AddTransient<IValidator<ArticleAddDto>, ArticleAddDtoValidator>();
+            services.AddTransient<IValidator<ItemReviewDto>, ItemReviewDtoValidator>();
 
         }
         private void ConfigureJwtAuthentication(IServiceCollection services)

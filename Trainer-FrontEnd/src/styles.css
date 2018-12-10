@@ -50,3 +50,83 @@ color: #fff;
   background-color: #14818f;
   border-color: #0e3c42;
 }
+
+
+
+div.modal-body {
+  padding-top: 0;
+  display: flex;
+  min-height: 400px;
+}
+
+.modal-body .img-wrapper{
+  padding: 20px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.modal-body .modal-img{
+  flex: 0 0 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.modal-body .modal-img img{
+  max-height: 150px;
+}
+
+.modal-body .modal-description{
+  flex: 1;
+  padding-top:20px;
+}
+
+.modal-close-container {
+    width: 100%;
+    justify-content: flex-end;
+    display: flex;
+    padding: 5px 10px;
+}
+
+
+.buy-price {
+  padding: 10px 20px;
+  width: fit-content;
+  right: 0;
+  background: #00bcd4;
+  font-size: 14px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333333;
+  cursor: pointer;
+}
+
+.modal-description .desc-item{
+  padding: 10px 0;
+  border-bottom: .5px solid #333;
+}
+.modal-description .desc-item:last-child{
+  border-bottom: none;
+}
+
+.modal-description .desc-item>div{
+  width: 90%;
+}
+.modal-description .desc-entity{
+    color: #00bcd4;
+}
+
+.rating-word{
+  color: #00bcd4;
+}
+
+.filled-modal {
+  color: gold;
+}
+
+.rating-stars{
+  direction: ltr;
+}

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="#"><img src="../../../../../assets/images/logo1.png" width="50" alt=""></a>
-    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas" (click)="toggleClass()" >
+    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas" (click)="toggleClass()">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -14,13 +14,17 @@
           <a class="nav-link" href="#">أدواتك</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/demos/allDemos">التدريب اون لاين</a>
+          <a class="nav-link"  [routerLink] = "['/demos/allDemos']">التدريب اون لاين</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/articles/articlesCategories"> المقالات</a>
+          <a class="nav-link" [routerLink]="['/articles/articlesCategories']" > المقالات</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="/products/productsCategories">بيع / شراء</a>
+        <li class="nav-item dropdown ">
+          <a class="nav-link" [routerLink]="['/products/productsCategories']">بيع / شراء</a>
+          <!-- <div class="dropdown-list ">
+            <div>بيع</div>
+            <div>شراء</div>
+          </div> -->
 
         </li>
         <li class="nav-item">
@@ -34,8 +38,7 @@
 
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link" href="#"> تسجيل الدخول </a>
-
+          <a class="nav-link" [routerLink]="['/userAccount/loginPage']"> تسجيل الدخول </a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0" id="search">
@@ -46,7 +49,7 @@
     <div class="form-search" id="search-box">
       <div class="container">
         <input class="mr-sm-2" type="text" placeholder="اكتب كلمات البحث هنا..." aria-label="Search">
-        <i class="fa fa-times"  (click)="Close()"></i>
+        <i class="fa fa-times" (click)="Close()"></i>
       </div>
     </div>
   </div>

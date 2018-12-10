@@ -126,10 +126,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "1f684f9d-fbdc-4090-a3bc-550832e9c2a1", Name = "Client" },
-                        new { Id = "b10ad127-8580-4517-ab01-129cac89adc1", Name = "RegularUser" },
-                        new { Id = "c90f41c8-2503-44ed-8ffa-d0b383010da5", Name = "Trainer" },
-                        new { Id = "345a50c7-4b52-4552-b955-63c8a8ab86f0", Name = "ArticleWriter" }
+                        new { Id = "662f74fe-9de9-4b4c-b778-ad2227e09dc5", Name = "Client" },
+                        new { Id = "1a3d5ce7-e06a-4092-8089-bb307bd8a8f4", Name = "RegularUser" },
+                        new { Id = "fb404ba2-13c9-4c54-ac59-b7b15f1e359c", Name = "Trainer" },
+                        new { Id = "b82395de-efa9-4569-800d-144c6f43baca", Name = "ArticleWriter" }
                     );
                 });
 
@@ -218,7 +218,9 @@ namespace Trainer.EF.Migrations
                     b.Property<DateTime?>("LockoutEndDateUtc")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("PasswordHash");
+                    b.Property<byte[]>("PasswordHash");
+
+                    b.Property<byte[]>("PasswordSalt");
 
                     b.Property<string>("PhoneNumber");
 
@@ -246,7 +248,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FirstName = "ahmed", LastName = "kabbash", LockoutEnabled = false, PasswordHash = "1234", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "Admin" }
+                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FirstName = "ahmed", LastName = "kabbash", LockoutEnabled = false, PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "Admin" }
                     );
                 });
 
@@ -525,6 +527,26 @@ namespace Trainer.EF.Migrations
                     b.ToTable("EntityTypes");
                 });
 
+            modelBuilder.Entity("Shared.Core.Models.ItemsForReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("ProfilePicture");
+
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ItemsForReviews");
+                });
+
             modelBuilder.Entity("Shared.Core.Models.Measurments", b =>
                 {
                     b.Property<int>("Id")
@@ -626,6 +648,8 @@ namespace Trainer.EF.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("CreatedBy");
 
                     b.ToTable("Products");
                 });
@@ -892,6 +916,18 @@ namespace Trainer.EF.Migrations
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Products_Products_Subcategories");
+
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "Seller")
+                        .WithMany("Products")
+                        .HasForeignKey("CreatedBy")
+                        .HasConstraintName("FK_Products_AspNetUsers_CreatedBy");
+                });
+
+            modelBuilder.Entity("Shared.Core.Models.ProductsCategories", b =>
+                {
+                    b.HasOne("Shared.Core.Models.ProductsCategories")
+                        .WithMany("Subcategories")
+                        .HasForeignKey("ParentId");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ProductsCategories", b =>

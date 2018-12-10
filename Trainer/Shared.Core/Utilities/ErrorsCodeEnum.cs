@@ -37,4 +37,13 @@ namespace Shared.Core.Utilities
     {
         RatingInsertError
     }
+    public enum ItemsReviewsErrorsCodeEnum
+    {
+        ItemsGetAllError,
+        ItemsInsertError,
+        ItemsNotFoundError,
+        ItemsGetByIdError,
+        ItemsUpdateError,
+        ItemsDeleteError
+    }
 }

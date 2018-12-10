@@ -1,6 +1,5 @@
 ﻿using Shared.Core.Models;
 using System;
-using System.Collections.Generic;
 
 namespace Shared.Core
 {
@@ -17,13 +16,11 @@ namespace Shared.Core
         IRepository<Trainers> TrainersRepository { get; }
         IRepository<Articles> ArticlesRepository { get; }
         IRepository<ArticlesCategories> ArticlesCategoriesRepository { get; }
-
-
-
+        IRepository<ItemsForReview> ItemsReviewsRepository { get; }
 
 
         object getRepoByType(Type type);
-        
+
 
         /// <summary>
         /// Commits all changes

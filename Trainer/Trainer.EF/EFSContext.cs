@@ -44,6 +44,7 @@ namespace Trainer.EF
         public virtual DbSet<TrainersPrograms> TrainersPrograms { get; set; }
         public virtual DbSet<EntityRating> EntityRatings { get; set; }
         public virtual DbSet<EntityTypes> EntityTypes { get; set; }
+        public virtual DbSet<ItemsForReview> ItemsForReviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -202,8 +203,8 @@ namespace Trainer.EF
                     EmailConfirmed = true,
                     FirstName = "ahmed",
                     LastName = "kabbash",
-                    UserName = "Admin",
-                    PasswordHash = "1234",
+                    UserName = "Admin"
+                    //PasswordHash = "1234",
 
                 });
             });
@@ -458,6 +459,12 @@ namespace Trainer.EF
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Products_Products_Subcategories");
+
+                entity.HasOne(d => d.Seller)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.CreatedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Products_AspNetUsers_CreatedBy");
             });
 
             modelBuilder.Entity<ProductsCategories>(entity =>

@@ -4,6 +4,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserAccountRoutingModule } from './user-account-routing.module';
+import { UserAccountComponent } from './user-account.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { UserAccountRoutingModule } from './user-account-routing.module';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [ LoginPageComponent, RegisterComponent]
+  declarations: [ LoginPageComponent, RegisterComponent, UserAccountComponent]
 })
 export class UserAccountModule { }

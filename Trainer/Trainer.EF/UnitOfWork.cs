@@ -2,11 +2,8 @@
 using Shared.Core;
 using Shared.Core.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using Trainer.EF;
 
 namespace Trainer.EF
 {
@@ -157,6 +154,20 @@ namespace Trainer.EF
                 return _articleCategoriesRepo;
             }
         }
+
+        private IRepository<ItemsForReview> _itemsReviewRepo;
+        public IRepository<ItemsForReview> ItemsReviewsRepository
+        {
+            get
+            {
+                if (_itemsReviewRepo == null)
+                {
+                    _itemsReviewRepo = new Repository<ItemsForReview>(_dbContext);
+                }
+                return _itemsReviewRepo;
+            }
+        }
+
         #endregion
 
         public UnitOfWork(EFSContext context)

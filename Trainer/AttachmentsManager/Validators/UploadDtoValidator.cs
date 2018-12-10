@@ -1,7 +1,4 @@
 ﻿using Attachments.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using FluentValidation;
 using Microsoft.Extensions.Options;
 using Shared.Core.Resources;

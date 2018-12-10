@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { config } from 'src/app/config/pages-config';
-import { environment } from 'src/environments/environment';
-import { RepositoryService } from 'src/app/shared/services/repository.service';
-import { productListItemDto } from 'src/app/shared/models/product-list-item-dto';
+import { AppService } from '../../app.service';
+import { productListItemDto } from '../../shared/models/product-list-item-dto';
+import { environment } from '../../../environments/environment';
+import { RepositoryService } from '../../shared/services/repository.service';
+import { config } from '../../config/pages-config';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-all-products',
@@ -14,25 +16,27 @@ export class ProductsListComponent implements OnInit {
 
   products: productListItemDto[];
   baseurl = environment.filesBaseUrl;
+  selectedProduct: productListItemDto;
   categoryId: number;
-  constructor(private router: Router, private route: ActivatedRoute, private repositoryService: RepositoryService) {
+  @ViewChild('modal') productModal: ModalComponent;
+  constructor(private router: Router, private route: ActivatedRoute,
+     private repositoryService: RepositoryService,
+     private appService: AppService) {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
     });
   }
 
   ngOnInit() {
-    this.getProducts();
-  }
-
-  getProducts() {
-    this.repositoryService.getData<productListItemDto[]>('products/category/' + this.categoryId).subscribe(result => {      
-      this.products = result.data;
-      console.log(this.products);
+    this.route.data.subscribe(result => {
+      this.products = result.productList.data;
+      this.appService.loading = false;
     });
   }
 
-  goToProductRating() {
-    this.router.navigate([config.products.productRating.route]);
+
+
+  openProductModal(product) {
+    this.selectedProduct = product;
   }
 }
