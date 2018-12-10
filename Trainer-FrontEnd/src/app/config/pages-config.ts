@@ -79,4 +79,12 @@ export let config = {
             'route': '/demos/pagination',
         }
     },
+    'admin': {
+      'name': 'admin',
+      'route': '/admin',
+      'addArticleCategory': {
+        'name': 'addArticleCategory',
+        'route': '/addArticleCategory'
+      }
+    }
 };

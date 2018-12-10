@@ -29,6 +29,10 @@ const routes: Routes = [
     path: config.demos.route,
     loadChildren: './demos/demos.module#DemosModule',
   },
+  {
+    path: config.admin.name,
+    loadChildren: './admin-tools/admin-tools.module#AdminToolsModule'
+  },
   { path: '**', redirectTo: 'home' }
 ];
 
