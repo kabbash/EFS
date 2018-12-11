@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { RepositoryService } from 'src/app/shared/services/repository.service';
 
 import { map } from 'rxjs/operators';
-import { apiUrl } from 'src/config/api.config';
+import { RepositoryService } from '../../shared/services/repository.service';
+import { apiUrl } from '../../../config/api.config';
 
 @Injectable({
   providedIn: 'root'
