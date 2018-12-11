@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { RepositoryService } from 'src/app/shared/services/repository.service';
 
 import { map } from 'rxjs/operators';
-import { apiUrl } from 'src/config/api.config';
+import { RepositoryService } from '../../shared/services/repository.service';
+import { apiUrl } from '../../../config/api.config';
+import { User } from '../models/user';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
 
   constructor(private repositoryService: RepositoryService) { }

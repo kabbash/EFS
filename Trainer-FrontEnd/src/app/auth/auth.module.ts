@@ -5,7 +5,7 @@ import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './helpers/auth.Interceptor';
+import { AuthInterceptor } from './helpers/auth.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 @NgModule({
   imports: [
@@ -26,6 +26,6 @@ export class AuthModule {
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
       ]
-    }
+    };
   }
 }
