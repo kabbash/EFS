@@ -4,9 +4,7 @@ import { map } from 'rxjs/operators';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { apiUrl } from '../../../config/api.config';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
 
   constructor(private repositoryService: RepositoryService) { }
