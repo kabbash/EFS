@@ -1,6 +1,6 @@
 :host {
-    width: 80%;
-    height: 450px;
+    width: 400px;
+    height: 350px;
     display: flex;
     margin: 38px 15px 0;
     background: rgba(255, 255, 255, .75);
@@ -11,7 +11,7 @@
 }
 
 .card-img-container {
-    flex: 1;
+    flex: 0 0 203px;
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -39,13 +39,21 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+.card-title-container p.short-desc p{
+    margin: 0;
+}
 div.read-more {
     padding: 0 2%;
     font-size: 18px;
     color: #00bcd4;
     text-align: left;
     margin-bottom: 14px;
+}
+
+div.read-more:hover {
+    text-decoration: underline;
+    font-size: 20px;
+    transition: font-size .3s ease;
 }
 
 .read-more span{

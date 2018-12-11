@@ -10,9 +10,21 @@
     color: #fff;
     margin: 0;
     height: 50px;
-    font-size: 25px
+    font-size: 25px;
+    animation: myfont 2s;
+    animation-iteration-count: 10000;
   }
 
+  /* .why-sect p.animate-offer{
+    font-size: 18px;
+    color: aliceblue;
+  } */
+
+  @keyframes myfont {
+    0% {font-size:18px;}
+    50% {font-size:25px;}
+    100% {font-size:18px;}
+  }
   
   @media (max-width: 520px) {
     .why-sect p {
