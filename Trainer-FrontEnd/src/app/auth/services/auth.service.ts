@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { apiUrl } from '../../../config/api.config';
+import { User } from '../models/user';
 
 @Injectable()
 export class AuthService {
