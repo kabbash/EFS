@@ -22,6 +22,10 @@
     font-size: 40px;
     font-weight: 800;
   }
+
+  .auto-margin{
+    margin: auto !important;
+  }
   
   #quote-carousel {
     padding: 0 10px 30px 10px;
