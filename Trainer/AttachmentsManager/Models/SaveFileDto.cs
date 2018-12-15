@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Shared.Core.Utilities;
+using Shared.Core.Utilities.Enums;
 
 namespace Attachments.Core.Models
 {

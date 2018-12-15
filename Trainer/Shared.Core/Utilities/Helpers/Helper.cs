@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Shared.Core.Utilities
+namespace Shared.Core.Utilities.Helpers
 {
     public static class Helper
     {

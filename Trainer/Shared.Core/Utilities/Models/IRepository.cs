@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Shared.Core
+namespace Shared.Core.Utilities.Models
 {
     public interface IRepository<TEntity>
 

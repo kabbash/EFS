@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shared.Core;
 using Shared.Core.Models;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Linq;
 using System.Reflection;

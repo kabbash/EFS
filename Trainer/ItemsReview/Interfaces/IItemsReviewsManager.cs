@@ -1,8 +1,5 @@
 ﻿using ItemsReview.Models;
-using Shared.Core.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Shared.Core.Utilities.Models;
 
 namespace ItemsReview.Interfaces
 {

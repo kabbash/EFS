@@ -12,7 +12,7 @@
     height: 50px;
     font-size: 25px;
     animation: myfont 2s;
-    animation-iteration-count: 10000;
+    /* animation-iteration-count: 10000; */
   }
 
   /* .why-sect p.animate-offer{

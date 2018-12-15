@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shared.Core.Utilities
+namespace Shared.Core.Utilities.Enums
 {  
     public enum ProductsErrorsCodeEnum
     {

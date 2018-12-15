@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181215092201_add_SpecialProductKey")]
+    partial class add_SpecialProductKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,8 +38,6 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired();
-
-                    b.Property<bool>("IsActive");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -128,10 +128,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "3c36fa5c-a2ae-4cdb-acaf-ea8ae95d3724", Name = "Client" },
-                        new { Id = "4d81fd82-afb7-4b9e-b626-16426452c972", Name = "RegularUser" },
-                        new { Id = "318eb328-d58f-4d0d-96f5-18f92c34baba", Name = "Trainer" },
-                        new { Id = "64d55e0a-9afd-402c-b252-6add865ed539", Name = "ArticleWriter" }
+                        new { Id = "0f05de72-f93c-4290-b070-a510a6dd9e59", Name = "Client" },
+                        new { Id = "e542b29c-89af-4d12-95c4-0614aa698d12", Name = "RegularUser" },
+                        new { Id = "cc4d4a9c-3e3b-4da2-ae9a-4a94cac04320", Name = "Trainer" },
+                        new { Id = "d1e1fa1b-af56-4461-8c43-9f6d7916be40", Name = "ArticleWriter" }
                     );
                 });
 

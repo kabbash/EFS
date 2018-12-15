@@ -10,6 +10,8 @@ namespace Shared.Core.Models
         public Products()
         {
             ProductsImages = new HashSet<ProductsImages>();
+            IsActive = false;
+            IsSpecial = false;
         }
 
         public int Id { get; set; }
@@ -27,6 +29,7 @@ namespace Shared.Core.Models
         public bool IsActive { get; set; }
         [Column(TypeName = "decimal(10,2)")]
         public decimal Rate { get; set; }
+        public bool IsSpecial { get; set; }
 
         [ForeignKey("CategoryId")]
         public virtual ProductsCategories Category { get; set; }

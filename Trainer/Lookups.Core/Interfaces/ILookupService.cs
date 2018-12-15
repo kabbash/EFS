@@ -1,4 +1,4 @@
-﻿using Shared.Core.Utilities;
+﻿using Shared.Core.Utilities.Models;
 
 namespace Lookups.Core.Interfaces
 {
