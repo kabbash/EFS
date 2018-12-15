@@ -4,5 +4,6 @@ import { articleCategoryDto } from 'src/app/shared/models/article-category-dto';
 @Injectable()
 export class ArticleCategoriesService {
   articleCategoryToEdit: articleCategoryDto;
+  categoryList: articleCategoryDto[];
   constructor() {}
 }

@@ -15,16 +15,16 @@ export class ManageArticlesCategoriesComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private categoryService: ArticleCategoriesService) { }
+    public categoryService: ArticleCategoriesService) { }
 
   ngOnInit() {
     this.route.data.subscribe(result => {
-      this.categories = result.categories.data;
+      this.categoryService.categoryList = result.categories.data;
     });
   }
 
   gotoAddArticleCategory() {
-    this.categoryService.articleCategoryToEdit = null;
+    this.categoryService.articleCategoryToEdit = new articleCategoryDto();
     this.router.navigate([config.admin.addArticleCategory.route]);
   }
 

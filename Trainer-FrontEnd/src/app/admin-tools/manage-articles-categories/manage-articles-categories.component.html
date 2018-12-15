@@ -1,2 +1,2 @@
 <button  class="btn" (click)="gotoAddArticleCategory()"><i class="fa fa-plus"></i></button>
-<app-articles-card  *ngFor="let category of categories" [editMode]="true" [articleCategory]="category"></app-articles-card>
+<app-articles-card  *ngFor="let category of categoryService.categoryList" [editMode]="true" [articleCategory]="category"></app-articles-card>
