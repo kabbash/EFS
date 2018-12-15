@@ -84,7 +84,11 @@ export let config = {
       'route': '/admin',
       'addArticleCategory': {
         'name': 'addArticleCategory',
-        'route': '/addArticleCategory'
+        'route': '/admin/addArticleCategory'
+      },
+      'manageArticlesCategories': {
+        'name': 'manageArticlesCategories',
+        'route': '/admin/manageArticlesCategories'
       }
     }
 };

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from './app.service';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,12 @@ export class AppComponent implements OnInit {
         this.appService.loading = true;
       }
       if (event instanceof NavigationEnd) {
+        this.appService.loading = false;
+      }
+      if (event instanceof NavigationCancel) {
+        this.appService.loading = false;
+      }
+      if (event instanceof NavigationError) {
         this.appService.loading = false;
       }
     });

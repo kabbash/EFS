@@ -1,34 +1,36 @@
-<div class="row">
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
-        <strong>Basic Form</strong> Elements
-      </div>
-      <div class="card-body">
-        <form (submit)="addCategory()" class="form-horizontal" [formGroup]="categoryForm">
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">الاسم</label>
-            <div class="col-md-9">
-              <input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text" formControlName="name">
-              <span class="help-block">This is a help text</span>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Basic Form</strong> Elements
+        </div>
+        <div class="card-body">
+          <form (submit)="addCategory()" class="form-horizontal" [formGroup]="categoryForm">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">الاسم</label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text" formControlName="name" [(ngModel)]="articleCategory.name">
+                <span class="help-block">This is a help text</span>
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="file-input">File input</label>
-            <div class="col-md-9">
-              <app-file-uploader formControlName=profilePictureFile></app-file-uploader>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="file-input">File input</label>
+              <div class="col-md-9">
+                <app-file-uploader formControlName=profilePictureFile (change)="onFileSelect($event.target.files[0])"></app-file-uploader>
+              </div>
             </div>
-          </div>
-          <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
-            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-          </div>
-        </form>
-      </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+              <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+            </div>
+          </form>
+        </div>
 
+      </div>
     </div>
-  </div>
-  <div class="col-md-6">
-    <app-articles-card></app-articles-card>
+    <div class="col-md-6">
+      <app-articles-card [localImageUrl]="imageAdded" [editMode]="true" [articleCategory]="articleCategory"></app-articles-card>
+    </div>
   </div>
 </div>
