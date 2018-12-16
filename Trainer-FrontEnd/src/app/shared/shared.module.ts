@@ -14,6 +14,7 @@ import { SiteMapComponent } from './site-map/site-map.component';
 import { UtilitiesService } from './services/utilities.service';
 import {RouterModule} from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 
 @NgModule({
   imports: [
@@ -26,11 +27,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   exports: [
     TranslateModule, HeaderComponent, FooterComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
-    ProductItemComponent, CommentsComponent, SiteMapComponent
+    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
-    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent],
+    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent],
   providers: [
     UtilitiesService
   ]

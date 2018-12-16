@@ -38,7 +38,7 @@ namespace Attachments.Core.Services
                 
                 var rootPath = _hostingEnvironment.WebRootPath;
 
-                var fileName = fileDto.CanChangeName ? $"{Guid.NewGuid()}.{Path.GetExtension(fileDto.File.Name)}" : fileDto.File.Name;
+                var fileName = fileDto.CanChangeName ? $"{Guid.NewGuid()}.{Path.GetExtension(fileDto.File.FileName)}" : fileDto.File.Name;
 
                 var attachmentPath = Path.Combine(GetAttachmentTypePath(fileDto.attachmentType), fileDto.SubFolderName ?? "");
                 var relativeFilePath = Path.Combine(attachmentPath, fileName);

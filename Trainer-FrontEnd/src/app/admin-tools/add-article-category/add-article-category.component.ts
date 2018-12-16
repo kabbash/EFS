@@ -38,7 +38,7 @@ export class AddArticleCategoryComponent implements OnInit {
 
     const formData = new FormData();
     formData.append('name', formModel.name);
-    formData.append('profilePictureFile', formModel.avatar);
+    formData.append('profilePictureFile', formModel.profilePictureFile);
 
     return formData;
   }
