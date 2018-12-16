@@ -1,5 +1,5 @@
 ﻿using Products.Core.Models;
-using Shared.Core.Utilities;
+using Shared.Core.Utilities.Models;
 
 namespace Products.Core.Interfaces
 {

@@ -1,7 +1,7 @@
 ﻿using Shared.Core.Models;
 using System;
 
-namespace Shared.Core
+namespace Shared.Core.Utilities.Models
 {
     public interface IUnitOfWork : IDisposable
     {

@@ -2,10 +2,10 @@
 using Attachments.Core.Interfaces;
 using Attachments.Core.Models;
 using Lookups.Core.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Core.Models;
-using Shared.Core.Utilities;
+using Shared.Core.Utilities.Enums;
+using Shared.Core.Utilities.Models;
 
 namespace Trainer.Controllers
 {

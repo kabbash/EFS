@@ -1,6 +1,6 @@
 ﻿using Rating.Core.Models;
 using Shared.Core.Models.Base;
-using Shared.Core.Utilities;
+using Shared.Core.Utilities.Models;
 
 namespace Rating.Core.Interfaces
 {
