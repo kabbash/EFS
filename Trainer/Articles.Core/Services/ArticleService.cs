@@ -1,12 +1,14 @@
-﻿using Articles.Core.Interfaces;
+﻿using Articles.Core.Extensions;
+using Articles.Core.Interfaces;
 using Articles.Core.Models;
 using Attachments.Core.Interfaces;
 using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
-using Shared.Core;
 using Shared.Core.Models;
-using Shared.Core.Utilities;
+using Shared.Core.Utilities.Enums;
+using Shared.Core.Utilities.Extensions;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,15 +48,15 @@ namespace Articles.Core.Services
 
             }
         }
-        public ResultMessage GetAll()
+        public ResultMessage GetAll(int pageNo, int pageSize, ArticlesFilter filter=null)
         {
             try
             {
-                IEnumerable<ArticleGetDto> result = new List<ArticleGetDto>();
-                result = _unitOfWork.ArticlesRepository.Get().Adapt(result);
+                PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
+                result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).GetPaged(pageNo,pageSize).Adapt(result);
                 return new ResultMessage
                 {
-                    Data = result.ToList(),
+                    Data = result,
                     Status = HttpStatusCode.OK
                 };
             }

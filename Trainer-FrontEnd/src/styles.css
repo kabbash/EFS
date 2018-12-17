@@ -79,7 +79,7 @@ div.modal-body {
 
 .modal-body .modal-description{
   flex: 1;
-  padding-top:20px; 
+  padding-top:20px;
 }
 
 .modal-close-container {
@@ -120,6 +120,10 @@ div.modal-body {
 }
 
 .rating-word{
+  color: #00bcd4;
+}
+
+.secondary-color{
   color: #00bcd4;
 }
 

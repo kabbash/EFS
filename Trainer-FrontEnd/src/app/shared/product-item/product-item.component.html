@@ -9,7 +9,7 @@
 <div class="price-rating">
   <span>{{price}}</span>
   <span>
-    <ngb-rating [(rate)]="currentRate" [readonly]="true" max="3" class="star">
+    <ngb-rating [(rate)]="currentRate" [readonly]="true" max="5" class="star">
       <ng-template let-fill="fill" let-index="index">
         <span class="star" [class.filled]="fill === 100">&#9733;</span>
       </ng-template>

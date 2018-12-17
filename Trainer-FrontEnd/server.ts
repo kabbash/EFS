@@ -6,7 +6,12 @@ import { enableProdMode } from '@angular/core';
 
 import * as express from 'express';
 import { join } from 'path';
+import 'localstorage-polyfill';
+const MockBrowser = require('mock-browser').mocks.MockBrowser;
+const mock = new MockBrowser();
 
+global['localStorage'] = localStorage;
+global['window'] = mock.getWindow();
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 

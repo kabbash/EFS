@@ -4,7 +4,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;
 using Shared.Core.Resources;
-using Shared.Core.Utilities;
+using Shared.Core.Utilities.Enums;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -115,6 +115,5 @@ namespace Attachments.Core.Services
                     throw new NotImplementedException();
             }
         }
-
     }
 }
