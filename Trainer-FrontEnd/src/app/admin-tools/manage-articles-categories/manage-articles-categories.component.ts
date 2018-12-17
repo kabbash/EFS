@@ -24,7 +24,7 @@ export class ManageArticlesCategoriesComponent implements OnInit {
   }
 
   gotoAddArticleCategory() {
-    this.categoryService.articleCategoryToEdit = new articleCategoryDto();
+    this.categoryService.articleCategoryToEdit = null;
     this.router.navigate([config.admin.addArticleCategory.route]);
   }
 

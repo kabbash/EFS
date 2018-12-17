@@ -14,6 +14,7 @@ export class AddArticleCategoryComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private reposatoryService: RepositoryService,
     private categoryService: ArticleCategoriesService) { }
+
   categoryForm: FormGroup;
   imageUrl: string;
   articleCategory: articleCategoryDto = new articleCategoryDto();
@@ -23,16 +24,34 @@ export class AddArticleCategoryComponent implements OnInit {
       'name': ['', Validators.required],
       'profilePictureFile': [{}, Validators.required]
     });
-    this.articleCategory = this.categoryService.articleCategoryToEdit;
+    this.articleCategory = this.categoryService.articleCategoryToEdit || new articleCategoryDto();
+  }
+  submit() {
+    if (this.categoryForm.valid) {
+      if (this.categoryService.articleCategoryToEdit) {
+        this.updateCategory();
+      } else {
+        this.addCategory();
+      }
+    } else {
+      alert('form not valid');
+    }
   }
   addCategory() {
-    if (this.categoryForm.valid) {
-      this.reposatoryService.create('Articles/Categories', this.prepareData()).subscribe(data => {
+    this.reposatoryService.create('Articles/Categories', this.prepareData()).subscribe(data => {
+      alert('success');
+    }, error => {
+      alert(error);
+    });
+  }
+  updateCategory() {
+    this.reposatoryService.update('Articles/Categories/' + this.articleCategory.id, this.articleCategory).subscribe(
+      () => {
         alert('success');
       }, error => {
         alert(error);
-      });
-    }
+      }
+    )
   }
   prepareData() {
     const formModel = this.categoryForm.value;

@@ -8,7 +8,7 @@ namespace Articles.Core.Validators
         public ArticlesCategoriesValidator()
         {
             RuleFor(model => model.Name).NotEmpty();
-            RuleFor(model => model.ProfilePictureFile).NotEmpty();
+            // RuleFor(model => model.ProfilePictureFile).NotEmpty();
         }
     }
 }

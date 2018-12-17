@@ -54,6 +54,15 @@ namespace Trainer.Controllers
         [HttpPut("{id}")]
         public ActionResult<ResultMessage> Put(int id, [FromBody] ArticlesCategoriesDto category)
         {
+            if (category.ProfilePictureFile != null) {
+                category.ProfilePicture = _attachmentManager.Save(new SavedFileDto
+                {
+                attachmentType = AttachmentTypesEnum.Articles_Categories,
+                CanChangeName = true,
+                File = category.ProfilePictureFile
+                });
+            }
+              
             return GetStatusCodeResult(_Manager.Update(category, id));
         }
 
