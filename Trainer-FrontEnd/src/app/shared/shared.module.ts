@@ -13,23 +13,32 @@ import { CommentsComponent } from './comments/comments.component';
 import { SiteMapComponent } from './site-map/site-map.component';
 import { UtilitiesService } from './services/utilities.service';
 import {RouterModule} from '@angular/router';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FileUploaderComponent } from './file-uploader/file-uploader.component';
+import { ArticleCategoriesResolver } from './resolvers/article-categories.resolver';
 
 @NgModule({
   imports: [
     CommonModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
     TranslateModule, HeaderComponent, FooterComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
-    ProductItemComponent, CommentsComponent, SiteMapComponent
+    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
-    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent],
+    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent],
   providers: [
-    UtilitiesService
+    UtilitiesService,
+    ArticleCategoriesResolver
   ]
 })
 export class SharedModule { }

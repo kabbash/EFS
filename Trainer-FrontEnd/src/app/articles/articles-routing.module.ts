@@ -5,9 +5,9 @@ import { config } from '../config/pages-config';
 import { ArticlesCatergoriesComponent } from './articles-catergories/articles-catergories.component';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
-import { ArticleCategoriesResolver } from './resolvers/article-categories.resolver';
 import { ArticleDetailsResolver } from './resolvers/article-details.resolver';
 import { ArticleListResolver } from './resolvers/article-list.resolver';
+import { ArticleCategoriesResolver } from '../shared/resolvers/article-categories.resolver';
 
 const routes: Routes = [
   {
