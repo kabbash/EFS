@@ -52,7 +52,7 @@ namespace Trainer.Controllers
 
         // PUT api/calories/5
         [HttpPut("{id}")]
-        public ActionResult<ResultMessage> Put(int id, [FromBody] ArticlesCategoriesDto category)
+        public ActionResult<ResultMessage> Put(int id, [FromForm] ArticlesCategoriesDto category)
         {
             if (category.ProfilePictureFile != null) {
                 category.ProfilePicture = _attachmentManager.Save(new SavedFileDto
@@ -68,7 +68,7 @@ namespace Trainer.Controllers
 
         // DELETE api/calories/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(byte id)
+        public ActionResult Delete(int id)
         {
             return GetStatusCodeResult(_Manager.Delete(id));
         }       

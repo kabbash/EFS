@@ -38,14 +38,14 @@ export class AddArticleCategoryComponent implements OnInit {
     }
   }
   addCategory() {
-    this.reposatoryService.create('Articles/Categories', this.prepareData()).subscribe(data => {
+    this.reposatoryService.create('Articles/Categories', this.prepareData(this.categoryForm.value)).subscribe(data => {
       alert('success');
     }, error => {
       alert(error);
     });
   }
   updateCategory() {
-    this.reposatoryService.update('Articles/Categories/' + this.articleCategory.id, this.articleCategory).subscribe(
+    this.reposatoryService.update('Articles/Categories/' + this.articleCategory.id, this.prepareData(this.articleCategory)).subscribe(
       () => {
         alert('success');
       }, error => {
@@ -53,17 +53,19 @@ export class AddArticleCategoryComponent implements OnInit {
       }
     )
   }
-  prepareData() {
-    const formModel = this.categoryForm.value;
-
+  prepareData(categoryData) {
     const formData = new FormData();
-    formData.append('name', formModel.name);
-    formData.append('profilePictureFile', formModel.profilePictureFile);
+    formData.append('name', categoryData.name);
+    formData.append('profilePictureFile', categoryData.profilePictureFile);
+    formData.append('createdAt', categoryData.createdAt);
+    formData.append('createdBy', categoryData.createdBy);
+    
 
     return formData;
   }
 
   onFileSelect(file) {
+    this.articleCategory.profilePictureFile = file;    
     const reader = new FileReader();
     reader.onload = (e: any) => {
       this.articleCategory.profilePicture = e.target.result;

@@ -13,7 +13,6 @@ import { RepositoryService } from '../services/repository.service';
 })
 export class ArticlesCardComponent implements OnInit {
 
-
   @Input() cardName: string;
   @Input() cardImage: string;
   @Input() editMode = false;
