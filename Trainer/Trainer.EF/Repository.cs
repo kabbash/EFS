@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shared.Core;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Linq;
 using System.Linq.Expressions;

@@ -37,6 +37,8 @@ namespace Trainer.EF.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
+                    b.Property<bool>("IsActive");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -126,10 +128,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "662f74fe-9de9-4b4c-b778-ad2227e09dc5", Name = "Client" },
-                        new { Id = "1a3d5ce7-e06a-4092-8089-bb307bd8a8f4", Name = "RegularUser" },
-                        new { Id = "fb404ba2-13c9-4c54-ac59-b7b15f1e359c", Name = "Trainer" },
-                        new { Id = "b82395de-efa9-4569-800d-144c6f43baca", Name = "ArticleWriter" }
+                        new { Id = "3c36fa5c-a2ae-4cdb-acaf-ea8ae95d3724", Name = "Client" },
+                        new { Id = "4d81fd82-afb7-4b9e-b626-16426452c972", Name = "RegularUser" },
+                        new { Id = "318eb328-d58f-4d0d-96f5-18f92c34baba", Name = "Trainer" },
+                        new { Id = "64d55e0a-9afd-402c-b252-6add865ed539", Name = "ArticleWriter" }
                     );
                 });
 
@@ -622,6 +624,8 @@ namespace Trainer.EF.Migrations
                         .HasColumnType("date");
 
                     b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsSpecial");
 
                     b.Property<string>("Name")
                         .IsRequired()

@@ -1,7 +1,7 @@
 ﻿using Lookups.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Core.Models;
-using Shared.Core.Utilities;
+using Shared.Core.Utilities.Models;
 using test.core.Model;
 
 namespace Trainer.Controllers

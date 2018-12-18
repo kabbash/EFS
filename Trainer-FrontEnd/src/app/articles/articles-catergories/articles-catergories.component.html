@@ -1,3 +1,4 @@
-<app-site-map [map]="articlesMap"></app-site-map>
+
+<!-- <app-site-map [map]="articlesMap"></app-site-map> -->
 <app-articles-card *ngFor="let category of categories" (click)="articlesList(category.id)" [cardName]="category.name" [cardImage]="'url(' + baseurl + category.profilePicture + ')'" [articleCategory]="category"></app-articles-card>
 <!-- <app-articles-paging></app-articles-paging> -->

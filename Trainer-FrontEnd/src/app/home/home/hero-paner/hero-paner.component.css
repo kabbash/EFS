@@ -43,6 +43,12 @@
   width: 100%;
 }
 
+.dashboard-carousel{
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  height: 560px;
+}
 @media (min-width: 40em) {
 
   /* Bump up size of carousel content */

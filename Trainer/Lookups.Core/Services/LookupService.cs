@@ -1,8 +1,9 @@
 ﻿using FluentValidation;
 using Lookups.Core.Interfaces;
 using Mapster;
-using Shared.Core;
-using Shared.Core.Utilities;
+using Shared.Core.Utilities.Enums;
+using Shared.Core.Utilities.Extensions;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

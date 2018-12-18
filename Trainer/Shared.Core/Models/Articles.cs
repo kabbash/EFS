@@ -7,6 +7,10 @@ namespace Shared.Core.Models
 {
     public partial class Articles : IBaseModel
     {
+        public Articles()
+        {
+            IsActive = false;
+        }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -16,6 +20,7 @@ namespace Shared.Core.Models
         public DateTime? UpdatedAt { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
+        public bool IsActive { get; set; }
 
         [ForeignKey("CreatedBy")]
         public virtual AspNetUsers Author { get; set; }

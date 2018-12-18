@@ -9,17 +9,17 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    children: [
-      {
-        path: config.login.loginPage.name,
-        component: LoginPageComponent
-      },
-      {
-        path: config.login.register.name,
-        component: RegisterComponent
-      }
+    // children: [
+    //   {
+    //     path: config.login.loginPage.name,
+    //     component: LoginPageComponent
+    //   },
+    //   {
+    //     path: config.login.register.name,
+    //     component: RegisterComponent
+    //   }
 
-    ]
+    // ]
   }
 ];
 

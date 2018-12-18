@@ -2,13 +2,11 @@
 using Mapster;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.Extensions.Options;
-using Shared.Core;
 using Shared.Core.Models;
 using Shared.Core.Resources;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using test.core.Interfaces;
 using test.core.Model;
 

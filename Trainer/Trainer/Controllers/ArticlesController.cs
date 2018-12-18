@@ -17,9 +17,19 @@ namespace Trainer.Controllers
             _articlesService = articlesService;
         }
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult Get(int pageNo = 1,int pageSize=10)
         {
-            return GetStatusCodeResult(_articlesService.GetAll());
+            return GetStatusCodeResult(_articlesService.GetAll(pageNo,pageSize));
+        }
+
+        [HttpGet("GetActiveItems")]
+        public ActionResult GetActiveItems(int pageNo = 1, int pageSize = 10)
+        {
+            var filter = new ArticlesFilter
+            {
+                IsActive = true
+            };
+            return GetStatusCodeResult(_articlesService.GetAll(pageNo , pageSize , filter));
         }
 
         [HttpGet("{id}")]
