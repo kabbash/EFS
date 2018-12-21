@@ -20,7 +20,7 @@ export function createFileUploaderValidator(required: boolean) {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => FileUploaderComponent),
       multi: true
-    },
+    }
     , {
       provide: NG_VALIDATORS,
       useExisting: forwardRef(() => FileUploaderComponent),
