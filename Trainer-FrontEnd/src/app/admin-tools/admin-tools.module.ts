@@ -5,7 +5,9 @@ import { AddArticleCategoryComponent } from './add-article-category/add-article-
 import { AdminToolsComponent } from './admin-tools.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 import { ManageArticlesCategoriesComponent } from './manage-articles-categories/manage-articles-categories.component';
+import { ManageProductsCategoriesComponent } from './manage-products-categories/manage-products-categories.component';
 
 @NgModule({
   imports: [
@@ -14,7 +16,13 @@ import { ManageArticlesCategoriesComponent } from './manage-articles-categories/
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [AddArticleCategoryComponent, AdminToolsComponent, ManageArticlesCategoriesComponent],
+  declarations:
+  [
+    AddArticleCategoryComponent,
+    AdminToolsComponent,
+    ManageCategoriesComponent,
+    ManageArticlesCategoriesComponent,
+    ManageProductsCategoriesComponent],
   providers: [
   ]
 })

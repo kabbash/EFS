@@ -89,6 +89,10 @@ export let config = {
       'manageArticlesCategories': {
         'name': 'manageArticlesCategories',
         'route': '/admin/manageArticlesCategories'
+      },
+      'manageProductsCategories': {
+        'name': 'manageProductsCategories',
+        'route': '/admin/manageProductsCategories'
       }
     }
 };
