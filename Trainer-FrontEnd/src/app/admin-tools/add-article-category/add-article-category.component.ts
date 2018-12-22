@@ -57,8 +57,10 @@ export class AddArticleCategoryComponent implements OnInit {
     const formData = new FormData();
     formData.append('name', categoryData.name);
     formData.append('profilePictureFile', categoryData.profilePictureFile);
-    formData.append('createdAt', categoryData.createdAt);
-    formData.append('createdBy', categoryData.createdBy);
+    formData.append('createdAt', categoryData.createdAt ? categoryData.createdAt : new Date().toISOString());
+    formData.append('createdBy', categoryData.createdBy ? categoryData.createdBy : 'admin');
+    formData.append('profilePicture', categoryData.profilePicture ? categoryData.profilePicture : '');
+    
     
 
     return formData;

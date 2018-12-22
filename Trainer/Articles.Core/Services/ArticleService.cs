@@ -92,6 +92,29 @@ namespace Articles.Core.Services
                 };
             }
         }
+        public ResultMessage GetByPredefinedCategoryKey(int id)
+        {
+            try
+            {
+                IEnumerable<ArticleGetDto> result = new List<ArticleGetDto>();
+                var categoryId = _unitOfWork.ArticlesCategoriesRepository.Get(c => c.PredefinedKey == id).SingleOrDefault().Id;
+                result = _unitOfWork.ArticlesRepository.Get(c => c.CategoryId == categoryId).Adapt(result);
+                return new ResultMessage
+                {
+                    Data = result.ToList(),
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new ResultMessage()
+                {
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
+                    Status = HttpStatusCode.InternalServerError
+                };
+            }
+        }
         public ResultMessage GetById(int id)
         {
             try
