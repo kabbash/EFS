@@ -1,16 +1,6 @@
 
 /* know your coach */
 .Coach {
-    /* The image used */
-    background-image: url("./../../../../assets/images/homepage-trainer.png");
-  
-    /* Set a specific height */
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     padding-top: 60px;
     position: relative;
     overflow: hidden;
@@ -24,18 +14,31 @@
     bottom: 0;
   }
   .Coach .header-section h3 {
-    color: #fff !important;
+    color: #333 !important;
     font-size: 40px;
     font-weight: 800;
   }
   
   .coach-data {
     padding-top: 55px;
-    color: #fff;
+    color: #333;
   }
   .button-stroke a:hover {
    text-decoration: unset;
-   color: white;
+   color: #333;
+}
+.button-stroke{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button-stroke a.button-white{
+  color : #333;
+}
+.counter .count-text {
+  color: #00bcd4;
+  font-size: 28px;
+  margin-top: 30px;
 }
 @media (max-width: 767px) {
 .row{

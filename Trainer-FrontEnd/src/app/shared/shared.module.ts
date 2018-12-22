@@ -16,6 +16,7 @@ import {RouterModule} from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 import { ArticleCategoriesResolver } from './resolvers/article-categories.resolver';
+import { ArticleCategoriesService } from '../admin-tools/services/article-categories.service';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { ArticleCategoriesResolver } from './resolvers/article-categories.resolv
     ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent],
   providers: [
     UtilitiesService,
-    ArticleCategoriesResolver
+    ArticleCategoriesResolver,
+    ArticleCategoriesService
   ]
 })
 export class SharedModule { }

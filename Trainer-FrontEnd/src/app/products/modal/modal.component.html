@@ -13,8 +13,8 @@
                   </div>
                   <div>
                       <span class="rate">
-                          <span class="rating-word">التقيم</span> &nbsp;
-                          <ngb-rating [(rate)]="product.rate" [readonly]="true" max="5" class="star rating-stars">
+                          <span class="rating-word">اضف تقييمك</span> &nbsp;
+                          <ngb-rating [(rate)]="product.rate"  max="5" class="star rating-stars">
                               <ng-template let-fill="fill" let-index="index">
                                   <span class="star" [class.filled-modal]="fill === 100">&#9733;</span>
                               </ng-template>
@@ -47,15 +47,6 @@
                   </div>
                   <div class="desc-item">
                       <div>
-                          <span class="desc-entity">تاريخ الإنتاج</span>
-                          &nbsp;
-                          :
-                          &nbsp;
-                          {{product.prodDate}}
-                      </div>
-                  </div>
-                  <div class="desc-item">
-                      <div>
                           <span class="desc-entity">تاريخ الإنتهاء</span>
                           &nbsp;
                           :
@@ -74,7 +65,7 @@
                   </div>
                   <div class="desc-item">
                       <div>
-                          <span class="desc-entity">الرقم</span>
+                          <span class="desc-entity">للشــراء</span>
                           &nbsp;
                           :
                           &nbsp;

@@ -13,6 +13,9 @@ import { articleListItemDto } from '../../shared/models/article-list-item-dto';
 })
 export class ArticlesListComponent implements OnInit {
 
+  currentPage = 3;
+  page = 4;
+  pageAdvanced = 2;
   articles: articleListItemDto[];
   baseurl = environment.filesBaseUrl;
   categoryId: number;

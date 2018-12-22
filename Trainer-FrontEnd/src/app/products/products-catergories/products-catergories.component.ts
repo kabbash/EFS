@@ -13,6 +13,9 @@ import { config } from '../../config/pages-config';
 })
 export class ProductsCatergoriesComponent implements OnInit {
 
+  currentPage = 3;
+  page = 4;
+  pageAdvanced = 2;
   categories: ProductCategoryDTO[];
   baseurl = environment.filesBaseUrl;
   private allCategories: ProductCategoryDTO[];

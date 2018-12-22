@@ -10,6 +10,51 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $(document).ready(function () {
+      if (document.body.clientWidth > 991) {
+        $('#navbarsExampleDefault li.dropdown').hover(
+          function () {
+            $(this).addClass('hovered-item');
+            $(this)
+              .find('.dropdown-menu')
+              .stop(true, true)
+              .delay(200)
+              .slideDown(200);
+          },
+          function () {
+            $(this).removeClass('hovered-item');
+            $(this)
+              .find('.dropdown-menu')
+              .stop(true, true)
+              .delay(200)
+              .slideUp(100);
+          }
+        );
+      } else {
+        $('.nav-item').click(function () {
+          if ($('.navbar-collapse').hasClass('open') && !$(this).hasClass('dropdown')) {
+            $('.navbar-collapse').removeClass('open');
+          }
+        });
+        $('#navbarsExampleDefault li.dropdown').click(function () {
+          if (!$(this).hasClass('hovered-item')) {
+            $(this).addClass('hovered-item');
+            $(this)
+              .find('.dropdown-menu')
+              .stop(true, true)
+              .delay(200)
+              .slideDown(200);
+          } else {
+            $(this).removeClass('hovered-item');
+            $(this)
+              .find('.dropdown-menu')
+              .stop(true, true)
+              .delay(200)
+              .slideUp(200);
+          }
+        });
+      }
+    });
   }
 
   SearchBox() {

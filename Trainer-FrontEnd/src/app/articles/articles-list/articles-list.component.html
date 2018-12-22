@@ -1,2 +1,9 @@
-<app-articles-list-item *ngFor="let article of articles" (click)="articlesDetails(article.id)" [cardName]="article.name" [cardImage]="'url(' + baseurl + article.profilePicture + ')'" [cardShortDescription]="article.description.substr(0,200)" ></app-articles-list-item>
-<!-- <app-articles-paging></app-articles-paging> -->
+<div class="products-container">
+    <app-articles-list-item *ngFor="let article of articles" (click)="articlesDetails(article.id)" [cardName]="article.name"
+        [cardImage]="'url(' + baseurl + article.profilePicture + ')'" [cardShortDescription]="article.description.substr(0,200)"></app-articles-list-item>
+</div>
+
+<div class="pagination-container">
+    <ngb-pagination [collectionSize]="120" [(page)]="pageAdvanced" [maxSize]="5" [rotate]="true" [ellipses]="false"
+        [boundaryLinks]="true"></ngb-pagination>
+</div>
