@@ -16,6 +16,7 @@ export class ArticlesCardComponent implements OnInit {
   @Input() cardName: string;
   @Input() cardImage: string;
   @Input() editMode = false;
+  @Input() addMode = false;  
   @Input() articleCategory: articleCategoryDto;
   @Input() localImageUrl = false;
   baseurl = environment.filesBaseUrl;
