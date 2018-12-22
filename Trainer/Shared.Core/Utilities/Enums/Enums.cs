@@ -12,4 +12,10 @@
     {
         Product = 1
     }
+
+    public enum PredefinedArticlesCategories
+    {
+        News = 1,
+        Food = 2
+    }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181222100909_Add_Predefined_Key_ArticleCategories")]
+    partial class Add_Predefined_Key_ArticleCategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,7 +79,7 @@ namespace Trainer.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<int?>("PredefinedKey");
+                    b.Property<int?>("PredefinedCategoryKey");
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
@@ -130,10 +132,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "3f8fbe80-843c-4973-b2cb-edd5cc7adef3", Name = "Client" },
-                        new { Id = "e357d87e-2243-4ad9-b292-d62b70127f6e", Name = "RegularUser" },
-                        new { Id = "ac2270bd-216b-4ebe-ae35-985dcdb7d3c8", Name = "Trainer" },
-                        new { Id = "f2400f39-2ad1-4768-ad71-6e8acc7001de", Name = "ArticleWriter" }
+                        new { Id = "0d706a31-8998-41f2-9e99-7a8d9afdd8c3", Name = "Client" },
+                        new { Id = "c9732565-1c73-4e11-a922-fe861ddd7b53", Name = "RegularUser" },
+                        new { Id = "bfade08c-cbbd-4324-963a-fbc7b9190db1", Name = "Trainer" },
+                        new { Id = "86b1413a-a7bf-49fe-a52a-9e5f8f2b54bb", Name = "ArticleWriter" }
                     );
                 });
 

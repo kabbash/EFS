@@ -7,6 +7,7 @@ namespace Articles.Core.Interfaces
     {
         ResultMessage GetAll(int pageNo, int pageSize , ArticlesFilter filter=null);
         ResultMessage GetByCategoryId(int id);
+        ResultMessage GetByPredefinedCategoryKey(int id);        
         ResultMessage Insert(ArticleAddDto product, string userId);
         ResultMessage GetById(int id);
         ResultMessage Update(ArticleAddDto product, int id, string userId);

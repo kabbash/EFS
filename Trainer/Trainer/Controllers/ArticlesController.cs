@@ -44,6 +44,12 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_articlesService.GetByCategoryId(id));
         }
 
+        [HttpGet("GetByCategoryKey/{id}")]
+        public ActionResult GetByPredefinedCategoryKey(int id)
+        {
+            return GetStatusCodeResult(_articlesService.GetByPredefinedCategoryKey(id));
+        }
+
         [HttpPost]
         [Authorize(Roles = "Admin, ArticleWriter")]
         public ActionResult Post([FromBody] ArticleAddDto articleDto)
