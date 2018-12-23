@@ -7,5 +7,6 @@ namespace Attachments.Core.Interfaces
     {
         string Save(SavedFileDto savedFile);
         Task<string> SaveAsync(SavedFileDto savedFile);
+        bool Delete(string filePath);
     }
 }
