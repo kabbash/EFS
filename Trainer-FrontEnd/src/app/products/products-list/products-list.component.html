@@ -1,6 +1,9 @@
-<app-product-item *ngFor="let product of products" (click)="openProductModal(product)"
-    [price]="product.price + ' EGP'"
-    [currentRate]="product.rate" [cardName]="product.name"
-    [cardImage]="'url(' + baseurl + product.profilePicture + ')'"></app-product-item>
-<!-- <app-articles-paging></app-articles-paging> -->
+<div class="products-container">
+    <app-product-item *ngFor="let product of products" (click)="openProductModal(product)" [price]="product.price + ' EGP'"
+        [currentRate]="product.rate" [cardName]="product.name" [cardImage]="'url(' + baseurl + product.profilePicture + ')'"></app-product-item>
+</div>
+<div class="pagination-container">
+    <ngb-pagination [collectionSize]="120" [(page)]="pageAdvanced" [maxSize]="5" [rotate]="true" [ellipses]="false"
+        [boundaryLinks]="true"></ngb-pagination>
+</div>
 <app-modal [product]="selectedProduct"></app-modal>
