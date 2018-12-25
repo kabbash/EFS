@@ -6,6 +6,6 @@
   <p [ngStyle]="{'color': (editMode || addMode)? 'black' : 'white'}">
     {{articleCategory?.name}}
   </p>
-  <button (click)="deleteCategory()" *ngIf="editMode" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-  <button (click)="editCategory()" *ngIf="editMode" class="btn"><i class="fa fa-edit"></i></button>
+  <button (click)="deleteCategory($event)" *ngIf="editMode" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+  <button (click)="editCategory($event)" *ngIf="editMode" class="btn"><i class="fa fa-edit"></i></button>
 </div>

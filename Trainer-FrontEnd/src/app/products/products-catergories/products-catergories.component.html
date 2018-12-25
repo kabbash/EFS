@@ -1,8 +1,9 @@
+
 <div class="products-container">
-    <app-articles-card *ngFor="let category of categories" (click)="productsList(category.id)" [cardName]="category.name"
-        [cardImage]="'url(' + baseurl + category.profilePicture + ')'"></app-articles-card>
+    <app-articles-card *ngFor="let category of categories" (click)="productsList(category.id)" [articleCategory]="category"></app-articles-card>
 </div>
 <div class="pagination-container">
     <ngb-pagination [collectionSize]="120" [(page)]="pageAdvanced" [maxSize]="5" [rotate]="true" [ellipses]="false"
         [boundaryLinks]="true"></ngb-pagination>
 </div>
+

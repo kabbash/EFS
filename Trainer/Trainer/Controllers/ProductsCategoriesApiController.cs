@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Attachments.Core.Interfaces;
+using Attachments.Core.Models;
+using Microsoft.AspNetCore.Mvc;
 using Products.Core.Interfaces;
 using Products.Core.Models;
+using Shared.Core.Utilities.Enums;
 
 namespace Trainer.Controllers
 {
@@ -9,9 +12,12 @@ namespace Trainer.Controllers
     public class ProductsCategoriesApiController : BaseController
     {
         private readonly IProductsCategoriesManager _categoriesManager;
-        public ProductsCategoriesApiController(IProductsCategoriesManager categoriesManager)
+        private readonly IAttachmentsManager _attachmentManager;
+
+        public ProductsCategoriesApiController(IProductsCategoriesManager categoriesManager, IAttachmentsManager attachmentsManager)
         {
             _categoriesManager = categoriesManager;
+            _attachmentManager = attachmentsManager;
         }
 
         // GET: api/ProductsCategories
@@ -30,15 +36,30 @@ namespace Trainer.Controllers
 
         // POST: api/ProductsCategories
         [HttpPost]
-        public ActionResult Post([FromBody] ProductsCategoryDto categoryDto)
+        public ActionResult Post([FromForm] ProductsCategoryDto categoryDto)
         {
+            categoryDto.ProfilePicture = _attachmentManager.Save(new SavedFileDto
+            {
+                attachmentType = AttachmentTypesEnum.Articles_Categories,
+                CanChangeName = true,
+                File = categoryDto.ProfilePictureFile
+            });
+
             return GetStatusCodeResult(_categoriesManager.Insert(categoryDto));
         }
 
         // PUT: api/ProductsCategories/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] ProductsCategoryDto categoryDto)
+        public ActionResult Put(int id, [FromForm] ProductsCategoryDto categoryDto)
         {
+            if (categoryDto.ProfilePictureFile != null) {
+                categoryDto.ProfilePicture = _attachmentManager.Save(new SavedFileDto
+                {
+                attachmentType = AttachmentTypesEnum.Articles_Categories,
+                CanChangeName = true,
+                File = categoryDto.ProfilePictureFile
+                });
+            }
             return GetStatusCodeResult(_categoriesManager.Update(categoryDto, id));
         }
 
