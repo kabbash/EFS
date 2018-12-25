@@ -93,6 +93,26 @@ namespace Attachments.Core.Services
             }
         }
 
+        public bool Delete(string filePath)
+        {
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+
+                    var folderPath = Path.GetDirectoryName(filePath);
+                    if (Directory.GetFiles(folderPath).Length == 0)
+                        Directory.Delete(folderPath);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return false;
+            }
+        }
 
         private string getRelativeURL(string relativeFilePath)
         {

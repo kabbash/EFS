@@ -14,6 +14,9 @@ import { AppService } from '../../app.service';
 })
 export class ArticlesCatergoriesComponent implements OnInit {
 
+  currentPage = 3;
+  page = 4;
+  pageAdvanced = 2;
   categories: articleCategoryDto[];
   baseurl = environment.filesBaseUrl;
 
@@ -30,7 +33,7 @@ export class ArticlesCatergoriesComponent implements OnInit {
     this.appService.loading = true;
     this.route.data.subscribe(result => {
       this.categories = result.categories.data;
-    this.appService.loading = false;
+      this.appService.loading = false;
 
     });
     // this.getCategories();

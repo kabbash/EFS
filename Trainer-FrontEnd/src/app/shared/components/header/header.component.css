@@ -1,157 +1,221 @@
-/* header */  
-  .navbar {
-    font-family: 'Cairo', sans-serif;
+/* header */
+
+.navbar {
+  font-family: 'Cairo', sans-serif;
+}
+
+.esf-nav a {
+  padding: 0 20px !important;
+  font-size: 13.5px;
+  border-left: 1px solid #eeee;
+  position: relative;
+  right: 0;
+  color: rgba(0, 0, 0);
+  font-weight: bold;
+}
+
+.esf-nav li:hover {
+  color: #00bcd4 !important;
+}
+
+.navbar-brand {
+  margin: 0;
+}
+
+.esf-nav a:not(.dropdown-anchore):hover::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #00bcd4;
+  right: 0;
+  bottom: -6px;
+}
+
+#search {
+  position: relative;
+}
+
+#search .btn {
+  border: none;
+  color: #777;
+  font-size: 14px;
+  padding: 6px 12px !important;
+}
+
+#search .btn:hover {
+  background-color: #eee !important;
+  color: #999 !important;
+  padding: 6px 12px !important;
+}
+
+#search .btn:hover::before {
+  display: none;
+}
+
+.form-search {
+  position: absolute;
+  left: 0;
+  bottom: -50px;
+  z-index: 100;
+  right: auto;
+  width: 100%;
+  background-color: rgba(0, 188, 212, 0.5);
+  height: 50px;
+  display: none;
+}
+
+.form-search input {
+  background-color: transparent;
+  color: #fff;
+  border-radius: 5px;
+  width: 100%;
+  box-shadow: none;
+  margin: 8px 0;
+  border: navajowhite;
+  position: relative;
+}
+
+.form-search input:focus {
+  border: solid 1px white;
+  outline: 0px;
+  padding: 3px 20px;
+}
+
+.navbar-expand-md .navbar-toggler {
+  display: none;
+}
+
+.form-search .fa.fa-times {
+  position: absolute;
+  left: 10%;
+  top: 17px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.navbar-toggler:focus {
+  outline: 0px;
+  cursor: pointer;
+}
+
+@media (max-width: 991.98px) {
+  .offcanvas-collapse {
+    position: fixed;
+    top: 56px;
+    /* Height of navbar */
+    bottom: 0;
+    left: 100%;
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    overflow-y: auto;
+    visibility: hidden;
+    background-color: #343a40;
+    transition-timing-function: ease-in-out;
+    transition-duration: .3s;
+    transition-property: left, visibility;
+  }
+  .offcanvas-collapse ul {
+    padding: 40px 0px;
+    margin-top: 30px;
+    flex-direction: column;
+    margin-right: 0px !important;
+  }
+  .offcanvas-collapse.open {
+    left: 0;
+    visibility: visible;
   }
   .esf-nav a {
-    padding: 0 20px !important;
-    font-size: 15px;
-    border-left: 1px solid #eeee;
-    position: relative;
-    right: 0;
-  }
-  
-  .esf-nav a:hover {
-    color: #00bcd4 !important;
-  }
-  
-  .navbar-brand{
-    margin: 0;
+    border-left: 0px !important;
+    height: 40px;
   }
   .esf-nav a:hover::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    background-color: #00bcd4;
-    right: 0;
-    bottom: -23px;
+    bottom: 5px !important;
   }
-  
-  #search {
-    position: relative;
-  }
-  
-  #search .btn {
-    border: none;
-    color: #777;
-    font-size: 14px;
-    padding: 6px 12px !important;
-  }
-  
-  #search .btn:hover {
-    background-color: #eee !important;
-    color: #999 !important;
-    padding: 6px 12px !important;
-  }
-  
-  #search .btn:hover::before {
-    display: none;
-  }
-  
   .form-search {
-    position: absolute;
+    position: fixed;
     left: 0;
-    bottom: -50px;
-    z-index: 100;
-    right: auto;
-    width: 100%;
-    background-color: rgba(0, 188, 212, 0.5);
-    height: 50px;
-    display: none;
-  }
-  
-  .form-search input {
-    background-color: transparent;
-    color: #fff;
-    border-radius: 5px;
-    width: 100%;
-    box-shadow: none;
-    margin: 8px 0;
-    border: navajowhite;
-    position: relative;
-  }
-  .form-search input:focus{
-    border: solid 1px white;
-    outline: 0px;
-    padding: 3px 20px;
+    bottom: 80px;
   }
   .navbar-expand-md .navbar-toggler {
-    display: none;
-   }
-  
-  .form-search .fa.fa-times {
-    position: absolute;
-    left: 10%;
-    top: 17px;
-    color: #fff;
-    cursor: pointer;
+    display: inline-block;
   }
-  .navbar-toggler:focus{
-    outline: 0px;
-    cursor: pointer;
-  }
-  @media (max-width: 991.98px) {
-    .offcanvas-collapse {
-      position: fixed;
-      top: 56px;
-      /* Height of navbar */
-      bottom: 0;
-      left: 100%;
-      width: 100%;
-      padding-right: 1rem;
-      padding-left: 1rem;
-      overflow-y: auto;
-      visibility: hidden;
-      background-color: #343a40;
-      transition-timing-function: ease-in-out;
-      transition-duration: .3s;
-      transition-property: left, visibility;
-    }
-    .offcanvas-collapse ul{
-      padding: 40px 0px;
-      margin-top: 30px;
-      flex-direction: column;
-      margin-right: 0px !important;
-    }
-  
-    .offcanvas-collapse.open {
-      left: 0;
-      visibility: visible;
-    }
-    .esf-nav a{
-      border-left: 0px !important;
-      height: 40px;
-    }
-    .esf-nav a:hover::before {
-      bottom: 5px !important;      
-    }
-    .nav-link{
-      color: white !important;
-    }
-    .form-search{
-      position: fixed;
-      left: 0;
-      bottom: 80px;
-    }
-    .navbar-expand-md .navbar-toggler {
-      display: inline-block;
-    }
-  }
+}
 
+.showList {
+  display: none;
+}
 
-  .showList{
-    display: none;
-  }
+.dropdown-list {
+  color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: -72px;
+  background: #f8f9fa;
+  width: 100%;
+  display: none;
+}
 
-  .dropdown-list {
-    color: rgba(0, 0, 0, 0.5);
-    position: absolute;
-    bottom: -72px;
-    background: #f8f9fa;
-    width: 100%;
-    display: none;
-  }
+.app-search::placeholder {
+  color: #ffffff;
+}
 
-  .app-search::placeholder{
-    color: #ffffff;
-  }
+li.nav-item.hovered-item {
+  background-color: gainsboro;
+}
+
+li.nav-item {
+  background-color: #f8f9fa;
+  transition: background-color 700ms ease;
+}
+.arrow-margin{
+  margin-right: 4px;
+}
+.user-margin{
+  font-size: 34px;
+  margin-right: 0;
+  margin-left: 4px;
+}
+.navbar-collapse ul li a {
+  height: 70px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.navbar-collapse ul.dropdown-menu li a {
+  height: 50px;
+  display: block;
+  display: flex;
+  align-items: center;
+  padding: 0 !important;
+  justify-content: center;
+}
+
+.navbar-collapse ul.dropdown-menu {
+  padding: 0;
+  background: gainsboro;
+  border: none;
+  border-radius: 0;
+  top: 96%;
+  left: inherit;
+}
+
+.navbar-collapse ul.dropdown-menu li a::before {
+  width: 3px;
+  height: 100%;
+  right: 0;
+  bottom: 0;
+}
+
+.container-header{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width:100%;
+}
+
+a#userListItem{
+  display: flex;
+  align-items: center;
+}
