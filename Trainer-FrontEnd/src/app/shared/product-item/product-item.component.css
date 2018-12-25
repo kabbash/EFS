@@ -14,7 +14,7 @@
 .card-img-container {
     flex: 1;
     margin: 0 30px;
-    background-size: cover;
+    background-size: 80%;
     background-position: 50%;
     background-repeat: no-repeat;
     min-height: 185px;
@@ -76,4 +76,40 @@ div.price-rating {
     justify-content: center;
     color: white;
     padding-bottom: 3px;
+}
+
+.product-short-desc {
+    text-align: right;
+    line-height: 1;
+    padding-top: 13px;
+    overflow: hidden;
+    padding-left: 58px;
+    position: RELATIVE;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    min-height: 80px;
+}
+
+.special-shape {
+    position: absolute;
+    width: 141px;
+    height: 39px;
+    background: #00bcd4;
+    color: gold;
+    display: flex;
+    align-items: center;
+    left: -54px;
+    justify-content: center;
+    transform: rotate(-45deg);
+    padding-left: 22px;
+}
+
+.no-short-desc {
+    position: absolute;
+    width: 100%;
+    min-height: 80px;
+}
+
+.desc-no-special {
+    padding-left: 20px;
 }

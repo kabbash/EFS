@@ -11,6 +11,8 @@ export class ProductItemComponent implements OnInit {
   @Input() cardImage: string;
   @Input() price: string;
   @Input() currentRate: number;
+  @Input() isSpecial: boolean;
+  @Input() shortDesc: string;
   constructor() { }
 
   ngOnInit() {
