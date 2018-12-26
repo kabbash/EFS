@@ -11,11 +11,12 @@ import { config } from 'src/app/config/pages-config';
 export class ManageArticlesCategoriesComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private categoryService: CategoriesService) { }
-  addUrl = config.admin.addArticleCategory.route;
+  addUrl = config.admin.addCategory.route;
   ngOnInit() {
     this.route.data.subscribe(result => {
-      this.categoryService.categoryList = result.categories.data;
+      this.categoryService.allCategoriesList = result.categories.data;
     });
+    this.categoryService.showParentDdl = false;
   }
 
 }

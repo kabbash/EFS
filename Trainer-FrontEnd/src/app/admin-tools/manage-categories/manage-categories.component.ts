@@ -20,13 +20,26 @@ export class ManageCategoriesComponent implements OnInit {
     public categoryService: CategoriesService) { }
 
   ngOnInit() {
-
+    this.categoryService.displayedCategoryList = this.categoryService.allCategoriesList.filter(item => !item.parentId);    
   }
 
   gotoAddCategory() {
     this.categoryService.articleCategoryToEdit = null;
     this.categoryService.apiUrl = this.apiUrl;
     this.router.navigate([this.addUrl]);
+  }
+
+  categoryList(categoryId) {
+
+    const subCategories = this.getSubCategories(categoryId);
+    if (subCategories.length > 0) {
+      this.categoryService.displayedCategoryList = subCategories;
+    }
+  }
+
+  // HELP METHODS
+  getSubCategories(categoryId: number) {
+    return this.categoryService.allCategoriesList.filter(c => c.parentId === categoryId);
   }
 
 }

@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminToolsComponent } from './admin-tools.component';
 import { config } from '../config/pages-config';
-import { AddArticleCategoryComponent } from './add-article-category/add-article-category.component';
 import { ArticleCategoriesResolver } from '../shared/resolvers/article-categories.resolver';
 import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
 import { ManageArticlesCategoriesComponent } from './manage-articles-categories/manage-articles-categories.component';
 import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
 import { ManageProductsCategoriesComponent } from './manage-products-categories/manage-products-categories.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 const routes: Routes = [
   {
@@ -15,8 +15,8 @@ const routes: Routes = [
     component: AdminToolsComponent
   },
   {
-    path: config.admin.addArticleCategory.name,
-    component: AddArticleCategoryComponent
+    path: config.admin.addCategory.name,
+    component: AddCategoryComponent
   },
   {
     path: config.admin.manageArticlesCategories.name,

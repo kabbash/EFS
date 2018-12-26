@@ -6,15 +6,15 @@ import { CategoriesService } from '../services/categories.service';
 import { DropDownDto } from 'src/app/shared/models/drop-down.dto';
 
 @Component({
-  selector: 'app-add-article-category',
-  templateUrl: './add-article-category.component.html',
-  styleUrls: ['./add-article-category.component.css']
+  selector: 'app-add-category',
+  templateUrl: './add-category.component.html',
+  styleUrls: ['./add-category.component.css']
 })
-export class AddArticleCategoryComponent implements OnInit {
+export class AddCategoryComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private reposatoryService: RepositoryService,
-    private categoryService: CategoriesService) { }
+    public categoryService: CategoriesService) { }
 
   categoryForm: FormGroup;
   imageUrl: string;
@@ -23,12 +23,13 @@ export class AddArticleCategoryComponent implements OnInit {
   dropDownData: DropDownDto[] = [];
   @Input() apiUrl: string;
   ngOnInit() {
+    this.articleCategory = this.categoryService.articleCategoryToEdit || new articleCategoryDto();
+
     this.categoryForm = this.fb.group({
       'name': ['', Validators.required],
-      'profilePictureFile': [{}, Validators.required],
-      'parentId': ['', Validators.required]
+      'profilePictureFile': [null, !this.articleCategory.profilePicture ? Validators.required : null],
+      'parentId': ['']
     });
-    this.articleCategory = this.categoryService.articleCategoryToEdit || new articleCategoryDto();
     this.setDropDownData();
   }
   submit() {
@@ -65,7 +66,7 @@ export class AddArticleCategoryComponent implements OnInit {
     formData.append('createdAt', categoryData.createdAt ? categoryData.createdAt : new Date().toISOString());
     formData.append('createdBy', categoryData.createdBy ? categoryData.createdBy : 'admin');
     formData.append('profilePicture', categoryData.profilePicture ? categoryData.profilePicture : '');
-    formData.append('parentId', categoryData.parentId ? categoryData.parentId : null);
+    categoryData.parentId ?  formData.append('parentId', categoryData.parentId) : null;
     return formData;
   }
 
@@ -80,10 +81,11 @@ export class AddArticleCategoryComponent implements OnInit {
   }
 
   setDropDownData() {
-    this.categoryService.categoryList.forEach(category => {
+    this.categoryService.allCategoriesList.forEach(category => {
       this.dropDownData.push({label: category.name, value: category.id});
     });
   }
+
   onSelectParentCategory(value) {
     this.categoryForm.controls['parentId'].setValue(value);
   }

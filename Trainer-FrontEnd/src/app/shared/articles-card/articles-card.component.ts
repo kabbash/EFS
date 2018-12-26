@@ -28,18 +28,29 @@ export class ArticlesCardComponent implements OnInit {
   ngOnInit() {
   }
   editCategory() {
-    this.router.navigate([config.admin.addArticleCategory.route]);
+    this.router.navigate([config.admin.addCategory.route]);
     this.categoriesService.articleCategoryToEdit = this.articleCategory;
     this.categoriesService.apiUrl = this.apiUrl;
   }
 
-  deleteCategory() {
-    const confirmed = confirm('Are you sure you want to delete this item');
+  deleteCategory(event) {
+    event.stopPropagation();
+    const subCategories = this.categoriesService.allCategoriesList.filter(category => {
+      return category.parentId === this.articleCategory.id;
+    });
+    if (subCategories.length > 0) {
+
+    }
+    const confirmed = (subCategories.length > 0) ? confirm('Are you sure you want to delete this parent item and all it\'s children') : confirm('Are you sure you want to delete this item');
     if (confirmed) {
-      this.repoService.delete('Articles/Categories/' + this.articleCategory.id).subscribe(() => {
+      this.repoService.delete(this.apiUrl + this.articleCategory.id).subscribe(() => {
         alert('success');
-        this.categoriesService.categoryList.splice(
-          this.categoriesService.categoryList.findIndex(el => el.id === this.articleCategory.id),
+        this.categoriesService.allCategoriesList.splice(
+          this.categoriesService.allCategoriesList.findIndex(el => el.id === this.articleCategory.id),
+          1
+        );
+        this.categoriesService.displayedCategoryList.splice(
+          this.categoriesService.displayedCategoryList.findIndex(el => el.id === this.articleCategory.id),
           1
         );
       }, error => {

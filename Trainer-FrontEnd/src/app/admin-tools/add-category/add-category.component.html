@@ -22,7 +22,7 @@
             </div>
             <div class="form-group row">
               <div class="col-md-9">
-                <app-drop-down formControlName="parentId" [id]="'parent_id_ddl'" [name]="'parentId'" [data]="dropDownData" [label]="'parent category'" (change)="onSelectParentCategory($event.target.value)"></app-drop-down>
+                <app-drop-down *ngIf="categoryService.showParentDdl" formControlName="parentId" [id]="'parent_id_ddl'" [name]="'parentId'" [data]="dropDownData" [label]="'parent category'" (change)="onSelectParentCategory($event.target.value)"></app-drop-down>
               </div>
             </div>
             <div class="card-footer">

@@ -10,13 +10,14 @@ import { config } from 'src/app/config/pages-config';
 })
 export class ManageProductsCategoriesComponent implements OnInit {
 
-  addUrl = config.admin.addArticleCategory.route;
+  addUrl = config.admin.addCategory.route;
   constructor(private route: ActivatedRoute, private categoryService: CategoriesService) { }
 
   ngOnInit() {
     this.route.data.subscribe(result => {
-      this.categoryService.categoryList = result.categories.data;
+      this.categoryService.allCategoriesList = result.categories.data;
     });
+    this.categoryService.showParentDdl = true;
   }
 
 }
