@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { articleCategoryDto } from '../../../shared/models/article-category-dto';
-import { environment } from '../../../../environments/environment';
-import { config } from '../../../config/pages-config';
-import { ArticleCategoriesService } from '../../services/article-categories.service';
+import { ActivatedRoute } from '@angular/router';
+import { config } from 'src/app/config/pages-config';
+import { CategoriesService } from '../../services/categories.service';
 
 @Component({
   selector: 'app-manage-articles-categories',
@@ -11,21 +9,14 @@ import { ArticleCategoriesService } from '../../services/article-categories.serv
   styleUrls: ['./manage-articles-categories.component.css']
 })
 export class ManageArticlesCategoriesComponent implements OnInit {
-  categories: articleCategoryDto [];
-  baseurl = environment.filesBaseUrl;
-  constructor(private route: ActivatedRoute,
-    private router: Router,
-    public categoryService: ArticleCategoriesService) { }
 
+  constructor(private route: ActivatedRoute, private categoryService: CategoriesService) { }
+  addUrl = config.admin.addCategory.route;
   ngOnInit() {
     this.route.data.subscribe(result => {
-      this.categoryService.categoryList = result.categories.data;
+      this.categoryService.allCategoriesList = result.categories.data;
     });
-  }
-
-  gotoAddArticleCategory() {
-    this.categoryService.articleCategoryToEdit = null;
-    this.router.navigate([config.admin.addArticleCategory.route]);
+    this.categoryService.showParentDdl = false;
   }
 
 }

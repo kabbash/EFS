@@ -82,9 +82,9 @@ export let config = {
     'admin': {
       'name': 'admin',
       'route': '/admin',
-      'addArticleCategory': {
-        'name': 'addArticleCategory',
-        'route': '/admin/addArticleCategory'
+      'addCategory': {
+        'name': 'addCategory',
+        'route': '/admin/addCategory'
       },
       'manageArticlesCategories': {
         'name': 'manageArticlesCategories',
@@ -102,5 +102,9 @@ export let config = {
         'name': 'pendingApprovalArticles',
         'route': '/admin/pendingApprovalArticles'
       },
+      'manageProductsCategories': {
+        'name': 'manageProductsCategories',
+        'route': '/admin/manageProductsCategories'
+      }
     }
 };

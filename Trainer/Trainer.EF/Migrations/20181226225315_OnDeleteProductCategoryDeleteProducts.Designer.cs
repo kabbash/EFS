@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20181226225315_OnDeleteProductCategoryDeleteProducts")]
+    partial class OnDeleteProductCategoryDeleteProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,11 +93,6 @@ namespace Trainer.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Articles_Categories");
-
-                    b.HasData(
-                        new { Id = 1, CreatedAt = new DateTime(2018, 12, 26, 23, 16, 25, 354, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
-                        new { Id = 2, CreatedAt = new DateTime(2018, 12, 26, 23, 16, 25, 356, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
-                    );
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ArticlesImages", b =>
@@ -135,10 +132,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "86b4fd7d-6d0e-4110-a4d2-ffc8be7287e3", Name = "Client" },
-                        new { Id = "4ac33132-1e0e-4f53-84d7-d83929ff12ba", Name = "RegularUser" },
-                        new { Id = "310a2097-0331-4c0d-9722-d2cc648d3c4c", Name = "Trainer" },
-                        new { Id = "56eff314-1322-4942-991f-dbebbb386c40", Name = "ArticleWriter" }
+                        new { Id = "bac261b9-6c8d-4241-b5ce-840e0c6eadea", Name = "Client" },
+                        new { Id = "ede24b4a-82ab-42cf-8453-cc5d31a7eebe", Name = "RegularUser" },
+                        new { Id = "a55a10d6-f868-4f9b-8bd8-d5ff25379f6a", Name = "Trainer" },
+                        new { Id = "d4d36b15-a911-42d0-8c2b-f49f0ca9d032", Name = "ArticleWriter" }
                     );
                 });
 

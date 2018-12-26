@@ -16,9 +16,10 @@ import {RouterModule} from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 import { ArticleCategoriesResolver } from './resolvers/article-categories.resolver';
-import { ArticleCategoriesService } from '../admin-tools/services/article-categories.service';
 import { ArticleDetailsCardComponent } from './article-details-card/article-details-card.component';
-import { ManageArticleService } from '../admin-tools/services/manage-articles.services';
+import { CategoriesService } from '../admin-tools/services/categories.service';
+import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
+import { DropDownComponent } from './drop-down/drop-down.component';
 
 @NgModule({
   imports: [
@@ -33,17 +34,17 @@ import { ManageArticleService } from '../admin-tools/services/manage-articles.se
     FormsModule,
     CommonModule,
     TranslateModule, HeaderComponent, FooterComponent,
-    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
-    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent
+    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,ArticleDetailsCardComponent,
+    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
-    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
-    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent],
+    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,ArticleDetailsCardComponent,
+    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent],
   providers: [
     UtilitiesService,
     ArticleCategoriesResolver,
-    ArticleCategoriesService,
-    ManageArticleService
+    CategoriesService,
+    ProductsCategoriesResolver
   ]
 })
 export class SharedModule { }

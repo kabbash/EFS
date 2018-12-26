@@ -22,7 +22,6 @@ import { ModalComponent } from './modal/modal.component';
   ],
   declarations: [ProductsComponent, ProductsListComponent, ProductsCatergoriesComponent, ProductRatingComponent, ModalComponent],
   providers: [
-    ProductsCategoriesResolver,
     ProductsListResolver
   ]
 })

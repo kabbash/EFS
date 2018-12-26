@@ -73,7 +73,7 @@ namespace Products.Core.Services
                 newCategory.CreatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
                 newCategory.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
                 {
-                    File = category.profilePictureFile,
+                    File = category.ProfilePictureFile,
                     attachmentType = AttachmentTypesEnum.Products_Categories,
                     CanChangeName = true
                 });
@@ -172,6 +172,14 @@ namespace Products.Core.Services
         {
             try
             {
+                var category = _unitOfWork.ProductsCategoriesRepository.GetById(id);
+                if (category.Subcategories.Count > 0)
+                {
+                    foreach(var subCat in category.Subcategories)
+                    {
+                        _unitOfWork.ProductsCategoriesRepository.Delete(subCat.Id);
+                    }
+                }
                 _unitOfWork.ProductsCategoriesRepository.Delete(id);
                 _unitOfWork.Commit();
                 return new ResultMessage()

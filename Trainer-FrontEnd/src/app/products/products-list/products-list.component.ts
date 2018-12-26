@@ -14,14 +14,18 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class ProductsListComponent implements OnInit {
 
+
+  currentPage = 3;
+  page = 4;
+  pageAdvanced = 2;
   products: productListItemDto[];
   baseurl = environment.filesBaseUrl;
   selectedProduct: productListItemDto;
   categoryId: number;
   @ViewChild('modal') productModal: ModalComponent;
   constructor(private router: Router, private route: ActivatedRoute,
-     private repositoryService: RepositoryService,
-     private appService: AppService) {
+    private repositoryService: RepositoryService,
+    private appService: AppService) {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
     });

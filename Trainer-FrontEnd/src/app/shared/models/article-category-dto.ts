@@ -7,5 +7,7 @@ export class articleCategoryDto{
     createdBy: string;
     createdAt: any;
     updatedBy: string;
-    UpdatedAt: any;
+    updatedAt: any;
+    parentId: number;
+
 }
