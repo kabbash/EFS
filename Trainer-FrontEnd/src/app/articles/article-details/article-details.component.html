@@ -1,4 +1,4 @@
-<div class="article-container">
+<!-- <div class="article-container">
   <div class="carousel-container">
     <ngb-carousel *ngIf="article.images">
       <ng-template ngbSlide *ngFor="let image of article.images">
@@ -11,4 +11,5 @@
     </ngb-carousel>
   </div>
   <div class="article-details-container" [innerHTML]="articleBody"></div>
-</div>
+</div> -->
+<app-article-details-card [article]="article" > </app-article-details-card>

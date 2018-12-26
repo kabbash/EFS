@@ -17,6 +17,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 import { ArticleCategoriesResolver } from './resolvers/article-categories.resolver';
 import { ArticleCategoriesService } from '../admin-tools/services/article-categories.service';
+import { ArticleDetailsCardComponent } from './article-details-card/article-details-card.component';
+import { ManageArticleService } from '../admin-tools/services/manage-articles.services';
 
 @NgModule({
   imports: [
@@ -31,16 +33,17 @@ import { ArticleCategoriesService } from '../admin-tools/services/article-catego
     FormsModule,
     CommonModule,
     TranslateModule, HeaderComponent, FooterComponent,
-    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
+    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
     ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
-    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
+    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
     ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent],
   providers: [
     UtilitiesService,
     ArticleCategoriesResolver,
-    ArticleCategoriesService
+    ArticleCategoriesService,
+    ManageArticleService
   ]
 })
 export class SharedModule { }

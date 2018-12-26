@@ -12,5 +12,7 @@ namespace Articles.Core.Interfaces
         ResultMessage GetById(int id);
         ResultMessage Update(ArticleAddDto product, int id, string userId);
         ResultMessage Delete(int id);
+        ResultMessage Approve(int id);
+        ResultMessage GetPendingApprovalItems(ArticlesFilter filter = null);
     }
 }

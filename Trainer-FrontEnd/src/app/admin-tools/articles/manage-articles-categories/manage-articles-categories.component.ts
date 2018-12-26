@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { articleCategoryDto } from '../../shared/models/article-category-dto';
-import { environment } from '../../../environments/environment';
-import { config } from '../../config/pages-config';
-import { ArticleCategoriesService } from '../services/article-categories.service';
+import { articleCategoryDto } from '../../../shared/models/article-category-dto';
+import { environment } from '../../../../environments/environment';
+import { config } from '../../../config/pages-config';
+import { ArticleCategoriesService } from '../../services/article-categories.service';
 
 @Component({
   selector: 'app-manage-articles-categories',

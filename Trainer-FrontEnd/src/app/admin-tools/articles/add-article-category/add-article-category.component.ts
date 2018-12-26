@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { RepositoryService } from '../../shared/services/repository.service';
-import {articleCategoryDto} from '../../shared/models/article-category-dto';
-import { ArticleCategoriesService } from '../services/article-categories.service';
+import { RepositoryService } from '../../../shared/services/repository.service';
+import {articleCategoryDto} from '../../../shared/models/article-category-dto';
+import { ArticleCategoriesService } from '../../services/article-categories.service';
 
-@Component({
+@Component({ 
   selector: 'app-add-article-category',
   templateUrl: './add-article-category.component.html',
   styleUrls: ['./add-article-category.component.css']

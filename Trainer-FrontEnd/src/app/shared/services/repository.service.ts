@@ -19,6 +19,11 @@ export class RepositoryService {
     return this.http.post<ResultMessage<T>>(this.createCompleteRoute(route), body, this.generateHeaders());
   }
 
+  public post<T>(route: string, body={}) {
+    debugger;
+    return this.http.post<ResultMessage<T>>(this.createCompleteRoute(route), body, this.generateJsonHeaders());
+  }
+
   public update<T>(route: string, body) {
     return this.http.put<ResultMessage<T>>(this.createCompleteRoute(route), body, this.generateHeaders());
   }
@@ -34,6 +39,11 @@ export class RepositoryService {
   private generateHeaders() {
     return {
       // headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+  }
+  private generateJsonHeaders() {
+    return {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
   }
 }
