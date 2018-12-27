@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CategoriesService } from '../services/categories.service';
 import { config } from 'src/app/config/pages-config';
+import { CategoriesService } from '../../services/categories.service';
 
 @Component({
   selector: 'app-manage-articles-categories',

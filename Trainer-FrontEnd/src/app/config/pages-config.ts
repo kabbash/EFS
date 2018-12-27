@@ -90,6 +90,18 @@ export let config = {
         'name': 'manageArticlesCategories',
         'route': '/admin/manageArticlesCategories'
       },
+      'addArticle': {
+        'name': 'addArticle',
+        'route': '/admin/addArticle'
+      },
+      'manageArticles': {
+        'name': 'manageArticles/:articleId',
+        'route': '/admin/manageArticles'
+      },
+      'pendingApprovalArticles': {
+        'name': 'pendingApprovalArticles',
+        'route': '/admin/pendingApprovalArticles'
+      },
       'manageProductsCategories': {
         'name': 'manageProductsCategories',
         'route': '/admin/manageProductsCategories'

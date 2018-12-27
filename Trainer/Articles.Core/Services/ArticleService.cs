@@ -48,12 +48,66 @@ namespace Articles.Core.Services
 
             }
         }
+        public ResultMessage Approve(int id)
+        {
+            try
+            {
+                var articleData = _unitOfWork.ArticlesRepository.GetById(id);
+                if (articleData == null)
+                {
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.NotFound,
+                    };
+                }
+
+                articleData.UpdatedAt = DateTime.Now;
+                articleData.IsActive = true;
+                //articleData.UpdatedBy = userId;
+                _unitOfWork.ArticlesRepository.Update(articleData);
+                _unitOfWork.Commit();
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.InternalServerError
+                };
+
+            }
+        }
         public ResultMessage GetAll(int pageNo, int pageSize, ArticlesFilter filter=null)
         {
             try
             {
                 PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
                 result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).GetPaged(pageNo,pageSize).Adapt(result);
+                return new ResultMessage
+                {
+                    Data = result,
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new ResultMessage()
+                {
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
+                    Status = HttpStatusCode.InternalServerError
+                };
+            }
+        }
+        public ResultMessage GetPendingApprovalItems(ArticlesFilter filter = null)
+        {
+            try
+            {
+                IEnumerable<ArticleGetDto> result = new List<ArticleGetDto>();
+                result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).Adapt(result);
                 return new ResultMessage
                 {
                     Data = result,

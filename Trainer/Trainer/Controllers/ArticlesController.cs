@@ -2,6 +2,7 @@
 using Articles.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Core.Utilities.Models;
 using System.Linq;
 using System.Security.Claims;
 
@@ -32,6 +33,16 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_articlesService.GetAll(pageNo , pageSize , filter));
         }
 
+        [HttpGet("GetPendingItems")]
+        public ActionResult GetPendingItems()
+        {
+            var filter = new ArticlesFilter
+            {
+                IsActive = false
+            };
+            return GetStatusCodeResult(_articlesService.GetPendingApprovalItems(filter));
+        }
+        
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
@@ -81,6 +92,21 @@ namespace Trainer.Controllers
         public ActionResult Delete(int id)
         {
             return GetStatusCodeResult(_articlesService.Delete(id));
+        }
+
+        [HttpPost]
+        [Route("Approve")]
+        public ActionResult Approve([FromBody]baseDto model)
+        {
+            
+            return GetStatusCodeResult(_articlesService.Approve(model.Id));
+        }
+
+        [HttpPost]
+        [Route("Reject")]
+        public ActionResult Reject([FromBody]baseDto model)
+        {
+            return GetStatusCodeResult(_articlesService.Delete(model.Id));
         }
     }
 }
