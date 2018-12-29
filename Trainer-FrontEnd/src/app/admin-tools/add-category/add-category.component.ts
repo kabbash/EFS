@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { RepositoryService } from '../../shared/services/repository.service';
 import {articleCategoryDto} from '../../shared/models/article-category-dto';
 import { CategoriesService } from '../services/categories.service';
-import { DropDownDto } from 'src/app/shared/models/drop-down.dto';
+import { DropDownDto } from '../../shared/models/drop-down.dto';
 
 @Component({
   selector: 'app-add-category',
