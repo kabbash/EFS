@@ -82,13 +82,29 @@ export let config = {
     'admin': {
       'name': 'admin',
       'route': '/admin',
-      'addArticleCategory': {
-        'name': 'addArticleCategory',
-        'route': '/admin/addArticleCategory'
+      'addCategory': {
+        'name': 'addCategory',
+        'route': '/admin/addCategory'
       },
       'manageArticlesCategories': {
         'name': 'manageArticlesCategories',
         'route': '/admin/manageArticlesCategories'
+      },
+      'addArticle': {
+        'name': 'addArticle',
+        'route': '/admin/addArticle'
+      },
+      'manageArticles': {
+        'name': 'manageArticles/:articleId',
+        'route': '/admin/manageArticles'
+      },
+      'pendingApprovalArticles': {
+        'name': 'pendingApprovalArticles',
+        'route': '/admin/pendingApprovalArticles'
+      },
+      'manageProductsCategories': {
+        'name': 'manageProductsCategories',
+        'route': '/admin/manageProductsCategories'
       }
     }
 };
