@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppService } from 'src/app/app.service';
-import { articleDetialsDto } from 'src/app/shared/models/article-details-dto';
 import { ManageArticleService } from '../../services/manage-articles.services';
+import { articleDetialsDto } from '../../../shared/models/article-details-dto';
+import { AppService } from '../../../app.service';
 
-@Component({ 
+@Component({
   selector: 'app-manage-articles',
   templateUrl: './manage-articles.component.html',
   styleUrls: ['./manage-articles.component.css']
@@ -13,7 +13,8 @@ export class ManageArticlesComponent implements OnInit {
   articleId: number;
   article: articleDetialsDto;
 
-  constructor(private router: Router, private route: ActivatedRoute, private appService: AppService, private service: ManageArticleService) {
+  constructor(private router: Router,
+    private route: ActivatedRoute, private appService: AppService, private service: ManageArticleService) {
     this.route.params.subscribe(params => {
       this.articleId = params['articleId'];
     });
@@ -27,13 +28,13 @@ export class ManageArticlesComponent implements OnInit {
   }
 
   approveArticle() {
-    if (confirm("هل انت متأكد من الموافقه على هذا المقال ؟ ")) {
+    if (confirm('هل انت متأكد من الموافقه على هذا المقال ؟ ')) {
       this.service.approve(this.articleId).subscribe(c => { console.log(c); alert('approved'); });
     }
   }
 
   rejectArticle() {
-    if (confirm("هل انت متأكد من رفض هذا المقال ؟ ")) {
+    if (confirm('هل انت متأكد من رفض هذا المقال ؟ ')) {
       this.service.reject(this.articleId).subscribe(c => { console.log(c); alert('rejected'); });
     }
   }
