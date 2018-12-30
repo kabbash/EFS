@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { articleListItemDto } from 'src/app/shared/models/article-list-item-dto';
-import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
-import { config } from 'src/app/config/pages-config';
 import { ManageArticleService } from '../../services/manage-articles.services';
+import { articleListItemDto } from '../../../shared/models/article-list-item-dto';
+import { environment } from '../../../../environments/environment.prod';
+import { config } from '../../../config/pages-config';
 
 @Component({
   selector: 'app-pending-approval-articles',
@@ -24,19 +24,18 @@ export class PendingApprovalArticlesComponent implements OnInit {
       });
     }
 
-    articlesDetails(articleId){
+    articlesDetails(articleId) {
       this.router.navigate([config.admin.manageArticles.route, articleId]);
     }
 
-    approve(articleId){
-      if(confirm("هل انت متأكد من الموافقه على هذا المقال ؟ ")){      
-        this.service.approve(articleId).subscribe(c=> { console.log(c); alert('approved'); });
+    approve(articleId) {
+      if (confirm('هل انت متأكد من الموافقه على هذا المقال ؟ ')) {
+        this.service.approve(articleId).subscribe(c => { console.log(c); alert('approved'); });
       }
     }
-  
-      reject(articleId){
-        if(confirm("هل انت متأكد من رفض هذا المقال ؟ ")){
-          this.service.reject(articleId).subscribe(c=> { console.log(c); alert('rejected'); });
+      reject(articleId) {
+        if (confirm('هل انت متأكد من رفض هذا المقال ؟ ')) {
+          this.service.reject(articleId).subscribe(c => { console.log(c); alert('rejected'); });
         }
     }
 }
