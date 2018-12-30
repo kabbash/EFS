@@ -1,10 +1,13 @@
 :host {
     height: 50px;
-    color: white;
+    color: #333;
     direction: rtl;
     width: 100%;
     display: flex;
     align-items: center;
+    background: rgba(255, 255, 255, .75);
+    padding: 33px 20px;
+    border-radius: 12px;
 }
 
 :host>div:last-child span.separator {

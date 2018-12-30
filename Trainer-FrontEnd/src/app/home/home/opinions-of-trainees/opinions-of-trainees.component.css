@@ -6,7 +6,6 @@
     background-image: url("./../../../../assets/images/homepage-opinions.png");
   
     /* Set a specific height */
-    height: 500px;
   
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -49,13 +48,11 @@
   
   }
   
-  #quote-carousel .carousel-indicators li {
-    width: 50px;
+  #quote-carousel .carousel-indicators img {
     height: 50px;
     cursor: pointer;
     border: 1px solid #ccc;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
     opacity: 0.4;
     overflow: hidden;
     transition: all .4s ease-in;
@@ -63,15 +60,14 @@
   }
   
   #quote-carousel .carousel-indicators .active {
-    width: 128px;
-    height: 128px;
+    width: auto;
+    height: 400px;
     opacity: 1;
     transition: all .2s;
   }
   
   #quote-carousel .carousel-item {
     background-color: transparent;
-    height: 8rem;
   }
   
   #quote-carousel .carousel-item small {
@@ -99,6 +95,11 @@
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
+    height: 450px;
+  }
+
+  #smallPic{
+    height: 1000px;
   }
 
   @media (max-width: 520px) {

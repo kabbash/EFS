@@ -1,17 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  hideSearch: boolean;
+  smallSize: boolean;
+  constructor(private router: Router) {
+    router.events.subscribe((val: any) => {
+      // see also
+      if (val && val.route && val.route.path && val.route.path === 'home') {
+        this.hideSearch = true;
+      } else if (val && val.route && val.route.path && val.route.path !== 'home') {
+        this.hideSearch = false;
+      }
+    });
+  }
 
   ngOnInit() {
+    if (document.body.clientWidth > 991) {
+      this.smallSize = false;
+    } else {
+      this.smallSize = true;
+
+    }
     $(document).ready(function () {
       if (document.body.clientWidth > 991) {
+        this.smallSize = false;
         $('#navbarsExampleDefault li.dropdown').hover(
           function () {
             $(this).addClass('hovered-item');
