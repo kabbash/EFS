@@ -11,6 +11,7 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 import { ManageArticlesCategoriesComponent } from './articles/manage-articles-categories/manage-articles-categories.component';
 import { ManageProductsCategoriesComponent } from './manage-products-categories/manage-products-categories.component';
 import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
+import { AddItemForReviewComponent } from './add-item-for-review/add-item-for-review.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
     path: config.admin.manageProductsCategories.name,
     component: ManageProductsCategoriesComponent,
     resolve: {categories: ProductsCategoriesResolver}
+  },
+  {
+    path: config.admin.addItemForReview.name,
+    component: AddItemForReviewComponent
   }
 ];
 

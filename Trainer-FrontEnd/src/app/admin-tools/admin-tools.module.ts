@@ -11,6 +11,7 @@ import { ManageProductsCategoriesComponent } from './manage-products-categories/
 import { ManageArticlesCategoriesComponent } from './articles/manage-articles-categories/manage-articles-categories.component';
 import { PendingApprovalArticlesComponent } from './articles/pending-approval-articles/pending-approval-articles.component';
 import { ManageArticlesComponent } from './articles/manage-articles/manage-articles.component';
+import { AddItemForReviewComponent } from './add-item-for-review/add-item-for-review.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { ManageArticlesComponent } from './articles/manage-articles/manage-artic
     ManageProductsCategoriesComponent,
     ManageArticlesCategoriesComponent,
     PendingApprovalArticlesComponent,
-    ManageArticlesComponent],
+    ManageArticlesComponent,
+    AddItemForReviewComponent],
 
   providers: [
     PendingApprovalArticlesResolver

@@ -105,6 +105,10 @@ export let config = {
       'manageProductsCategories': {
         'name': 'manageProductsCategories',
         'route': '/admin/manageProductsCategories'
+      },
+      'addItemForReview': {
+        'name': 'addItemForReview',
+        'route': '/admin/addItemForReview'
       }
     }
 };
