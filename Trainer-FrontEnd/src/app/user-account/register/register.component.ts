@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
       }))
       .subscribe(
         data => {
-          this.router.navigate([config.userAccount.loginPage.route]);
+          this.router.navigate([config.userAccount.accountRegistered.route]);
         });
   }
   navigateToLogin() {

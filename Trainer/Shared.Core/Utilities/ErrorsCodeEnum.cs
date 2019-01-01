@@ -31,7 +31,10 @@ namespace Shared.Core.Utilities
     }
     public enum AuthenticationErrorsCodeEnum
     {
-        AuthenticationError
+        AuthenticationError,
+        EmailNotConfirmed,
+        UserDoesNotExist,
+        OldPasswordMismatch
     }
     public enum RatingErrorsCodeEnum
     {

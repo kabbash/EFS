@@ -16,6 +16,7 @@ import { ProductsModule } from './products/products.module';
 import { AuthModule } from './auth/auth.module';
 import { UserAccountModule } from './user-account/user-account.module';
 import { LoginModule } from './login/login.module';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 
 export function CreateTranslateLoader(http: HttpClient) {
@@ -50,7 +51,9 @@ export function CreateTranslateLoader(http: HttpClient) {
       }
     })
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

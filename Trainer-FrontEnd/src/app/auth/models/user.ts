@@ -4,4 +4,5 @@ class User {
     lastName: string;
     username: string;
     token: string;
+    roles : string[];
 }
