@@ -1,8 +1,9 @@
 ﻿using FluentValidation;
 using Lookups.Core.Interfaces;
 using Mapster;
-using Shared.Core;
-using Shared.Core.Utilities;
+using Shared.Core.Utilities.Enums;
+using Shared.Core.Utilities.Extensions;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,7 +67,10 @@ namespace Lookups.Core.Services
 
             try
             {
-                _repository.Insert(lookupDto.Adapt<E>());
+                var lookupData = lookupDto.Adapt<E>();
+                typeof(E).GetProperty("CreatedBy").SetValue(lookupData, "admin");
+                typeof(E).GetProperty("CreatedAt").SetValue(lookupData, DateTime.Now);
+                _repository.Insert(lookupData);
                 _unitOfWork.Commit();
                 return new ResultMessage()
                 {
@@ -129,7 +133,9 @@ namespace Lookups.Core.Services
                 {
                     lookup.Adapt(oldLookup, typeof(DTO), typeof(E));
                     typeof(E).GetProperty("Id").SetValue(oldLookup, id);
-            
+                    typeof(E).GetProperty("UpdatedBy").SetValue(oldLookup, "admin");
+                    typeof(E).GetProperty("UpdatedAt").SetValue(oldLookup, DateTime.Now);
+
                     _repository.Update(oldLookup);
                     _unitOfWork.Commit();
                     return new ResultMessage

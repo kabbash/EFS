@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 using Shared.Core.Models;
+using System;
 
 namespace Trainer.EF
 {
@@ -94,6 +93,12 @@ namespace Trainer.EF
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
                 entity.Property(e => e.UpdatedBy).HasMaxLength(128);
+                entity.HasData(new ArticlesCategories[]
+                {
+                    new ArticlesCategories {Id= 1 , Name = "وصفات الطعام" , PredefinedKey= 2, CreatedAt= DateTime.Now.ToUniversalTime(), CreatedBy= "admin", ProfilePicture="Files/Articles%20Categories/food.png"},
+                    new ArticlesCategories {Id=2, Name = "الأخبار" , PredefinedKey= 1, CreatedAt= DateTime.Now.ToUniversalTime(), CreatedBy= "admin", ProfilePicture="Files/Articles%20Categories/news.png"}
+
+                });
             });
 
             modelBuilder.Entity<AspNetRoles>(entity =>
@@ -181,13 +186,13 @@ namespace Trainer.EF
 
                 entity.Property(e => e.Email).HasMaxLength(256);
 
-                entity.Property(e => e.FirstName)
+                entity.Property(e => e.FullName)
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                //entity.Property(e => e.LastName)
+                //    .IsRequired()
+                //    .HasMaxLength(50);
 
                 entity.Property(e => e.LockoutEndDateUtc).HasColumnType("datetime");
 
@@ -201,8 +206,8 @@ namespace Trainer.EF
                     Id = "7c654344-ad42-4428-a77a-00a8c1299c3f",
                     Email = "ahmedkabbash@gmail.com",
                     EmailConfirmed = true,
-                    FirstName = "ahmed",
-                    LastName = "kabbash",
+                    FullName = "ahmed kabbash",
+                    //LastName = "kabbash",
                     UserName = "Admin"
                     //PasswordHash = "1234",
 
@@ -457,7 +462,7 @@ namespace Trainer.EF
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Products_Products_Subcategories");
 
                 entity.HasOne(d => d.Seller)

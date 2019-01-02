@@ -2,6 +2,7 @@
 using Articles.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Core.Utilities.Models;
 using System.Linq;
 using System.Security.Claims;
 
@@ -17,11 +18,31 @@ namespace Trainer.Controllers
             _articlesService = articlesService;
         }
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult Get(int pageNo = 1,int pageSize=10)
         {
-            return GetStatusCodeResult(_articlesService.GetAll());
+            return GetStatusCodeResult(_articlesService.GetAll(pageNo,pageSize));
         }
 
+        [HttpGet("GetActiveItems")]
+        public ActionResult GetActiveItems(int pageNo = 1, int pageSize = 10)
+        {
+            var filter = new ArticlesFilter
+            {
+                IsActive = true
+            };
+            return GetStatusCodeResult(_articlesService.GetAll(pageNo , pageSize , filter));
+        }
+
+        [HttpGet("GetPendingItems")]
+        public ActionResult GetPendingItems()
+        {
+            var filter = new ArticlesFilter
+            {
+                IsActive = false
+            };
+            return GetStatusCodeResult(_articlesService.GetPendingApprovalItems(filter));
+        }
+        
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
@@ -32,6 +53,12 @@ namespace Trainer.Controllers
         public ActionResult GetByCategory(int id)
         {
             return GetStatusCodeResult(_articlesService.GetByCategoryId(id));
+        }
+
+        [HttpGet("GetByCategoryKey/{id}")]
+        public ActionResult GetByPredefinedCategoryKey(int id)
+        {
+            return GetStatusCodeResult(_articlesService.GetByPredefinedCategoryKey(id));
         }
 
         [HttpPost]
@@ -65,6 +92,21 @@ namespace Trainer.Controllers
         public ActionResult Delete(int id)
         {
             return GetStatusCodeResult(_articlesService.Delete(id));
+        }
+
+        [HttpPost]
+        [Route("Approve")]
+        public ActionResult Approve([FromBody]baseDto model)
+        {
+            
+            return GetStatusCodeResult(_articlesService.Approve(model.Id));
+        }
+
+        [HttpPost]
+        [Route("Reject")]
+        public ActionResult Reject([FromBody]baseDto model)
+        {
+            return GetStatusCodeResult(_articlesService.Delete(model.Id));
         }
     }
 }

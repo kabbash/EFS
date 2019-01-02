@@ -1,0 +1,14 @@
+<div class="article-container">
+    <div class="carousel-container">
+      <ngb-carousel *ngIf="article.images">
+        <ng-template ngbSlide *ngFor="let image of article.images">
+          <img [src]="baseurl + image.path" class="slider-img" alt="article images">
+          <div class="carousel-caption">
+            <h3>{{image.title}}</h3>
+            <p>{{image.text}}}</p>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+    <div class="article-details-container" [innerHTML]="articleBody"></div>
+  </div>

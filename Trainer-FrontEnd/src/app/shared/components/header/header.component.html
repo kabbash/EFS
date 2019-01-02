@@ -1,12 +1,26 @@
 <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand" href="#"><img src="../../../../../assets/images/logo1.png" width="50" alt=""></a>
+  <div class="container-header">
+    <a class="navbar-brand" href="#"><img src="../../../../../assets/images/logo1.png" width="70" alt=""></a>
     <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas" (click)="toggleClass()">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="navbar-collapse offcanvas-collapse esf-nav" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item dropdown " *ngIf="authService.isLoggedIn() && smallSize">
+          <a class="nav-link dropdown-anchore" id="userListItem"><i class="fa fa-user user-margin"></i>{{authService.getUserInfo()?.fullName}}<i
+              class="fa fa-chevron-down arrow-margin"></i></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/admin/addArticleCategory']">صفحة
+                التحكم</a></li>
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.userAccount.changePassword.route]">نغيير
+                كلمة المرور</a></li>
+            <li><a class="nav-item nav-link">الصفجه الشخصيه</a></li>
+            <li><a class="nav-item nav-link" (click)="logout()">تسجيل
+                الخروج</a></li>
+          </ul>
+        </li>
         <li class="nav-item active">
           <a class="nav-link" href="#">الرئيسية <span class="sr-only">(current)</span></a>
         </li>
@@ -14,41 +28,61 @@
           <a class="nav-link" href="#">أدواتك</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  [routerLink] = "['/demos/allDemos']">التدريب اون لاين</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/demos/allDemos']">التدريب اون لاين</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/articles/articlesCategories']" > المقالات</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/articles/articlesCategories']"> المقالات</a>
         </li>
         <li class="nav-item dropdown ">
-          <a class="nav-link" [routerLink]="['/products/productsCategories']">بيع / شراء</a>
-          <!-- <div class="dropdown-list ">
-            <div>بيع</div>
-            <div>شراء</div>
-          </div> -->
-
+          <a class="nav-link dropdown-anchore">بيع / شراء<i class="fa fa-chevron-down arrow-margin"></i></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/products/productsCategories']">شراء
+                منتج</a></li>
+            <li><a class="nav-item nav-link">بيع منتج</a></li>
+            <li><a class="nav-item nav-link">مراجعة المنتجات</a></li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">الاخبار </a>
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-anchore">الأخبار<i class="fa fa-chevron-down arrow-margin"></i></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-item nav-link">أخبار كمال الأجسام</a></li>
+            <li><a class="nav-item nav-link">مواعيد البطولات</a></li>
+            <li><a class="nav-item nav-link">مراجعة المنتجات</a></li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"> السيرة الذاتية</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item ">
           <a class="nav-link" href="#"> تواصل معنا</a>
 
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item " *ngIf="!authService.isLoggedIn()">
           <a class="nav-link" [routerLink]="['/userAccount/loginPage']"> تسجيل الدخول </a>
         </li>
+
+        <li class="nav-item dropdown " id="userNameElm" *ngIf="authService.isLoggedIn() && !smallSize">
+          <a class="nav-link dropdown-anchore" id="userListItem"><i class="fa fa-user user-margin"></i>{{authService.getUserInfo()?.fullName}}<i
+              class="fa fa-chevron-down arrow-margin"></i></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/admin/addArticleCategory']">صفحة
+                التحكم</a></li>
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.userAccount.changePassword.route]">نغيير
+                كلمة المرور</a></li>
+            <li><a class="nav-item nav-link">الصفجه الشخصيه</a></li>
+            <li><a class="nav-item nav-link" (click)="logout()">تسجيل
+                الخروج</a></li>
+          </ul>
+        </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0" id="search">
+      <form class="form-inline my-2 my-lg-0" id="search" *ngIf="!hideSearch">
         <a class="btn btn-outline-primary my-2 my-sm-0" id="btn-search" (click)="SearchBox()"><i class="fa fa-search"></i></a>
 
       </form>
     </div>
-    <div class="form-search" id="search-box">
+    <div class="form-search" id="search-box" *ngIf="!hideSearch">
       <div class="container">
-        <input class="mr-sm-2" type="text" placeholder="اكتب كلمات البحث هنا..." aria-label="Search">
+        <input class="mr-sm-2 app-search" type="text" placeholder="اكتب كلمات البحث هنا..." aria-label="Search">
         <i class="fa fa-times" (click)="Close()"></i>
       </div>
     </div>

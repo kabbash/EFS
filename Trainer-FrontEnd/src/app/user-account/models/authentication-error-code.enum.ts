@@ -1,4 +1,4 @@
 export enum AuthenticationErrorsCode {
-    AuthenticationError = 1,
-    EmailNotConfirmed = 2
+    AuthenticationError = 0,
+    EmailNotConfirmed = 1
 }

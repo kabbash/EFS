@@ -3,9 +3,9 @@
   <p class="title">
     {{cardName}}
   </p>
-  <p [innerHTML]="cardShortDescription" class="short-desc" style="-webkit-box-orient: vertical;" title="{{cardShortDescription}}">
+  <p [innerHTML]="cardShortDescription" class="short-desc" style="-webkit-box-orient: vertical;">
   </p>
-  <div class="read-more">
-    <span (click)="articlesDetails()">إقرأ المزيد</span>
+  <div class="read-more" [hidden]="hideShowMorelink">
+    <span>إقرأ المزيد</span>
   </div>
 </div>

@@ -123,10 +123,39 @@ div.modal-body {
   color: #00bcd4;
 }
 
+.secondary-color{
+  color: #00bcd4;
+}
+
 .filled-modal {
   color: gold;
 }
 
 .rating-stars{
   direction: ltr;
+}
+
+a.page-link:hover,a.page-link{
+  color: #00bcd4;
+}
+
+li.page-item.active .page-link{
+  z-index: 1;
+  color: #fff;
+  background-color: #00bcd4;
+  border-color: #00bcd4;
+}
+
+.products-container{
+  display: flex;
+  flex-wrap: wrap;    
+  justify-content: center;
+}
+
+.pagination-container{
+  direction: ltr;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 0;
 }

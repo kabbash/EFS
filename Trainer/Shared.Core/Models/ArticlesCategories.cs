@@ -18,6 +18,7 @@ namespace Shared.Core.Models
         public DateTime? UpdatedAt { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
+        public int? PredefinedKey { get; set; }
 
         public virtual ICollection<Articles> Articles { get; set; }
     }

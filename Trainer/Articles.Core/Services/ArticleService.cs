@@ -1,12 +1,14 @@
-﻿using Articles.Core.Interfaces;
+﻿using Articles.Core.Extensions;
+using Articles.Core.Interfaces;
 using Articles.Core.Models;
 using Attachments.Core.Interfaces;
 using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
-using Shared.Core;
 using Shared.Core.Models;
-using Shared.Core.Utilities;
+using Shared.Core.Utilities.Enums;
+using Shared.Core.Utilities.Extensions;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,15 +48,69 @@ namespace Articles.Core.Services
 
             }
         }
-        public ResultMessage GetAll()
+        public ResultMessage Approve(int id)
+        {
+            try
+            {
+                var articleData = _unitOfWork.ArticlesRepository.GetById(id);
+                if (articleData == null)
+                {
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.NotFound,
+                    };
+                }
+
+                articleData.UpdatedAt = DateTime.Now;
+                articleData.IsActive = true;
+                //articleData.UpdatedBy = userId;
+                _unitOfWork.ArticlesRepository.Update(articleData);
+                _unitOfWork.Commit();
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.InternalServerError
+                };
+
+            }
+        }
+        public ResultMessage GetAll(int pageNo, int pageSize, ArticlesFilter filter=null)
+        {
+            try
+            {
+                PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
+                result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).GetPaged(pageNo,pageSize).Adapt(result);
+                return new ResultMessage
+                {
+                    Data = result,
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new ResultMessage()
+                {
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
+                    Status = HttpStatusCode.InternalServerError
+                };
+            }
+        }
+        public ResultMessage GetPendingApprovalItems(ArticlesFilter filter = null)
         {
             try
             {
                 IEnumerable<ArticleGetDto> result = new List<ArticleGetDto>();
-                result = _unitOfWork.ArticlesRepository.Get().Adapt(result);
+                result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).Adapt(result);
                 return new ResultMessage
                 {
-                    Data = result.ToList(),
+                    Data = result,
                     Status = HttpStatusCode.OK
                 };
             }
@@ -74,6 +130,29 @@ namespace Articles.Core.Services
             {
                 IEnumerable<ArticleGetDto> result = new List<ArticleGetDto>();
                 result = _unitOfWork.ArticlesRepository.Get(c => c.CategoryId == id).Adapt(result);
+                return new ResultMessage
+                {
+                    Data = result.ToList(),
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new ResultMessage()
+                {
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
+                    Status = HttpStatusCode.InternalServerError
+                };
+            }
+        }
+        public ResultMessage GetByPredefinedCategoryKey(int id)
+        {
+            try
+            {
+                IEnumerable<ArticleGetDto> result = new List<ArticleGetDto>();
+                var categoryId = _unitOfWork.ArticlesCategoriesRepository.Get(c => c.PredefinedKey == id).SingleOrDefault().Id;
+                result = _unitOfWork.ArticlesRepository.Get(c => c.CategoryId == categoryId).Adapt(result);
                 return new ResultMessage
                 {
                     Data = result.ToList(),

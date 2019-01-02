@@ -3,15 +3,18 @@ using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
 using Microsoft.Extensions.Options;
+using Products.Core.Extensions;
 using Products.Core.Interfaces;
 using Products.Core.Models;
-using Shared.Core;
 using Shared.Core.Resources;
-using Shared.Core.Utilities;
+using Shared.Core.Utilities.Enums;
+using Shared.Core.Utilities.Extensions;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Linq;
+using System.Net;
+
 namespace Products.Core.Services
 {
     public class ProductsManager : IProductsManager
@@ -28,13 +31,12 @@ namespace Products.Core.Services
             _productsResources = productsResources;
             _attachmentsManager = attachmentsManager;
         }
-        public ResultMessage GetAll()
+        public ResultMessage GetAll(int pageNumber, int pageSize, ProductFilter filter=null)
         {
             try
             {
-                IEnumerable<ProductsDto> result = new List<ProductsDto>();
-                result = _unitOfWork.ProductsRepository.Get().Adapt(result);
-
+                var result = new PagedResult<ProductsDto>();
+                result = _unitOfWork.ProductsRepository.Get().ApplyFilter(filter).GetPaged(pageNumber, pageSize).Adapt(result);
                 return new ResultMessage()
                 {
                     Data = result,
@@ -83,7 +85,7 @@ namespace Products.Core.Services
                         ProductId = newProduct.Id,
                         Path = _attachmentsManager.Save(new SavedFileDto
                         {
-                            attachmentType= AttachmentTypesEnum.Products,
+                            attachmentType = AttachmentTypesEnum.Products,
                             CanChangeName = false,
                             File = image,
                             SubFolderName = productFolderName
@@ -208,10 +210,10 @@ namespace Products.Core.Services
                 IEnumerable<Shared.Core.Models.Products> resultData = new List<Shared.Core.Models.Products>();
                 resultData = _unitOfWork.ProductsRepository.Get(c => c.CategoryId == categoryId, null, "Seller").ToList();
                 result = resultData.Adapt(result).ToList();
-                foreach(var product in result)
+                foreach (var product in result)
                 {
                     var data = resultData.FirstOrDefault(p => p.Id == product.Id);
-                    product.Seller.Name = data.Seller.FirstName + ' ' + data.Seller.LastName;
+                    product.Seller.Name = data.Seller.FullName;// + ' ' + data.Seller.LastName;
                     product.Seller.PhoneNumber = data.Seller.PhoneNumber;
                 }
 

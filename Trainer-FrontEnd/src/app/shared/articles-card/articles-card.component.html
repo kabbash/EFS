@@ -1,7 +1,11 @@
-<div class="card-img-container" [ngStyle]="{'background-image': cardImage}"></div>
+<div class="card-img-container" [ngStyle]="{'background-image': localImageUrl ? 'url(' + articleCategory?.profilePicture + ')' : 'url(' + baseurl + articleCategory?.profilePicture + ')'}">
+  <!-- <img #cardImageTag *ngIf="cardImage" [src]="cardImage"> -->
+</div>
 <div class="card-separtator"></div>
 <div class="card-title-container">
-  <p>
-    {{cardName}}
+  <p [ngStyle]="{'color': (editMode || addMode)? 'black' : 'white'}">
+    {{articleCategory?.name}}
   </p>
+  <button (click)="deleteCategory($event)" *ngIf="editMode" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+  <button (click)="editCategory($event)" *ngIf="editMode" class="btn"><i class="fa fa-edit"></i></button>
 </div>

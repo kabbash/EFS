@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { apiUrl } from 'src/config/api.config';
 import { ResultMessage } from 'src/app/shared/models/result-message';
 import { Roles } from '../models/roles.enum';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,11 @@ export class AuthService {
   }
 
   isInRole(role: Roles): boolean {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser') || "{}") as User;
-    return currentUser.roles.some((item => item == role));
+    return this.isLoggedIn() && this.getUserInfo().roles.some((item => item == role));
+  }
+
+  getUserInfo(): User {
+    return this.isLoggedIn() ? JSON.parse(localStorage.getItem('currentUser')) as User : null;
   }
 
   logout() {

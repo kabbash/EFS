@@ -27,7 +27,7 @@ export class ChangePasswordComponent implements OnInit {
       confirmPassword: ['', [Validators.required]]
     },
       {
-        Validator: CustomValidators.confirmPassword.bind(this,'newPassword', 'confirmPassword')
+        Validator: CustomValidators.confirmPassword('newPassword', 'confirmPassword')
       });
 
   }

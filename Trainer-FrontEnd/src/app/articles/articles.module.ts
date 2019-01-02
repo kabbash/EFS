@@ -7,13 +7,11 @@ import { ArticlesCatergoriesComponent } from './articles-catergories/articles-ca
 import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
-import { ArticleCategoriesResolver } from './resolvers/article-categories.resolver';
 import { ArticleDetailsResolver } from './resolvers/article-details.resolver';
 import { ArticleListResolver } from './resolvers/article-list.resolver';
 
 @NgModule({
   imports: [
-    CommonModule,
     SharedModule,
     ArticlesRoutingModule,
     NgbModule,
@@ -22,7 +20,6 @@ import { ArticleListResolver } from './resolvers/article-list.resolver';
   ],
   declarations: [ArticlesComponent, ArticlesListComponent, ArticlesCatergoriesComponent, ArticleDetailsComponent],
   providers: [
-    ArticleCategoriesResolver,
     ArticleDetailsResolver,
     ArticleListResolver
   ]

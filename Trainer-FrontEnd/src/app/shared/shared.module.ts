@@ -12,24 +12,41 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentsComponent } from './comments/comments.component';
 import { SiteMapComponent } from './site-map/site-map.component';
 import { UtilitiesService } from './services/utilities.service';
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FileUploaderComponent } from './file-uploader/file-uploader.component';
+import { ArticleCategoriesResolver } from './resolvers/article-categories.resolver';
+import { ArticleDetailsCardComponent } from './article-details-card/article-details-card.component';
+import { CategoriesService } from '../admin-tools/services/categories.service';
+import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
+import { DropDownComponent } from './drop-down/drop-down.component';
+import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-menu.component';
 
 @NgModule({
   imports: [
     CommonModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
     TranslateModule, HeaderComponent, FooterComponent,
-    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
-    ProductItemComponent, CommentsComponent, SiteMapComponent
+    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
+    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent, DashboardMenuComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
-    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent,
-    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent],
+    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
+    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent,
+    DropDownComponent, DashboardMenuComponent],
   providers: [
-    UtilitiesService
+    UtilitiesService,
+    ArticleCategoriesResolver,
+    CategoriesService,
+    ProductsCategoriesResolver
   ]
 })
 export class SharedModule { }

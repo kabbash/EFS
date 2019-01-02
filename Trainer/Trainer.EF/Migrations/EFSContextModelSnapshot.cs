@@ -15,7 +15,7 @@ namespace Trainer.EF.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -36,6 +36,8 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired();
+
+                    b.Property<bool>("IsActive");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -75,6 +77,8 @@ namespace Trainer.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<int?>("PredefinedKey");
+
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
 
@@ -87,6 +91,11 @@ namespace Trainer.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Articles_Categories");
+
+                    b.HasData(
+                        new { Id = 1, CreatedAt = new DateTime(2019, 1, 1, 23, 23, 6, 972, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
+                        new { Id = 2, CreatedAt = new DateTime(2019, 1, 1, 23, 23, 6, 975, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
+                    );
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ArticlesImages", b =>
@@ -126,10 +135,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "662f74fe-9de9-4b4c-b778-ad2227e09dc5", Name = "Client" },
-                        new { Id = "1a3d5ce7-e06a-4092-8089-bb307bd8a8f4", Name = "RegularUser" },
-                        new { Id = "fb404ba2-13c9-4c54-ac59-b7b15f1e359c", Name = "Trainer" },
-                        new { Id = "b82395de-efa9-4569-800d-144c6f43baca", Name = "ArticleWriter" }
+                        new { Id = "5560dcd1-6a17-4d09-8128-a3e67fd55a2a", Name = "Client" },
+                        new { Id = "5e9c9ace-75e9-4913-b7d6-db5240aab551", Name = "RegularUser" },
+                        new { Id = "a99c2b47-4208-402b-994b-fb11d7cf1010", Name = "Trainer" },
+                        new { Id = "db4f70df-8e98-4b9a-9460-a0c2444b2097", Name = "ArticleWriter" }
                     );
                 });
 
@@ -203,15 +212,11 @@ namespace Trainer.EF.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("Hometown");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50);
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -248,7 +253,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FirstName = "ahmed", LastName = "kabbash", LockoutEnabled = false, PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "Admin" }
+                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", LockoutEnabled = false, PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "Admin" }
                     );
                 });
 
@@ -623,6 +628,8 @@ namespace Trainer.EF.Migrations
 
                     b.Property<bool>("IsActive");
 
+                    b.Property<bool>("IsSpecial");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100);
@@ -915,19 +922,13 @@ namespace Trainer.EF.Migrations
                     b.HasOne("Shared.Core.Models.ProductsCategories", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .HasConstraintName("FK_Products_Products_Subcategories");
+                        .HasConstraintName("FK_Products_Products_Subcategories")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Shared.Core.Models.AspNetUsers", "Seller")
                         .WithMany("Products")
                         .HasForeignKey("CreatedBy")
                         .HasConstraintName("FK_Products_AspNetUsers_CreatedBy");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProductsCategories", b =>
-                {
-                    b.HasOne("Shared.Core.Models.ProductsCategories")
-                        .WithMany("Subcategories")
-                        .HasForeignKey("ParentId");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ProductsCategories", b =>

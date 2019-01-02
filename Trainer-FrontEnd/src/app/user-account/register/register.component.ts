@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/services/auth.service';
 import { AppService } from '../../app.service';
 import { first, finalize } from 'rxjs/operators';
+import { CustomValidators } from '../Validators/custom-validators';
 
 @Component({
   selector: 'app-register',
@@ -22,12 +23,14 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]]
-    });
+    },
+      {
+        Validator: CustomValidators.confirmPassword('password', 'confirmPassword')
+      });
   }
 
   // convenience getter for easy access to form fields
@@ -35,7 +38,6 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;

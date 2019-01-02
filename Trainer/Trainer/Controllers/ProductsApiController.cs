@@ -18,11 +18,31 @@ namespace Trainer.Controllers
             _ratingManager = ratingManager;
         }
 
-        // GET: api/ProductsCategories
-        [HttpGet]
-        public ActionResult Get()
+        [HttpGet("GetActiveItems")]
+        public ActionResult GetActiveItems(int PageNo=1 , int PageSize=10)
         {
-            return GetStatusCodeResult(_productsManager.GetAll());
+            var filter = new ProductFilter
+            {
+                IsActive = true
+            };
+            return GetStatusCodeResult(_productsManager.GetAll(PageNo,PageSize,filter));
+        }
+
+        [HttpGet("GetSpecialItems")]
+        public ActionResult GetSpecialItems(int PageNo = 1, int PageSize = 10)
+        {
+            var filter = new ProductFilter
+            {
+                IsSpecial = true,
+                IsActive =true
+            };
+            return GetStatusCodeResult(_productsManager.GetAll(PageNo, PageSize,filter));
+        }
+
+        [HttpGet]
+        public ActionResult Get(int PageNo = 1, int PageSize = 10)
+        {
+            return GetStatusCodeResult(_productsManager.GetAll(PageNo, PageSize));
         }
 
         [HttpGet("Category/{id}")]
@@ -31,21 +51,18 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_productsManager.GetByCategoryId(id));
         }
 
-        // GET: api/ProductsCategories/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
             return GetStatusCodeResult(_productsManager.GetById(id));
         }
 
-        // POST: api/ProductsCategories
         [HttpPost]
         public ActionResult Post([FromBody] ProductsDto productsDto)
         {
             return GetStatusCodeResult(_productsManager.Insert(productsDto));
         }
 
-        // PUT: api/ProductsCategories/5
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] ProductsDto productsDto)
         {

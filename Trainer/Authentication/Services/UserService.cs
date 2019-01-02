@@ -1,21 +1,23 @@
 ﻿using Authentication.Interfaces;
 using Authentication.Models;
-using Shared.Core;
+using FluentValidation;
+using MailProvider.Core;
+using MailProvider.Core.Interfaces;
+using Mapster;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Shared.Core.Models;
+using Shared.Core.Utilities.Enums;
+using Shared.Core.Utilities.Extensions;
+using Shared.Core.Utilities.Helpers;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 using System.IdentityModel.Tokens.Jwt;
-using Mapster;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
-using Microsoft.Extensions.Options;
-using Shared.Core.Models;
-using Shared.Core.Utilities;
-using FluentValidation;
+using System.Linq;
 using System.Net;
-using MailProvider.Core.Interfaces;
-using MailProvider.Core;
+using System.Security.Claims;
+using System.Text;
 
 namespace Authentication.Services
 {
@@ -199,7 +201,7 @@ namespace Authentication.Services
                         });
                         break;
                 }
-                var mailBody = _emailSettings.RegisterEmail.Body.Replace("{0}", userEntity.FirstName).Replace("{1}", _emailSettings.RegisterEmail.VerifyEmailUrl.Replace("{0}", userEntity.SecurityStamp));
+                var mailBody = _emailSettings.RegisterEmail.Body.Replace("{0}", userEntity.FullName).Replace("{1}", _emailSettings.RegisterEmail.VerifyEmailUrl.Replace("{0}", userEntity.SecurityStamp));
                 _emailService.SendEmailAsync(userEntity.Email, _emailSettings.RegisterEmail.Subject, mailBody);
                 return new ResultMessage { Status = HttpStatusCode.OK };
             }
@@ -243,7 +245,7 @@ namespace Authentication.Services
                 if (!user.EmailConfirmed)
                     return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.EmailNotConfirmed };
 
-                var mailBody = _emailSettings.ResetPasswordEmail.Body.Replace("{0}", user.FirstName).Replace("{1}", _emailSettings.ResetPasswordEmail.ResetPasswordUrl.Replace("{0}", user.SecurityStamp));
+                var mailBody = _emailSettings.ResetPasswordEmail.Body.Replace("{0}", user.FullName).Replace("{1}", _emailSettings.ResetPasswordEmail.ResetPasswordUrl.Replace("{0}", user.SecurityStamp));
                 _emailService.SendEmailAsync(user.Email, _emailSettings.RegisterEmail.Subject, mailBody);
                 return new ResultMessage { Status = HttpStatusCode.OK, Data = true };
             }

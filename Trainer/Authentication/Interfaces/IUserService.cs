@@ -1,8 +1,6 @@
 ﻿using Authentication.Models;
-using Shared.Core.Utilities;
-using System;
+using Shared.Core.Utilities.Models;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Authentication.Interfaces
 {

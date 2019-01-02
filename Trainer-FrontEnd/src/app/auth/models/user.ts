@@ -1,8 +1,7 @@
-class User {
+export class User {
     id: string;
-    firstName: string;
-    lastName: string;
+    fullName: string;
     username: string;
     token: string;
-    roles : string[];
+    roles: string[];
 }

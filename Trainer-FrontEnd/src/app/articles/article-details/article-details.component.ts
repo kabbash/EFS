@@ -27,11 +27,11 @@ export class ArticleDetailsComponent implements OnInit {
       this.articleId = params['articleId'];
     });
   }
-
+ 
   ngOnInit() {
     this.route.data.subscribe(result => {
       this.article = result.details.data;
-      this.articleBody = '<h2><center>' + this.article.name + '</center></h2><br/>' + this.article.description;
+      // this.articleBody = '<h2><center>' + this.article.name + '</center></h2><br/>' + this.article.description;
       this.appService.loading = false;
     });
   }

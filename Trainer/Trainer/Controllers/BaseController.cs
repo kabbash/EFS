@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Core.Utilities;
+using Shared.Core.Utilities.Models;
 using System.Linq;
 using System.Security.Claims;
 

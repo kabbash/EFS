@@ -1,4 +1,4 @@
-.carousel-container {
+/* .carousel-container {
     padding-top: 40px;
     margin-bottom: 40px;
     width: 80%;
@@ -21,3 +21,8 @@
     margin:30px;
     text-align: -webkit-center;
 }
+
+:host ::ng-deep .carousel-caption{
+    color: #000000;
+    background-color: rgba(255,255,255,0.6);
+} */
