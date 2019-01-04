@@ -4,6 +4,8 @@ import { config } from '../../config/pages-config';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { environment } from '../../../environments/environment';
 import { articleListItemDto } from '../../shared/models/article-list-item-dto';
+import { ArticlesService } from '../articles.service';
+import { AppService } from 'src/app/app.service';
 
 
 @Component({
@@ -13,24 +15,41 @@ import { articleListItemDto } from '../../shared/models/article-list-item-dto';
 })
 export class ArticlesListComponent implements OnInit {
 
-  currentPage = 3;
-  page = 4;
-  pageAdvanced = 2;
+  selectedPage = 1;
+  pagesNumber: number;
   articles: articleListItemDto[];
   baseurl = environment.filesBaseUrl;
   categoryId: number;
+  itemsPerPage = 2;
 
-  constructor(private router: Router, private route: ActivatedRoute, private repositoryService: RepositoryService) {
+  constructor(private router: Router, private appService: AppService, private repositoryService: RepositoryService,
+    private articlesService: ArticlesService) {
   }
 
   ngOnInit() {
-    this.route.data.subscribe(result => {
-      this.articles = result.articleList.data;
-    });
+    this.getArticles(1, this.itemsPerPage);
+    console.log(this.selectedPage);
+    // this.route.data.subscribe(result => {
+    //   this.articles = result.articleList.data;
+    // });
+  }
+
+  getSelectedPage(page) {
+    this.getArticles(page, this.itemsPerPage);
   }
 
   articlesDetails(articleId) {
     this.router.navigate([config.articles.articleDetails.route, articleId]);
+  }
+
+  getArticles(pageNumber, itemsPerPage) {
+    this.appService.loading = true;
+    this.articlesService.getArticles(pageNumber, itemsPerPage).subscribe((response: any) => {
+      this.articles = [];
+      this.appService.loading = false;
+      this.pagesNumber = response.data.pagesCount * 10;
+      this.articles = response.data.results;
+    });
   }
 
 
