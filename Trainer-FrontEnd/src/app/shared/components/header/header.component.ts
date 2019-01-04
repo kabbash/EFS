@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { config } from 'src/app/config/pages-config';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,7 +11,8 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   hideSearch: boolean;
   smallSize: boolean;
-  constructor(private router: Router) {
+  configUrls = config;
+  constructor(private router: Router, public authService: AuthService) {
     router.events.subscribe((val: any) => {
       // see also
       if (val && val.route && val.route.path && val.route.path === 'home') {
@@ -94,6 +97,11 @@ export class HeaderComponent implements OnInit {
   toggleClass() {
     var x = document.getElementsByClassName("offcanvas-collapse")[0];
     x.classList.toggle('open');
+  }
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
   // showDropdown(element) {
