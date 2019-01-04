@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { RepositoryService } from 'src/app/shared/services/repository.service';
 import { map } from 'rxjs/operators';
-import { apiUrl } from 'src/config/api.config';
-import { ResultMessage } from 'src/app/shared/models/result-message';
 import { Roles } from '../models/roles.enum';
 import { User } from '../models/user';
+import { RepositoryService } from '../../shared/services/repository.service';
+import { apiUrl } from '../../../config/api.config';
+import { ResultMessage } from '../../shared/models/result-message';
 
 @Injectable({
   providedIn: 'root'

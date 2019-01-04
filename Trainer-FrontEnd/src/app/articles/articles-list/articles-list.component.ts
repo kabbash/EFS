@@ -5,7 +5,7 @@ import { RepositoryService } from '../../shared/services/repository.service';
 import { environment } from '../../../environments/environment';
 import { articleListItemDto } from '../../shared/models/article-list-item-dto';
 import { ArticlesService } from '../articles.service';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../../app.service';
 
 
 @Component({

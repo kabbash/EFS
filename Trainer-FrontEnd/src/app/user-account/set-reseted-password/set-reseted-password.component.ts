@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from 'src/app/auth/services/auth.service';
-import { AppService } from 'src/app/app.service';
 import { finalize, first } from 'rxjs/operators';
+import { AuthService } from '../../auth/services/auth.service';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-set-reseted-password',

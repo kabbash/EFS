@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/services/auth.service';
-import { config } from 'src/app/config/pages-config';
+import { config } from '../../../config/pages-config';
+import { AuthService } from '../../../auth/services/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
