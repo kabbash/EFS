@@ -7,16 +7,20 @@
 
     <div class="navbar-collapse offcanvas-collapse esf-nav" id="navbarsExampleDefault">
       <ul class="navbar-nav ml-auto">
-        
-          <li class="nav-item dropdown " *ngIf="smallSize">
-              <a class="nav-link dropdown-anchore" id="userListItem"><i class="fa fa-user user-margin"></i>المستخدم<i class="fa fa-chevron-down arrow-margin"></i></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/admin/addArticleCategory']">صفحة التحكم</a></li>
-                <li><a class="nav-item nav-link">الصفحه الشخصيه</a></li>
-                <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/userAccount/loginPage']">تسجيل
-                    الخروج</a></li>
-              </ul>
-            </li>
+
+        <li class="nav-item dropdown " *ngIf="authService.isLoggedIn() && smallSize">
+          <a class="nav-link dropdown-anchore" id="userListItem"><i class="fa fa-user user-margin"></i>{{authService.getUserInfo()?.fullName}}<i
+              class="fa fa-chevron-down arrow-margin"></i></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/admin/addArticleCategory']">صفحة
+                التحكم</a></li>
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.userAccount.changePassword.route]">نغيير
+                كلمة المرور</a></li>
+            <li><a class="nav-item nav-link">الصفجه الشخصيه</a></li>
+            <li><a class="nav-item nav-link" (click)="logout()">تسجيل
+                الخروج</a></li>
+          </ul>
+        </li>
         <li class="nav-item active">
           <a class="nav-link" href="#">الرئيسية <span class="sr-only">(current)</span></a>
         </li>
@@ -32,7 +36,8 @@
         <li class="nav-item dropdown ">
           <a class="nav-link dropdown-anchore">بيع / شراء<i class="fa fa-chevron-down arrow-margin"></i></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/products/productsCategories']">شراء منتج</a></li>
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/products/productsCategories']">شراء
+                منتج</a></li>
             <li><a class="nav-item nav-link">بيع منتج</a></li>
             <li><a class="nav-item nav-link" [routerLink]="['/products/productReviews']">مراجعة المنتجات</a></li>
           </ul>
@@ -52,16 +57,20 @@
           <a class="nav-link" href="#"> تواصل معنا</a>
 
         </li>
-        <!-- <li class="nav-item ">
+        <li class="nav-item " *ngIf="!authService.isLoggedIn()">
           <a class="nav-link" [routerLink]="['/userAccount/loginPage']"> تسجيل الدخول </a>
-        </li> -->
+        </li>
 
-        <li class="nav-item dropdown " id="userNameElm" *ngIf="!smallSize">
-          <a class="nav-link dropdown-anchore" id="userListItem"><i class="fa fa-user user-margin"></i>المستخدم<i class="fa fa-chevron-down arrow-margin"></i></a>
+        <li class="nav-item dropdown " id="userNameElm" *ngIf="authService.isLoggedIn() && !smallSize">
+          <a class="nav-link dropdown-anchore" id="userListItem"><i class="fa fa-user user-margin"></i>{{authService.getUserInfo()?.fullName}}<i
+              class="fa fa-chevron-down arrow-margin"></i></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/admin/addArticleCategory']">صفحة التحكم</a></li>
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/admin/addArticleCategory']">صفحة
+                التحكم</a></li>
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.userAccount.changePassword.route]">نغيير
+                كلمة المرور</a></li>
             <li><a class="nav-item nav-link">الصفجه الشخصيه</a></li>
-            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/userAccount/loginPage']">تسجيل
+            <li><a class="nav-item nav-link" (click)="logout()">تسجيل
                 الخروج</a></li>
           </ul>
         </li>

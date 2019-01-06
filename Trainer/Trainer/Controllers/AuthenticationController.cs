@@ -82,5 +82,28 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_userService.VerifyEmail(activationToken));
         }
 
+        [HttpPost]
+        [Route("ResetPassword")]
+        public IActionResult ResetPassword([FromBody]ResetPasswordDto data)
+        {
+            return GetStatusCodeResult(_userService.ResetPassword(data));
+        }
+
+        [HttpPost]
+        [Route("SetResetedPassword")]
+        public IActionResult SetResetedPassword([FromBody]SetPasswordDto data)
+        {
+            return GetStatusCodeResult(_userService.SetResetedPassword(data));
+        }
+
+        [HttpPost]
+        [Route("ChangePassword")]
+        [Authorize]
+        public IActionResult ChangePassword([FromBody]ChanePasswordDto data)
+        {
+            data.UserId = User.Identity.Name;
+            return GetStatusCodeResult(_userService.ChangePassword(data));
+        }
+
     }
 }

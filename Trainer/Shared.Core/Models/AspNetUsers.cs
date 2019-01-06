@@ -26,8 +26,7 @@ namespace Shared.Core.Models
         public DateTime? LockoutEndDateUtc { get; set; }
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
+        public string FullName { get; set; }
         public string ProfilePicture { get; set; }
         public string UserName { get; set; }
 

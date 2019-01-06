@@ -186,13 +186,13 @@ namespace Trainer.EF
 
                 entity.Property(e => e.Email).HasMaxLength(256);
 
-                entity.Property(e => e.FirstName)
+                entity.Property(e => e.FullName)
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                //entity.Property(e => e.LastName)
+                //    .IsRequired()
+                //    .HasMaxLength(50);
 
                 entity.Property(e => e.LockoutEndDateUtc).HasColumnType("datetime");
 
@@ -206,8 +206,8 @@ namespace Trainer.EF
                     Id = "7c654344-ad42-4428-a77a-00a8c1299c3f",
                     Email = "ahmedkabbash@gmail.com",
                     EmailConfirmed = true,
-                    FirstName = "ahmed",
-                    LastName = "kabbash",
+                    FullName = "ahmed kabbash",
+                    //LastName = "kabbash",
                     UserName = "Admin"
                     //PasswordHash = "1234",
 

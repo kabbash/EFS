@@ -54,6 +54,30 @@ export let config = {
         'register': {
             'name': 'register',
             'route': '/userAccount/register',
+        },
+        'confirmEmail': {
+            'name': 'activateAccount',
+            'route': '/userAccount/activateAccount',
+        },
+        'emailNotConfirmed': {
+            'name': 'emailNotConfirmed',
+            'route': '/userAccount/emailNotConfirmed',
+        },
+        'accountRegistered': {
+            'name': 'accountRegistered',
+            'route': '/userAccount/accountRegistered',
+        },
+        'resetPassword': {
+            'name': 'resetPassword',
+            'route': '/userAccount/resetPassword',
+        },
+        'setResetedPassword': {
+            'name': 'setResetedPassword',
+            'route': '/userAccount/setResetedPassword',
+        },
+        'changePassword': {
+            'name': 'changePassword',
+            'route': '/userAccount/changePassword',
         }
     },
     'notfound': {

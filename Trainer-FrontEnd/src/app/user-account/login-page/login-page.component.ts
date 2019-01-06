@@ -3,8 +3,9 @@ import { Router, ActivatedRoute, Route } from '@angular/router';
 import { config } from '../../config/pages-config';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/services/auth.service';
-import { first } from 'rxjs/operators';
+import { first, finalize } from 'rxjs/operators';
 import { AppService } from '../../app.service';
+import { AuthenticationErrorsCode } from '../models/authentication-error-code.enum';
 
 
 @Component({
@@ -24,13 +25,13 @@ export class LoginPageComponent implements OnInit {
     private fb: FormBuilder,
     private authenticationService: AuthService,
     private appService: AppService) {
-    
+
   }
 
   ngOnInit() {
     this.form = this.fb.group(
       {
-        "userName": ['',  [Validators.required, Validators.email]],
+        "userName": ['', [Validators.required, Validators.email]],
         "password": ['', Validators.required]
       }
     );
@@ -44,20 +45,24 @@ export class LoginPageComponent implements OnInit {
   navigateToRegister() {
     this.router.navigate([config.userAccount.register.route]);
   }
-
+  navigateToResetPassword(){
+    this.router.navigate([config.userAccount.resetPassword.route]);
+  }
   onSubmit() {
-    
     this.submitted = true;
     if (this.form.invalid) {
       return;
     }
     this.appService.loading = true;
     this.authenticationService.login(this.form.value.userName, this.form.value.password)
-      .pipe(first())
+      .pipe(first(), finalize(() => {
+        this.appService.loading = false;
+      }))
       .subscribe(result => {
         if (result.status == 200)
           this.router.navigate([this.returnUrl]);
-        this.appService.loading = false;
+        else if (result.errorCode == AuthenticationErrorsCode.EmailNotConfirmed)
+          this.router.navigate([config.userAccount.emailNotConfirmed.route]);
       });
   }
 }

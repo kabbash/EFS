@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class FormsComponent implements OnInit {
   isCollapsed = false;
   iconCollapse = 'icon-arrow-up';
+  editorContent = '<h1>Documentation : https://www.froala.com/wysiwyg-editor/docs/framework-plugins/angularjs-2-4 !!!</h1>';
 
   constructor() { }
 

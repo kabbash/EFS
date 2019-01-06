@@ -8,8 +8,8 @@ namespace Authentication.Validators
         public RegisterValidator()
         {
             RuleFor(model => model.Email).NotEmpty().EmailAddress();
-            RuleFor(model => model.FirstName).NotEmpty();
-            RuleFor(model => model.LastName).NotEmpty();
+            RuleFor(model => model.FullName).NotEmpty();
+            //RuleFor(model => model.LastName).NotEmpty();
             RuleFor(model => model.Password).NotEmpty();
 
 

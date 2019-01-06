@@ -17,7 +17,7 @@ const routes: Routes = [
       {
         path: config.articles.articlesList.name,
         component: ArticlesListComponent,
-        resolve: {articleList: ArticleListResolver}
+        // resolve: {articleList: ArticleListResolver}
       },
       {
         path: config.articles.articlesCategories.name,

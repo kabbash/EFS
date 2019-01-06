@@ -221,6 +221,6 @@ a#userListItem{
 }
 
 #userNameElm {
-  position: absolute;
+  /* position: absolute; */
   left: 0;
 }
