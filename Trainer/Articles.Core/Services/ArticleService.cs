@@ -80,12 +80,12 @@ namespace Articles.Core.Services
 
             }
         }
-        public ResultMessage GetAll(int pageNo, int pageSize, ArticlesFilter filter=null)
+        public ResultMessage GetAll(int pageNo, int pageSize, ArticlesFilter filter = null)
         {
             try
             {
                 PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
-                result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).GetPaged(pageNo,pageSize).Adapt(result);
+                result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).GetPaged(pageNo, pageSize).Adapt(result);
                 return new ResultMessage
                 {
                     Data = result,
@@ -243,7 +243,7 @@ namespace Articles.Core.Services
                         }),
                         Title = image.Name
                     });
-                } 
+                }
 
                 _unitOfWork.ArticlesRepository.Insert(articleEntity);
                 _unitOfWork.Commit();
@@ -264,15 +264,15 @@ namespace Articles.Core.Services
         }
         public ResultMessage Update(ArticleAddDto article, int id, string userId)
         {
-            var validationResult = _Validator.Validate(article);
-            if (!validationResult.IsValid)
-            {
-                return new ResultMessage
-                {
-                    Status = HttpStatusCode.BadRequest,
-                    ValidationMessages = validationResult.GetErrorsList()
-                };
-            }
+            //var validationResult = _Validator.Validate(article);
+            //if (!validationResult.IsValid)
+            //{
+            //    return new ResultMessage
+            //    {
+            //        Status = HttpStatusCode.BadRequest,
+            //        ValidationMessages = validationResult.GetErrorsList()
+            //    };
+            //}
             try
             {
                 var articleData = _unitOfWork.ArticlesRepository.GetById(id);
@@ -284,10 +284,11 @@ namespace Articles.Core.Services
                     };
                 }
 
-                article.Adapt(articleData, typeof(ArticleAddDto), typeof(Shared.Core.Models.Articles));
-                articleData.Id = id;
+                //article.Adapt(articleData, typeof(ArticleAddDto), typeof(Shared.Core.Models.Articles));
+                //articleData.Id = id;
                 articleData.UpdatedAt = DateTime.Now;
                 articleData.UpdatedBy = userId;
+                articleData.Description = article.Description;
                 _unitOfWork.ArticlesRepository.Update(articleData);
                 _unitOfWork.Commit();
                 return new ResultMessage
@@ -300,6 +301,28 @@ namespace Articles.Core.Services
             {
                 return new ResultMessage
                 {
+                    Status = HttpStatusCode.InternalServerError
+                };
+            }
+        }
+        public ResultMessage GetFilteredData(ArticlesFilter filter)
+        {
+            try
+            {
+                PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
+                result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                return new ResultMessage
+                {
+                    Data = result,
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new ResultMessage()
+                {
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }

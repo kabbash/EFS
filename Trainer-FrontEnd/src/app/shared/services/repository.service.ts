@@ -20,7 +20,6 @@ export class RepositoryService {
   }
 
   public post<T>(route: string, body={}) {
-    debugger;
     return this.http.post<ResultMessage<T>>(this.createCompleteRoute(route), body, this.generateJsonHeaders());
   }
 

@@ -122,9 +122,9 @@ export let config = {
         'name': 'manageArticles/:articleId',
         'route': '/admin/manageArticles'
       },
-      'pendingApprovalArticles': {
-        'name': 'pendingApprovalArticles',
-        'route': '/admin/pendingApprovalArticles'
+      'articleslist': {
+        'name': 'articleslist',
+        'route': '/admin/articlesList'
       },
       'manageProductsCategories': {
         'name': 'manageProductsCategories',

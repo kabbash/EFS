@@ -20,6 +20,9 @@ import { ArticleDetailsCardComponent } from './article-details-card/article-deta
 import { CategoriesService } from '../admin-tools/services/categories.service';
 import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
 import { DropDownComponent } from './drop-down/drop-down.component';
+import { ArticleDetailsEditmodeComponent } from './article-details-editmode/article-details-editmode.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+
 import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-menu.component';
 
 @NgModule({
@@ -28,7 +31,9 @@ import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-me
     NgbModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
   ],
   exports: [
     ReactiveFormsModule,

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddCategoryComponent } from 'src/app/admin-tools/add-category/add-category.component';
+import { AddCategoryComponent } from '../../admin-tools/add-category/add-category.component';
 
 
 describe('AddCategoryComponent', () => {
