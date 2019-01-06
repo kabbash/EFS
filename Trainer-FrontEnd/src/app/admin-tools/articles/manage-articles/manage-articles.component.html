@@ -1,5 +1,24 @@
-<app-article-details-card [article]="article" > </app-article-details-card>
-<div style="text-align: center;padding: 20px;">
-  <button  class="btn btn-primary" (click)="approveArticle()"> approve </button>
-  <button  class="btn btn-danger" (click)="rejectArticle()"> reject </button>
+<div *ngIf="viewMode">
+  <app-article-details-card [article]="article"> </app-article-details-card>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button class="btn btn-primary" [hidden]="! showPendingButtons()" (click)="approve()" style="margin: 5px;">
+        موافقه </button>
+      <button class="btn btn-primary" [hidden]="! showPendingButtons()" (click)="reject()" style="margin: 5px;">
+        رفـض </button>
+      <button class="btn btn-primary" (click)="openEditForm()" style="margin: 5px;"> تعديل </button>
+      <button class="btn btn-primary" (click)="delete()" style="margin: 5px;">
+        مسـح </button>
+    </div>
+  </div>
+</div>
+<div *ngIf="! viewMode">
+  <app-article-details-editmode [article]="article" [isNew]="false"></app-article-details-editmode>
+  <div class="row">
+    <div class="col-sm-12">
+      <button class="btn btn-primary" (click)="update()"> تعديل</button>
+      <button class="btn btn-primary" (click)="cancelUpdates()"> الغاء</button>
+    </div>
+  </div>
 </div>
