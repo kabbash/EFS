@@ -1,10 +1,10 @@
+<!-- <div class="products-container">
+    <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'url(./assets/images/test/whey.png)'"></app-product-item>
+    <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'url(./assets/images/test/whey.png)'"></app-product-item>
+    <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'url(./assets/images/test/whey.png)'"></app-product-item>
+</div> -->
 <div class="products-container">
-    <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'url(./assets/images/test/whey.png)'"></app-product-item>
-    <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'url(./assets/images/test/whey.png)'"></app-product-item>
-    <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'url(./assets/images/test/whey.png)'"></app-product-item>
-</div>
-<div class="products-container">
-    <app-product-item *ngFor="let product of products" (click)="openProductModal(product)" [price]="product.price + ' EGP'"
+    <app-product-item *ngFor="let product of products" (click)="openProductDetails(product)" [price]="product.price + ' EGP'"
         [currentRate]="product.rate" [cardName]="product.name" [cardImage]="'url(' + baseurl + product.profilePicture + ')'"></app-product-item>
 </div>
 <div class="pagination-container">

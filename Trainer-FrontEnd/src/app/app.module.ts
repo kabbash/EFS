@@ -18,6 +18,7 @@ import { UserAccountModule } from './user-account/user-account.module';
 import { LoginModule } from './login/login.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AuthService } from './auth/services/auth.service';
+import { ItemReviewResolver } from 'src/app/admin-tools/resolvers/item-review.resolver';
 
 export function CreateTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -53,7 +54,9 @@ export function CreateTranslateLoader(http: HttpClient) {
     AngularFontAwesomeModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    ItemReviewResolver
+
   ],
   bootstrap: [AppComponent]
 })

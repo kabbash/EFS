@@ -26,7 +26,7 @@ export class AddItemForReviewComponent implements OnInit {
   }
   submit() {
     if (this.reviewForm.valid) {
-      this.repositoryService.create('', this.reviewForm.value).subscribe(data => {
+      this.repositoryService.create('itemsreview', this.prepareData(this.reviewForm.value)).subscribe(data => {
         alert('success');
       }, error => {
         alert(error);
@@ -42,6 +42,18 @@ export class AddItemForReviewComponent implements OnInit {
     };
     reader.readAsDataURL(file);
     this.imageAdded = true;
+  }
+
+  prepareData(itemData) {
+    const formData = new FormData();
+    formData.append('name', itemData.name);
+    formData.append('profilePictureFile', itemData.profilePictureFile);
+    // formData.append('createdAt', itemData.createdAt ? itemData.createdAt : new Date().toISOString());
+    // formData.append('createdBy', itemData.createdBy ? itemData.createdBy : 'admin');
+    formData.append('profilePicture', itemData.profilePicture ? itemData.profilePicture : '');
+    formData.append('description', itemData.description);
+    
+    return formData;
   }
 
 }

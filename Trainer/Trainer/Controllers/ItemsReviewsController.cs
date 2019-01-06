@@ -34,14 +34,14 @@ namespace Trainer.Controllers
 
         // POST: api/itemsreview
         [HttpPost]
-        public ActionResult Post([FromBody] ItemReviewDto itemDto)
+        public ActionResult Post([FromForm] ItemReviewDto itemDto)
         {
             return GetStatusCodeResult(_itemsReviewManager.Insert(itemDto));
         }
 
         // PUT: api/itemsreview/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] ItemReviewDto itemDto)
+        public ActionResult Put(int id, [FromForm] ItemReviewDto itemDto)
         {
             return GetStatusCodeResult(_itemsReviewManager.Update(itemDto, id));
         }

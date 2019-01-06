@@ -15,16 +15,16 @@
   <div class="details-footer">
     <h2>قيم هذا المنتج</h2>
     <span class="rate">
-      <ngb-rating [(rate)]="userRate" max="5" class="star">
+      <ngb-rating [(rate)]="rate.rate" max="5" class="star">
         <ng-template let-fill="fill" let-index="index">
           <span class="star" [class.filled]="fill === 100">&#9733;</span>
         </ng-template>
       </ngb-rating>
     </span>
     <div>
-      <textarea name="textarea-input" rows="5" class="form-control product-rate-text-area" placeholder="تعليقك..."></textarea>
+      <textarea name="textarea-input" rows="5" class="form-control product-rate-text-area" placeholder="تعليقك..." [(ngModel)]="rate.comment"></textarea>
     </div>
-    <div class="add-comment">إضافة تعليق</div>
+    <div class="add-comment" (click)="submitRate()">إضافة تعليق</div>
 
   </div>
 </div>

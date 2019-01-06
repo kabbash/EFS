@@ -33,8 +33,12 @@ export let config = {
             'route': '/products/productsCategories',
         },
         'productRating': {
-            'name': 'productRating',
+            'name': 'productRating/:productId',
             'route': '/products/productRating',
+        },
+        'productReviews': {
+            'name': 'productReviews',
+            'route': '/products/productReviews'
         }
     },
     'userAccount': {
@@ -109,6 +113,10 @@ export let config = {
       'addItemForReview': {
         'name': 'addItemForReview',
         'route': '/admin/addItemForReview'
+      },
+      'itemReviewList': {
+          'name': 'itemReviewList',
+          'route': '/admin/itemReviewList'
       }
     }
 };

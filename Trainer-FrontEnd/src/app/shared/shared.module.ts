@@ -21,6 +21,8 @@ import { CategoriesService } from '../admin-tools/services/categories.service';
 import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
 import { DropDownComponent } from './drop-down/drop-down.component';
 import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-menu.component';
+import { ProductsListComponent } from 'src/app/products/products-list/products-list.component';
+import { ModalComponent } from 'src/app/products/modal/modal.component';
 
 @NgModule({
   imports: [
@@ -36,12 +38,13 @@ import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-me
     CommonModule,
     TranslateModule, HeaderComponent, FooterComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
-    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent, DashboardMenuComponent
+    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent, DashboardMenuComponent,
+    ProductsListComponent, ModalComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
     ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent,
-    DropDownComponent, DashboardMenuComponent],
+    DropDownComponent, DashboardMenuComponent, ProductsListComponent, ModalComponent],
   providers: [
     UtilitiesService,
     ArticleCategoriesResolver,
