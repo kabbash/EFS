@@ -10,7 +10,11 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 import { ManageArticlesCategoriesComponent } from './articles/manage-articles-categories/manage-articles-categories.component';
 import { ManageProductsCategoriesComponent } from './manage-products-categories/manage-products-categories.component';
 import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
+import { AddItemForReviewComponent } from './add-item-for-review/add-item-for-review.component';
+import { ProductsListComponent } from 'src/app/products/products-list/products-list.component';
+import { ItemReviewResolver } from './resolvers/item-review.resolver';
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
+
 
 const routes: Routes = [
   {
@@ -40,6 +44,15 @@ const routes: Routes = [
     path: config.admin.manageProductsCategories.name,
     component: ManageProductsCategoriesComponent,
     resolve: {categories: ProductsCategoriesResolver}
+  },
+  {
+    path: config.admin.addItemForReview.name,
+    component: AddItemForReviewComponent
+  },
+  {
+    path: config.admin.itemReviewList.name,
+    component: ProductsListComponent,
+    resolve: {productList: ItemReviewResolver}
   }
 ];
 

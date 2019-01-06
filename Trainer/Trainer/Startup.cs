@@ -64,7 +64,6 @@ namespace Trainer
             ConfigureManagers(services);
             ConfigureSettings(services);
             ConfigureJwtAuthentication(services);
-
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                     .AddJsonOptions(

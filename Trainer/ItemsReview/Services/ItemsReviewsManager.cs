@@ -8,6 +8,7 @@ using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 
 namespace ItemsReview.Services
@@ -21,12 +22,12 @@ namespace ItemsReview.Services
             _unitOfWork = unitOfWork;
             _validator = validator;
         }
-        public ResultMessage GetAll()
+        public ResultMessage GetAll(int pageNo, int pageSize)
         {
             try
             {
-                IEnumerable<ItemReviewDto> result = new List<ItemReviewDto>();
-                result = _unitOfWork.ItemsReviewsRepository.Get().Adapt(result);
+                PagedResult<ItemReviewDto> result = new PagedResult<ItemReviewDto>();
+                result = _unitOfWork.ItemsReviewsRepository.Get().GetPaged(pageNo,pageSize).Adapt(result);
 
                 return new ResultMessage()
                 {
@@ -77,6 +78,7 @@ namespace ItemsReview.Services
             try
             {
                 var itemReview = _unitOfWork.ItemsReviewsRepository.GetById(id);
+                // itemReview.Reviews.ToList();
                 if (itemReview != null)
                     return new ResultMessage()
                     {

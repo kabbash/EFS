@@ -15,5 +15,7 @@ namespace Shared.Core.Models
 
         [Column(TypeName = "decimal(10,2)")]
         public decimal Rate { get; set; }
+
+        public virtual ICollection<EntityRating> Reviews { get; set; }
     }
 }

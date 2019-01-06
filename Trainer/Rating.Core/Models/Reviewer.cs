@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Products.Core.Models
+namespace Rating.Core.Models
 {
-    public class SellerInfo
+    public class Reviewer
     {
         public string FullName { get; set; }
-        public string PhoneNumber { get; set; }
     }
 }

@@ -1,30 +1,23 @@
 <div class="image-container">
-  <div class="with-img"></div>
+  <div class="with-img" [ngStyle]="{'background-image': 'url(' + baseurl +  product.profilePicture + ')'}"></div>
 </div>
 <div class="details-container">
-  <div class="product-rating-row"><span>إسم المنتج</span> : <span>American standard whey protien</span></div>
-  <div class="product-rating-row"><span>الوصف</span> : <span>ن حين دخول وعُرفت الإقتصادي, هناك الأول رجوعهم كل
-      حين, لها بل مسرح تنفّس الذود. أي فسقط الشطر كلّ, بين عل فكان الشتوية, ٣٠ كلا المدن والعتاد الجنوبي. دنو ومضى
-      تشكيل البرية و, انتهت الشمال كل جُل. هذا العظمى الباهضة أم. وقبل فمرّ انتصارهم بـ دار, ٣٠ أخر دارت ألمانيا, ا
-      المشتّتون وفي بل. التي الضغوط مكن أي, ما تاريخ الوراء وفرنسا هذا.</span></div>
+  <div class="product-rating-row"><span>إسم المنتج</span> : <span>{{product.name}}</span></div>
+  <div class="product-rating-row"><span>الوصف</span> : <span>{{product.description}}</span></div>
   <div class="product-rating-row comments"><span>التعليقات</span> : </div>
-  <app-comments [commentOwner]="'محمد حسن'" [currentRate]="5" [commentDate]="'17-8-2019'" [comment]="'بل مسرح تنفّس الذود. أي فسقط الشطر كلّ, بين عل فكان الشتوية, ٣٠ كلا المدن والعتاد الجنوبي. دنو ومضى'"></app-comments>
-  <app-comments [commentOwner]="'محمد حسن'" [currentRate]="4" [commentDate]="'17-8-2019'" [comment]="'بل مسرح تنفّس الذود. أي فسقط الشطر كلّ, بين عل فكان الشتوية, ٣٠ كلا المدن والعتاد الجنوبي. دنو ومضى'"></app-comments>
-  <app-comments [commentOwner]="'محمد حسن'" [currentRate]="3" [commentDate]="'17-8-2019'" [comment]="'بل مسرح تنفّس الذود. أي فسقط الشطر كلّ, بين عل فكان الشتوية, ٣٠ كلا المدن والعتاد الجنوبي. دنو ومضى'"></app-comments>
-  <app-comments [commentOwner]="'محمد حسن'" [currentRate]="2" [commentDate]="'17-8-2019'" [comment]="'بل مسرح تنفّس الذود. أي فسقط الشطر كلّ, بين عل فكان الشتوية, ٣٠ كلا المدن والعتاد الجنوبي. دنو ومضى'"></app-comments>
-  <div class="details-footer">
+  <app-comments *ngFor="let review of product.reviews" [commentOwner]="review.reviwer.fullName" [currentRate]="review.rate" [commentDate]="util.getDateFormatted(review.createdAt)" [comment]="review.comment"></app-comments>  <div class="details-footer">
     <h2>قيم هذا المنتج</h2>
     <span class="rate">
-      <ngb-rating [(rate)]="userRate" max="5" class="star">
+      <ngb-rating [(rate)]="rate.rate" max="5" class="star">
         <ng-template let-fill="fill" let-index="index">
           <span class="star" [class.filled]="fill === 100">&#9733;</span>
         </ng-template>
       </ngb-rating>
     </span>
     <div>
-      <textarea name="textarea-input" rows="5" class="form-control product-rate-text-area" placeholder="تعليقك..."></textarea>
+      <textarea name="textarea-input" rows="5" class="form-control product-rate-text-area" placeholder="تعليقك..." [(ngModel)]="rate.comment"></textarea>
     </div>
-    <div class="add-comment">إضافة تعليق</div>
+    <div class="add-comment" (click)="submitRate()">إضافة تعليق</div>
 
   </div>
 </div>

@@ -71,7 +71,7 @@ namespace Rating.Core.Services
         }
         private void UpdateOverAllRate(RatingDto ratingDto)
         {
-            var entity = _ratedEntityRepository.GetById(ratingDto.EntityId);            
+            var entity = _ratedEntityRepository.GetById(ratingDto.ItemsForReviewId);            
             entity.Rate = CalculateRate(ratingDto);
             _ratedEntityRepository.Update(entity);
             _unitOfWork.Commit();
