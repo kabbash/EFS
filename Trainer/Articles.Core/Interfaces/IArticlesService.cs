@@ -14,5 +14,6 @@ namespace Articles.Core.Interfaces
         ResultMessage Delete(int id);
         ResultMessage Approve(int id);
         ResultMessage GetPendingApprovalItems(ArticlesFilter filter = null);
+        ResultMessage GetFilteredData(ArticlesFilter filter);
     }
 }

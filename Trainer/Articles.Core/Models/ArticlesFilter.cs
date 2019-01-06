@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Articles.Core.Models
+﻿namespace Articles.Core.Models
 {
     public class ArticlesFilter
     {
-        public bool? IsActive { get; set; }
+        public int Status { get; set; }
+        public string SearchText { get; set; }
+        public int PageNo { get; set; }
+        public int PageSize { get; set; }
     }
 }

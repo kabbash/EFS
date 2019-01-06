@@ -10,8 +10,18 @@ namespace Articles.Core.Extensions
             if (filter == null)
                 return articles;
 
-            if (filter.IsActive.HasValue)
-                articles = articles.Where(c => c.IsActive == filter.IsActive);
+            switch ((ArticleStatusEnum)filter.Status)
+            {   
+                case ArticleStatusEnum.Active:
+                    articles = articles.Where(c => c.IsActive == true);
+                    break;
+                case ArticleStatusEnum.Pendings:
+                    articles = articles.Where(c => ! c.IsActive);
+                    break;
+            }
+
+            if (!string.IsNullOrEmpty(filter.SearchText))
+                articles = articles.Where(c => c.Name.ToLower().Contains(filter.SearchText.ToLower()));
 
             return articles;
         }
