@@ -29,13 +29,21 @@ export class ProductItemComponent implements OnInit {
   ngOnInit() {
     this.isAddItemForReview = this.route.url === config.admin.itemReviewList.route;
   }
+  
   delete() {
-    this.repository.delete('itemsreview/' + this.product.id).subscribe(data => {
-      alert('success');
-    }, error => {
-      alert(error);
-    });
+    if (confirm('هل انت متاكد من حذف المنتج؟')) {
+      this.repository.delete('itemsreview/' + this.product.id).subscribe(data => {
+        this.productReviewService.productReviewList.splice(
+          this.productReviewService.productReviewList.findIndex(el => el.id === this.product.id),
+          1
+        );
+        alert('success');
+      }, error => {
+        alert(error);
+      });
+    }
   }
+
   edit() {
     this.setSelectedProductReview();
     this.route.navigate([config.admin.addItemForReview.route]);

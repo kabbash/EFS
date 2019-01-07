@@ -13,7 +13,7 @@ export class ItemReviewResolver implements Resolve<Observable<ResultMessage<prod
      */
     constructor(private repositoryService: RepositoryService) {}
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResultMessage<productListItemDto[]>> {
-        return this.repositoryService.getData<productListItemDto[]>('itemsreview');
+        return this.repositoryService.getData<productListItemDto[]>('itemsreview?pageNo=1&pageSize=2');
     }
 
 }

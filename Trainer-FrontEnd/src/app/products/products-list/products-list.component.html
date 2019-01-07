@@ -22,8 +22,8 @@
     <app-product-item *ngFor="let product of products" (click)="openProductDetails(product)" [price]="product.price"
        [product] = "product" [currentRate]="product.rate" [cardName]="product.name" [cardImage]="baseurl + product.profilePicture"></app-product-item>
 </div>
-<div class="pagination-container">
-    <ngb-pagination [collectionSize]="120" [(page)]="pageAdvanced" [maxSize]="5" [rotate]="true" [ellipses]="false"
-        [boundaryLinks]="true"></ngb-pagination>
+<div class="pagination-container" *ngIf="pagerData.pagesCount > 1">
+    <ngb-pagination [collectionSize]="pagerData.itmesCount" [pageSize]="pagerData.pageSize" [(page)]="pagerData.currentPage" [maxSize]="5" [rotate]="true" [ellipses]="false"
+        [boundaryLinks]="true" (pageChange)="getNextPage()"></ngb-pagination>
 </div>
 <app-modal *ngIf="!isProductReview && !isManageProductReview" [product]="selectedProduct"></app-modal>

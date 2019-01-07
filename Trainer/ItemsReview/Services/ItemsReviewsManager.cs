@@ -22,12 +22,12 @@ namespace ItemsReview.Services
             _unitOfWork = unitOfWork;
             _validator = validator;
         }
-        public ResultMessage GetAll()
+        public ResultMessage GetAll(int pageNo, int pageSize)
         {
             try
             {
-                IEnumerable<ItemReviewDto> result = new List<ItemReviewDto>();
-                result = _unitOfWork.ItemsReviewsRepository.Get().Adapt(result);
+                PagedResult<ItemReviewDto> result = new PagedResult<ItemReviewDto>();
+                result = _unitOfWork.ItemsReviewsRepository.Get().GetPaged(pageNo,pageSize).Adapt(result);
 
                 return new ResultMessage()
                 {

@@ -25,9 +25,9 @@ namespace Trainer.Controllers
 
         // GET: api/itemsreview
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult Get(int pageNo = 1, int pageSize = 10)
         {
-            return GetStatusCodeResult(_itemsReviewManager.GetAll());
+            return GetStatusCodeResult(_itemsReviewManager.GetAll(pageNo, pageSize));
         }
 
         // GET: api/itemsreview/5
