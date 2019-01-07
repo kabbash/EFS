@@ -124,15 +124,15 @@ namespace Articles.Core.Services
                 };
             }
         }
-        public ResultMessage GetByCategoryId(int id)
+        public ResultMessage GetByCategoryId(int id, int pageNo, int pageSize)
         {
             try
             {
-                IEnumerable<ArticleGetDto> result = new List<ArticleGetDto>();
-                result = _unitOfWork.ArticlesRepository.Get(c => c.CategoryId == id).Adapt(result);
+                PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
+                result = _unitOfWork.ArticlesRepository.Get(c => c.CategoryId == id).GetPaged(pageNo, pageSize).Adapt(result);
                 return new ResultMessage
                 {
-                    Data = result.ToList(),
+                    Data = result,
                     Status = HttpStatusCode.OK
                 };
             }
@@ -146,16 +146,16 @@ namespace Articles.Core.Services
                 };
             }
         }
-        public ResultMessage GetByPredefinedCategoryKey(int id)
+        public ResultMessage GetByPredefinedCategoryKey(int id, int pageNo , int pageSize)
         {
             try
             {
-                IEnumerable<ArticleGetDto> result = new List<ArticleGetDto>();
+                PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
                 var categoryId = _unitOfWork.ArticlesCategoriesRepository.Get(c => c.PredefinedKey == id).SingleOrDefault().Id;
-                result = _unitOfWork.ArticlesRepository.Get(c => c.CategoryId == categoryId).Adapt(result);
+                result = _unitOfWork.ArticlesRepository.Get(c => c.CategoryId == categoryId).GetPaged(pageNo, pageSize).Adapt(result);
                 return new ResultMessage
                 {
-                    Data = result.ToList(),
+                    Data = result,
                     Status = HttpStatusCode.OK
                 };
             }

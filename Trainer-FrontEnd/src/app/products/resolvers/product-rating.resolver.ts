@@ -3,8 +3,8 @@ import { ResultMessage } from '../../shared/models/result-message';
 import { Observable } from 'rxjs';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { Injectable } from '@angular/core';
-import { productListItemDto } from 'src/app/shared/models/product-list-item-dto';
-import { ActivatedRouteSnapshot } from '@angular/router/src/router_state';
+import { productListItemDto } from '../../shared/models/product-list-item-dto';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable()
 export class ProdcutRatingResolver implements Resolve<Observable<ResultMessage<productListItemDto>>> {
