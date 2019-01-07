@@ -5,6 +5,8 @@ import { RatingDto } from '../../shared/models/rating.dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { Router } from '@angular/router';
 import { config } from '../../config/pages-config';
+import { UtilitiesService } from '../../shared/services/utilities.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-product-rating',
@@ -15,9 +17,11 @@ export class ProductRatingComponent implements OnInit {
   userRate = 0;
   product: productListItemDto;
   rate = new RatingDto();
+  baseurl = environment.filesBaseUrl;
   constructor(private route: ActivatedRoute, 
     private repositoryService: RepositoryService,
-  private router: Router) { }
+  private router: Router,
+  public util: UtilitiesService) { }
 
   ngOnInit() {
     this.route.data.subscribe(result => {
@@ -34,7 +38,7 @@ export class ProductRatingComponent implements OnInit {
       return;
     } else {
       this.rate.createdBy = user.id;
-      this.rate.entityId = this.product.id;
+      this.rate.itemsForReviewId = this.product.id;
       this.rate.entityTypeId = 1;
       this.repositoryService.create('itemsreview/AddRate', this.rate).subscribe(data => {
         alert('success');

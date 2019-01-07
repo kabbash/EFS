@@ -1,4 +1,6 @@
-<div class="products-container short-desc">
+<button *ngIf="isManageProductReview"  class="btn" (click)="gotoAddProductReview()"><i class="fa fa-plus"></i></button>
+
+<div *ngIf="!isProductReview && !isManageProductReview" class="products-container short-desc">
     لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور
 
     أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستريد
@@ -11,17 +13,17 @@
 
     كيو أوفيسيا ديسيريونتموليت انيم أيدي ايست لابوريوم
 </div>
+<div *ngIf="!isProductReview && !isManageProductReview" class="products-container">
+    <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'./assets/images/test/whey.png'"></app-product-item>
+    <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'./assets/images/test/whey.png'"></app-product-item>
+    <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'./assets/images/test/whey.png'"></app-product-item>
+</div>
 <div class="products-container">
-    <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'url(./assets/images/test/whey.png)'"></app-product-item>
-    <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'url(./assets/images/test/whey.png)'"></app-product-item>
-    <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'url(./assets/images/test/whey.png)'"></app-product-item>
-</div> -->
-<div class="products-container">
-    <app-product-item *ngFor="let product of products" (click)="openProductDetails(product)" [price]="product.price + ' EGP'"
-        [currentRate]="product.rate" [cardName]="product.name" [cardImage]="'url(' + baseurl + product.profilePicture + ')'"></app-product-item>
+    <app-product-item *ngFor="let product of products" (click)="openProductDetails(product)" [price]="product.price"
+       [product] = "product" [currentRate]="product.rate" [cardName]="product.name" [cardImage]="baseurl + product.profilePicture"></app-product-item>
 </div>
 <div class="pagination-container">
     <ngb-pagination [collectionSize]="120" [(page)]="pageAdvanced" [maxSize]="5" [rotate]="true" [ellipses]="false"
         [boundaryLinks]="true"></ngb-pagination>
 </div>
-<app-modal [product]="selectedProduct"></app-modal>
+<app-modal *ngIf="!isProductReview && !isManageProductReview" [product]="selectedProduct"></app-modal>

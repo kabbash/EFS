@@ -8,6 +8,7 @@ using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 
 namespace ItemsReview.Services
@@ -77,6 +78,7 @@ namespace ItemsReview.Services
             try
             {
                 var itemReview = _unitOfWork.ItemsReviewsRepository.GetById(id);
+                // itemReview.Reviews.ToList();
                 if (itemReview != null)
                     return new ResultMessage()
                     {

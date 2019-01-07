@@ -1,6 +1,7 @@
 ﻿using Shared.Core.Models.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Shared.Core.Models
@@ -8,7 +9,7 @@ namespace Shared.Core.Models
     public class EntityRating : IBaseModel
     {
         public int Id { get; set; }
-        public int EntityId { get; set; }
+        public int ItemsForReviewId { get; set; }
         public string Comment { get; set; }
         public int Rate { get; set; }
         public string CreatedBy { get; set; }
@@ -18,5 +19,8 @@ namespace Shared.Core.Models
 
         public int EntityTypeId { get; set; }
         public virtual EntityTypes EntityType { get; set; }
+
+        [ForeignKey("CreatedBy")]
+        public virtual AspNetUsers Reviwer { get; set; }
     }
 }

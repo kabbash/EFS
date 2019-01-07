@@ -21,8 +21,9 @@ import { CategoriesService } from '../admin-tools/services/categories.service';
 import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
 import { DropDownComponent } from './drop-down/drop-down.component';
 import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-menu.component';
-import { ProductsListComponent } from 'src/app/products/products-list/products-list.component';
-import { ModalComponent } from 'src/app/products/modal/modal.component';
+import { ProductsListComponent } from '../products/products-list/products-list.component';
+import { ModalComponent } from '../products/modal/modal.component';
+import { ProductReviewService } from '../admin-tools/services/product-review.service';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { ModalComponent } from 'src/app/products/modal/modal.component';
     UtilitiesService,
     ArticleCategoriesResolver,
     CategoriesService,
-    ProductsCategoriesResolver
+    ProductsCategoriesResolver,
+    ProductReviewService
   ]
 })
 export class SharedModule { }

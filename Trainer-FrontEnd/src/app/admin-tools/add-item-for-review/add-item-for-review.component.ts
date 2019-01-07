@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ProductItemComponent } from '../../shared/product-item/product-item.component';
+import { ProductReviewService } from '../../admin-tools/services/product-review.service';
 
 @Component({
   selector: 'app-add-item-for-review',
@@ -13,25 +14,43 @@ export class AddItemForReviewComponent implements OnInit {
   imageAdded = false;
   @ViewChild('itemForReview') item: ProductItemComponent;
   constructor(private fb: FormBuilder,
-    private repositoryService: RepositoryService) { }
+    private repositoryService: RepositoryService,
+    private productReviewService: ProductReviewService) { }
 
   ngOnInit() {
     this.reviewForm = this.fb.group({
+      'id': [''],
       'name': ['', Validators.required] ,
       'description': [''],
       'profilePictureFile': [],
       'profilePicture': ['']
 
     });
+    if (this.productReviewService.productReviewToUpdate) {
+      this.reviewForm.setValue(this.productReviewService.productReviewToUpdate);
+    }
   }
   submit() {
     if (this.reviewForm.valid) {
-      this.repositoryService.create('itemsreview', this.prepareData(this.reviewForm.value)).subscribe(data => {
-        alert('success');
-      }, error => {
-        alert(error);
-      });
+      this.productReviewService.productReviewToUpdate ? this.update() : this.create(); 
     }
+  }
+  create() {
+    this.repositoryService.create('itemsreview', this.prepareData(this.reviewForm.value)).subscribe(data => {
+      alert('success');
+    }, error => {
+      alert(error);
+    });
+  }
+
+  update() {
+    this.repositoryService.update('itemsreview/' + this.productReviewService.productReviewToUpdate.id, 
+    this.prepareData(this.reviewForm.value)).subscribe(data => {
+      this.productReviewService.productReviewToUpdate = null;
+      alert('success');
+    }, error => {
+      alert(error);
+    });
   }
 
   onFileSelect(file) {

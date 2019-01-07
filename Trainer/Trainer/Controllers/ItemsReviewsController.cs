@@ -1,8 +1,11 @@
-﻿using ItemsReview.Interfaces;
+﻿using Attachments.Core.Interfaces;
+using Attachments.Core.Models;
+using ItemsReview.Interfaces;
 using ItemsReview.Models;
 using Microsoft.AspNetCore.Mvc;
 using Rating.Core.Interfaces;
 using Rating.Core.Models;
+using Shared.Core.Utilities.Enums;
 
 namespace Trainer.Controllers
 {
@@ -12,10 +15,12 @@ namespace Trainer.Controllers
     {
         private readonly IItemsReviewsManager _itemsReviewManager;
         private readonly IRatingManager<Shared.Core.Models.ItemsForReview> _ratingManager;
-        public ItemsReviewsController(IItemsReviewsManager itemsReviewManager, IRatingManager<Shared.Core.Models.ItemsForReview> ratingManager)
+        private readonly IAttachmentsManager _attachmentManager;
+        public ItemsReviewsController(IItemsReviewsManager itemsReviewManager, IRatingManager<Shared.Core.Models.ItemsForReview> ratingManager, IAttachmentsManager attachmentsManager)
         {
             _itemsReviewManager = itemsReviewManager;
             _ratingManager = ratingManager;
+            _attachmentManager = attachmentsManager;
         }
 
         // GET: api/itemsreview
@@ -36,6 +41,12 @@ namespace Trainer.Controllers
         [HttpPost]
         public ActionResult Post([FromForm] ItemReviewDto itemDto)
         {
+            itemDto.ProfilePicture = _attachmentManager.Save(new SavedFileDto
+            {
+                attachmentType = AttachmentTypesEnum.Articles_Categories,
+                CanChangeName = true,
+                File = itemDto.ProfilePictureFile
+            });
             return GetStatusCodeResult(_itemsReviewManager.Insert(itemDto));
         }
 
@@ -43,6 +54,15 @@ namespace Trainer.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromForm] ItemReviewDto itemDto)
         {
+            if (itemDto.ProfilePictureFile != null)
+            {
+                itemDto.ProfilePicture = _attachmentManager.Save(new SavedFileDto
+                {
+                    attachmentType = AttachmentTypesEnum.Articles_Categories,
+                    CanChangeName = true,
+                    File = itemDto.ProfilePictureFile
+                });
+            }
             return GetStatusCodeResult(_itemsReviewManager.Update(itemDto, id));
         }
 

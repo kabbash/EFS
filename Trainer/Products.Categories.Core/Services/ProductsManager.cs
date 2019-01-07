@@ -213,7 +213,7 @@ namespace Products.Core.Services
                 foreach (var product in result)
                 {
                     var data = resultData.FirstOrDefault(p => p.Id == product.Id);
-                    product.Seller.Name = data.Seller.FullName;// + ' ' + data.Seller.LastName;
+                    product.Seller.FullName = data.Seller.FullName;// + ' ' + data.Seller.LastName;
                     product.Seller.PhoneNumber = data.Seller.PhoneNumber;
                 }
 

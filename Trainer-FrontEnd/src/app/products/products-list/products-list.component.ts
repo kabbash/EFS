@@ -23,6 +23,7 @@ export class ProductsListComponent implements OnInit {
   selectedProduct: productListItemDto;
   categoryId: number;
   isProductReview = false;
+  isManageProductReview = false;
   @ViewChild('modal') productModal: ModalComponent;
   constructor(private router: Router, private route: ActivatedRoute,
     private repositoryService: RepositoryService,
@@ -38,6 +39,8 @@ export class ProductsListComponent implements OnInit {
       this.appService.loading = false;
     });
     this.isProductReview = this.router.url === config.products.productReviews.route;
+    this.isManageProductReview = this.router.url === config.admin.itemReviewList.route
+
   }
 
 
@@ -48,5 +51,9 @@ export class ProductsListComponent implements OnInit {
     } else {
       this.selectedProduct = product;    
     }
+  }
+
+  gotoAddProductReview() {
+    this.router.navigate([config.admin.addItemForReview.route]);
   }
 }

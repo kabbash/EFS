@@ -1,5 +1,5 @@
 export class RatingDto {
-    public entityId: Number;
+    public itemsForReviewId: Number;
     public comment: string;
     public rate: Number;
     public createdBy: string;
