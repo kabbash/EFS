@@ -1,8 +1,10 @@
 <app-header></app-header>
 <div class="loading-container">
+    <!-- <app-dashboard-menu></app-dashboard-menu> -->
     <div class="loading-overlay" *ngIf="appService.loading">
         <img src="assets/images/loading/indicator2.gif" height="100">
     </div>
     <router-outlet></router-outlet>
 </div>
+
 <app-footer></app-footer>

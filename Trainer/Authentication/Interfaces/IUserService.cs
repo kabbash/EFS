@@ -13,5 +13,8 @@ namespace Authentication.Interfaces
         bool DeleteRole(string data);
         ResultMessage Register(RegisterDto userData);
         ResultMessage VerifyEmail(string token);
+        ResultMessage ResetPassword(ResetPasswordDto data);
+        ResultMessage SetResetedPassword(SetPasswordDto data);
+        ResultMessage ChangePassword(ChanePasswordDto data);
     }
 }

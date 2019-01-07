@@ -1,17 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
+import { config } from '../../../config/pages-config';
+import { AuthService } from '../../../auth/services/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  hideSearch: boolean;
+  smallSize: boolean;
+  configUrls = config;
+  constructor(private router: Router, public authService: AuthService) {
+    router.events.subscribe((val: any) => {
+      // see also
+      if (val && val.route && val.route.path && val.route.path === 'home') {
+        this.hideSearch = true;
+      } else if (val && val.route && val.route.path && val.route.path !== 'home') {
+        this.hideSearch = false;
+      }
+    });
+  }
 
   ngOnInit() {
+    if (document.body.clientWidth > 991) {
+      this.smallSize = false;
+    } else {
+      this.smallSize = true;
+
+    }
     $(document).ready(function () {
       if (document.body.clientWidth > 991) {
+        this.smallSize = false;
         $('#navbarsExampleDefault li.dropdown').hover(
           function () {
             $(this).addClass('hovered-item');
@@ -76,6 +97,11 @@ export class HeaderComponent implements OnInit {
   toggleClass() {
     var x = document.getElementsByClassName("offcanvas-collapse")[0];
     x.classList.toggle('open');
+  }
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
   // showDropdown(element) {

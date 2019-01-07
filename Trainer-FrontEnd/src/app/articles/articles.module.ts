@@ -9,6 +9,7 @@ import { ArticleDetailsComponent } from './article-details/article-details.compo
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticleDetailsResolver } from './resolvers/article-details.resolver';
 import { ArticleListResolver } from './resolvers/article-list.resolver';
+import { ArticlesService } from './articles.service';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { ArticleListResolver } from './resolvers/article-list.resolver';
   declarations: [ArticlesComponent, ArticlesListComponent, ArticlesCatergoriesComponent, ArticleDetailsComponent],
   providers: [
     ArticleDetailsResolver,
-    ArticleListResolver
+    ArticleListResolver,
+    ArticlesService
   ]
 })
 export class ArticlesModule { }

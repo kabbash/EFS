@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MailProvider.Core.Models;
+using System;
 
 namespace MailProvider.Core
 {
@@ -11,9 +12,7 @@ namespace MailProvider.Core
         public int MailServerPort { get; set; }
         public string UserId { get; set; }
         public string UserPassword { get; set; }
-        public string Subject { get; set; }
-        public string Body { get; set; }
-        public string VerifyEmailUrl { get; set; }
-
+        public RegisterEmail RegisterEmail { get; set; }
+        public ResetPasswordEmail ResetPasswordEmail { get; set; }
     }
 }

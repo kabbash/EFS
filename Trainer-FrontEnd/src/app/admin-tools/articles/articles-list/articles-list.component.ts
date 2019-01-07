@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { articleListItemDto } from 'src/app/shared/models/article-list-item-dto';
-import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
-import { config } from 'src/app/config/pages-config';
 import { AdminArticlesService } from '../../services/admin.articles.services';
-import { ddlDto, ddlItemDto } from 'src/app/shared/models/ddl-dto';
-import { ArticlesFilter } from 'src/app/shared/models/articles-filter';
+import { articleListItemDto } from '../../../shared/models/article-list-item-dto';
+import { environment } from '../../../../environments/environment';
+import { ddlDto } from '../../../shared/models/ddl-dto';
+import { config } from '../../../config/pages-config';
+import { ArticlesFilter } from '../../../shared/models/articles-filter';
 
 @Component({
   selector: 'app-articles-list',

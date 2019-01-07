@@ -8,6 +8,7 @@ import { KnowYourCoachComponent } from './home/know-your-coach/know-your-coach.c
 import { OpinionsOfTraineesComponent } from './home/opinions-of-trainees/opinions-of-trainees.component';
 import { WhatWaitingComponent } from './home/what-waiting/what-waiting.component';
 import { WhyEFSComponent } from './home/why-efs/why-efs.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(routes)],
   exports: [RouterModule],
   declarations: [HomeComponent, AchievementsComponent, HeroPanerComponent, KnowYourCoachComponent,

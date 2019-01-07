@@ -18,6 +18,7 @@ import { UserAccountModule } from './user-account/user-account.module';
 import { LoginModule } from './login/login.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AuthService } from './auth/services/auth.service';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 export function CreateTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -53,8 +54,10 @@ export function CreateTranslateLoader(http: HttpClient) {
     AngularFontAwesomeModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

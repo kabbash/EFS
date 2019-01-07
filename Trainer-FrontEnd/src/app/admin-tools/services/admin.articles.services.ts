@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { RepositoryService } from "src/app/shared/services/repository.service";
-import { articleListItemDto } from "src/app/shared/models/article-list-item-dto";
-import { ResultMessage } from "src/app/shared/models/result-message";
-import { PagedResult } from "src/app/shared/models/paged-result";
+import { RepositoryService } from "../../shared/services/repository.service";
+import { articleListItemDto } from "../../shared/models/article-list-item-dto";
+import { ResultMessage } from "../../shared/models/result-message";
+import { PagedResult } from "../../shared/models/paged-result";
 
 @Injectable()
 export class AdminArticlesService {

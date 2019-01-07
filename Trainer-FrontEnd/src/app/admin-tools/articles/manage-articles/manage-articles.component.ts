@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AppService } from 'src/app/app.service';
-import { articleDetialsDto } from 'src/app/shared/models/article-details-dto';
+import { Router, ActivatedRoute } from '@angular/router';
+import { articleDetialsDto } from '../../../shared/models/article-details-dto';
+import { AppService } from '../../../app.service';
 import { AdminArticlesService } from '../../services/admin.articles.services';
+
 
 @Component({
   selector: 'app-manage-articles',

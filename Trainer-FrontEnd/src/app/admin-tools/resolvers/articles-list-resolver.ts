@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { articleListItemDto } from '../../shared/models/article-list-item-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
-import { PagedResult } from 'src/app/shared/models/paged-result';
+import { PagedResult } from '../../shared/models/paged-result';
 
 @Injectable()
 export class AdminArticlesListResolver implements Resolve<Observable<ResultMessage<PagedResult<articleListItemDto>>>> {

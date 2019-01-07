@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { articleDetialsDto } from '../models/article-details-dto';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-article-details-editmode',

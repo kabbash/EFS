@@ -219,3 +219,8 @@ a#userListItem{
   display: flex;
   align-items: center;
 }
+
+#userNameElm {
+  /* position: absolute; */
+  left: 0;
+}
