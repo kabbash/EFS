@@ -7,6 +7,8 @@ import { ProductsCatergoriesComponent } from './products-catergories/products-ca
 import { ProductRatingComponent } from './product-rating/product-rating.component';
 import { ProductsListResolver } from './resolvers/products-list.resolver';
 import { ProductsCategoriesResolver } from './resolvers/products-categories.resolver';
+import { ItemReviewResolver } from '../admin-tools/resolvers/item-review.resolver';
+import { ProdcutRatingResolver } from './resolvers/product-rating.resolver';
 
 const routes: Routes = [
   {
@@ -25,7 +27,13 @@ const routes: Routes = [
       },
       {
         path: config.products.productRating.name,
-        component: ProductRatingComponent
+        component: ProductRatingComponent,
+        resolve: {product: ProdcutRatingResolver}
+      },
+      {
+        path: config.products.productReviews.name,
+        component: ProductsListComponent,
+        resolve: {productList: ItemReviewResolver}
       }
 
     ]

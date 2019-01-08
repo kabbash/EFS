@@ -33,9 +33,7 @@ namespace Attachments.Core.Services
         {
             try
             {
-                //var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
-                
                 var rootPath = _hostingEnvironment.WebRootPath;
 
                 var fileName = fileDto.CanChangeName ? $"{Guid.NewGuid()}.{Path.GetExtension(fileDto.File.FileName)}" : fileDto.File.Name;
@@ -50,7 +48,7 @@ namespace Attachments.Core.Services
                 {
                     fileDto.File.CopyTo(fileStream);
                 }
-                
+
                 return getRelativeURL(relativeFilePath);
             }
             catch (Exception ex)
@@ -68,8 +66,6 @@ namespace Attachments.Core.Services
         {
             try
             {
-                //var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-
                 var rootPath = _hostingEnvironment.WebRootPath;
 
                 var fileName = fileDto.CanChangeName ? $"{Guid.NewGuid()}.{Path.GetExtension(fileDto.File.Name)}" : fileDto.File.Name;
@@ -97,6 +93,9 @@ namespace Attachments.Core.Services
         {
             try
             {
+                var rootPath = _hostingEnvironment.WebRootPath;
+                filePath = Path.Combine(rootPath, filePath);
+
                 if (File.Exists(filePath))
                 {
                     File.Delete(filePath);
@@ -104,8 +103,10 @@ namespace Attachments.Core.Services
                     var folderPath = Path.GetDirectoryName(filePath);
                     if (Directory.GetFiles(folderPath).Length == 0)
                         Directory.Delete(folderPath);
+
+                    return true;
                 }
-                return true;
+                return false;
             }
             catch (Exception ex)
             {

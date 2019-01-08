@@ -15,7 +15,7 @@ namespace Trainer.EF.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -93,8 +93,8 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
 
                     b.HasData(
-                        new { Id = 1, CreatedAt = new DateTime(2019, 1, 1, 23, 23, 6, 972, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
-                        new { Id = 2, CreatedAt = new DateTime(2019, 1, 1, 23, 23, 6, 975, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
+                        new { Id = 1, CreatedAt = new DateTime(2019, 1, 6, 15, 16, 7, 882, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
+                        new { Id = 2, CreatedAt = new DateTime(2019, 1, 6, 15, 16, 7, 884, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
                     );
                 });
 
@@ -135,10 +135,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "5560dcd1-6a17-4d09-8128-a3e67fd55a2a", Name = "Client" },
-                        new { Id = "5e9c9ace-75e9-4913-b7d6-db5240aab551", Name = "RegularUser" },
-                        new { Id = "a99c2b47-4208-402b-994b-fb11d7cf1010", Name = "Trainer" },
-                        new { Id = "db4f70df-8e98-4b9a-9460-a0c2444b2097", Name = "ArticleWriter" }
+                        new { Id = "819991a4-5ab7-47b6-b7ae-12278cec1422", Name = "Client" },
+                        new { Id = "f3ad873c-136b-4dc1-bf00-7b230e74cd52", Name = "RegularUser" },
+                        new { Id = "08dc5a08-68e0-46ba-9122-46e633294314", Name = "Trainer" },
+                        new { Id = "8dd8ea17-a222-4d5f-87c1-9e049fbc59a8", Name = "ArticleWriter" }
                     );
                 });
 
@@ -502,9 +502,9 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("CreatedBy");
 
-                    b.Property<int>("EntityId");
-
                     b.Property<int>("EntityTypeId");
+
+                    b.Property<int>("ItemsForReviewId");
 
                     b.Property<int>("Rate");
 
@@ -514,7 +514,11 @@ namespace Trainer.EF.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedBy");
+
                     b.HasIndex("EntityTypeId");
+
+                    b.HasIndex("ItemsForReviewId");
 
                     b.ToTable("EntityRatings");
                 });
@@ -530,6 +534,10 @@ namespace Trainer.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EntityTypes");
+
+                    b.HasData(
+                        new { Id = 1, Name = "product" }
+                    );
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ItemsForReview", b =>
@@ -911,9 +919,18 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.EntityRating", b =>
                 {
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "Reviwer")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy");
+
                     b.HasOne("Shared.Core.Models.EntityTypes", "EntityType")
                         .WithMany()
                         .HasForeignKey("EntityTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Shared.Core.Models.ItemsForReview")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ItemsForReviewId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

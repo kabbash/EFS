@@ -13,7 +13,6 @@ export class ArticlesListItemComponent implements OnInit {
   @Input() cardImage: string;
   @Input() cardShortDescription: string;
   @Input() hideShowMorelink: boolean;
-  @Input() showActionBtns: boolean;
 
   articleId: number;
 

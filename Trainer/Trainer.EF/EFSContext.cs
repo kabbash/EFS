@@ -598,6 +598,15 @@ namespace Trainer.EF
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Trainers_Programs_Trainers");
             });
+
+            modelBuilder.Entity<EntityTypes>(entity =>
+            {
+                entity.HasData(new EntityTypes
+                {
+                    Id = 1,
+                    Name = "product"
+                });
+            });
         }
     }
 }

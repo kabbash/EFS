@@ -18,31 +18,17 @@ namespace Trainer.Controllers
             _articlesService = articlesService;
         }
         [HttpGet]
-        public ActionResult Get(int pageNo = 1,int pageSize=10)
+        public ActionResult Get(int pageNo = 1, int pageSize = 10)
         {
-            return GetStatusCodeResult(_articlesService.GetAll(pageNo,pageSize));
+            return GetStatusCodeResult(_articlesService.GetAll(pageNo, pageSize));
         }
 
-        [HttpGet("GetActiveItems")]
-        public ActionResult GetActiveItems(int pageNo = 1, int pageSize = 10)
+        [HttpGet("getFilteredData")]        
+        public ActionResult getFilteredData([FromQuery]ArticlesFilter filter)
         {
-            var filter = new ArticlesFilter
-            {
-                IsActive = true
-            };
-            return GetStatusCodeResult(_articlesService.GetAll(pageNo , pageSize , filter));
+            return GetStatusCodeResult(_articlesService.GetFilteredData(filter));
         }
 
-        [HttpGet("GetPendingItems")]
-        public ActionResult GetPendingItems()
-        {
-            var filter = new ArticlesFilter
-            {
-                IsActive = false
-            };
-            return GetStatusCodeResult(_articlesService.GetPendingApprovalItems(filter));
-        }
-        
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
@@ -50,15 +36,15 @@ namespace Trainer.Controllers
         }
 
         [HttpGet("GetByCategory/{id}")]
-        public ActionResult GetByCategory(int id)
+        public ActionResult GetByCategory(int id,int pageNo=1, int pageSize=10)
         {
-            return GetStatusCodeResult(_articlesService.GetByCategoryId(id));
+            return GetStatusCodeResult(_articlesService.GetByCategoryId(id,pageNo, pageSize));
         }
 
         [HttpGet("GetByCategoryKey/{id}")]
-        public ActionResult GetByPredefinedCategoryKey(int id)
+        public ActionResult GetByPredefinedCategoryKey(int id, int pageNo=1, int pageSize=10)
         {
-            return GetStatusCodeResult(_articlesService.GetByPredefinedCategoryKey(id));
+            return GetStatusCodeResult(_articlesService.GetByPredefinedCategoryKey(id, pageNo, pageSize));
         }
 
         [HttpPost]
@@ -74,20 +60,22 @@ namespace Trainer.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin, ArticleWriter")]
+        //[Authorize(Roles = "Admin, ArticleWriter")]
 
-        public ActionResult Put(int id, [FromBody] ArticleAddDto articleDto)
+        public ActionResult Put(int id, [FromForm] ArticleAddDto articleDto)
         {
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
-            if (userIdClaim == null)
-            {
-                return StatusCode(500);
-            }
-            return GetStatusCodeResult(_articlesService.Update(articleDto, id, userIdClaim.Value));
+            //var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            //if (userIdClaim == null)
+            //{
+            //    return StatusCode(500);
+            //}
+            //userIdClaim.Value
+            //return GetStatusCodeResult(new ResultMessage());
+            return GetStatusCodeResult(_articlesService.Update(articleDto, id, "admin"));
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin, ArticleWriter")]
+        //[Authorize(Roles = "Admin, ArticleWriter")]
 
         public ActionResult Delete(int id)
         {
@@ -98,7 +86,7 @@ namespace Trainer.Controllers
         [Route("Approve")]
         public ActionResult Approve([FromBody]baseDto model)
         {
-            
+
             return GetStatusCodeResult(_articlesService.Approve(model.Id));
         }
 

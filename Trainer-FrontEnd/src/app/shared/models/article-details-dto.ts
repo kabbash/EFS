@@ -7,4 +7,5 @@ export class articleDetialsDto{
     profilePicture: string;
     description: string;
     images:imageWithTextDto[];
+    isActive:boolean;
 }

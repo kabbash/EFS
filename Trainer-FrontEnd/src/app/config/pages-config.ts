@@ -16,6 +16,10 @@ export let config = {
         'articleDetails': {
             'name': 'articleDetails/:articleId',
             'route': '/articles/articleDetails',
+        },
+        'news': {
+            'name': 'news',
+            'route': '/articles/news'
         }
     },
     'products': {
@@ -33,8 +37,12 @@ export let config = {
             'route': '/products/productsCategories',
         },
         'productRating': {
-            'name': 'productRating',
+            'name': 'productRating/:productId',
             'route': '/products/productRating',
+        },
+        'productReviews': {
+            'name': 'productReviews',
+            'route': '/products/productReviews'
         }
     },
     'userAccount': {
@@ -122,13 +130,21 @@ export let config = {
         'name': 'manageArticles/:articleId',
         'route': '/admin/manageArticles'
       },
-      'pendingApprovalArticles': {
-        'name': 'pendingApprovalArticles',
-        'route': '/admin/pendingApprovalArticles'
+      'articleslist': {
+        'name': 'articleslist',
+        'route': '/admin/articlesList'
       },
       'manageProductsCategories': {
         'name': 'manageProductsCategories',
         'route': '/admin/manageProductsCategories'
+      },
+      'addItemForReview': {
+        'name': 'addItemForReview',
+        'route': '/admin/addItemForReview'
+      },
+      'itemReviewList': {
+          'name': 'itemReviewList',
+          'route': '/admin/itemReviewList'
       }
     }
 };

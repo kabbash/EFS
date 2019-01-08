@@ -8,6 +8,7 @@ import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticleDetailsResolver } from './resolvers/article-details.resolver';
 import { ArticleListResolver } from './resolvers/article-list.resolver';
 import { ArticleCategoriesResolver } from '../shared/resolvers/article-categories.resolver';
+import { NewsResolver } from './resolvers/news.resolver';
 
 const routes: Routes = [
   {
@@ -17,7 +18,7 @@ const routes: Routes = [
       {
         path: config.articles.articlesList.name,
         component: ArticlesListComponent,
-        // resolve: {articleList: ArticleListResolver}
+        resolve: {articleList: ArticleListResolver}
       },
       {
         path: config.articles.articlesCategories.name,
@@ -28,6 +29,11 @@ const routes: Routes = [
         path: config.articles.articleDetails.name,
         component: ArticleDetailsComponent,
         resolve: {details: ArticleDetailsResolver}
+      },
+      {
+        path: config.articles.news.name,
+        component: ArticlesListComponent,
+        resolve: {articleList: NewsResolver}
       }
 
     ]

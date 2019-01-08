@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 import { articleListItemDto } from '../../shared/models/article-list-item-dto';
 import { ArticlesService } from '../articles.service';
 import { AppService } from '../../app.service';
+import { PagerDto } from '../../shared/models/pager.dto';
 
 
 @Component({
@@ -21,34 +22,33 @@ export class ArticlesListComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   categoryId: number;
   itemsPerPage = 2;
+  pagerData: PagerDto;
 
   constructor(private router: Router, private appService: AppService, private repositoryService: RepositoryService,
-    private articlesService: ArticlesService) {
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.getArticles(1, this.itemsPerPage);
-    console.log(this.selectedPage);
-    // this.route.data.subscribe(result => {
-    //   this.articles = result.articleList.data;
-    // });
+    this.route.data.subscribe(result => {
+      this.pagerData = result.articleList.data;
+      this.pagerData.itmesCount = 6;
+      this.articles = result.articleList.data.results;
+      this.appService.loading = false;
+    });
   }
 
-  getSelectedPage(page) {
-    this.getArticles(page, this.itemsPerPage);
-  }
 
   articlesDetails(articleId) {
     this.router.navigate([config.articles.articleDetails.route, articleId]);
   }
 
-  getArticles(pageNumber, itemsPerPage) {
+  getNextPage() {
     this.appService.loading = true;
-    this.articlesService.getArticles(pageNumber, itemsPerPage).subscribe((response: any) => {
-      this.articles = [];
+    this.repositoryService.getData(`articles/${this.route.params['categoryId']}?pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}`).subscribe((response: any) => {
+      this.pagerData = response.productList.data;
+      this.pagerData.itmesCount = 6;
+      this.articles = response.productList.data.results;
       this.appService.loading = false;
-      this.pagesNumber = response.data.pagesCount * 10;
-      this.articles = response.data.results;
     });
   }
 

@@ -6,7 +6,7 @@ namespace Products.Core.Models
 {
     public class SellerInfo
     {
-        public string Name { get; set; }
+        public string FullName { get; set; }
         public string PhoneNumber { get; set; }
     }
 }
