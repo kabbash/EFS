@@ -11,7 +11,7 @@ import { ManageArticlesCategoriesComponent } from './articles/manage-articles-ca
 import { ManageProductsCategoriesComponent } from './manage-products-categories/manage-products-categories.component';
 import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
 import { AddItemForReviewComponent } from './add-item-for-review/add-item-for-review.component';
-import { ProductsListComponent } from 'src/app/products/products-list/products-list.component';
+import { ProductsListComponent } from '../products/products-list/products-list.component';
 import { ItemReviewResolver } from './resolvers/item-review.resolver';
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
 
