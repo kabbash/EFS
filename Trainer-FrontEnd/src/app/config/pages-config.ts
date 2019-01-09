@@ -16,6 +16,10 @@ export let config = {
         'articleDetails': {
             'name': 'articleDetails/:articleId',
             'route': '/articles/articleDetails',
+        },
+        'news': {
+            'name': 'news',
+            'route': '/articles/news'
         }
     },
     'products': {

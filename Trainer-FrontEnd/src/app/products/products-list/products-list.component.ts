@@ -6,8 +6,8 @@ import { environment } from '../../../environments/environment';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { config } from '../../config/pages-config';
 import { ModalComponent } from '../modal/modal.component';
-import { ProductReviewService } from 'src/app/admin-tools/services/product-review.service';
-import { PagerDto } from 'src/app/shared/models/pager.dto';
+import { ProductReviewService } from '../../admin-tools/services/product-review.service';
+import { PagerDto } from '../../shared/models/pager.dto';
 
 @Component({
   selector: 'app-all-products',
