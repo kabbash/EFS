@@ -19,41 +19,45 @@ import { ArticlesListComponent } from './articles/articles-list/articles-list.co
 const routes: Routes = [
   {
     path: '',
-    component: AdminToolsComponent
+    component: AdminToolsComponent,
+    children: [
+      {
+        path: config.admin.manageArticlesCategories.name,
+        component: ManageArticlesCategoriesComponent,
+        resolve: { categories: ArticleCategoriesResolver }
+      },
+      {
+        path: config.admin.addCategory.name,
+        component: AddCategoryComponent
+      },
+      
+      {
+        path: config.admin.manageArticles.name,
+        component: ManageArticlesComponent,
+        resolve: {articleDetails: ArticleDetailsResolver}
+      },
+      {
+        path: config.admin.articleslist.name,
+        component: ArticlesListComponent,
+        resolve: { articlesList: AdminArticlesListResolver }
+      },
+      {
+        path: config.admin.manageProductsCategories.name,
+        component: ManageProductsCategoriesComponent,
+        resolve: {categories: ProductsCategoriesResolver}
+      },
+      {
+        path: config.admin.addItemForReview.name,
+        component: AddItemForReviewComponent
+      },
+      {
+        path: config.admin.itemReviewList.name,
+        component: ProductsListComponent,
+        resolve: {productList: ItemReviewResolver}
+      }
+    ]
   },
-  {
-    path: config.admin.addCategory.name,
-    component: AddCategoryComponent
-  },
-  {
-    path: config.admin.manageArticlesCategories.name,
-    component: ManageArticlesCategoriesComponent,
-    resolve: { categories: ArticleCategoriesResolver }
-  },
-  {
-    path: config.admin.manageArticles.name,
-    component: ManageArticlesComponent,
-    resolve: {articleDetails: ArticleDetailsResolver}
-  },
-  {
-    path: config.admin.articleslist.name,
-    component: ArticlesListComponent,
-    resolve: { articlesList: AdminArticlesListResolver }
-  },
-  {
-    path: config.admin.manageProductsCategories.name,
-    component: ManageProductsCategoriesComponent,
-    resolve: {categories: ProductsCategoriesResolver}
-  },
-  {
-    path: config.admin.addItemForReview.name,
-    component: AddItemForReviewComponent
-  },
-  {
-    path: config.admin.itemReviewList.name,
-    component: ProductsListComponent,
-    resolve: {productList: ItemReviewResolver}
-  }
+  
 ];
 
 @NgModule({
