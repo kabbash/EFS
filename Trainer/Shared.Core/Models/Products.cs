@@ -1,11 +1,12 @@
 ﻿using Shared.Core.Models.Base;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shared.Core.Models
 {
-    public partial class Products : IRateBase,IBaseModel
+    public partial class Products : IRateBase,IBaseModel,IDDLBase
     {
         public Products()
         {
