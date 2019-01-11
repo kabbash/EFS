@@ -56,22 +56,27 @@ namespace Trainer.Controllers
             {
                 return StatusCode(500);
             }
-            return GetStatusCodeResult(_articlesService.Insert(articleDto, userIdClaim.Value));
+
+            // Set User 
+            articleDto.UserId = userIdClaim.Value;
+            return GetStatusCodeResult(_articlesService.Insert(articleDto));
         }
 
         [HttpPut("{id}")]
-        //[Authorize(Roles = "Admin, ArticleWriter")]
+        [Authorize(Roles = "Admin, ArticleWriter")]
 
         public ActionResult Put(int id, [FromForm] ArticleAddDto articleDto)
         {
-            //var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
-            //if (userIdClaim == null)
-            //{
-            //    return StatusCode(500);
-            //}
-            //userIdClaim.Value
-            //return GetStatusCodeResult(new ResultMessage());
-            return GetStatusCodeResult(_articlesService.Update(articleDto, id, "admin"));
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            if (userIdClaim == null)
+            {
+                return StatusCode(500);
+            }
+
+            //Set User
+            articleDto.UserId = userIdClaim.Value;
+
+            return GetStatusCodeResult(_articlesService.Update(articleDto, id));
         }
 
         [HttpDelete("{id}")]

@@ -204,7 +204,7 @@ namespace Articles.Core.Services
                 };
             }
         }
-        public ResultMessage Insert(ArticleAddDto article, string userId)
+        public ResultMessage Insert(ArticleAddDto article)
         {
             var validationResult = _Validator.Validate(article);
             if (!validationResult.IsValid)
@@ -219,8 +219,9 @@ namespace Articles.Core.Services
             {
                 var articleFolderName = Guid.NewGuid().ToString();
                 var articleEntity = article.Adapt<Shared.Core.Models.Articles>();
+
                 articleEntity.CreatedAt = DateTime.Now;
-                articleEntity.CreatedBy = userId;
+                articleEntity.CreatedBy = article.UserId;
                 articleEntity.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
                 {
                     attachmentType = AttachmentTypesEnum.Articles,
@@ -262,20 +263,20 @@ namespace Articles.Core.Services
                 };
             }
         }
-        public ResultMessage Update(ArticleAddDto article, int id, string userId)
+        public ResultMessage Update(ArticleAddDto article, int articleId)
         {
-            //var validationResult = _Validator.Validate(article);
-            //if (!validationResult.IsValid)
-            //{
-            //    return new ResultMessage
-            //    {
-            //        Status = HttpStatusCode.BadRequest,
-            //        ValidationMessages = validationResult.GetErrorsList()
-            //    };
-            //}
+            var validationResult = _Validator.Validate(article);
+            if (!validationResult.IsValid)
+            {
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.BadRequest,
+                    ValidationMessages = validationResult.GetErrorsList()
+                };
+            }
             try
             {
-                var articleData = _unitOfWork.ArticlesRepository.GetById(id);
+                var articleData = _unitOfWork.ArticlesRepository.GetById(articleId);
                 if (articleData == null)
                 {
                     return new ResultMessage
@@ -285,17 +286,17 @@ namespace Articles.Core.Services
                 }
 
                 //article.Adapt(articleData, typeof(ArticleAddDto), typeof(Shared.Core.Models.Articles));
-                //articleData.Id = id;
+
                 articleData.UpdatedAt = DateTime.Now;
-                articleData.UpdatedBy = userId;
+                articleData.UpdatedBy = article.UserId;
                 articleData.Description = article.Description;
+
                 _unitOfWork.ArticlesRepository.Update(articleData);
                 _unitOfWork.Commit();
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.OK
                 };
-
             }
             catch (Exception ex)
             {

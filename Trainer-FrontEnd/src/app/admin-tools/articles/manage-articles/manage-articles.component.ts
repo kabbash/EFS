@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { articleDetialsDto } from '../../../shared/models/article-details-dto';
 import { AppService } from '../../../app.service';
 import { AdminArticlesService } from '../../services/admin.articles.services';
+import { config } from 'src/app/config/pages-config';
 
 
 @Component({
@@ -15,20 +16,28 @@ export class ManageArticlesComponent implements OnInit {
   articleId: number;
   article: articleDetialsDto;
   viewMode: boolean = true;
+  isNew: boolean = false;
   private originalArticle: articleDetialsDto;
 
-  constructor(private route: ActivatedRoute, private appService: AppService, private service: AdminArticlesService) {
+  constructor(private route: ActivatedRoute,private router: Router, private appService: AppService, private service: AdminArticlesService) {
     this.route.params.subscribe(params => {
       this.articleId = params['articleId'];
     });
   }
 
   ngOnInit() {
-    this.route.data.subscribe(result => {
-      this.originalArticle = result.articleDetails.data;
-      this.article = result.articleDetails.data;
-      this.appService.loading = false;
-    });
+    if (this.articleId != 0)
+      this.route.data.subscribe(result => {
+        this.originalArticle = result.articleDetails.data;
+        this.article = result.articleDetails.data;
+        this.appService.loading = false;
+      });
+
+      else {
+        this.article = new articleDetialsDto();
+        this.viewMode = false;
+        this.isNew = true;
+      }
   }
 
 
@@ -53,6 +62,17 @@ export class ManageArticlesComponent implements OnInit {
   }
 
   update() {
+
+    this.service.update(this.articleId, this.prepareData(this.article)).subscribe(
+      () => {
+        alert('success');
+      }, error => {
+        alert(error);
+      }
+    );
+  }
+
+  add(){
 
     this.service.update(this.articleId, this.prepareData(this.article)).subscribe(
       () => {
@@ -94,7 +114,15 @@ export class ManageArticlesComponent implements OnInit {
     this.viewMode = true;
   }
 
+  cancelAdd(){
+    
+  }
+
   showPendingButtons() {
-    return ! this.article.isActive;
+    return !this.article.isActive;
+  }
+
+  showAddbtn(){
+    return this.isNew;
   }
 }

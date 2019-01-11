@@ -16,6 +16,9 @@
   </div>
 </div>
 <div class="row">
+  <div>
+    <button class="btn btn-primary" (click)="addArticle()" > اضافة مقال جديد</button>
+  </div>
 <div *ngFor="let article of articlesList">
   <app-articles-list-item style="height: initial;" (click)="articlesDetails(article.id)" [cardName]="article.name"
     [cardImage]="'url(' + baseurl + article.profilePicture + ')'" [cardShortDescription]="article.description.substr(0,200)"

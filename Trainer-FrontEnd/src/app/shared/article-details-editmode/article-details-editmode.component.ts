@@ -10,7 +10,6 @@ import { environment } from '../../../environments/environment';
 export class ArticleDetailsEditmodeComponent implements OnInit {
 
   @Input() article: articleDetialsDto;
-  @Input() isNew: boolean;
 
   articleBody: string;
   baseurl = environment.filesBaseUrl;
@@ -18,10 +17,6 @@ export class ArticleDetailsEditmodeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
-    if (this.isNew)
-      this.article = new articleDetialsDto();
-    // else
-    //   this.articleBody = '<h2><center>' + this.article.name + '</center></h2><br/>' + this.article.description;    
+    this.articleBody = '<h2><center>' + this.article.name + '</center></h2><br/>' + this.article.description;
   }
 }

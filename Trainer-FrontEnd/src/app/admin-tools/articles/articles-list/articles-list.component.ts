@@ -38,21 +38,12 @@ export class ArticlesListComponent implements OnInit {
     articlesDetails(articleId){
       this.router.navigate([config.admin.manageArticles.route, articleId]);
     }
-
-    // approve(articleId){
-    //   if(confirm("هل انت متأكد من الموافقه على هذا المقال ؟ ")){      
-    //     this.service.approve(articleId).subscribe(c=> { console.log(c); alert('approved'); });
-    //   }
-    // }
-  
-    //   reject(articleId){
-    //     if(confirm("هل انت متأكد من رفض هذا المقال ؟ ")){
-    //       this.service.reject(articleId).subscribe(c=> { console.log(c); alert('rejected'); });
-    //     }
-    // }
+    
+    addArticle(){
+      this.router.navigate([config.admin.manageArticles.route, 0]);
+    }
 
     reloadItems(){
-      debugger;
       let articleFilter:ArticlesFilter = {
         pageNo: 1,
         pageSize: 10,
