@@ -10,6 +10,7 @@ import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticleDetailsResolver } from './resolvers/article-details.resolver';
 import { ArticleListResolver } from './resolvers/article-list.resolver';
 import { ArticlesService } from './articles.service';
+import { NewsResolver } from './resolvers/news.resolver';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ArticlesService } from './articles.service';
   providers: [
     ArticleDetailsResolver,
     ArticleListResolver,
-    ArticlesService
+    ArticlesService,
+    NewsResolver
   ]
 })
 export class ArticlesModule { }

@@ -36,15 +36,15 @@ namespace Trainer.Controllers
         }
 
         [HttpGet("GetByCategory/{id}")]
-        public ActionResult GetByCategory(int id)
+        public ActionResult GetByCategory(int id,int pageNo=1, int pageSize=10)
         {
-            return GetStatusCodeResult(_articlesService.GetByCategoryId(id));
+            return GetStatusCodeResult(_articlesService.GetByCategoryId(id,pageNo, pageSize));
         }
 
         [HttpGet("GetByCategoryKey/{id}")]
-        public ActionResult GetByPredefinedCategoryKey(int id)
+        public ActionResult GetByPredefinedCategoryKey(int id, int pageNo=1, int pageSize=10)
         {
-            return GetStatusCodeResult(_articlesService.GetByPredefinedCategoryKey(id));
+            return GetStatusCodeResult(_articlesService.GetByPredefinedCategoryKey(id, pageNo, pageSize));
         }
 
         [HttpPost]
