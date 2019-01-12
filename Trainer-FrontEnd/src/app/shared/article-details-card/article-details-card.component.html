@@ -23,12 +23,15 @@
 </ng-template>
 
 <div class="article-container">
+  <div class="article-title">
+    <h2> {{article.name}} </h2>
+  </div>
   <div class="carousel-container">
     <ngb-carousel *ngIf="article.images">
       <ng-template ngbSlide *ngFor="let image of article.images;let i = index">
-        <div class="edit-image" (click)="open(content,article,i)">
+        <!-- <div class="edit-image" (click)="open(content,article,i)">
           <i class="fa fa-edit"></i>
-        </div>
+        </div> -->
         <img [src]="baseurl + image.path" class="slider-img" alt="article images">
         <div class="carousel-caption">
           <h3>{{image.title}}</h3>
@@ -37,5 +40,5 @@
       </ng-template>
     </ngb-carousel>
   </div>
-  <div class="article-details-container" [innerHTML]="articleBody"></div>
+  <div class="article-details-container" [innerHTML]="article.description"></div>
 </div>

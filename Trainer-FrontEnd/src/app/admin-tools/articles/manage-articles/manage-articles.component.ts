@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { articleDetialsDto } from '../../../shared/models/article-details-dto';
 import { AppService } from '../../../app.service';
 import { AdminArticlesService } from '../../services/admin.articles.services';
-import { config } from 'src/app/config/pages-config';
 
 
 @Component({
@@ -19,27 +18,27 @@ export class ManageArticlesComponent implements OnInit {
   isNew: boolean = false;
   private originalArticle: articleDetialsDto;
 
-  constructor(private route: ActivatedRoute,private router: Router, private appService: AppService, private service: AdminArticlesService) {
+  constructor(private route: ActivatedRoute, private router: Router, private appService: AppService, private service: AdminArticlesService) {
     this.route.params.subscribe(params => {
       this.articleId = params['articleId'];
     });
   }
 
   ngOnInit() {
-    if (this.articleId != 0)
+
+    if (this.articleId > 0)
       this.route.data.subscribe(result => {
         this.originalArticle = result.articleDetails.data;
         this.article = result.articleDetails.data;
         this.appService.loading = false;
       });
 
-      else {
-        this.article = new articleDetialsDto();
-        this.viewMode = false;
-        this.isNew = true;
-      }
+    else {
+      this.article = new articleDetialsDto();
+      this.viewMode = false;
+      this.isNew = true;
+    }
   }
-
 
   // article main methods 
 
@@ -50,8 +49,8 @@ export class ManageArticlesComponent implements OnInit {
   }
 
   reject() {
-    if (confirm("هل انت متأكد من رفض هذا المقال ؟ ")) {
-      this.service.reject(this.articleId).subscribe(c => { console.log(c); alert('rejected'); });
+    if (confirm("هل انت متأكد من رفض هذا المقال ؟ ")) {      
+      this.service.reject(this.articleId,prompt("من فضلك ، ادخل سبب الرفض؟")).subscribe(c => { console.log(c); alert('rejected'); });
     }
   }
 
@@ -72,9 +71,9 @@ export class ManageArticlesComponent implements OnInit {
     );
   }
 
-  add(){
+  add() {
 
-    this.service.update(this.articleId, this.prepareData(this.article)).subscribe(
+    this.service.add(this.prepareData(this.article)).subscribe(
       () => {
         alert('success');
       }, error => {
@@ -91,13 +90,11 @@ export class ManageArticlesComponent implements OnInit {
   prepareData(articleData: articleDetialsDto) {
     debugger;
     let formData = new FormData();
-    formData.append('id', articleData.id.toString());
+    formData.append('id', articleData.id ? articleData.id.toString() : "0");
     formData.append('name', articleData.name);
     formData.append('description', articleData.description);
-    // formData.append('createdAt', categoryData.createdAt ? categoryData.createdAt : new Date().toISOString());
-    // formData.append('createdBy', categoryData.createdBy ? categoryData.createdBy : 'admin');
-    // formData.append('profilePicture', categoryData.profilePicture ? categoryData.profilePicture : '');
-    // categoryData.parentId ?  formData.append('parentId', categoryData.parentId) : null;
+    formData.append('categoryId', articleData.categoryId.toString());
+    formData.append('profilePicture', articleData.profilePicture || "hamadaaaaa");
     console.log(formData);
     return formData;
   }
@@ -114,15 +111,15 @@ export class ManageArticlesComponent implements OnInit {
     this.viewMode = true;
   }
 
-  cancelAdd(){
-    
+  cancelAdd() {
+
   }
 
   showPendingButtons() {
     return !this.article.isActive;
   }
 
-  showAddbtn(){
+  showAddbtn() {
     return this.isNew;
   }
 }

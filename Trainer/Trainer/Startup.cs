@@ -22,6 +22,7 @@ using Lookups.Core.Services;
 using MailProvider.Core;
 using MailProvider.Core.Interfaces;
 using MailProvider.Core.Services;
+using Mapster;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,6 +42,7 @@ using Rating.Core.Validators;
 using Shared.Core.Models;
 using Shared.Core.Resources;
 using Shared.Core.Utilities.Models;
+using Shared.Core.Validators;
 using System.Text;
 using test.core.Model;
 using test.core.Validators;
@@ -64,6 +66,7 @@ namespace Trainer
             ConfigureManagers(services);
             ConfigureSettings(services);
             ConfigureJwtAuthentication(services);
+            ConfigureMapstr();
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                     .AddJsonOptions(
@@ -116,7 +119,7 @@ namespace Trainer
             services.AddScoped<ILookupService<ArticlesCategoriesDto, ArticlesCategories>, LookupService<ArticlesCategoriesDto, ArticlesCategories>>();
             services.AddScoped<IArticlesService, ArticleService>();
             services.AddScoped<IItemsReviewsManager, ItemsReviewsManager>();
-
+            services.AddScoped<ICommonService, CommonService>();
         }
         private void ConfigureSettings(IServiceCollection services)
         {
@@ -136,7 +139,9 @@ namespace Trainer
             services.AddTransient<IValidator<RatingDto>, RatingDtoValidator>();
             services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
             services.AddTransient<IValidator<ArticleAddDto>, ArticleAddDtoValidator>();
+            services.AddTransient<IValidator<RejectDto>, RejectDtoValidator>();
             services.AddTransient<IValidator<ItemReviewDto>, ItemReviewDtoValidator>();
+
 
         }
         private void ConfigureJwtAuthentication(IServiceCollection services)
@@ -161,6 +166,11 @@ namespace Trainer
                     ValidateAudience = false
                 };
             });
+        }
+        private void ConfigureMapstr()
+        {
+            TypeAdapterConfig<ArticleAddDto, Shared.Core.Models.Articles>.NewConfig()
+                                                   .Ignore(dest => dest.Id);
         }
         #endregion
     }

@@ -31,6 +31,7 @@ export class ArticlesListComponent implements OnInit {
       this.articlesStatuses.items = [ { value:1 , text:"الكل" }
                                      ,{ value:2 , text:"النشط" }
                                      ,{ value:3 , text:"المتوقف"}
+                                     ,{ value:4 , text:"المرفوض"}
                                     ]
       this.articlesStatuses.selectedValue = 1;                                    
     }

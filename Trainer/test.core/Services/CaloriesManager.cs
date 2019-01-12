@@ -16,12 +16,10 @@ namespace test.core.Services
     {
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<CaloriesDto> _validator;
-        private readonly IOptions<TestResources> _testResources;
-        public CaloriesManager(IUnitOfWork unitOfWork, IValidator<CaloriesDto> validator, IOptions<TestResources> testResources)
+        public CaloriesManager(IUnitOfWork unitOfWork, IValidator<CaloriesDto> validator)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
-            _testResources = testResources;
         }
         public IEnumerable<CaloriesDto> GetAll()
         {
@@ -42,7 +40,7 @@ namespace test.core.Services
 
                 _unitOfWork.TestRepository.Insert(calory.Adapt<Calories>());
                 _unitOfWork.Commit();
-                return _testResources.Value.SuccessMsg;
+                return "";
             }
             catch (Exception error)
             {

@@ -4,6 +4,7 @@
     {
         All=1,
         Active,
-        Pendings
+        Pendings,
+        Rejected
     }
 }

@@ -19,13 +19,15 @@ namespace Articles.Core.Services
     public class ArticleService : IArticlesService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IValidator<ArticleAddDto> _Validator;
+        private readonly IValidator<ArticleAddDto> _addValidator;
+        private readonly IValidator<RejectDto> _rejectValidator;
         private readonly IAttachmentsManager _attachmentsManager;
 
-        public ArticleService(IUnitOfWork unitOfWork, IValidator<ArticleAddDto> validator, IAttachmentsManager attachmentsManager)
+        public ArticleService(IUnitOfWork unitOfWork, IValidator<ArticleAddDto> addvalidator, IValidator<RejectDto> rejectvalidator, IAttachmentsManager attachmentsManager)
         {
             _unitOfWork = unitOfWork;
-            _Validator = validator;
+            _addValidator = addvalidator;
+            _rejectValidator = rejectvalidator;
             _attachmentsManager = attachmentsManager;
         }
         public ResultMessage Delete(int id)
@@ -146,7 +148,7 @@ namespace Articles.Core.Services
                 };
             }
         }
-        public ResultMessage GetByPredefinedCategoryKey(int id, int pageNo , int pageSize)
+        public ResultMessage GetByPredefinedCategoryKey(int id, int pageNo, int pageSize)
         {
             try
             {
@@ -174,6 +176,7 @@ namespace Articles.Core.Services
             try
             {
                 var article = _unitOfWork.ArticlesRepository.GetById(id);
+
                 if (article == null)
                 {
                     return new ResultMessage
@@ -182,6 +185,7 @@ namespace Articles.Core.Services
                     };
                 }
                 var articleDto = article.Adapt<ArticleGetDto>();
+
                 if (article.Images != null)
                     articleDto.Images = article.Images.Select(c => new ImageWithTextDto
                     {
@@ -206,7 +210,7 @@ namespace Articles.Core.Services
         }
         public ResultMessage Insert(ArticleAddDto article)
         {
-            var validationResult = _Validator.Validate(article);
+            var validationResult = _addValidator.Validate(article);
             if (!validationResult.IsValid)
             {
                 return new ResultMessage
@@ -217,34 +221,34 @@ namespace Articles.Core.Services
             }
             try
             {
-                var articleFolderName = Guid.NewGuid().ToString();
                 var articleEntity = article.Adapt<Shared.Core.Models.Articles>();
-
                 articleEntity.CreatedAt = DateTime.Now;
                 articleEntity.CreatedBy = article.UserId;
-                articleEntity.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
-                {
-                    attachmentType = AttachmentTypesEnum.Articles,
-                    CanChangeName = false,
-                    File = article.ProfilePictureFile,
-                    SubFolderName = articleFolderName
-                });
 
-                foreach (var image in article.ImagesLstFiles)
-                {
-                    articleEntity.Images.Add(new ArticlesImages
-                    {
-                        ArticleId = articleEntity.Id,
-                        Path = _attachmentsManager.Save(new SavedFileDto
-                        {
-                            attachmentType = AttachmentTypesEnum.Articles,
-                            CanChangeName = false,
-                            File = image,
-                            SubFolderName = articleFolderName
-                        }),
-                        Title = image.Name
-                    });
-                }
+                //var articleFolderName = Guid.NewGuid().ToString();
+                //articleEntity.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
+                //{
+                //    attachmentType = AttachmentTypesEnum.Articles,
+                //    CanChangeName = false,
+                //    File = article.ProfilePictureFile,
+                //    SubFolderName = articleFolderName
+                //});
+
+                //foreach (var image in article.ImagesLstFiles)
+                //{
+                //    articleEntity.Images.Add(new ArticlesImages
+                //    {
+                //        ArticleId = articleEntity.Id,
+                //        Path = _attachmentsManager.Save(new SavedFileDto
+                //        {
+                //            attachmentType = AttachmentTypesEnum.Articles,
+                //            CanChangeName = false,
+                //            File = image,
+                //            SubFolderName = articleFolderName
+                //        }),
+                //        Title = image.Name
+                //    });
+                //}
 
                 _unitOfWork.ArticlesRepository.Insert(articleEntity);
                 _unitOfWork.Commit();
@@ -265,7 +269,7 @@ namespace Articles.Core.Services
         }
         public ResultMessage Update(ArticleAddDto article, int articleId)
         {
-            var validationResult = _Validator.Validate(article);
+            var validationResult = _addValidator.Validate(article);
             if (!validationResult.IsValid)
             {
                 return new ResultMessage
@@ -296,6 +300,50 @@ namespace Articles.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.InternalServerError
+                };
+            }
+        }
+        public ResultMessage Reject(RejectDto rejectDto)
+        {
+            var validationResult = _rejectValidator.Validate(rejectDto);
+            if (!validationResult.IsValid)
+            {
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.BadRequest,
+                    ValidationMessages = validationResult.GetErrorsList()
+                };
+            }
+            try
+            {
+                var articleData = _unitOfWork.ArticlesRepository.GetById(rejectDto.Id);
+                if (articleData == null)
+                {
+                    return new ResultMessage
+                    {                        
+                        Status = HttpStatusCode.NotFound,
+                    };
+                }
+
+                articleData.UpdatedAt = DateTime.Now;
+                articleData.UpdatedBy = rejectDto.UserId;
+                articleData.RejectReason = rejectDto.RejectReason;
+                articleData.IsActive = false;
+
+                _unitOfWork.ArticlesRepository.Update(articleData);
+                _unitOfWork.Commit();
+
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.OK,
+                    Data = true
                 };
             }
             catch (Exception ex)

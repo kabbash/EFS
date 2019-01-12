@@ -21,7 +21,8 @@ namespace Shared.Core.Models
         public DateTime? UpdatedAt { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
+        public string RejectReason { get; set; }
 
         [ForeignKey("CreatedBy")]
         public virtual AspNetUsers Author { get; set; }

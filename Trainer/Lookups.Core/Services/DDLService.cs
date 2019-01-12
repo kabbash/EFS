@@ -8,17 +8,14 @@ using System.Text;
 
 namespace Lookups.Core.Services
 {
-    public class DDLService<T> : IDDLService<T> where T : IDDLBase
+    public class DDLService<T> where T : IDDLBase
     {
         private IRepository<T> _repository;
-        private readonly IUnitOfWork _unitOfWork;
-
         public DDLService(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
-            _repository = _unitOfWork.getRepoByType(typeof(IRepository<T>)) as IRepository<T>;
+            _repository = unitOfWork.getRepoByType(typeof(IRepository<T>)) as IRepository<T>;
         }
-        public List<DDLDto> GetDDLItems(int entityEnum)
+        public List<DDLDto> GetDDLItems()
         {
                 return _repository.Get().Select(c => new DDLDto
                 {
