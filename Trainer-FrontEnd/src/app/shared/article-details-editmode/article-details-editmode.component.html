@@ -6,9 +6,42 @@
           <strong>المقـال</strong>
         </div>
         <div class="card-body">
+          <div class="row" style="padding-bottom:15px;">
+            <div class="col-sm-6">
+              <label> العنـوان </label>
+              <input type="text" [(ngModel)]="article.name" class="form-control" />
+            </div>
+            <div class="col-sm-6">
+              <label>القسـم </label>
+              <select [(ngModel)]="article.categoryId" class="form-control">
+                <option value="0" > اختر  </option>
+                <option *ngFor="let item of categoriesDDL.items" [ngValue]="item.value">
+                  {{item.text}}
+                </option>
+              </select>
+            </div>
+          </div>
           <div class="row">
-            <div class="col-sm-12">              
+            <div class="col-sm-12">
               <div [froalaEditor] [(froalaModel)]="article.description"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="carousel-container">
+                <ngb-carousel *ngIf="article.images">
+                  <ng-template ngbSlide *ngFor="let image of article.images;let i = index">
+                    <div class="edit-image" (click)="open(content,article,i)">
+                      <i class="fa fa-edit"></i>
+                    </div>
+                    <img [src]="baseurl + image.path" class="slider-img" alt="article images">
+                    <div class="carousel-caption">
+                      <h3>{{image.title}}</h3>
+                      <p>{{image.text}}}</p>
+                    </div>
+                  </ng-template>
+                </ngb-carousel>
+              </div>
             </div>
           </div>
         </div>
@@ -16,3 +49,27 @@
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title" *ngIf="!newPic">تعديل الصوره</h4>
+    <h4 class="modal-title" id="modal-basic-title" *ngIf="newPic">إضافة صوره جديده</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" *ngIf="!newPic">
+    <img [src]="baseurl + selectedImg.path" alt="">
+    <input _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.title" placeholder="العنوان" type="text">
+    <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.text" placeholder="الوصف" rows="3"></textarea>
+  </div>
+  <div class="modal-body" *ngIf="newPic">
+    <div class="simulate-img">صوره جديده</div>
+    <input _ngcontent-c11="" class="form-control" [(ngModel)]="newImgTitle" placeholder="العنوان" type="text">
+    <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="newImgDesc" placeholder="الوصف" rows="3"></textarea>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">حفظ</button>
+    <button type="button" class="btn btn-outline-dark new-pic-btn" (click)="addNewPic()">إضافة صوره جديده</button>
+  </div>
+</ng-template>

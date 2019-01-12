@@ -14,12 +14,14 @@ import { AddItemForReviewComponent } from './add-item-for-review/add-item-for-re
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
 import { ArticleDetailsEditmodeComponent } from '../shared/article-details-editmode/article-details-editmode.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
   imports: [
     AdminToolsRoutingModule,
     SharedModule,
+    NgbModule,
     FormsModule,
     ReactiveFormsModule,
     FroalaEditorModule.forRoot(),

@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Lookups.Core.Interfaces
 {
-    public interface IDDLService<T> where T : IDDLBase
+    public interface ICommonService
     {
-        List<DDLDto> GetDDLItems(int entityEnum);
+        ResultMessage GetEntityDDL(int entityTypeId);
     }
 }

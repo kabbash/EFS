@@ -48,8 +48,8 @@ namespace Trainer.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin, ArticleWriter")]
-        public ActionResult Post([FromBody] ArticleAddDto articleDto)
+        //[Authorize(Roles = "Admin, ArticleWriter")]
+        public ActionResult Post([FromForm] ArticleAddDto articleDto)
         {
             var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
             if (userIdClaim == null)
@@ -97,9 +97,16 @@ namespace Trainer.Controllers
 
         [HttpPost]
         [Route("Reject")]
-        public ActionResult Reject([FromBody]baseDto model)
+        public ActionResult Reject([FromBody]RejectDto model)
         {
-            return GetStatusCodeResult(_articlesService.Delete(model.Id));
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            if (userIdClaim == null)
+            {
+                return StatusCode(500);
+            }
+            //Set User
+            model.UserId = userIdClaim.Value;
+            return GetStatusCodeResult(_articlesService.Reject(model));
         }
     }
 }

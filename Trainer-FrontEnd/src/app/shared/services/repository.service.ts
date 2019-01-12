@@ -23,6 +23,10 @@ export class RepositoryService {
     return this.http.post<ResultMessage<T>>(this.createCompleteRoute(route), body, this.generateJsonHeaders());
   }
 
+  public postForm<T>(route: string, body) {
+    return this.http.post<ResultMessage<T>>(this.createCompleteRoute(route), body, this.generateHeaders());
+  }
+
   public update<T>(route: string, body) {
     return this.http.put<ResultMessage<T>>(this.createCompleteRoute(route), body, this.generateHeaders());
   }

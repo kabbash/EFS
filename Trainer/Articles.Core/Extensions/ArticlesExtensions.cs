@@ -11,12 +11,15 @@ namespace Articles.Core.Extensions
                 return articles;
 
             switch ((ArticleStatusEnum)filter.Status)
-            {   
+            {
                 case ArticleStatusEnum.Active:
                     articles = articles.Where(c => c.IsActive == true);
                     break;
+                case ArticleStatusEnum.Rejected:
+                    articles = articles.Where(c => c.IsActive == false);
+                    break;
                 case ArticleStatusEnum.Pendings:
-                    articles = articles.Where(c => ! c.IsActive);
+                    articles = articles.Where(c => !c.IsActive.HasValue);
                     break;
             }
 

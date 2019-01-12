@@ -10,5 +10,6 @@ namespace Articles.Core.Models
         public string ProfilePicture { get; set; }
         public bool IsActive { get; set; }
         public List<ImageWithTextDto> Images { get; set; }
+        public int CategoryId { get; set; }
     }
 }
