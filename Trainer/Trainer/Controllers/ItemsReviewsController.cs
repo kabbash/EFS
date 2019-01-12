@@ -43,7 +43,7 @@ namespace Trainer.Controllers
         {
             itemDto.ProfilePicture = _attachmentManager.Save(new SavedFileDto
             {
-                attachmentType = AttachmentTypesEnum.Articles_Categories,
+                attachmentType = AttachmentTypesEnum.Products,
                 CanChangeName = true,
                 File = itemDto.ProfilePictureFile
             });
@@ -58,7 +58,7 @@ namespace Trainer.Controllers
             {
                 itemDto.ProfilePicture = _attachmentManager.Save(new SavedFileDto
                 {
-                    attachmentType = AttachmentTypesEnum.Articles_Categories,
+                    attachmentType = AttachmentTypesEnum.Products,
                     CanChangeName = true,
                     File = itemDto.ProfilePictureFile
                 });
