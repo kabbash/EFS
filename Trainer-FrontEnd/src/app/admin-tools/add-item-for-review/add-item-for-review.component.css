@@ -1,0 +1,6 @@
+:host {
+    padding-top: 45px;
+    background: black;
+    min-height: 500px;
+    flex: 1;
+}
