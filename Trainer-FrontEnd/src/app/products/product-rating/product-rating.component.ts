@@ -38,7 +38,7 @@ export class ProductRatingComponent implements OnInit {
       return;
     } else {
       this.rate.createdBy = user.id;
-      this.rate.itemsForReviewId = this.product.id;
+      this.rate.entityId = this.product.id;
       this.rate.entityTypeId = 1;
       this.repositoryService.create('itemsreview/AddRate', this.rate).subscribe(data => {
         alert('success');

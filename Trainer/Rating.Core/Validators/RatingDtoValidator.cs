@@ -9,7 +9,7 @@ namespace Rating.Core.Validators
         {
             RuleFor(c => c.Rate).NotEmpty();
             RuleFor(c => c.Comment).NotEmpty();
-            RuleFor(c => c.ItemsForReviewId).NotEmpty();
+            RuleFor(c => c.EntityId).NotEmpty();
             RuleFor(c => c.EntityTypeId).NotEmpty();
         }
     }
