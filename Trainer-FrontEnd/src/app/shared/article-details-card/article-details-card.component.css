@@ -12,17 +12,74 @@
     width: 80%;
     text-align: right;
 }
+
 .slider-img {
     border-radius: 12px;
-    height:500px;
+    height: 500px;
     width: 100%;
 }
-.article-container{
-    margin:30px;
+
+.article-container {
+    margin: 30px;
     text-align: -webkit-center;
 }
 
-:host ::ng-deep .carousel-caption{
+:host ::ng-deep .carousel-caption {
     color: #000000;
-    background-color: rgba(255,255,255,0.6);
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+:host ::ng-deep .carousel-control-next, :host ::ng-deep .carousel-control-prev {
+    top: 15%;
+    height: 70%;
+}
+
+.edit-image {
+    height: 50px;
+    width: 50px;
+    z-index: 5;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: ABSOLUTE;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+button.close {
+    margin: -1rem -1rem auto -1rem;
+}
+
+div.modal-body {
+    min-height: 75px;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.modal-body>* {
+    margin: 10px 0;
+}
+
+div.modal-body img {
+    width: 328px
+}
+
+.simulate-img {
+    width: 328px;
+    height: 150px;
+    background-color: gainsboro;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.new-pic-btn{
+    margin-left: 0;
+    margin-right: 10px;
 }

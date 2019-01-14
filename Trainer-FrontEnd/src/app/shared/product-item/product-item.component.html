@@ -2,7 +2,7 @@
   <div class="special-shape" *ngIf="isSpecial">مميز</div>
   <span *ngIf="shortDesc">{{shortDesc}}</span>
 </div>
-<div class="card-img-container" [ngStyle]="{'background-image': cardImage}"></div>
+<div class="card-img-container" [ngStyle]="{'background-image': 'url(' + cardImage + ')'}"></div>
 <div class="card-separtator"></div>
 <div class="card-title-container">
   <p>
@@ -11,7 +11,7 @@
 </div>
 
 <div class="price-rating">
-  <span>{{price}}</span>
+  <span *ngIf="price">{{price + ' EGP'}}</span>
   <span>
     <ngb-rating [(rate)]="currentRate" [readonly]="true" max="5" class="star">
       <ng-template let-fill="fill" let-index="index">
@@ -21,4 +21,6 @@
   </span>
 </div>
 
-<div class="buy-now" data-toggle="modal" data-target="#exampleModal">عرض التفاصيل</div>
+<div *ngIf="!isAddItemForReview" class="buy-now" data-toggle="modal" data-target="#exampleModal">عرض التفاصيل</div>
+<button *ngIf="isAddItemForReview" (click)="delete($event)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+<button *ngIf="isAddItemForReview" (click)="edit($event)" class="btn"><i class="fa fa-edit"></i></button>

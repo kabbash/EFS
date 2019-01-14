@@ -3,7 +3,7 @@
         [cardImage]="'url(' + baseurl + article.profilePicture + ')'" [cardShortDescription]="article.description.substr(0,200)"></app-articles-list-item>
 </div>
 
-<div class="pagination-container">
-    <ngb-pagination (pageChange)="getSelectedPage($event)" [collectionSize]="pagesNumber"  [(page)]="selectedPage" [maxSize]="5" [rotate]="true" [ellipses]="false"
-        [boundaryLinks]="true"></ngb-pagination>
+<div class="pagination-container" *ngIf="pagerData.pagesCount > 1">
+    <ngb-pagination [collectionSize]="pagerData.itmesCount" [pageSize]="pagerData.pageSize" [(page)]="pagerData.currentPage" [maxSize]="5" [rotate]="true" [ellipses]="false"
+        [boundaryLinks]="true" (pageChange)="getNextPage()"></ngb-pagination>
 </div>

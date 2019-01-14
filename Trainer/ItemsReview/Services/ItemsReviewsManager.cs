@@ -2,12 +2,14 @@
 using ItemsReview.Interfaces;
 using ItemsReview.Models;
 using Mapster;
+using Rating.Core.Interfaces;
 using Shared.Core.Models;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 
 namespace ItemsReview.Services
@@ -16,17 +18,19 @@ namespace ItemsReview.Services
     {
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<ItemReviewDto> _validator;
-        public ItemsReviewsManager(IUnitOfWork unitOfWork, IValidator<ItemReviewDto> validator)
+        private readonly IRatingManager<ItemsForReview> _ratingManager;
+        public ItemsReviewsManager(IUnitOfWork unitOfWork, IValidator<ItemReviewDto> validator, IRatingManager<ItemsForReview> ratingManager)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
+            _ratingManager = ratingManager;
         }
-        public ResultMessage GetAll()
+        public ResultMessage GetAll(int pageNo, int pageSize)
         {
             try
             {
-                IEnumerable<ItemReviewDto> result = new List<ItemReviewDto>();
-                result = _unitOfWork.ItemsReviewsRepository.Get().Adapt(result);
+                PagedResult<ItemReviewDto> result = new PagedResult<ItemReviewDto>();
+                result = _unitOfWork.ItemsReviewsRepository.Get().GetPaged(pageNo,pageSize).Adapt(result);
 
                 return new ResultMessage()
                 {
@@ -77,12 +81,18 @@ namespace ItemsReview.Services
             try
             {
                 var itemReview = _unitOfWork.ItemsReviewsRepository.GetById(id);
+                // itemReview.Reviews.ToList();
                 if (itemReview != null)
+                {
+                    var result = itemReview.Adapt<ItemReviewDto>();
+                    result.Reviews = _ratingManager.GetItemRatings(itemReview.Id);
                     return new ResultMessage()
                     {
-                        Data = itemReview.Adapt<ItemReviewDto>(),
+                        Data = result,
                         Status = HttpStatusCode.OK
                     };
+                }
+                    
                 else
                     return new ResultMessage()
                     {

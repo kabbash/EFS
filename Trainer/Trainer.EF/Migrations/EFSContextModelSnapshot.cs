@@ -15,7 +15,7 @@ namespace Trainer.EF.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -37,13 +37,15 @@ namespace Trainer.EF.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
-                    b.Property<bool>("IsActive");
+                    b.Property<bool?>("IsActive");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
+
+                    b.Property<string>("RejectReason");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime");
@@ -93,8 +95,8 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
 
                     b.HasData(
-                        new { Id = 1, CreatedAt = new DateTime(2019, 1, 1, 23, 23, 6, 972, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
-                        new { Id = 2, CreatedAt = new DateTime(2019, 1, 1, 23, 23, 6, 975, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
+                        new { Id = 1, CreatedAt = new DateTime(2019, 1, 13, 14, 25, 9, 630, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
+                        new { Id = 2, CreatedAt = new DateTime(2019, 1, 13, 14, 25, 9, 663, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
                     );
                 });
 
@@ -135,10 +137,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "5560dcd1-6a17-4d09-8128-a3e67fd55a2a", Name = "Client" },
-                        new { Id = "5e9c9ace-75e9-4913-b7d6-db5240aab551", Name = "RegularUser" },
-                        new { Id = "a99c2b47-4208-402b-994b-fb11d7cf1010", Name = "Trainer" },
-                        new { Id = "db4f70df-8e98-4b9a-9460-a0c2444b2097", Name = "ArticleWriter" }
+                        new { Id = "46abd3c0-815b-4bdb-af31-f80671832df2", Name = "Client" },
+                        new { Id = "363965f3-002e-4b7e-ba29-35e6ff05e365", Name = "RegularUser" },
+                        new { Id = "7431fd78-5e03-47f3-95ae-2ddb18f065a7", Name = "Trainer" },
+                        new { Id = "655bd8e2-4fc4-42cd-9aa3-5d6b80034612", Name = "ArticleWriter" }
                     );
                 });
 
@@ -506,6 +508,8 @@ namespace Trainer.EF.Migrations
 
                     b.Property<int>("EntityTypeId");
 
+                    b.Property<int?>("ItemsForReviewId");
+
                     b.Property<int>("Rate");
 
                     b.Property<DateTime?>("UpdatedAt");
@@ -514,7 +518,11 @@ namespace Trainer.EF.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedBy");
+
                     b.HasIndex("EntityTypeId");
+
+                    b.HasIndex("ItemsForReviewId");
 
                     b.ToTable("EntityRatings");
                 });
@@ -530,6 +538,10 @@ namespace Trainer.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EntityTypes");
+
+                    b.HasData(
+                        new { Id = 1, Name = "product" }
+                    );
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ItemsForReview", b =>
@@ -911,10 +923,18 @@ namespace Trainer.EF.Migrations
 
             modelBuilder.Entity("Shared.Core.Models.EntityRating", b =>
                 {
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "Reviwer")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy");
+
                     b.HasOne("Shared.Core.Models.EntityTypes", "EntityType")
                         .WithMany()
                         .HasForeignKey("EntityTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Shared.Core.Models.ItemsForReview")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ItemsForReviewId");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.Products", b =>

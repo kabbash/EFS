@@ -1,10 +1,11 @@
 ﻿using Shared.Core.Models.Base;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
 
 namespace Shared.Core.Models
 {
-    public partial class ArticlesCategories : IBaseModel
+    public partial class ArticlesCategories : IBaseModel,IDDLBase
     {
         public ArticlesCategories()
         {

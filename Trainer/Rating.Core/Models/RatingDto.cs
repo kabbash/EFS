@@ -13,5 +13,6 @@ namespace Rating.Core.Models
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedAt { get; set; }
         public int EntityTypeId { get; set; }
+        public Reviewer Reviwer { get; set; }
     }
 }

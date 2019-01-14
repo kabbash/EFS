@@ -1,11 +1,12 @@
 ﻿using Shared.Core.Models.Base;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shared.Core.Models
 {
-    public partial class Articles : IBaseModel
+    public partial class Articles : IBaseModel,IDDLBase
     {
         public Articles()
         {
@@ -20,7 +21,8 @@ namespace Shared.Core.Models
         public DateTime? UpdatedAt { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
+        public string RejectReason { get; set; }
 
         [ForeignKey("CreatedBy")]
         public virtual AspNetUsers Author { get; set; }

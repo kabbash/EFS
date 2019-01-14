@@ -10,6 +10,7 @@ export class productListItemDto{
     categoryId: number;
     rate: number;
     seller: Seller;
+    reviews: any;
 }
 export class Seller {
   name: string;

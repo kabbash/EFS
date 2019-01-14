@@ -10,7 +10,10 @@ export class ArticleDetailsResolver implements Resolve<Observable<ResultMessage<
 
   constructor(private repositoryService: RepositoryService) {
   }
-    resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<articleDetialsDto>> {
-      return  this.repositoryService.getData<articleDetialsDto>('articles/' + route.params['articleId']);
-    }
+  resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<articleDetialsDto>> {
+    if (route.params['articleId'] != 0)
+      return this.repositoryService.getData<articleDetialsDto>('articles/' + route.params['articleId']);
+    else
+      return null;
+  }
 }

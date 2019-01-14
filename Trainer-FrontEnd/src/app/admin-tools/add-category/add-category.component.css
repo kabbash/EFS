@@ -1,10 +1,11 @@
-:host{
+:host {
     display: flex;
     padding-top: 45px;
     background: black;
     min-height: 500px;
+    flex: 1;
 }
 
-.card{
+.card {
     height: 300px;
 }

@@ -1,6 +1,7 @@
 ﻿using Shared.Core.Models.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Shared.Core.Models
@@ -18,5 +19,8 @@ namespace Shared.Core.Models
 
         public int EntityTypeId { get; set; }
         public virtual EntityTypes EntityType { get; set; }
+
+        [ForeignKey("CreatedBy")]
+        public virtual AspNetUsers Reviwer { get; set; }
     }
 }

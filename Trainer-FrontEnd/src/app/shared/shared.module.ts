@@ -20,10 +20,12 @@ import { ArticleDetailsCardComponent } from './article-details-card/article-deta
 import { CategoriesService } from '../admin-tools/services/categories.service';
 import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
 import { DropDownComponent } from './drop-down/drop-down.component';
-import { ArticleDetailsEditmodeComponent } from './article-details-editmode/article-details-editmode.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { ModalComponent } from './modal/modal.component';
 import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-menu.component';
+import { ProductsListComponent } from '../products/products-list/products-list.component';
+import { ModalComponent } from '../products/modal/modal.component';
+import { ProductReviewService } from '../admin-tools/services/product-review.service';
 
 @NgModule({
   imports: [
@@ -41,17 +43,19 @@ import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-me
     CommonModule,
     TranslateModule, HeaderComponent, FooterComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
-    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent, DashboardMenuComponent
+    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent, DashboardMenuComponent,
+    ProductsListComponent, ModalComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
     ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent,
-    DropDownComponent, DashboardMenuComponent,ModalComponent],
+    DropDownComponent, DashboardMenuComponent, ProductsListComponent, ModalComponent],
   providers: [
     UtilitiesService,
     ArticleCategoriesResolver,
     CategoriesService,
-    ProductsCategoriesResolver
+    ProductsCategoriesResolver,
+    ProductReviewService
   ]
 })
 export class SharedModule { }

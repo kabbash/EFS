@@ -18,4 +18,10 @@
         News = 1,
         Food = 2
     }
+
+    public enum EntityDDLEnum
+    {
+        ProductCategories = 1 ,
+        ArticlesCategories
+    }
 }

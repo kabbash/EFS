@@ -18,6 +18,7 @@ import { UserAccountModule } from './user-account/user-account.module';
 import { LoginModule } from './login/login.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AuthService } from './auth/services/auth.service';
+import { ItemReviewResolver } from './admin-tools/resolvers/item-review.resolver';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { AdminToolsModule } from './admin-tools/admin-tools.module';
 
@@ -57,6 +58,7 @@ export function CreateTranslateLoader(http: HttpClient) {
   ],
   providers: [
     AuthService,
+    ItemReviewResolver,
     AuthGuard
   ],
 

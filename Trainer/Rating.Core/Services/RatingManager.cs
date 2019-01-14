@@ -9,6 +9,7 @@ using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
@@ -80,6 +81,14 @@ namespace Rating.Core.Services
         {
             var rates = _unitOfWork.RatingRepository.Get().AllRates(ratingDto).Select(c => c.Rate).ToList();
             return rates.Count > 0 ? rates.Sum() / rates.Count : 0;
+        }
+
+        public List<RatingDto> GetItemRatings(int id)
+        {
+            var ratingsData = _unitOfWork.RatingRepository.Get().Where(r => r.EntityId == id).ToList();
+            var result = new List<RatingDto>();
+            result = ratingsData.Adapt(result);
+            return result;
         }
     }
 }
