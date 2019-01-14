@@ -31,12 +31,12 @@ namespace Products.Core.Services
             _productsResources = productsResources;
             _attachmentsManager = attachmentsManager;
         }
-        public ResultMessage GetAll(int pageNumber, int pageSize, ProductFilter filter=null)
+        public ResultMessage GetAll(ProductFilter filter = null)
         {
             try
             {
                 var result = new PagedResult<ProductsDto>();
-                result = _unitOfWork.ProductsRepository.Get().ApplyFilter(filter).GetPaged(pageNumber, pageSize).Adapt(result);
+                result = _unitOfWork.ProductsRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
                 return new ResultMessage()
                 {
                     Data = result,
@@ -231,6 +231,40 @@ namespace Products.Core.Services
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
                     Status = HttpStatusCode.InternalServerError
                 };
+            }
+        }
+
+        public ResultMessage Approve(int id)
+        {
+
+            try
+            {
+                var product = _unitOfWork.ProductsRepository.GetById(id);
+                if (product == null)
+                {
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.BadRequest,
+                    };
+                }
+
+                product.UpdatedAt = DateTime.Now;
+                product.IsActive = true;
+                //articleData.UpdatedBy = userId;
+                _unitOfWork.ProductsRepository.Update(product);
+                _unitOfWork.Commit();
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.InternalServerError
+                };
+
             }
         }
     }

@@ -5,7 +5,7 @@ import { productListItemDto } from '../../shared/models/product-list-item-dto';
 import { environment } from '../../../environments/environment';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { config } from '../../config/pages-config';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../../shared/modal/modal.component';
 
 @Component({
   selector: 'app-all-products',

@@ -22,7 +22,7 @@ import { ProductsCategoriesResolver } from '../products/resolvers/products-categ
 import { DropDownComponent } from './drop-down/drop-down.component';
 import { ArticleDetailsEditmodeComponent } from './article-details-editmode/article-details-editmode.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-
+import { ModalComponent } from './modal/modal.component';
 import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-menu.component';
 
 @NgModule({
@@ -46,7 +46,7 @@ import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-me
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
     ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent,
-    DropDownComponent, DashboardMenuComponent],
+    DropDownComponent, DashboardMenuComponent,ModalComponent],
   providers: [
     UtilitiesService,
     ArticleCategoriesResolver,

@@ -1,0 +1,32 @@
+<div class="row" style="margin-top:50px;">
+  <div class="col-sm-5">
+    <span> اختر الحاله </span>
+    <select [(ngModel)]="productsStatuses.selectedValue" class="form-control">
+      <option *ngFor="let item of productsStatuses.items" [ngValue]="item.value">
+        {{item.text}}
+      </option>
+    </select>
+  </div>
+  <div class="col-sm-5">
+    <span> بحث بالاسم</span>
+    <input type="text" [(ngModel)]="searchTxt">
+  </div>
+  <div class="col-sm-2">
+    <button type="button" (click)="reloadItems()" class="btn btn-primary">بحـث</button>
+  </div>
+</div>
+<div class="row">
+  <div *ngFor="let product of productsList">
+    <app-product-item (click)="openProductModal(product)" [price]="product.price + ' EGP'" [currentRate]="product.rate"
+      [cardName]="product.name" [cardImage]="'url(' + baseurl + product.profilePicture + ')'"></app-product-item>
+    <!-- <div class="read-more" style="text-align:center">
+      <button class="btn btn-primary" (click)="approve(article.id)">approve </button>
+      <button class="btn btn-danger" (click)="reject(article.id)">reject </button>
+  </div> -->
+  </div>
+</div>
+<div class="pagination-container">
+  <ngb-pagination [collectionSize]="120" [(page)]="pageAdvanced" [maxSize]="5" [rotate]="true" [ellipses]="false"
+      [boundaryLinks]="true"></ngb-pagination>
+</div>
+<!-- <app-modal [product]="selectedProduct"></app-modal> -->

@@ -11,6 +11,8 @@ import { ManageArticlesCategoriesComponent } from './articles/manage-articles-ca
 import { ManageProductsCategoriesComponent } from './manage-products-categories/manage-products-categories.component';
 import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
+import { AdminProductsListComponent } from './products/products-list/products-list.component';
+import { AdminProductsListResolver } from './resolvers/products-list-resolver';
 
 const routes: Routes = [
   {
@@ -26,10 +28,16 @@ const routes: Routes = [
     component: ManageArticlesCategoriesComponent,
     resolve: { categories: ArticleCategoriesResolver }
   },
+  
+  {
+    path: config.admin.manageProducts.name,
+    component: AdminProductsListComponent,
+    resolve: { productsList: AdminProductsListResolver }
+  },
   {
     path: config.admin.manageArticles.name,
     component: ManageArticlesComponent,
-    resolve: {articleDetails: ArticleDetailsResolver}
+    resolve: { articleDetails: ArticleDetailsResolver }
   },
   {
     path: config.admin.articleslist.name,
@@ -39,7 +47,7 @@ const routes: Routes = [
   {
     path: config.admin.manageProductsCategories.name,
     component: ManageProductsCategoriesComponent,
-    resolve: {categories: ProductsCategoriesResolver}
+    resolve: { categories: ProductsCategoriesResolver }
   }
 ];
 

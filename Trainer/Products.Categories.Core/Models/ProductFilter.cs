@@ -2,7 +2,10 @@
 {
     public class ProductFilter
     {
-        public bool? IsActive { get; set; }
+        public ProductStatusEnum Status { get; set; }
+        public string SearchText { get; set; }
+        public int PageNo { get; set; }
+        public int PageSize { get; set; }
         public bool? IsSpecial { get; set; }
     }
 }

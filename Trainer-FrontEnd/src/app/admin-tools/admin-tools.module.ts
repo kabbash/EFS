@@ -13,6 +13,9 @@ import { ManageArticlesComponent } from './articles/manage-articles/manage-artic
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
 import { ArticleDetailsEditmodeComponent } from '../shared/article-details-editmode/article-details-editmode.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { AdminProductsListComponent } from './products/products-list/products-list.component';
+import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdminProductsListResolver } from './resolvers/products-list-resolver';
 
 @NgModule({
   imports: [
@@ -21,22 +24,27 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     FormsModule,
     ReactiveFormsModule,
     FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),   
+    FroalaViewModule.forRoot(),
+    NgbModule,
+    NgbPaginationModule,
+    NgbAlertModule,
   ],
   declarations:
-  [
-    AddCategoryComponent,
-    AdminToolsComponent,
-    ManageCategoriesComponent,
-    ManageProductsCategoriesComponent,
-    ManageArticlesCategoriesComponent,
-    ManageArticlesComponent,
-    ArticlesListComponent,
-    ArticleDetailsEditmodeComponent
-  ],
+    [
+      AddCategoryComponent,
+      AdminToolsComponent,
+      ManageCategoriesComponent,
+      ManageProductsCategoriesComponent,
+      ManageArticlesCategoriesComponent,
+      ManageArticlesComponent,
+      ArticlesListComponent,
+      ArticleDetailsEditmodeComponent,
+      AdminProductsListComponent
+    ],
 
   providers: [
-    AdminArticlesListResolver
+    AdminArticlesListResolver,
+    AdminProductsListResolver
   ]
 })
 export class AdminToolsModule { }

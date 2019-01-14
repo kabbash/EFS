@@ -129,6 +129,10 @@ export let config = {
       'manageProductsCategories': {
         'name': 'manageProductsCategories',
         'route': '/admin/manageProductsCategories'
+      },
+      'manageProducts': {
+        'name': 'manageProducts',
+        'route': '/admin/manageProducts'
       }
     }
 };
