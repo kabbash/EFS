@@ -2,7 +2,7 @@
 {
     public enum ArticleStatusEnum
     {
-        All=1,
+        All=0,
         Active,
         Pendings,
         Rejected

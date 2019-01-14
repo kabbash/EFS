@@ -6,27 +6,27 @@
         {{item.text}}
       </option>
     </select>
-    </div>
-    <div class="col-sm-5">
+  </div>
+  <div class="col-sm-5">
     <span> بحث بالاسم</span>
     <input type="text" [(ngModel)]="searchTxt">
-    </div>
-    <div class="col-sm-2">
+  </div>
+  <div class="col-sm-2">
     <button type="button" (click)="reloadItems()" class="btn btn-primary">بحـث</button>
   </div>
 </div>
 <div class="row">
   <div>
-    <button class="btn btn-primary" (click)="addArticle()" > اضافة مقال جديد</button>
+    <button class="btn btn-primary" (click)="addArticle()"> اضافة مقال جديد</button>
   </div>
-<div *ngFor="let article of articlesList">
-  <app-articles-list-item style="height: initial;" (click)="articlesDetails(article.id)" [cardName]="article.name"
-    [cardImage]="'url(' + baseurl + article.profilePicture + ')'" [cardShortDescription]="article.description.substr(0,200)"
-    [hideShowMorelink]="true">
-  </app-articles-list-item>
-  <!-- <div class="read-more" style="text-align:center">
-      <button class="btn btn-primary" (click)="approve(article.id)">approve </button>
-      <button class="btn btn-danger" (click)="reject(article.id)">reject </button>
-  </div> -->
-</div>
+  <div *ngFor="let article of articlesList">
+    <app-articles-list-item style="height: initial;" (click)="articlesDetails(article.id)" [cardName]="article.name"
+      [cardImage]="'url(' + baseurl + article.profilePicture + ')'" [cardShortDescription]="article.description.substr(0,200)"
+      [hideShowMorelink]="true">
+    </app-articles-list-item>
+  </div>
+  <div class="pagination-container" *ngIf="pagerData.pagesCount > 1">
+    <ngb-pagination [collectionSize]="pagerData.itmesCount" [pageSize]="pagerData.pageSize" [(page)]="pagerData.currentPage"
+      [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getNextPage()"></ngb-pagination>
+  </div>
 </div>
