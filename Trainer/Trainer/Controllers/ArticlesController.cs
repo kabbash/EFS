@@ -18,9 +18,9 @@ namespace Trainer.Controllers
             _articlesService = articlesService;
         }
         [HttpGet]
-        public ActionResult Get(int pageNo = 1, int pageSize = 10)
+        public ActionResult Get([FromQuery]ArticlesFilter filter)
         {
-            return GetStatusCodeResult(_articlesService.GetAll(pageNo, pageSize));
+            return GetStatusCodeResult(_articlesService.GetAll(filter.PageNo, filter.PageSize));
         }
 
         [HttpGet("getFilteredData")]        

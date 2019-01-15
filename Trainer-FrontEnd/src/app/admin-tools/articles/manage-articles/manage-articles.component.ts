@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { articleDetialsDto } from '../../../shared/models/article-details-dto';
 import { AppService } from '../../../app.service';
 import { AdminArticlesService } from '../../services/admin.articles.services';
+import { ArticleDetailsEditmodeComponent } from 'src/app/shared/article-details-editmode/article-details-editmode.component';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class ManageArticlesComponent implements OnInit {
   viewMode: boolean = true;
   isNew: boolean = false;
   private originalArticle: articleDetialsDto;
+
+  @ViewChild(ArticleDetailsEditmodeComponent) articleDetailsEditmodeComponent: ArticleDetailsEditmodeComponent;
 
   constructor(private route: ActivatedRoute, private router: Router, private appService: AppService, private service: AdminArticlesService) {
     this.route.params.subscribe(params => {
@@ -72,6 +75,14 @@ export class ManageArticlesComponent implements OnInit {
   }
 
   add() {
+
+    this.articleDetailsEditmodeComponent.submitted = true;
+
+    debugger;
+    console.log( this.articleDetailsEditmodeComponent.articleForm);
+
+
+    return alert(this.articleDetailsEditmodeComponent.articleForm.valid);
 
     this.service.add(this.prepareData(this.article)).subscribe(
       () => {

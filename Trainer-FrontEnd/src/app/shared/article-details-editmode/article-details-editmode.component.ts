@@ -3,8 +3,8 @@ import { articleDetialsDto } from '../models/article-details-dto';
 import { environment } from '../../../environments/environment';
 import { ddlDto, ddlItemDto } from '../models/ddl-dto';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AdminArticlesService } from 'src/app/admin-tools/services/admin.articles.services';
 import { RepositoryService } from '../services/repository.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-article-details-editmode',
@@ -23,15 +23,26 @@ export class ArticleDetailsEditmodeComponent implements OnInit {
   newImgDesc = '';
   newImgTitle = '';
   closeResult: string;
+  public articleForm: FormGroup;
+  public submitted = false;
 
-  constructor(private modalService: NgbModal, private service: RepositoryService) { }
+  constructor(private modalService: NgbModal, private service: RepositoryService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.service.getData<ddlItemDto[]>("common/getEntityDDL?entityDDLId=2").subscribe(result => {
       this.categoriesDDL.items = result.data;
       this.article.categoryId = this.article.categoryId || 0;
     });
+
+    this.articleForm = this.fb.group({
+      'name': ['يييssss', Validators.required],
+      // 'description': ['', Validators.required],
+      'categoryId': ['', Validators.required]
+      // 'profilePictureFile': [null, !this.articleCategory.profilePicture ? Validators.required : null],
+    });
   }
+
+  get f() { return this.articleForm.controls; }
 
   open(content, selectedArticle, index) {
     this.newPic = false;

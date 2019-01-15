@@ -12,6 +12,6 @@ export class AdminArticlesListResolver implements Resolve<Observable<ResultMessa
   constructor(private repositoryService: RepositoryService) {
   }
     resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<PagedResult<articleListItemDto>>> {
-      return  this.repositoryService.getData<PagedResult<articleListItemDto>>('articles/getFilteredData?pageNo=1&pageSize=10&searchText=&status=1');
+      return  this.repositoryService.getData<PagedResult<articleListItemDto>>('articles/getFilteredData?pageNo=1&pageSize=10');
     }
 }
