@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { articleDetialsDto } from '../../../shared/models/article-details-dto';
 import { AppService } from '../../../app.service';
 import { AdminArticlesService } from '../../services/admin.articles.services';
-import { ArticleDetailsEditmodeComponent } from 'src/app/shared/article-details-editmode/article-details-editmode.component';
+import { ArticleDetailsEditmodeComponent } from '../../../shared/article-details-editmode/article-details-editmode.component';
 
 
 @Component({
@@ -43,7 +43,7 @@ export class ManageArticlesComponent implements OnInit {
     }
   }
 
-  // article main methods 
+  // article main methods
 
   approve() {
     if (confirm("هل انت متأكد من الموافقه على هذا المقال ؟ ")) {
@@ -52,7 +52,7 @@ export class ManageArticlesComponent implements OnInit {
   }
 
   reject() {
-    if (confirm("هل انت متأكد من رفض هذا المقال ؟ ")) {      
+    if (confirm("هل انت متأكد من رفض هذا المقال ؟ ")) {
       this.service.reject(this.articleId,prompt("من فضلك ، ادخل سبب الرفض؟")).subscribe(c => { console.log(c); alert('rejected'); });
     }
   }
@@ -93,10 +93,10 @@ export class ManageArticlesComponent implements OnInit {
     );
   }
 
-  // end main methods 
+  // end main methods
 
 
-  // help methods 
+  // help methods
 
   prepareData(articleData: articleDetialsDto) {
     debugger;
@@ -110,7 +110,7 @@ export class ManageArticlesComponent implements OnInit {
     return formData;
   }
 
-  // end help methods 
+  // end help methods
 
   openEditForm() {
     // this.article = this.originalArticle;
