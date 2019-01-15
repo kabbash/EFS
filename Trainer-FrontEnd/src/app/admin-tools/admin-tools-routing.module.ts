@@ -51,12 +51,14 @@ const routes: Routes = [
       {
         path: config.admin.addItemForReview.name,
         component: AddItemForReviewComponent
-      },
-      {
-        path: config.admin.itemReviewList.name,
-        component: ProductsListComponent,
-        resolve: {productList: ItemReviewResolver}
-        },
+      }
+      // ,
+      // {
+      //   path: config.admin.itemReviewList.name,
+      //   component: ProductsListComponent,
+      //   resolve: {productList: ItemReviewResolver}
+      //   }
+        ,
 
         {
             path: config.admin.manageProducts.name,

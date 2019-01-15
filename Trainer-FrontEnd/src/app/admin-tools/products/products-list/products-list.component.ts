@@ -6,15 +6,13 @@ import { ddlDto } from '../../../shared/models/ddl-dto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminProductsService } from '../../services/admin.products.service';
 import { ProductsFilter } from '../../../shared/models/products-filter';
-import { ModalComponent } from '../../../shared/modal/modal.component';
 
 @Component({
-  selector: 'app-products-list',
+  selector: 'app-admin-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
 export class AdminProductsListComponent implements OnInit {
-  @ViewChild('modal') productModal: ModalComponent;
   productsList: productListItemDto[];
   baseurl = environment.filesBaseUrl;
   productsStatuses = new ddlDto();

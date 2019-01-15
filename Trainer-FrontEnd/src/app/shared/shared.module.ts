@@ -21,10 +21,7 @@ import { CategoriesService } from '../admin-tools/services/categories.service';
 import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
 import { DropDownComponent } from './drop-down/drop-down.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-import { ModalComponent } from './modal/modal.component';
 import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-menu.component';
-import { ProductsListComponent } from '../products/products-list/products-list.component';
-import { ModalComponent } from '../products/modal/modal.component';
 import { ProductReviewService } from '../admin-tools/services/product-review.service';
 
 @NgModule({
@@ -43,18 +40,17 @@ import { ProductReviewService } from '../admin-tools/services/product-review.ser
     CommonModule,
     TranslateModule, HeaderComponent, FooterComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
-    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent, DashboardMenuComponent,
-    ProductsListComponent, ModalComponent
+    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent, DashboardMenuComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
     ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent,
-    DropDownComponent, DashboardMenuComponent, ProductsListComponent, ModalComponent],
+    DropDownComponent, DashboardMenuComponent],
   providers: [
     UtilitiesService,
     ArticleCategoriesResolver,
     CategoriesService,
-    ProductsCategoriesResolver,
+    ProductsCategoriesResolver, 
     ProductReviewService
   ]
 })

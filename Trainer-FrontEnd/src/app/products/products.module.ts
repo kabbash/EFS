@@ -9,6 +9,8 @@ import { ProductRatingComponent } from './product-rating/product-rating.componen
 import { ProductsCategoriesResolver } from './resolvers/products-categories.resolver';
 import { ProductsListResolver } from './resolvers/products-list.resolver';
 import { ProdcutRatingResolver } from './resolvers/product-rating.resolver';
+import { ModalComponent } from './modal/modal.component';
+import { ProductsListComponent } from './products-list/products-list.component';
 
 
 @NgModule({
@@ -20,7 +22,7 @@ import { ProdcutRatingResolver } from './resolvers/product-rating.resolver';
     NgbPaginationModule,
     NgbAlertModule,
   ],
-  declarations: [ProductsComponent,  ProductsCatergoriesComponent, ProductRatingComponent],
+  declarations: [ProductsComponent, ProductsCatergoriesComponent, ProductRatingComponent, ModalComponent,ProductsListComponent],
   providers: [
     ProductsListResolver,
     ProdcutRatingResolver
