@@ -6,7 +6,7 @@
           <strong>المقـال</strong>
         </div>
         <div class="card-body">
-          <form (submit)="submit()" class="form-horizontal" [formGroup]="articleForm">
+          <form  class="form-horizontal" [formGroup]="articleForm">
             <div class="form-group row">
               <label class="col-sm-3 col-form-label" for="text-input">العنـوان</label>
               <div class="col-sm-9">
@@ -14,8 +14,8 @@
                   formControlName="name" [(ngModel)]="article.name">
                   <div *ngIf="submitted && f.name.errors" class="text-danger" > <!-- class="invalid-feedback"-->
                       <div *ngIf="f.name.errors.required">يجب ادخال اسم المقال</div>
-                  </div>  
-                <!-- <span class="help-block"> يجب ادخال عنوان المقال</span> --> 
+                  </div>
+                <!-- <span class="help-block"> يجب ادخال عنوان المقال</span> -->
               </div>
             </div>
             <div class="form-group row">
