@@ -3,6 +3,17 @@
     /* text-align: -webkit-center; */
 }
 
+
+:host ::ng-deep .carousel-caption {
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+:host ::ng-deep .carousel-control-next, :host ::ng-deep .carousel-control-prev {
+    top: 15%;
+    height: 70%;
+}
+
 .carousel-container {
     padding-top: 40px;
     margin-bottom: 40px;

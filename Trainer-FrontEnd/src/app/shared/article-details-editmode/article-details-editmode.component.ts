@@ -13,9 +13,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ArticleDetailsEditmodeComponent implements OnInit {
 
-  @Input() article: articleDetialsDto;
+  @Input() modifiedArticle: articleDetialsDto;
   @Input() articlesCategories: ddlItemDto[];
-  articleBody: string;
   baseurl = environment.filesBaseUrl;
   categoriesDDL: ddlDto = new ddlDto();
   selectedImg = {};
@@ -31,13 +30,12 @@ export class ArticleDetailsEditmodeComponent implements OnInit {
   ngOnInit() {
     this.service.getData<ddlItemDto[]>("common/getEntityDDL?entityDDLId=2").subscribe(result => {
       this.categoriesDDL.items = result.data;
-      this.article.categoryId = this.article.categoryId || 0;
+      this.modifiedArticle.categoryId = this.modifiedArticle.categoryId || 0;
     });
 
     this.articleForm = this.fb.group({
-      'name': ['يييssss', Validators.required],
-      // 'description': ['', Validators.required],
-      'categoryId': ['', Validators.required]
+      'name': ['', Validators.required],
+      'categoryId': ['', Validators.min(1)]
       // 'profilePictureFile': [null, !this.articleCategory.profilePicture ? Validators.required : null],
     });
   }
