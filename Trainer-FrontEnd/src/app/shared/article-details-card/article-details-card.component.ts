@@ -22,6 +22,8 @@ export class ArticleDetailsCardComponent implements OnInit {
   newPic = false;
   newImgDesc = '';
   newImgTitle = '';
+  selectedIndexForDelete: number;
+  deleteModal: any;
 
 
   constructor(private router: Router,
@@ -38,15 +40,26 @@ export class ArticleDetailsCardComponent implements OnInit {
     // });
   }
 
-  open(content, selectedArticle, index) {
-    this.newPic = false;
+  open(content, selectedArticle?, index?) {
     this.modalService.open(content);
-    this.selectedImg = selectedArticle.images[index];
+    if (index || index === 0) {
+      this.newPic = false;
+      this.selectedImg = selectedArticle.images[index];
+    } else {
+      this.newPic = true;
+    }
   }
 
-  addNewPic() {
-    this.newPic = true;
+
+  deleteSlide() {
+    this.article.images.splice(this.selectedIndexForDelete, 1);
+    this.modalService.dismissAll();
   }
 
+
+  deleteSlideModal(deleteModalContent, selectedArticle, index) {
+    this.selectedIndexForDelete = index;
+    this.modalService.open(deleteModalContent);
+  }
 
 }

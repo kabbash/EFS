@@ -1,3 +1,4 @@
+
 .carousel-container {
     padding-top: 40px;
     margin-bottom: 40px;
@@ -19,6 +20,10 @@
     width: 100%;
 }
 
+.article-title {
+    color: #dedddd;
+}
+
 .article-container {
     margin: 30px;
     text-align: -webkit-center;
@@ -37,18 +42,30 @@
 .edit-image {
     height: 50px;
     width: 50px;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-image:hover {
+    font-size: 25px;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: font-size .3s ease;
+}
+
+.edit-image-wrapper {
+    height: 50px;
     z-index: 5;
     position: relative;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
     position: ABSOLUTE;
     color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 22px;
     cursor: pointer;
+    display: flex;
 }
 
 button.close {
@@ -79,7 +96,19 @@ div.modal-body img {
     font-size: 25px;
 }
 
-.new-pic-btn{
+.new-pic-btn {
     margin-left: 0;
     margin-right: 10px;
+}
+
+.add-new-img-wrapper {
+    margin-top: 15px;
+    margin-bottom: -15px;
+    width: 80%;
+    background-color: #dedddd;
+    padding: 10px;
+}
+
+.no-pics {
+    margin-bottom: 30px;
 }
