@@ -289,11 +289,9 @@ namespace Articles.Core.Services
                     };
                 }
 
-                //article.Adapt(articleData, typeof(ArticleAddDto), typeof(Shared.Core.Models.Articles));
-
+                article.Adapt(articleData, typeof(ArticleAddDto), typeof(Shared.Core.Models.Articles));
                 articleData.UpdatedAt = DateTime.Now;
                 articleData.UpdatedBy = article.UserId;
-                articleData.Description = article.Description;
 
                 _unitOfWork.ArticlesRepository.Update(articleData);
                 _unitOfWork.Commit();

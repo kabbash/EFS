@@ -113,7 +113,9 @@ export let config = {
     },
     'admin': {
       'name': 'admin',
-      'route': '/admin',
+      'route': 'admin',
+    //   'loadChildren': './admin/admin.module#AdminToolsModule',
+
       'addCategory': {
         'name': 'addCategory',
         'route': '/admin/addCategory'
@@ -132,7 +134,7 @@ export let config = {
       },
       'articleslist': {
         'name': 'articleslist',
-        'route': '/admin/articlesList'
+        'route': '/admin/articleslist'
       },
       'manageProductsCategories': {
         'name': 'manageProductsCategories',

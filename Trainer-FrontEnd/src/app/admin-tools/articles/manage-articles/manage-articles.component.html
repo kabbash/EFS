@@ -4,17 +4,17 @@
   <div class="row">
     <div class="col-sm-12">
       <button class="btn btn-primary" [hidden]="! showPendingButtons()" (click)="approve()" style="margin: 5px;">
-        موافقه </button>
+        موافقه  </button>
       <button class="btn btn-primary" [hidden]="! showPendingButtons()" (click)="reject()" style="margin: 5px;">
         رفـض </button>
-      <button class="btn btn-primary" (click)="openEditForm()" style="margin: 5px;"> تعديل </button>
+      <button class="btn btn-primary" (click)="enableEditMode()" style="margin: 5px;"> تعديل </button>
       <button class="btn btn-primary" (click)="delete()" style="margin: 5px;">
         مسـح </button>
     </div>
   </div>
 </div>
 <div *ngIf="! viewMode">
-  <app-article-details-editmode [article]="article"></app-article-details-editmode>
+  <app-article-details-editmode [modifiedArticle]="article"></app-article-details-editmode>
   <div class="row">
     <div class="col-sm-12">
       <button class="btn btn-primary" *ngIf="! showAddbtn()" (click)="update()"> تعديل</button>
