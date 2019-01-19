@@ -38,6 +38,10 @@
   margin-left: 10px;
 }
 
-.dash-item:last-child {
+:host a:last-child .dash-item {
   border-bottom: 1px solid black;
+}
+
+:host a:hover {
+  text-decoration: none;
 }
