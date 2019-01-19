@@ -37,9 +37,8 @@
                 <input type="text" id="text-input" name="text-input" class="form-control" placeholder=""
                   formControlName="name" [(ngModel)]="modifiedArticle.name">
                 <div *ngIf="submitted && f.name.errors" class="text-danger">
-                  <div *ngIf="f.name.errors.required">يجب ادخال اسم المقال</div>
+                  <div *ngIf="f.name.errors.required"> {{'editArticle.formValidations.nameRequired' | translate}}</div>
                 </div>
-                <!-- <span class="help-block"> يجب ادخال عنوان المقال</span> -->
               </div>
             </div>
             <div class="form-group row">
@@ -52,7 +51,7 @@
                   </option>
                 </select>
                 <div *ngIf="submitted && f.categoryId.errors" class="text-danger">
-                  <div *ngIf="f.categoryId.errors.min">يجب اختيار القسم</div>
+                  <div *ngIf="f.categoryId.errors.min"> {{'editArticle.formValidations.categoryRequired' | translate}}</div>
                 </div>
               </div>
             </div>

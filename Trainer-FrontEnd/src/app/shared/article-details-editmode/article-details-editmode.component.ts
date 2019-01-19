@@ -5,6 +5,7 @@ import { ddlDto, ddlItemDto } from '../models/ddl-dto';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RepositoryService } from '../services/repository.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-article-details-editmode',
@@ -25,14 +26,16 @@ export class ArticleDetailsEditmodeComponent implements OnInit {
   public articleForm: FormGroup;
   public submitted = false;
 
-  constructor(private modalService: NgbModal, private service: RepositoryService, private fb: FormBuilder) { }
+  constructor(private modalService: NgbModal, private service: RepositoryService, private fb: FormBuilder, private translate: TranslateService) { }
 
   ngOnInit() {
     this.service.getData<ddlItemDto[]>("common/getEntityDDL?entityDDLId=2").subscribe(result => {
       this.categoriesDDL.items = result.data;
       this.modifiedArticle.categoryId = this.modifiedArticle.categoryId || 0;
     });
-
+    // // this.translate.get('editArticle.formValidations.articleNameValidation').subscribe(data => {
+    // //   console.log(data);
+    //}) 
     this.articleForm = this.fb.group({
       'name': ['', Validators.required],
       'categoryId': ['', Validators.min(1)]

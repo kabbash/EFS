@@ -1,5 +1,17 @@
 {
     "home": {
         "title": "حماده"
+    },
+    "editArticle": {
+        "formValidations": {
+            "nameRequired": "يجب ادخال اسم المقال",
+            "categoryRequired" : "يجب اختيار القسم"
+        },
+        "messages": {
+            
+        },
+        "errorCodes": {
+            "1007": "gdgdfgdfg"
+        }
     }
 }
