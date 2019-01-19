@@ -17,7 +17,9 @@ export class ManageProductsCategoriesComponent implements OnInit {
     this.route.data.subscribe(result => {
       this.categoryService.allCategoriesList = result.categories.data;
     });
-    this.categoryService.showParentDdl = true;
+    this.categoryService.showParentDdl = this.categoryService.allCategoriesList.length > 0 ? true : false;
+    this.categoryService.manageProducts = true;
+
   }
 
 }
