@@ -5,6 +5,8 @@ import { config } from '../../config/pages-config';
 import { Router } from '@angular/router';
 import { RepositoryService } from '../services/repository.service';
 import { CategoriesService } from '../../admin-tools/services/categories.service';
+import { AppService } from '../../app.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-articles-card',
@@ -18,12 +20,14 @@ export class ArticlesCardComponent implements OnInit {
   @Input() editMode = false;
   @Input() addMode = false;
   @Input() articleCategory: articleCategoryDto;
-  @Input() localImageUrl = false;
+  @Input() localImageUrl: string;
   @Input() apiUrl: string;
   baseurl = environment.filesBaseUrl;
   constructor(private router: Router,
     private categoriesService: CategoriesService,
-    private repoService: RepositoryService) { }
+    private repoService: RepositoryService,
+    private appService: AppService,
+    private translate: TranslateService) { }
 
   ngOnInit() {
   }
@@ -41,22 +45,28 @@ export class ArticlesCardComponent implements OnInit {
     if (subCategories.length > 0) {
 
     }
-    const confirmed = (subCategories.length > 0) ? confirm('Are you sure you want to delete this parent item and all it\'s children') : confirm('Are you sure you want to delete this item');
-    if (confirmed) {
-      this.repoService.delete(this.apiUrl + this.articleCategory.id).subscribe(() => {
-        alert('success');
-        this.categoriesService.allCategoriesList.splice(
-          this.categoriesService.allCategoriesList.findIndex(el => el.id === this.articleCategory.id),
-          1
-        );
-        this.categoriesService.displayedCategoryList.splice(
-          this.categoriesService.displayedCategoryList.findIndex(el => el.id === this.articleCategory.id),
-          1
-        );
-      }, error => {
-        alert(error);
-      });
-    }
+    this.translate.get('manageCategories.messages').subscribe(data => {
+      const confirmed = (subCategories.length > 0) ? confirm(data.confirmDeleteParent) : confirm(data.confirmDelete);
+      if (confirmed) {
+        this.appService.loading = true;
+        this.repoService.delete(this.apiUrl + this.articleCategory.id).subscribe(() => {
+          this.appService.loading = false;
+          alert(data.success);
+          this.categoriesService.allCategoriesList.splice(
+            this.categoriesService.allCategoriesList.findIndex(el => el.id === this.articleCategory.id),
+            1
+          );
+          this.categoriesService.displayedCategoryList.splice(
+            this.categoriesService.displayedCategoryList.findIndex(el => el.id === this.articleCategory.id),
+            1
+          );
+        }, error => {
+          this.appService.loading = false;
+          alert(error);
+        });
+      }  
+    });
+    
   }
 
 }

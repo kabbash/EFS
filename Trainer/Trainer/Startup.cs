@@ -117,6 +117,8 @@ namespace Trainer
             services.AddTransient<IEmailService, MailService>();
             services.AddScoped<ILookupService<CaloriesDto, Calories>, LookupService<CaloriesDto, Calories>>();
             services.AddScoped<ILookupService<ArticlesCategoriesDto, ArticlesCategories>, LookupService<ArticlesCategoriesDto, ArticlesCategories>>();
+            services.AddScoped<ILookupService<ProductsCategoryDto, ProductsCategories>, LookupService<ProductsCategoryDto, ProductsCategories>>();
+
             services.AddScoped<IArticlesService, ArticleService>();
             services.AddScoped<IItemsReviewsManager, ItemsReviewsManager>();
             services.AddScoped<ICommonService, CommonService>();

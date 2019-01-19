@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { articleDetialsDto } from '../../../shared/models/article-details-dto';
 import { AppService } from '../../../app.service';
 import { AdminArticlesService } from '../../services/admin.articles.services';
-import { ArticleDetailsEditmodeComponent } from 'src/app/shared/article-details-editmode/article-details-editmode.component';
+import { ArticleDetailsEditmodeComponent } from '../../../shared/article-details-editmode/article-details-editmode.component';
 
 
 @Component({

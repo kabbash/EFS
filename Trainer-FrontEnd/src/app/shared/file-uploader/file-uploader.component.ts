@@ -36,6 +36,7 @@ export class FileUploaderComponent implements OnInit, ControlValueAccessor  {
   isDisabled = false;
   @Input() multiFiles = false;
   @Input() isRequired = false;
+  @Input() buttonValue: string;
   writeValue(obj: any): void {
     this.file = obj;
   }

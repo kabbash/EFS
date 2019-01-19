@@ -4,6 +4,10 @@ import { RepositoryService } from '../../shared/services/repository.service';
 import {articleCategoryDto} from '../../shared/models/article-category-dto';
 import { CategoriesService } from '../services/categories.service';
 import { DropDownDto } from '../../shared/models/drop-down.dto';
+import { Router } from '@angular/router';
+import { config } from '../../config/pages-config';
+import { AppService } from '../../app.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-category',
@@ -14,14 +18,19 @@ export class AddCategoryComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private reposatoryService: RepositoryService,
-    public categoryService: CategoriesService) { }
+    public categoryService: CategoriesService,
+    private router: Router,
+    private appService: AppService,
+    private translate: TranslateService) { }
 
   categoryForm: FormGroup;
   imageUrl: string;
   articleCategory: articleCategoryDto = new articleCategoryDto();
-  imageAdded = false;
   dropDownData: DropDownDto[] = [];
-  @Input() apiUrl: string;
+  addedImageUrl: string;
+  successMessage: string;
+  @Input() isAddArticleCategory = false;
+  @Input() apiUrl = 'Articles/Categories/';
   ngOnInit() {
     this.articleCategory = this.categoryService.articleCategoryToEdit || new articleCategoryDto();
 
@@ -31,8 +40,15 @@ export class AddCategoryComponent implements OnInit {
       'parentId': ['']
     });
     this.setDropDownData();
+    this.translate.get('manageCategories.messages.success').subscribe(data => {
+      this.successMessage = data;
+    })
   }
   submit() {
+    this.categoryForm.controls['profilePictureFile'].markAsTouched();
+    this.categoryForm.controls['name'].markAsTouched();
+    this.appService.loading = true;
+    
     if (this.categoryForm.valid) {
       if (this.categoryService.articleCategoryToEdit) {
         this.updateCategory();
@@ -40,21 +56,28 @@ export class AddCategoryComponent implements OnInit {
         this.addCategory();
       }
     } else {
+      this.appService.loading = false;      
       alert('form not valid');
     }
   }
   addCategory() {
     this.reposatoryService.create(this.categoryService.apiUrl, this.prepareData(this.categoryForm.value)).subscribe(data => {
-      alert('success');
+      
+      alert(this.successMessage);
+      this.navigateToListing();
     }, error => {
+      this.appService.loading = false;
       alert(error);
     });
   }
   updateCategory() {
     this.reposatoryService.update(this.categoryService.apiUrl + this.articleCategory.id, this.prepareData(this.articleCategory)).subscribe(
       () => {
-        alert('success');
+        alert(this.successMessage);
+        this.navigateToListing();
+
       }, error => {
+        this.appService.loading = false;
         alert(error);
       }
     );
@@ -74,19 +97,29 @@ export class AddCategoryComponent implements OnInit {
     this.articleCategory.profilePictureFile = file;
     const reader = new FileReader();
     reader.onload = (e: any) => {
-      this.articleCategory.profilePicture = e.target.result;
+      // this.articleCategory.profilePicture = e.target.result;
+      this.addedImageUrl = e.target.result;
     };
     reader.readAsDataURL(file);
-    this.imageAdded = true;
   }
 
   setDropDownData() {
     this.categoryService.allCategoriesList.forEach(category => {
-      this.dropDownData.push({label: category.name, value: category.id});
+      if (!this.categoryService.articleCategoryToEdit || 
+        (this.categoryService.articleCategoryToEdit && this.categoryService.articleCategoryToEdit.id !== category.id)) {
+          this.dropDownData.push({label: category.name, value: category.id}); 
+        }
     });
   }
 
   onSelectParentCategory(value) {
     this.categoryForm.controls['parentId'].setValue(value);
+  }
+  navigateToListing() {
+    if (this.categoryService.manageProducts) {
+      this.router.navigate([config.admin.manageProductsCategories.route]);
+    } else {
+      this.router.navigate([config.admin.manageArticlesCategories.route]);
+    }
   }
 }

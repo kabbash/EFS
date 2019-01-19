@@ -6,7 +6,8 @@ export class CategoriesService {
   articleCategoryToEdit: articleCategoryDto;
   allCategoriesList: articleCategoryDto[];
   displayedCategoryList: articleCategoryDto[];
-  apiUrl: string;
+  apiUrl = 'Articles/Categories/';
   showParentDdl = false;
+  manageProducts = false;
   constructor() {}
 }
