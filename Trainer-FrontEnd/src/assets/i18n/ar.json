@@ -1,5 +1,29 @@
 {
     "home": {
         "title": "حماده"
+    },
+    "addCategory": {
+      "articleCategory": "فئة المقال",
+      "productCategory": "فئة المنتج",
+      "name": "الأسم",
+      "picture": "الصورة",
+      "submit": "حفظ",
+      "reset": "إعادة تعيين",
+      "chooseFile": "اختر ملف",
+      "noFileChoosen": "لم تقم باختيار ملف",
+      "formValidations": {
+        "name": {
+          "required": "يجب ادخال اسم الفئة"
+        },
+        "profilePictureFile": {
+          "required": "يجب ادخال صورة"
+        }
+      },
+      "messages": {
+
+      },
+      "errorMessages": {
+
+      }
     }
 }

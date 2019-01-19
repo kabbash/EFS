@@ -18,6 +18,8 @@ export class ManageProductsCategoriesComponent implements OnInit {
       this.categoryService.allCategoriesList = result.categories.data;
     });
     this.categoryService.showParentDdl = true;
+    this.categoryService.manageArticles = false;
+
   }
 
 }

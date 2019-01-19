@@ -8,5 +8,6 @@ export class CategoriesService {
   displayedCategoryList: articleCategoryDto[];
   apiUrl: string;
   showParentDdl = false;
+  manageArticles = false;
   constructor() {}
 }
