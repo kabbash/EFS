@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Attachments.Core.Interfaces;
+using FluentValidation;
 using Lookups.Core.Interfaces;
 using Mapster;
 using Shared.Core.Utilities.Enums;
@@ -16,11 +17,14 @@ namespace Lookups.Core.Services
         private readonly IValidator<DTO> _validator;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<E> _repository;
-        public LookupService(IValidator<DTO> validator, IUnitOfWork unitOfWork)
+        private readonly IAttachmentsManager _attachmentManager;
+
+        public LookupService(IValidator<DTO> validator, IUnitOfWork unitOfWork, IAttachmentsManager attachmentsManager)
         {
             _validator = validator;
             _unitOfWork = unitOfWork;
             _repository = _unitOfWork.getRepoByType(typeof(IRepository<E>)) as IRepository<E>;
+            _attachmentManager = attachmentsManager;
         }
         public ResultMessage GetAll()
         {
@@ -134,8 +138,7 @@ namespace Lookups.Core.Services
                     lookup.Adapt(oldLookup, typeof(DTO), typeof(E));
                     typeof(E).GetProperty("Id").SetValue(oldLookup, id);
                     typeof(E).GetProperty("UpdatedBy").SetValue(oldLookup, "admin");
-                    typeof(E).GetProperty("UpdatedAt").SetValue(oldLookup, DateTime.Now);
-
+                    typeof(E).GetProperty("UpdatedAt").SetValue(oldLookup, DateTime.Now);        
                     _repository.Update(oldLookup);
                     _unitOfWork.Commit();
                     return new ResultMessage
@@ -165,6 +168,9 @@ namespace Lookups.Core.Services
         {
             try
             {
+                var lookup = _repository.GetById(id);
+                var profilePicPath = typeof(E).GetProperty("ProfilePicture").GetValue(lookup);
+                _attachmentManager.Delete(Uri.UnescapeDataString(profilePicPath.ToString()));
                 _repository.Delete(id);
                 _unitOfWork.Commit();
                 return new ResultMessage()

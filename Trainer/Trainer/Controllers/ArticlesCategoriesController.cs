@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shared.Core.Models;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Models;
+using System;
 
 namespace Trainer.Controllers
 {
@@ -55,6 +56,7 @@ namespace Trainer.Controllers
         public ActionResult<ResultMessage> Put(int id, [FromForm] ArticlesCategoriesDto category)
         {
             if (category.ProfilePictureFile != null) {
+                _attachmentManager.Delete(Uri.UnescapeDataString(category.ProfilePicture));
                 category.ProfilePicture = _attachmentManager.Save(new SavedFileDto
                 {
                 attachmentType = AttachmentTypesEnum.Articles_Categories,

@@ -7,6 +7,7 @@ import { DropDownDto } from '../../shared/models/drop-down.dto';
 import { Router } from '@angular/router';
 import { config } from '../../config/pages-config';
 import { AppService } from '../../app.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-category',
@@ -19,15 +20,17 @@ export class AddCategoryComponent implements OnInit {
     private reposatoryService: RepositoryService,
     public categoryService: CategoriesService,
     private router: Router,
-    private appService: AppService) { }
+    private appService: AppService,
+    private translate: TranslateService) { }
 
   categoryForm: FormGroup;
   imageUrl: string;
   articleCategory: articleCategoryDto = new articleCategoryDto();
-  imageAdded = false;
   dropDownData: DropDownDto[] = [];
+  addedImageUrl: string;
+  successMessage: string;
   @Input() isAddArticleCategory = false;
-  @Input() apiUrl: string;
+  @Input() apiUrl = 'Articles/Categories/';
   ngOnInit() {
     this.articleCategory = this.categoryService.articleCategoryToEdit || new articleCategoryDto();
 
@@ -37,11 +40,15 @@ export class AddCategoryComponent implements OnInit {
       'parentId': ['']
     });
     this.setDropDownData();
+    this.translate.get('manageCategories.messages.success').subscribe(data => {
+      this.successMessage = data;
+    })
   }
   submit() {
     this.categoryForm.controls['profilePictureFile'].markAsTouched();
     this.categoryForm.controls['name'].markAsTouched();
     this.appService.loading = true;
+    
     if (this.categoryForm.valid) {
       if (this.categoryService.articleCategoryToEdit) {
         this.updateCategory();
@@ -49,13 +56,14 @@ export class AddCategoryComponent implements OnInit {
         this.addCategory();
       }
     } else {
+      this.appService.loading = false;      
       alert('form not valid');
     }
   }
   addCategory() {
     this.reposatoryService.create(this.categoryService.apiUrl, this.prepareData(this.categoryForm.value)).subscribe(data => {
-      this.appService.loading = false;
-      alert('success');
+      
+      alert(this.successMessage);
       this.navigateToListing();
     }, error => {
       this.appService.loading = false;
@@ -65,8 +73,7 @@ export class AddCategoryComponent implements OnInit {
   updateCategory() {
     this.reposatoryService.update(this.categoryService.apiUrl + this.articleCategory.id, this.prepareData(this.articleCategory)).subscribe(
       () => {
-        this.appService.loading = true;
-        alert('success');
+        alert(this.successMessage);
         this.navigateToListing();
 
       }, error => {
@@ -90,15 +97,18 @@ export class AddCategoryComponent implements OnInit {
     this.articleCategory.profilePictureFile = file;
     const reader = new FileReader();
     reader.onload = (e: any) => {
-      this.articleCategory.profilePicture = e.target.result;
+      // this.articleCategory.profilePicture = e.target.result;
+      this.addedImageUrl = e.target.result;
     };
     reader.readAsDataURL(file);
-    this.imageAdded = true;
   }
 
   setDropDownData() {
     this.categoryService.allCategoriesList.forEach(category => {
-      this.dropDownData.push({label: category.name, value: category.id});
+      if (!this.categoryService.articleCategoryToEdit || 
+        (this.categoryService.articleCategoryToEdit && this.categoryService.articleCategoryToEdit.id !== category.id)) {
+          this.dropDownData.push({label: category.name, value: category.id}); 
+        }
     });
   }
 
@@ -106,10 +116,10 @@ export class AddCategoryComponent implements OnInit {
     this.categoryForm.controls['parentId'].setValue(value);
   }
   navigateToListing() {
-    if (this.categoryService.manageArticles) {
-      this.router.navigate([config.admin.manageArticlesCategories.route]);
-    } else {
+    if (this.categoryService.manageProducts) {
       this.router.navigate([config.admin.manageProductsCategories.route]);
+    } else {
+      this.router.navigate([config.admin.manageArticlesCategories.route]);
     }
   }
 }
