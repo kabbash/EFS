@@ -26,6 +26,7 @@ import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-me
 import { ProductsListComponent } from '../products/products-list/products-list.component';
 import { ModalComponent } from '../products/modal/modal.component';
 import { ProductReviewService } from '../admin-tools/services/product-review.service';
+import { SliderEditModeComponent } from './slider-edit-mode/slider-edit-mode.component';
 
 @NgModule({
   imports: [
@@ -44,12 +45,12 @@ import { ProductReviewService } from '../admin-tools/services/product-review.ser
     TranslateModule, HeaderComponent, FooterComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
     ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent, DashboardMenuComponent,
-    ProductsListComponent, ModalComponent
+    ProductsListComponent, ModalComponent,SliderEditModeComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
     ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent,
-    DropDownComponent, DashboardMenuComponent, ProductsListComponent, ModalComponent],
+    DropDownComponent, DashboardMenuComponent, ProductsListComponent, ModalComponent, SliderEditModeComponent],
   providers: [
     UtilitiesService,
     ArticleCategoriesResolver,

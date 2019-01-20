@@ -45,14 +45,4 @@ export class ArticleDetailsEditmodeComponent implements OnInit {
 
   get f() { return this.articleForm.controls; }
 
-  open(content, selectedArticle, index) {
-    this.newPic = false;
-    this.modalService.open(content);
-    this.selectedImg = selectedArticle.images[index];
-  }
-
-  addNewPic() {
-    this.newPic = true;
-  }
-
 }
