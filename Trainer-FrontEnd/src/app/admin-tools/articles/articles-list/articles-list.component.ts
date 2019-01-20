@@ -7,7 +7,7 @@ import { ddlDto } from '../../../shared/models/ddl-dto';
 import { config } from '../../../config/pages-config';
 import { ArticlesFilter } from '../../../shared/models/articles-filter';
 import { PagerDto } from '../../../shared/models/pager.dto';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../../../app.service';
 
 @Component({
   selector: 'app-articles-list',
