@@ -1,27 +1,3 @@
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title" *ngIf="!newPic">تعديل الصوره</h4>
-    <h4 class="modal-title" id="modal-basic-title" *ngIf="newPic">إضافة صوره جديده</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body" *ngIf="!newPic">
-    <img [src]="baseurl + selectedImg.path" alt="">
-    <input _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.title" placeholder="العنوان" type="text">
-    <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.text" placeholder="الوصف" rows="3"></textarea>
-  </div>
-  <div class="modal-body" *ngIf="newPic">
-    <div class="simulate-img">صوره جديده</div>
-    <input _ngcontent-c11="" class="form-control" [(ngModel)]="newImgTitle" placeholder="العنوان" type="text">
-    <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="newImgDesc" placeholder="الوصف" rows="3"></textarea>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">حفظ</button>
-    <button type="button" class="btn btn-outline-dark new-pic-btn" (click)="addNewPic()">إضافة صوره جديده</button>
-  </div>
-</ng-template>
-
 <div class="article-container">
   <div class="row">
     <div class="col-sm-12">
@@ -30,10 +6,10 @@
           <strong>المقـال</strong>
         </div>
         <div class="card-body">
-          <form  class="form-horizontal" [formGroup]="articleForm">
+          <form class="form-horizontal" [formGroup]="articleForm">
             <div class="form-group row">
-              <label class="col-sm-3 col-form-label" for="text-input">العنـوان</label>
-              <div class="col-sm-9">
+              <label class="col-sm-2 col-form-label" for="text-input">العنـوان</label>
+              <div class="col-sm-10">
                 <input type="text" id="text-input" name="text-input" class="form-control" placeholder=""
                   formControlName="name" [(ngModel)]="modifiedArticle.name">
                 <div *ngIf="submitted && f.name.errors" class="text-danger">
@@ -42,8 +18,8 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-3 col-form-label" for="text-input">القسـم </label>
-              <div class="col-sm-9">
+              <label class="col-sm-2 col-form-label" for="text-input">القسـم </label>
+              <div class="col-sm-10">
                 <select formControlName="categoryId" [(ngModel)]="modifiedArticle.categoryId" class="form-control">
                   <option value="0"> اختر </option>
                   <option *ngFor="let item of categoriesDDL.items" [ngValue]="item.value">
@@ -56,32 +32,19 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-3 col-form-label" for="text-input">الموضـوع</label>
-              <div class="col-sm-9">
+              <label class="col-sm-2 col-form-label" for="text-input">الموضـوع</label>
+              <div class="col-sm-10">
                 <div [froalaEditor] [(froalaModel)]="modifiedArticle.description">
                 </div>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-3 col-form-label" for="text-input">الصـور</label>
-              <div class="col-sm-9">
-                <div class="carousel-container">
-                  <ngb-carousel *ngIf="modifiedArticle.images">
-                    <ng-template ngbSlide *ngFor="let image of modifiedArticle.images;let i = index">
-                      <div class="edit-image" (click)="open(content,updatedArticle,i)">
-                        <i class="fa fa-edit"></i>
-                      </div>
-                      <img [src]="baseurl + image.path" class="slider-img" alt="article images">
-                      <div class="carousel-caption">
-                        <h3>{{image.title}}</h3>
-                        <p>{{image.text}}}</p>
-                      </div>
-                    </ng-template>
-                  </ngb-carousel>
-                </div>
+              <label class="col-sm-2 col-form-label" for="text-input">الصـور</label>
+              <div class="col-sm-10">
+                <app-slider-edit-mode [images]="modifiedArticle.images"> </app-slider-edit-mode>
               </div>
             </div>
-          </form>
+            </form>
         </div>
       </div>
     </div>
