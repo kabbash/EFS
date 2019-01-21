@@ -35,6 +35,7 @@ import { SliderEditModeComponent } from './slider-edit-mode/slider-edit-mode.com
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
   ],
@@ -45,7 +46,7 @@ import { SliderEditModeComponent } from './slider-edit-mode/slider-edit-mode.com
     TranslateModule, HeaderComponent, FooterComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
     ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent, DashboardMenuComponent,
-    ProductsListComponent, ModalComponent,SliderEditModeComponent
+    ProductsListComponent, ModalComponent, SliderEditModeComponent
   ],
   declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
     ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,

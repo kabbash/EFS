@@ -11,6 +11,7 @@
       "reset": "إعادة تعيين",
       "chooseFile": "اختر ملف",
       "noFileChoosen": "لم تقم باختيار ملف",
+      "parentCategory": "الفئة الرئيسية",
       "formValidations": {
         "name": {
           "required": "يجب ادخال اسم الفئة"
@@ -39,10 +40,14 @@
             "categoryRequired" : "يجب اختيار القسم"
         },
         "messages": {
-            
+
         },
         "errorCodes": {
             "1007": "gdgdfgdfg"
         }
+    },
+    "adminMenu": {
+      "manageArticleCategories": "فئات المقالات",
+      "manageProductCategories": "فئات المنتجات"
     }
 }
