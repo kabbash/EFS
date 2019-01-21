@@ -7,7 +7,6 @@ import { ArticlesCatergoriesComponent } from './articles-catergories/articles-ca
 import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
-import { ArticleDetailsResolver } from './resolvers/article-details.resolver';
 import { ArticleListResolver } from './resolvers/article-list.resolver';
 import { ArticlesService } from './articles.service';
 import { NewsResolver } from './resolvers/news.resolver';
@@ -22,7 +21,6 @@ import { NewsResolver } from './resolvers/news.resolver';
   ],
   declarations: [ArticlesComponent, ArticlesListComponent, ArticlesCatergoriesComponent, ArticleDetailsComponent],
   providers: [
-    ArticleDetailsResolver,
     ArticleListResolver,
     ArticlesService,
     NewsResolver
