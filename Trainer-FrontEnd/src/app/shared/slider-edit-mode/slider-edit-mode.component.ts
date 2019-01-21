@@ -20,7 +20,7 @@ export class SliderEditModeComponent implements OnInit {
   newImgTitle = '';
   selectedIndexForDelete: number;
   deleteModal: any;
-
+  showUploader = false;
   constructor(
     private modalService: NgbModal) { }
 
@@ -28,13 +28,17 @@ export class SliderEditModeComponent implements OnInit {
   }
 
   open(content, index?) {
-    this.modalService.open(content);
     if (index || index === 0) {
       this.newPic = false;
       this.selectedImg = this.sliderData[index];
+      this.showUploader = false;
     } else {
       this.newPic = true;
+      this.showUploader = true;
+
     }
+    this.modalService.open(content);
+
   }
 
   deleteSlide() {

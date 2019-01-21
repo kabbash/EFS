@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ArticlesComponent } from './articles.component';
 import { SharedModule } from '../shared/shared.module';
 import { ArticlesRoutingModule } from './articles-routing.module';
