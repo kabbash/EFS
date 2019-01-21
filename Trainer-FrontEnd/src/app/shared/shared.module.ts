@@ -27,6 +27,7 @@ import { ProductsListComponent } from '../products/products-list/products-list.c
 import { ModalComponent } from '../products/modal/modal.component';
 import { ProductReviewService } from '../admin-tools/services/product-review.service';
 import { SliderEditModeComponent } from './slider-edit-mode/slider-edit-mode.component';
+import { ArticleDetailsResolver } from '../articles/resolvers/article-details.resolver';
 
 @NgModule({
   imports: [
@@ -57,7 +58,8 @@ import { SliderEditModeComponent } from './slider-edit-mode/slider-edit-mode.com
     ArticleCategoriesResolver,
     CategoriesService,
     ProductsCategoriesResolver,
-    ProductReviewService
+    ProductReviewService,
+    ArticleDetailsResolver
   ]
 })
 export class SharedModule { }
