@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { SliderItemDto } from '../models/slider-item.dto';
 
 
 @Component({
@@ -10,16 +11,16 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SliderEditModeComponent implements OnInit {
 
-  @Input() images= [];
+  @Input() sliderData: SliderItemDto[] = [];
   baseurl = environment.filesBaseUrl;
   closeResult: string;
-  selectedImg = {};
+  selectedImg: SliderItemDto;
   newPic = false;
   newImgDesc = '';
   newImgTitle = '';
   selectedIndexForDelete: number;
   deleteModal: any;
-  
+  showUploader = false;
   constructor(
     private modalService: NgbModal) { }
 
@@ -27,17 +28,21 @@ export class SliderEditModeComponent implements OnInit {
   }
 
   open(content, index?) {
-    this.modalService.open(content);
     if (index || index === 0) {
       this.newPic = false;
-      this.selectedImg = this.images[index];
+      this.selectedImg = this.sliderData[index];
+      this.showUploader = false;
     } else {
       this.newPic = true;
+      this.showUploader = true;
+
     }
+    this.modalService.open(content);
+
   }
 
   deleteSlide() {
-    this.images.splice(this.selectedIndexForDelete, 1);
+    this.sliderData.splice(this.selectedIndexForDelete, 1);
     this.modalService.dismissAll();
   }
 
@@ -47,7 +52,6 @@ export class SliderEditModeComponent implements OnInit {
   }
 
   onFileSelect(file) {
-    debugger;
     // this.articleCategory.profilePictureFile = file;
     const reader = new FileReader();
     reader.onload = (e: any) => {

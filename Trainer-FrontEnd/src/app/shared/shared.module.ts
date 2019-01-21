@@ -60,7 +60,6 @@ import { ArticleDetailsResolver } from '../articles/resolvers/article-details.re
     ProductsCategoriesResolver,
     ProductReviewService,
     ArticleDetailsResolver
-
   ]
 })
 export class SharedModule { }

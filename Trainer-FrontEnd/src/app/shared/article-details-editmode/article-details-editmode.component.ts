@@ -2,10 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { articleDetialsDto } from '../models/article-details-dto';
 import { environment } from '../../../environments/environment';
 import { ddlDto, ddlItemDto } from '../models/ddl-dto';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RepositoryService } from '../services/repository.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
+import { UtilitiesService } from '../services/utilities.service';
+import { SliderItemDto } from '../models/slider-item.dto';
 
 @Component({
   selector: 'app-article-details-editmode',
@@ -23,24 +23,25 @@ export class ArticleDetailsEditmodeComponent implements OnInit {
   newImgDesc = '';
   newImgTitle = '';
   closeResult: string;
+  sliderData: SliderItemDto[];
   public articleForm: FormGroup;
   public submitted = false;
 
-  constructor(private modalService: NgbModal, private service: RepositoryService, private fb: FormBuilder, private translate: TranslateService) { }
+  constructor(private service: RepositoryService,
+     private fb: FormBuilder,
+     private util: UtilitiesService) { }
 
   ngOnInit() {
-    this.service.getData<ddlItemDto[]>("common/getEntityDDL?entityDDLId=2").subscribe(result => {
+    this.service.getData<ddlItemDto[]>('common/getEntityDDL?entityDDLId=2').subscribe(result => {
       this.categoriesDDL.items = result.data;
       this.modifiedArticle.categoryId = this.modifiedArticle.categoryId || 0;
     });
-    // // this.translate.get('editArticle.formValidations.articleNameValidation').subscribe(data => {
-    // //   console.log(data);
-    //}) 
+
     this.articleForm = this.fb.group({
       'name': ['', Validators.required],
       'categoryId': ['', Validators.min(1)]
-      // 'profilePictureFile': [null, !this.articleCategory.profilePicture ? Validators.required : null],
     });
+    this.sliderData = this.util.mapToSliderDtoArray(this.modifiedArticle.images);
   }
 
   get f() { return this.articleForm.controls; }

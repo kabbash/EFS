@@ -1,18 +1,11 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title" *ngIf="!newPic">تعديل الصوره</h4>
-    <h4 class="modal-title" id="modal-basic-title" *ngIf="newPic">إضافة صوره جديده</h4>
+    <h4 class="modal-title" id="modal-basic-title">إضافة صوره جديده</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body" *ngIf="!newPic">
-    <img [src]="baseurl + selectedImg.path" alt="">
-    <app-file-uploader (change)="onFileSelect($event.target.files[0])" ></app-file-uploader>
-    <input _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.title" placeholder="العنوان" type="text">
-    <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.text" placeholder="الوصف" rows="3"></textarea>
-  </div>
-  <div class="modal-body" *ngIf="newPic">
+  <div class="modal-body">
     <div class="simulate-img">صوره جديده</div>
     <app-file-uploader (change)="onFileSelect($event.target.files[0])"></app-file-uploader>
     <input _ngcontent-c11="" class="form-control" [(ngModel)]="newImgTitle" placeholder="العنوان" type="text">
@@ -21,6 +14,24 @@
 
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close()">حفظ</button>
+  </div>
+</ng-template>
+<ng-template #edit let-editModal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title" >تعديل الصوره</h4>
+    <button type="button" class="close" aria-label="Close" (click)="editModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img [src]="baseurl + selectedImg.filePath" alt="">
+    <input _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.title" placeholder="العنوان" type="text">
+    <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.description" placeholder="الوصف" rows="3"></textarea>
+  </div>
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="editModal.close()">حفظ</button>
   </div>
 </ng-template>
 
@@ -39,24 +50,24 @@
   </div>
 </ng-template>
 
-<div class="add-new-img-wrapper" [ngClass]="{'no-pics':!images.length}" *ngIf="images.length<3 || !images.length">
+<div class="add-new-img-wrapper" [ngClass]="{'no-pics':!sliderData.length}" >
   <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)">إضافة صوره جديده</button>
 </div>
-<div class="carousel-container" *ngIf="images.length">
-  <ngb-carousel *ngIf="images">
-    <ng-template ngbSlide *ngFor="let image of images;let i = index">
+<div class="carousel-container" *ngIf="sliderData.length">
+  <ngb-carousel *ngIf="sliderData">
+    <ng-template ngbSlide *ngFor="let image of sliderData;let i = index">
       <div class="edit-image-wrapper">
-        <div class="edit-image" (click)="open(content,i)">
+        <div class="edit-image" (click)="open(edit,i)">
           <i class="fa fa-edit"></i>
         </div>
         <div class="edit-image" (click)="deleteSlideModal(delete,i)">
           <i class="fa fa-trash"></i>
         </div>
       </div>
-      <img [src]="baseurl + image.path" class="slider-img" alt="images">
+      <img [src]="baseurl + image.filePath" class="slider-img" alt="images">
       <div class="carousel-caption">
         <h3>{{image.title}}</h3>
-        <p>{{image.text}}}</p>
+        <p>{{image.description}}}</p>
       </div>
     </ng-template>
   </ngb-carousel>

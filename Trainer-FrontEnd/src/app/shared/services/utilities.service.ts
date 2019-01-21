@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SliderItemDto } from '../models/slider-item.dto';
 
 @Injectable()
 export class UtilitiesService {
@@ -13,5 +14,20 @@ export class UtilitiesService {
     const day = splitDate[2].split('T')[0];
 
     return  (shortYear ? year.substring(2) : year) + '/' + month + '/' + day ;
+  }
+  mapToSliderDto(data) {
+    const sliderDto = new SliderItemDto();
+    sliderDto.description = data.text;
+    sliderDto.filePath = data.path;
+    sliderDto.id = data.id;
+    sliderDto.title = data.title;
+    return sliderDto;
+  }
+  mapToSliderDtoArray(data: any[]) {
+    const result = new Array<SliderItemDto>();
+    data.forEach(item => {
+      result.push(this.mapToSliderDto(item));
+    });
+    return result;
   }
 }
