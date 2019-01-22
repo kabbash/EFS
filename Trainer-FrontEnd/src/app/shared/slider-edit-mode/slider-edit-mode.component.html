@@ -6,14 +6,14 @@
     </button>
   </div>
   <div class="modal-body">
-    <div class="simulate-img">صوره جديده</div>
+    <div class="simulate-img" [ngStyle]="{'background-image':'url(' +  newImage.path + ')'}">صوره جديده</div>
     <app-file-uploader (change)="onFileSelect($event.target.files[0])"></app-file-uploader>
-    <input _ngcontent-c11="" class="form-control" [(ngModel)]="newImgTitle" placeholder="العنوان" type="text">
-    <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="newImgDesc" placeholder="الوصف" rows="3"></textarea>
+    <input _ngcontent-c11="" class="form-control" [(ngModel)]="newImage.title" placeholder="العنوان" type="text">
+    <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="newImage.description" placeholder="الوصف" rows="3"></textarea>
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">حفظ</button>
+    <button type="button" class="btn btn-outline-dark" (click)="addNewImage(modal)">حفظ</button>
   </div>
 </ng-template>
 <ng-template #edit let-editModal>
@@ -24,14 +24,14 @@
     </button>
   </div>
   <div class="modal-body">
-    <img [src]="baseurl + selectedImg.filePath" alt="">
+    <img [src]="baseurl + selectedImg.path" alt="">
     <input _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.title" placeholder="العنوان" type="text">
     <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.description" placeholder="الوصف" rows="3"></textarea>
   </div>
 
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="editModal.close()">حفظ</button>
+    <button type="button" class="btn btn-outline-dark" (click)="eidtImage(editModal)">حفظ</button>
   </div>
 </ng-template>
 
@@ -64,10 +64,10 @@
           <i class="fa fa-trash"></i>
         </div>
       </div>
-      <img [src]="baseurl + image.filePath" class="slider-img" alt="images">
+      <img [src]="!image.isNew ? (baseurl + image.path) : (image.path)" class="slider-img" alt="images">
       <div class="carousel-caption">
         <h3>{{image.title}}</h3>
-        <p>{{image.description}}}</p>
+        <p>{{image.description}}</p>
       </div>
     </ng-template>
   </ngb-carousel>

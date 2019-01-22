@@ -21,6 +21,8 @@ export class SliderEditModeComponent implements OnInit {
   selectedIndexForDelete: number;
   deleteModal: any;
   showUploader = false;
+  newImage =  new SliderItemDto();
+  @Input() resultImageList: SliderItemDto[];
   constructor(
     private modalService: NgbModal) { }
 
@@ -42,6 +44,9 @@ export class SliderEditModeComponent implements OnInit {
   }
 
   deleteSlide() {
+    const deletedImage = this.sliderData[this.selectedIndexForDelete];
+    deletedImage.isDeleted = true;
+    this.resultImageList.push(deletedImage);
     this.sliderData.splice(this.selectedIndexForDelete, 1);
     this.modalService.dismissAll();
   }
@@ -52,12 +57,25 @@ export class SliderEditModeComponent implements OnInit {
   }
 
   onFileSelect(file) {
-    // this.articleCategory.profilePictureFile = file;
     const reader = new FileReader();
     reader.onload = (e: any) => {
-      // this.articleCategory.profilePicture = e.target.result;
-      // this.addedImageUrl = e.target.result;
+      this.newImage.path = e.target.result;
     };
+    this.newImage.iFormFile = file;
     reader.readAsDataURL(file);
+  }
+  addNewImage(modal) {
+    modal.close();
+    this.newImage.isNew = true;
+    this.sliderData.push(Object.assign({}, this.newImage));
+    this.newImage.path = '';
+    this.resultImageList.push(Object.assign({}, this.newImage));
+    this.newImage = new  SliderItemDto();
+
+  }
+  eidtImage(modal) {
+    modal.close();
+    this.selectedImg.isUpdated = true;
+    this.resultImageList.push(Object.assign({}, this.selectedImg));
   }
 }
