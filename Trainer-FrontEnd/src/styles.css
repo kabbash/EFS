@@ -171,3 +171,15 @@ li.page-item.active .page-link{
   background-color: #00bcd4;
   z-index: 5;
 }
+
+.carousel-default-img{
+  background-image: url(assets/images/articles-default.jpg);
+  background-size:cover;
+  background-position: 50%;  
+  height: 500px;
+}
+
+.carousel-darker-overlay{
+  height: 100%;
+  background-color: rgba(0,0,0,.6);
+}

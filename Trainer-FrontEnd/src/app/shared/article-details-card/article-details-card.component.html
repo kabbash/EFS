@@ -43,24 +43,43 @@
   <div class="article-title">
     <h2> {{article.name}} </h2>
   </div>
-  <div class="add-new-img-wrapper" [ngClass]="{'no-pics':!article.images.length}" *ngIf="article.images.length<3 || !article.images.length">
-    <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)">إضافة صوره جديده</button>
+  <div class="add-new-img-wrapper" *ngIf="article.images.length<3 && article.images.length !== 0">
+    <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)">إضافة صوره جديده يمكنك إضافة
+      {{3-article.images.length }} صوره</button>
+  </div>
+  <div class="add-new-img-wrapper" *ngIf="article.images.length === 0">
+    <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)"> لا توجد صور قم بإضافة صوره جديده</button>
   </div>
   <div class="carousel-container" *ngIf="article.images.length">
     <ngb-carousel *ngIf="article.images">
       <ng-template ngbSlide *ngFor="let image of article.images;let i = index">
-        <div class="edit-image-wrapper">
-          <div class="edit-image" (click)="open(content,article,i)">
-            <i class="fa fa-edit"></i>
-          </div>
-          <div class="edit-image" (click)="deleteSlideModal(delete,article,i)">
-            <i class="fa fa-trash"></i>
+        <div class="carousel-default-img">
+          <div class="carousel-darker-overlay">
+            <div class="edit-image-wrapper">
+              <div class="edit-image" (click)="open(content,article,i)">
+                <i class="fa fa-edit"></i>
+              </div>
+              <div class="edit-image" (click)="deleteSlideModal(delete,article,i)">
+                <i class="fa fa-trash"></i>
+              </div>
+            </div>
+            <img [src]="baseurl + image.path" class="slider-img" alt="article images">
+            <div class="carousel-caption">
+              <h3>{{image.title}}</h3>
+              <p>{{image.text}}}</p>
+            </div>
           </div>
         </div>
-        <img [src]="baseurl + image.path" class="slider-img" alt="article images">
-        <div class="carousel-caption">
-          <h3>{{image.title}}</h3>
-          <p>{{image.text}}</p>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+  <div class="carousel-container" *ngIf="!article.images.length">
+    <ngb-carousel *ngIf="article.images">
+      <ng-template ngbSlide *ngFor="let dummy of [1,2,3]">
+        <div class="carousel-default-img">
+          <div class="carousel-darker-overlay">
+
+          </div>
         </div>
       </ng-template>
     </ngb-carousel>
