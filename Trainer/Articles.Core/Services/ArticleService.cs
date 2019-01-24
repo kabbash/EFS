@@ -5,7 +5,7 @@ using Attachments.Core.Interfaces;
 using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
-using Shared.Core.Models;
+using DBModels = Shared.Core.Models;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
@@ -22,13 +22,15 @@ namespace Articles.Core.Services
         private readonly IValidator<ArticleAddDto> _addValidator;
         private readonly IValidator<RejectDto> _rejectValidator;
         private readonly IAttachmentsManager _attachmentsManager;
+        private readonly ISliderManager<DBModels.ArticlesImages> _sliderManager;
 
-        public ArticleService(IUnitOfWork unitOfWork, IValidator<ArticleAddDto> addvalidator, IValidator<RejectDto> rejectvalidator, IAttachmentsManager attachmentsManager)
+        public ArticleService(IUnitOfWork unitOfWork, IValidator<ArticleAddDto> addvalidator, IValidator<RejectDto> rejectvalidator, IAttachmentsManager attachmentsManager, ISliderManager<DBModels.ArticlesImages> sliderManager)
         {
             _unitOfWork = unitOfWork;
             _addValidator = addvalidator;
             _rejectValidator = rejectvalidator;
             _attachmentsManager = attachmentsManager;
+            sliderManager = _sliderManager;
         }
         public ResultMessage Delete(int id)
         {
@@ -187,11 +189,13 @@ namespace Articles.Core.Services
                 var articleDto = article.Adapt<ArticleGetDto>();
 
                 if (article.Images != null)
-                    articleDto.Images = article.Images.Select(c => new ImageWithTextDto
+                    articleDto.Images = article.Images.Select(c => new SliderItemDto
                     {
                         Path = c.Path,
-                        Text = c.Text,
-                        Title = c.Title
+                        Description = c.Description,
+                        Title = c.Title,
+                        Id = c.Id,
+                        IsProfilePicture = c.Path == articleDto.ProfilePicture
                     }).ToList();
 
                 return new ResultMessage
@@ -221,37 +225,34 @@ namespace Articles.Core.Services
             }
             try
             {
-                var articleEntity = article.Adapt<Shared.Core.Models.Articles>();
+                var articleEntity = article.Adapt<DBModels.Articles>();
                 articleEntity.CreatedAt = DateTime.Now;
                 articleEntity.CreatedBy = article.UserId;
 
-                //var articleFolderName = Guid.NewGuid().ToString();
-                //articleEntity.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
-                //{
-                //    attachmentType = AttachmentTypesEnum.Articles,
-                //    CanChangeName = false,
-                //    File = article.ProfilePictureFile,
-                //    SubFolderName = articleFolderName
-                //});
 
-                //foreach (var image in article.ImagesLstFiles)
-                //{
-                //    articleEntity.Images.Add(new ArticlesImages
-                //    {
-                //        ArticleId = articleEntity.Id,
-                //        Path = _attachmentsManager.Save(new SavedFileDto
-                //        {
-                //            attachmentType = AttachmentTypesEnum.Articles,
-                //            CanChangeName = false,
-                //            File = image,
-                //            SubFolderName = articleFolderName
-                //        }),
-                //        Title = image.Name
-                //    });
-                //}
+                var articleFolderName = Guid.NewGuid().ToString();
+                var sliderDto = new SliderDto
+                {
+                    attachmentType = AttachmentTypesEnum.Articles,
+                    Items = article.Images,
+                    SubFolderName = articleFolderName
+                };
+
+                if (sliderDto.Items.Count > 0)
+                    article.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto);
+
+                // ?? article.Images.Any(c => !c.IsDeleted && c.IsProfilePicture) ? null :  article.ProfilePicture
 
                 _unitOfWork.ArticlesRepository.Insert(articleEntity);
                 _unitOfWork.Commit();
+
+                _sliderManager.Add(new SliderDto
+                {
+                    attachmentType = AttachmentTypesEnum.Articles,
+                    Items = article.Images,
+                    ParentId = articleEntity.Id
+                });
+
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.OK
@@ -289,12 +290,36 @@ namespace Articles.Core.Services
                     };
                 }
 
-                article.Adapt(articleData, typeof(ArticleAddDto), typeof(Shared.Core.Models.Articles));
+                article.Adapt(articleData, typeof(ArticleAddDto), typeof(DBModels.Articles));
                 articleData.UpdatedAt = DateTime.Now;
                 articleData.UpdatedBy = article.UserId;
 
                 _unitOfWork.ArticlesRepository.Update(articleData);
                 _unitOfWork.Commit();
+
+                //for testing only to be changed to get original folder name
+                var articleFolderName = Guid.NewGuid().ToString();
+
+                var sliderDto = new SliderDto
+                {
+                    attachmentType = AttachmentTypesEnum.Articles,
+                    Items = article.Images,
+                    SubFolderName = articleFolderName
+                };
+
+                //check profile picture
+                // exclude if no has profile picture 
+                //if (sliderDto.Items.Count > 0)
+                //    article.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto) ?? article.Images.Any(c => !c.IsDeleted && c.IsProfilePicture) ? null : article.ProfilePicture;
+
+                // update files                
+                _sliderManager.Update(new SliderDto
+                {
+                    ParentId = articleData.Id,
+                    attachmentType = AttachmentTypesEnum.Articles,
+                    Items = article.Images
+                });
+
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.OK
@@ -325,7 +350,7 @@ namespace Articles.Core.Services
                 if (articleData == null)
                 {
                     return new ResultMessage
-                    {                        
+                    {
                         Status = HttpStatusCode.NotFound,
                     };
                 }

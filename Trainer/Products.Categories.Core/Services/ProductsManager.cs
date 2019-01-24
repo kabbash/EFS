@@ -77,21 +77,21 @@ namespace Products.Core.Services
                     SubFolderName = productFolderName,
                 });
 
-                foreach (var image in newProductDto.ProductsImagesFiles)
-                {
-                    newProduct.ProductsImages.Add(new Shared.Core.Models.ProductsImages()
-                    {
-                        Name = image.Name,
-                        ProductId = newProduct.Id,
-                        Path = _attachmentsManager.Save(new SavedFileDto
-                        {
-                            attachmentType = AttachmentTypesEnum.Products,
-                            CanChangeName = false,
-                            File = image,
-                            SubFolderName = productFolderName
-                        })
-                    });
-                }
+                //foreach (var image in newProductDto.ProductsImagesFiles)
+                //{
+                //    newProduct.ProductsImages.Add(new Shared.Core.Models.ProductsImages()
+                //    {
+                //        Name = image.Name,
+                //        ParentId = newProduct.Id,
+                //        Path = _attachmentsManager.Save(new SavedFileDto
+                //        {
+                //            attachmentType = AttachmentTypesEnum.Products,
+                //            CanChangeName = false,
+                //            File = image,
+                //            SubFolderName = productFolderName
+                //        })
+                //    });
+                //}
 
                 _unitOfWork.ProductsRepository.Insert(newProduct);
                 _unitOfWork.Commit();

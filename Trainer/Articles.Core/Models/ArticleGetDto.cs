@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Attachments.Core.Models;
+using System.Collections.Generic;
 
 namespace Articles.Core.Models
 {
@@ -9,7 +10,7 @@ namespace Articles.Core.Models
         public string Description { get; set; }
         public string ProfilePicture { get; set; }
         public bool IsActive { get; set; }
-        public List<ImageWithTextDto> Images { get; set; }
+        public List<SliderItemDto> Images { get; set; }
         public int CategoryId { get; set; }
     }
 }
