@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { articleDetialsDto } from '../models/article-details-dto';
+import { ArticleDetialsDto } from '../models/article-details-dto';
 import { environment } from '../../../environments/environment';
 import { ddlDto, ddlItemDto } from '../models/ddl-dto';
 import { RepositoryService } from '../services/repository.service';
@@ -14,7 +14,7 @@ import { SliderItemDto } from '../models/slider-item.dto';
 })
 export class ArticleDetailsEditmodeComponent implements OnInit {
 
-  @Input() modifiedArticle: articleDetialsDto;
+  @Input() modifiedArticle: ArticleDetialsDto;
   @Input() articlesCategories: ddlItemDto[];
   baseurl = environment.filesBaseUrl;
   categoriesDDL: ddlDto = new ddlDto();
