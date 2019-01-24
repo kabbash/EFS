@@ -130,6 +130,9 @@ export class ManageArticlesComponent implements OnInit {
       formData.append(`images[${index}]]['description']`, image.description ? image.description.toString() : '');
       formData.append(`images[${index}]]['iFormFile']`, image.iFormFile);
       formData.append(`images[${index}]]['isProfilePicture']`, image.isProfilePicture ? image.isProfilePicture.toString() : '');
+      formData.append(`images[${index}]]['isProfilePictureUpdated']`,
+        image.isProfilePictureUpdated ? image.isProfilePictureUpdated.toString() : '');
+
     });
     formData.append('images', JSON.stringify(articleData.updatedImages));
     return formData;

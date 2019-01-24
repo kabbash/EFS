@@ -69,6 +69,10 @@ export class SliderEditModeComponent implements OnInit {
     this.newImage.isNew = true;
     this.sliderData.push(Object.assign({}, this.newImage));
     this.newImage.path = '';
+    this.newImage.isProfilePictureUpdated = this.newImage.isProfilePicture;
+    if (this.newImage.isProfilePicture) {
+      this.setNewProfilePic();
+    }
     this.resultImageList.push(Object.assign({}, this.newImage));
     this.newImage = new  SliderItemDto();
 
@@ -76,6 +80,21 @@ export class SliderEditModeComponent implements OnInit {
   eidtImage(modal) {
     modal.close();
     this.selectedImg.isUpdated = true;
+    this.checkIfProfilePicUpdated();
+    if (this.selectedImg.isProfilePicture && this.selectedImg.isProfilePictureUpdated) {
+      this.setNewProfilePic();
+    }
     this.resultImageList.push(Object.assign({}, this.selectedImg));
+  }
+  checkIfProfilePicUpdated() {
+    const dataImage = this.sliderData.find(image => image.path === this.selectedImg.path);
+    this.selectedImg.isProfilePictureUpdated = dataImage.isProfilePicture ? !this.selectedImg.isProfilePicture
+      : this.selectedImg.isProfilePicture;
+
+  }
+  setNewProfilePic() {
+    this.resultImageList.forEach(image => {
+      image.isProfilePicture = false;
+    });
   }
 }

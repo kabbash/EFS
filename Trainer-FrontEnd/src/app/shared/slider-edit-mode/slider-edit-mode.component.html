@@ -10,6 +10,8 @@
     <app-file-uploader (change)="onFileSelect($event.target.files[0])"></app-file-uploader>
     <input _ngcontent-c11="" class="form-control" [(ngModel)]="newImage.title" placeholder="العنوان" type="text">
     <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="newImage.description" placeholder="الوصف" rows="3"></textarea>
+    <input _ngcontent-c11 class="form-control" [(ngModel)]="newImage.isProfilePicture" placeholder="الصورة الرئيسية" type="checkbox">
+
   </div>
 
   <div class="modal-footer">
@@ -27,6 +29,7 @@
     <img [src]="baseurl + selectedImg.path" alt="">
     <input _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.title" placeholder="العنوان" type="text">
     <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.description" placeholder="الوصف" rows="3"></textarea>
+    <input _ngcontent-c11 class="form-control" [(ngModel)]="selectedImg.isProfilePicture" placeholder="الصورة الرئيسية" type="checkbox">
   </div>
 
 
