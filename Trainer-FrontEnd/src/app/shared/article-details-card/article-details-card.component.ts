@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from '../../shared/services/repository.service';
-import { articleDetialsDto } from '../../shared/models/article-details-dto';
+import { ArticleDetialsDto } from '../../shared/models/article-details-dto';
 import { AppService } from '../../app.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -15,7 +15,7 @@ export class ArticleDetailsCardComponent implements OnInit {
 
   images = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
 
-  @Input() article: articleDetialsDto;
+  @Input() article: ArticleDetialsDto;
   baseurl = environment.filesBaseUrl;
   closeResult: string;
   selectedImg = {};
