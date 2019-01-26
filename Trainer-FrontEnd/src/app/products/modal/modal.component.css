@@ -1,3 +1,17 @@
 .modal-content {
     border-radius: 12px;
 }
+
+:host ::ng-deep .carousel-indicators {
+    display: none;
+}
+
+:host ::ng-deep .carousel-control-prev {
+    left: -18px;
+    background: black;
+}
+
+:host ::ng-deep .carousel-control-next {
+    right: -18px;
+    background: black;
+}
