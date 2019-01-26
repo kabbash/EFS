@@ -5,16 +5,28 @@
         <div>كابتن عبدالله</div>
     </div>
 </div>
-<div class="dash-item">
-    <i class="fa fa-edit"></i><span>المستخدمين</span>
-</div>
-
-<div class="dash-item">
-    <i class="fa fa-edit"></i><span>المقالات</span>
-</div>
-<div class="dash-item">
-    <i class="fa fa-edit"></i><span>المنتجات</span>
-</div>
-<div class="dash-item">
-    <i class="fa fa-edit"></i><span>جدول السعرات</span>
-</div>
+<a >
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>المستخدمين</span>
+    </div>
+</a>
+<a routerLinkActive="active" [routerLink]="['/admin/articleslist']">
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>المقالات</span>
+    </div>
+</a>
+<a routerLinkActive="active" [routerLink]="['/admin/manageProductsCategories']">
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>{{'adminMenu.manageProductCategories' | translate}}</span>
+    </div>
+</a>
+<a routerLinkActive="active" [routerLink]="['/admin/manageArticlesCategories']">
+  <div class="dash-item">
+      <i class="fa fa-edit"></i><span>{{'adminMenu.manageArticleCategories' | translate}}</span>
+  </div>
+</a>
+<a >
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>جدول السعرات</span>
+    </div>
+</a>

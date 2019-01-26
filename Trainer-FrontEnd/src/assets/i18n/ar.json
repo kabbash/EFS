@@ -1,5 +1,53 @@
 {
     "home": {
         "title": "حماده"
+    },
+    "addCategory": {
+      "articleCategory": "فئة المقال",
+      "productCategory": "فئة المنتج",
+      "name": "الأسم",
+      "picture": "الصورة",
+      "submit": "حفظ",
+      "reset": "إعادة تعيين",
+      "chooseFile": "اختر ملف",
+      "noFileChoosen": "لم تقم باختيار ملف",
+      "parentCategory": "الفئة الرئيسية",
+      "formValidations": {
+        "name": {
+          "required": "يجب ادخال اسم الفئة"
+        },
+        "profilePictureFile": {
+          "required": "يجب ادخال صورة"
+        }
+      },
+      "messages": {
+
+      },
+      "errorMessages": {
+
+      }
+    },
+    "manageCategories": {
+      "messages": {
+        "confirmDeleteParent": "هل أنت متأكد من أنك تريد حذف هذاالعنصر الرئيسي؟",
+        "confirmDelete": "هل أنت متأكد من أنك تريد حذف هذاالعنصر؟",
+        "success": "تمت العملية بنجاح"
+      }
+    },
+    "editArticle": {
+        "formValidations": {
+            "nameRequired": "يجب ادخال اسم المقال",
+            "categoryRequired" : "يجب اختيار القسم"
+        },
+        "messages": {
+
+        },
+        "errorCodes": {
+            "1007": "gdgdfgdfg"
+        }
+    },
+    "adminMenu": {
+      "manageArticleCategories": "فئات المقالات",
+      "manageProductCategories": "فئات المنتجات"
     }
 }

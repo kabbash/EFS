@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from '../../shared/services/repository.service';
-import { articleDetialsDto } from '../../shared/models/article-details-dto';
+import { ArticleDetialsDto } from '../../shared/models/article-details-dto';
 import { AppService } from '../../app.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class ArticleDetailsComponent implements OnInit {
 
   images = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
 
-  article: articleDetialsDto;
+  article: ArticleDetialsDto;
   articleBody: string;
   baseurl = environment.filesBaseUrl;
   articleId: number;

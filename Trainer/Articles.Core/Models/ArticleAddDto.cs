@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Attachments.Core.Models;
+using Microsoft.AspNetCore.Http;
 using Shared.Core.Utilities.Models;
 using System.Collections.Generic;
 
@@ -10,8 +11,7 @@ namespace Articles.Core.Models
         public string Description { get; set; }
         public int CategoryId { get; set; }
         public string ProfilePicture { get; set; }
-        public IFormFile ProfilePictureFile { get; set; }
-        public IList<IFormFile> ImagesLstFiles { get; set; }
+        public List<SliderItemDto> Images { get; set; }
         public string UserId { get; set; }
     }
 }

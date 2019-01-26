@@ -13,8 +13,9 @@ namespace Shared.Core.Models
         [Required]
         public string Path { get; set; }
         public string Title { get; set; }
-        public string Text { get; set; }
-        public int ArticleId { get; set; }
+        public string Description { get; set; }
+        [ForeignKey("Article")]
+        public int ParentId { get; set; }
 
         public virtual Articles Article { get; set; }
     }

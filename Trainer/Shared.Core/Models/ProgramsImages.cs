@@ -1,7 +1,6 @@
 ﻿using Shared.Core.Models.Base;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shared.Core.Models
 {
@@ -10,9 +9,10 @@ namespace Shared.Core.Models
         public int Id { get; set; }
         [Required]
         public string Path { get; set; }
-        public int ProgramId { get; set; }
+        [ForeignKey("Program")]
+        public int ParentId { get; set; }
         public string Title { get; set; }
-        public string Text { get; set; }
+        public string Description { get; set; }
 
         public virtual TrainersPrograms Program { get; set; }
     }

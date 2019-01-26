@@ -1,9 +1,12 @@
 ﻿using Attachments.Core.Interfaces;
 using Attachments.Core.Models;
+using Lookups.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Products.Core.Interfaces;
 using Products.Core.Models;
+using Shared.Core.Models;
 using Shared.Core.Utilities.Enums;
+using System;
 
 namespace Trainer.Controllers
 {
@@ -11,10 +14,11 @@ namespace Trainer.Controllers
     [ApiController]
     public class ProductsCategoriesApiController : BaseController
     {
-        private readonly IProductsCategoriesManager _categoriesManager;
+        protected ILookupService<ProductsCategoryDto, ProductsCategories> _categoriesManager;
+
         private readonly IAttachmentsManager _attachmentManager;
 
-        public ProductsCategoriesApiController(IProductsCategoriesManager categoriesManager, IAttachmentsManager attachmentsManager)
+        public ProductsCategoriesApiController(ILookupService<ProductsCategoryDto, ProductsCategories> categoriesManager, IAttachmentsManager attachmentsManager)
         {
             _categoriesManager = categoriesManager;
             _attachmentManager = attachmentsManager;
@@ -59,6 +63,7 @@ namespace Trainer.Controllers
         public ActionResult Put(int id, [FromForm] ProductsCategoryDto categoryDto)
         {
             if (categoryDto.ProfilePictureFile != null) {
+                _attachmentManager.Delete(Uri.UnescapeDataString(categoryDto.ProfilePicture));
                 categoryDto.ProfilePicture = _attachmentManager.Save(new SavedFileDto
                 {
                 attachmentType = AttachmentTypesEnum.Products_Categories,

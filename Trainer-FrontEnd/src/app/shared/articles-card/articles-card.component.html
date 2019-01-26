@@ -1,4 +1,4 @@
-<div class="card-img-container" [ngStyle]="{'background-image': localImageUrl ? 'url(' + articleCategory?.profilePicture + ')' : 'url(' + baseurl + articleCategory?.profilePicture + ')'}">
+<div class="card-img-container" [ngStyle]="{'background-image': localImageUrl ? 'url(' + localImageUrl + ')' : 'url(' + baseurl + articleCategory?.profilePicture + ')'}">
   <!-- <img #cardImageTag *ngIf="cardImage" [src]="cardImage"> -->
 </div>
 <div class="card-separtator"></div>

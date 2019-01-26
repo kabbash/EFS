@@ -39,7 +39,7 @@ using Rating.Core.Interfaces;
 using Rating.Core.Models;
 using Rating.Core.Services;
 using Rating.Core.Validators;
-using Shared.Core.Models;
+using DBModels = Shared.Core.Models;
 using Shared.Core.Resources;
 using Shared.Core.Utilities.Models;
 using Shared.Core.Validators;
@@ -110,16 +110,23 @@ namespace Trainer
             services.AddScoped<IAttachmentsManager, AttachmentsManager>();
             services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
             services.AddScoped<IProductsManager, ProductsManager>();
-            services.AddScoped<IRatingManager<Shared.Core.Models.Products>, RatingManager<Shared.Core.Models.Products>>();
-            services.AddScoped<IRatingManager<ItemsForReview>, RatingManager<ItemsForReview>>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
-            services.AddScoped<ILookupService<CaloriesDto, Calories>, LookupService<CaloriesDto, Calories>>();
-            services.AddScoped<ILookupService<ArticlesCategoriesDto, ArticlesCategories>, LookupService<ArticlesCategoriesDto, ArticlesCategories>>();
             services.AddScoped<IArticlesService, ArticleService>();
             services.AddScoped<IItemsReviewsManager, ItemsReviewsManager>();
             services.AddScoped<ICommonService, CommonService>();
+
+            //services.AddScoped<IRatingManager<Shared.Core.Models.Products>, RatingManager<Shared.Core.Models.Products>>();
+            //services.AddScoped<IRatingManager<ItemsForReview>, RatingManager<ItemsForReview>>();
+            //services.AddScoped<ILookupService<CaloriesDto, Calories>, LookupService<CaloriesDto, Calories>>();
+            //services.AddScoped<ILookupService<ArticlesCategoriesDto, ArticlesCategories>, LookupService<ArticlesCategoriesDto, ArticlesCategories>>();
+            //services.AddScoped<ILookupService<ProductsCategoryDto, ProductsCategories>, LookupService<ProductsCategoryDto, ProductsCategories>>();
+
+            // Generic Services 
+            services.AddScoped(typeof(ISliderManager<>), typeof(SliderManager<>));
+            services.AddScoped(typeof(IRatingManager<>), typeof(RatingManager<>));
+            services.AddScoped(typeof(ILookupService<,>), typeof(LookupService<,>));
         }
         private void ConfigureSettings(IServiceCollection services)
         {
@@ -169,7 +176,7 @@ namespace Trainer
         }
         private void ConfigureMapstr()
         {
-            TypeAdapterConfig<ArticleAddDto, Shared.Core.Models.Articles>.NewConfig()
+            TypeAdapterConfig<ArticleAddDto, DBModels.Articles>.NewConfig()
                                                    .Ignore(dest => dest.Id);
             TypeAdapterConfig<Shared.Core.Models.Products, ProductsDto>.NewConfig()
                                                    .Map(dest => dest.CategoryName, src => (src.Category ?? new ProductsCategories()).Name);

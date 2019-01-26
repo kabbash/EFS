@@ -4,28 +4,10 @@
     width: 80%;
 }
 
-.article-details-container {
-    background-color: #dedddd;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 40px;
-    width: 80%;
-    text-align: right;
-}
-
 .slider-img {
     border-radius: 12px;
     height: 500px;
     width: 100%;
-}
-
-.article-title {
-    color: #dedddd;
-}
-
-.article-container {
-    margin: 30px;
-    text-align: -webkit-center;
 }
 
 :host ::ng-deep .carousel-caption {

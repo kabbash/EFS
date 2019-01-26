@@ -8,7 +8,6 @@ namespace Shared.Core.Models.Base
     {
         int Id { get; set; }
         string Path { get; set; }
-        string Title { get; set; }
-        string Text { get; set; }
+        int ParentId { get; set; }
     }
 }

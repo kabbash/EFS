@@ -26,6 +26,8 @@ import { ProductReviewService } from '../admin-tools/services/product-review.ser
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ModalComponent } from './modal/modal.component';
 import { ProductResolver } from '../admin-tools/resolvers/product.resolver';
+import { SliderEditModeComponent } from './slider-edit-mode/slider-edit-mode.component';
+import { ArticleDetailsResolver } from '../articles/resolvers/article-details.resolver';
 
 @NgModule({
   imports: [
@@ -34,6 +36,7 @@ import { ProductResolver } from '../admin-tools/resolvers/product.resolver';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
   ],
@@ -70,15 +73,16 @@ import { ProductResolver } from '../admin-tools/resolvers/product.resolver';
     DropDownComponent,
     DashboardMenuComponent,
     ProductsListComponent,
-    ModalComponent
+    ModalComponent,
+    SliderEditModeComponent
   ],
   providers: [
     UtilitiesService,
     ArticleCategoriesResolver,
     CategoriesService,
     ProductsCategoriesResolver,
-    ProductReviewService
-    
+    ProductReviewService,
+    ArticleDetailsResolver
   ]
 })
 export class SharedModule { }

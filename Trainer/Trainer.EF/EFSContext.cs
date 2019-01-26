@@ -493,17 +493,13 @@ namespace Trainer.EF
             {
                 entity.ToTable("Products_Images");
 
-                entity.HasIndex(e => e.ProductId);
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(100);
+                entity.HasIndex(e => e.ParentId);
 
                 entity.Property(e => e.Path).IsRequired();
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.ProductsImages)
-                    .HasForeignKey(d => d.ProductId)
+                    .HasForeignKey(d => d.ParentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Products_Images_Products");
             });
@@ -512,7 +508,7 @@ namespace Trainer.EF
             {
                 entity.ToTable("Programs_Images");
 
-                entity.HasIndex(e => e.ProgramId);
+                entity.HasIndex(e => e.ParentId);
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -524,7 +520,7 @@ namespace Trainer.EF
 
                 entity.HasOne(d => d.Program)
                     .WithMany(p => p.ProgramsImages)
-                    .HasForeignKey(d => d.ProgramId)
+                    .HasForeignKey(d => d.ParentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Programs_Images_Trainers_Programs");
             });
@@ -603,6 +599,16 @@ namespace Trainer.EF
                 {
                     Id = 1,
                     Name = "product"
+                });
+                entity.HasData(new EntityTypes
+                {
+                    Id = 4,
+                    Name = "hamda"
+                });
+                entity.HasData(new EntityTypes
+                {
+                    Id = 9,
+                    Name = "m7maaa ma7rooos"
                 });
             });
         }
