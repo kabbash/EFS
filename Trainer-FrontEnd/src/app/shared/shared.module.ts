@@ -23,6 +23,9 @@ import { DropDownComponent } from './drop-down/drop-down.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-menu.component';
 import { ProductReviewService } from '../admin-tools/services/product-review.service';
+import { ProductsListComponent } from './products-list/products-list.component';
+import { ModalComponent } from './modal/modal.component';
+import { ProductResolver } from '../admin-tools/resolvers/product.resolver';
 
 @NgModule({
   imports: [
@@ -38,20 +41,44 @@ import { ProductReviewService } from '../admin-tools/services/product-review.ser
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    TranslateModule, HeaderComponent, FooterComponent,
-    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
-    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent, DashboardMenuComponent
+    TranslateModule,
+    HeaderComponent,
+    FooterComponent,
+    ArticlesCardComponent,
+    ArticlesPagingComponent,
+    ArticlesListItemComponent,
+    ArticleDetailsCardComponent,
+    ProductItemComponent,
+    CommentsComponent,
+    SiteMapComponent,
+    FileUploaderComponent,
+    DropDownComponent,
+    DashboardMenuComponent
   ],
-  declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
-    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
-    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent,
-    DropDownComponent, DashboardMenuComponent],
+  declarations: [
+    FooterComponent,
+    HeaderComponent,
+    NotfoundComponent,
+    ArticlesCardComponent,
+    ArticlesPagingComponent,
+    ArticlesListItemComponent,
+    ArticleDetailsCardComponent,
+    ProductItemComponent,
+    CommentsComponent,
+    SiteMapComponent,
+    FileUploaderComponent,
+    DropDownComponent,
+    DashboardMenuComponent,
+    ProductsListComponent,
+    ModalComponent
+  ],
   providers: [
     UtilitiesService,
     ArticleCategoriesResolver,
     CategoriesService,
-    ProductsCategoriesResolver, 
+    ProductsCategoriesResolver,
     ProductReviewService
+    
   ]
 })
 export class SharedModule { }

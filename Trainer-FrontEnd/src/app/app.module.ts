@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule, NgbPaginationModule, NgbAlertModule, NgbRating } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbPaginationModule, NgbAlertModule, NgbRating, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClient } from '@angular/common/http';
@@ -21,6 +21,7 @@ import { AuthService } from './auth/services/auth.service';
 import { ItemReviewResolver } from './admin-tools/resolvers/item-review.resolver';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { AdminToolsModule } from './admin-tools/admin-tools.module';
+import { NgbUTCStringAdapter } from './shared/services/ngb-string.adapter';
 
 export function CreateTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -59,7 +60,8 @@ export function CreateTranslateLoader(http: HttpClient) {
   providers: [
     AuthService,
     ItemReviewResolver,
-    AuthGuard
+    AuthGuard,
+    { provide: NgbDateAdapter, useClass: NgbUTCStringAdapter }
   ],
 
   bootstrap: [AppComponent]

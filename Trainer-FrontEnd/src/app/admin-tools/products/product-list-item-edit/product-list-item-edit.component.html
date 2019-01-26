@@ -1,0 +1,105 @@
+<div class="modal-body">
+    <form class="form-inline-nowrap" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div class="modal-img">
+            <div class="img-wrapper" [ngClass]="{ 'is-invalid': submitted && f.profilePicture.errors,'is-valid': submitted && !f.profilePicture.errors}">
+                <!-- <div class="edit-image" (click)="open(content,article,i)">
+                    <i class="fa fa-edit"></i>
+                </div> -->
+                <img [src]="imageSrc || '/assets/images/placeholder_small.png'">
+            </div>
+            <br />
+            <!-- <input type="file" (change)="readURL($event);" class="form-control-file" formControlName="profilePicture"> -->
+            <app-file-uploader formControlName=profilePicture (change)="readURL($event);" [classList]="'form-control-file'"></app-file-uploader>
+
+        </div>
+        <div class="product-description">
+            <div class="desc-item">
+                <div class="form-group-inline">
+                    <label class="desc-entity">الفئة</label>
+                    &nbsp;
+                    <select class="form-control" [value]=product.categoryId formControlName="categoryId" [ngClass]="{ 'is-invalid': submitted && f.categoryId.errors,'is-valid': submitted && !f.categoryId.errors}">
+                        <option *ngFor="let category of categories" [value]="category.id">
+                            {{category.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="desc-item">
+                <div class="form-group-inline">
+                    <label class="desc-entity">النوع</label>
+                    <div class="form-control-group" [ngClass]="{ 'is-invalid': submitted && f.isSpecial.errors,'is-valid': submitted && !f.isSpecial.errors}">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input-rtl" type="radio" name="isSpecial" id="isSpecialTrue"
+                                formControlName="isSpecial" [value]="true">
+                            <label class="form-check-label" for="isSpecialTrue">مميز</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input-rtl" type="radio" name="isSpecial" id="isSpecialFalse"
+                                formControlName="isSpecial" [value]="false">
+                            <label class="form-check-label" for="isSpecialFalse">عادي</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="desc-item">
+                <div class="form-group-inline">
+                    <label class="desc-entity">السعر</label>
+                    &nbsp;
+                    <input type="text" class="form-control" [value]="product.price" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f.price.errors,'is-valid': submitted && !f.price.errors}">
+                </div>
+            </div>
+            <div class="desc-item">
+                <div class="form-group-inline">
+                    <label class="desc-entity">الإسم</label>
+                    &nbsp;
+                    <input type="text" class="form-control" [value]="product.name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors,'is-valid': submitted && !f.name.errors}">
+                </div>
+            </div>
+            <div class="desc-item">
+                <div class="form-group-inline">
+                    <label class="desc-entity">الوصف</label>
+                    &nbsp;
+                    <input type="text" class="form-control" [value]="product.description" formControlName="description"
+                        [ngClass]="{ 'is-invalid': submitted && f.description.errors,'is-valid': submitted && !f.description.errors}">
+                </div>
+            </div>
+            <div class="desc-item">
+                <!-- <div class="form-group-inline">
+                    <label class="desc-entity">تاريخ الإنتهاء</label>
+                    &nbsp;
+                    <input type="date" class="form-control" [value]="product.expDate" formControlName="expDate">
+                </div> -->
+                <div class="form-group-inline">
+                    <label class="desc-entity">تاريخ الإنتهاء</label>
+                    &nbsp;
+                    <div class="input-group-nowrap">
+                        <input class="form-control" name="dp" [(ngModel)]="product.expDate" ngbDatepicker #d="ngbDatepicker"
+                            formControlName="expDate" readonly (click)="d.toggle()" [ngClass]="{ 'is-invalid': submitted && f.expDate.errors,'is-valid': submitted && !f.expDate.errors}">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                                <i class="fa fa-calendar"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="desc-item">
+                <div>
+                    <span class="desc-entity">البائع</span>
+                    &nbsp;
+                    :
+                    &nbsp;
+                    {{product.seller.name}}
+                </div>
+            </div>
+            <div class="desc-item">
+                <div>
+                    <span class="desc-entity">للشــراء</span>
+                    &nbsp;
+                    :
+                    &nbsp;
+                    {{product.seller.phoneNumber}}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

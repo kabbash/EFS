@@ -27,6 +27,12 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_categoriesManager.GetAll());
         }
 
+
+        [HttpGet("getLeafCategories")]
+        public ActionResult GetLeafCategories()
+        {
+            return GetStatusCodeResult(_categoriesManager.GetLeafCategories());
+        }
         // GET: api/ProductsCategories/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)

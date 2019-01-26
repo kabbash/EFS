@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Attachments.Core.Interfaces;
+using Attachments.Core.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Products.Core.Interfaces;
 using Products.Core.Models;
 using Rating.Core.Interfaces;
 using Rating.Core.Models;
+using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Models;
 
 namespace Trainer.Controllers
@@ -13,6 +17,7 @@ namespace Trainer.Controllers
     {
         private readonly IProductsManager _productsManager;
         private readonly IRatingManager<Shared.Core.Models.Products> _ratingManager;
+
         public ProductsApiController(IProductsManager productsManager, IRatingManager<Shared.Core.Models.Products> ratingManager)
         {
             _productsManager = productsManager;
@@ -69,13 +74,13 @@ namespace Trainer.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] ProductsDto productsDto)
+        public ActionResult Post([FromForm] ProductsDto productsDto)
         {
             return GetStatusCodeResult(_productsManager.Insert(productsDto));
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] ProductsDto productsDto)
+        public ActionResult Put(int id, [FromForm] ProductsDto productsDto)
         {
             return GetStatusCodeResult(_productsManager.Update(productsDto, id));
         }
@@ -111,9 +116,11 @@ namespace Trainer.Controllers
 
         [HttpPost]
         [Route("Reject")]
-        public ActionResult Reject([FromBody]baseDto model)
+        //[Authorize(Roles = "Admin")]
+        public ActionResult Reject([FromBody]RejectDto model)
         {
-            return GetStatusCodeResult(_productsManager.Delete(model.Id));
+            model.UserId = User.Identity.Name;
+            return GetStatusCodeResult(_productsManager.Reject(model));
         }
 
         #endregion

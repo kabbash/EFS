@@ -1,0 +1,33 @@
+<div class="row" style="margin-top:50px;">
+  <div class="col-sm-5  form-group">
+    <label for="productsStatuses"> اختر الحاله </label>
+    <select id="productsStatuses" [(ngModel)]="productsStatuses.selectedValue" class="form-control">
+      <option *ngFor="let item of productsStatuses.items" [ngValue]="item.value">
+        {{item.text}}
+      </option>
+    </select>
+  </div>
+  <div class="col-sm-5 form-group">
+    <label for="searchTxt"> بحث بالاسم</label>
+    <input id="searchTxt" type="text" [(ngModel)]="searchTxt" class="form-control">
+  </div>
+  <div class="col-sm-2 form-group">
+    <button type="button" (click)="reloadItems()" class="btn btn-primary inline-btn form-control">بحـث</button>
+  </div>
+</div>
+<div class="row">
+  <div>
+    <button class="btn btn-primary" (click)="addProduct()"> اضافة منتج جديد</button>
+  </div>
+</div>
+<br/>
+<div class="row">
+  <div *ngFor="let product of productsList">
+    <app-product-item (click)="openProductModal(product)" [price]="product.price + ' EGP'" [currentRate]="product.rate"
+      [cardName]="product.name" [cardImage]="'url(' + baseurl + product.profilePicture + ')'"></app-product-item>
+  </div>
+</div>
+<div class="pagination-container" *ngIf="pagerData.pagesCount > 1">
+  <ngb-pagination [collectionSize]="pagerData.itmesCount" [pageSize]="pagerData.pageSize" [(page)]="pagerData.currentPage"
+    [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="reloadItems()"></ngb-pagination>
+</div>

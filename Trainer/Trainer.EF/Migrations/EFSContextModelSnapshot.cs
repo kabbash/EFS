@@ -15,7 +15,7 @@ namespace Trainer.EF.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -95,8 +95,8 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
 
                     b.HasData(
-                        new { Id = 1, CreatedAt = new DateTime(2019, 1, 13, 14, 25, 9, 630, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
-                        new { Id = 2, CreatedAt = new DateTime(2019, 1, 13, 14, 25, 9, 663, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
+                        new { Id = 1, CreatedAt = new DateTime(2019, 1, 19, 22, 9, 59, 527, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
+                        new { Id = 2, CreatedAt = new DateTime(2019, 1, 19, 22, 9, 59, 530, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
                     );
                 });
 
@@ -137,10 +137,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "46abd3c0-815b-4bdb-af31-f80671832df2", Name = "Client" },
-                        new { Id = "363965f3-002e-4b7e-ba29-35e6ff05e365", Name = "RegularUser" },
-                        new { Id = "7431fd78-5e03-47f3-95ae-2ddb18f065a7", Name = "Trainer" },
-                        new { Id = "655bd8e2-4fc4-42cd-9aa3-5d6b80034612", Name = "ArticleWriter" }
+                        new { Id = "4f288805-d790-42e4-9fe4-1d88c901f5fc", Name = "Client" },
+                        new { Id = "6a354086-d105-48ef-976e-587b8711e475", Name = "RegularUser" },
+                        new { Id = "de3c874a-ea59-4a51-bf5e-f6db18ebd398", Name = "Trainer" },
+                        new { Id = "52338c88-8e26-4dc6-9890-bc0e13df06ba", Name = "ArticleWriter" }
                     );
                 });
 
@@ -638,7 +638,7 @@ namespace Trainer.EF.Migrations
                     b.Property<DateTime?>("ExpDate")
                         .HasColumnType("date");
 
-                    b.Property<bool>("IsActive");
+                    b.Property<bool?>("IsActive");
 
                     b.Property<bool>("IsSpecial");
 
@@ -649,14 +649,13 @@ namespace Trainer.EF.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(10, 2)");
 
-                    b.Property<DateTime?>("ProdDate")
-                        .HasColumnType("date");
-
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
 
                     b.Property<decimal>("Rate")
                         .HasColumnType("decimal(10,2)");
+
+                    b.Property<string>("RejectReason");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime");

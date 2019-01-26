@@ -13,7 +13,6 @@ export class AdminProductsListResolver implements Resolve<Observable<ResultMessa
     constructor(private repositoryService: RepositoryService) {
     }
     resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<PagedResult<productListItemDto>>> {
-        debugger;
-        return this.repositoryService.getData<PagedResult<productListItemDto>>('products/getFilteredData?pageNo=1&pageSize=10&searchText=&status=0');
+        return this.repositoryService.getData<PagedResult<productListItemDto>>('products/getFilteredData?pageNo=1&pageSize=6&searchText=&status=0');
     }
 }

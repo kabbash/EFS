@@ -67,37 +67,40 @@ namespace Products.Core.Services
             {
                 var productFolderName = Guid.NewGuid().ToString();
                 var newProduct = newProductDto.Adapt<Shared.Core.Models.Products>();
+                newProduct.IsActive = null;
                 newProduct.CreatedAt = DateTime.Now;
                 newProduct.CreatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
                 newProduct.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
                 {
                     attachmentType = AttachmentTypesEnum.Products,
-                    CanChangeName = false,
-                    File = newProductDto.ProfilePictureFile,
-                    SubFolderName = productFolderName,
+                    CanChangeName = true,
+                    File = newProductDto.ProfilePictureFile
                 });
-
-                foreach (var image in newProductDto.ProductsImagesFiles)
+                if (newProductDto.ProductsImagesFiles != null)
                 {
-                    newProduct.ProductsImages.Add(new Shared.Core.Models.ProductsImages()
+                    foreach (var image in newProductDto.ProductsImagesFiles)
                     {
-                        Name = image.Name,
-                        ProductId = newProduct.Id,
-                        Path = _attachmentsManager.Save(new SavedFileDto
+                        newProduct.ProductsImages.Add(new Shared.Core.Models.ProductsImages()
                         {
-                            attachmentType = AttachmentTypesEnum.Products,
-                            CanChangeName = false,
-                            File = image,
-                            SubFolderName = productFolderName
-                        })
-                    });
+                            Name = image.Name,
+                            ProductId = newProduct.Id,
+                            Path = _attachmentsManager.Save(new SavedFileDto
+                            {
+                                attachmentType = AttachmentTypesEnum.Products,
+                                CanChangeName = false,
+                                File = image,
+                                SubFolderName = productFolderName
+                            })
+                        });
+                    }
                 }
 
                 _unitOfWork.ProductsRepository.Insert(newProduct);
                 _unitOfWork.Commit();
                 return new ResultMessage
                 {
-                    Status = HttpStatusCode.OK
+                    Status = HttpStatusCode.OK,
+                    Data = _unitOfWork.ProductsRepository.GetById(newProduct.Id).Adapt<ProductsDto>()
                 };
             }
             catch (Exception ex)
@@ -153,15 +156,33 @@ namespace Products.Core.Services
                 if (oldProduct != null)
                 {
                     oldProduct.Name = product.Name;
-                    oldProduct.ProfilePicture = product.ProfilePicture;
+                    if (product.ProfilePictureFile != null)
+                    {
+                        oldProduct.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
+                        {
+                            attachmentType = AttachmentTypesEnum.Products,
+                            CanChangeName = true,
+                            File = product.ProfilePictureFile
+                        });
+                    }
+                    //oldProduct.ProfilePicture = product.ProfilePicture;
+                    oldProduct.IsActive = product.IsActive = null;
+                    oldProduct.IsSpecial = product.IsSpecial;
+                    oldProduct.Price = product.Price;
+                    oldProduct.ExpDate = product.ExpDate;
+                    oldProduct.Description = product.Description;
+                    oldProduct.CategoryId = product.CategoryId;
+
                     oldProduct.UpdatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
                     oldProduct.UpdatedAt = DateTime.Now;
 
                     _unitOfWork.ProductsRepository.Update(oldProduct);
                     _unitOfWork.Commit();
+
                     return new ResultMessage
                     {
-                        Status = HttpStatusCode.OK
+                        Status = HttpStatusCode.OK,
+                        Data = oldProduct.Adapt<ProductsDto>()
                     };
                 }
                 else
@@ -251,6 +272,42 @@ namespace Products.Core.Services
                 product.UpdatedAt = DateTime.Now;
                 product.IsActive = true;
                 //articleData.UpdatedBy = userId;
+                _unitOfWork.ProductsRepository.Update(product);
+                _unitOfWork.Commit();
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.InternalServerError
+                };
+
+            }
+        }
+
+        public ResultMessage Reject(RejectDto rejectModel)
+        {
+
+            try
+            {
+                var product = _unitOfWork.ProductsRepository.GetById(rejectModel.Id);
+                if (product == null)
+                {
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.BadRequest,
+                    };
+                }
+
+                product.UpdatedAt = DateTime.Now;
+                product.IsActive = false;
+                product.RejectReason = rejectModel.RejectReason;
+                product.UpdatedBy = rejectModel.UserId;
+
                 _unitOfWork.ProductsRepository.Update(product);
                 _unitOfWork.Commit();
                 return new ResultMessage

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl } from '@angular/forms';
 import { forwardRef } from '@angular/core';
 
 export function createFileUploaderValidator(required: boolean) {
@@ -28,7 +28,7 @@ export function createFileUploaderValidator(required: boolean) {
     }
   ]
 })
-export class FileUploaderComponent implements OnInit, ControlValueAccessor  {
+export class FileUploaderComponent implements OnInit, ControlValueAccessor {
 
   onTouched: () => void;
   onChanged: (_: any) => void;
@@ -36,6 +36,7 @@ export class FileUploaderComponent implements OnInit, ControlValueAccessor  {
   isDisabled = false;
   @Input() multiFiles = false;
   @Input() isRequired = false;
+  @Input() classList: string;
   writeValue(obj: any): void {
     this.file = obj;
   }
@@ -61,6 +62,7 @@ export class FileUploaderComponent implements OnInit, ControlValueAccessor  {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

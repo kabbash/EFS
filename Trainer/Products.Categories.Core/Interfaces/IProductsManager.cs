@@ -12,5 +12,6 @@ namespace Products.Core.Interfaces
         ResultMessage Update(ProductsDto product, int id);
         ResultMessage Delete(int id);
         ResultMessage Approve(int id);
+        ResultMessage Reject(RejectDto rejectModel);
     }
 }

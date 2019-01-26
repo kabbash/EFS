@@ -5,9 +5,9 @@ import { productListItemDto } from '../../shared/models/product-list-item-dto';
 import { environment } from '../../../environments/environment';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { config } from '../../config/pages-config';
-import { ModalComponent } from '../modal/modal.component';
 import { ProductReviewService } from '../../admin-tools/services/product-review.service';
 import { PagerDto } from '../../shared/models/pager.dto';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-all-products',

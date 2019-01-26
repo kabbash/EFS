@@ -15,10 +15,13 @@ namespace Products.Core.Extensions
                 case ProductStatusEnum.All:
                     break;
                 case ProductStatusEnum.Active:
-                    products = products.Where(c => c.IsActive);
+                    products = products.Where(c => c.IsActive.HasValue && c.IsActive.Value);
                     break;
                 case ProductStatusEnum.Pending:
-                    products = products.Where(c => !c.IsActive);
+                    products = products.Where(c => !c.IsActive.HasValue);
+                    break;
+                case ProductStatusEnum.Rejected:
+                    products = products.Where(c => c.IsActive.HasValue && !c.IsActive.Value);
                     break;
                 default:
                     break;

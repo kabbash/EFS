@@ -6,11 +6,12 @@ import { ddlDto } from '../../../shared/models/ddl-dto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminProductsService } from '../../services/admin.products.service';
 import { ProductsFilter } from '../../../shared/models/products-filter';
+import { PagerDto } from 'src/app/shared/models/pager.dto';
 
 @Component({
   selector: 'app-admin-products-list',
-  templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.css']
+  templateUrl: './admin-products-list.component.html',
+  styleUrls: ['./admin-products-list.component.css']
 })
 export class AdminProductsListComponent implements OnInit {
   productsList: productListItemDto[];
@@ -18,50 +19,50 @@ export class AdminProductsListComponent implements OnInit {
   productsStatuses = new ddlDto();
   searchTxt: string = "";
   selectedProduct: productListItemDto;
+  pagerData: PagerDto;
+  productsFilter = new ProductsFilter();
 
   constructor(private route: ActivatedRoute,
     private router: Router, private service: AdminProductsService) { }
 
   ngOnInit() {
     this.route.data.subscribe(result => {
+      this.pagerData = result.productsList.data;
+      // this.pagerData.itmesCount = 6;
       this.productsList = result.productsList.data.results;
     });
 
     this.productsStatuses.items = [{ value: 0, text: "الكل" }
       , { value: 1, text: "النشط" }
       , { value: 2, text: "المتوقف" }
+      , { value: 3, text: "المرفوض" }
     ]
     this.productsStatuses.selectedValue = 1;
+    this.productsFilter.pageNo = 1;
+    this.productsFilter.pageSize = 6;
   }
 
-  // approve(productId){
-  //   if(confirm("هل انت متأكد من الموافقه على هذا المقال ؟ ")){      
-  //     this.service.approve(productId).subscribe(c=> { console.log(c); alert('approved'); });
-  //   }
-  // }
-
-  //   reject(productId){
-  //     if(confirm("هل انت متأكد من رفض هذا المقال ؟ ")){
-  //       this.service.reject(productId).subscribe(c=> { console.log(c); alert('rejected'); });
-  //     }
-  // }
+  getFilter() {
+    this.productsFilter.searchText = this.searchTxt;
+    this.productsFilter.status = this.productsStatuses.selectedValue;
+    this.productsFilter.pageNo = this.pagerData.currentPage;
+    this.productsFilter.pageSize = this.pagerData.pageSize;
+  }
 
   reloadItems() {
-    debugger;
-    let productFilter: ProductsFilter = {
-      pageNo: 1,
-      pageSize: 10,
-      searchText: this.searchTxt,
-      status: this.productsStatuses.selectedValue
-    };
-
-    let filter = `?pageNo=${productFilter.pageNo}&pageSize=${productFilter.pageSize}&searchText=${productFilter.searchText}&status=${productFilter.status}`;
+    this.getFilter();
+    let filter = `?pageNo=${this.productsFilter.pageNo}&pageSize=${this.productsFilter.pageSize}&searchText=${this.productsFilter.searchText}&status=${this.productsFilter.status}`;
     this.service.getFilteredProducts(filter).subscribe(result => {
       this.productsList = result.data.results;
     });
   }
 
   openProductModal(product) {
-    this.selectedProduct = product;
+    this.router.navigate([config.admin.manageProducts.route, product.id]);
   }
+
+  addProduct() {
+    this.router.navigate([config.admin.manageProducts.route, 0]);
+  }
+
 }

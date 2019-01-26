@@ -8,6 +8,7 @@ namespace Products.Core.Models
     {
         All = 0,
         Active,
-        Pending
+        Pending,
+        Rejected
     }
 }

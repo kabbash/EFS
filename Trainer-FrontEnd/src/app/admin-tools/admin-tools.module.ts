@@ -14,9 +14,15 @@ import { AddItemForReviewComponent } from './add-item-for-review/add-item-for-re
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
 import { ArticleDetailsEditmodeComponent } from '../shared/article-details-editmode/article-details-editmode.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-import { AdminProductsListComponent } from './products/products-list/products-list.component';
-import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdminProductsListComponent } from './products/admin-products-list/admin-products-list.component';
+import { NgbModule, NgbPaginationModule, NgbAlertModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { AdminProductsListResolver } from './resolvers/products-list-resolver';
+import { ManageProductsComponent } from './products/manage-products/manage-products.component';
+import { ProductListItemComponent } from './products/product-list-item/product-list-item.component';
+import { ProductResolver } from './resolvers/product.resolver';
+import { ProductListItemEditComponent } from './products/product-list-item-edit/product-list-item-edit.component';
+import { NgbUTCStringAdapter } from '../shared/services/ngb-string.adapter';
+import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
 
 @NgModule({
   imports: [
@@ -41,12 +47,19 @@ import { AdminProductsListResolver } from './resolvers/products-list-resolver';
       AddItemForReviewComponent,
       ArticlesListComponent,
       ArticleDetailsEditmodeComponent,
-      AdminProductsListComponent
+      AdminProductsListComponent,
+      ManageProductsComponent,
+      ProductListItemComponent,
+      ProductListItemEditComponent
     ],
 
   providers: [
     AdminArticlesListResolver,
-    AdminProductsListResolver
+    AdminProductsListResolver,
+    ProductResolver,
+    LeafProductCategoriesResolver,
+    { provide: NgbDateAdapter, useClass: NgbUTCStringAdapter }
+
   ]
 })
 export class AdminToolsModule { }

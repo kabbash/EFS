@@ -159,3 +159,7 @@ li.page-item.active .page-link{
   align-items: center;
   padding: 18px 0;
 }
+
+.dropdown-menu{
+  direction: ltr;
+}

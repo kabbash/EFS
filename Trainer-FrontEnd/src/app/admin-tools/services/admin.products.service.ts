@@ -10,19 +10,27 @@ export class AdminProductsService {
 
   constructor(private service: RepositoryService) { }
 
-  approve(productId) {
+  approve(productId: Number) {
     return this.service.post("products/approve", { id: productId });
   }
 
-  reject(productId) {
-    return this.service.post("products/reject", { id: productId });
+  reject(productId: Number, rejectReason: string) {
+    return this.service.post("products/reject", { id: productId, rejectReason: rejectReason });
   }
 
-  delete(productId) {
+  delete(productId: Number) {
     return this.service.delete("products/" + productId);
   }
 
-  getFilteredProducts(filterUrl) {
+  getFilteredProducts(filterUrl: string) {
     return this.service.getData<PagedResult<productListItemDto>>("products/getFilteredData" + filterUrl);
+  }
+
+  update(productId: number, product: FormData): any {
+    return this.service.update("products/" + productId, product);
+  }
+
+  create(product: FormData): any {
+    return this.service.create("products/" , product);
   }
 }

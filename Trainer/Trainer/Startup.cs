@@ -171,6 +171,8 @@ namespace Trainer
         {
             TypeAdapterConfig<ArticleAddDto, Shared.Core.Models.Articles>.NewConfig()
                                                    .Ignore(dest => dest.Id);
+            TypeAdapterConfig<Shared.Core.Models.Products, ProductsDto>.NewConfig()
+                                                   .Map(dest => dest.CategoryName, src => (src.Category ?? new ProductsCategories()).Name);
         }
         #endregion
     }

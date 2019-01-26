@@ -132,7 +132,7 @@ export let config = {
       },
       'articleslist': {
         'name': 'articleslist',
-        'route': '/admin/articlesList'
+        'route': '/admin/articleslist'
       },
       'manageProductsCategories': {
         'name': 'manageProductsCategories',
@@ -147,8 +147,12 @@ export let config = {
           'route': '/admin/itemReviewList'
       },
       'manageProducts': {
-        'name': 'manageProducts',
+        'name': 'manageProducts/:productId',
         'route': '/admin/manageProducts'
+      },
+      'ProductsList': {
+        'name': 'ProductList',
+        'route': '/admin/ProductList'
       }
     }
 };

@@ -1,16 +1,19 @@
-export class productListItemDto{
+export class productListItemDto {
 
-    id: Number;
-    name: string;
-    profilePicture: string;
-    description: string;
-    expDate: string;
-    prodDate: string;
-    price: number;
-    categoryId: number;
-    rate: number;
-    seller: Seller;
-    reviews: any;
+  id: number = 0;
+  name: string = '';
+  profilePicture: string = null;
+  profilePictureFile: File;
+  description: string = '';
+  expDate: string = '';
+  price: number = null;
+  categoryId: number = null;
+  categoryName: string = '';
+  rate: number = 0;
+  seller: Seller = new Seller();
+  reviews: any;
+  isSpecial: boolean = null;
+  isActive: boolean = null;
 }
 export class Seller {
   name: string;

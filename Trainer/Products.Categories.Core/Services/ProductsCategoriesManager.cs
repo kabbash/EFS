@@ -175,7 +175,7 @@ namespace Products.Core.Services
                 var category = _unitOfWork.ProductsCategoriesRepository.GetById(id);
                 if (category.Subcategories.Count > 0)
                 {
-                    foreach(var subCat in category.Subcategories)
+                    foreach (var subCat in category.Subcategories)
                     {
                         _unitOfWork.ProductsCategoriesRepository.Delete(subCat.Id);
                     }
@@ -193,6 +193,30 @@ namespace Products.Core.Services
                 {
                     Status = HttpStatusCode.InternalServerError,
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesDeleteError
+                };
+            }
+        }
+
+        public ResultMessage GetLeafCategories()
+        {
+            try
+            {
+                IEnumerable<ProductsCategoryDto> result = new List<ProductsCategoryDto>();
+                result = _unitOfWork.ProductsCategoriesRepository.Get(c => c.Subcategories == null || c.Subcategories.Count == 0).Adapt(result);
+
+                return new ResultMessage()
+                {
+                    Data = result,
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                //log ex
+                return new ResultMessage()
+                {
+                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesGetAllError,
+                    Status = HttpStatusCode.InternalServerError
                 };
             }
         }
