@@ -15,6 +15,7 @@ import { ArticlesListComponent } from './articles/articles-list/articles-list.co
 import { ArticleDetailsEditmodeComponent } from '../shared/article-details-editmode/article-details-editmode.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdminArticlesService } from './services/admin.articles.services';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
 
   providers: [
-    AdminArticlesListResolver
+    AdminArticlesListResolver,
+    AdminArticlesService
   ]
 })
 export class AdminToolsModule { }

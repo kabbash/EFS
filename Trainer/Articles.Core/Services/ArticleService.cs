@@ -239,18 +239,18 @@ namespace Articles.Core.Services
                 };
 
                 if (sliderDto.Items.Count > 0)
-                    article.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto);
-
-                _unitOfWork.ArticlesRepository.Insert(articleEntity);
-                _unitOfWork.Commit();
-
-                _sliderManager.Add(new SliderDto
+                    articleEntity.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto);
+                var sliderData = new SliderDto
                 {
                     attachmentType = AttachmentTypesEnum.Articles,
                     Items = article.Images,
-                    ParentId = articleEntity.Id,
                     SubFolderName = articleFolderName
-                });
+                };
+                articleEntity.Images = null;
+                _unitOfWork.ArticlesRepository.Insert(articleEntity);
+                _unitOfWork.Commit();
+                sliderData.ParentId = articleEntity.Id;
+                _sliderManager.Add(sliderData);
 
                 return new ResultMessage
                 {
@@ -299,25 +299,26 @@ namespace Articles.Core.Services
                 var sliderDto = new SliderDto
                 {
                     attachmentType = AttachmentTypesEnum.Articles,
-                    Items = article.Images,
+                    Items = article.UpdatedImages,
                     SubFolderName = articleFolderName
                 };
 
                 //check profile picture
                 if (sliderDto.Items.Count > 0)
-                    article.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto) ?? (article.Images.Any(c => !c.IsDeleted && c.IsProfilePicture) ? null : article.ProfilePicture);
+                    articleData.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto) ?? (article.UpdatedImages.Any(c => !c.IsDeleted && c.IsProfilePicture) ? null : article.ProfilePicture);
 
+                var slideData = new SliderDto
+                {
+                    ParentId = articleData.Id,
+                    attachmentType = AttachmentTypesEnum.Articles,
+                    Items = article.UpdatedImages,
+                    SubFolderName = articleFolderName
+                };
                 _unitOfWork.ArticlesRepository.Update(articleData);
                 _unitOfWork.Commit();
 
                 // update files                
-                _sliderManager.Update(new SliderDto
-                {
-                    ParentId = articleData.Id,
-                    attachmentType = AttachmentTypesEnum.Articles,
-                    Items = article.Images,
-                    SubFolderName = articleFolderName
-                });
+                _sliderManager.Update(slideData);
 
                 return new ResultMessage
                 {

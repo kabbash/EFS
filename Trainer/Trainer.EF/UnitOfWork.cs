@@ -168,6 +168,20 @@ namespace Trainer.EF
             }
         }
 
+
+        private IRepository<ArticlesImages> _articleImagesRepo;
+        public IRepository<ArticlesImages> ArticleImagesRepository
+        {
+            get
+            {
+                if (_articleImagesRepo == null)
+                {
+                    _articleImagesRepo = new Repository<ArticlesImages>(_dbContext);
+                }
+                return _articleImagesRepo;
+            }
+        }
+
         #endregion
 
         public UnitOfWork(EFSContext context)

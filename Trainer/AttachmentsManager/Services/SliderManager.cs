@@ -1,5 +1,6 @@
 ﻿using Attachments.Core.Models;
 using Mapster;
+using Shared.Core.Models;
 using Shared.Core.Models.Base;
 using Shared.Core.Utilities.Models;
 using System;
@@ -65,8 +66,9 @@ namespace Attachments.Core.Interfaces
                             File = c.File,
                             SubFolderName = dto.ParentId.ToString()
                         });
-
-                    _repository.Insert(c.Adapt<T>());
+                    var Obj = c.Adapt<T>();
+                    Obj.ParentId = dto.ParentId;
+                    _repository.Insert(Obj);
                 });
 
                 //updated images
@@ -75,9 +77,9 @@ namespace Attachments.Core.Interfaces
                    var oldImage = _repository.GetById(c.Id);
                    if (oldImage != null)
                    {
-                       var updatedObj = c.Adapt<T>();
-                       updatedObj.ParentId = dto.ParentId;
-                       _repository.Update(updatedObj);
+                       c.Adapt(oldImage, typeof(SliderItemDto), typeof(ArticlesImages));
+                       oldImage.ParentId = dto.ParentId;
+                       _repository.Update(oldImage);
                        _unitOfWork.Commit();
                    }
                });
@@ -131,15 +133,17 @@ namespace Attachments.Core.Interfaces
                 if (!c.IsDeleted && c.IsProfilePicture)
                 {
                     if (c.IsNew)
-                        return _attachmentsManager.Save(new SavedFileDto
+                    {
+                        c.Path = _attachmentsManager.Save(new SavedFileDto
                         {
                             attachmentType = dto.attachmentType,
                             CanChangeName = true,
                             File = c.File,
                             SubFolderName = dto.SubFolderName
-                        });              
-                    else
-                        return c.Path;
+                        });
+                    }
+                    return c.Path;
+              
                 }
             }
             return null;

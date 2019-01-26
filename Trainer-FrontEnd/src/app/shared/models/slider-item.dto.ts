@@ -1,12 +1,11 @@
 export class SliderItemDto {
   public id: number;
-  public iFormFile: any;
+  public file: any;
   public path: string;
   public title: string;
   public description: string;
   public isNew: boolean;
-  public isUpdated: boolean;
+  public isDataUpdated: boolean;
   public isDeleted: boolean;
   public isProfilePicture: boolean;
-  public isProfilePictureUpdated: boolean;
 }

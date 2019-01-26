@@ -12,8 +12,8 @@ import { UtilitiesService } from '../../../shared/services/utilities.service';
 @Component({
   selector: 'app-manage-articles',
   templateUrl: './manage-articles.component.html',
-  styleUrls: ['./manage-articles.component.css'],
-  providers: [AdminArticlesService]
+  styleUrls: ['./manage-articles.component.css']
+  
 })
 export class ManageArticlesComponent implements OnInit {
   articleId: number;
@@ -28,7 +28,8 @@ export class ManageArticlesComponent implements OnInit {
     private router: Router,
      private appService: AppService,
       private service: AdminArticlesService,
-      private util: UtilitiesService) {
+      private util: UtilitiesService,
+    private articleService: AdminArticlesService) {
     this.route.params.subscribe(params => {
       this.articleId = params['articleId'];
     });
@@ -78,9 +79,12 @@ export class ManageArticlesComponent implements OnInit {
     if (!this.articleDetailsEditmodeComponent.articleForm.valid) {
       return false;
     }
-    // const formData = new FormData();
-    // this.util.appendFormData(formData, this.articleDetailsEditmodeComponent.modifiedArticle);
-    this.service.update(this.articleId, this.prepareData(this.articleDetailsEditmodeComponent.modifiedArticle)).subscribe(
+    this.articleService.setArticleProfilePic(this.articleDetailsEditmodeComponent.modifiedArticle, false);        
+    const articleToUpdate = Object.assign({}, this.articleDetailsEditmodeComponent.modifiedArticle)
+    delete articleToUpdate.images;
+    const formData = new FormData();
+    this.util.appendFormData(formData, articleToUpdate);
+    this.service.update(this.articleId, formData).subscribe(
       () => {
         alert('تم تعديل المقال بنجاح');
         this.enableViewMode();
@@ -97,8 +101,12 @@ export class ManageArticlesComponent implements OnInit {
     if (!this.articleDetailsEditmodeComponent.articleForm.valid) {
       return false;
     }
-
-    this.service.add(this.prepareData(this.articleDetailsEditmodeComponent.modifiedArticle)).subscribe(
+    this.articleDetailsEditmodeComponent.modifiedArticle.images = 
+      this.articleDetailsEditmodeComponent.modifiedArticle.updatedImages;
+    this.articleService.setArticleProfilePic(this.articleDetailsEditmodeComponent.modifiedArticle, true);    
+    const formData = new FormData();
+    this.util.appendFormData(formData, this.articleDetailsEditmodeComponent.modifiedArticle)
+    this.service.add(formData).subscribe(
       () => {
         alert('تم اضافة المقال بنجاح');
         this.returnToBase();
@@ -111,34 +119,7 @@ export class ManageArticlesComponent implements OnInit {
   // end main methods
 
 
-  // help methods
 
-  prepareData(articleData: ArticleDetialsDto) {
-    const formData = new FormData();
-    formData.append('id', articleData.id ? articleData.id.toString() : '0');
-    formData.append('name', articleData.name);
-    formData.append('description', articleData.description);
-    formData.append('categoryId', articleData.categoryId.toString());
-    formData.append('profilePicture', articleData.profilePicture || '');
-    articleData.updatedImages.forEach((image, index) => {
-      formData.append(`images[${index}]]['id']`, image.id ? image.id.toString() : '');
-      formData.append(`images[${index}]]['isDeleted']`, image.isDeleted ? image.isDeleted.toString() : '');
-      formData.append(`images[${index}]]['isNew']`, image.isNew ? image.isNew.toString() : '');
-      formData.append(`images[${index}]]['isUpdated']`, image.isUpdated ? image.isUpdated.toString() : '');
-      formData.append(`images[${index}]]['path']`, image.path ? image.path.toString() : '');
-      formData.append(`images[${index}]]['title']`, image.title ? image.title.toString() : '');
-      formData.append(`images[${index}]]['description']`, image.description ? image.description.toString() : '');
-      formData.append(`images[${index}]]['iFormFile']`, image.iFormFile);
-      formData.append(`images[${index}]]['isProfilePicture']`, image.isProfilePicture ? image.isProfilePicture.toString() : '');
-      formData.append(`images[${index}]]['isProfilePictureUpdated']`,
-        image.isProfilePictureUpdated ? image.isProfilePictureUpdated.toString() : '');
-
-    });
-    formData.append('images', JSON.stringify(articleData.updatedImages));
-    return formData;
-  }
-
-  // end help methods
 
   enableEditMode() {
     this.viewMode = false;
