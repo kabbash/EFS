@@ -183,3 +183,7 @@ li.page-item.active .page-link{
   height: 100%;
   background-color: rgba(0,0,0,.6);
 }
+
+.product-img-wrapper{
+  max-width: 175px;
+}
