@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { ArticleDetialsDto } from 'src/app/shared/models/article-details-dto';
 
 @Injectable()
 export class ArticlesService {
