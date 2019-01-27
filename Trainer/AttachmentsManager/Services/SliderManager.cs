@@ -35,7 +35,7 @@ namespace Attachments.Core.Interfaces
                                 attachmentType = dto.attachmentType,
                                 CanChangeName = true,
                                 File = c.File,
-                                SubFolderName = dto.ParentId.ToString()
+                                SubFolderName = dto.SubFolderName
                             });
 
                         var Obj = c.Adapt<T>();
@@ -64,7 +64,7 @@ namespace Attachments.Core.Interfaces
                             attachmentType = dto.attachmentType,
                             CanChangeName = true,
                             File = c.File,
-                            SubFolderName = dto.ParentId.ToString()
+                            SubFolderName = dto.SubFolderName
                         });
                     var Obj = c.Adapt<T>();
                     Obj.ParentId = dto.ParentId;
@@ -126,27 +126,33 @@ namespace Attachments.Core.Interfaces
                 throw ex;
             }
         }
-        public string GetProfilePicturePath(SliderDto dto)
+        public string GetProfilePicturePath(SliderDto dto, string oldPath=null)
         {
             foreach (var c in dto.Items)
             {
-                if (!c.IsDeleted && c.IsProfilePicture)
+                if (c.IsProfilePicture)
                 {
-                    if (c.IsNew)
+                    if (!c.IsDeleted)
                     {
-                        c.Path = _attachmentsManager.Save(new SavedFileDto
+                        if (c.IsNew)
                         {
-                            attachmentType = dto.attachmentType,
-                            CanChangeName = true,
-                            File = c.File,
-                            SubFolderName = dto.SubFolderName
-                        });
+                            c.Path = _attachmentsManager.Save(new SavedFileDto
+                            {
+                                attachmentType = dto.attachmentType,
+                                CanChangeName = true,
+                                File = c.File,
+                                SubFolderName = dto.SubFolderName
+                            });
+                        }
+                        return c.Path;
                     }
-                    return c.Path;
-              
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
-            return null;
+            return oldPath;
         }
     }
 }

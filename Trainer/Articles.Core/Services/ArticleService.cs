@@ -36,6 +36,11 @@ namespace Articles.Core.Services
         {
             try
             {
+
+                var articleFolder = _unitOfWork.ArticlesRepository.GetById(id).SubFolderName;
+                if (!string.IsNullOrEmpty(articleFolder))
+                    _attachmentsManager.DeleteFolder(articleFolder, AttachmentTypesEnum.Articles);
+
                 _unitOfWork.ArticlesRepository.Delete(id);
                 _unitOfWork.Commit();
                 return new ResultMessage
@@ -229,8 +234,8 @@ namespace Articles.Core.Services
                 articleEntity.CreatedAt = DateTime.Now;
                 articleEntity.CreatedBy = article.UserId;
 
-
                 var articleFolderName = Guid.NewGuid().ToString();
+
                 var sliderDto = new SliderDto
                 {
                     attachmentType = AttachmentTypesEnum.Articles,
@@ -240,17 +245,14 @@ namespace Articles.Core.Services
 
                 if (sliderDto.Items.Count > 0)
                     articleEntity.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto);
-                var sliderData = new SliderDto
-                {
-                    attachmentType = AttachmentTypesEnum.Articles,
-                    Items = article.Images,
-                    SubFolderName = articleFolderName
-                };
+
+                articleEntity.SubFolderName = articleFolderName;
                 articleEntity.Images = null;
                 _unitOfWork.ArticlesRepository.Insert(articleEntity);
                 _unitOfWork.Commit();
-                sliderData.ParentId = articleEntity.Id;
-                _sliderManager.Add(sliderData);
+
+                sliderDto.ParentId = articleEntity.Id;
+                _sliderManager.Add(sliderDto);
 
                 return new ResultMessage
                 {
@@ -291,34 +293,26 @@ namespace Articles.Core.Services
 
                 article.Adapt(articleData, typeof(ArticleAddDto), typeof(DBModels.Articles));
                 articleData.UpdatedAt = DateTime.Now;
-                articleData.UpdatedBy = article.UserId;
-
-                //for testing only to be changed to get original folder name
-                var articleFolderName = !string.IsNullOrEmpty(article.ProfilePicture) ? article.ProfilePicture.Split('/')[1] : Guid.NewGuid().ToString();
+                articleData.UpdatedBy = article.UserId;                
 
                 var sliderDto = new SliderDto
                 {
                     attachmentType = AttachmentTypesEnum.Articles,
-                    Items = article.UpdatedImages,
-                    SubFolderName = articleFolderName
+                    Items = article.UpdatedImages ?? new List<SliderItemDto>(),
+                    SubFolderName = articleData.SubFolderName,
+                    ParentId = articleId
                 };
 
                 //check profile picture
                 if (sliderDto.Items.Count > 0)
-                    articleData.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto) ?? (article.UpdatedImages.Any(c => !c.IsDeleted && c.IsProfilePicture) ? null : article.ProfilePicture);
+                    articleData.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto, article.ProfilePicture);
 
-                var slideData = new SliderDto
-                {
-                    ParentId = articleData.Id,
-                    attachmentType = AttachmentTypesEnum.Articles,
-                    Items = article.UpdatedImages,
-                    SubFolderName = articleFolderName
-                };
                 _unitOfWork.ArticlesRepository.Update(articleData);
                 _unitOfWork.Commit();
 
                 // update files                
-                _sliderManager.Update(slideData);
+                if (sliderDto.Items.Count > 0)
+                    _sliderManager.Update(sliderDto);
 
                 return new ResultMessage
                 {

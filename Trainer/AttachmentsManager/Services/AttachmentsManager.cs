@@ -136,5 +136,25 @@ namespace Attachments.Core.Services
                     throw new NotImplementedException();
             }
         }
+
+        public bool DeleteFolder(string folderName, AttachmentTypesEnum attachmentType)
+        {
+            try
+            {
+                folderName = Path.Combine(_hostingEnvironment.WebRootPath, GetAttachmentTypePath(attachmentType), folderName);
+
+                if (Directory.Exists(folderName))
+                {
+                    Directory.Delete(folderName, true);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return false;
+            }
+        }
     }
 }
