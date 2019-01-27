@@ -63,7 +63,7 @@ namespace Trainer.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin, ArticleWriter")]
+        //[Authorize(Roles = "Admin, ArticleWriter")]
 
         public ActionResult Put(int id, [FromForm] ArticleAddDto articleDto)
         {
