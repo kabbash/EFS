@@ -10,6 +10,7 @@
     flex-direction: column;
     overflow: hidden;
     cursor: pointer;
+    position: relative;
 }
 
 .card-img-container {
@@ -18,6 +19,7 @@
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
+    margin-top: 38px;
 
 }
 

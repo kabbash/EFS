@@ -187,3 +187,13 @@ li.page-item.active .page-link{
 .product-img-wrapper{
   max-width: 175px;
 }
+
+.edit-delete-card{
+  position: ABSOLUTE;
+  left: 0;
+  top: 0;
+}
+
+.edit-delete-card button.btn{
+  border-radius: 0; 
+}
