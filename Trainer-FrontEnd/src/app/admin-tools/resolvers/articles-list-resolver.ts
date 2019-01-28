@@ -13,6 +13,7 @@ export class AdminArticlesListResolver implements Resolve<Observable<ResultMessa
   constructor(private repositoryService: RepositoryService) {
   }
   resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<PagedResult<articleListItemDto>>> {
+    debugger;
     let pageSize = AppConfig.settings.pagination.articlesForAdmin;
     return this.repositoryService.getData<PagedResult<articleListItemDto>>('articles/getforadmin?pageNo=1&pageSize=' + pageSize);
   }
