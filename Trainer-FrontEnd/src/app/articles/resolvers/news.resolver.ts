@@ -5,6 +5,7 @@ import { articleListItemDto } from '../../shared/models/article-list-item-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
 import { PredefinedCategories } from '../../shared/models/predefined-categories.enum';
+import { AppConfig } from 'src/config/app.config';
 
 @Injectable()
 export class NewsResolver implements Resolve<Observable<ResultMessage<articleListItemDto[]>>> {
@@ -12,6 +13,7 @@ export class NewsResolver implements Resolve<Observable<ResultMessage<articleLis
   constructor(private repositoryService: RepositoryService) {
   }
     resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<articleListItemDto[]>> {
-      return  this.repositoryService.getData<articleListItemDto[]>('articles/getbycategory/'+ PredefinedCategories.news);
+      let pageSize = AppConfig.settings.pagination.articlesForAny;
+      return  this.repositoryService.getData<articleListItemDto[]>('articles?pageNo=1&pageSize='+ pageSize + '&categoryId='+ PredefinedCategories.news);
     }
 }

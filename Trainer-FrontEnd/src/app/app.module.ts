@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { NgbModule, NgbPaginationModule, NgbAlertModule, NgbRating } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,9 +20,13 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AuthService } from './auth/services/auth.service';
 import { ItemReviewResolver } from './admin-tools/resolvers/item-review.resolver';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { AppConfig } from '../config/app.config';
 
 export function CreateTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
+export function initializeApp(appConfig: AppConfig) {
+  return () => appConfig.load();
 }
 
 @NgModule({
@@ -51,7 +55,13 @@ export function CreateTranslateLoader(http: HttpClient) {
   providers: [
     AuthService,
     ItemReviewResolver,
-    AuthGuard
+    AuthGuard,
+    AppConfig,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [AppConfig], multi: true
+    }
   ],
 
   bootstrap: [AppComponent]
