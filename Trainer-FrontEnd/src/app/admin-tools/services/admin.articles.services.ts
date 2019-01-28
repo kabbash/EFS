@@ -30,7 +30,7 @@ export class AdminArticlesService {
   }
 
   getFilteredArticles(filterUrl) {
-    return this.service.getData<PagedResult<articleListItemDto>>("articles/getFilteredData" + filterUrl);
+    return this.service.getData<PagedResult<articleListItemDto>>("articles/getforadmin" + filterUrl);
   }
 
   getCategories(){

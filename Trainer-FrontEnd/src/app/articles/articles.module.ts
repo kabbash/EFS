@@ -7,7 +7,6 @@ import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticleListResolver } from './resolvers/article-list.resolver';
-import { ArticlesService } from './articles.service';
 import { NewsResolver } from './resolvers/news.resolver';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { NewsResolver } from './resolvers/news.resolver';
   declarations: [ArticlesComponent, ArticlesListComponent, ArticlesCatergoriesComponent, ArticleDetailsComponent],
   providers: [
     ArticleListResolver,
-    ArticlesService,
     NewsResolver
   ]
 })

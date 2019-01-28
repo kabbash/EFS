@@ -4,7 +4,6 @@ import { config } from '../../config/pages-config';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { environment } from '../../../environments/environment';
 import { articleListItemDto } from '../../shared/models/article-list-item-dto';
-import { ArticlesService } from '../articles.service';
 import { AppService } from '../../app.service';
 import { PagerDto } from '../../shared/models/pager.dto';
 
@@ -44,7 +43,7 @@ export class ArticlesListComponent implements OnInit {
 
   getNextPage() {
     this.appService.loading = true;
-    this.repositoryService.getData(`articles/${this.route.params['categoryId']}?pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}`).subscribe((response: any) => {
+    this.repositoryService.getData(`articles?categoryId=${this.route.params['categoryId']}&pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}`).subscribe((response: any) => {
       this.pagerData = response.productList.data;
       this.pagerData.itmesCount = 6;
       this.articles = response.productList.data.results;

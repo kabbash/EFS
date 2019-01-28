@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { articleListItemDto } from '../../shared/models/article-list-item-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
+import { AppConfig } from 'src/config/app.config';
 
 @Injectable()
 export class ArticleListResolver implements Resolve<Observable<ResultMessage<articleListItemDto[]>>> {
@@ -11,6 +12,7 @@ export class ArticleListResolver implements Resolve<Observable<ResultMessage<art
   constructor(private repositoryService: RepositoryService) {
   }
     resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<articleListItemDto[]>> {
-      return  this.repositoryService.getData<articleListItemDto[]>('articles/getbycategory/' + route.params['categoryId']);
+      let pageSize = AppConfig.settings.pagination.articlesForAny.pageSize;
+      return  this.repositoryService.getData<articleListItemDto[]>('articles?pageNo=1&pageSize='+ pageSize +'&categoryId=' + route.params['categoryId']);
     }
 }

@@ -23,6 +23,9 @@ namespace Articles.Core.Extensions
                     break;
             }
 
+            if (filter.CategoryId != 0)
+                articles = articles.Where(c => c.CategoryId == filter.CategoryId);
+
             if (!string.IsNullOrEmpty(filter.SearchText))
                 articles = articles.Where(c => c.Name.ToLower().Contains(filter.SearchText.ToLower()));
 

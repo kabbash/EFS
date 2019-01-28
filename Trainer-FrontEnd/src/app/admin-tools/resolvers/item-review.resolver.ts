@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { productListItemDto } from "../../shared/models/product-list-item-dto";
 import { ResultMessage } from "../../shared/models/result-message";
 import { RepositoryService } from "../../shared/services/repository.service";
+import { AppConfig } from "src/config/app.config";
 
 @Injectable()
 export class ItemReviewResolver implements Resolve<Observable<ResultMessage<productListItemDto[]>>> {
@@ -11,9 +12,10 @@ export class ItemReviewResolver implements Resolve<Observable<ResultMessage<prod
     /**
      *
      */
-    constructor(private repositoryService: RepositoryService) {}
+    constructor(private repositoryService: RepositoryService) { }
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResultMessage<productListItemDto[]>> {
-        return this.repositoryService.getData<productListItemDto[]>('itemsreview?pageNo=1&pageSize=2');
+        let pageSize = AppConfig.settings.pagination.itemsForReview.pageSize;
+        return this.repositoryService.getData<productListItemDto[]>('itemsreview?pageNo=1&pageSize=' + pageSize);
     }
 
 }
