@@ -11,6 +11,6 @@ export class LeafProductCategoriesResolver implements Resolve<Observable<ResultM
     constructor(private repositoryService: RepositoryService) {
     }
     resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<ProductCategoryDTO[]>> {
-        return this.repositoryService.getData<ProductCategoryDTO[]>('Products/Categories/getLeafCategories');
+        return this.repositoryService.getData<ProductCategoryDTO[]>('Products/Categories');
     }
 }

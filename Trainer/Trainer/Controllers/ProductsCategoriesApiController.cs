@@ -32,11 +32,11 @@ namespace Trainer.Controllers
         }
 
 
-        [HttpGet("getLeafCategories")]
-        public ActionResult GetLeafCategories()
-        {
-            return GetStatusCodeResult(_categoriesManager.GetLeafCategories());
-        }
+        //[HttpGet("getLeafCategories")]
+        //public ActionResult GetLeafCategories()
+        //{
+        //    return GetStatusCodeResult(_categoriesManager.GetLeafCategories());
+        //}
         // GET: api/ProductsCategories/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)

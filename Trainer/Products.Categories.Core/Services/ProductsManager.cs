@@ -82,8 +82,8 @@ namespace Products.Core.Services
                     {
                         newProduct.ProductsImages.Add(new Shared.Core.Models.ProductsImages()
                         {
-                            Name = image.Name,
-                            ProductId = newProduct.Id,
+                            //Name = image.Name,
+                            //ProductId = newProduct.Id,
                             Path = _attachmentsManager.Save(new SavedFileDto
                             {
                                 attachmentType = AttachmentTypesEnum.Products,

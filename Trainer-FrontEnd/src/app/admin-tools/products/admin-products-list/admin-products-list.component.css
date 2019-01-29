@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     padding-top: 40px;
     flex-direction: column;
+    margin-right: 1rem;
 }
 
 :host ::ng-deep div.card-img-container {
@@ -27,3 +28,7 @@
 .inline-btn{
     margin-top:2rem
 } 
+
+.margin-right{
+    margin-right: 1rem;
+}

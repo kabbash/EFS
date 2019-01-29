@@ -6,6 +6,7 @@ import { productListItemDto } from 'src/app/shared/models/product-list-item-dto'
 import { first, finalize } from 'rxjs/operators';
 import { ProductListItemEditComponent } from '../product-list-item-edit/product-list-item-edit.component';
 import { ProductCategoryDTO } from 'src/app/shared/models/product-category-dto';
+import { config } from 'src/app/config/pages-config';
 
 @Component({
   selector: 'app-manage-products',
@@ -28,6 +29,8 @@ export class ManageProductsComponent implements OnInit {
       this.productId = params['productId'];
       this.route.data.subscribe(result => {
         this.categories = result.productCategories.data;
+        debugger;
+        this.categories = this.categories.filter(c => c.hasSubCategory == null || !c.hasSubCategory);
       });
       if (this.productId > 0) {
         this.route.data.subscribe(result => {
@@ -52,6 +55,10 @@ export class ManageProductsComponent implements OnInit {
   cancelUpdates() {
     this.viewMode = true;
   }
+  cancelAdd() {
+    this.router.navigate([config.admin.ProductsList.route]);
+  }
+
   add() {
     this.productListItemEditComponent.submitted = true;
     // stop here if form is invalid
@@ -70,7 +77,7 @@ export class ManageProductsComponent implements OnInit {
             this.viewMode = true;
             this.isNew = false;
             this.productId = this.product.id;
-            this.product.categoryName = this.categories.find(c=>c.id == this.product.categoryId).name;
+            this.product.categoryName = this.categories.find(c => c.id == this.product.categoryId).name;
             alert("تم إضافة المنتج بنجاح");
           }
         });
