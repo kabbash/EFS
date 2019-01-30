@@ -1,20 +1,4 @@
-<div class="row" style="margin-top:50px;">
-  <div class="col-sm-5  form-group">
-    <label for="productsStatuses"> اختر الحاله </label>
-    <select id="productsStatuses" [(ngModel)]="productsStatuses.selectedValue" class="form-control">
-      <option *ngFor="let item of productsStatuses.items" [ngValue]="item.value">
-        {{item.text}}
-      </option>
-    </select>
-  </div>
-  <div class="col-sm-5 form-group">
-    <label for="searchTxt"> بحث بالاسم</label>
-    <input id="searchTxt" type="text" [(ngModel)]="searchTxt" class="form-control">
-  </div>
-  <div class="col-sm-2 form-group">
-    <button type="button" (click)="reloadItems()" class="btn btn-primary inline-btn form-control">بحـث</button>
-  </div>
-</div>
+<app-search-filter (search)="reloadItems()"></app-search-filter>
 <div class="row">
   <div class="margin-right">
     <button class="btn btn-primary" (click)="addProduct()"> اضافة منتج جديد</button>

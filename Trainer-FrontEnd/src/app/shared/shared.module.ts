@@ -28,6 +28,7 @@ import { ModalComponent } from './modal/modal.component';
 import { ProductResolver } from '../admin-tools/resolvers/product.resolver';
 import { SliderEditModeComponent } from './slider-edit-mode/slider-edit-mode.component';
 import { ArticleDetailsResolver } from '../articles/resolvers/article-details.resolver';
+import { SearchFilterComponent } from './search-filter/search-filter.component';
 
 @NgModule({
   imports: [
@@ -57,7 +58,8 @@ import { ArticleDetailsResolver } from '../articles/resolvers/article-details.re
     FileUploaderComponent,
     DropDownComponent,
     DashboardMenuComponent,
-    SliderEditModeComponent
+    SliderEditModeComponent,
+    SearchFilterComponent
   ],
   declarations: [
     FooterComponent,
@@ -75,7 +77,8 @@ import { ArticleDetailsResolver } from '../articles/resolvers/article-details.re
     DashboardMenuComponent,
     ProductsListComponent,
     ModalComponent,
-    SliderEditModeComponent
+    SliderEditModeComponent,
+    SearchFilterComponent
   ],
   providers: [
     UtilitiesService,

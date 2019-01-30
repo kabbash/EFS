@@ -1,0 +1,17 @@
+<div class="row" class="filter-wrapper">
+  <div class="col-sm-5">
+    <span> اختر الحاله </span>
+    <select [(ngModel)]="filterStatuses.selectedValue" class="form-control">
+      <option *ngFor="let item of filterStatuses.items" [ngValue]="item.value">
+        {{item.text}}
+      </option>
+    </select>
+  </div>
+  <div class="col-sm-5">
+    <span> الإسم</span>
+    <input type="text" class="form-control" [(ngModel)]="searchTxt">
+  </div>
+  <div class="col-sm-2 submit-filter-button">
+    <button type="button" (click)="searchClicked()" class="btn buy-price filter-search-button">بحـث</button>
+  </div>
+</div>
