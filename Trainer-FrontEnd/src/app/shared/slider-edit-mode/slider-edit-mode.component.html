@@ -53,9 +53,16 @@
   </div>
 </ng-template>
 
-<div class="add-new-img-wrapper" [ngClass]="{'no-pics':!sliderData.length}" >
+ <div class="add-new-img-wrapper" *ngIf="sliderData.length<3 && sliderData.length !== 0">
+    <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)">إضافة صوره جديده يمكنك إضافة
+      {{3-sliderData.length }} صوره</button>
+  </div>
+  <div class="add-new-img-wrapper" *ngIf="sliderData.length === 0">
+    <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)"> لا توجد صور قم بإضافة صوره جديده</button>
+  </div>
+<!-- <div class="add-new-img-wrapper" [ngClass]="{'no-pics':!sliderData.length}" >
   <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)">إضافة صوره جديده</button>
-</div>
+</div> -->
 <div class="carousel-container" *ngIf="sliderData.length">
   <ngb-carousel *ngIf="sliderData">
     <ng-template ngbSlide *ngFor="let image of sliderData;let i = index">
@@ -71,6 +78,17 @@
       <div class="carousel-caption">
         <h3>{{image.title}}</h3>
         <p>{{image.description}}</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+<div class="carousel-container" *ngIf="!sliderData.length">
+  <ngb-carousel *ngIf="sliderData">
+    <ng-template ngbSlide *ngFor="let dummy of [1,2,3]">
+      <div class="carousel-default-img">
+        <div class="carousel-darker-overlay">
+
+        </div>
       </div>
     </ng-template>
   </ngb-carousel>

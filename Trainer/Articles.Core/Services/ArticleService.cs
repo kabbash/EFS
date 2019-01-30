@@ -32,131 +32,13 @@ namespace Articles.Core.Services
             _attachmentsManager = attachmentsManager;
             _sliderManager = sliderManager;
         }
-        public ResultMessage Delete(int id)
-        {
-            try
-            {
-                _unitOfWork.ArticlesRepository.Delete(id);
-                _unitOfWork.Commit();
-                return new ResultMessage
-                {
-                    Status = HttpStatusCode.OK
-                };
-            }
-            catch (Exception ex)
-            {
-                return new ResultMessage
-                {
-                    Status = HttpStatusCode.InternalServerError
-                };
 
-            }
-        }
-        public ResultMessage Approve(int id)
-        {
-            try
-            {
-                var articleData = _unitOfWork.ArticlesRepository.GetById(id);
-                if (articleData == null)
-                {
-                    return new ResultMessage
-                    {
-                        Status = HttpStatusCode.NotFound,
-                    };
-                }
-
-                articleData.UpdatedAt = DateTime.Now;
-                articleData.IsActive = true;
-                //articleData.UpdatedBy = userId;
-                _unitOfWork.ArticlesRepository.Update(articleData);
-                _unitOfWork.Commit();
-                return new ResultMessage
-                {
-                    Status = HttpStatusCode.OK
-                };
-            }
-            catch (Exception ex)
-            {
-                return new ResultMessage
-                {
-                    Status = HttpStatusCode.InternalServerError
-                };
-
-            }
-        }
-        public ResultMessage GetAll(int pageNo, int pageSize, ArticlesFilter filter = null)
+        public ResultMessage GetAll(ArticlesFilter filter)
         {
             try
             {
                 PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
-                result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).GetPaged(pageNo, pageSize).Adapt(result);
-                return new ResultMessage
-                {
-                    Data = result,
-                    Status = HttpStatusCode.OK
-                };
-            }
-            catch (Exception ex)
-            {
-
-                return new ResultMessage()
-                {
-                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
-                    Status = HttpStatusCode.InternalServerError
-                };
-            }
-        }
-        public ResultMessage GetPendingApprovalItems(ArticlesFilter filter = null)
-        {
-            try
-            {
-                IEnumerable<ArticleGetDto> result = new List<ArticleGetDto>();
-                result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).Adapt(result);
-                return new ResultMessage
-                {
-                    Data = result,
-                    Status = HttpStatusCode.OK
-                };
-            }
-            catch (Exception ex)
-            {
-
-                return new ResultMessage()
-                {
-                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
-                    Status = HttpStatusCode.InternalServerError
-                };
-            }
-        }
-        public ResultMessage GetByCategoryId(int id, int pageNo, int pageSize)
-        {
-            try
-            {
-                PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
-                result = _unitOfWork.ArticlesRepository.Get(c => c.CategoryId == id).GetPaged(pageNo, pageSize).Adapt(result);
-                return new ResultMessage
-                {
-                    Data = result,
-                    Status = HttpStatusCode.OK
-                };
-            }
-            catch (Exception ex)
-            {
-
-                return new ResultMessage()
-                {
-                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
-                    Status = HttpStatusCode.InternalServerError
-                };
-            }
-        }
-        public ResultMessage GetByPredefinedCategoryKey(int id, int pageNo, int pageSize)
-        {
-            try
-            {
-                PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
-                var categoryId = _unitOfWork.ArticlesCategoriesRepository.Get(c => c.PredefinedKey == id).SingleOrDefault().Id;
-                result = _unitOfWork.ArticlesRepository.Get(c => c.CategoryId == categoryId).GetPaged(pageNo, pageSize).Adapt(result);
+                result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
                 return new ResultMessage
                 {
                     Data = result,
@@ -212,6 +94,7 @@ namespace Articles.Core.Services
                 };
             }
         }
+
         public ResultMessage Insert(ArticleAddDto article)
         {
             var validationResult = _addValidator.Validate(article);
@@ -229,8 +112,8 @@ namespace Articles.Core.Services
                 articleEntity.CreatedAt = DateTime.Now;
                 articleEntity.CreatedBy = article.UserId;
 
-
                 var articleFolderName = Guid.NewGuid().ToString();
+
                 var sliderDto = new SliderDto
                 {
                     attachmentType = AttachmentTypesEnum.Articles,
@@ -239,18 +122,16 @@ namespace Articles.Core.Services
                 };
 
                 if (sliderDto.Items.Count > 0)
-                    article.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto);
+                    articleEntity.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto);
 
+                articleEntity.SubFolderName = articleFolderName;
+                articleEntity.Images = null;
+                articleEntity.IsActive = null;
                 _unitOfWork.ArticlesRepository.Insert(articleEntity);
                 _unitOfWork.Commit();
 
-                _sliderManager.Add(new SliderDto
-                {
-                    attachmentType = AttachmentTypesEnum.Articles,
-                    Items = article.Images,
-                    ParentId = articleEntity.Id,
-                    SubFolderName = articleFolderName
-                });
+                sliderDto.ParentId = articleEntity.Id;
+                _sliderManager.Add(sliderDto);
 
                 return new ResultMessage
                 {
@@ -293,31 +174,24 @@ namespace Articles.Core.Services
                 articleData.UpdatedAt = DateTime.Now;
                 articleData.UpdatedBy = article.UserId;
 
-                //for testing only to be changed to get original folder name
-                var articleFolderName = !string.IsNullOrEmpty(article.ProfilePicture) ? article.ProfilePicture.Split('/')[1] : Guid.NewGuid().ToString();
-
                 var sliderDto = new SliderDto
                 {
                     attachmentType = AttachmentTypesEnum.Articles,
-                    Items = article.Images,
-                    SubFolderName = articleFolderName
+                    Items = article.UpdatedImages ?? new List<SliderItemDto>(),
+                    SubFolderName = articleData.SubFolderName,
+                    ParentId = articleId
                 };
 
                 //check profile picture
                 if (sliderDto.Items.Count > 0)
-                    article.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto) ?? (article.Images.Any(c => !c.IsDeleted && c.IsProfilePicture) ? null : article.ProfilePicture);
+                    articleData.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto, article.ProfilePicture);
 
                 _unitOfWork.ArticlesRepository.Update(articleData);
                 _unitOfWork.Commit();
 
                 // update files                
-                _sliderManager.Update(new SliderDto
-                {
-                    ParentId = articleData.Id,
-                    attachmentType = AttachmentTypesEnum.Articles,
-                    Items = article.Images,
-                    SubFolderName = articleFolderName
-                });
+                if (sliderDto.Items.Count > 0)
+                    _sliderManager.Update(sliderDto);
 
                 return new ResultMessage
                 {
@@ -330,6 +204,63 @@ namespace Articles.Core.Services
                 {
                     Status = HttpStatusCode.InternalServerError
                 };
+            }
+        }
+        public ResultMessage Delete(int id)
+        {
+            try
+            {
+
+                var articleFolder = _unitOfWork.ArticlesRepository.GetById(id).SubFolderName;
+                if (!string.IsNullOrEmpty(articleFolder))
+                    _attachmentsManager.DeleteFolder(articleFolder, AttachmentTypesEnum.Articles);
+
+                _unitOfWork.ArticlesRepository.Delete(id);
+                _unitOfWork.Commit();
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.InternalServerError
+                };
+
+            }
+        }
+        public ResultMessage Approve(int id)
+        {
+            try
+            {
+                var articleData = _unitOfWork.ArticlesRepository.GetById(id);
+                if (articleData == null)
+                {
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.NotFound,
+                    };
+                }
+
+                articleData.UpdatedAt = DateTime.Now;
+                articleData.IsActive = true;
+                //articleData.UpdatedBy = userId;
+                _unitOfWork.ArticlesRepository.Update(articleData);
+                _unitOfWork.Commit();
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.OK
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.InternalServerError
+                };
+
             }
         }
         public ResultMessage Reject(RejectDto rejectDto)
@@ -372,28 +303,6 @@ namespace Articles.Core.Services
             {
                 return new ResultMessage
                 {
-                    Status = HttpStatusCode.InternalServerError
-                };
-            }
-        }
-        public ResultMessage GetFilteredData(ArticlesFilter filter)
-        {
-            try
-            {
-                PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
-                result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
-                return new ResultMessage
-                {
-                    Data = result,
-                    Status = HttpStatusCode.OK
-                };
-            }
-            catch (Exception ex)
-            {
-
-                return new ResultMessage()
-                {
-                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }

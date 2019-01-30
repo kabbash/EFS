@@ -34,10 +34,6 @@ export class ArticleDetailsCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.route.data.subscribe(result => {
-    //   this.article = result.details.data;
-    //   this.appService.loading = false;
-    // });
   }
 
   open(content, selectedArticle?, index?) {

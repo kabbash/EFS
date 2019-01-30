@@ -56,7 +56,8 @@ import { ArticleDetailsResolver } from '../articles/resolvers/article-details.re
     SiteMapComponent,
     FileUploaderComponent,
     DropDownComponent,
-    DashboardMenuComponent
+    DashboardMenuComponent,
+    SliderEditModeComponent
   ],
   declarations: [
     FooterComponent,

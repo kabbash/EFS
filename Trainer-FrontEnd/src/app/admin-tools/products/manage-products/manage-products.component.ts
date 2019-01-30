@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminProductsService } from '../../services/admin.products.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppService } from 'src/app/app.service';
-import { productListItemDto } from 'src/app/shared/models/product-list-item-dto';
 import { first, finalize } from 'rxjs/operators';
 import { ProductListItemEditComponent } from '../product-list-item-edit/product-list-item-edit.component';
-import { ProductCategoryDTO } from 'src/app/shared/models/product-category-dto';
-import { config } from 'src/app/config/pages-config';
+import { productListItemDto } from '../../../shared/models/product-list-item-dto';
+import { ProductCategoryDTO } from '../../../shared/models/product-category-dto';
+import { config } from '../../../config/pages-config';
+import { AppService } from '../../../app.service';
 
 @Component({
   selector: 'app-manage-products',
@@ -22,14 +22,14 @@ export class ManageProductsComponent implements OnInit {
   categories: ProductCategoryDTO[];
   @ViewChild(ProductListItemEditComponent) productListItemEditComponent: ProductListItemEditComponent;
 
-  constructor(private route: ActivatedRoute, private router: Router, private appService: AppService, private service: AdminProductsService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private appService: AppService,
+     private service: AdminProductsService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.productId = params['productId'];
       this.route.data.subscribe(result => {
         this.categories = result.productCategories.data;
-        debugger;
         this.categories = this.categories.filter(c => c.hasSubCategory == null || !c.hasSubCategory);
       });
       if (this.productId > 0) {
@@ -72,7 +72,7 @@ export class ManageProductsComponent implements OnInit {
       }))
       .subscribe(
         data => {
-          if (data.status == 200) {
+          if (data.status === 200) {
             this.product = data.data;
             this.viewMode = true;
             this.isNew = false;
@@ -96,7 +96,7 @@ export class ManageProductsComponent implements OnInit {
       }))
       .subscribe(
         data => {
-          if (data.status == 200) {
+          if (data.status === 200) {
             this.product = data.data;
             this.viewMode = true;
             alert("تم تعديل المنتج بنجاح");

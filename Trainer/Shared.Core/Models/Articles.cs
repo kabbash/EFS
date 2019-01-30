@@ -17,6 +17,7 @@ namespace Shared.Core.Models
         public string Description { get; set; }
         public int CategoryId { get; set; }
         public string ProfilePicture { get; set; }
+        public string SubFolderName { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string CreatedBy { get; set; }

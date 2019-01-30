@@ -23,6 +23,8 @@ import { ProductResolver } from './resolvers/product.resolver';
 import { ProductListItemEditComponent } from './products/product-list-item-edit/product-list-item-edit.component';
 import { NgbUTCStringAdapter } from '../shared/services/ngb-string.adapter';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
+import { AdminArticlesService } from './services/admin.articles.services';
+
 
 @NgModule({
   imports: [
@@ -58,8 +60,9 @@ import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categori
     AdminProductsListResolver,
     ProductResolver,
     LeafProductCategoriesResolver,
-    { provide: NgbDateAdapter, useClass: NgbUTCStringAdapter }
+    { provide: NgbDateAdapter, useClass: NgbUTCStringAdapter },
 
+    AdminArticlesService
   ]
 })
 export class AdminToolsModule { }

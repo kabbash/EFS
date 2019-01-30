@@ -1,5 +1,6 @@
 ﻿using Attachments.Core.Models;
 using Mapster;
+using Shared.Core.Models;
 using Shared.Core.Models.Base;
 using Shared.Core.Utilities.Models;
 using System;
@@ -34,7 +35,7 @@ namespace Attachments.Core.Interfaces
                                 attachmentType = dto.attachmentType,
                                 CanChangeName = true,
                                 File = c.File,
-                                SubFolderName = dto.ParentId.ToString()
+                                SubFolderName = dto.SubFolderName
                             });
 
                         var Obj = c.Adapt<T>();
@@ -63,10 +64,11 @@ namespace Attachments.Core.Interfaces
                             attachmentType = dto.attachmentType,
                             CanChangeName = true,
                             File = c.File,
-                            SubFolderName = dto.ParentId.ToString()
+                            SubFolderName = dto.SubFolderName
                         });
-
-                    _repository.Insert(c.Adapt<T>());
+                    var Obj = c.Adapt<T>();
+                    Obj.ParentId = dto.ParentId;
+                    _repository.Insert(Obj);
                 });
 
                 //updated images
@@ -75,9 +77,9 @@ namespace Attachments.Core.Interfaces
                    var oldImage = _repository.GetById(c.Id);
                    if (oldImage != null)
                    {
-                       var updatedObj = c.Adapt<T>();
-                       updatedObj.ParentId = dto.ParentId;
-                       _repository.Update(updatedObj);
+                       c.Adapt(oldImage, typeof(SliderItemDto), typeof(ArticlesImages));
+                       oldImage.ParentId = dto.ParentId;
+                       _repository.Update(oldImage);
                        _unitOfWork.Commit();
                    }
                });
@@ -124,25 +126,33 @@ namespace Attachments.Core.Interfaces
                 throw ex;
             }
         }
-        public string GetProfilePicturePath(SliderDto dto)
+        public string GetProfilePicturePath(SliderDto dto, string oldPath=null)
         {
             foreach (var c in dto.Items)
             {
-                if (!c.IsDeleted && c.IsProfilePicture)
+                if (c.IsProfilePicture)
                 {
-                    if (c.IsNew)
-                        return _attachmentsManager.Save(new SavedFileDto
+                    if (!c.IsDeleted)
+                    {
+                        if (c.IsNew)
                         {
-                            attachmentType = dto.attachmentType,
-                            CanChangeName = true,
-                            File = c.File,
-                            SubFolderName = dto.SubFolderName
-                        });              
-                    else
+                            c.Path = _attachmentsManager.Save(new SavedFileDto
+                            {
+                                attachmentType = dto.attachmentType,
+                                CanChangeName = true,
+                                File = c.File,
+                                SubFolderName = dto.SubFolderName
+                            });
+                        }
                         return c.Path;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
-            return null;
+            return oldPath;
         }
     }
 }

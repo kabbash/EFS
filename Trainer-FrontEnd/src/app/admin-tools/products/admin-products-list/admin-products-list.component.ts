@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { config } from '../../../config/pages-config';
 import { productListItemDto } from '../../../shared/models/product-list-item-dto';
-import { environment } from 'src/environments/environment';
 import { ddlDto } from '../../../shared/models/ddl-dto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminProductsService } from '../../services/admin.products.service';
 import { ProductsFilter } from '../../../shared/models/products-filter';
-import { PagerDto } from 'src/app/shared/models/pager.dto';
+import { environment } from '../../../../environments/environment';
+import { PagerDto } from '../../../shared/models/pager.dto';
 
 @Component({
   selector: 'app-admin-products-list',

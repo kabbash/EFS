@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { productListItemDto } from 'src/app/shared/models/product-list-item-dto';
-import { UtilitiesService } from 'src/app/shared/services/utilities.service';
-import { environment } from 'src/environments/environment';
+import { productListItemDto } from '../../../shared/models/product-list-item-dto';
+import { environment } from '../../../../environments/environment';
+import { UtilitiesService } from '../../../shared/services/utilities.service';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./product-list-item.component.css']
 })
 export class ProductListItemComponent implements OnInit, OnChanges {
-   @Input() public product: productListItemDto 
+   @Input() public product: productListItemDto;
    baseurl = environment.filesBaseUrl;
 
   constructor(private utilService: UtilitiesService) { }

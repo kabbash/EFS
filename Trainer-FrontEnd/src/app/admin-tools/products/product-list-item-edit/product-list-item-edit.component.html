@@ -1,5 +1,5 @@
 <div class="modal-body">
-    <form class="form-inline-nowrap" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <form class="form-inline-nowrap" [formGroup]="editForm">
         <div class="modal-img">
             <div class="img-wrapper" [ngClass]="{ 'is-invalid': submitted && f.profilePicture.errors,'is-valid': submitted && !f.profilePicture.errors}">
                 <!-- <div class="edit-image" (click)="open(content,article,i)">

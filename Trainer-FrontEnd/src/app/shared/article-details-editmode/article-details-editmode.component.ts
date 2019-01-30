@@ -41,7 +41,6 @@ export class ArticleDetailsEditmodeComponent implements OnInit {
       'name': ['', Validators.required],
       'categoryId': ['', Validators.min(1)]
     });
-    this.sliderData = this.util.mapToSliderDtoArray(this.modifiedArticle.images);
   }
 
   get f() { return this.articleForm.controls; }

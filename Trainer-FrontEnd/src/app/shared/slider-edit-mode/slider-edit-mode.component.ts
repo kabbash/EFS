@@ -45,9 +45,15 @@ export class SliderEditModeComponent implements OnInit {
 
   deleteSlide() {
     const deletedImage = this.sliderData[this.selectedIndexForDelete];
-    deletedImage.isDeleted = true;
-    this.resultImageList.push(deletedImage);
-    this.sliderData.splice(this.selectedIndexForDelete, 1);
+    if (deletedImage.isNew) {
+      const imageIndex = this.resultImageList.findIndex(image => image.file === deletedImage.file);
+      this.resultImageList.splice(imageIndex, 1);
+      
+    } else {
+      deletedImage.isDeleted = true;      
+      this.resultImageList.push(deletedImage);   
+    }
+    this.sliderData.splice(this.selectedIndexForDelete, 1); 
     this.modalService.dismissAll();
   }
 
@@ -61,7 +67,7 @@ export class SliderEditModeComponent implements OnInit {
     reader.onload = (e: any) => {
       this.newImage.path = e.target.result;
     };
-    this.newImage.iFormFile = file;
+    this.newImage.file = file;
     reader.readAsDataURL(file);
   }
   addNewImage(modal) {
@@ -69,7 +75,6 @@ export class SliderEditModeComponent implements OnInit {
     this.newImage.isNew = true;
     this.sliderData.push(Object.assign({}, this.newImage));
     this.newImage.path = '';
-    this.newImage.isProfilePictureUpdated = this.newImage.isProfilePicture;
     if (this.newImage.isProfilePicture) {
       this.setNewProfilePic();
     }
@@ -79,19 +84,13 @@ export class SliderEditModeComponent implements OnInit {
   }
   eidtImage(modal) {
     modal.close();
-    this.selectedImg.isUpdated = true;
-    this.checkIfProfilePicUpdated();
-    if (this.selectedImg.isProfilePicture && this.selectedImg.isProfilePictureUpdated) {
+    this.selectedImg.isDataUpdated = true;
+    if (this.selectedImg.isProfilePicture) {
       this.setNewProfilePic();
     }
     this.resultImageList.push(Object.assign({}, this.selectedImg));
   }
-  checkIfProfilePicUpdated() {
-    const dataImage = this.sliderData.find(image => image.path === this.selectedImg.path);
-    this.selectedImg.isProfilePictureUpdated = dataImage.isProfilePicture ? !this.selectedImg.isProfilePicture
-      : this.selectedImg.isProfilePicture;
-
-  }
+ 
   setNewProfilePic() {
     this.resultImageList.forEach(image => {
       image.isProfilePicture = false;

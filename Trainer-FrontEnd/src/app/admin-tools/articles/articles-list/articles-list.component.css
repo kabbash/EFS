@@ -4,4 +4,44 @@
     justify-content: center;
     flex-wrap: wrap;
     padding-bottom: 30px;
+    background-color: #000000;
+}
+
+:host ::ng-deep app-articles-list-item {
+    width: 350px;
+}
+
+.filter-wrapper {
+    display: FLEX;
+    align-items: center;
+    width: 75%;
+    margin-top: 40px;
+    background-color: #dedddd;
+    padding: 14px 0 22px;
+    border-radius: 12px;
+}
+
+.submit-filter-button {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.filter-wrapper .form-control {
+    padding-top: 0;
+}
+
+.filter-wrapper span {
+    color: #212529;
+}
+
+.articles-admin-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.article-search-button{
+    color: white;
 }

@@ -2,3 +2,34 @@
     display: flex;
     min-height: 500px;
 }
+
+.close-btn {
+    position: absolute;
+    left: 0;
+    top: 18px;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.close-menu {
+    width: 0px !important;
+    overflow: hidden;
+    transition: width 0.2s ease;
+}
+
+:host ::ng-deep .close-menu * {
+    display: none;
+}
+
+.open-menu-icon {
+    position: absolute;
+    color: white;
+    top: 37px;
+    padding: 10px 20px;
+    background-color: #2b2e33;
+    cursor: pointer;
+}

@@ -17,34 +17,25 @@ namespace Trainer.Controllers
         {
             _articlesService = articlesService;
         }
+
         [HttpGet]
         public ActionResult Get([FromQuery]ArticlesFilter filter)
         {
-            return GetStatusCodeResult(_articlesService.GetAll(filter.PageNo, filter.PageSize));
+            filter.Status = (int)(ArticleStatusEnum.Active);
+            return GetStatusCodeResult(_articlesService.GetAll(filter));
         }
 
-        [HttpGet("getFilteredData")]        
-        public ActionResult getFilteredData([FromQuery]ArticlesFilter filter)
+        [HttpGet("getforadmin")]
+        //[Authorize(Roles = "Admin, ArticleWriter")]
+        public ActionResult GetForAdmin([FromQuery]ArticlesFilter filter)
         {
-            return GetStatusCodeResult(_articlesService.GetFilteredData(filter));
+            return GetStatusCodeResult(_articlesService.GetAll(filter));
         }
 
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
             return GetStatusCodeResult(_articlesService.GetById(id));
-        }
-
-        [HttpGet("GetByCategory/{id}")]
-        public ActionResult GetByCategory(int id,int pageNo=1, int pageSize=10)
-        {
-            return GetStatusCodeResult(_articlesService.GetByCategoryId(id,pageNo, pageSize));
-        }
-
-        [HttpGet("GetByCategoryKey/{id}")]
-        public ActionResult GetByPredefinedCategoryKey(int id, int pageNo=1, int pageSize=10)
-        {
-            return GetStatusCodeResult(_articlesService.GetByPredefinedCategoryKey(id, pageNo, pageSize));
         }
 
         [HttpPost]
@@ -63,7 +54,7 @@ namespace Trainer.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin, ArticleWriter")]
+        //[Authorize(Roles = "Admin, ArticleWriter")]
 
         public ActionResult Put(int id, [FromForm] ArticleAddDto articleDto)
         {

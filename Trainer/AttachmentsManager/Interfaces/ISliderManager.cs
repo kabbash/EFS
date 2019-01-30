@@ -11,6 +11,6 @@ namespace Attachments.Core.Interfaces
         bool Add(SliderDto dto);
         bool Update(SliderDto dto);
         bool Delete(SliderDto dto);
-        string GetProfilePicturePath(SliderDto dto);
+        string GetProfilePicturePath(SliderDto dto, string oldPath=null);
     }
 }

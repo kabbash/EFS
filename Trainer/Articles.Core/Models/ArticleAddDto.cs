@@ -12,6 +12,7 @@ namespace Articles.Core.Models
         public int CategoryId { get; set; }
         public string ProfilePicture { get; set; }
         public List<SliderItemDto> Images { get; set; }
+        public List<SliderItemDto> UpdatedImages { get; set; }
         public string UserId { get; set; }
     }
 }

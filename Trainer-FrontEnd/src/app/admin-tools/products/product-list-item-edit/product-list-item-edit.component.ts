@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { productListItemDto } from 'src/app/shared/models/product-list-item-dto';
-import { environment } from 'src/environments/environment';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ProductCategoryDTO } from 'src/app/shared/models/product-category-dto';
+import { productListItemDto } from '../../../shared/models/product-list-item-dto';
+import { environment } from '../../../../environments/environment';
+import { ProductCategoryDTO } from '../../../shared/models/product-category-dto';
 
 @Component({
   selector: 'app-product-list-item-edit',
@@ -11,7 +11,7 @@ import { ProductCategoryDTO } from 'src/app/shared/models/product-category-dto';
 })
 export class ProductListItemEditComponent implements OnInit {
 
-  @Input() product: productListItemDto
+  @Input() product: productListItemDto;
   baseurl = environment.filesBaseUrl;
   uploadedFile: string | ArrayBuffer;
   editForm: FormGroup;
