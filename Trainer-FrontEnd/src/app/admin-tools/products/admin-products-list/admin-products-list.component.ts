@@ -7,6 +7,7 @@ import { AdminProductsService } from '../../services/admin.products.service';
 import { ProductsFilter } from '../../../shared/models/products-filter';
 import { environment } from '../../../../environments/environment';
 import { PagerDto } from '../../../shared/models/pager.dto';
+import { SearchFilterComponent } from '../../../shared/search-filter/search-filter.component';
 
 @Component({
   selector: 'app-admin-products-list',
@@ -16,11 +17,11 @@ import { PagerDto } from '../../../shared/models/pager.dto';
 export class AdminProductsListComponent implements OnInit {
   productsList: productListItemDto[];
   baseurl = environment.filesBaseUrl;
-  productsStatuses = new ddlDto();
-  searchTxt: string = "";
   selectedProduct: productListItemDto;
   pagerData: PagerDto;
   productsFilter = new ProductsFilter();
+  @ViewChild(SearchFilterComponent) searchFilterComponent: SearchFilterComponent;
+
 
   constructor(private route: ActivatedRoute,
     private router: Router, private service: AdminProductsService) { }
@@ -32,19 +33,14 @@ export class AdminProductsListComponent implements OnInit {
       this.productsList = result.productsList.data.results;
     });
 
-    this.productsStatuses.items = [{ value: 0, text: "الكل" }
-      , { value: 1, text: "النشط" }
-      , { value: 2, text: "المتوقف" }
-      , { value: 3, text: "المرفوض" }
-    ]
-    this.productsStatuses.selectedValue = 1;
+    this.searchFilterComponent.filterStatuses.selectedValue = 1;
     this.productsFilter.pageNo = 1;
     this.productsFilter.pageSize = 6;
   }
 
   getFilter() {
-    this.productsFilter.searchText = this.searchTxt;
-    this.productsFilter.status = this.productsStatuses.selectedValue;
+    this.productsFilter.searchText = this.searchFilterComponent.searchTxt;
+    this.productsFilter.status = this.searchFilterComponent.filterStatuses.selectedValue;
     this.productsFilter.pageNo = this.pagerData.currentPage;
     this.productsFilter.pageSize = this.pagerData.pageSize;
   }

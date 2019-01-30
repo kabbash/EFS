@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminArticlesService } from '../../services/admin.articles.services';
 import { articleListItemDto } from '../../../shared/models/article-list-item-dto';
 import { environment } from '../../../../environments/environment';
-import { ddlDto } from '../../../shared/models/ddl-dto';
 import { config } from '../../../config/pages-config';
 import { ArticlesFilter } from '../../../shared/models/articles-filter';
 import { PagerDto } from '../../../shared/models/pager.dto';
 import { AppService } from '../../../app.service';
+import { SearchFilterComponent } from 'src/app/shared/search-filter/search-filter.component';
 
 @Component({
   selector: 'app-articles-list',
@@ -19,8 +19,6 @@ export class ArticlesListComponent implements OnInit {
 
   articlesList: articleListItemDto[];
   baseurl = environment.filesBaseUrl;
-  articlesStatuses = new ddlDto();
-  searchTxt: string = "";
   articleFilter= new ArticlesFilter();
 
   //pager
@@ -28,24 +26,18 @@ export class ArticlesListComponent implements OnInit {
   pagesNumber: number;
   articles: articleListItemDto[];
   pagerData: PagerDto;
+  
+  @ViewChild(SearchFilterComponent) searchFilterComponent: SearchFilterComponent;
 
   constructor(private route: ActivatedRoute,
     private router: Router, private service: AdminArticlesService, private appService: AppService) { }
 
   ngOnInit() {
     this.route.data.subscribe(result => {
-      debugger;
       this.articlesList = result.articlesList.data.results;
       this.pagerData = result.articlesList.data;
     });
-
-    this.articlesStatuses.items = [{ value: 0, text: "الكل" }
-      , { value: 1, text: "النشط" }
-      , { value: 2, text: "المتوقف" }
-      , { value: 3, text: "المرفوض" }
-    ]
-    this.articlesStatuses.selectedValue = 0;
-
+    
     this.articleFilter.pageNo = 1;
     this.articleFilter.pageSize = 10;
   }
@@ -53,14 +45,12 @@ export class ArticlesListComponent implements OnInit {
   articlesDetails(articleId) {
     this.router.navigate([config.admin.manageArticles.route, articleId]);
   }
-
   addArticle() {
     this.router.navigate([config.admin.manageArticles.route, 0]);
   }
-
   setArticleFilter() {
-    this.articleFilter.searchText = this.searchTxt;
-    this.articleFilter.status = this.articlesStatuses.selectedValue;
+    this.articleFilter.searchText = this.searchFilterComponent.searchTxt;
+    this.articleFilter.status = this.searchFilterComponent.filterStatuses.selectedValue;
   }
   reloadItems() {
 
@@ -70,7 +60,6 @@ export class ArticlesListComponent implements OnInit {
       this.articlesList = result.data.results;
     });
   }
-
   getNextPage() {
 
     this.setArticleFilter();
@@ -79,7 +68,7 @@ export class ArticlesListComponent implements OnInit {
     let filter = `?pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}&searchText=${this.articleFilter.searchText}&status=${this.articleFilter.status}`;
 
     this.service.getFilteredArticles(filter).subscribe((response: any) => {
-      console.log(response);
+
       this.articlesList = response.data.results;
       this.pagerData = response.data;
       this.appService.loading = false;
