@@ -21,11 +21,11 @@ import { CategoriesService } from '../admin-tools/services/categories.service';
 import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
 import { DropDownComponent } from './drop-down/drop-down.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-
 import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-menu.component';
-import { ProductsListComponent } from '../products/products-list/products-list.component';
-import { ModalComponent } from '../products/modal/modal.component';
 import { ProductReviewService } from '../admin-tools/services/product-review.service';
+import { ProductsListComponent } from './products-list/products-list.component';
+import { ModalComponent } from './modal/modal.component';
+import { ProductResolver } from '../admin-tools/resolvers/product.resolver';
 import { SliderEditModeComponent } from './slider-edit-mode/slider-edit-mode.component';
 import { ArticleDetailsResolver } from '../articles/resolvers/article-details.resolver';
 
@@ -44,15 +44,39 @@ import { ArticleDetailsResolver } from '../articles/resolvers/article-details.re
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    TranslateModule, HeaderComponent, FooterComponent,
-    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
-    ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent, DropDownComponent, DashboardMenuComponent,
-    ProductsListComponent, ModalComponent, SliderEditModeComponent
+    TranslateModule,
+    HeaderComponent,
+    FooterComponent,
+    ArticlesCardComponent,
+    ArticlesPagingComponent,
+    ArticlesListItemComponent,
+    ArticleDetailsCardComponent,
+    ProductItemComponent,
+    CommentsComponent,
+    SiteMapComponent,
+    FileUploaderComponent,
+    DropDownComponent,
+    DashboardMenuComponent,
+    SliderEditModeComponent
   ],
-  declarations: [FooterComponent, HeaderComponent, NotfoundComponent,
-    ArticlesCardComponent, ArticlesPagingComponent, ArticlesListItemComponent, ArticleDetailsCardComponent,
-    ProductItemComponent, ProductItemComponent, CommentsComponent, SiteMapComponent, FileUploaderComponent,
-    DropDownComponent, DashboardMenuComponent, ProductsListComponent, ModalComponent, SliderEditModeComponent],
+  declarations: [
+    FooterComponent,
+    HeaderComponent,
+    NotfoundComponent,
+    ArticlesCardComponent,
+    ArticlesPagingComponent,
+    ArticlesListItemComponent,
+    ArticleDetailsCardComponent,
+    ProductItemComponent,
+    CommentsComponent,
+    SiteMapComponent,
+    FileUploaderComponent,
+    DropDownComponent,
+    DashboardMenuComponent,
+    ProductsListComponent,
+    ModalComponent,
+    SliderEditModeComponent
+  ],
   providers: [
     UtilitiesService,
     ArticleCategoriesResolver,

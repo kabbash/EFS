@@ -15,7 +15,7 @@ namespace Trainer.EF.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -640,7 +640,7 @@ namespace Trainer.EF.Migrations
                     b.Property<DateTime?>("ExpDate")
                         .HasColumnType("date");
 
-                    b.Property<bool>("IsActive");
+                    b.Property<bool?>("IsActive");
 
                     b.Property<bool>("IsSpecial");
 
@@ -651,14 +651,13 @@ namespace Trainer.EF.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(10, 2)");
 
-                    b.Property<DateTime?>("ProdDate")
-                        .HasColumnType("date");
-
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
 
                     b.Property<decimal>("Rate")
                         .HasColumnType("decimal(10,2)");
+
+                    b.Property<string>("RejectReason");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime");

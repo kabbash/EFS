@@ -11,9 +11,14 @@ import { ManageArticlesCategoriesComponent } from './articles/manage-articles-ca
 import { ManageProductsCategoriesComponent } from './manage-products-categories/manage-products-categories.component';
 import { ProductsCategoriesResolver } from '../products/resolvers/products-categories.resolver';
 import { AddItemForReviewComponent } from './add-item-for-review/add-item-for-review.component';
-import { ProductsListComponent } from '../products/products-list/products-list.component';
 import { ItemReviewResolver } from './resolvers/item-review.resolver';
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
+import { AdminProductsListComponent } from './products/admin-products-list/admin-products-list.component';
+import { AdminProductsListResolver } from './resolvers/products-list-resolver';
+import { ProductsListComponent } from '../shared/products-list/products-list.component';
+import { ManageProductsComponent } from './products/manage-products/manage-products.component';
+import { ProductResolver } from './resolvers/product.resolver';
+import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
 
 
 const routes: Routes = [
@@ -30,11 +35,11 @@ const routes: Routes = [
         path: config.admin.addCategory.name,
         component: AddCategoryComponent
       },
-      
+
       {
         path: config.admin.manageArticles.name,
         component: ManageArticlesComponent,
-        resolve: {articleDetails: ArticleDetailsResolver}
+        resolve: { articleDetails: ArticleDetailsResolver }
       },
       {
         path: config.admin.articleslist.name,
@@ -44,20 +49,31 @@ const routes: Routes = [
       {
         path: config.admin.manageProductsCategories.name,
         component: ManageProductsCategoriesComponent,
-        resolve: {categories: ProductsCategoriesResolver}
+        resolve: { categories: ProductsCategoriesResolver }
       },
       {
         path: config.admin.addItemForReview.name,
         component: AddItemForReviewComponent
-      },
+      }
+      ,
       {
         path: config.admin.itemReviewList.name,
         component: ProductsListComponent,
-        resolve: {productList: ItemReviewResolver}
+        resolve: { productList: ItemReviewResolver }
+      },
+      {
+        path: config.admin.manageProducts.name,
+        component: ManageProductsComponent,
+        resolve: { productDetails: ProductResolver, productCategories: LeafProductCategoriesResolver }
+      },
+      {
+        path: config.admin.ProductsList.name,
+        component: AdminProductsListComponent,
+        resolve: { productsList: AdminProductsListResolver }
       }
     ]
   },
-  
+
 ];
 
 @NgModule({

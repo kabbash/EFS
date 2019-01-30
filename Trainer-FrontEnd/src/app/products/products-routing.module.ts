@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products.component';
 import { config } from '../config/pages-config';
-import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductsCatergoriesComponent } from './products-catergories/products-catergories.component';
 import { ProductRatingComponent } from './product-rating/product-rating.component';
 import { ProductsListResolver } from './resolvers/products-list.resolver';
 import { ProductsCategoriesResolver } from './resolvers/products-categories.resolver';
 import { ItemReviewResolver } from '../admin-tools/resolvers/item-review.resolver';
 import { ProdcutRatingResolver } from './resolvers/product-rating.resolver';
+import { ProductsListComponent } from '../shared/products-list/products-list.component';
 
 const routes: Routes = [
   {

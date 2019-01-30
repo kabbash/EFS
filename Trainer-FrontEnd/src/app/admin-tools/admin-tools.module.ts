@@ -14,7 +14,15 @@ import { AddItemForReviewComponent } from './add-item-for-review/add-item-for-re
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
 import { ArticleDetailsEditmodeComponent } from '../shared/article-details-editmode/article-details-editmode.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdminProductsListComponent } from './products/admin-products-list/admin-products-list.component';
+import { NgbModule, NgbPaginationModule, NgbAlertModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { AdminProductsListResolver } from './resolvers/products-list-resolver';
+import { ManageProductsComponent } from './products/manage-products/manage-products.component';
+import { ProductListItemComponent } from './products/product-list-item/product-list-item.component';
+import { ProductResolver } from './resolvers/product.resolver';
+import { ProductListItemEditComponent } from './products/product-list-item-edit/product-list-item-edit.component';
+import { NgbUTCStringAdapter } from '../shared/services/ngb-string.adapter';
+import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
 import { AdminArticlesService } from './services/admin.articles.services';
 
 
@@ -22,27 +30,38 @@ import { AdminArticlesService } from './services/admin.articles.services';
   imports: [
     AdminToolsRoutingModule,
     SharedModule,
-    NgbModule,
     FormsModule,
     ReactiveFormsModule,
     FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),   
+    FroalaViewModule.forRoot(),
+    NgbModule,
+    NgbPaginationModule,
+    NgbAlertModule,
   ],
   declarations:
-  [
-    AddCategoryComponent,
-    AdminToolsComponent,
-    ManageCategoriesComponent,
-    ManageProductsCategoriesComponent,
-    ManageArticlesCategoriesComponent,
-    ManageArticlesComponent,
-    AddItemForReviewComponent,
-    ArticlesListComponent,
-    ArticleDetailsEditmodeComponent
-  ],
+    [
+      AddCategoryComponent,
+      AdminToolsComponent,
+      ManageCategoriesComponent,
+      ManageProductsCategoriesComponent,
+      ManageArticlesCategoriesComponent,
+      ManageArticlesComponent,
+      AddItemForReviewComponent,
+      ArticlesListComponent,
+      ArticleDetailsEditmodeComponent,
+      AdminProductsListComponent,
+      ManageProductsComponent,
+      ProductListItemComponent,
+      ProductListItemEditComponent
+    ],
 
   providers: [
     AdminArticlesListResolver,
+    AdminProductsListResolver,
+    ProductResolver,
+    LeafProductCategoriesResolver,
+    { provide: NgbDateAdapter, useClass: NgbUTCStringAdapter },
+
     AdminArticlesService
   ]
 })

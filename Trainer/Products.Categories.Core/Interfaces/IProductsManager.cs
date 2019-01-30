@@ -5,11 +5,13 @@ namespace Products.Core.Interfaces
 {
     public interface IProductsManager
     {
-        ResultMessage GetAll(int pageNumber, int pageSize, ProductFilter filter=null);
+        ResultMessage GetAll( ProductFilter filter=null);
         ResultMessage Insert(ProductsDto product);
         ResultMessage GetById(int id);
         ResultMessage GetByCategoryId(int id);
         ResultMessage Update(ProductsDto product, int id);
         ResultMessage Delete(int id);
+        ResultMessage Approve(int id);
+        ResultMessage Reject(RejectDto rejectModel);
     }
 }

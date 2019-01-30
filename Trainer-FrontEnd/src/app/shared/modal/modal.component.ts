@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { productListItemDto } from '../../shared/models/product-list-item-dto';
-import { UtilitiesService } from '../../shared/services/utilities.service';
+import { productListItemDto } from '../models/product-list-item-dto';
+import { UtilitiesService } from '../services/utilities.service';
 
 @Component({
   selector: 'app-modal',
@@ -22,7 +22,6 @@ export class ModalComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['product'].currentValue) {
       this.product.expDate = this.utilService.getDateFormatted(this.product.expDate);
-      this.product.prodDate = this.utilService.getDateFormatted(this.product.prodDate);
     }
   }
 

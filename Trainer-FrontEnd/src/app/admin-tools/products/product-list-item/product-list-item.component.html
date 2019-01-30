@@ -1,0 +1,95 @@
+<div class="modal-body">
+    <div class="modal-img">
+        <div class="img-wrapper">
+            <img [src]="baseurl + product.profilePicture">
+        </div>
+        <!-- <div>
+            <span class="rate">
+                <span class="rating-word">اضف تقييمك</span> &nbsp;
+                <ngb-rating [(rate)]="product.rate"  max="5" class="star rating-stars">
+                    <ng-template let-fill="fill" let-index="index">
+                        <span class="star" [class.filled-modal]="fill === 100">&#9733;</span>
+                    </ng-template>
+                </ngb-rating>&nbsp;
+                <span class="filled-modal">({{product.rate}})</span>
+            </span>
+        </div> -->
+    </div>
+    <div class="product-description">
+        <!-- <div class="modal-btn-buy">
+            <div class="buy-price">السعر <span>&nbsp; {{product.price}} &nbsp;</span> ج م</div>
+        </div> -->
+        <div class="desc-item">
+                <div>
+                    <span class="desc-entity">الفئة</span>
+                    &nbsp;
+                    :
+                    &nbsp;
+                    {{product.categoryName}}
+                </div>
+            </div>
+        <div class="desc-item">
+            <div>
+                <span class="desc-entity">النوع</span>
+                &nbsp;
+                :
+                &nbsp;
+                {{product.isSpecial? 'مميز' : 'عادي'}}
+            </div>
+        </div>
+        <div class="desc-item">
+            <div>
+                <span class="desc-entity">السعر</span>
+                &nbsp;
+                :
+                &nbsp;
+                {{product.price}} &nbsp;ج م
+            </div>
+        </div>
+        <div class="desc-item">
+            <div>
+                <span class="desc-entity">الإسم</span>
+                &nbsp;
+                :
+                &nbsp;
+                {{product.name}}
+            </div>
+        </div>
+        <div class="desc-item">
+            <div>
+                <span class="desc-entity">الوصف</span>
+                &nbsp;
+                :
+                &nbsp;
+                {{product.description}}
+            </div>
+        </div>
+        <div class="desc-item">
+            <div>
+                <span class="desc-entity">تاريخ الإنتهاء</span>
+                &nbsp;
+                :
+                &nbsp;
+                {{product.expDate}}
+            </div>
+        </div>
+        <div class="desc-item">
+            <div>
+                <span class="desc-entity">البائع</span>
+                &nbsp;
+                :
+                &nbsp;
+                {{product.seller.name}}
+            </div>
+        </div>
+        <div class="desc-item">
+            <div>
+                <span class="desc-entity">للشــراء</span>
+                &nbsp;
+                :
+                &nbsp;
+                {{product.seller.phoneNumber}}
+            </div>
+        </div>
+    </div>
+</div>

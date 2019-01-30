@@ -10,5 +10,6 @@ namespace Products.Core.Interfaces
         ResultMessage GetById(int id);
         ResultMessage Update(ProductsCategoryDto category, int id);
         ResultMessage Delete(int id);
+        ResultMessage GetLeafCategories();
     }
 }

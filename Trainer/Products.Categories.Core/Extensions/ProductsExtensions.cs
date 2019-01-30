@@ -10,10 +10,29 @@ namespace Products.Core.Extensions
             if (filter == null)
                 return products;
 
-            if (filter.IsActive.HasValue)
-                products = products.Where(c => c.IsActive == filter.IsActive);
+            switch (filter.Status)
+            {
+                case ProductStatusEnum.All:
+                    break;
+                case ProductStatusEnum.Active:
+                    products = products.Where(c => c.IsActive.HasValue && c.IsActive.Value);
+                    break;
+                case ProductStatusEnum.Pending:
+                    products = products.Where(c => !c.IsActive.HasValue);
+                    break;
+                case ProductStatusEnum.Rejected:
+                    products = products.Where(c => c.IsActive.HasValue && !c.IsActive.Value);
+                    break;
+                default:
+                    break;
+            }
+
             if (filter.IsSpecial.HasValue)
                 products = products.Where(c => c.IsActive == filter.IsSpecial);
+
+            if (!string.IsNullOrEmpty(filter.SearchText))
+                products = products.Where(p => p.Name.ToLower().Contains(filter.SearchText.ToLower()));
+
             return products;
         }
     }

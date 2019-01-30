@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { NgbModule, NgbPaginationModule, NgbAlertModule, NgbRating } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClient } from '@angular/common/http';
@@ -8,18 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../app/shared/shared.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { ArticlesModule } from './articles/articles.module';
-import { DemosModule } from './demos/demos.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-import { HomeModule } from './home/home.module';
-import { ProductsModule } from './products/products.module';
 import { AuthModule } from './auth/auth.module';
-import { UserAccountModule } from './user-account/user-account.module';
-import { LoginModule } from './login/login.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AuthService } from './auth/services/auth.service';
 import { ItemReviewResolver } from './admin-tools/resolvers/item-review.resolver';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { NgbUTCStringAdapter } from './shared/services/ngb-string.adapter';
 import { AppConfig } from '../config/app.config';
 
 export function CreateTranslateLoader(http: HttpClient) {
@@ -56,6 +51,7 @@ export function initializeApp(appConfig: AppConfig) {
     AuthService,
     ItemReviewResolver,
     AuthGuard,
+    { provide: NgbDateAdapter, useClass: NgbUTCStringAdapter },
     AppConfig,
     {
       provide: APP_INITIALIZER,

@@ -147,6 +147,14 @@ export let config = {
       'itemReviewList': {
           'name': 'itemReviewList',
           'route': '/admin/itemReviewList'
+      },
+      'manageProducts': {
+        'name': 'manageProducts/:productId',
+        'route': '/admin/manageProducts'
+      },
+      'ProductsList': {
+        'name': 'ProductList',
+        'route': '/admin/ProductList'
       }
     }
 };

@@ -451,8 +451,6 @@ namespace Trainer.EF
 
                 entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
 
-                entity.Property(e => e.ProdDate).HasColumnType("date");
-
                 entity.Property(e => e.ProfilePicture).IsRequired();
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");

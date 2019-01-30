@@ -10,6 +10,8 @@ import { ProductsCategoriesResolver } from './resolvers/products-categories.reso
 import { ProductsListResolver } from './resolvers/products-list.resolver';
 import { ProdcutRatingResolver } from './resolvers/product-rating.resolver';
 
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +21,7 @@ import { ProdcutRatingResolver } from './resolvers/product-rating.resolver';
     NgbPaginationModule,
     NgbAlertModule,
   ],
-  declarations: [ProductsComponent,  ProductsCatergoriesComponent, ProductRatingComponent],
+  declarations: [ProductsComponent, ProductsCatergoriesComponent, ProductRatingComponent],
   providers: [
     ProductsListResolver,
     ProdcutRatingResolver

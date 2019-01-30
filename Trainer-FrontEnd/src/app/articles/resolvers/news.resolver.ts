@@ -5,7 +5,7 @@ import { articleListItemDto } from '../../shared/models/article-list-item-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
 import { PredefinedCategories } from '../../shared/models/predefined-categories.enum';
-import { AppConfig } from 'src/config/app.config';
+import { AppConfig } from '../../../config/app.config';
 
 @Injectable()
 export class NewsResolver implements Resolve<Observable<ResultMessage<articleListItemDto[]>>> {

@@ -4,4 +4,5 @@ export class ProductCategoryDTO {
     name: string;
     profilePicture: string;
     parentId: number;
+    hasSubCategory: boolean;
 }

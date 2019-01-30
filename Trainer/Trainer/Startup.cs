@@ -47,6 +47,7 @@ using System.Text;
 using test.core.Model;
 using test.core.Validators;
 using Trainer.EF;
+using Shared.Core.Models;
 
 namespace Trainer
 {
@@ -178,6 +179,11 @@ namespace Trainer
         {
             TypeAdapterConfig<ArticleAddDto, DBModels.Articles>.NewConfig()
                                                    .Ignore(dest => dest.Id);
+            TypeAdapterConfig<Shared.Core.Models.Products, ProductsDto>.NewConfig()
+                                                   .Map(dest => dest.CategoryName, src => (src.Category ?? new ProductsCategories()).Name);
+            TypeAdapterConfig<Shared.Core.Models.ProductsCategories, ProductsCategoryDto>.NewConfig()
+                                                   .Map(dest => dest.HasSubCategory, src => src.Subcategories != null && src.Subcategories.Count > 0);
+
         }
         #endregion
     }

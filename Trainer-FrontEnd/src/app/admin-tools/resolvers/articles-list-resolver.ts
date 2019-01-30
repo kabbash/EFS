@@ -5,7 +5,7 @@ import { articleListItemDto } from '../../shared/models/article-list-item-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
 import { PagedResult } from '../../shared/models/paged-result';
-import { AppConfig } from 'src/config/app.config';
+import { AppConfig } from '../../../config/app.config';
 
 @Injectable()
 export class AdminArticlesListResolver implements Resolve<Observable<ResultMessage<PagedResult<articleListItemDto>>>> {
