@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { productListItemDto } from "../../shared/models/product-list-item-dto";
 import { ResultMessage } from "../../shared/models/result-message";
 import { RepositoryService } from "../../shared/services/repository.service";
-import { AppConfig } from "src/config/app.config";
+import { AppConfig } from '../../../config/app.config';
 
 @Injectable()
 export class ItemReviewResolver implements Resolve<Observable<ResultMessage<productListItemDto[]>>> {
