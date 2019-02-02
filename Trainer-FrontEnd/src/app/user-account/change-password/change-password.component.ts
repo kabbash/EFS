@@ -38,7 +38,6 @@ export class ChangePasswordComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.changed = false;
-    debugger;
     // stop here if form is invalid
     if (this.changePasswordForm.invalid) {
       return;

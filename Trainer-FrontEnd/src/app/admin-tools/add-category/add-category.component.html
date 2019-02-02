@@ -16,6 +16,12 @@
               </div>
               </div>
             </div>
+            <div class="form-group row" *ngIf="categoryService.manageProducts">
+              <label class="col-md-3 col-form-label" for="text-input">{{'addCategory.description' | translate}}</label>
+              <div class="col-md-9">
+                <textarea rows="2"  id="text-description" name="description" class="form-control"  formControlName="description" [(ngModel)]="articleCategory.description" ></textarea>
+              </div>
+            </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="file-input">{{'addCategory.picture' | translate}}</label>
               <div class="col-md-9">

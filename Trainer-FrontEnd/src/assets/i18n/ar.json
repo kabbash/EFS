@@ -12,6 +12,7 @@
       "chooseFile": "اختر ملف",
       "noFileChoosen": "لم تقم باختيار ملف",
       "parentCategory": "الفئة الرئيسية",
+      "description": "الوصـف",
       "formValidations": {
         "name": {
           "required": "يجب ادخال اسم الفئة"

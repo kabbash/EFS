@@ -51,6 +51,7 @@ export class ProductListItemEditComponent implements OnInit {
 
   get f() { return this.editForm.controls; }
 
+
   getData(isUpdate?:boolean) {
     
     let editedProduct = new productListItemDto();

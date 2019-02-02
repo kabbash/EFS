@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
 import { ProductCategoryDTO } from '../../shared/models/products/product-category-dto';
 import { environment } from '../../../environments/environment';
-import { RepositoryService } from '../../shared/services/repository.service';
 import { config } from '../../config/pages-config';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-products-catergories',
@@ -20,9 +20,9 @@ export class ProductsCatergoriesComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   private allCategories: ProductCategoryDTO[];
   constructor(private router: Router,
-    private repositoryService: RepositoryService,
     private route: ActivatedRoute,
-    private appSrevice: AppService) { }
+    private appSrevice: AppService,
+    public productsService: ProductsService) { }
 
   ngOnInit() {
     this.route.data.subscribe(result => {
@@ -32,13 +32,15 @@ export class ProductsCatergoriesComponent implements OnInit {
     });
   }
 
-  productsList(categoryId) {
+  productsList(category : ProductCategoryDTO) {
 
-    const subCategories = this.getSubCategories(categoryId);
+    this.productsService.selectedCategory = Object.assign({},category);
+
+    const subCategories = this.getSubCategories(category.id);
     if (subCategories.length > 0) {
       this.categories = subCategories;
     } else {
-      this.router.navigate([config.products.productsList.route, categoryId]);
+      this.router.navigate([config.products.productsList.route, category.id]);
     }
   }
 

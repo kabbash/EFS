@@ -8,6 +8,7 @@ import { config } from '../../config/pages-config';
 import { ProductReviewService } from '../../admin-tools/services/product-review.service';
 import { PagerDto } from '../../shared/models/pager.dto';
 import { ModalComponent } from '../modal/modal.component';
+import { ProductsService } from 'src/app/products/products.service';
 
 @Component({
   selector: 'app-all-products',
@@ -19,6 +20,7 @@ export class ProductsListComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   selectedProduct: productListItemDto;
   categoryId: number;
+  categoryDescription: string;
   isProductReview = false;
   isManageProductReview = false;
   pagerData: PagerDto;
@@ -27,10 +29,12 @@ export class ProductsListComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute,
     private repositoryService: RepositoryService,
     private appService: AppService,
+    private productsService: ProductsService,
     private productReviewService: ProductReviewService) {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
     });
+     this.categoryDescription = this.productsService.selectedCategory.description;
   }
 
   ngOnInit() {
