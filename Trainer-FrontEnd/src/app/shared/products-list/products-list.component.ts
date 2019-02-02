@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
-import { productListItemDto } from '../../shared/models/product-list-item-dto';
+import { productListItemDto } from '../models/products/product-list-item-dto';
 import { environment } from '../../../environments/environment';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { config } from '../../config/pages-config';
@@ -33,6 +33,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit() {
+    debugger;
     this.route.data.subscribe(result => {
       this.pagerData = result.productList.data;
       this.pagerData.itmesCount = 6;

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
-import { ProductCategoryDTO } from '../../shared/models/product-category-dto';
+import { ProductCategoryDTO } from '../../shared/models/products/product-category-dto';
 
 @Injectable()
 export class LeafProductCategoriesResolver implements Resolve<Observable<ResultMessage<ProductCategoryDTO[]>>>{

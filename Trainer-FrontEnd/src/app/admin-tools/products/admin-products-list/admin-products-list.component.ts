@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { config } from '../../../config/pages-config';
-import { productListItemDto } from '../../../shared/models/product-list-item-dto';
-import { ddlDto } from '../../../shared/models/ddl-dto';
+import { productListItemDto } from '../../../shared/models/products/product-list-item-dto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminProductsService } from '../../services/admin.products.service';
-import { ProductsFilter } from '../../../shared/models/products-filter';
 import { environment } from '../../../../environments/environment';
 import { PagerDto } from '../../../shared/models/pager.dto';
 import { SearchFilterComponent } from '../../../shared/search-filter/search-filter.component';
+import { AppConfig } from 'src/config/app.config';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-admin-products-list',
@@ -19,37 +19,30 @@ export class AdminProductsListComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   selectedProduct: productListItemDto;
   pagerData: PagerDto;
-  productsFilter = new ProductsFilter();
+  private pageSize = AppConfig.settings.pagination.productsForAdmin.pageSize;
+
   @ViewChild(SearchFilterComponent) searchFilterComponent: SearchFilterComponent;
 
 
   constructor(private route: ActivatedRoute,
-    private router: Router, private service: AdminProductsService) { }
+    private router: Router, private service: AdminProductsService, private appService: AppService) { }
 
   ngOnInit() {
     this.route.data.subscribe(result => {
       this.pagerData = result.productsList.data;
-      // this.pagerData.itmesCount = 6;
       this.productsList = result.productsList.data.results;
     });
 
     this.searchFilterComponent.filterStatuses.selectedValue = 1;
-    this.productsFilter.pageNo = 1;
-    this.productsFilter.pageSize = 6;
-  }
-
-  getFilter() {
-    this.productsFilter.searchText = this.searchFilterComponent.searchTxt;
-    this.productsFilter.status = this.searchFilterComponent.filterStatuses.selectedValue;
-    this.productsFilter.pageNo = this.pagerData.currentPage;
-    this.productsFilter.pageSize = this.pagerData.pageSize;
   }
 
   reloadItems() {
-    this.getFilter();
-    let filter = `?pageNo=${this.productsFilter.pageNo}&pageSize=${this.productsFilter.pageSize}&searchText=${this.productsFilter.searchText}&status=${this.productsFilter.status}`;
+    this.appService.loading = true;
+    let filter = `?pageNo=1&pageSize=${this.pageSize}&searchText=${this.searchFilterComponent.searchTxt}&status=${this.searchFilterComponent.filterStatuses.selectedValue}`;
     this.service.getFilteredProducts(filter).subscribe(result => {
       this.productsList = result.data.results;
+      this.pagerData = result.data;
+      this.appService.loading = false;
     });
   }
 
@@ -59,6 +52,18 @@ export class AdminProductsListComponent implements OnInit {
 
   addProduct() {
     this.router.navigate([config.admin.manageProducts.route, 0]);
+  }
+
+  getNextPage() {
+
+    this.appService.loading = true;
+    let filter = `?pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}&searchText=${this.searchFilterComponent.searchTxt}&status=${this.searchFilterComponent.filterStatuses.selectedValue}`;
+    this.service.getFilteredProducts(filter).subscribe((response: any) => {
+
+      this.productsList = response.data.results;
+      this.pagerData = response.data;
+      this.appService.loading = false;
+    });
   }
 
 }

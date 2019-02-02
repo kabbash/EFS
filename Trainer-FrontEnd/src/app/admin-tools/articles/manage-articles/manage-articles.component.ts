@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ArticleDetialsDto } from '../../../shared/models/article-details-dto';
+import { ArticleDetialsDto } from '../../../shared/models/articles/article-details-dto';
 import { AppService } from '../../../app.service';
 import { AdminArticlesService } from '../../services/admin.articles.services';
 import { ArticleDetailsEditmodeComponent } from '../../../shared/article-details-editmode/article-details-editmode.component';
 import { config } from '../../../config/pages-config';
-import { SliderItemDto } from '../../../shared/models/slider-item.dto';
+import { SliderItemDto } from '../../../shared/models/slider/slider-item.dto';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
 
 
@@ -28,8 +28,7 @@ export class ManageArticlesComponent implements OnInit {
     private router: Router,
      private appService: AppService,
       private service: AdminArticlesService,
-      private util: UtilitiesService,
-    private articleService: AdminArticlesService) {
+      private util: UtilitiesService) {
     this.route.params.subscribe(params => {
       this.articleId = params['articleId'];
     });
@@ -79,7 +78,7 @@ export class ManageArticlesComponent implements OnInit {
     if (!this.articleDetailsEditmodeComponent.articleForm.valid) {
       return false;
     }
-    this.articleService.setArticleProfilePic(this.articleDetailsEditmodeComponent.modifiedArticle, false);        
+    this.util.setSliderProfilePic(this.articleDetailsEditmodeComponent.modifiedArticle, false);        
     const articleToUpdate = Object.assign({}, this.articleDetailsEditmodeComponent.modifiedArticle)
     delete articleToUpdate.images;
     const formData = new FormData();
@@ -101,9 +100,8 @@ export class ManageArticlesComponent implements OnInit {
     if (!this.articleDetailsEditmodeComponent.articleForm.valid) {
       return false;
     }
-    this.articleDetailsEditmodeComponent.modifiedArticle.images = 
-      this.articleDetailsEditmodeComponent.modifiedArticle.updatedImages;
-    this.articleService.setArticleProfilePic(this.articleDetailsEditmodeComponent.modifiedArticle, true);    
+
+    this.util.setSliderProfilePic(this.articleDetailsEditmodeComponent.modifiedArticle, true);    
     const formData = new FormData();
     this.util.appendFormData(formData, this.articleDetailsEditmodeComponent.modifiedArticle)
     this.service.add(formData).subscribe(

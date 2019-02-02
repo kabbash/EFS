@@ -1,7 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { RepositoryService } from '../../shared/services/repository.service';
-import {articleCategoryDto} from '../../shared/models/article-category-dto';
+import {articleCategoryDto} from '../../shared/models/articles/article-category-dto';
 import { CategoriesService } from '../services/categories.service';
 import { DropDownDto } from '../../shared/models/drop-down.dto';
 import { Router } from '@angular/router';

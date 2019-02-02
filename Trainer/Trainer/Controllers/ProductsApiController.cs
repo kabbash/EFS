@@ -1,13 +1,13 @@
-﻿using Attachments.Core.Interfaces;
-using Attachments.Core.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Products.Core.Interfaces;
 using Products.Core.Models;
 using Rating.Core.Interfaces;
 using Rating.Core.Models;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Models;
+using System.Linq;
+using System.Security.Claims;
+using DBModels = Shared.Core.Models;
 
 namespace Trainer.Controllers
 {
@@ -16,48 +16,18 @@ namespace Trainer.Controllers
     public class ProductsApiController : BaseController
     {
         private readonly IProductsManager _productsManager;
-        private readonly IRatingManager<Shared.Core.Models.Products> _ratingManager;
+        private readonly IRatingManager<DBModels.Products> _ratingManager;
 
-        public ProductsApiController(IProductsManager productsManager, IRatingManager<Shared.Core.Models.Products> ratingManager)
+        public ProductsApiController(IProductsManager productsManager, IRatingManager<DBModels.Products> ratingManager)
         {
             _productsManager = productsManager;
             _ratingManager = ratingManager;
         }
 
-        [HttpGet("GetActiveItems")]
-        public ActionResult GetActiveItems(int PageNo = 1, int PageSize = 10)
-        {
-            var filter = new ProductFilter
-            {
-                PageNo = PageNo,
-                PageSize = PageSize,
-                Status = ProductStatusEnum.Active
-            };
-            return GetStatusCodeResult(_productsManager.GetAll(filter));
-        }
-
-        [HttpGet("GetSpecialItems")]
-        public ActionResult GetSpecialItems(int PageNo = 1, int PageSize = 10)
-        {
-            var filter = new ProductFilter
-            {
-                IsSpecial = true,
-                Status = ProductStatusEnum.Active,
-                PageNo = PageNo,
-                PageSize = PageSize
-            };
-            return GetStatusCodeResult(_productsManager.GetAll(filter));
-        }
-
         [HttpGet]
-        public ActionResult Get(int PageNo = 1, int PageSize = 10)
+        public ActionResult Get([FromQuery]ProductFilter filter)
         {
-            var filter = new ProductFilter
-            {
-                PageNo = PageNo,
-                PageSize = PageSize
-            };
-
+            filter.Status = StatusFilterEnum.Active;
             return GetStatusCodeResult(_productsManager.GetAll(filter));
         }
 
@@ -76,12 +46,30 @@ namespace Trainer.Controllers
         [HttpPost]
         public ActionResult Post([FromForm] ProductsDto productsDto)
         {
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            if (userIdClaim == null)
+            {
+                return StatusCode(500);
+            }
+
+            // Set User 
+            productsDto.CreatedBy = userIdClaim.Value;
+
             return GetStatusCodeResult(_productsManager.Insert(productsDto));
         }
 
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromForm] ProductsDto productsDto)
         {
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            if (userIdClaim == null)
+            {
+                return StatusCode(500);
+            }
+
+            //Set User
+            productsDto.UpdatedBy = userIdClaim.Value;
+
             return GetStatusCodeResult(_productsManager.Update(productsDto, id));
         }
 
@@ -100,8 +88,8 @@ namespace Trainer.Controllers
 
         #region Administration 
 
-        [HttpGet("getFilteredData")]
-        public ActionResult getFilteredData([FromQuery]ProductFilter filter)
+        [HttpGet("getforadmin")]
+        public ActionResult GetForAdmin([FromQuery]ProductFilter filter)
         {
             return GetStatusCodeResult(_productsManager.GetAll(filter));
         }

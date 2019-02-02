@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { SliderItemDto } from '../models/slider-item.dto';
+import { SliderItemDto } from '../models/slider/slider-item.dto';
 
 
 @Component({

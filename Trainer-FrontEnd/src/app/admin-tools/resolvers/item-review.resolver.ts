@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
-import { productListItemDto } from "../../shared/models/product-list-item-dto";
+import { productListItemDto } from "../../shared/models/products/product-list-item-dto";
 import { ResultMessage } from "../../shared/models/result-message";
 import { RepositoryService } from "../../shared/services/repository.service";
 import { AppConfig } from '../../../config/app.config';

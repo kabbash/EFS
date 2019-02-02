@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { productListItemDto } from '../../shared/models/product-list-item-dto';
+import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
 import { RatingDto } from '../../shared/models/rating.dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { Router } from '@angular/router';

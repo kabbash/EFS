@@ -117,7 +117,7 @@ namespace Articles.Core.Services
                 var sliderDto = new SliderDto
                 {
                     attachmentType = AttachmentTypesEnum.Articles,
-                    Items = article.Images,
+                    Items = article.UpdatedImages,
                     SubFolderName = articleFolderName
                 };
 

@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Route } from '@angular/router';
 import { config } from '../../config/pages-config';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { environment } from '../../../environments/environment';
-import { articleListItemDto } from '../../shared/models/article-list-item-dto';
+import { articleListItemDto } from '../../shared/models/articles/article-list-item-dto';
 import { AppService } from '../../app.service';
 import { PagerDto } from '../../shared/models/pager.dto';
 

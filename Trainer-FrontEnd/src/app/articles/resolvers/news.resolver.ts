@@ -1,10 +1,10 @@
 import { Resolve, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { articleListItemDto } from '../../shared/models/article-list-item-dto';
+import { articleListItemDto } from '../../shared/models/articles/article-list-item-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
-import { PredefinedCategories } from '../../shared/models/predefined-categories.enum';
+import { PredefinedCategories } from '../../shared/models/articles/articles-predefined-categories.enum';
 import { AppConfig } from '../../../config/app.config';
 
 @Injectable()

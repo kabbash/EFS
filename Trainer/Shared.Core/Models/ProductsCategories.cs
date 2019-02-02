@@ -16,6 +16,7 @@ namespace Shared.Core.Models
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string UpdatedBy { get; set; }
+        public string Description { get; set; }
 
         [ForeignKey("ParentId")]
         public virtual ICollection<ProductsCategories> Subcategories { get; set; }

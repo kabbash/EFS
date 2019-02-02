@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { articleCategoryDto } from '../../shared/models/article-category-dto';
+import { articleCategoryDto } from '../../shared/models/articles/article-category-dto';
 
 @Injectable()
 export class CategoriesService {

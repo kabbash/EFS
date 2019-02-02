@@ -1,4 +1,5 @@
 ﻿using Products.Core.Models;
+using Shared.Core.Utilities.Enums;
 using System.Linq;
 
 namespace Products.Core.Extensions
@@ -12,20 +13,23 @@ namespace Products.Core.Extensions
 
             switch (filter.Status)
             {
-                case ProductStatusEnum.All:
+                case StatusFilterEnum.All:
                     break;
-                case ProductStatusEnum.Active:
+                case StatusFilterEnum.Active:
                     products = products.Where(c => c.IsActive.HasValue && c.IsActive.Value);
                     break;
-                case ProductStatusEnum.Pending:
+                case StatusFilterEnum.Pending:
                     products = products.Where(c => !c.IsActive.HasValue);
                     break;
-                case ProductStatusEnum.Rejected:
+                case StatusFilterEnum.Rejected:
                     products = products.Where(c => c.IsActive.HasValue && !c.IsActive.Value);
                     break;
                 default:
                     break;
             }
+
+            if(filter.CategoryId != 0)
+                products = products.Where(c => c.CategoryId == filter.CategoryId);
 
             if (filter.IsSpecial.HasValue)
                 products = products.Where(c => c.IsActive == filter.IsSpecial);

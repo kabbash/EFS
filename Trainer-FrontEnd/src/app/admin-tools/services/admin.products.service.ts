@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PagedResult } from '../../shared/models/paged-result';
-import { productListItemDto } from '../../shared/models/product-list-item-dto';
+import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 
 @Injectable({
@@ -23,14 +23,14 @@ export class AdminProductsService {
   }
 
   getFilteredProducts(filterUrl: string) {
-    return this.service.getData<PagedResult<productListItemDto>>("products/getFilteredData" + filterUrl);
+    return this.service.getData<PagedResult<productListItemDto>>("products/getforadmin" + filterUrl);
   }
 
   update(productId: number, product: FormData): any {
     return this.service.update("products/" + productId, product);
   }
 
-  create(product: FormData): any {
-    return this.service.create("products/" , product);
+  add(product: FormData): any {
+    return this.service.postForm("products" , product);
   }
 }

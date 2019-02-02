@@ -24,4 +24,12 @@
         ProductCategories = 1 ,
         ArticlesCategories
     }
+
+    public enum StatusFilterEnum
+    {
+        All = 0,
+        Active,
+        Pending,
+        Rejected
+    }
 }

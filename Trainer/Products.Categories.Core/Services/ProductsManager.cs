@@ -10,6 +10,7 @@ using Shared.Core.Resources;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
+using DBModels = Shared.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,13 +24,16 @@ namespace Products.Core.Services
         private readonly IValidator<ProductsDto> _validator;
         private readonly IOptions<ProductsResources> _productsResources;
         private readonly IAttachmentsManager _attachmentsManager;
+        private readonly ISliderManager<DBModels.ProductsImages> _sliderManager;
 
-        public ProductsManager(IUnitOfWork unitOfWork, IValidator<ProductsDto> validator, IOptions<ProductsResources> productsResources, IAttachmentsManager attachmentsManager)
+
+        public ProductsManager(IUnitOfWork unitOfWork, IValidator<ProductsDto> validator, IOptions<ProductsResources> productsResources, IAttachmentsManager attachmentsManager, ISliderManager<DBModels.ProductsImages> sliderManager)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
             _productsResources = productsResources;
             _attachmentsManager = attachmentsManager;
+            _sliderManager = sliderManager;
         }
         public ResultMessage GetAll(ProductFilter filter = null)
         {
@@ -66,41 +70,32 @@ namespace Products.Core.Services
             try
             {
                 var productFolderName = Guid.NewGuid().ToString();
-                var newProduct = newProductDto.Adapt<Shared.Core.Models.Products>();
+                var newProduct = newProductDto.Adapt<DBModels.Products>();
                 newProduct.IsActive = null;
                 newProduct.CreatedAt = DateTime.Now;
-                newProduct.CreatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
-                newProduct.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
+                newProduct.CreatedBy = newProductDto.CreatedBy;
+                newProduct.SubFolderName = productFolderName;
+
+                var sliderDto = new SliderDto
                 {
                     attachmentType = AttachmentTypesEnum.Products,
-                    CanChangeName = true,
-                    File = newProductDto.ProfilePictureFile
-                });
-                if (newProductDto.ProductsImagesFiles != null)
-                {
-                    foreach (var image in newProductDto.ProductsImagesFiles)
-                    {
-                        newProduct.ProductsImages.Add(new Shared.Core.Models.ProductsImages()
-                        {
-                            //Name = image.Name,
-                            //ProductId = newProduct.Id,
-                            Path = _attachmentsManager.Save(new SavedFileDto
-                            {
-                                attachmentType = AttachmentTypesEnum.Products,
-                                CanChangeName = false,
-                                File = image,
-                                SubFolderName = productFolderName
-                            })
-                        });
-                    }
-                }
+                    Items = newProductDto.UpdatedImages,
+                    SubFolderName = productFolderName
+                };
+
+                if (sliderDto.Items.Count > 0)
+                    newProduct.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto);
 
                 _unitOfWork.ProductsRepository.Insert(newProduct);
                 _unitOfWork.Commit();
+
+                sliderDto.ParentId = newProduct.Id;
+                _sliderManager.Add(sliderDto);
+
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.OK,
-                    Data = _unitOfWork.ProductsRepository.GetById(newProduct.Id).Adapt<ProductsDto>()
+                    Data = GetById(newProduct.Id).Data //_unitOfWork.ProductsRepository.GetById(newProduct.Id).Adapt<ProductsDto>()
                 };
             }
             catch (Exception ex)
@@ -117,12 +112,26 @@ namespace Products.Core.Services
             try
             {
                 var product = _unitOfWork.ProductsRepository.GetById(id);
+
+
                 if (product != null)
+                {
+                    var productDto = product.Adapt<ProductsDto>();
+
+                    if (product.ProductsImages != null)
+                        productDto.Images = product.ProductsImages.Select(c => new SliderItemDto
+                        {
+                            Path = c.Path,
+                            Id = c.Id,
+                            IsProfilePicture = c.Path == product.ProfilePicture
+                        }).ToList();
+
                     return new ResultMessage()
                     {
-                        Data = product.Adapt<ProductsDto>(),
+                        Data = productDto,
                         Status = HttpStatusCode.OK
                     };
+                }
                 else
                     return new ResultMessage()
                     {
@@ -165,7 +174,7 @@ namespace Products.Core.Services
                             File = product.ProfilePictureFile
                         });
                     }
-                    //oldProduct.ProfilePicture = product.ProfilePicture;
+
                     oldProduct.IsActive = product.IsActive = null;
                     oldProduct.IsSpecial = product.IsSpecial;
                     oldProduct.Price = product.Price;
@@ -173,11 +182,28 @@ namespace Products.Core.Services
                     oldProduct.Description = product.Description;
                     oldProduct.CategoryId = product.CategoryId;
 
-                    oldProduct.UpdatedBy = "7c654344-ad42-4428-a77a-00a8c1299c3f";
+                    oldProduct.UpdatedBy = product.UpdatedBy;
                     oldProduct.UpdatedAt = DateTime.Now;
+
+                    var sliderDto = new SliderDto
+                    {
+                        attachmentType = AttachmentTypesEnum.Articles,
+                        Items = product.UpdatedImages ?? new List<SliderItemDto>(),
+                        SubFolderName = oldProduct.SubFolderName,
+                        ParentId = id
+                    };
+
+                    //check profile picture
+                    if (sliderDto.Items.Count > 0)
+                        oldProduct.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto, oldProduct.ProfilePicture);
+
 
                     _unitOfWork.ProductsRepository.Update(oldProduct);
                     _unitOfWork.Commit();
+
+                    // update files                
+                    if (sliderDto.Items.Count > 0)
+                        _sliderManager.Update(sliderDto);
 
                     return new ResultMessage
                     {
@@ -227,16 +253,23 @@ namespace Products.Core.Services
         {
             try
             {
-                IEnumerable<ProductsDto> result = new List<ProductsDto>();
-                IEnumerable<Shared.Core.Models.Products> resultData = new List<Shared.Core.Models.Products>();
+                List<ProductsDto> result = new List<ProductsDto>();
+                IEnumerable<DBModels.Products> resultData = new List<DBModels.Products>();
                 resultData = _unitOfWork.ProductsRepository.Get(c => c.CategoryId == categoryId, null, "Seller").ToList();
                 result = resultData.Adapt(result).ToList();
-                foreach (var product in result)
+
+                result.ForEach(c =>
                 {
-                    var data = resultData.FirstOrDefault(p => p.Id == product.Id);
-                    product.Seller.FullName = data.Seller.FullName;// + ' ' + data.Seller.LastName;
-                    product.Seller.PhoneNumber = data.Seller.PhoneNumber;
-                }
+                    c.Seller.FullName = resultData.FirstOrDefault(h => h.Id == c.Id).Seller.FullName;
+                    c.Seller.PhoneNumber = resultData.FirstOrDefault(h => h.Id == c.Id).Seller.PhoneNumber;                    
+                });
+
+                //foreach (var product in result)
+                //{
+                //    var data = resultData.FirstOrDefault(p => p.Id == product.Id);
+                //    product.Seller.FullName = data.Seller.FullName;
+                //    product.Seller.PhoneNumber = data.Seller.PhoneNumber;
+                //}
 
                 return new ResultMessage()
                 {
@@ -288,7 +321,6 @@ namespace Products.Core.Services
 
             }
         }
-
         public ResultMessage Reject(RejectDto rejectModel)
         {
 
