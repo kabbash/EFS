@@ -1,7 +1,7 @@
 ﻿using Articles.Core.Interfaces;
 using Articles.Core.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Models;
 using System.Linq;
 using System.Security.Claims;
@@ -21,7 +21,7 @@ namespace Trainer.Controllers
         [HttpGet]
         public ActionResult Get([FromQuery]ArticlesFilter filter)
         {
-            filter.Status = (int)(ArticleStatusEnum.Active);
+            filter.Status = (int)(StatusFilterEnum.Active);
             return GetStatusCodeResult(_articlesService.GetAll(filter));
         }
 

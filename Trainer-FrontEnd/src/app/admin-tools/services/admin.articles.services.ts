@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { RepositoryService } from "../../shared/services/repository.service";
-import { articleListItemDto } from "../../shared/models/article-list-item-dto";
+import { articleListItemDto } from "../../shared/models/articles/article-list-item-dto";
 import { PagedResult } from "../../shared/models/paged-result";
 import { ddlItemDto } from "../../shared/models/ddl-dto";
-import { ArticleDetialsDto } from "../../shared/models/article-details-dto";
+import { ArticleDetialsDto } from "../../shared/models/articles/article-details-dto";
 
 @Injectable()
 export class AdminArticlesService {
@@ -35,26 +35,5 @@ export class AdminArticlesService {
 
   getCategories(){
     return this.service.getData<ddlItemDto[]>("common/getEntityDDL?entityDDLId=2")
-  }
-
-  
-  setArticleProfilePic(article: ArticleDetialsDto, isAdd:boolean) {
-    if (isAdd) {
-      if (article.images && article.images.findIndex(image => image.isProfilePicture) === -1) {
-        article.images[0].isProfilePicture = true;
-      }
-    } else {
-      if (!article.updatedImages.find(image => image.isProfilePicture && !image.isDeleted) 
-      && !article.images.find(image => image.isProfilePicture)) {
-        const profilePic = article.updatedImages.find(image => !image.isDeleted);
-        if (profilePic) {
-          profilePic.isProfilePicture = true;        
-        } else {
-          article.images[0].isProfilePicture = true;
-          article.updatedImages.push(article.images[0]);
-        }
-      }
-    }
-    
   }
 }

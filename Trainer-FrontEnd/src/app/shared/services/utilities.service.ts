@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { SliderItemDto } from '../models/slider-item.dto';
+import { SliderItemDto } from '../models/slider/slider-item.dto';
+import { ISliderDto } from '../models/slider/ISlider.dto';
 
 @Injectable()
 export class UtilitiesService {
@@ -59,5 +60,23 @@ export class UtilitiesService {
       }
     }
   }
- 
+  setSliderProfilePic(obj: ISliderDto, isAdd: boolean) {
+    if (isAdd) {
+      if (obj.images && obj.images.findIndex(image => image.isProfilePicture) === -1) {
+        obj.images[0].isProfilePicture = true;
+      }
+    } else {
+      if (!obj.updatedImages.find(image => image.isProfilePicture && !image.isDeleted)
+        && !obj.images.find(image => image.isProfilePicture)) {
+        const profilePic = obj.updatedImages.find(image => !image.isDeleted);
+        if (profilePic) {
+          profilePic.isProfilePicture = true;
+        } else {
+          obj.images[0].isProfilePicture = true;
+          obj.updatedImages.push(obj.images[0]);
+        }
+      }
+    }
+
+  }
 }

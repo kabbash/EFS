@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output} from '@angular/core';
-import { articleCategoryDto } from '../models/article-category-dto';
+import { articleCategoryDto } from '../models/articles/article-category-dto';
 import { environment } from '../../../environments/environment';
 import { config } from '../../config/pages-config';
 import { Router } from '@angular/router';

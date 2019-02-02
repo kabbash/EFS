@@ -1,4 +1,5 @@
 ﻿using Articles.Core.Models;
+using Shared.Core.Utilities.Enums;
 using System.Linq;
 
 namespace Articles.Core.Extensions
@@ -10,15 +11,15 @@ namespace Articles.Core.Extensions
             if (filter == null)
                 return articles;
 
-            switch ((ArticleStatusEnum)filter.Status)
+            switch ((StatusFilterEnum)filter.Status)
             {
-                case ArticleStatusEnum.Active:
+                case StatusFilterEnum.Active:
                     articles = articles.Where(c => c.IsActive == true);
                     break;
-                case ArticleStatusEnum.Rejected:
+                case StatusFilterEnum.Rejected:
                     articles = articles.Where(c => c.IsActive == false);
                     break;
-                case ArticleStatusEnum.Pendings:
+                case StatusFilterEnum.Pending:
                     articles = articles.Where(c => !c.IsActive.HasValue);
                     break;
             }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { articleCategoryDto } from '../../shared/models/article-category-dto';
+import { articleCategoryDto } from '../../shared/models/articles/article-category-dto';
 import { environment } from '../../../environments/environment';
 import { config } from '../../config/pages-config';
 import { CategoriesService } from '../services/categories.service';

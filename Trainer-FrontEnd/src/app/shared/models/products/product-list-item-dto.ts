@@ -1,4 +1,7 @@
-export class productListItemDto {
+import { SliderItemDto } from "../slider/slider-item.dto";
+import { ISliderDto } from "../slider/ISlider.dto";
+
+export class productListItemDto implements ISliderDto {
 
   id: number = 0;
   name: string = '';
@@ -14,7 +17,15 @@ export class productListItemDto {
   reviews: any;
   isSpecial: boolean = null;
   isActive: boolean = null;
+  images: SliderItemDto[];
+  updatedImages: SliderItemDto[];
+
+  constructor() {
+    this.images = new Array<SliderItemDto>();
+    this.updatedImages = new Array<SliderItemDto>();
+  }
 }
+
 export class Seller {
   name: string;
   phoneNumber: string;

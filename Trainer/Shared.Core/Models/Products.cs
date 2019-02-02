@@ -18,6 +18,7 @@ namespace Shared.Core.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string SubFolderName { get; set; }
         public DateTime? ExpDate { get; set; }        
         public decimal Price { get; set; }
         public string ProfilePicture { get; set; }

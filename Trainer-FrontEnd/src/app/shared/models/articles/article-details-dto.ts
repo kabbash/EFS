@@ -1,15 +1,15 @@
-import { imageWithTextDto } from './image-with-text-dto';
-import { SliderItemDto } from './slider-item.dto';
+import { SliderItemDto } from '../slider/slider-item.dto';
+import { ISliderDto } from '../slider/ISlider.dto';
 
-export class ArticleDetialsDto {
+export class ArticleDetialsDto implements ISliderDto  {
 
     id: number;
     name: string;
     profilePicture: string;
     description: string;
-    images: SliderItemDto[];
     isActive: boolean;
     categoryId: number;
+    images: SliderItemDto[];
     updatedImages: SliderItemDto[];
 
     constructor() {

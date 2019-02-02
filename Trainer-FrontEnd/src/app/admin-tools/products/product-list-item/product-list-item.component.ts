@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { productListItemDto } from '../../../shared/models/product-list-item-dto';
+import { productListItemDto } from '../../../shared/models/products/product-list-item-dto';
 import { environment } from '../../../../environments/environment';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
 

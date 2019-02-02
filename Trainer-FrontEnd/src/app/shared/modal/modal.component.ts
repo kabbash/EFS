@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { productListItemDto } from '../models/product-list-item-dto';
+import { productListItemDto } from '../models/products/product-list-item-dto';
 import { UtilitiesService } from '../services/utilities.service';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Resolve, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ArticleDetialsDto } from '../../shared/models/article-details-dto';
+import { ArticleDetialsDto } from '../../shared/models/articles/article-details-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
 

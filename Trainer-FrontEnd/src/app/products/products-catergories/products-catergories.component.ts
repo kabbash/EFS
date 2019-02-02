@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
-import { ProductCategoryDTO } from '../../shared/models/product-category-dto';
+import { ProductCategoryDTO } from '../../shared/models/products/product-category-dto';
 import { environment } from '../../../environments/environment';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { config } from '../../config/pages-config';

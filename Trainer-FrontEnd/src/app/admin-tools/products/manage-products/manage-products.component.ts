@@ -3,10 +3,11 @@ import { AdminProductsService } from '../../services/admin.products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first, finalize } from 'rxjs/operators';
 import { ProductListItemEditComponent } from '../product-list-item-edit/product-list-item-edit.component';
-import { productListItemDto } from '../../../shared/models/product-list-item-dto';
-import { ProductCategoryDTO } from '../../../shared/models/product-category-dto';
+import { productListItemDto } from '../../../shared/models/products/product-list-item-dto';
+import { ProductCategoryDTO } from '../../../shared/models/products/product-category-dto';
 import { config } from '../../../config/pages-config';
 import { AppService } from '../../../app.service';
+import { UtilitiesService } from 'src/app/shared/services/utilities.service';
 
 @Component({
   selector: 'app-manage-products',
@@ -23,7 +24,7 @@ export class ManageProductsComponent implements OnInit {
   @ViewChild(ProductListItemEditComponent) productListItemEditComponent: ProductListItemEditComponent;
 
   constructor(private route: ActivatedRoute, private router: Router, private appService: AppService,
-     private service: AdminProductsService) { }
+    private service: AdminProductsService, private util: UtilitiesService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -65,8 +66,10 @@ export class ManageProductsComponent implements OnInit {
     if (this.productListItemEditComponent.editForm.invalid) {
       return;
     }
+
     this.appService.loading = true;
-    this.service.create(this.productListItemEditComponent.getData())
+
+    this.service.add(this.productListItemEditComponent.getData())
       .pipe(first(), finalize(() => {
         this.appService.loading = false;
       }))
@@ -85,7 +88,6 @@ export class ManageProductsComponent implements OnInit {
 
   update() {
     this.productListItemEditComponent.submitted = true;
-    // stop here if form is invalid
     if (this.productListItemEditComponent.editForm.invalid) {
       return;
     }

@@ -3,7 +3,7 @@ import { ResultMessage } from '../../shared/models/result-message';
 import { Observable } from 'rxjs';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { Injectable } from '@angular/core';
-import { productListItemDto } from '../../shared/models/product-list-item-dto';
+import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
 import { ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable()

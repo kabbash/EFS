@@ -10,5 +10,6 @@ namespace Products.Core.Models
         public string ProfilePicture { get; set; }
         public int? ParentId { get; set; }
         public bool HasSubCategory { get; set; }
+        public string Description { get; set; }
     }
 }

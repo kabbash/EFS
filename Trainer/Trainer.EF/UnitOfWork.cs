@@ -182,6 +182,20 @@ namespace Trainer.EF
             }
         }
 
+        private IRepository<ProductsImages> _productImagesRepo;
+        public IRepository<ProductsImages> ProductImagesRepository
+        {
+            get
+            {
+                if (_productImagesRepo == null)
+                {
+                    _productImagesRepo = new Repository<ProductsImages>(_dbContext);
+                }
+                return _productImagesRepo;
+            }
+        }
+
+
         #endregion
 
         public UnitOfWork(EFSContext context)

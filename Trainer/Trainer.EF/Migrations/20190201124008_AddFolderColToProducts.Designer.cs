@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20190201124008_AddFolderColToProducts")]
+    partial class AddFolderColToProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,8 +99,8 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
 
                     b.HasData(
-                        new { Id = 1, CreatedAt = new DateTime(2019, 2, 2, 12, 16, 9, 914, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
-                        new { Id = 2, CreatedAt = new DateTime(2019, 2, 2, 12, 16, 9, 921, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
+                        new { Id = 1, CreatedAt = new DateTime(2019, 2, 1, 12, 40, 7, 2, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
+                        new { Id = 2, CreatedAt = new DateTime(2019, 2, 1, 12, 40, 7, 6, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
                     );
                 });
 
@@ -139,10 +141,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "e5774e77-a2a8-465a-a842-625d37015919", Name = "Client" },
-                        new { Id = "0bb2fc24-ec5e-43aa-8fcc-8ea8800ae41d", Name = "RegularUser" },
-                        new { Id = "04a38259-cdfe-4f81-9b46-253cbd27ff3b", Name = "Trainer" },
-                        new { Id = "e3458c1f-c840-4050-ad1e-b5b48cecbf78", Name = "ArticleWriter" }
+                        new { Id = "244ad97b-a914-465a-926c-92df0c297bdc", Name = "Client" },
+                        new { Id = "010721d6-1678-4dcf-b73b-bebf465c72c6", Name = "RegularUser" },
+                        new { Id = "819f2549-7706-41df-8c8c-d455a360d310", Name = "Trainer" },
+                        new { Id = "01efeabe-5f77-4629-afeb-99d990577feb", Name = "ArticleWriter" }
                     );
                 });
 
@@ -688,8 +690,6 @@ namespace Trainer.EF.Migrations
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasMaxLength(128);
-
-                    b.Property<string>("Description");
 
                     b.Property<string>("Name")
                         .IsRequired()

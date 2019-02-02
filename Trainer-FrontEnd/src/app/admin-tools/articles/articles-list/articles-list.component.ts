@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminArticlesService } from '../../services/admin.articles.services';
-import { articleListItemDto } from '../../../shared/models/article-list-item-dto';
+import { articleListItemDto } from '../../../shared/models/articles/article-list-item-dto';
 import { environment } from '../../../../environments/environment';
 import { config } from '../../../config/pages-config';
-import { ArticlesFilter } from '../../../shared/models/articles-filter';
 import { PagerDto } from '../../../shared/models/pager.dto';
 import { AppService } from '../../../app.service';
-import { SearchFilterComponent } from 'src/app/shared/search-filter/search-filter.component';
+import { SearchFilterComponent } from '../../../shared/search-filter/search-filter.component';
+import { AppConfig } from 'src/config/app.config';
 
 @Component({
   selector: 'app-articles-list',
@@ -19,14 +19,14 @@ export class ArticlesListComponent implements OnInit {
 
   articlesList: articleListItemDto[];
   baseurl = environment.filesBaseUrl;
-  articleFilter= new ArticlesFilter();
 
   //pager
   selectedPage = 1;
   pagesNumber: number;
   articles: articleListItemDto[];
   pagerData: PagerDto;
-  
+  private pageSize = AppConfig.settings.pagination.articlesForAdmin.pageSize;
+
   @ViewChild(SearchFilterComponent) searchFilterComponent: SearchFilterComponent;
 
   constructor(private route: ActivatedRoute,
@@ -37,9 +37,6 @@ export class ArticlesListComponent implements OnInit {
       this.articlesList = result.articlesList.data.results;
       this.pagerData = result.articlesList.data;
     });
-    
-    this.articleFilter.pageNo = 1;
-    this.articleFilter.pageSize = 10;
   }
 
   articlesDetails(articleId) {
@@ -48,25 +45,20 @@ export class ArticlesListComponent implements OnInit {
   addArticle() {
     this.router.navigate([config.admin.manageArticles.route, 0]);
   }
-  setArticleFilter() {
-    this.articleFilter.searchText = this.searchFilterComponent.searchTxt;
-    this.articleFilter.status = this.searchFilterComponent.filterStatuses.selectedValue;
-  }
   reloadItems() {
 
-    this.setArticleFilter();
-    let filter = `?pageNo=${this.articleFilter.pageNo}&pageSize=${this.articleFilter.pageSize}&searchText=${this.articleFilter.searchText}&status=${this.articleFilter.status}`;
+    this.appService.loading = true;
+    let filter = `?pageNo=1&pageSize=${this.pageSize}&searchText=${this.searchFilterComponent.searchTxt}&status=${this.searchFilterComponent.filterStatuses.selectedValue}`;
     this.service.getFilteredArticles(filter).subscribe(result => {
       this.articlesList = result.data.results;
+      this.pagerData = result.data;
+      this.appService.loading = false;
     });
   }
   getNextPage() {
 
-    this.setArticleFilter();
     this.appService.loading = true;
-
-    let filter = `?pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}&searchText=${this.articleFilter.searchText}&status=${this.articleFilter.status}`;
-
+    let filter = `?pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}&searchText=${this.searchFilterComponent.searchTxt}&status=${this.searchFilterComponent.filterStatuses.selectedValue}`;
     this.service.getFilteredArticles(filter).subscribe((response: any) => {
 
       this.articlesList = response.data.results;

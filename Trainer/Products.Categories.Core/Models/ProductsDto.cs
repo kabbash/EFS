@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Attachments.Core.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 
@@ -13,12 +14,10 @@ namespace Products.Core.Models
         public decimal Price { get; set; }
         public string ProfilePicture { get; set; }
         public IFormFile ProfilePictureFile { get; set; }
-        public IList<IFormFile> ProductsImagesFiles { get; set; }
-        public string[] ProductsImages { get; set; }
+        public List<SliderItemDto> Images { get; set; }
+        public List<SliderItemDto> UpdatedImages { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public bool? IsActive { get; set; }
