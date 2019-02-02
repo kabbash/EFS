@@ -37,7 +37,8 @@ export class AddCategoryComponent implements OnInit {
     this.categoryForm = this.fb.group({
       'name': ['', Validators.required],
       'profilePictureFile': [null, !this.articleCategory.profilePicture ? Validators.required : null],
-      'parentId': ['']
+      'parentId': [''],
+      'description': ['']
     });
     this.setDropDownData();
     this.translate.get('manageCategories.messages.success').subscribe(data => {
@@ -85,6 +86,7 @@ export class AddCategoryComponent implements OnInit {
   prepareData(categoryData) {
     const formData = new FormData();
     formData.append('name', categoryData.name);
+    formData.append('description', categoryData.description);
     formData.append('profilePictureFile', categoryData.profilePictureFile);
     formData.append('createdAt', categoryData.createdAt ? categoryData.createdAt : new Date().toISOString());
     formData.append('createdBy', categoryData.createdBy ? categoryData.createdBy : 'admin');
