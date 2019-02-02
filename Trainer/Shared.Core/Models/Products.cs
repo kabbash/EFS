@@ -10,7 +10,7 @@ namespace Shared.Core.Models
     {
         public Products()
         {
-            ProductsImages = new HashSet<ProductsImages>();
+            Images = new HashSet<ProductsImages>();
             IsActive = false;
             IsSpecial = false;
         }
@@ -39,6 +39,6 @@ namespace Shared.Core.Models
         [ForeignKey("CreatedBy")]
         public virtual AspNetUsers Seller { get; set; }
 
-        public virtual ICollection<ProductsImages> ProductsImages { get; set; }
+        public virtual ICollection<ProductsImages> Images { get; set; }
     }
 }

@@ -51,21 +51,9 @@ export class ProductListItemEditComponent implements OnInit {
 
   get f() { return this.editForm.controls; }
 
-  getData() {
 
-    // let profilePicture = this.product.profilePicture;
-    // if (this.uploadedFile != null && this.uploadedFile != undefined)
-    //   profilePicture = this.uploadedFile.toString();
-    // const formData = new FormData();
-    // formData.append('name', this.f.name.value);
-    // formData.append('price', this.f.price.value);
-    // formData.append('description', this.f.description.value);
-    // formData.append('isSpecial', this.f.isSpecial.value);
-    // formData.append('expDate', this.f.expDate.value);
-    // formData.append('categoryId', this.f.categoryId.value);
-    // formData.append('profilePicture', profilePicture);
-    // formData.append('updatedImages', this.product.updatedImages);
-
+  getData(isUpdate?:boolean) {
+    
     let editedProduct = new productListItemDto();
     editedProduct.name = this.f.name.value;
     editedProduct.price = this.f.price.value;
@@ -73,12 +61,13 @@ export class ProductListItemEditComponent implements OnInit {
     editedProduct.isSpecial = this.f.isSpecial.value;
     editedProduct.expDate = this.f.expDate.value;
     editedProduct.categoryId = this.f.categoryId.value;
-    editedProduct.images = this.product.images;
     editedProduct.updatedImages = this.product.updatedImages;
+    editedProduct.isActive = this.product.isActive;
 
     this.util.setSliderProfilePic(editedProduct, this.product.id == 0);
 
     const formData = new FormData();
+     
     this.util.appendFormData(formData, editedProduct);
     return formData;
   }

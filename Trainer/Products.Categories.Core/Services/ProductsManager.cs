@@ -118,8 +118,8 @@ namespace Products.Core.Services
                 {
                     var productDto = product.Adapt<ProductsDto>();
 
-                    if (product.ProductsImages != null)
-                        productDto.Images = product.ProductsImages.Select(c => new SliderItemDto
+                    if (product.Images != null)
+                        productDto.Images = product.Images.Select(c => new SliderItemDto
                         {
                             Path = c.Path,
                             Id = c.Id,
@@ -187,7 +187,7 @@ namespace Products.Core.Services
 
                     var sliderDto = new SliderDto
                     {
-                        attachmentType = AttachmentTypesEnum.Articles,
+                        attachmentType = AttachmentTypesEnum.Products,
                         Items = product.UpdatedImages ?? new List<SliderItemDto>(),
                         SubFolderName = oldProduct.SubFolderName,
                         ParentId = id
