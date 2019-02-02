@@ -12,7 +12,7 @@
           <a class="nav-link dropdown-anchore" id="userListItem"><i class="fa fa-user user-margin"></i>{{authService.getUserInfo()?.fullName}}<i
               class="fa fa-chevron-down arrow-margin"></i></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/admin/addArticleCategory']">صفحة
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.admin.route]">صفحة
                 التحكم</a></li>
             <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.userAccount.changePassword.route]">نغيير
                 كلمة المرور</a></li>
@@ -65,7 +65,7 @@
           <a class="nav-link dropdown-anchore" id="userListItem"><i class="fa fa-user user-margin"></i>{{authService.getUserInfo()?.fullName}}<i
               class="fa fa-chevron-down arrow-margin"></i></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/admin/addArticleCategory']">صفحة
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.admin.route]">صفحة
                 التحكم</a></li>
             <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.userAccount.changePassword.route]">نغيير
                 كلمة المرور</a></li>

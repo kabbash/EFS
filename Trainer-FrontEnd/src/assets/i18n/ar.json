@@ -49,6 +49,7 @@
     },
     "adminMenu": {
       "manageArticleCategories": "فئات المقالات",
-      "manageProductCategories": "فئات المنتجات"
+      "manageProductCategories": "فئات المنتجات",
+      "itemReviewList": "مراجعة المنتجات"
     }
 }

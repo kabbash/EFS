@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
+import { productListItemDto, Review, Reviewer } from '../../shared/models/products/product-list-item-dto';
 import { RatingDto } from '../../shared/models/rating.dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { Router } from '@angular/router';
@@ -32,6 +32,11 @@ export class ProductRatingComponent implements OnInit {
 
   submitRate() {
     const user = JSON.parse(localStorage.getItem('currentUser'));
+    const reveiw = new Review();
+    reveiw.comment = this.rate.comment;
+    reveiw.rate = this.rate.rate;
+    reveiw.reviwer = new Reviewer();
+    reveiw.reviwer.fullName = user.fullName;
     if (!user) {
       alert('login first');
       this.router.navigate([config.userAccount.loginPage.route]);
@@ -42,6 +47,7 @@ export class ProductRatingComponent implements OnInit {
       this.rate.entityTypeId = 1;
       this.repositoryService.create('itemsreview/AddRate', this.rate).subscribe(data => {
         alert('success');
+        this.product.reviews.push(reveiw);
       }, error => {
         alert(error);
       });

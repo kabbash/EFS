@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <app-product-item #itemForReview [cardName]="reviewForm.value['name']" [cardImage]="reviewForm.value['profilePicture']" [shortDesc]="reviewForm.value['description']"></app-product-item>
+      <app-product-item #itemForReview [cardName]="reviewForm.value['name']" [cardImage]="productReviewService.productReviewToUpdate ?(baseUrl + reviewForm.value['profilePicture']) : reviewForm.value['profilePicture']" [shortDesc]="reviewForm.value['description']"></app-product-item>
     </div>
   </div>
 </div>
