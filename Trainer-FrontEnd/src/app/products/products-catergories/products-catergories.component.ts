@@ -32,13 +32,13 @@ export class ProductsCatergoriesComponent implements OnInit {
     });
   }
 
-  productsList(categoryId) {
+  productsList(categoryId,description) {
 
     const subCategories = this.getSubCategories(categoryId);
     if (subCategories.length > 0) {
       this.categories = subCategories;
     } else {
-      this.router.navigate([config.products.productsList.route, categoryId]);
+      this.router.navigate([config.products.productsList.route, categoryId] , { queryParams: {description : description}});
     }
   }
 

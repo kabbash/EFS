@@ -1,12 +1,7 @@
 <button *ngIf="isManageProductReview"  class="btn" (click)="gotoAddProductReview()"><i class="fa fa-plus"></i></button>
 
-<div *ngIf="!isProductReview && !isManageProductReview" class="products-container short-desc">
-    لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور
-
-    أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستريد
-
-    أكسير سيتاشن يللأمكو لابورأس نيسي يت أليكيوب أكس أيا كوممودو كونسيكيوات . ديواس
-
+<div *ngIf="!isProductReview && !isManageProductReview && categoryDescription" class="products-container short-desc">
+{{categoryDescription}}
 </div>
 <div *ngIf="!isProductReview && !isManageProductReview" class="products-container">
     <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'./assets/images/test/whey.png'"></app-product-item>

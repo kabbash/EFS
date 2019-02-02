@@ -1,5 +1,5 @@
 
 <div class="products-container">
-    <app-articles-card *ngFor="let category of categories" (click)="productsList(category.id)" [articleCategory]="category"></app-articles-card>
+    <app-articles-card *ngFor="let category of categories" (click)="productsList(category.id,category.description)" [articleCategory]="category"></app-articles-card>
 </div>
 

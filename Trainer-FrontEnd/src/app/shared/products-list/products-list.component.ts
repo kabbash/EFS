@@ -19,6 +19,7 @@ export class ProductsListComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   selectedProduct: productListItemDto;
   categoryId: number;
+  categoryDescription: string;
   isProductReview = false;
   isManageProductReview = false;
   pagerData: PagerDto;
@@ -30,10 +31,11 @@ export class ProductsListComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
     });
+    this.categoryDescription = this.route.snapshot.queryParamMap.get('description');
   }
 
   ngOnInit() {
-    debugger;
+
     this.route.data.subscribe(result => {
       this.pagerData = result.productList.data;
       this.pagerData.itmesCount = 6;

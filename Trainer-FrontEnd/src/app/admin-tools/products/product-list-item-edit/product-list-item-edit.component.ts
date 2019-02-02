@@ -52,7 +52,7 @@ export class ProductListItemEditComponent implements OnInit {
   get f() { return this.editForm.controls; }
 
   getData() {
-    debugger;
+
     // let profilePicture = this.product.profilePicture;
     // if (this.uploadedFile != null && this.uploadedFile != undefined)
     //   profilePicture = this.uploadedFile.toString();
