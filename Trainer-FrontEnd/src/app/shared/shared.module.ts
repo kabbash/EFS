@@ -29,6 +29,7 @@ import { ProductResolver } from '../admin-tools/resolvers/product.resolver';
 import { SliderEditModeComponent } from './slider-edit-mode/slider-edit-mode.component';
 import { ArticleDetailsResolver } from '../articles/resolvers/article-details.resolver';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
+import { ProductsService } from '../products/products.service';
 
 @NgModule({
   imports: [
@@ -59,7 +60,7 @@ import { SearchFilterComponent } from './search-filter/search-filter.component';
     DropDownComponent,
     DashboardMenuComponent,
     SliderEditModeComponent,
-    SearchFilterComponent
+    SearchFilterComponent    
   ],
   declarations: [
     FooterComponent,
@@ -86,7 +87,8 @@ import { SearchFilterComponent } from './search-filter/search-filter.component';
     CategoriesService,
     ProductsCategoriesResolver,
     ProductReviewService,
-    ArticleDetailsResolver
+    ArticleDetailsResolver,
+    ProductsService
   ]
 })
 export class SharedModule { }
