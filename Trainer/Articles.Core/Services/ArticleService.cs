@@ -51,7 +51,8 @@ namespace Articles.Core.Services
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
-                    Status = HttpStatusCode.InternalServerError
+                    Status = HttpStatusCode.InternalServerError,
+                    exception = ex
                 };
             }
         }
@@ -90,7 +91,8 @@ namespace Articles.Core.Services
             {
                 return new ResultMessage
                 {
-                    Status = HttpStatusCode.InternalServerError
+                    Status = HttpStatusCode.InternalServerError,
+                    exception = ex
                 };
             }
         }
@@ -144,6 +146,7 @@ namespace Articles.Core.Services
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsInsertError,
+                    exception = ex,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -202,7 +205,8 @@ namespace Articles.Core.Services
             {
                 return new ResultMessage
                 {
-                    Status = HttpStatusCode.InternalServerError
+                    Status = HttpStatusCode.InternalServerError,
+                    exception = ex
                 };
             }
         }

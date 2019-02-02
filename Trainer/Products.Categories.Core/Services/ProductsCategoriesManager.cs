@@ -52,6 +52,7 @@ namespace Products.Core.Services
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesGetAllError,
+                    exception = ex,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -90,6 +91,7 @@ namespace Products.Core.Services
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesInsertError,
+                    exception = ex,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -164,6 +166,7 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
+                    exception = ex,
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesUpdateError
                 };
             }
