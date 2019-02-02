@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20190203153525_OnDeleteCascadeProductImages")]
+    partial class OnDeleteCascadeProductImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,8 +99,8 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
 
                     b.HasData(
-                        new { Id = 1, CreatedAt = new DateTime(2019, 2, 3, 16, 33, 13, 208, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
-                        new { Id = 2, CreatedAt = new DateTime(2019, 2, 3, 16, 33, 13, 210, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
+                        new { Id = 1, CreatedAt = new DateTime(2019, 2, 3, 15, 35, 24, 142, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
+                        new { Id = 2, CreatedAt = new DateTime(2019, 2, 3, 15, 35, 24, 144, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
                     );
                 });
 
@@ -139,10 +141,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "40bee09c-4fb9-4f3d-92b4-f64fc375fa4a", Name = "Client" },
-                        new { Id = "7ef5afa8-fa6a-490c-a0e6-a4a027b7a9ee", Name = "RegularUser" },
-                        new { Id = "8767beb7-e38d-42fa-8dae-7a7e34255c57", Name = "Trainer" },
-                        new { Id = "7ef6ee26-7e72-4e78-831c-4519458ed078", Name = "ArticleWriter" }
+                        new { Id = "bb803b38-1898-4ee3-a66e-a8381dae1a8c", Name = "Client" },
+                        new { Id = "c159ac8f-e7a0-4b7b-b423-646467888bac", Name = "RegularUser" },
+                        new { Id = "c805b501-ca6e-4e70-9473-b22bc54133c6", Name = "Trainer" },
+                        new { Id = "f35b2a61-b4a8-4736-a8d6-483c4c0a824b", Name = "ArticleWriter" }
                     );
                 });
 
@@ -962,7 +964,7 @@ namespace Trainer.EF.Migrations
             modelBuilder.Entity("Shared.Core.Models.ProductsImages", b =>
                 {
                     b.HasOne("Shared.Core.Models.Products", "Product")
-                        .WithMany("Images")
+                        .WithMany("ProductsImages")
                         .HasForeignKey("ParentId")
                         .HasConstraintName("FK_Products_Images_Products")
                         .OnDelete(DeleteBehavior.Cascade);

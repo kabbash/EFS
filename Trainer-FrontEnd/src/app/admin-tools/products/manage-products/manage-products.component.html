@@ -3,9 +3,9 @@
 
   <div class="row">
     <div class="col-sm-12 action-btns">
-      <button class="btn btn-primary" *ngIf="product.isActive == null" (click)="approve()" style="margin: 5px;">
+      <button class="btn btn-primary" *ngIf="!product.isActive" (click)="approve()" style="margin: 5px;">
         موافقه </button>
-      <button class="btn btn-primary" *ngIf="product.isActive == null" (click)="reject()" style="margin: 5px;">
+      <button class="btn btn-primary" *ngIf="!product.isActive" (click)="reject()" style="margin: 5px;">
         رفـض </button>
       <button class="btn btn-primary" (click)="openEditForm()" style="margin: 5px;"> تعديل </button>
       <button class="btn btn-primary" (click)="delete()" style="margin: 5px;">

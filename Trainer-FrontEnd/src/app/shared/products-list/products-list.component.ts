@@ -22,6 +22,7 @@ export class ProductsListComponent implements OnInit {
   isProductReview = false;
   isManageProductReview = false;
   pagerData: PagerDto;
+  nextPageUrl: string;
   @ViewChild('modal') productModal: ModalComponent;
   constructor(private router: Router, private route: ActivatedRoute,
     private repositoryService: RepositoryService,
@@ -33,7 +34,6 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     this.route.data.subscribe(result => {
       this.pagerData = result.productList.data;
       this.pagerData.itmesCount = 6;
@@ -42,7 +42,8 @@ export class ProductsListComponent implements OnInit {
       this.appService.loading = false;
     });
     this.isProductReview = this.router.url === config.products.productReviews.route;
-    this.isManageProductReview = this.router.url === config.admin.itemReviewList.route
+    this.isManageProductReview = this.router.url === config.admin.itemReviewList.route;
+    this.nextPageUrl = (this.isProductReview || this.isManageProductReview) ? 'itemsreview' : 'products'
 
   }
 
@@ -61,10 +62,14 @@ export class ProductsListComponent implements OnInit {
   }
 
   getNextPage() {
-    this.repositoryService.getData('itemsreview?pageNo=' + this.pagerData.currentPage + '&pageSize=' + this.pagerData.pageSize).subscribe((data: any) => {
+    this.appService.loading = true;
+    this.repositoryService.getData(this.nextPageUrl + '?pageNo=' + this.pagerData.currentPage + '&pageSize=' + this.pagerData.pageSize).subscribe((data: any) => {
       this.pagerData = data.data;
       this.productReviewService.productReviewList = data.data.results;
       this.products = this.productReviewService.productReviewList;
+      this.appService.loading = false;
+    }, error => {
+      this.appService.loading = false;      
     });
   }
 }

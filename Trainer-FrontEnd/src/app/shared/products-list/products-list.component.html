@@ -8,14 +8,14 @@
     أكسير سيتاشن يللأمكو لابورأس نيسي يت أليكيوب أكس أيا كوممودو كونسيكيوات . ديواس
 
 </div>
-<div *ngIf="!isProductReview && !isManageProductReview" class="products-container">
+<!-- <div *ngIf="!isProductReview && !isManageProductReview" class="products-container">
     <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'./assets/images/test/whey.png'"></app-product-item>
     <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'./assets/images/test/whey.png'"></app-product-item>
     <app-product-item [price]="'10 EGP'" [isSpecial]="true" [currentRate]="2" [cardName]="'product.name'" [cardImage]="'./assets/images/test/whey.png'"></app-product-item>
-</div>
+</div> -->
 <div class="products-container">
     <app-product-item *ngFor="let product of products" (click)="openProductDetails(product)" [price]="product.price"
-       [product] = "product" [currentRate]="product.rate" [cardName]="product.name" [cardImage]="baseurl + product.profilePicture"></app-product-item>
+       [product] = "product" [currentRate]="product.rate" [cardName]="product.name" [cardImage]="baseurl + product.profilePicture" [isSpecial]="product.isSpecial"></app-product-item>
 </div>
 <div class="pagination-container" *ngIf="pagerData.pagesCount > 1">
     <ngb-pagination [collectionSize]="pagerData.itmesCount" [pageSize]="pagerData.pageSize" [(page)]="pagerData.currentPage" [maxSize]="5" [rotate]="true" [ellipses]="false"
