@@ -7,8 +7,8 @@ import { productListItemDto } from '../../../shared/models/products/product-list
 import { ProductCategoryDTO } from '../../../shared/models/products/product-category-dto';
 import { config } from '../../../config/pages-config';
 import { AppService } from '../../../app.service';
-import { UtilitiesService } from 'src/app/shared/services/utilities.service';
-import { SliderItemDto } from 'src/app/shared/models/slider/slider-item.dto';
+import { UtilitiesService } from '../../../shared/services/utilities.service';
+import { SliderItemDto } from '../../../shared/models/slider/slider-item.dto';
 
 @Component({
   selector: 'app-manage-products',
