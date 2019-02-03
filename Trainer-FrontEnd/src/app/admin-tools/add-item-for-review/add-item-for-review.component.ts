@@ -3,6 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ProductItemComponent } from '../../shared/product-item/product-item.component';
 import { ProductReviewService } from '../../admin-tools/services/product-review.service';
+import { config } from 'src/app/config/pages-config';
+import { Router } from '@angular/router';
+import { UtilitiesService } from 'src/app/shared/services/utilities.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-item-for-review',
@@ -12,14 +16,17 @@ import { ProductReviewService } from '../../admin-tools/services/product-review.
 export class AddItemForReviewComponent implements OnInit {
   reviewForm: FormGroup;
   imageAdded = false;
+  baseUrl = environment.filesBaseUrl;
   @ViewChild('itemForReview') item: ProductItemComponent;
   constructor(private fb: FormBuilder,
     private repositoryService: RepositoryService,
-    private productReviewService: ProductReviewService) { }
+    private productReviewService: ProductReviewService,
+    private router: Router,
+    private util: UtilitiesService) { }
 
   ngOnInit() {
     this.reviewForm = this.fb.group({
-      'id': [''],
+      'id': [0],
       'name': ['', Validators.required] ,
       'description': [''],
       'profilePictureFile': [],
@@ -36,18 +43,24 @@ export class AddItemForReviewComponent implements OnInit {
     }
   }
   create() {
-    this.repositoryService.create('itemsreview', this.prepareData(this.reviewForm.value)).subscribe(data => {
+    const formData = new FormData();
+    this.util.appendFormData(formData, this.reviewForm.value);
+    this.repositoryService.create('itemsreview', formData).subscribe(data => {
       alert('success');
+      this.router.navigate([config.admin.itemReviewList.route]);
     }, error => {
       alert(error);
     });
   }
 
   update() {
+    const formData = new FormData();
+    this.util.appendFormData(formData, this.reviewForm.value);
     this.repositoryService.update('itemsreview/' + this.productReviewService.productReviewToUpdate.id, 
-    this.prepareData(this.reviewForm.value)).subscribe(data => {
+    formData).subscribe(data => {
       this.productReviewService.productReviewToUpdate = null;
       alert('success');
+      this.router.navigate([config.admin.itemReviewList.route]);      
     }, error => {
       alert(error);
     });
@@ -61,18 +74,6 @@ export class AddItemForReviewComponent implements OnInit {
     };
     reader.readAsDataURL(file);
     this.imageAdded = true;
-  }
-
-  prepareData(itemData) {
-    const formData = new FormData();
-    formData.append('name', itemData.name);
-    formData.append('profilePictureFile', itemData.profilePictureFile);
-    // formData.append('createdAt', itemData.createdAt ? itemData.createdAt : new Date().toISOString());
-    // formData.append('createdBy', itemData.createdBy ? itemData.createdBy : 'admin');
-    formData.append('profilePicture', itemData.profilePicture ? itemData.profilePicture : '');
-    formData.append('description', itemData.description);
-    
-    return formData;
   }
 
 }

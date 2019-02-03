@@ -14,7 +14,7 @@ export class productListItemDto implements ISliderDto {
   categoryName: string = '';
   rate: number = 0;
   seller: Seller = new Seller();
-  reviews: any;
+  reviews: Review[];
   isSpecial: boolean = null;
   isActive: boolean = null;
   images: SliderItemDto[];
@@ -29,4 +29,13 @@ export class productListItemDto implements ISliderDto {
 export class Seller {
   fullName: string;
   phoneNumber: string;
+}
+export class Review {
+  comment : string;
+  cratedAt: string;
+  rate: Number;
+  reviwer: Reviewer
+}
+export class Reviewer {
+  fullName: string;
 }
