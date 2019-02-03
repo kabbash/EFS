@@ -1,4 +1,4 @@
 export enum PredefinedCategories{
-    news = 1,
-    food = 2
+    news = 2,
+    food = 1
 }
