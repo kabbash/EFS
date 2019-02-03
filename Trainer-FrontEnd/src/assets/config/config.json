@@ -1,7 +1,7 @@
 {
     "pagination": {
         "productsForAny": {
-            "pageSize":2
+            "pageSize":20
         },
         "productsForAdmin": {
             "pageSize":20
