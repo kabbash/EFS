@@ -1,6 +1,5 @@
 :host {
     padding-top: 45px;
-    background: black;
-    min-height: 500px;
+    min-height: 620px;
     flex: 1;
 }

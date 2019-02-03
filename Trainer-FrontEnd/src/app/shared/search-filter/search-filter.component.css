@@ -5,7 +5,6 @@
     justify-content: center;
     flex-wrap: wrap;
     padding-bottom: 30px;
-    background-color: #000000;
 }
 
 :host ::ng-deep app-articles-list-item {
@@ -16,18 +15,24 @@
     display: FLEX;
     align-items: center;
     width: 75%;
-    margin-top: 40px;
-    background-color: #dedddd;
+    /* margin-top: 60px; */
+    background-color: rgba(222, 221, 221, 0.8);    
     padding: 14px 0 22px;
     border-radius: 12px;
+    max-height: 100px;
 }
 
 .submit-filter-button {
-    height: 100%;
+    min-height: 61px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
 }
+
+
+.submit-filter-button  button{
+    color: white;
+} 
 
 .filter-wrapper .form-control {
     padding-top: 0;
