@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <div class="col-md-9">
+              <div class="col-md-12">
                 <app-drop-down *ngIf="dropDownData?.length > 0 && categoryService.showParentDdl" formControlName="parentId" [id]="'parent_id_ddl'" [name]="'parentId'" [data]="dropDownData" [label]="'addCategory.parentCategory' | translate" (change)="onSelectParentCategory($event.target.value)"></app-drop-down>
               </div>
             </div>

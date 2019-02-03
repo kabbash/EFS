@@ -20,6 +20,12 @@
     color: aliceblue;
   } */
 
+  .apply-now{
+    text-align: center;
+    color: white;
+    font-weight: bold;
+  }
+  
   @keyframes myfont {
     0% {font-size:18px;}
     50% {font-size:25px;}
