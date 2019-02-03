@@ -34,7 +34,7 @@ export class ProductsListComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
     });
-     this.categoryDescription = this.productsService.selectedCategory.description;
+     this.categoryDescription = this.productsService.selectedCategory ? this.productsService.selectedCategory.description : '';
   }
 
   ngOnInit() {
