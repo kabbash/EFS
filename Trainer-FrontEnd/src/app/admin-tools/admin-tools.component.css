@@ -10,15 +10,14 @@
     color: white;
     cursor: pointer;
     padding: 15px;
-
     border-right: 1px solid black;
     border-bottom: 1px solid black;
 }
 
 .close-menu {
-    width: 0px !important;
+    flex: 0 !important;
     overflow: hidden;
-    transition: width 0.2s ease;
+    transition: flex 0.2s ease;
 }
 
 :host ::ng-deep .close-menu * {
