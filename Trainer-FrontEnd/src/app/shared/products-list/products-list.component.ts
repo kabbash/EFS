@@ -8,7 +8,7 @@ import { config } from '../../config/pages-config';
 import { ProductReviewService } from '../../admin-tools/services/product-review.service';
 import { PagerDto } from '../../shared/models/pager.dto';
 import { ModalComponent } from '../modal/modal.component';
-import { ProductsService } from 'src/app/products/products.service';
+import { ProductsService } from '../../products/products.service';
 
 @Component({
   selector: 'app-all-products',

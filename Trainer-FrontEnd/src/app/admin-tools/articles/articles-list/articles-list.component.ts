@@ -7,7 +7,7 @@ import { config } from '../../../config/pages-config';
 import { PagerDto } from '../../../shared/models/pager.dto';
 import { AppService } from '../../../app.service';
 import { SearchFilterComponent } from '../../../shared/search-filter/search-filter.component';
-import { AppConfig } from 'src/config/app.config';
+import { AppConfig } from '../../../../config/app.config';
 
 @Component({
   selector: 'app-articles-list',

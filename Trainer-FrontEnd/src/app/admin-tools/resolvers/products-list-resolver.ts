@@ -6,7 +6,7 @@ import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
 import { PagedResult } from '../../shared/models/paged-result';
 import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
-import { AppConfig } from 'src/config/app.config';
+import { AppConfig } from '../../../config/app.config';
 
 @Injectable()
 export class AdminProductsListResolver implements Resolve<Observable<ResultMessage<PagedResult<productListItemDto>>>> {

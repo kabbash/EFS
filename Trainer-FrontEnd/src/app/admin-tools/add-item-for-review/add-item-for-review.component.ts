@@ -3,10 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ProductItemComponent } from '../../shared/product-item/product-item.component';
 import { ProductReviewService } from '../../admin-tools/services/product-review.service';
-import { config } from 'src/app/config/pages-config';
+import { config } from '../../config/pages-config';
 import { Router } from '@angular/router';
-import { UtilitiesService } from 'src/app/shared/services/utilities.service';
-import { environment } from 'src/environments/environment';
+import { UtilitiesService } from '../../shared/services/utilities.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-add-item-for-review',
@@ -20,7 +20,7 @@ export class AddItemForReviewComponent implements OnInit {
   @ViewChild('itemForReview') item: ProductItemComponent;
   constructor(private fb: FormBuilder,
     private repositoryService: RepositoryService,
-    private productReviewService: ProductReviewService,
+    public productReviewService: ProductReviewService,
     private router: Router,
     private util: UtilitiesService) { }
 

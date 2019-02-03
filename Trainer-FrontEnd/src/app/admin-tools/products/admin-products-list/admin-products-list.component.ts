@@ -6,8 +6,8 @@ import { AdminProductsService } from '../../services/admin.products.service';
 import { environment } from '../../../../environments/environment';
 import { PagerDto } from '../../../shared/models/pager.dto';
 import { SearchFilterComponent } from '../../../shared/search-filter/search-filter.component';
-import { AppConfig } from 'src/config/app.config';
-import { AppService } from 'src/app/app.service';
+import { AppConfig } from '../../../../config/app.config';
+import { AppService } from '../../../../app/app.service';
 
 @Component({
   selector: 'app-admin-products-list',
