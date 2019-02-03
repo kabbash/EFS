@@ -8,8 +8,8 @@
   <div class="modal-body">
     <div class="simulate-img" [ngStyle]="{'background-image':'url(' +  newImage.path + ')'}">صوره جديده</div>
     <app-file-uploader (change)="onFileSelect($event.target.files[0])"></app-file-uploader>
-    <input _ngcontent-c11="" class="form-control" [(ngModel)]="newImage.title" placeholder="العنوان" type="text">
-    <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="newImage.description" placeholder="الوصف" rows="3"></textarea>
+    <input _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.title" placeholder="العنوان" type="text">
+    <textarea _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.description" placeholder="الوصف" rows="3"></textarea>
     <input _ngcontent-c11 class="form-control" [(ngModel)]="newImage.isProfilePicture" placeholder="الصورة الرئيسية" type="checkbox">
 
   </div>
@@ -27,8 +27,8 @@
   </div>
   <div class="modal-body">
     <img [src]="baseurl + selectedImg.path" alt="">
-    <input _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.title" placeholder="العنوان" type="text">
-    <textarea _ngcontent-c11="" class="form-control" [(ngModel)]="selectedImg.description" placeholder="الوصف" rows="3"></textarea>
+    <input _ngcontent-c11="" *ngIf="!hideText" class="form-control" [(ngModel)]="selectedImg.title" placeholder="العنوان" type="text">
+    <textarea _ngcontent-c11="" *ngIf="!hideText" class="form-control" [(ngModel)]="selectedImg.description" placeholder="الوصف" rows="3"></textarea>
     <input _ngcontent-c11 class="form-control" [(ngModel)]="selectedImg.isProfilePicture" placeholder="الصورة الرئيسية" type="checkbox">
   </div>
 
@@ -75,7 +75,7 @@
         </div>
       </div>
       <img [src]="!image.isNew ? (baseurl + image.path) : (image.path)" class="slider-img" alt="images">
-      <div class="carousel-caption">
+      <div class="carousel-caption" *ngIf="!hideText">
         <h3>{{image.title}}</h3>
         <p>{{image.description}}</p>
       </div>

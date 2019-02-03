@@ -10,15 +10,10 @@
                 <div class="modal-img">
                     <div class="img-wrapper product-img-wrapper">
                         <ngb-carousel>
-                            <ng-template ngbSlide>
-                                <img [src]="productImages[0]" alt="Random first slide">
+                            <ng-template ngbSlide *ngFor="let image of product.images">
+                                <img [src]="baseUrl + image.path" alt="Random first slide">
                             </ng-template>
-                            <ng-template ngbSlide>
-                                <img [src]="productImages[1]" alt="Random second slide">
-                            </ng-template>
-                            <ng-template ngbSlide>
-                                <img [src]="productImages[2]" alt="Random third slide">
-                            </ng-template>
+                            
                         </ngb-carousel>
                     </div>
                     <div>
@@ -70,7 +65,7 @@
                             &nbsp;
                             :
                             &nbsp;
-                            {{product.seller.name}}
+                            {{product.seller.fullName}}
                         </div>
                     </div>
                     <div class="desc-item">

@@ -8,6 +8,7 @@ import { ProductCategoryDTO } from '../../../shared/models/products/product-cate
 import { config } from '../../../config/pages-config';
 import { AppService } from '../../../app.service';
 import { UtilitiesService } from 'src/app/shared/services/utilities.service';
+import { SliderItemDto } from 'src/app/shared/models/slider/slider-item.dto';
 
 @Component({
   selector: 'app-manage-products',
@@ -37,6 +38,7 @@ export class ManageProductsComponent implements OnInit {
         this.route.data.subscribe(result => {
           this.originalProduct = result.productDetails.data;
           this.product = result.productDetails.data;
+          this.product.updatedImages = new Array<SliderItemDto>()
           this.appService.loading = false;
           this.viewMode = true;
         });
@@ -82,6 +84,8 @@ export class ManageProductsComponent implements OnInit {
             this.productId = this.product.id;
             this.product.categoryName = this.categories.find(c => c.id == this.product.categoryId).name;
             alert("تم إضافة المنتج بنجاح");
+            this.router.navigate([config.admin.ProductsList.route]); 
+            
           }
         });
   }
@@ -92,7 +96,7 @@ export class ManageProductsComponent implements OnInit {
       return;
     }
     this.appService.loading = true;
-    this.service.update(this.productId, this.productListItemEditComponent.getData())
+    this.service.update(this.productId, this.productListItemEditComponent.getData(true))
       .pipe(first(), finalize(() => {
         this.appService.loading = false;
       }))
@@ -102,25 +106,40 @@ export class ManageProductsComponent implements OnInit {
             this.product = data.data;
             this.viewMode = true;
             alert("تم تعديل المنتج بنجاح");
+            this.router.navigate([config.admin.ProductsList.route]); 
+            
           }
         });
   }
 
   approve() {
     if (confirm("هل انت متأكد من الموافقه على هذا المنتج ؟ ")) {
-      this.service.approve(this.productId).subscribe(c => { console.log(c); alert('approved'); });
+      this.service.approve(this.productId).subscribe(c => { 
+        console.log(c);
+        alert('approved'); 
+        this.product.isActive = true;   
+      });
     }
   }
 
   reject() {
     if (confirm("هل انت متأكد من رفض هذا المنتج ؟ ")) {
-      this.service.reject(this.productId, prompt("من فضلك ، ادخل سبب الرفض؟")).subscribe(c => { console.log(c); alert('rejected'); });
+      this.service.reject(this.productId, prompt("من فضلك ، ادخل سبب الرفض؟")).subscribe(c => { 
+        console.log(c); 
+        alert('rejected');
+        this.product.isActive = false;
+        
+       });
     }
   }
 
   delete() {
     if (confirm("هل انت متأكد من مسح هذا المقال ؟ ")) {
-      this.service.delete(this.productId).subscribe(c => { console.log(c); alert('deleted'); });
+      this.service.delete(this.productId).subscribe(c => { 
+        console.log(c);
+        alert('deleted');
+        this.router.navigate([config.admin.ProductsList.route]); 
+      });
     }
   }
 

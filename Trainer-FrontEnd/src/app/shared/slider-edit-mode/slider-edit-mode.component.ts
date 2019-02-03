@@ -12,6 +12,7 @@ import { SliderItemDto } from '../models/slider/slider-item.dto';
 export class SliderEditModeComponent implements OnInit {
 
   @Input() sliderData: SliderItemDto[] = [];
+  @Input() hideText = false;
   baseurl = environment.filesBaseUrl;
   closeResult: string;
   selectedImg: SliderItemDto;

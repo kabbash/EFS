@@ -62,7 +62,7 @@ export class UtilitiesService {
   }
   setSliderProfilePic(obj: ISliderDto, isAdd: boolean) {
     if (isAdd) {
-      if (obj.images && obj.images.findIndex(image => image.isProfilePicture) === -1) {
+      if (obj.images && obj.images.length > 0 && obj.images.findIndex(image => image.isProfilePicture) === -1) {
         obj.images[0].isProfilePicture = true;
       }
     } else {

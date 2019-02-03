@@ -8,7 +8,7 @@
 <div class="row">
   <div *ngFor="let product of productsList">
     <app-product-item (click)="openProductModal(product)" [price]="product.price + ' EGP'" [currentRate]="product.rate"
-      [cardName]="product.name" [cardImage]="'url(' + baseurl + product.profilePicture + ')'"></app-product-item>
+      [cardName]="product.name" [cardImage]="baseurl + product.profilePicture"></app-product-item>
   </div>
 </div>
 <div class="pagination-container" *ngIf="pagerData.pagesCount > 1">

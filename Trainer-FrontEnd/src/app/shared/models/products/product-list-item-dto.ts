@@ -27,6 +27,6 @@ export class productListItemDto implements ISliderDto {
 }
 
 export class Seller {
-  name: string;
+  fullName: string;
   phoneNumber: string;
 }

@@ -498,9 +498,9 @@ namespace Trainer.EF
                 entity.Property(e => e.Path).IsRequired();
 
                 entity.HasOne(d => d.Product)
-                    .WithMany(p => p.ProductsImages)
+                    .WithMany(p => p.Images)
                     .HasForeignKey(d => d.ParentId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Products_Images_Products");
             });
 
