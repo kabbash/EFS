@@ -20,6 +20,10 @@ export let config = {
         'news': {
             'name': 'news',
             'route': '/articles/news'
+        },
+        'food': {
+            'name': 'food',
+            'route': '/articles/food'
         }
     },
     'products': {

@@ -9,6 +9,7 @@ import { ArticleDetailsResolver } from './resolvers/article-details.resolver';
 import { ArticleListResolver } from './resolvers/article-list.resolver';
 import { ArticleCategoriesResolver } from '../shared/resolvers/article-categories.resolver';
 import { NewsResolver } from './resolvers/news.resolver';
+import { ArticlesFoodResolver } from './resolvers/articles.food.resolver';
 
 const routes: Routes = [
   {
@@ -34,8 +35,12 @@ const routes: Routes = [
         path: config.articles.news.name,
         component: ArticlesListComponent,
         resolve: {articleList: NewsResolver}
+      },
+      {
+        path: config.articles.food.name,
+        component: ArticlesListComponent,
+        resolve: {articleList: ArticlesFoodResolver}
       }
-
     ]
   }
 ];
