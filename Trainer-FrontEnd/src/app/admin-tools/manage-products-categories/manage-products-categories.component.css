@@ -1,7 +1,11 @@
 :host {
-    padding-top: 45px;
+    padding-top: 65px;
     background: black;
     min-height: 500px;
     flex: 1;
 }
 
+:host ::ng-deep app-articles-card{
+    width: 350px;
+    
+}

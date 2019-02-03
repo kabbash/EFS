@@ -1,16 +1,14 @@
 <div *ngIf="viewMode">
   <app-article-details-card [article]="article"> </app-article-details-card>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <button class="btn btn-primary" [hidden]="! showPendingButtons()" (click)="approve()" style="margin: 5px;">
-        موافقه  </button>
-      <button class="btn btn-primary" [hidden]="! showPendingButtons()" (click)="reject()" style="margin: 5px;">
-        رفـض </button>
-      <button class="btn btn-primary" (click)="enableEditMode()" style="margin: 5px;"> تعديل </button>
-      <button class="btn btn-primary" (click)="delete()" style="margin: 5px;">
-        مسـح </button>
-    </div>
+  <div class="action-btns-container">
+    <button class="btn btn-success" [hidden]="! showPendingButtons()" (click)="approve()" style="margin: 5px;">
+      موافقه </button>
+    <button class="btn btn-secondary" [hidden]="! showPendingButtons()" (click)="reject()" style="margin: 5px;">
+      رفـض </button>
+    <button class="btn btn-info" (click)="enableEditMode()" style="margin: 5px;"> تعديل </button>
+    <button class="btn btn-danger" (click)="delete()" style="margin: 5px;">
+      مسـح </button>
   </div>
 </div>
 <div *ngIf="!viewMode">

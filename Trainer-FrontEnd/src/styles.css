@@ -201,3 +201,15 @@ li.page-item.active .page-link{
 .edit-delete-card button.btn{
   border-radius: 0;
 }
+
+.action-btns-container {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 35px;
+    background-color: #dedddd;
+    padding: 18px 0;
+    border-radius: 12px;
+}

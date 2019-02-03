@@ -1,5 +1,5 @@
 :host {
-    width: 985px;
+    flex: 1;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -12,7 +12,7 @@
     background-size: contain;
 }
 
-.short-desc{
+.short-desc {
     background: rgba(255, 255, 255, .75);
     border-radius: 12px;
     box-shadow: 0 0px 19px 0px rgba(255, 255, 255, .5);
@@ -25,10 +25,10 @@
     margin-bottom: 25px;
 }
 
-.inline-btn{
-    margin-top:2rem
-} 
+.inline-btn {
+    margin-top: 2rem
+}
 
-.margin-right{
+.margin-right {
     margin-right: 1rem;
 }
