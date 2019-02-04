@@ -29,7 +29,7 @@ export function initializeApp(appConfig: AppConfig) {
     AppComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'trainer' }),
+    BrowserModule.withServerTransition({ appId: 'Trainer-FrontEnd' }),
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
