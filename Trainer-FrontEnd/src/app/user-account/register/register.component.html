@@ -15,6 +15,9 @@
                   <input type="text" class="form-control" placeholder="البريد الإلكتروني" autocomplete="email"  formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" >
                 </div>
                 <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="رقم الهاتـف" autocomplete="phoneNumber"  formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" >
+                </div>
+                <div class="input-group mb-3">
                   <input type="password" class="form-control" placeholder="كلمة المرور" autocomplete="new-password"
                   formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" >
                 </div>

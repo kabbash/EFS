@@ -47,8 +47,10 @@
           <ul class="dropdown-menu">
             <li><a class="nav-item nav-link" [routerLink]="['/articles/news']">أخبار كمال الأجسام</a></li>
             <li><a class="nav-item nav-link">مواعيد البطولات</a></li>
-            <li><a class="nav-item nav-link" [routerLink]="['/products/productReviews']">مراجعة المنتجات</a></li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/articles/food']" > وصفات الطعام</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"> السيرة الذاتية</a>
@@ -75,16 +77,16 @@
           </ul>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0" id="search" *ngIf="!hideSearch">
+      <!-- <form class="form-inline my-2 my-lg-0" id="search" *ngIf="!hideSearch">
         <a class="btn btn-outline-primary my-2 my-sm-0" id="btn-search" (click)="SearchBox()"><i class="fa fa-search"></i></a>
 
-      </form>
+      </form> -->
     </div>
-    <div class="form-search" id="search-box" *ngIf="!hideSearch">
+    <!-- <div class="form-search" id="search-box" *ngIf="!hideSearch">
       <div class="container">
         <input class="mr-sm-2 app-search" type="text" placeholder="اكتب كلمات البحث هنا..." aria-label="Search">
         <i class="fa fa-times" (click)="Close()"></i>
       </div>
-    </div>
+    </div> -->
   </div>
 </nav>

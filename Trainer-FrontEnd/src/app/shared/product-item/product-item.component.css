@@ -9,16 +9,17 @@
     position: relative;
     cursor: pointer;
     padding-bottom: 10px;
+    position: relative;
 }
 
 .card-img-container {
     flex: 1;
     margin: 0 30px;
-    background-size: 80%;
+    background-size: contain;
     background-position: 50%;
     background-repeat: no-repeat;
     min-height: 185px;
-    margin-top: 20px;
+    margin-top: 37px;
 }
 
 .card-separtator {

@@ -158,6 +158,8 @@ li.page-item.active .page-link{
   justify-content: center;
   align-items: center;
   padding: 18px 0;
+  width: 100%;
+  padding-top: 10%;
 }
 
 .btn.admin-add-button{
@@ -200,4 +202,64 @@ li.page-item.active .page-link{
 
 .edit-delete-card button.btn{
   border-radius: 0;
+}
+
+.action-btns-container {
+    width: 76%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 35px;
+    background-color: #dedddd;
+    padding: 18px 0;
+    border-radius: 12px;
+}
+
+.loading-container {
+  position: relative;
+  min-height: 620px
+}
+
+.loading-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, .75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.app-loader-gif-position {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.no-results-search{
+  width: 60%;
+  font-size: 25px;
+  padding: 30px 0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(222, 221, 221, 0.8);
+  margin: auto;
+}
+
+.waring-search-icon{
+  color: #00bcd4;
+  margin-left: 15px;
+  font-size: 39px;
+}
+
+.no-results-search-wrapper{
+  width:100%;
+  max-height:100px;
 }

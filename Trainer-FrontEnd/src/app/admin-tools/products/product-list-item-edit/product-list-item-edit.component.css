@@ -1,7 +1,16 @@
+:host ::ng-deep app-slider-edit-mode{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .form-inline-nowrap {
     display: flex;
     flex-flow: row;
     align-items: center;
+    background-color: white;
+    width: 450px;
+    margin-top:50px;
+    border-radius: 10px;
 }
 
 .form-group-inline{
@@ -36,13 +45,13 @@
 
 .product-description {
     flex: 0 0 auto;
-    padding-top: 20px;
-    margin-right: 1rem;
+    width:100%;
 }
 
 .product-description .desc-item{
     padding: 10px 0;
-    border-bottom: .5px solid #333;
+    border-bottom: .5px solid gainsboro;
+    padding: 16px 18px;
   }
   .product-description .desc-item:last-child{
     border-bottom: none;

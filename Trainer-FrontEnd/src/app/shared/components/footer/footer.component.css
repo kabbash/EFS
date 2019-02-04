@@ -9,7 +9,11 @@
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-      padding-top: 60px;  
+      /* padding-top: 60px;   */
+    }
+
+    #Footer.show-logo{
+      padding-top: 60px; 
     }
     
     #Footer h4 {
@@ -30,6 +34,10 @@
       background-color: #fff;
       height: 50px;
       line-height: 50px;
+      /* margin-top: 20px; */
+    }
+
+    .footer_copy.show-logo{
       margin-top: 20px;
     }
     

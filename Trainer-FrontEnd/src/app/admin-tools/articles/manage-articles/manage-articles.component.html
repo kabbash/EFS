@@ -1,26 +1,22 @@
 <div *ngIf="viewMode">
   <app-article-details-card [article]="article"> </app-article-details-card>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <button class="btn btn-primary" [hidden]="! showPendingButtons()" (click)="approve()" style="margin: 5px;">
-        موافقه  </button>
-      <button class="btn btn-primary" [hidden]="! showPendingButtons()" (click)="reject()" style="margin: 5px;">
-        رفـض </button>
-      <button class="btn btn-primary" (click)="enableEditMode()" style="margin: 5px;"> تعديل </button>
-      <button class="btn btn-primary" (click)="delete()" style="margin: 5px;">
-        مسـح </button>
-    </div>
+  <div class="action-btns-container">
+    <button class="btn btn-success" [hidden]="! showPendingButtons()" (click)="approve()" style="margin: 5px;">
+      موافقه </button>
+    <button class="btn btn-secondary" [hidden]="! showPendingButtons()" (click)="reject()" style="margin: 5px;">
+      رفـض </button>
+    <button class="btn btn-info" (click)="enableEditMode()" style="margin: 5px;"> تعديل </button>
+    <button class="btn btn-danger" (click)="delete()" style="margin: 5px;">
+      مسـح </button>
   </div>
 </div>
 <div *ngIf="!viewMode">
   <app-article-details-editmode [modifiedArticle]="article"></app-article-details-editmode>
-  <div class="row">
-    <div class="col-sm-12">
-      <button class="btn btn-primary" *ngIf="! showAddbtn()" (click)="update()"> تعديل</button>
-      <button class="btn btn-primary" *ngIf="! showAddbtn()" (click)="cancelUpdates()"> الغاء</button>
-      <button class="btn btn-primary" *ngIf="showAddbtn()" (click)="add()"> اضافـه</button>
-      <button class="btn btn-primary" *ngIf="showAddbtn()" (click)="cancelAdd()"> الغاء</button>
-    </div>
+  <div class="action-btns-container">
+    <button class="btn btn-info" *ngIf="! showAddbtn()" (click)="update()"> تعديل</button>
+    <button class="btn btn-danger" *ngIf="! showAddbtn()" (click)="cancelUpdates()"> الغاء</button>
+    <button class="btn btn-info" *ngIf="showAddbtn()" (click)="add()"> اضافـه</button>
+    <button class="btn btn-danger" *ngIf="showAddbtn()" (click)="cancelAdd()"> الغاء</button>
   </div>
 </div>
