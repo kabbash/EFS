@@ -6,8 +6,11 @@ namespace Trainer.EF
 {
     public partial class EFSContext : DbContext
     {
+        private readonly System.Security.Cryptography.HMACSHA512 hmac;
+        
         public EFSContext()
         {
+            hmac = new System.Security.Cryptography.HMACSHA512();
         }
 
         public EFSContext(DbContextOptions<EFSContext> options)
@@ -207,9 +210,9 @@ namespace Trainer.EF
                     Email = "ahmedkabbash@gmail.com",
                     EmailConfirmed = true,
                     FullName = "ahmed kabbash",
-                    //LastName = "kabbash",
-                    UserName = "Admin"
-                    //PasswordHash = "1234",
+                    UserName = "Admin",
+                    PasswordSalt = hmac.Key,
+                    PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes("1234"))
 
                 });
             });
