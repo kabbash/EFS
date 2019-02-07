@@ -16,6 +16,7 @@ namespace Trainer.EF
         public EFSContext(DbContextOptions<EFSContext> options)
             : base(options)
         {
+            hmac = new System.Security.Cryptography.HMACSHA512();
             Database.Migrate();
         }
 
