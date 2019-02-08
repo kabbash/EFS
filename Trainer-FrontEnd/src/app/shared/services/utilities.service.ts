@@ -66,7 +66,7 @@ export class UtilitiesService {
         obj.images[0].isProfilePicture = true;
       }
     } else {
-      if (!obj.updatedImages.find(image => image.isProfilePicture && !image.isDeleted)
+      if (obj.updatedImages && obj.updatedImages.length > 0 && !obj.updatedImages.find(image => image.isProfilePicture && !image.isDeleted)
         && !obj.images.find(image => image.isProfilePicture)) {
         const profilePic = obj.updatedImages.find(image => !image.isDeleted);
         if (profilePic) {
