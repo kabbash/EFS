@@ -10,12 +10,13 @@ namespace Trainer.EF
         
         public EFSContext()
         {
-            hmac = new System.Security.Cryptography.HMACSHA512();
         }
 
         public EFSContext(DbContextOptions<EFSContext> options)
             : base(options)
         {
+            hmac = new System.Security.Cryptography.HMACSHA512();
+
             Database.Migrate();
         }
 
@@ -210,7 +211,7 @@ namespace Trainer.EF
                     Email = "ahmedkabbash@gmail.com",
                     EmailConfirmed = true,
                     FullName = "ahmed kabbash",
-                    UserName = "Admin",
+                    UserName = "ahmedkabbash@gmail.com",
                     PasswordSalt = hmac.Key,
                     PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes("1234"))
 
