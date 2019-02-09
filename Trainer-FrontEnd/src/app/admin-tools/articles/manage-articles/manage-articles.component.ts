@@ -55,20 +55,42 @@ export class ManageArticlesComponent implements OnInit {
 
   approve() {
     if (confirm('هل انت متأكد من الموافقه على هذا المقال ؟ ')) {
-      this.service.approve(this.articleId).subscribe(c => { alert('تمت الموافقه على المقال بنجاح'); this.returnToBase(); });
+      this.appService.loading = true;
+      this.service.approve(this.articleId).subscribe(c => { 
+        alert('تمت الموافقه على المقال بنجاح');
+         this.returnToBase();
+         this.appService.loading = false;
+         }, error => {
+           this.appService.loading = false;
+         });
     }
   }
 
   reject() {
     if (confirm('هل انت متأكد من رفض هذا المقال ؟ ')) {
+      this.appService.loading = true;
       this.service.reject(this.articleId, prompt('من فضلك ، ادخل سبب الرفض؟'))
-      .subscribe(c => { alert('تم رفض المقال بنجاح'); this.returnToBase(); });
+      .subscribe(c => {
+         alert('تم رفض المقال بنجاح');
+          this.returnToBase();
+          this.appService.loading = false; 
+        }, error => {
+          this.appService.loading = false;
+        });
     }
   }
 
   delete() {
     if (confirm('هل انت متأكد من مسح هذا المقال ؟ ')) {
-      this.service.delete(this.articleId).subscribe(c => { console.log(c); alert('تم مسح المقال بنجاح'); this.returnToBase(); });
+      this.appService.loading = true;
+      this.service.delete(this.articleId).subscribe(c => { 
+        console.log(c);
+         alert('تم مسح المقال بنجاح');
+          this.returnToBase();
+          this.appService.loading = false;
+         }, error => {
+           this.appService.loading = false;
+         });
     }
   }
 
@@ -83,13 +105,16 @@ export class ManageArticlesComponent implements OnInit {
     delete articleToUpdate.images;
     const formData = new FormData();
     this.util.appendFormData(formData, articleToUpdate);
+    this.appService.loading = true;
     this.service.update(this.articleId, formData).subscribe(
       () => {
         alert('تم تعديل المقال بنجاح');
         this.enableViewMode();
+        this.appService.loading = false;
 
       }, error => {
         alert(error);
+        this.appService.loading = false;
       }
     );
   }
@@ -103,13 +128,16 @@ export class ManageArticlesComponent implements OnInit {
 
     this.util.setSliderProfilePic(this.articleDetailsEditmodeComponent.modifiedArticle, true);    
     const formData = new FormData();
-    this.util.appendFormData(formData, this.articleDetailsEditmodeComponent.modifiedArticle)
+    this.util.appendFormData(formData, this.articleDetailsEditmodeComponent.modifiedArticle);
+    this.appService.loading = true;
     this.service.add(formData).subscribe(
       () => {
         alert('تم اضافة المقال بنجاح');
         this.returnToBase();
+        this.appService.loading = false;
       }, error => {
         alert(error);
+        this.appService.loading = false;
       }
     );
   }

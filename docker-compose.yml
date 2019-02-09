@@ -34,7 +34,7 @@ services:
     volumes:
       - type: bind
         source: ./server-backup/database
-        target: /var/opt/mssql
+        target: /var/opt/mssql/data
     ports: 
       - "1433:1433"
     environment:
