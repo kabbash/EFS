@@ -40,8 +40,7 @@ namespace Attachments.Core.Services
 
                 var attachmentPath = Path.Combine(GetAttachmentTypePath(fileDto.attachmentType), fileDto.SubFolderName ?? "");
                 var relativeFilePath = Path.Combine(attachmentPath, fileName);
-                // relativeFilePath = getRelativeURL(relativeFilePath);
-               // Directory.CreateDirectory(Path.Combine(rootPath, attachmentPath));
+                Directory.CreateDirectory(Path.Combine(rootPath, attachmentPath));
                 var fileDestinationPath = Path.Combine(rootPath, relativeFilePath);
 
                 using (var fileStream = new FileStream(fileDestinationPath, FileMode.Create))
