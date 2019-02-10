@@ -3,10 +3,10 @@ services:
   web_server:
     build: ./Trainer
     image: trainer_web
-    # volumes:
-    #   - type: volume
-    #     source: backend-data
-    #     target: /app
+    volumes:
+      - type: bind
+        source: ./server-backup/wwwroot
+        target: /app/wwwroot
     deploy:
       replicas: 1
       resources:
@@ -32,8 +32,8 @@ services:
       restart_policy:
         condition: on-failure
     volumes:
-      - type: volume
-        source: database
+      - type: bind
+        source: ./server-backup/database
         target: /var/opt/mssql
     ports: 
       - "1433:1433"
@@ -63,9 +63,6 @@ services:
         - webnet
 networks:
   webnet:
-volumes:
-  # frontend-data:
-  # backend-data:
-  database:
+
 
     

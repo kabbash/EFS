@@ -16,7 +16,6 @@ namespace Trainer.EF
             : base(options)
         {
             hmac = new System.Security.Cryptography.HMACSHA512();
-
             Database.Migrate();
         }
 
