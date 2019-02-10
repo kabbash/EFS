@@ -212,7 +212,8 @@ namespace Trainer.EF
                     FullName = "ahmed kabbash",
                     UserName = "ahmedkabbash@gmail.com",
                     PasswordSalt = hmac.Key,
-                    PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes("1234"))
+                    PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes("1234")),
+                    PhoneNumber = "01014991554"
 
                 });
             });
