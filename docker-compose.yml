@@ -3,10 +3,10 @@ services:
   web_server:
     build: ./Trainer
     image: trainer_web
-    # volumes:
-    #   - type: volume
-    #     source: backend-data
-    #     target: /app
+    volumes:
+      - type: bind
+        source: ./wwwroot
+        target: /app/wwwroot
     deploy:
       replicas: 1
       resources:
