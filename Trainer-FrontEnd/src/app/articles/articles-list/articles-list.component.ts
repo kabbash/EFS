@@ -1,11 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute, Route } from '@angular/router';
+import { Component, OnInit,  ViewChild } from '@angular/core';
+import { Router, Route, ActivatedRoute} from '@angular/router';
 import { config } from '../../config/pages-config';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { environment } from '../../../environments/environment';
 import { articleListItemDto } from '../../shared/models/articles/article-list-item-dto';
 import { AppService } from '../../app.service';
 import { PagerDto } from '../../shared/models/pager.dto';
+import { debug } from 'util';
+import { ClientFilterComponent } from '../../shared/client-filter/client-filter.component';
 
 
 @Component({
@@ -15,14 +17,14 @@ import { PagerDto } from '../../shared/models/pager.dto';
 })
 export class ArticlesListComponent implements OnInit {
 
-  selectedPage = 1;
-  pagesNumber: number;
   articles: articleListItemDto[];
   baseurl = environment.filesBaseUrl;
   categoryId: number;
-  itemsPerPage = 2;
   pagerData: PagerDto;
 
+  @ViewChild(ClientFilterComponent) searchFilterComponent: ClientFilterComponent;
+
+  
   constructor(private router: Router, private appService: AppService, private repositoryService: RepositoryService,
     private route: ActivatedRoute) {
   }
@@ -30,10 +32,10 @@ export class ArticlesListComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(result => {
       this.pagerData = result.articleList.data;
-      this.pagerData.itmesCount = 6;
       this.articles = result.articleList.data.results;
       this.appService.loading = false;
     });
+     this.categoryId = Number(this.route.snapshot.paramMap.get("categoryId"));
   }
 
 
@@ -43,13 +45,15 @@ export class ArticlesListComponent implements OnInit {
 
   getNextPage() {
     this.appService.loading = true;
-    this.repositoryService.getData(`articles?categoryId=${this.route.params['categoryId']}&pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}`).subscribe((response: any) => {
-      this.pagerData = response.productList.data;
-      this.pagerData.itmesCount = 6;
-      this.articles = response.productList.data.results;
+    this.repositoryService.getData(`articles?categoryId=${this.categoryId}&pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}&searchText=${this.searchFilterComponent.searchTxt}`).subscribe((response: any) => {
+      this.pagerData = response.data;
+      this.articles = response.data.results;
       this.appService.loading = false;
     });
   }
 
-
+  filterItems() {
+    this.pagerData.currentPage = 1;
+    this.getNextPage();
+  }
 }

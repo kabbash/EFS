@@ -45,7 +45,7 @@ export class ArticlesListComponent implements OnInit {
   addArticle() {
     this.router.navigate([config.admin.manageArticles.route, 0]);
   }
-  reloadItems() {
+  filterItems() {
 
     this.appService.loading = true;
     let filter = `?pageNo=1&pageSize=${this.pageSize}&searchText=${this.searchFilterComponent.searchTxt}&status=${this.searchFilterComponent.filterStatuses.selectedValue}`;

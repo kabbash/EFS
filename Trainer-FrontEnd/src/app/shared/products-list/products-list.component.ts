@@ -9,6 +9,7 @@ import { ProductReviewService } from '../../admin-tools/services/product-review.
 import { PagerDto } from '../../shared/models/pager.dto';
 import { ModalComponent } from '../modal/modal.component';
 import { ProductsService } from '../../products/products.service';
+import { ClientFilterComponent } from '../client-filter/client-filter.component';
 
 @Component({
   selector: 'app-all-products',
@@ -25,6 +26,8 @@ export class ProductsListComponent implements OnInit {
   isManageProductReview = false;
   pagerData: PagerDto;
   nextPageUrl: string;
+  @ViewChild(ClientFilterComponent) searchFilterComponent: ClientFilterComponent;
+
   @ViewChild('modal') productModal: ModalComponent;
   constructor(private router: Router, private route: ActivatedRoute,
     private repositoryService: RepositoryService,
@@ -34,13 +37,12 @@ export class ProductsListComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
     });
-     this.categoryDescription = this.productsService.selectedCategory ? this.productsService.selectedCategory.description : '';
+    this.categoryDescription = this.productsService.selectedCategory ? this.productsService.selectedCategory.description : '';
   }
 
   ngOnInit() {
     this.route.data.subscribe(result => {
       this.pagerData = result.productList.data;
-      this.pagerData.itmesCount = 6;
       this.productReviewService.productReviewList = result.productList.data.results;
       this.products = this.productReviewService.productReviewList;
       this.appService.loading = false;
@@ -57,7 +59,7 @@ export class ProductsListComponent implements OnInit {
     if (this.isProductReview) {
       this.router.navigate([config.products.productRating.route + '/' + product.id]);
     } else {
-      this.selectedProduct = product;    
+      this.selectedProduct = product;
     }
   }
 
@@ -67,13 +69,18 @@ export class ProductsListComponent implements OnInit {
 
   getNextPage() {
     this.appService.loading = true;
-    this.repositoryService.getData(this.nextPageUrl + '?pageNo=' + this.pagerData.currentPage + '&pageSize=' + this.pagerData.pageSize).subscribe((data: any) => {
+    this.repositoryService.getData(`${this.nextPageUrl}?pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}&searchText=${this.searchFilterComponent.searchTxt}&categoryId=${this.categoryId}`).subscribe((data: any) => {
       this.pagerData = data.data;
       this.productReviewService.productReviewList = data.data.results;
       this.products = this.productReviewService.productReviewList;
       this.appService.loading = false;
     }, error => {
-      this.appService.loading = false;      
+      this.appService.loading = false;
     });
+  }
+
+  filterItems() {
+    this.pagerData.currentPage = 1;
+    this.getNextPage();
   }
 }

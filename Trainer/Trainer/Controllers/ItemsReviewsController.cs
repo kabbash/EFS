@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Rating.Core.Interfaces;
 using Rating.Core.Models;
 using Shared.Core.Utilities.Enums;
+using DBModels = Shared.Core.Models;
 
 namespace Trainer.Controllers
 {
@@ -14,9 +15,9 @@ namespace Trainer.Controllers
     public class ItemsReviewsController : BaseController
     {
         private readonly IItemsReviewsManager _itemsReviewManager;
-        private readonly IRatingManager<Shared.Core.Models.ItemsForReview> _ratingManager;
+        private readonly IRatingManager<DBModels.ItemsForReview> _ratingManager;
         private readonly IAttachmentsManager _attachmentManager;
-        public ItemsReviewsController(IItemsReviewsManager itemsReviewManager, IRatingManager<Shared.Core.Models.ItemsForReview> ratingManager, IAttachmentsManager attachmentsManager)
+        public ItemsReviewsController(IItemsReviewsManager itemsReviewManager, IRatingManager<DBModels.ItemsForReview> ratingManager, IAttachmentsManager attachmentsManager)
         {
             _itemsReviewManager = itemsReviewManager;
             _ratingManager = ratingManager;
@@ -25,9 +26,9 @@ namespace Trainer.Controllers
 
         // GET: api/itemsreview
         [HttpGet]
-        public ActionResult Get(int pageNo = 1, int pageSize = 10)
+        public ActionResult Get([FromQuery]ItemsReviewFilter itemsReviewFilter)
         {
-            return GetStatusCodeResult(_itemsReviewManager.GetAll(pageNo, pageSize));
+            return GetStatusCodeResult(_itemsReviewManager.GetAll(itemsReviewFilter));
         }
 
         // GET: api/itemsreview/5

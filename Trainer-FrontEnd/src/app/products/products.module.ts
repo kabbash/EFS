@@ -6,7 +6,6 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsCatergoriesComponent } from './products-catergories/products-catergories.component';
 import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductRatingComponent } from './product-rating/product-rating.component';
-import { ProductsCategoriesResolver } from './resolvers/products-categories.resolver';
 import { ProductsListResolver } from './resolvers/products-list.resolver';
 import { ProdcutRatingResolver } from './resolvers/product-rating.resolver';
 

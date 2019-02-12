@@ -5,10 +5,9 @@ namespace Products.Core.Interfaces
 {
     public interface IProductsManager
     {
-        ResultMessage GetAll( ProductFilter filter=null);
+        ResultMessage GetAll( ProductFilter filter=null, string includeProperities = null);
         ResultMessage Insert(ProductsDto product);
         ResultMessage GetById(int id);
-        ResultMessage GetByCategoryId(int id);
         ResultMessage Update(ProductsDto product, int id);
         ResultMessage Delete(int id);
         ResultMessage Approve(int id);

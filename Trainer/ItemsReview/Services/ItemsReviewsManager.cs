@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using ItemsReview.Extensions;
 using ItemsReview.Interfaces;
 using ItemsReview.Models;
 using Mapster;
@@ -8,8 +9,6 @@ using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 
 namespace ItemsReview.Services
@@ -25,12 +24,12 @@ namespace ItemsReview.Services
             _validator = validator;
             _ratingManager = ratingManager;
         }
-        public ResultMessage GetAll(int pageNo, int pageSize)
+        public ResultMessage GetAll(ItemsReviewFilter filter)
         {
             try
             {
                 PagedResult<ItemReviewDto> result = new PagedResult<ItemReviewDto>();
-                result = _unitOfWork.ItemsReviewsRepository.Get().GetPaged(pageNo,pageSize).Adapt(result);
+                result = _unitOfWork.ItemsReviewsRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo,filter.PageSize).Adapt(result);
 
                 return new ResultMessage()
                 {
