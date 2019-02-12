@@ -47,6 +47,8 @@ namespace Trainer.EF
         public virtual DbSet<EntityRating> EntityRatings { get; set; }
         public virtual DbSet<EntityTypes> EntityTypes { get; set; }
         public virtual DbSet<ItemsForReview> ItemsForReviews { get; set; }
+        public virtual DbSet<Banner> Banners { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -115,10 +117,10 @@ namespace Trainer.EF
                     .HasMaxLength(256);
                 entity.HasData(new AspNetRoles[] {
                     new AspNetRoles { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin"},
-                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "Client"},
-                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "RegularUser"},
-                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "Trainer"},
-                    new AspNetRoles { Id = Guid.NewGuid().ToString(), Name = "ArticleWriter"}
+                    new AspNetRoles { Id = "b3c0d399-61f6-47e1-99eb-c545052992d6", Name = "Trainee"},
+                    new AspNetRoles { Id = "07ab2dd0-83e1-49a4-a8dc-66d948355392", Name = "Regular User"},
+                    new AspNetRoles { Id = "7c433dc0-d62b-43da-91d5-5b63e41a902f", Name = "Food Articles Writer"},
+                    new AspNetRoles { Id = "6a883f63-ef24-4693-a10f-ac30aaca972e", Name = "Articles Writer"}
                 }
                     );
             });

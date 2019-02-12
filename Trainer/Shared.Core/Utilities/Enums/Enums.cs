@@ -6,7 +6,8 @@
         Products,
         Articles_Categories,
         Articles,
-        Temp
+        Temp,
+        Banners
     }
     public enum EntityTypesEnum
     {
