@@ -25,6 +25,16 @@ export let config = {
             'name': 'food',
             'route': '/articles/food'
         }
+    }, 'yourTools': {
+        'name': 'yourTools',
+        'route': 'yourTools',
+        'loadChildren': './your-tools/your-tools.module#YourToolsModule',
+        // 'permissionList': ['Authorized'],
+        /** this is capital to match routes for tagging  */
+        'landing': {
+            'name': 'landing',
+            'route': '/yourTools/landing',
+        }
     },
     'products': {
         'name': 'products',

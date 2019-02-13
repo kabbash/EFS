@@ -37,6 +37,10 @@ const routes: Routes = [
     path: config.admin.name,
     loadChildren: './admin-tools/admin-tools.module#AdminToolsModule'
   },
+  {
+    path: config.yourTools.name,
+    loadChildren: './your-tools/your-tools.module#YourToolsModule'
+  },
   { path: '**', redirectTo: 'home' }
 ];
 
