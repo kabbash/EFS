@@ -195,6 +195,19 @@ namespace Trainer.EF
             }
         }
 
+        private IRepository<Banner> _bannersRepo;
+        public IRepository<Banner> BannersRepository
+        {
+            get
+            {
+                if (_bannersRepo == null)
+                {
+                    _bannersRepo = new Repository<Banner>(_dbContext);
+                }
+                return _bannersRepo;
+            }
+        }
+
 
         #endregion
 

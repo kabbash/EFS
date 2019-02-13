@@ -131,6 +131,8 @@ namespace Attachments.Core.Services
                     return _attachmentsResources.Value.ArticlesCategoriesFolder;
                 case AttachmentTypesEnum.Articles:
                     return _attachmentsResources.Value.ArticlesFolder;
+                case AttachmentTypesEnum.Banners:
+                    return _attachmentsResources.Value.BannersFolder;
                 default:
                     throw new NotImplementedException();
             }
