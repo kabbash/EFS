@@ -97,8 +97,8 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
 
                     b.HasData(
-                        new { Id = 1, CreatedAt = new DateTime(2019, 2, 3, 16, 33, 13, 208, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
-                        new { Id = 2, CreatedAt = new DateTime(2019, 2, 3, 16, 33, 13, 210, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
+                        new { Id = 1, CreatedAt = new DateTime(2019, 2, 13, 19, 40, 40, 196, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
+                        new { Id = 2, CreatedAt = new DateTime(2019, 2, 13, 19, 40, 40, 197, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
                     );
                 });
 
@@ -139,10 +139,10 @@ namespace Trainer.EF.Migrations
 
                     b.HasData(
                         new { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin" },
-                        new { Id = "40bee09c-4fb9-4f3d-92b4-f64fc375fa4a", Name = "Client" },
-                        new { Id = "7ef5afa8-fa6a-490c-a0e6-a4a027b7a9ee", Name = "RegularUser" },
-                        new { Id = "8767beb7-e38d-42fa-8dae-7a7e34255c57", Name = "Trainer" },
-                        new { Id = "7ef6ee26-7e72-4e78-831c-4519458ed078", Name = "ArticleWriter" }
+                        new { Id = "b3c0d399-61f6-47e1-99eb-c545052992d6", Name = "Trainee" },
+                        new { Id = "07ab2dd0-83e1-49a4-a8dc-66d948355392", Name = "Regular User" },
+                        new { Id = "7c433dc0-d62b-43da-91d5-5b63e41a902f", Name = "Food Articles Writer" },
+                        new { Id = "6a883f63-ef24-4693-a10f-ac30aaca972e", Name = "Articles Writer" }
                     );
                 });
 
@@ -257,8 +257,37 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", LockoutEnabled = false, PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "Admin" }
+                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", LockoutEnabled = false, PasswordHash = new byte[] { 142, 87, 194, 124, 207, 137, 75, 68, 209, 73, 45, 105, 229, 146, 184, 185, 115, 3, 33, 19, 7, 176, 202, 38, 245, 221, 181, 31, 234, 217, 207, 178, 239, 56, 52, 117, 142, 224, 253, 223, 42, 47, 69, 226, 7, 221, 81, 198, 136, 157, 194, 100, 175, 177, 170, 132, 35, 159, 63, 80, 204, 181, 121, 187 }, PasswordSalt = new byte[] { 133, 164, 246, 65, 8, 144, 27, 156, 152, 75, 58, 17, 153, 63, 155, 79, 128, 76, 87, 98, 181, 177, 172, 253, 135, 62, 86, 223, 187, 54, 235, 78, 179, 130, 168, 157, 127, 34, 62, 140, 12, 100, 155, 190, 15, 29, 126, 58, 103, 60, 152, 193, 79, 4, 74, 170, 110, 76, 32, 7, 44, 247, 125, 183, 233, 44, 150, 147, 81, 162, 51, 226, 249, 138, 186, 81, 158, 58, 161, 2, 140, 67, 215, 245, 216, 129, 178, 164, 40, 113, 180, 167, 98, 74, 234, 154, 195, 24, 66, 19, 172, 173, 202, 49, 124, 244, 148, 236, 241, 127, 184, 114, 17, 104, 26, 151, 168, 188, 96, 183, 188, 151, 147, 122, 226, 91, 212, 50 }, PhoneNumber = "01014991554", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "ahmedkabbash@gmail.com" }
                     );
+                });
+
+            modelBuilder.Entity("Shared.Core.Models.Banner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ButtonText");
+
+                    b.Property<string>("ButtonUrl");
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired();
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.Property<DateTime?>("UpdatedAt");
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Banners");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.Calories", b =>

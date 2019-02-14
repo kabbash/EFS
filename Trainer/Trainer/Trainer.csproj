@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -32,6 +32,7 @@
     <ProjectReference Include="..\Articles.Core\Articles.Core.csproj" />
     <ProjectReference Include="..\AttachmentsManager\Attachments.Core.csproj" />
     <ProjectReference Include="..\Authentication\Authentication.csproj" />
+    <ProjectReference Include="..\Banner.Core\Banner.Core.csproj" />
     <ProjectReference Include="..\ItemsReview\ItemsReview.csproj" />
     <ProjectReference Include="..\Lookups.Core\Lookups.Core.csproj" />
 

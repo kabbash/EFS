@@ -40,7 +40,6 @@ namespace Attachments.Core.Services
 
                 var attachmentPath = Path.Combine(GetAttachmentTypePath(fileDto.attachmentType), fileDto.SubFolderName ?? "");
                 var relativeFilePath = Path.Combine(attachmentPath, fileName);
-
                 Directory.CreateDirectory(Path.Combine(rootPath, attachmentPath));
                 var fileDestinationPath = Path.Combine(rootPath, relativeFilePath);
 
@@ -73,7 +72,7 @@ namespace Attachments.Core.Services
                 var attachmentPath = Path.Combine(GetAttachmentTypePath(fileDto.attachmentType), fileDto.SubFolderName ?? "");
                 var relativeFilePath = Path.Combine(attachmentPath, fileName);
 
-                Directory.CreateDirectory(Path.Combine(rootPath, attachmentPath));
+               // Directory.CreateDirectory(Path.Combine(rootPath, attachmentPath));
                 var fileDestinationPath = Path.Combine(rootPath, relativeFilePath);
 
                 using (var fileStream = new FileStream(fileDestinationPath, FileMode.Create))
@@ -132,6 +131,8 @@ namespace Attachments.Core.Services
                     return _attachmentsResources.Value.ArticlesCategoriesFolder;
                 case AttachmentTypesEnum.Articles:
                     return _attachmentsResources.Value.ArticlesFolder;
+                case AttachmentTypesEnum.Banners:
+                    return _attachmentsResources.Value.BannersFolder;
                 default:
                     throw new NotImplementedException();
             }

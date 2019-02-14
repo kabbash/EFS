@@ -49,4 +49,14 @@ namespace Shared.Core.Utilities.Enums
         ItemsUpdateError,
         ItemsDeleteError
     }
+
+    public enum BannersErrorsCodeEnum
+    {
+        GetAllError,
+        AddError,
+        NotFoundError,
+        GetByIdError,
+        UpdateError,
+        DeleteError
+    }
 }

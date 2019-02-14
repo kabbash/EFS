@@ -48,6 +48,10 @@ using test.core.Model;
 using test.core.Validators;
 using Trainer.EF;
 using Shared.Core.Models;
+using Banner.Core.Services;
+using Banner.Core.Interfaces;
+using Banner.Core.Validations;
+using Banner.Core.Models;
 
 namespace Trainer
 {
@@ -117,12 +121,9 @@ namespace Trainer
             services.AddScoped<IArticlesService, ArticleService>();
             services.AddScoped<IItemsReviewsManager, ItemsReviewsManager>();
             services.AddScoped<ICommonService, CommonService>();
+            services.AddScoped<IBannerManager, BannerManager>();
 
-            //services.AddScoped<IRatingManager<Shared.Core.Models.Products>, RatingManager<Shared.Core.Models.Products>>();
-            //services.AddScoped<IRatingManager<ItemsForReview>, RatingManager<ItemsForReview>>();
-            //services.AddScoped<ILookupService<CaloriesDto, Calories>, LookupService<CaloriesDto, Calories>>();
-            //services.AddScoped<ILookupService<ArticlesCategoriesDto, ArticlesCategories>, LookupService<ArticlesCategoriesDto, ArticlesCategories>>();
-            //services.AddScoped<ILookupService<ProductsCategoryDto, ProductsCategories>, LookupService<ProductsCategoryDto, ProductsCategories>>();
+
 
             // Generic Services 
             services.AddScoped(typeof(ISliderManager<>), typeof(SliderManager<>));
@@ -149,6 +150,8 @@ namespace Trainer
             services.AddTransient<IValidator<ArticleAddDto>, ArticleAddDtoValidator>();
             services.AddTransient<IValidator<RejectDto>, RejectDtoValidator>();
             services.AddTransient<IValidator<ItemReviewDto>, ItemReviewDtoValidator>();
+            services.AddTransient<IValidator<BannerDto>, BannerValidator>();
+
 
 
         }

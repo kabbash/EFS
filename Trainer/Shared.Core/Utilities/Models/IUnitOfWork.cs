@@ -17,6 +17,8 @@ namespace Shared.Core.Utilities.Models
         IRepository<Articles> ArticlesRepository { get; }
         IRepository<ArticlesCategories> ArticlesCategoriesRepository { get; }
         IRepository<ItemsForReview> ItemsReviewsRepository { get; }
+        IRepository<Banner> BannersRepository { get; }
+
 
 
         object getRepoByType(Type type);
