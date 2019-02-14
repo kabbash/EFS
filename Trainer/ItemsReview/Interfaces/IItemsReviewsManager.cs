@@ -5,7 +5,7 @@ namespace ItemsReview.Interfaces
 {
     public interface IItemsReviewsManager
     {
-        ResultMessage GetAll(int pageNo, int pageSize);
+        ResultMessage GetAll(ItemsReviewFilter itemsReviewFilter);
         ResultMessage Insert(ItemReviewDto item);
         ResultMessage GetById(int id);
         ResultMessage Update(ItemReviewDto item, int id);

@@ -14,7 +14,7 @@
             القسـم
         </div>
     </div>
-
+    <app-client-filter *ngIf="products.length" (search)="filterItems()"></app-client-filter>
     <app-product-item *ngFor="let product of products" (click)="openProductDetails(product)" [price]="product.price"
         [product]="product" [currentRate]="product.rate" [cardName]="product.name" [cardImage]="baseurl + product.profilePicture"
         [isSpecial]="product.isSpecial"></app-product-item>

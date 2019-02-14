@@ -10,11 +10,11 @@ using Shared.Core.Resources;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
-using DBModels = Shared.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using DBModels = Shared.Core.Models;
 
 namespace Products.Core.Services
 {
@@ -35,12 +35,12 @@ namespace Products.Core.Services
             _attachmentsManager = attachmentsManager;
             _sliderManager = sliderManager;
         }
-        public ResultMessage GetAll(ProductFilter filter = null)
+        public ResultMessage GetAll(ProductFilter filter = null, string includeProperities = "")
         {
             try
             {
-                var result = new PagedResult<ProductsDto>();
-                result = _unitOfWork.ProductsRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                PagedResult<ProductsDto> result = new PagedResult<ProductsDto>();
+                result = _unitOfWork.ProductsRepository.Get(includeProperties: includeProperities ?? "").ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
                 return new ResultMessage()
                 {
                     Data = result,
@@ -250,45 +250,6 @@ namespace Products.Core.Services
                     Status = HttpStatusCode.InternalServerError,
                     exception = ex,
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsDeleteError
-                };
-            }
-        }
-        public ResultMessage GetByCategoryId(int categoryId)
-        {
-            try
-            {
-                List<ProductsDto> result = new List<ProductsDto>();
-                IEnumerable<DBModels.Products> resultData = new List<DBModels.Products>();
-                resultData = _unitOfWork.ProductsRepository.Get(c => c.CategoryId == categoryId, null, "Seller").ToList();
-                result = resultData.Adapt(result).ToList();
-
-                result.ForEach(c =>
-                {
-                    c.Seller.FullName = resultData.FirstOrDefault(h => h.Id == c.Id).Seller.FullName;
-                    c.Seller.PhoneNumber = resultData.FirstOrDefault(h => h.Id == c.Id).Seller.PhoneNumber;                    
-                });
-
-                //foreach (var product in result)
-                //{
-                //    var data = resultData.FirstOrDefault(p => p.Id == product.Id);
-                //    product.Seller.FullName = data.Seller.FullName;
-                //    product.Seller.PhoneNumber = data.Seller.PhoneNumber;
-                //}
-
-                return new ResultMessage()
-                {
-                    Data = result,
-                    Status = HttpStatusCode.OK
-                };
-            }
-            catch (Exception ex)
-            {
-                //log ex
-                return new ResultMessage()
-                {
-                    ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
-                    exception = ex,
-                    Status = HttpStatusCode.InternalServerError
                 };
             }
         }

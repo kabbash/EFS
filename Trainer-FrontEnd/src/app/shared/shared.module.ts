@@ -25,11 +25,11 @@ import { DashboardMenuComponent } from './components/dashboard-menu/dashboard-me
 import { ProductReviewService } from '../admin-tools/services/product-review.service';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ModalComponent } from './modal/modal.component';
-import { ProductResolver } from '../admin-tools/resolvers/product.resolver';
 import { SliderEditModeComponent } from './slider-edit-mode/slider-edit-mode.component';
 import { ArticleDetailsResolver } from '../articles/resolvers/article-details.resolver';
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { ProductsService } from '../products/products.service';
+import { ClientFilterComponent } from './client-filter/client-filter.component';
 
 @NgModule({
   imports: [
@@ -60,7 +60,8 @@ import { ProductsService } from '../products/products.service';
     DropDownComponent,
     DashboardMenuComponent,
     SliderEditModeComponent,
-    SearchFilterComponent    
+    SearchFilterComponent,
+    ClientFilterComponent
   ],
   declarations: [
     FooterComponent,
@@ -79,7 +80,8 @@ import { ProductsService } from '../products/products.service';
     ProductsListComponent,
     ModalComponent,
     SliderEditModeComponent,
-    SearchFilterComponent
+    SearchFilterComponent,
+    ClientFilterComponent
   ],
   providers: [
     UtilitiesService,

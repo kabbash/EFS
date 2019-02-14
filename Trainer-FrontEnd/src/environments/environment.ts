@@ -7,6 +7,7 @@ export const environment = {
   baseUrl: 'https://localhost:44394/api/',
   filesBaseUrl : 'https://localhost:44394/',
   frontEndBaseUrl: 'http://localhost:4200'
+
 };
 
 /*
