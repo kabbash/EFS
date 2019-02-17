@@ -5,10 +5,6 @@ export class articleCategoryDto{
     description: string;
     profilePicture: string;
     profilePictureFile: any;
-    createdBy: string;
-    createdAt: any;
-    updatedBy: string;
-    updatedAt: any;
     parentId: number;
 
 }

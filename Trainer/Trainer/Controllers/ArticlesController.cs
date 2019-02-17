@@ -3,8 +3,7 @@ using Articles.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Models;
-using System.Linq;
-using System.Security.Claims;
+using System.Net;
 
 namespace Trainer.Controllers
 {
@@ -42,14 +41,11 @@ namespace Trainer.Controllers
         //[Authorize(Roles = "Admin, ArticleWriter")]
         public ActionResult Post([FromForm] ArticleAddDto articleDto)
         {
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
-            if (userIdClaim == null)
+            if (string.IsNullOrEmpty(CurrentUserId))
             {
-                return StatusCode(500);
+                return StatusCode((int)HttpStatusCode.Unauthorized);
             }
-
-            // Set User 
-            articleDto.UserId = userIdClaim.Value;
+            articleDto.CurrentUserId = CurrentUserId;
             return GetStatusCodeResult(_articlesService.Insert(articleDto));
         }
 
@@ -58,15 +54,11 @@ namespace Trainer.Controllers
 
         public ActionResult Put(int id, [FromForm] ArticleAddDto articleDto)
         {
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
-            if (userIdClaim == null)
+            if (string.IsNullOrEmpty(CurrentUserId))
             {
-                return StatusCode(500);
+                return StatusCode((int)HttpStatusCode.Unauthorized);
             }
-
-            //Set User
-            articleDto.UserId = userIdClaim.Value;
-
+            articleDto.CurrentUserId = CurrentUserId;
             return GetStatusCodeResult(_articlesService.Update(articleDto, id));
         }
 
@@ -90,13 +82,11 @@ namespace Trainer.Controllers
         [Route("Reject")]
         public ActionResult Reject([FromBody]RejectDto model)
         {
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
-            if (userIdClaim == null)
+            if (string.IsNullOrEmpty(CurrentUserId))
             {
-                return StatusCode(500);
+                return StatusCode((int)HttpStatusCode.Unauthorized);
             }
-            //Set User
-            model.UserId = userIdClaim.Value;
+            model.CurrentUserId = CurrentUserId;
             return GetStatusCodeResult(_articlesService.Reject(model));
         }
     }

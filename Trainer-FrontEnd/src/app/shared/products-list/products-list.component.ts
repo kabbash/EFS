@@ -10,6 +10,7 @@ import { PagerDto } from '../../shared/models/pager.dto';
 import { ModalComponent } from '../modal/modal.component';
 import { ProductsService } from '../../products/products.service';
 import { ClientFilterComponent } from '../client-filter/client-filter.component';
+import { RatingDto } from '../models/rating.dto';
 
 @Component({
   selector: 'app-all-products',
@@ -82,5 +83,20 @@ export class ProductsListComponent implements OnInit {
   filterItems() {
     this.pagerData.currentPage = 1;
     this.getNextPage();
+  }
+
+  rateUpdated(event) {
+
+    let rateDto = new RatingDto();
+    this.appService.loading = true;
+    rateDto.entityId = event.productId;
+    rateDto.rate = event.rate;
+    this.repositoryService.create('products/addrate', rateDto).subscribe(data => {
+      alert('success');
+      this.appService.loading = false;
+    }, error => {
+      alert(error);
+      this.appService.loading = false;
+    });
   }
 }

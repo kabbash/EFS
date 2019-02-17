@@ -88,8 +88,6 @@ export class AddCategoryComponent implements OnInit {
     formData.append('name', categoryData.name);
     formData.append('description', categoryData.description);
     formData.append('profilePictureFile', categoryData.profilePictureFile);
-    formData.append('createdAt', categoryData.createdAt ? categoryData.createdAt : new Date().toISOString());
-    formData.append('createdBy', categoryData.createdBy ? categoryData.createdBy : 'admin');
     formData.append('profilePicture', categoryData.profilePicture ? categoryData.profilePicture : '');
     categoryData.parentId ?  formData.append('parentId', categoryData.parentId) : null;
     return formData;

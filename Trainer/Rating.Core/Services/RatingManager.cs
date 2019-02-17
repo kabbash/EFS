@@ -15,7 +15,7 @@ using System.Net;
 
 namespace Rating.Core.Services
 {
-    public class RatingManager<TEntity> : IRatingManager<TEntity>  where TEntity : IRateBase
+    public class RatingManager<TEntity> : IRatingManager<TEntity> where TEntity : IRateBase
     {
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<RatingDto> _validator;
@@ -51,7 +51,7 @@ namespace Rating.Core.Services
             {
                 return new ResultMessage()
                 {
-                    ErrorCode =(int) RatingErrorsCodeEnum.RatingInsertError,
+                    ErrorCode = (int)RatingErrorsCodeEnum.RatingInsertError,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -63,16 +63,23 @@ namespace Rating.Core.Services
             {
                 oldRating.Comment = ratingDto.Comment;
                 oldRating.Rate = ratingDto.Rate;
+                oldRating.UpdatedAt = DateTime.Now;
+                oldRating.UpdatedBy = ratingDto.CurrentUserId;
                 _unitOfWork.RatingRepository.Update(oldRating);
             }
             else
-                _unitOfWork.RatingRepository.Insert(ratingDto.Adapt<EntityRating>());
+            {
+                var entityRating = ratingDto.Adapt<EntityRating>();
+                entityRating.CreatedAt = DateTime.Now;
+                entityRating.CreatedBy = ratingDto.CurrentUserId;
+                _unitOfWork.RatingRepository.Insert(entityRating);
+            }
 
             _unitOfWork.Commit();
         }
         private void UpdateOverAllRate(RatingDto ratingDto)
         {
-            var entity = _ratedEntityRepository.GetById(ratingDto.EntityId);            
+            var entity = _ratedEntityRepository.GetById(ratingDto.EntityId);
             entity.Rate = CalculateRate(ratingDto);
             _ratedEntityRepository.Update(entity);
             _unitOfWork.Commit();
@@ -82,10 +89,9 @@ namespace Rating.Core.Services
             var rates = _unitOfWork.RatingRepository.Get().AllRates(ratingDto).Select(c => c.Rate).ToList();
             return rates.Count > 0 ? rates.Sum() / rates.Count : 0;
         }
-
-        public List<RatingDto> GetItemRatings(int id)
+        public List<RatingDto> GetItemRatings(int entityId, RatingEntityTypesEnum ratingEntity)
         {
-            var ratingsData = _unitOfWork.RatingRepository.Get().Where(r => r.EntityId == id).ToList();
+            var ratingsData = _unitOfWork.RatingRepository.Get().Where(r => r.EntityId == entityId && r.EntityTypeId == (int)ratingEntity).ToList();
             var result = new List<RatingDto>();
             result = ratingsData.Adapt(result);
             return result;

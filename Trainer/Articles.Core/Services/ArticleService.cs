@@ -112,7 +112,7 @@ namespace Articles.Core.Services
             {
                 var articleEntity = article.Adapt<DBModels.Articles>();
                 articleEntity.CreatedAt = DateTime.Now;
-                articleEntity.CreatedBy = article.UserId;
+                articleEntity.CreatedBy = article.CurrentUserId;
 
                 var articleFolderName = Guid.NewGuid().ToString();
 
@@ -175,7 +175,7 @@ namespace Articles.Core.Services
 
                 article.Adapt(articleData, typeof(ArticleAddDto), typeof(DBModels.Articles));
                 articleData.UpdatedAt = DateTime.Now;
-                articleData.UpdatedBy = article.UserId;
+                articleData.UpdatedBy = article.CurrentUserId;
 
                 var sliderDto = new SliderDto
                 {
@@ -290,7 +290,7 @@ namespace Articles.Core.Services
                 }
 
                 articleData.UpdatedAt = DateTime.Now;
-                articleData.UpdatedBy = rejectDto.UserId;
+                articleData.UpdatedBy = rejectDto.CurrentUserId;
                 articleData.RejectReason = rejectDto.RejectReason;
                 articleData.IsActive = false;
 

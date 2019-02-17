@@ -84,7 +84,7 @@ namespace ItemsReview.Services
                 if (itemReview != null)
                 {
                     var result = itemReview.Adapt<ItemReviewDto>();
-                    result.Reviews = _ratingManager.GetItemRatings(itemReview.Id);
+                    result.Reviews = _ratingManager.GetItemRatings(itemReview.Id, RatingEntityTypesEnum.ItemsForReview);
                     return new ResultMessage()
                     {
                         Data = result,
