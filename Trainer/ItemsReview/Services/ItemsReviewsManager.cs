@@ -29,7 +29,7 @@ namespace ItemsReview.Services
             try
             {
                 PagedResult<ItemReviewDto> result = new PagedResult<ItemReviewDto>();
-                result = _unitOfWork.ItemsReviewsRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo,filter.PageSize).Adapt(result);
+                result = _unitOfWork.ItemsReviewsRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
 
                 return new ResultMessage()
                 {
@@ -75,7 +75,7 @@ namespace ItemsReview.Services
                 };
             }
         }
-        public ResultMessage GetById(int id)
+        public ResultMessage GetById(int id, string currentUserId)
         {
             try
             {
@@ -85,13 +85,20 @@ namespace ItemsReview.Services
                 {
                     var result = itemReview.Adapt<ItemReviewDto>();
                     result.Reviews = _ratingManager.GetItemRatings(itemReview.Id, RatingEntityTypesEnum.ItemsForReview);
+
+                    if (!string.IsNullOrEmpty(currentUserId))
+                        result.Reviews.ForEach(c =>
+                        {
+                            c.isCurrent = c.CreatedBy == currentUserId;
+                        });
+
                     return new ResultMessage()
                     {
                         Data = result,
                         Status = HttpStatusCode.OK
                     };
                 }
-                    
+
                 else
                     return new ResultMessage()
                     {

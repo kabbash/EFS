@@ -36,7 +36,7 @@ namespace Trainer.Controllers
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            return GetStatusCodeResult(_itemsReviewManager.GetById(id));
+            return GetStatusCodeResult(_itemsReviewManager.GetById(id,CurrentUserId));
         }
 
         // POST: api/itemsreview
