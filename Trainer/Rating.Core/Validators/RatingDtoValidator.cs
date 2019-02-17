@@ -8,7 +8,6 @@ namespace Rating.Core.Validators
         public RatingDtoValidator()
         {
             RuleFor(c => c.Rate).NotEmpty();
-            RuleFor(c => c.Comment).NotEmpty();
             RuleFor(c => c.EntityId).NotEmpty();
             RuleFor(c => c.EntityTypeId).NotEmpty();
         }

@@ -6,6 +6,6 @@ namespace Shared.Core.Utilities.Models
 {
     public interface IUserDto
     {
-        string UserId { get; set; }
+        string CurrentUserId { get; set; }
     }
 }

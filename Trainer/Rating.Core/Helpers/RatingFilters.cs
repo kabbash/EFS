@@ -8,7 +8,7 @@ namespace Rating.Core.Helpers
     {
         public static IQueryable<EntityRating> OldRate(this IQueryable<EntityRating> ratings, RatingDto ratingDto)
         {
-            return ratings.Where(c => c.EntityId == ratingDto.EntityId && c.CreatedBy == ratingDto.CreatedBy && c.EntityTypeId == ratingDto.EntityTypeId);
+            return ratings.Where(c => c.EntityId == ratingDto.EntityId && c.CreatedBy == ratingDto.CurrentUserId && c.EntityTypeId == ratingDto.EntityTypeId);
         }
 
         public static IQueryable<EntityRating> AllRates(this IQueryable<EntityRating> ratings, RatingDto ratingDto)

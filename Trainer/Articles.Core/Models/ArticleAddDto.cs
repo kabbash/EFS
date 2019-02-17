@@ -13,6 +13,6 @@ namespace Articles.Core.Models
         public string ProfilePicture { get; set; }
         public List<SliderItemDto> Images { get; set; }
         public List<SliderItemDto> UpdatedImages { get; set; }
-        public string UserId { get; set; }
+        public string CurrentUserId { get; set; }
     }
 }

@@ -9,9 +9,10 @@
         Temp,
         Banners
     }
-    public enum EntityTypesEnum
+    public enum RatingEntityTypesEnum
     {
-        Product = 1
+        ItemsForReview =1,
+        Product = 2
     }
 
     public enum PredefinedArticlesCategories

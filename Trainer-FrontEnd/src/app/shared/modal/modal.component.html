@@ -19,8 +19,8 @@
                     <div>
                         <span class="rate">
                             <span class="rating-word">اضف تقييمك</span> &nbsp;
-                            <ngb-rating [(rate)]="product.rate" max="5" class="star rating-stars">
-                                <ng-template let-fill="fill" let-index="index">
+                            <ngb-rating [(rate)]="rate" max="5" class="star rating-stars" (click)="addRate()" >
+                                <ng-template let-fill="fill" let-index="index" >
                                     <span class="star" [class.filled-modal]="fill === 100">&#9733;</span>
                                 </ng-template>
                             </ngb-rating>&nbsp;
