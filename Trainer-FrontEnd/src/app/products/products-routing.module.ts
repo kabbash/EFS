@@ -9,6 +9,7 @@ import { ProductsCategoriesResolver } from './resolvers/products-categories.reso
 import { ItemReviewResolver } from '../admin-tools/resolvers/item-review.resolver';
 import { ProdcutRatingResolver } from './resolvers/product-rating.resolver';
 import { ProductsListComponent } from '../shared/products-list/products-list.component';
+import { ProductsSpecialListResolver } from './resolvers/products-special-list.resolver';
 
 const routes: Routes = [
   {
@@ -18,7 +19,7 @@ const routes: Routes = [
       {
         path: config.products.productsList.name,
         component: ProductsListComponent,
-        resolve: {productList: ProductsListResolver}
+        resolve: {productList: ProductsListResolver, productSpecialList: ProductsSpecialListResolver}
       },
       {
         path: config.products.productsCategories.name,
