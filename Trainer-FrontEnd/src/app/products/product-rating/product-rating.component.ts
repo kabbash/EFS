@@ -42,10 +42,15 @@ export class ProductRatingComponent implements OnInit {
       reveiw.rate = this.rate.rate;
       reveiw.reviwer = new Reviewer();
       reveiw.reviwer.fullName = user.fullName;
-      reveiw.createdAt  =  this.util.getDateFormatted((new Date()).toISOString());
+      reveiw.createdAt = this.util.getDateFormatted((new Date()).toISOString());
       this.rate.entityId = this.product.id;
       this.repositoryService.create('itemsreview/AddRate', this.rate).subscribe(data => {
         alert('success');
+
+        this.product.reviews = this.product.reviews.filter(function (item, idx) {
+          return item.isCurrent !== true;
+        });
+
         this.product.reviews.push(reveiw);
       }, error => {
         alert(error);

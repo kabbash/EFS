@@ -8,7 +8,9 @@ namespace Rating.Core.Models
         public int EntityId { get; set; }
         public string Comment { get; set; }
         public int Rate { get; set; }
+        public bool isCurrent { get; set; }
         public string CurrentUserId { get; set; }
+        public string CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public int EntityTypeId { get; set; }
