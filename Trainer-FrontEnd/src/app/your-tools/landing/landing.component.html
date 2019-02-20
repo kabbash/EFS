@@ -1,19 +1,12 @@
 <div class="row">
-   <div class="col-md-2"></div>
-   <div class="col-md-8">
+   <div class="col-md-6">
       <div class="card">
          <div class="card-header">
-            <strong> أهمية حساب نسبة الدهون في الجسم</strong>
+            <strong> حاسبة الاحتياجات اليومية من السعرات الحرارية</strong>
          </div>
          <div class="card-header">
-            <p> إن أفضل طريقة للحصول على الجسم المثالي , هي تحديد نسبة الدهون الحالية و تحديد نسبة الدهون المستهدفة. و
-               بالتالي عند قيامك بنظام غذائي لحرق الدهون , يكون كل تركيزك على حرق دهون الجسم فقط و الحفاظ على الكتلة
-               العضلية .</p>
-            <p>فالوزن لوحده ليس مؤشر كافي على رشاقتك أو قوتك شكل جسمك . حتى مؤشر كتلة الجسم BMI لا يحدد شكلك و نسبة
-               دهونك و كتلتك العضلية .</p>
-            <p>
-               أدخل وزنك و طولك و مقاسات المتر في الحاسبة ( أرقام أنجليزية و ليست عربية )
-            </p>
+            <p> لحرق الدهون او زيادة الوزن بفاعلية و بسرعة يجب معرفة احتياجاتك اليومية من السعرات الحرارية. و الاحتياجات
+               اليومية من السرات الحرارية تسمى بال TDEE او Total Daily Energy Expenditure</p>
          </div>
          <div class="card-body">
             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -109,6 +102,108 @@
                <span>****</span><span>
                   سعر حراري /يوم
                </span>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-md-6">
+      <div class="card">
+         <div class="card-header">
+            <strong> أهمية حساب نسبة الدهون في الجسم</strong>
+         </div>
+         <div class="card-header">
+            <p> إن أفضل طريقة للحصول على الجسم المثالي , هي تحديد نسبة الدهون الحالية و تحديد نسبة الدهون المستهدفة.
+               و
+               بالتالي عند قيامك بنظام غذائي لحرق الدهون , يكون كل تركيزك على حرق دهون الجسم فقط و الحفاظ على الكتلة
+               العضلية .</p>
+            <p>فالوزن لوحده ليس مؤشر كافي على رشاقتك أو قوتك شكل جسمك . حتى مؤشر كتلة الجسم BMI لا يحدد شكلك و نسبة
+               دهونك و كتلتك العضلية .</p>
+            <p>
+               أدخل وزنك و طولك و مقاسات المتر في الحاسبة ( أرقام أنجليزية و ليست عربية )
+            </p>
+         </div>
+         <div class="card-body">
+            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="select1">النوع</label>
+                  <div class="col-md-9">
+                     <select id="select1" name="select1" class="form-control">
+                        <option value="0">اختر</option>
+                        <option value="1">ذكر</option>
+                        <option value="2">أنثى</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="text-input">الطول</label>
+                  <div class="col-md-9">
+                     <input type="text" id="text-input" name="text-input" class="form-control">
+                     <span class="help-block">بالسنتيمتر</span>
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="text-input">الوزن</label>
+                  <div class="col-md-9">
+                     <input type="text" id="text-input" name="text-input" class="form-control">
+                     <span class="help-block">بالكيلوجرام</span>
+                  </div>
+               </div>
+
+               <div class="form-group row">
+                  <strong class="col-md-3 col-form-label"> المقاسات</strong>
+               </div>
+
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="text-input">الرقبه</label>
+                  <div class="col-md-9">
+                     <input type="text" id="text-input" name="text-input" class="form-control">
+                     <span class="help-block">بالسنتيمتر</span>
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="text-input">الوسط</label>
+                  <div class="col-md-9">
+                     <input type="text" id="text-input" name="text-input" class="form-control">
+                     <span class="help-block">بالسنتيمتر</span>
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="text-input">المؤخره</label>
+                  <div class="col-md-9">
+                     <input type="text" id="text-input" name="text-input" class="form-control">
+                     <span class="help-block">بالسنتيمتر</span>
+                  </div>
+               </div>
+            </form>
+         </div>
+         <div class="card-footer row">
+            <label class="col-md-5 col-form-label" for="select1">نسبة الدهون:</label>
+            <div class="col-md-7">
+               <strong>****</strong><span>
+                  %
+               </span>
+            </div>
+         </div>
+         <div class="card-footer row">
+            <label class="col-md-5 col-form-label" for="select1">وزن الدهون:</label>
+            <div class="col-md-7">
+               <strong>****</strong><span>
+                  كجم
+               </span>
+            </div>
+         </div>
+         <div class="card-footer row">
+            <label class="col-md-5 col-form-label" for="select1">وزن الكتلة اللادهنية:</label>
+            <div class="col-md-7">
+               <strong>****</strong><span>
+                  كجم
+               </span>
+            </div>
+         </div>
+         <div class="card-footer row">
+            <label class="col-md-5 col-form-label" for="select1">فئة الدهون:</label>
+            <div class="col-md-7">
+               <span>دهون اساسيه</span>
             </div>
          </div>
       </div>
