@@ -40,7 +40,7 @@ namespace Products.Core.Services
             try
             {
                 PagedResult<ProductsDto> result = new PagedResult<ProductsDto>();
-                result = _unitOfWork.ProductsRepository.Get(includeProperties: includeProperities ?? "").ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                result = _unitOfWork.ProductsRepository.Get(includeProperties: includeProperities ?? "").OrderByDescending(c=>c.CreatedAt).ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
                 return new ResultMessage()
                 {
                     Data = result,
