@@ -10,6 +10,8 @@ import { PagerDto } from '../../shared/models/pager.dto';
 import { ModalComponent } from '../modal/modal.component';
 import { ProductsService } from '../../products/products.service';
 import { ClientFilterComponent } from '../client-filter/client-filter.component';
+import { RatingDto } from '../models/rating.dto';
+import { AppConfig } from 'src/config/app.config';
 
 @Component({
   selector: 'app-all-products',
@@ -18,6 +20,8 @@ import { ClientFilterComponent } from '../client-filter/client-filter.component'
 })
 export class ProductsListComponent implements OnInit {
   products: productListItemDto[];
+  specialProducts: productListItemDto[];
+  currentPageSpecialProducts: productListItemDto[];
   baseurl = environment.filesBaseUrl;
   selectedProduct: productListItemDto;
   categoryId: number;
@@ -26,6 +30,8 @@ export class ProductsListComponent implements OnInit {
   isManageProductReview = false;
   pagerData: PagerDto;
   nextPageUrl: string;
+  specialProductsPageSize: number = AppConfig.settings.pagination.specialProductsForAny.pageSize;
+
   @ViewChild(ClientFilterComponent) searchFilterComponent: ClientFilterComponent;
 
   @ViewChild('modal') productModal: ModalComponent;
@@ -42,7 +48,10 @@ export class ProductsListComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(result => {
+
       this.pagerData = result.productList.data;
+      this.specialProducts = result.productSpecialList.data.results;
+      this.currentPageSpecialProducts = this.specialProducts.slice(0, this.specialProductsPageSize);
       this.productReviewService.productReviewList = result.productList.data.results;
       this.products = this.productReviewService.productReviewList;
       this.appService.loading = false;
@@ -67,9 +76,18 @@ export class ProductsListComponent implements OnInit {
     this.router.navigate([config.admin.addItemForReview.route]);
   }
 
+  setSpecialProducts() {
+
+    if (this.pagerData.currentPage <= 4)
+      this.currentPageSpecialProducts = this.specialProducts.slice(((this.pagerData.currentPage - 1) * this.specialProductsPageSize), this.pagerData.currentPage * this.specialProductsPageSize);
+    else
+      this.currentPageSpecialProducts = [];
+  }
   getNextPage() {
     this.appService.loading = true;
-    this.repositoryService.getData(`${this.nextPageUrl}?pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}&searchText=${this.searchFilterComponent.searchTxt}&categoryId=${this.categoryId}`).subscribe((data: any) => {
+
+    this.setSpecialProducts();
+    this.repositoryService.getData(`${this.nextPageUrl}?isSpecial=false&pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}&searchText=${this.searchFilterComponent.searchTxt}&categoryId=${this.categoryId}`).subscribe((data: any) => {
       this.pagerData = data.data;
       this.productReviewService.productReviewList = data.data.results;
       this.products = this.productReviewService.productReviewList;
@@ -82,5 +100,20 @@ export class ProductsListComponent implements OnInit {
   filterItems() {
     this.pagerData.currentPage = 1;
     this.getNextPage();
+  }
+
+  rateUpdated(event) {
+
+    let rateDto = new RatingDto();
+    this.appService.loading = true;
+    rateDto.entityId = event.productId;
+    rateDto.rate = event.rate;
+    this.repositoryService.create('products/addrate', rateDto).subscribe(data => {
+      alert('success');
+      this.appService.loading = false;
+    }, error => {
+      alert(error);
+      this.appService.loading = false;
+    });
   }
 }

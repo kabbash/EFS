@@ -31,9 +31,9 @@ export let config = {
         'loadChildren': './your-tools/your-tools.module#YourToolsModule',
         // 'permissionList': ['Authorized'],
         /** this is capital to match routes for tagging  */
-        'landing': {
-            'name': 'landing',
-            'route': '/yourTools/landing',
+        'calculators': {
+            'name': 'calculators',
+            'route': '/yourTools/calculators',
         }
     },
     'products': {

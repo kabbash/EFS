@@ -32,9 +32,10 @@ export class Seller {
 }
 export class Review {
   comment : string;
-  cratedAt: string;
+  createdAt: string;
   rate: Number;
-  reviwer: Reviewer
+  reviwer: Reviewer;
+  isCurrent: boolean;
 }
 export class Reviewer {
   fullName: string;

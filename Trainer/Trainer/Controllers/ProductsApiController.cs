@@ -5,8 +5,8 @@ using Rating.Core.Interfaces;
 using Rating.Core.Models;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Models;
-using System.Linq;
-using System.Security.Claims;
+using System;
+using System.Net;
 using DBModels = Shared.Core.Models;
 
 namespace Trainer.Controllers
@@ -40,30 +40,24 @@ namespace Trainer.Controllers
         [HttpPost]
         public ActionResult Post([FromForm] ProductsDto productsDto)
         {
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
-            if (userIdClaim == null)
+            if (String.IsNullOrEmpty(CurrentUserId))
             {
-                return StatusCode(500);
+                return StatusCode((int)HttpStatusCode.Unauthorized);
             }
 
-            // Set User 
-            productsDto.CreatedBy = userIdClaim.Value;
-
+            productsDto.CurrentUserId = CurrentUserId;
             return GetStatusCodeResult(_productsManager.Insert(productsDto));
         }
 
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromForm] ProductsDto productsDto)
         {
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
-            if (userIdClaim == null)
+            if (string.IsNullOrEmpty(CurrentUserId))
             {
-                return StatusCode(500);
+                return StatusCode((int)HttpStatusCode.Unauthorized);
             }
 
-            //Set User
-            productsDto.UpdatedBy = userIdClaim.Value;
-
+            productsDto.CurrentUserId = CurrentUserId;
             return GetStatusCodeResult(_productsManager.Update(productsDto, id));
         }
 
@@ -74,9 +68,16 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_productsManager.Delete(id));
         }
 
-        [HttpPost("AddRate")]
+        [HttpPost("addrate")]
         public ActionResult AddRate(RatingDto newRate)
         {
+            if (string.IsNullOrEmpty(CurrentUserId))
+            {
+                return StatusCode((int)HttpStatusCode.Unauthorized);
+            }
+
+            newRate.CurrentUserId = CurrentUserId;
+            newRate.EntityTypeId = (int)RatingEntityTypesEnum.Product;
             return GetStatusCodeResult(_ratingManager.AddOrUpdate(newRate));
         }
 
@@ -101,7 +102,7 @@ namespace Trainer.Controllers
         //[Authorize(Roles = "Admin")]
         public ActionResult Reject([FromBody]RejectDto model)
         {
-            model.UserId = User.Identity.Name;
+            model.CurrentUserId = User.Identity.Name;
             return GetStatusCodeResult(_productsManager.Reject(model));
         }
 

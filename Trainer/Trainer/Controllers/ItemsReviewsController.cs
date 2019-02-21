@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Rating.Core.Interfaces;
 using Rating.Core.Models;
 using Shared.Core.Utilities.Enums;
+using System.Net;
 using DBModels = Shared.Core.Models;
 
 namespace Trainer.Controllers
@@ -35,7 +36,7 @@ namespace Trainer.Controllers
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            return GetStatusCodeResult(_itemsReviewManager.GetById(id));
+            return GetStatusCodeResult(_itemsReviewManager.GetById(id,CurrentUserId));
         }
 
         // POST: api/itemsreview
@@ -77,6 +78,12 @@ namespace Trainer.Controllers
         [HttpPost("AddRate")]
         public ActionResult AddRate(RatingDto newRate)
         {
+            if (string.IsNullOrEmpty(CurrentUserId))
+            {
+                return StatusCode((int)HttpStatusCode.Unauthorized);
+            }
+            newRate.CurrentUserId = CurrentUserId;
+            newRate.EntityTypeId = (int)RatingEntityTypesEnum.ItemsForReview;
             return GetStatusCodeResult(_ratingManager.AddOrUpdate(newRate));
         }   
     }

@@ -6,7 +6,7 @@ using System.Security.Claims;
 
 namespace Trainer.Controllers
 {
-    [Route("")]      
+    [Route("")]
     [ApiController]
     public class BaseController : ControllerBase
     {
@@ -15,6 +15,14 @@ namespace Trainer.Controllers
         {
             var x = HttpContext.User.Claims.Where(c => c.Type == ClaimTypes.Role);
             return StatusCode((int)resultMessage.Status, resultMessage);
+        }
+
+        protected string CurrentUserId
+        {
+            get
+            {
+                return User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+            }
         }
     }
 }

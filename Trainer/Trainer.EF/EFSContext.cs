@@ -45,10 +45,8 @@ namespace Trainer.EF
         public virtual DbSet<Trainers> Trainers { get; set; }
         public virtual DbSet<TrainersPrograms> TrainersPrograms { get; set; }
         public virtual DbSet<EntityRating> EntityRatings { get; set; }
-        public virtual DbSet<EntityTypes> EntityTypes { get; set; }
         public virtual DbSet<ItemsForReview> ItemsForReviews { get; set; }
         public virtual DbSet<Banner> Banners { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -597,25 +595,6 @@ namespace Trainer.EF
                     .HasForeignKey(d => d.TrainerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Trainers_Programs_Trainers");
-            });
-
-            modelBuilder.Entity<EntityTypes>(entity =>
-            {
-                entity.HasData(new EntityTypes
-                {
-                    Id = 1,
-                    Name = "product"
-                });
-                entity.HasData(new EntityTypes
-                {
-                    Id = 4,
-                    Name = "hamda"
-                });
-                entity.HasData(new EntityTypes
-                {
-                    Id = 9,
-                    Name = "m7maaa ma7rooos"
-                });
             });
         }
     }
