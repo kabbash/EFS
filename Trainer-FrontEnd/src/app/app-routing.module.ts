@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { config } from './config/pages-config';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { ArticlesComponent } from './articles/articles.component';
+import { BannersResolver } from 'src/app/articles/resolvers/banners.resolver';
 
 const routes: Routes = [
   {
@@ -11,7 +12,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomeModule'
+    loadChildren: './home/home.module#HomeModule',
+    resolve: {banners: BannersResolver}
   },
   {
     path: config.articles.route,

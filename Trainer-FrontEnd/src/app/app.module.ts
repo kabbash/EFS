@@ -16,6 +16,7 @@ import { ItemReviewResolver } from './admin-tools/resolvers/item-review.resolver
 import { AuthGuard } from './auth/guards/auth.guard';
 import { NgbUTCStringAdapter } from './shared/services/ngb-string.adapter';
 import { AppConfig } from '../config/app.config';
+import { BannersResolver } from 'src/app/articles/resolvers/banners.resolver';
 
 export function CreateTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -57,7 +58,8 @@ export function initializeApp(appConfig: AppConfig) {
       provide: APP_INITIALIZER,
       useFactory: initializeApp,
       deps: [AppConfig], multi: true
-    }
+    },
+    BannersResolver
   ],
 
   bootstrap: [AppComponent]

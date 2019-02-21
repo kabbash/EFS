@@ -1,0 +1,85 @@
+
+<div class="add-banner-container">
+  <div class="carousel-item dashboard-carousel" [ngStyle]="{'background-image': !banner.imagePath ? 'url(' + addedImageUrl + ')' : 'url(' + baseurl + banner?.imagePath + ')'}">
+    <div class="container">
+      <span #titleHtml>
+          <div class="carousel-caption" [ngClass]="{'text-left':titleAlign === 'left' , 'text-right': titleAlign === 'right', 'text-center': titleAlign === 'center'}">
+              <h1>
+                <pre>{{bannerForm.controls['title'].value}}</pre>
+              </h1>
+              <!-- <p class="secondary-color">نابليون بونابرت</p>             -->
+            </div>
+      </span>
+      <span #buttonHtml>
+          <div class=".carousel-button" [ngClass]="{'text-left':buttonAlign === 'left' , 'text-right': buttonAlign === 'right', 'text-center': buttonAlign === 'center'}">
+              <p><a class="btn btn-lg btn-outline-primary" href="#" role="button"> {{bannerForm.controls['buttonText'].value}} <i class="fa fa-arrow-left"></i></a></p>          
+              
+            </div>
+      </span>
+      
+    </div>
+  </div>
+  <div class="banner-form">
+    <form (submit)="submit()" class="form-horizontal" [formGroup]="bannerForm">
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">title</label>
+        <div class="col-md-9">
+          <textarea rows="2" id="text-input" name="text-input" class="form-control" placeholder="Text" formControlName="title"></textarea>
+
+          <div *ngIf="bannerForm.controls['title'].touched && bannerForm.controls['title'].errors" class="text-danger" > <!-- class="invalid-feedback"-->
+            <div *ngIf="bannerForm.controls['title'].errors.required">title is required</div>
+        </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">title align</label>
+        <div class="col-md-9">
+          <label class="col-md-3 col-form-label" for="title-radio-left">left</label>
+          <input type="radio" id="title-radio-left" name="text-input" class="form-control"    [(ngModel)]="titleAlign" [ngModelOptions]="{standalone: true}" name="titleAlign" value="left">
+          <label class="col-md-3 col-form-label" for="title-radio-right">right</label>
+          <input type="radio" id="title-radio-right" name="text-input" class="form-control"   [(ngModel)]="titleAlign" [ngModelOptions]="{standalone: true}" name="titleAlign" value="right">        
+          <label class="col-md-3 col-form-label" for="title-text-center">center</label>
+          <input type="radio" id="title-text-center" name="text-input" class="form-control"   [(ngModel)]="titleAlign" [ngModelOptions]="{standalone: true}" name="titleAlign" value="center">   
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">button text</label>
+        <div class="col-md-9">
+          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text" formControlName="buttonText">
+          <div *ngIf="bannerForm.controls['buttonText'].touched && bannerForm.controls['buttonText'].errors" class="text-danger" >
+            <div *ngIf="bannerForm.controls['buttonText'].errors.required">button text is required</div>
+        </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">button align</label>
+        <div class="col-md-9">
+            <label class="col-md-3 col-form-label" for="button-left">left</label>          
+          <input type="radio" id="button-left" name="text-input" class="form-control"    [(ngModel)]="buttonAlign" [ngModelOptions]="{standalone: true}" name="buttonAlign" value="left">
+          <label class="col-md-3 col-form-label" for="button-right">right</label>
+          
+          <input type="radio" id="button-right" name="text-input" class="form-control"   [(ngModel)]="buttonAlign" [ngModelOptions]="{standalone: true}" name="buttonAlign" value="right">
+          <label class="col-md-3 col-form-label" for="button-center">center</label>
+          
+          <input type="radio" id="button-center" name="text-input" class="form-control"   [(ngModel)]="buttonAlign" [ngModelOptions]="{standalone: true}" name="buttonAlign" value="center">
+        </div>
+      </div>
+      
+      
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="file-input">picture</label>
+        <div class="col-md-9">
+          <app-file-uploader formControlName=imageFile (change)="onFileSelect($event.target.files[0])" ></app-file-uploader>
+          <div *ngIf="bannerForm.controls['imageFile'].touched && bannerForm.controls['imageFile'].errors" class="text-danger" > <!-- class="invalid-feedback"-->
+            <div *ngIf="bannerForm.controls['imageFile'].errors.required">image required</div>
+        </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> submit</button>
+        <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> reset</button>
+      </div>
+    </form>
+  </div>
+</div>

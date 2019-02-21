@@ -1,45 +1,13 @@
 <section class="slider">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-      <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-      <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+      <li *ngFor="let banner of banners; let i = index" data-target="#myCarousel" [attr.data-slide-to]="i" [ngClass]="{'active': i===0}"></li>
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item dashboard-carousel" style="background-image: url(./assets/images/homepage-slider.png)">
-        <div class="container">
-          <div class="carousel-caption text-left">
-            <h1>
-              <span>"<span class="secondary-color">الارادة</span> القوية </span>
-              <span>تقصر المسافات"</span>
-            </h1>
-            <p class="secondary-color">نابليون بونابرت</p>
-            <p><a class="btn btn-lg btn-outline-primary" href="#" role="button"> انضم الينا الان <i class="fa fa-arrow-left"></i></a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item dashboard-carousel" style="background-image: url(./assets/images/homepage-slider2.png)">
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>
-              <span>"<span class="secondary-color">الارادة</span> القوية </span>
-              <span>تقصر المسافات"</span>
-            </h1>
-            <p class="secondary-color">نابليون بونابرت</p>
-            <p><a class="btn btn-lg btn-outline-primary" href="#" role="button"> انضم الينا الان <i class="fa fa-arrow-left"></i></a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item active dashboard-carousel" style="background-image: url(./assets/images/homepage-slider.png)">
-        <div class="container">
-          <div class="carousel-caption text-right">
-            <h1>
-              <span>"<span class="secondary-color">الارادة</span> القوية </span>
-              <span>تقصر المسافات"</span>
-            </h1>
-            <p class="secondary-color">نابليون بونابرت</p>
-            <p><a class="btn btn-lg btn-outline-primary" href="#" role="button"> انضم الينا الان <i class="fa fa-arrow-left"></i></a></p>
-          </div>
+      <div *ngFor="let banner of banners; let i = index" class="carousel-item dashboard-carousel" [ngClass]="{'active': i == 0}" [ngStyle]="{'background-image': 'url(' + baseurl + banner?.imagePath + ')'}">
+        <div class="container" >
+            <span [innerHTML]="banner.title"></span>
+            <span [innerHTML]="banner.buttonText"></span>
         </div>
       </div>
     </div>

@@ -50,6 +50,7 @@
     "adminMenu": {
       "manageArticleCategories": "فئات المقالات",
       "manageProductCategories": "فئات المنتجات",
-      "itemReviewList": "مراجعة المنتجات"
+      "itemReviewList": "مراجعة المنتجات",
+      "manageBanners":"الملصقات"
     }
 }

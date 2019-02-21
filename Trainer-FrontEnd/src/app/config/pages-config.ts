@@ -169,6 +169,18 @@ export let config = {
       'ProductsList': {
         'name': 'ProductList',
         'route': '/admin/ProductList'
-      }
+      },
+      'addBanner': {
+          'name': 'addBanner',
+          'route': '/admin/addBanner'
+      },
+      'editBanner': {
+        'name': 'editBanner/:bannerId',
+        'route': '/admin/editBanner/:bannerId'
+    },
+    'manageBanners': {
+        'name': 'manageBanners',
+        'route': '/admin/manageBanners'
+    }
     }
 };
