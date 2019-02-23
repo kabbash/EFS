@@ -8,6 +8,7 @@ import { PagerDto } from '../../../shared/models/pager.dto';
 import { AppService } from '../../../app.service';
 import { SearchFilterComponent } from '../../../shared/search-filter/search-filter.component';
 import { AppConfig } from '../../../../config/app.config';
+import { PredefinedCategories } from 'src/app/shared/models/articles/articles-predefined-categories.enum';
 
 @Component({
   selector: 'app-articles-list',
@@ -25,6 +26,7 @@ export class ArticlesListComponent implements OnInit {
   pagesNumber: number;
   articles: articleListItemDto[];
   pagerData: PagerDto;
+  public championshipsCategory= PredefinedCategories.Championships;
   private pageSize = AppConfig.settings.pagination.articlesForAdmin.pageSize;
 
   @ViewChild(SearchFilterComponent) searchFilterComponent: SearchFilterComponent;

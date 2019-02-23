@@ -7,6 +7,8 @@ export class ArticleDetialsDto implements ISliderDto  {
     name: string;
     profilePicture: string;
     description: string;
+    date: string;
+    place: string;
     isActive: boolean;
     categoryId: number;
     images: SliderItemDto[];

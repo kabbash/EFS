@@ -7,8 +7,9 @@ import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticleListResolver } from './resolvers/article-list.resolver';
-import { NewsResolver } from './resolvers/news.resolver';
+import { NewsResolver } from './resolvers/articles.news.resolver';
 import { ArticlesFoodResolver } from './resolvers/articles.food.resolver';
+import { ArticlesChampionshipsResolver } from './resolvers/articles.championships.resolver';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { ArticlesFoodResolver } from './resolvers/articles.food.resolver';
   providers: [
     ArticleListResolver,
     NewsResolver,
-    ArticlesFoodResolver
+    ArticlesFoodResolver,
+    ArticlesChampionshipsResolver
   ]
 })
 export class ArticlesModule { }

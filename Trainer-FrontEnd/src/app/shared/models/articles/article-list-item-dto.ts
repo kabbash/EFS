@@ -4,4 +4,6 @@ export class articleListItemDto{
     name: string;
     profilePicture: string;
     description: string;
+    date: string;
+    place: string;
 }

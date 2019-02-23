@@ -1,5 +1,6 @@
 ﻿using Articles.Core.Models;
 using Shared.Core.Utilities.Enums;
+using System;
 using System.Linq;
 
 namespace Articles.Core.Extensions
@@ -32,5 +33,11 @@ namespace Articles.Core.Extensions
 
             return articles;
         }
+
+        public static IQueryable<Shared.Core.Models.Articles> ApplyChampionshipsFilter(this IQueryable<Shared.Core.Models.Articles> articles)
+        {
+            return articles.Where(c => !c.Date.HasValue || c.Date.GetValueOrDefault().Date >= DateTime.Now.Date);
+        }
+
     }
 }
