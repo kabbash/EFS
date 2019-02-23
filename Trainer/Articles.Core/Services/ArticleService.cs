@@ -38,7 +38,12 @@ namespace Articles.Core.Services
             try
             {
                 PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
-                result = _unitOfWork.ArticlesRepository.Get().OrderByDescending(c=>c.CreatedAt).ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+
+                if (filter.CategoryId == (int)PredefinedArticlesCategories.Championships)
+                    result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).ApplyChampionshipsFilter().OrderByDescending(c => c.Date.HasValue).ThenBy(c=> c.Date).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                else
+                    result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).OrderByDescending(c => c.CreatedAt).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+
                 return new ResultMessage
                 {
                     Data = result,

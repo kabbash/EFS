@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20190223124018_AddPlaceAndDateFieldsToArticles")]
+    partial class AddPlaceAndDateFieldsToArticles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,9 +103,8 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
 
                     b.HasData(
-                        new { Id = 1, CreatedAt = new DateTime(2019, 2, 24, 17, 31, 50, 946, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
-                        new { Id = 2, CreatedAt = new DateTime(2019, 2, 24, 17, 31, 50, 948, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" },
-                        new { Id = 3, CreatedAt = new DateTime(2019, 2, 24, 17, 31, 50, 948, DateTimeKind.Utc), CreatedBy = "admin", Name = "البطولات", PredefinedKey = 3, ProfilePicture = "Files/Articles%20Categories/championships.png" }
+                        new { Id = 1, CreatedAt = new DateTime(2019, 2, 23, 12, 40, 16, 348, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
+                        new { Id = 2, CreatedAt = new DateTime(2019, 2, 23, 12, 40, 16, 352, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
                     );
                 });
 

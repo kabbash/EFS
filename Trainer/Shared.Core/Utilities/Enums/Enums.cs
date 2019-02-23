@@ -17,8 +17,9 @@
 
     public enum PredefinedArticlesCategories
     {
-        News = 1,
-        Food = 2
+        Food = 1,
+        News = 2,
+        Championships = 3
     }
 
     public enum EntityDDLEnum

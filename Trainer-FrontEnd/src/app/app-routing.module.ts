@@ -5,6 +5,7 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { BannersResolver } from './admin-tools/resolvers/banners.resolver';
 
+
 const routes: Routes = [
   {
     path: 'test',
@@ -23,10 +24,6 @@ const routes: Routes = [
     path: config.userAccount.route,
     loadChildren: './user-account/user-account.module#UserAccountModule',
   },
-  // {
-  //   path: config.login.route,
-  //   loadChildren: './login/login.module#LoginModule',
-  // },
   {
     path: config.products.route,
     loadChildren: './products/products.module#ProductsModule',

@@ -8,13 +8,13 @@ import { PredefinedCategories } from '../../shared/models/articles/articles-pred
 import { AppConfig } from '../../../config/app.config';
 
 @Injectable()
-export class ArticlesFoodResolver implements Resolve<Observable<ResultMessage<articleListItemDto[]>>> {
+export class ArticlesChampionshipsResolver implements Resolve<Observable<ResultMessage<articleListItemDto[]>>> {
 
   constructor(private repositoryService: RepositoryService) {
   }
     resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<articleListItemDto[]>> {
       let pageSize = AppConfig.settings.pagination.articlesForAny.pageSize;
-      return  this.repositoryService.getData<articleListItemDto[]>('articles?pageNo=1&pageSize='+ pageSize + '&categoryId='+ PredefinedCategories.Food);
+      return  this.repositoryService.getData<articleListItemDto[]>('articles?pageNo=1&pageSize='+ pageSize + '&categoryId='+ PredefinedCategories.Championships);
     }
 }
  

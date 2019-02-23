@@ -5,7 +5,7 @@
     flex-wrap: wrap;
     padding-bottom: 30px;
     flex: 1;
-    cursor: pointer;
+    /* cursor: pointer; */
     margin-right: 1rem;
     padding-top: 50px;
 }

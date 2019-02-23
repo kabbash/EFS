@@ -24,6 +24,10 @@ export let config = {
         'food': {
             'name': 'food',
             'route': '/articles/food'
+        },
+        'championships' : {
+            'name': 'championships',
+            'route': '/articles/championships'
         }
     }, 'yourTools': {
         'name': 'yourTools',
