@@ -41,12 +41,50 @@
       "1007": "gdgdfgdfg"
     }
   },
-  "adminMenu": {
-    "manageArticleCategories": "فئات المقالات",
-    "manageProductCategories": "فئات المنتجات",
-    "itemReviewList": "مراجعة المنتجات"
-  },
-  "registerForm": {
+    "adminMenu": {
+      "manageArticleCategories": "فئات المقالات",
+      "manageProductCategories": "فئات المنتجات",
+      "itemReviewList": "مراجعة المنتجات",
+      "manageBanners":"الملصقات"
+    },
+    "addBanner": {
+      "title": "العنوان",
+      "buttonText": "نص الزر",
+      "buttonUrl": "رابط الزر",
+      "buttonAlign": "محاذاة الزر",
+      "titleAlign": "محاذاة العنوان",
+      "buttonColor": "لون الزر",
+      "picture": "الصورة",
+      "left": "يسار",
+      "right": "يمين",
+      "center": "وسط",
+      "blue": "ازرق",
+      "white": "ابيض",
+      "black": "اسود",
+      "submit": "حفظ",
+      "reset": "إعادة تعيين",
+      "formValidations": {
+        "title": {
+          "required": "يحب ادخال العنوان"
+        },
+        "buttonText": {
+          "required": "يجب ادخال نص الزر"
+        },
+        "buttonUrl": {
+          "required": "يجب ادخال رابط الزر"
+        },
+        "picture": {
+          "required": "يحب ادخال الصورة"
+        }
+      },
+      "messages": {
+
+      },
+      "errorCodes": {
+
+      }
+    },
+    "registerForm": {
     "formValidations": {
       "fullNameRequired": "يجب ادخال اسم المستخدم",
       "emailRequired": "يجب ادخال البريد الالكترونى",

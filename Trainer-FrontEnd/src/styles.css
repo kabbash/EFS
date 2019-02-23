@@ -51,6 +51,23 @@ color: #fff;
   border-color: #0e3c42;
 }
 
+.btn-blue {
+  color: #fff;
+  background-color: #14818f;
+  border-color: #0e3c42;
+}
+
+.btn-black {
+  color: #fff;
+  background-color:black;
+  border-color: rgb(2, 2, 2);
+}
+
+.btn-white {
+  color: black;
+  background-color:white;
+  border-color: wheat;
+}
 
 
 div.modal-body {

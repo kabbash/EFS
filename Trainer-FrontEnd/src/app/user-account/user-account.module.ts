@@ -12,7 +12,7 @@ import { AccountRegisteredComponent } from './account-registered/account-registe
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SetResetedPasswordComponent } from './set-reseted-password/set-reseted-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -20,7 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
     UserAccountRoutingModule,
     FormsModule,
     ReactiveFormsModule ,
-    TranslateModule   
+    SharedModule
   ],
   declarations: [
     LoginPageComponent,
