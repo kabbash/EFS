@@ -4,7 +4,6 @@ import { environment } from '../../../environments/environment';
 import { ddlDto, ddlItemDto } from '../models/ddl-dto';
 import { RepositoryService } from '../services/repository.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SliderItemDto } from '../models/slider/slider-item.dto';
 
 @Component({
   selector: 'app-article-details-editmode',

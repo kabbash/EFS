@@ -12,13 +12,15 @@ import { AccountRegisteredComponent } from './account-registered/account-registe
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SetResetedPasswordComponent } from './set-reseted-password/set-reseted-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     UserAccountRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule ,
+    TranslateModule   
   ],
   declarations: [
     LoginPageComponent,
