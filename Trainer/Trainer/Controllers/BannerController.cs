@@ -43,7 +43,7 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_bannerManager.Update(banner, id));
         }
 
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
             return GetStatusCodeResult(_bannerManager.Delete(id));

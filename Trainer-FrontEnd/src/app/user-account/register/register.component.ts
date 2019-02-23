@@ -25,13 +25,14 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      phoneNumber: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]]
+      confirmPassword: ['', Validators.required ]
     },
       {
-        Validator: CustomValidators.confirmPassword('password', 'confirmPassword')
-      });
+        validator: CustomValidators.confirmPassword('password', 'confirmPassword')
+      }
+      );
   }
 
   // convenience getter for easy access to form fields

@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { config } from './config/pages-config';
+import { NotfoundComponent } from './shared/notfound/notfound.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { BannersResolver } from './admin-tools/resolvers/banners.resolver';
 
 const routes: Routes = [
   {
@@ -9,7 +12,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomeModule'
+    loadChildren: './home/home.module#HomeModule',
+    resolve: {banners: BannersResolver}
   },
   {
     path: config.articles.route,
@@ -34,6 +38,10 @@ const routes: Routes = [
   {
     path: config.yourTools.name,
     loadChildren: './your-tools/your-tools.module#YourToolsModule'
+  },
+  {
+    path: config.contactus.name,
+    loadChildren: './contactus/contactus.module#ContactusModule'
   },
   { path: '**', redirectTo: 'home' }
 ];
