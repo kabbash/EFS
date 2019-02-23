@@ -41,6 +41,10 @@ const routes: Routes = [
     path: config.yourTools.name,
     loadChildren: './your-tools/your-tools.module#YourToolsModule'
   },
+  {
+    path: config.contactus.name,
+    loadChildren: './contactus/contactus.module#ContactusModule'
+  },
   { path: '**', redirectTo: 'home' }
 ];
 
