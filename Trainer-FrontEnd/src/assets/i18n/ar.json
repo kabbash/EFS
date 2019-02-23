@@ -38,7 +38,9 @@
     "editArticle": {
         "formValidations": {
             "nameRequired": "يجب ادخال اسم المقال",
-            "categoryRequired" : "يجب اختيار القسم"
+            "categoryRequired" : "يجب اختيار القسم",
+            "placeRequired": "يجب ادخال مكان البطوله",
+            "dateRequired": "يجب ادخال موعد البطوله"
         },
         "messages": {
 

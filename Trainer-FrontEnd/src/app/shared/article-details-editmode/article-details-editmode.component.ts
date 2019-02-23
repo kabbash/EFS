@@ -5,6 +5,7 @@ import { ddlDto, ddlItemDto } from '../models/ddl-dto';
 import { RepositoryService } from '../services/repository.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PredefinedCategories } from '../models/articles/articles-predefined-categories.enum';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-article-details-editmode',
@@ -35,9 +36,11 @@ export class ArticleDetailsEditmodeComponent implements OnInit {
     this.articleForm = this.fb.group({
       'name': ['', Validators.required],
       'categoryId': ['', Validators.min(1)],
-      'date':[],
+      'date': [],
       'place': []
     });
+
+    this.formControlValueChanged();
   }
 
   get f() { return this.articleForm.controls; }
@@ -46,4 +49,21 @@ export class ArticleDetailsEditmodeComponent implements OnInit {
     return this.modifiedArticle.categoryId === PredefinedCategories.Championships;
   }
 
+  formControlValueChanged() {
+    const placeControl = this.articleForm.get('place');
+    const dateControl = this.articleForm.get('date');
+    this.articleForm.get('categoryId').valueChanges.subscribe(
+      (catgeoryId: number) => {
+        if (catgeoryId === PredefinedCategories.Championships) {
+          placeControl.setValidators([Validators.required]);
+          dateControl.setValidators([Validators.required]);
+        }
+        else {
+          placeControl.clearValidators();
+          dateControl.clearValidators();
+        }
+        placeControl.updateValueAndValidity();
+        dateControl.updateValueAndValidity();
+      });
+  }
 }

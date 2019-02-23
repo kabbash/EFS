@@ -34,8 +34,6 @@
             <div class="form-group row" *ngIf="isChampionshipModule()">
               <label class="col-sm-2 col-form-label" for="text-input">تاريخ البطوله </label>
               <div class="col-sm-10">
-                <!-- <input type="text" id="text-input" name="text-input" class="form-control" placeholder=""
-                  formControlName="date" [(ngModel)]="modifiedArticle.date"> -->
                   <div class="input-group-nowrap">
                       <input class="form-control" name="dp" [(ngModel)]="modifiedArticle.date" ngbDatepicker #d="ngbDatepicker"
                           formControlName="date" readonly (click)="d.toggle()" [ngClass]="{ 'is-invalid': submitted && f.date.errors,'is-valid': submitted && !f.date.errors}">
@@ -44,6 +42,9 @@
                               <i class="fa fa-calendar"></i></button>
                       </div>
                   </div>
+                  <div *ngIf="submitted && f.date.errors" class="text-danger">
+                      <div *ngIf="f.date.errors.required"> {{'editArticle.formValidations.dateRequired' | translate}}</div>
+                    </div>    
               </div>
             </div>
             <div class="form-group row" *ngIf="isChampionshipModule()">
@@ -51,9 +52,9 @@
               <div class="col-sm-10">
                 <input type="text" id="text-input" name="text-input" class="form-control" placeholder=""
                   formControlName="place" [(ngModel)]="modifiedArticle.place">
-                <!-- <div *ngIf="submitted && f.categoryId.errors" class="text-danger">
-                  <div *ngIf="f.categoryId.errors.min"> {{'editArticle.formValidations.categoryRequired' | translate}}</div>
-                </div> -->
+                <div *ngIf="submitted && f.place.errors" class="text-danger">
+                  <div *ngIf="f.place.errors.required"> {{'editArticle.formValidations.placeRequired' | translate}}</div>
+                </div>
               </div>
             </div>
             <div class="form-group row">
