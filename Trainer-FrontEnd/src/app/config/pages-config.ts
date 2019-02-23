@@ -39,6 +39,16 @@ export let config = {
             'name': 'calculators',
             'route': '/yourTools/calculators',
         }
+    }, 'contactus': {
+        'name': 'contactus',
+        'route': 'contactus',
+        'loadChildren': './contactus/contactus.module#ContactusModule',
+        // 'permissionList': ['Authorized'],
+        /** this is capital to match routes for tagging  */
+        'form': {
+            'name': 'contactusForm',
+            'route': '/contactus/contactusForm',
+        }
     },
     'products': {
         'name': 'products',
@@ -173,6 +183,18 @@ export let config = {
       'ProductsList': {
         'name': 'ProductList',
         'route': '/admin/ProductList'
-      }
+      },
+      'addBanner': {
+          'name': 'addBanner',
+          'route': '/admin/addBanner'
+      },
+      'editBanner': {
+        'name': 'editBanner/:bannerId',
+        'route': '/admin/editBanner/:bannerId'
+    },
+    'manageBanners': {
+        'name': 'manageBanners',
+        'route': '/admin/manageBanners'
+    }
     }
 };

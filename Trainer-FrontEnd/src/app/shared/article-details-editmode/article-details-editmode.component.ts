@@ -5,7 +5,7 @@ import { ddlDto, ddlItemDto } from '../models/ddl-dto';
 import { RepositoryService } from '../services/repository.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PredefinedCategories } from '../models/articles/articles-predefined-categories.enum';
-import { debug } from 'util';
+
 
 @Component({
   selector: 'app-article-details-editmode',

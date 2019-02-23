@@ -11,7 +11,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { ProductsService } from '../../products/products.service';
 import { ClientFilterComponent } from '../client-filter/client-filter.component';
 import { RatingDto } from '../models/rating.dto';
-import { AppConfig } from 'src/config/app.config';
+import { AppConfig } from '../../../config/app.config';
 
 @Component({
   selector: 'app-all-products',

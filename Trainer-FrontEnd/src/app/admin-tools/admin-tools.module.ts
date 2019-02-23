@@ -24,6 +24,9 @@ import { ProductListItemEditComponent } from './products/product-list-item-edit/
 import { NgbUTCStringAdapter } from '../shared/services/ngb-string.adapter';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
 import { AdminArticlesService } from './services/admin.articles.services';
+import { AddBannerComponent } from './add-banner/add-banner.component';
+import { ManageBannerService } from './services/manage-banner.service';
+import { ManageBannersComponent } from './manage-banners/manage-banners.component';
 
 
 @NgModule({
@@ -52,7 +55,9 @@ import { AdminArticlesService } from './services/admin.articles.services';
       AdminProductsListComponent,
       ManageProductsComponent,
       ProductListItemComponent,
-      ProductListItemEditComponent
+      ProductListItemEditComponent,
+      AddBannerComponent,
+      ManageBannersComponent
     ],
 
   providers: [
@@ -62,7 +67,8 @@ import { AdminArticlesService } from './services/admin.articles.services';
     LeafProductCategoriesResolver,
     { provide: NgbDateAdapter, useClass: NgbUTCStringAdapter },
 
-    AdminArticlesService
+    AdminArticlesService,
+    ManageBannerService,
   ]
 })
 export class AdminToolsModule { }
