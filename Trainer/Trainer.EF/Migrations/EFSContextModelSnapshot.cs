@@ -34,6 +34,8 @@ namespace Trainer.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(128);
 
+                    b.Property<DateTime?>("Date");
+
                     b.Property<string>("Description")
                         .IsRequired();
 
@@ -41,6 +43,8 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired();
+
+                    b.Property<string>("Place");
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
@@ -258,7 +262,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", LockoutEnabled = false, PasswordHash = new byte[] { 77, 105, 21, 189, 239, 182, 89, 202, 23, 8, 201, 125, 184, 232, 87, 251, 73, 153, 52, 111, 163, 174, 166, 35, 38, 128, 117, 63, 84, 61, 53, 202, 33, 156, 1, 112, 121, 185, 14, 170, 137, 214, 78, 109, 29, 155, 36, 108, 41, 129, 220, 55, 154, 145, 254, 208, 19, 113, 176, 201, 235, 209, 134, 35 }, PasswordSalt = new byte[] { 255, 219, 23, 55, 93, 100, 173, 120, 132, 114, 215, 205, 247, 131, 89, 183, 211, 95, 112, 94, 34, 202, 104, 255, 121, 227, 216, 63, 14, 74, 114, 182, 175, 182, 56, 198, 17, 124, 146, 134, 176, 243, 190, 201, 29, 39, 188, 4, 119, 188, 45, 116, 71, 223, 215, 236, 165, 250, 220, 214, 52, 107, 131, 22, 74, 78, 57, 216, 38, 214, 176, 61, 37, 213, 31, 243, 250, 32, 11, 69, 130, 183, 193, 64, 82, 64, 200, 2, 76, 159, 231, 148, 121, 187, 204, 75, 77, 57, 190, 140, 112, 164, 244, 190, 2, 62, 51, 201, 178, 191, 198, 240, 147, 160, 15, 204, 209, 228, 195, 47, 211, 143, 45, 227, 230, 229, 250, 238 }, PhoneNumber = "01014991554", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "ahmedkabbash@gmail.com" }
+                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", LockoutEnabled = false, PasswordHash = new byte[] { 218, 207, 69, 166, 235, 103, 82, 231, 5, 111, 112, 232, 203, 145, 25, 101, 212, 172, 189, 80, 43, 15, 217, 175, 219, 92, 124, 215, 188, 136, 30, 125, 126, 207, 104, 39, 142, 188, 226, 157, 92, 194, 164, 73, 83, 224, 113, 244, 112, 195, 144, 82, 149, 180, 116, 245, 242, 183, 247, 62, 32, 113, 150, 186 }, PasswordSalt = new byte[] { 172, 161, 120, 109, 175, 39, 49, 189, 229, 25, 155, 132, 44, 199, 46, 159, 254, 171, 123, 40, 135, 81, 15, 127, 153, 134, 150, 60, 127, 46, 81, 187, 213, 212, 12, 48, 180, 194, 242, 114, 6, 131, 161, 196, 165, 5, 179, 81, 135, 114, 11, 128, 78, 135, 139, 76, 163, 112, 151, 120, 240, 247, 168, 41, 53, 192, 53, 75, 105, 193, 192, 202, 122, 56, 193, 2, 183, 122, 106, 58, 69, 26, 162, 26, 143, 33, 92, 13, 34, 24, 17, 163, 166, 15, 94, 228, 217, 49, 20, 159, 189, 187, 225, 29, 221, 252, 78, 137, 60, 206, 145, 249, 135, 127, 179, 21, 62, 8, 49, 239, 213, 204, 83, 18, 43, 113, 208, 73 }, PhoneNumber = "01014991554", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "ahmedkabbash@gmail.com" }
                     );
                 });
 
