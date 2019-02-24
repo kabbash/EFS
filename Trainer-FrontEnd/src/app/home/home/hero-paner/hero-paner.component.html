@@ -7,7 +7,7 @@
       <div *ngFor="let banner of banners; let i = index" class="carousel-item dashboard-carousel" [ngClass]="{'active': i == 0}" [ngStyle]="{'background-image': 'url(' + baseurl + banner?.imagePath + ')'}">
         <div class="container" >
             <span [innerHTML]="banner.title"></span>
-            <span [innerHTML]="banner.buttonText"></span>
+            <span [innerHTML]="banner.buttonText" (click)="navigateToButtonUrl(banner.buttonUrl)"></span>
         </div>
       </div>
     </div>

@@ -26,6 +26,7 @@ export class AddBannerComponent implements OnInit {
   bannerForm: FormGroup;
   addedImageUrl: string;
   buttonAlign: string;
+  buttonColor: string;
   titleAlign: string;
   isAdd = true;
   editTitleHTML: SafeHtml;
@@ -33,7 +34,7 @@ export class AddBannerComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   @ViewChild("titleHtml") titleHtml: ElementRef;
   @ViewChild("buttonHtml") buttonHtml: ElementRef;
-  
+  isSubmitted = false;
   constructor(private fb: FormBuilder, private bannerService: ManageBannerService,
      private util: UtilitiesService,
     private route: ActivatedRoute,
@@ -43,9 +44,13 @@ export class AddBannerComponent implements OnInit {
   ngOnInit() {
     this.bannerForm = this.fb.group({
       'title': ['', Validators.required],
-      'buttonText': ['', Validators.required],
-      'imageFile': [null, !this.banner.imagePath ? Validators.required : null]
+      'buttonText': ['',  Validators.required],
+      'imageFile': [null, Validators.required],
+      'buttonUrl': ['', Validators.required]
     }); 
+    this.buttonAlign = 'center';
+    this.buttonColor = 'blue';
+    this.titleAlign = 'center';
   }
 
   onFileSelect(file) {
@@ -58,6 +63,7 @@ export class AddBannerComponent implements OnInit {
   }
 
   submit() {
+    this.isSubmitted = true;
     if (this.bannerForm.invalid) {
       alert('invalid data');
       return;
@@ -74,6 +80,11 @@ export class AddBannerComponent implements OnInit {
   }
   prepareData() {
     this.banner.title = this.titleHtml.nativeElement.innerHTML;
-    this.banner.buttonText = this.buttonHtml.nativeElement.innerHTML; 
+    this.banner.buttonText = this.buttonHtml.nativeElement.innerHTML;
+    this.banner.buttonUrl = this.bannerForm.controls['buttonUrl'].value;
+  }
+  reset() {
+    this.banner = new BannerDto();
+    this.isSubmitted = false;
   }
 }

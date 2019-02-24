@@ -2,7 +2,7 @@ import { Component, OnInit, Sanitizer, SecurityContext } from '@angular/core';
 import { RepositoryService } from 'src/app/shared/services/repository.service';
 import { BannerDto } from 'src/app/shared/models/banner.dto';
 import { environment } from 'src/environments/environment';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-paner',
@@ -14,14 +14,13 @@ export class HeroPanerComponent implements OnInit {
   baseurl = environment.filesBaseUrl
   constructor(private repositoryService: RepositoryService,
   private sanitizer: Sanitizer,
-  private route: ActivatedRoute) {
-    this.banners = this.route.snapshot.data.banners.data.results;
-    this.prepareBannerHTMLData(this.banners);  
+  private route: ActivatedRoute,
+  private router: Router) {
    }
 
   ngOnInit() {
-    // this.banners = this.route.snapshot.data.banners.data.results;
-    // this.prepareBannerHTMLData(this.banners);    
+    this.banners = this.route.snapshot.data.banners.data.results;
+    this.prepareBannerHTMLData(this.banners);    
   }
   prepareBannerHTMLData(banners: BannerDto[]) {
     banners.forEach(banner => {
@@ -29,6 +28,10 @@ export class HeroPanerComponent implements OnInit {
       banner.title = this.sanitizer.sanitize(SecurityContext.NONE, banner.title);
       
     })
+  }
+
+  navigateToButtonUrl(url) {
+    this.router.navigate([url]);
   }
 
 }
