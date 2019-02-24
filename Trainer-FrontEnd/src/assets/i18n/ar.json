@@ -34,7 +34,9 @@
   "editArticle": {
     "formValidations": {
       "nameRequired": "يجب ادخال اسم المقال",
-      "categoryRequired": "يجب اختيار القسم"
+      "categoryRequired": "يجب اختيار القسم",
+      "placeRequired": "يجب اخنيار مكان البطوله",
+      "dateRequired": "يجب اخنيار موعد البطوله"
     },
     "messages": {},
     "errorCodes": {
@@ -93,6 +95,14 @@
       "passwordRequired": "يجب ادخال كلمة المرور",
       "confirmPasswordRequired": "يجب تاكيد كلمة المرور",
       "passwordNotMatch": "كلمة المرور غير متطابقه"    
+    }
+  },
+  "contactus":{
+    "formValidations": {
+      "nameRequired": "يجب ادخال الاسـم",
+      "emailRequired": "يجب ادخال البريد الالكترونى",
+      "detailsRequired": "يجب ادخال الرسـاله",
+      "emailNotValid" : "برجاء ادخال بريد الكترونى صحيح"
     }
   }
 }

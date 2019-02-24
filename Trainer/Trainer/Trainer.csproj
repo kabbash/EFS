@@ -33,6 +33,7 @@
     <ProjectReference Include="..\AttachmentsManager\Attachments.Core.csproj" />
     <ProjectReference Include="..\Authentication\Authentication.csproj" />
     <ProjectReference Include="..\Banner.Core\Banner.Core.csproj" />
+    <ProjectReference Include="..\Home.Core\Home.Core.csproj" />
     <ProjectReference Include="..\ItemsReview\ItemsReview.csproj" />
     <ProjectReference Include="..\Lookups.Core\Lookups.Core.csproj" />
 

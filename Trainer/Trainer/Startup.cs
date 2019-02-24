@@ -12,7 +12,15 @@ using Authentication.Interfaces;
 using Authentication.Models;
 using Authentication.Services;
 using Authentication.Validators;
+using Banner.Core.Interfaces;
+using Banner.Core.Models;
+using Banner.Core.Services;
+using Banner.Core.Validations;
 using FluentValidation;
+using Home.Core.Interfaces;
+using Home.Core.Models;
+using Home.Core.Services;
+using Home.Core.Validators;
 using ItemsReview.Interfaces;
 using ItemsReview.Models;
 using ItemsReview.Services;
@@ -39,7 +47,7 @@ using Rating.Core.Interfaces;
 using Rating.Core.Models;
 using Rating.Core.Services;
 using Rating.Core.Validators;
-using DBModels = Shared.Core.Models;
+using Shared.Core.Models;
 using Shared.Core.Resources;
 using Shared.Core.Utilities.Models;
 using Shared.Core.Validators;
@@ -47,11 +55,7 @@ using System.Text;
 using test.core.Model;
 using test.core.Validators;
 using Trainer.EF;
-using Shared.Core.Models;
-using Banner.Core.Services;
-using Banner.Core.Interfaces;
-using Banner.Core.Validations;
-using Banner.Core.Models;
+using DBModels = Shared.Core.Models;
 
 namespace Trainer
 {
@@ -122,8 +126,7 @@ namespace Trainer
             services.AddScoped<IItemsReviewsManager, ItemsReviewsManager>();
             services.AddScoped<ICommonService, CommonService>();
             services.AddScoped<IBannerManager, BannerManager>();
-
-
+            services.AddScoped<IHomeService, HomeService>();
 
             // Generic Services 
             services.AddScoped(typeof(ISliderManager<>), typeof(SliderManager<>));
@@ -151,9 +154,7 @@ namespace Trainer
             services.AddTransient<IValidator<RejectDto>, RejectDtoValidator>();
             services.AddTransient<IValidator<ItemReviewDto>, ItemReviewDtoValidator>();
             services.AddTransient<IValidator<BannerDto>, BannerValidator>();
-
-
-
+            services.AddTransient<IValidator<ContactUsDto>, ContactUsValidator>();
         }
         private void ConfigureJwtAuthentication(IServiceCollection services)
         {
@@ -182,9 +183,9 @@ namespace Trainer
         {
             TypeAdapterConfig<ArticleAddDto, DBModels.Articles>.NewConfig()
                                                    .Ignore(dest => dest.Id);
-            TypeAdapterConfig<Shared.Core.Models.Products, ProductsDto>.NewConfig()
+            TypeAdapterConfig<DBModels.Products, ProductsDto>.NewConfig()
                                                    .Map(dest => dest.CategoryName, src => (src.Category ?? new ProductsCategories()).Name);
-            TypeAdapterConfig<Shared.Core.Models.ProductsCategories, ProductsCategoryDto>.NewConfig()
+            TypeAdapterConfig<DBModels.ProductsCategories, ProductsCategoryDto>.NewConfig()
                                                    .Map(dest => dest.HasSubCategory, src => src.Subcategories != null && src.Subcategories.Count > 0);
 
         }
