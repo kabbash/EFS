@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Resolve } from "@angular/router";
-import { ResultMessage } from "src/app/shared/models/result-message";
-import { BannerDto } from "src/app/shared/models/banner.dto";
+import { ResultMessage } from "../../shared/models/result-message";
+import { BannerDto } from "../../shared/models/banner.dto";
 import { Observable } from "rxjs";
-import { RepositoryService } from "src/app/shared/services/repository.service";
-import { AppConfig } from "src/config/app.config";
+import { RepositoryService } from "../../shared/services/repository.service";
+import { AppConfig } from "../../../config/app.config";
 
 @Injectable()
 export class BannersResolver implements Resolve<ResultMessage<BannerDto[]>>{

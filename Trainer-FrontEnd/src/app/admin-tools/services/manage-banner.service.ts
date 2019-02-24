@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { RepositoryService } from "src/app/shared/services/repository.service";
-import { BannerDto } from "src/app/shared/models/banner.dto";
+import { RepositoryService } from "../../shared/services/repository.service";
+import { BannerDto } from "../../shared/models/banner.dto";
 
 @Injectable()
 

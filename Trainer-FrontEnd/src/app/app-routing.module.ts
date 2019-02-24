@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { config } from './config/pages-config';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { ArticlesComponent } from './articles/articles.component';
-import { BannersResolver } from 'src/app/articles/resolvers/banners.resolver';
+import { BannersResolver } from './admin-tools/resolvers/banners.resolver';
 
 const routes: Routes = [
   {

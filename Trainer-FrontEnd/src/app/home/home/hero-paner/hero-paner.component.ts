@@ -1,7 +1,7 @@
 import { Component, OnInit, Sanitizer, SecurityContext } from '@angular/core';
-import { RepositoryService } from 'src/app/shared/services/repository.service';
-import { BannerDto } from 'src/app/shared/models/banner.dto';
-import { environment } from 'src/environments/environment';
+import { RepositoryService } from '../../../shared/services/repository.service';
+import { BannerDto } from '../../../shared/models/banner.dto';
+import { environment } from '../../../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

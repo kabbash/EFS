@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { BannerDto } from 'src/app/shared/models/banner.dto';
+import { BannerDto } from '../../shared/models/banner.dto';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { ManageBannerService } from 'src/app/admin-tools/services/manage-banner.service';
+import { ManageBannerService } from '../services/manage-banner.service';
 import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
-import { UtilitiesService } from 'src/app/shared/services/utilities.service';
+import { UtilitiesService } from '../../shared/services/utilities.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Sanitizer } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser/src/security/dom_sanitization_service';
+import { SafeHtml } from '@angular/platform-browser';
 import { SecurityContext } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { config } from 'src/app/config/pages-config';
+import { environment } from '../../../environments/environment';
+import { config } from '../../config/pages-config';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-add-banner',
@@ -39,7 +40,8 @@ export class AddBannerComponent implements OnInit {
      private util: UtilitiesService,
     private route: ActivatedRoute,
     private sanitizer: Sanitizer,
-    private router: Router) { }
+    private router: Router,
+    private appService: AppService) { }
 
   ngOnInit() {
     this.bannerForm = this.fb.group({
@@ -64,8 +66,10 @@ export class AddBannerComponent implements OnInit {
 
   submit() {
     this.isSubmitted = true;
+    this.appService.loading = true;
     if (this.bannerForm.invalid) {
       alert('invalid data');
+      this.appService.loading = false;
       return;
     }
     this.prepareData();
@@ -74,8 +78,10 @@ export class AddBannerComponent implements OnInit {
     this.bannerService.add(formData).subscribe(data => {
       alert('success');
       this.router.navigate([config.admin.manageBanners.route]);
+      this.appService.loading = false;
     } ,error => {
-      alert(error)
+      alert(error);
+      this.appService.loading = false;
     })
   }
   prepareData() {

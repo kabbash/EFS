@@ -6,7 +6,7 @@ export class CustomValidators {
             console.log("validation");
             const password = control.get(passwordKey);
             const confirmPassword = control.get(confirmPasswordKey);
-            return password && confirmPassword && password.value === confirmPassword.value ? null : { 'passwordMismatch': true };
+            return password && confirmPassword && password.value === confirmPassword.value ? null : { passwordMismatch: true };
         };
     }
 }

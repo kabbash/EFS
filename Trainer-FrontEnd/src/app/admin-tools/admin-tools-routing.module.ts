@@ -19,9 +19,9 @@ import { ProductsListComponent } from '../shared/products-list/products-list.com
 import { ManageProductsComponent } from './products/manage-products/manage-products.component';
 import { ProductResolver } from './resolvers/product.resolver';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
-import { AddBannerComponent } from 'src/app/admin-tools/add-banner/add-banner.component';
-import { ManageBannersComponent } from 'src/app/admin-tools/manage-banners/manage-banners.component';
-import { BannersResolver } from 'src/app/articles/resolvers/banners.resolver';
+import { AddBannerComponent } from './add-banner/add-banner.component';
+import { ManageBannersComponent } from './manage-banners/manage-banners.component';
+import { BannersResolver } from './resolvers/banners.resolver';
 
 
 const routes: Routes = [

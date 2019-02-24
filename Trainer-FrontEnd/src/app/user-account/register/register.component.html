@@ -7,23 +7,43 @@
             <div class="card-body p-4">
               <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <h1>إنشاء حساب</h1>
-                <p class="text-muted">قم بإنشاء خسابك</p>
+                <p class="text-muted">قم بإنشاء حسابك</p>
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" placeholder="إسم المستخدم" autocomplete="fullName" formControlName="fullName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }" >
+                  <br>
+                  <div *ngIf="submitted && f.fullName.errors" class="col-sm-12 text-danger">
+                    <div *ngIf="f.fullName.errors.required"> {{'registerForm.formValidations.fullNameRequired' | translate}}</div>
+                  </div>
                 </div>
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" placeholder="البريد الإلكتروني" autocomplete="email"  formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" >
+                  <div *ngIf="submitted && f.email.errors" class="col-sm-12 text-danger">
+                    <div *ngIf="f.email.errors.required"> {{'registerForm.formValidations.emailRequired' | translate}}</div>
+                    <div *ngIf="f.email.errors.email"> {{'registerForm.formValidations.emailNotValid' | translate}}</div>
+                  </div>
                 </div>
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" placeholder="رقم الهاتـف" autocomplete="phoneNumber"  formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" >
+                  <div *ngIf="submitted && f.phoneNumber.errors" class="col-sm-12 text-danger">
+                    <div *ngIf="f.phoneNumber.errors.required"> {{'registerForm.formValidations.phoneRequired' | translate}}</div>
+                  </div>
                 </div>
                 <div class="input-group mb-3">
                   <input type="password" class="form-control" placeholder="كلمة المرور" autocomplete="new-password"
                   formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" >
+                  <div *ngIf="submitted && f.password.errors" class="text-danger col-sm-12">
+                    <div *ngIf="f.password.errors.required"> {{'registerForm.formValidations.passwordRequired' | translate}}</div>
+                  </div>
                 </div>
                 <div class="input-group mb-4">
                   <input type="password" class="form-control" placeholder="تأكيد كلمة المرور" autocomplete="new-password"
                   formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" >
+                  <div *ngIf="submitted && f.confirmPassword.errors" class="text-danger col-sm-12">
+                      <div *ngIf="f.confirmPassword.errors.required"> {{'registerForm.formValidations.confirmPasswordRequired' | translate}}</div>                      
+                  </div>
+                  <div *ngIf="! f.confirmPassword.errors && registerForm.hasError('passwordMismatch')" class="text-danger col-sm-12">
+                      <div> {{'registerForm.formValidations.passwordNotMatch' | translate}}</div>
+                  </div>                  
                 </div>
                 <button type="submit" class="btn btn-block btn-success">إنشاء</button>
                 <br>

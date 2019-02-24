@@ -11,7 +11,7 @@ namespace Banner.Core.Validations
         public BannerValidator()
         {
             RuleFor(b => b.Title).NotEmpty();
-            RuleFor(b => b.ImagePath).NotEmpty();
+            RuleFor(b => b.ImageFile).NotEmpty();
             RuleFor(b => b.ButtonText).NotEmpty().When(b => !string.IsNullOrEmpty(b.ButtonUrl));
             RuleFor(b => b.ButtonUrl).NotEmpty().When(b => !string.IsNullOrEmpty(b.ButtonText));
 

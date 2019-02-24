@@ -1,11 +1,11 @@
 import { Component, OnInit, Sanitizer, SecurityContext } from '@angular/core';
-import { ManageBannerService } from 'src/app/admin-tools/services/manage-banner.service';
-import { BannerDto } from 'src/app/shared/models/banner.dto';
+import { ManageBannerService } from '../services/manage-banner.service';
+import { BannerDto } from '../../shared/models/banner.dto';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PagerDto } from 'src/app/shared/models/pager.dto';
-import { AppService } from 'src/app/app.service';
-import { environment } from 'src/environments/environment';
-import { config } from 'src/app/config/pages-config';
+import { PagerDto } from '../../shared/models/pager.dto';
+import { AppService } from '../../app.service';
+import { environment } from '../../../environments/environment';
+import { config } from '../../config/pages-config';
 
 @Component({
   selector: 'app-manage-banners',
