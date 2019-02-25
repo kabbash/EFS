@@ -5,7 +5,6 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { BannersResolver } from './admin-tools/resolvers/banners.resolver';
 
-
 const routes: Routes = [
   {
     path: 'test',
