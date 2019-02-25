@@ -28,6 +28,7 @@
 
       }
     },
+
     "manageCategories": {
       "messages": {
         "confirmDeleteParent": "هل أنت متأكد من أنك تريد حذف هذاالعنصر الرئيسي؟",
@@ -48,6 +49,7 @@
         "errorCodes": {
             "1007": "gdgdfgdfg"
         }
+
     },
     "adminMenu": {
       "manageArticleCategories": "فئات المقالات",
@@ -101,6 +103,14 @@
       "passwordRequired": "يجب ادخال كلمة المرور",
       "confirmPasswordRequired": "يجب تاكيد كلمة المرور",
       "passwordNotMatch": "كلمة المرور غير متطابقه"    
+    }
+  },
+  "contactus":{
+    "formValidations": {
+      "nameRequired": "يجب ادخال الاسـم",
+      "emailRequired": "يجب ادخال البريد الالكترونى",
+      "detailsRequired": "يجب ادخال الرسـاله",
+      "emailNotValid" : "برجاء ادخال بريد الكترونى صحيح"
     }
   }
 }

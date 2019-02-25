@@ -5,6 +5,7 @@ namespace MailProvider.Core
 {
     public class MailSettings
     {
+        public string AdminMail { get; set; }
         public string FromName { get; set; }
         public string FromAddress { get; set; }
         public string LocalDomain { get; set; }
@@ -14,5 +15,6 @@ namespace MailProvider.Core
         public string UserPassword { get; set; }
         public RegisterEmail RegisterEmail { get; set; }
         public ResetPasswordEmail ResetPasswordEmail { get; set; }
+        public ContactUsEmail ContactUsEmail { get; set; }
     }
 }

@@ -59,4 +59,9 @@ namespace Shared.Core.Utilities.Enums
         UpdateError,
         DeleteError
     }
+
+    public enum HomeErrorsCodeEnum
+    {
+        ContactUs
+    }
 }
