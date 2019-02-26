@@ -8,7 +8,7 @@ import { AppService } from '../../app.service';
 import { PagerDto } from '../../shared/models/pager.dto';
 import { debug } from 'util';
 import { ClientFilterComponent } from '../../shared/client-filter/client-filter.component';
-import { PredefinedCategories } from 'src/app/shared/models/articles/articles-predefined-categories.enum';
+import { PredefinedCategories } from '../../shared/models/articles/articles-predefined-categories.enum';
 
 
 @Component({
