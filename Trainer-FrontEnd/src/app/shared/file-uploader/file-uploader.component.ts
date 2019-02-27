@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl } from '@angular/forms';
 import { forwardRef } from '@angular/core';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+
 
 export function createFileUploaderValidator(required: boolean) {
   return (c: FormControl) => {
@@ -34,10 +36,13 @@ export class FileUploaderComponent implements OnInit, ControlValueAccessor {
   onChanged: (_: any) => void;
   file: any;
   isDisabled = false;
+  croppedImage;
+  imageChangedEvent;
   @Input() multiFiles = false;
   @Input() isRequired = false;
   @Input() classList: string;
   @Input() buttonValue: string;
+  @Output() imageCroppedEvent = new EventEmitter<any>()
   writeValue(obj: any): void {
     this.file = obj;
   }
@@ -55,15 +60,34 @@ export class FileUploaderComponent implements OnInit, ControlValueAccessor {
     return createFileUploaderValidator(this.isRequired);
   }
 
-  onSelectFile(file) {
-    this.file = file;
-    this.onChanged(file);
+  onSelectFile(event) {
+    this.file = event.target.files[0];
+    this.onChanged(event.target.files[0]);
+    this.imageChangedEvent = event;
   }
+
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    this.file = event.file;
+    this.imageCroppedEvent.emit(this.file);
+}
 
   constructor() { }
 
   ngOnInit() {
     
   }
+
+  imageLoaded() {
+    alert('image loaded')
+}
+cropperReady() {
+    // cropper ready
+    alert('cropped ready')
+}
+loadImageFailed() {
+    // show message
+    alert('load failed')
+}
 
 }

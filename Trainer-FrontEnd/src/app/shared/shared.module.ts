@@ -30,6 +30,7 @@ import { ArticleDetailsResolver } from '../articles/resolvers/article-details.re
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { ProductsService } from '../products/products.service';
 import { ClientFilterComponent } from './client-filter/client-filter.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { ClientFilterComponent } from './client-filter/client-filter.component';
     TranslateModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
+    ImageCropperModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -61,7 +63,8 @@ import { ClientFilterComponent } from './client-filter/client-filter.component';
     DashboardMenuComponent,
     SliderEditModeComponent,
     SearchFilterComponent,
-    ClientFilterComponent
+    ClientFilterComponent,
+    ImageCropperModule
   ],
   declarations: [
     FooterComponent,

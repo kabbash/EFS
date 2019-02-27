@@ -94,7 +94,9 @@ export class AddCategoryComponent implements OnInit {
   }
 
   onFileSelect(file) {
+    file.name = 'image.'+ file.type.split('/')[1];
     this.articleCategory.profilePictureFile = file;
+    this.categoryForm.controls['profilePictureFile'].setValue(file)
     const reader = new FileReader();
     reader.onload = (e: any) => {
       // this.articleCategory.profilePicture = e.target.result;
