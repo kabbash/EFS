@@ -48,6 +48,7 @@ namespace Trainer.EF
         public virtual DbSet<EntityTypes> EntityTypes { get; set; }
         public virtual DbSet<ItemsForReview> ItemsForReviews { get; set; }
         public virtual DbSet<Banner> Banners { get; set; }
+        public virtual DbSet<FoodItem> FoodItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

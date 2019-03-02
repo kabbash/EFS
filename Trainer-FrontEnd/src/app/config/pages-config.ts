@@ -170,5 +170,10 @@ export let config = {
         'name': 'ProductList',
         'route': '/admin/ProductList'
       }
+      ,
+      'users': {
+        'name': 'users',
+        'route': '/admin/users'
+      }
     }
 };

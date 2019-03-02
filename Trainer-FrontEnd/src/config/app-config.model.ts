@@ -14,6 +14,9 @@ export interface IAppConfig {
         },
         itemsForReview: {
             pageSize: number;
+        },
+        usersForAdmin:{
+            pageSize:number;
         }
     };
 }

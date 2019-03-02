@@ -1,19 +1,22 @@
 {
     "pagination": {
         "productsForAny": {
-            "pageSize":10
+            "pageSize": 10
         },
         "productsForAdmin": {
-            "pageSize":10
+            "pageSize": 10
         },
         "articlesForAny": {
-            "pageSize":10
+            "pageSize": 10
         },
         "articlesForAdmin": {
-            "pageSize":10
+            "pageSize": 10
         },
-        "itemsForReview":{
-            "pageSize":10
+        "itemsForReview": {
+            "pageSize": 10
+        },
+        "usersForAdmin": {
+            "pageSize": 10
         }
     }
 }

@@ -24,6 +24,10 @@ import { ProductListItemEditComponent } from './products/product-list-item-edit/
 import { NgbUTCStringAdapter } from '../shared/services/ngb-string.adapter';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
 import { AdminArticlesService } from './services/admin.articles.services';
+import { UserManagementComponent } from './user-management/user-management.component';
+import { RolesResolver } from './resolvers/roles-list.resolver';
+import { UsersListResolver } from './resolvers/users-list.resolver';
+
 
 
 @NgModule({
@@ -37,6 +41,7 @@ import { AdminArticlesService } from './services/admin.articles.services';
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
+    NgxDatatableModule
   ],
   declarations:
     [
@@ -52,7 +57,8 @@ import { AdminArticlesService } from './services/admin.articles.services';
       AdminProductsListComponent,
       ManageProductsComponent,
       ProductListItemComponent,
-      ProductListItemEditComponent
+      ProductListItemEditComponent,
+      UserManagementComponent
     ],
 
   providers: [
@@ -61,8 +67,9 @@ import { AdminArticlesService } from './services/admin.articles.services';
     ProductResolver,
     LeafProductCategoriesResolver,
     { provide: NgbDateAdapter, useClass: NgbUTCStringAdapter },
-
-    AdminArticlesService
+    AdminArticlesService,
+    RolesResolver,
+    UsersListResolver
   ]
 })
 export class AdminToolsModule { }

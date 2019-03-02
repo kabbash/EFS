@@ -19,6 +19,10 @@ import { ProductsListComponent } from '../shared/products-list/products-list.com
 import { ManageProductsComponent } from './products/manage-products/manage-products.component';
 import { ProductResolver } from './resolvers/product.resolver';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
+import { UserManagementComponent } from './user-management/user-management.component';
+
+import { RolesResolver } from './resolvers/roles-list.resolver';
+import { UsersListResolver } from './resolvers/users-list.resolver';
 
 
 const routes: Routes = [
@@ -70,6 +74,11 @@ const routes: Routes = [
         path: config.admin.ProductsList.name,
         component: AdminProductsListComponent,
         resolve: { productsList: AdminProductsListResolver }
+      },
+      {
+        path: config.admin.users.name,
+        component: UserManagementComponent,
+        resolve: { users: UsersListResolver}
       }
     ]
   },

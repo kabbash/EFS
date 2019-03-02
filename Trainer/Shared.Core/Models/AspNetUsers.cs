@@ -29,6 +29,7 @@ namespace Shared.Core.Models
         public string FullName { get; set; }
         public string ProfilePicture { get; set; }
         public string UserName { get; set; }
+        public bool IsBlocked { get; set; }
 
         public virtual Clients Clients { get; set; }
         public virtual Trainers Trainers { get; set; }
