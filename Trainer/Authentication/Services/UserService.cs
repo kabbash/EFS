@@ -84,7 +84,8 @@ namespace Authentication.Services
 
         public ResultMessage GetAll(UsersFilter filter)
         {
-            var users = _unitOfWork.UsersRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt<List<User>>();
+            PagedResult<User> result = new PagedResult<User>();
+            var users = _unitOfWork.UsersRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
             return new ResultMessage()
             {
                 Data = users,
@@ -106,7 +107,7 @@ namespace Authentication.Services
             }
             try
             {
-                var existingUserRole = _unitOfWork.UsersRolesRepository.Get(u => u.RoleId == roleEntity.Id && u.UserId == userEntity.Id);
+                var existingUserRole = _unitOfWork.UsersRolesRepository.Get(u => u.RoleId == roleEntity.Id && u.UserId == userEntity.Id).FirstOrDefault();
                 if (existingUserRole == null)
                 {
                     _unitOfWork.UsersRolesRepository.Insert(new AspNetUserRoles { RoleId = roleEntity.Id, UserId = userEntity.Id });
@@ -348,6 +349,28 @@ namespace Authentication.Services
             }
         }
 
+        public ResultMessage UpdateUserAccess(UserAccessDto userAccessDto)
+        {
+            try
+            {
+
+                var user = _unitOfWork.UsersRepository.Get(u => u.UserName == userAccessDto.Username).First();
+                if (user == null)
+                    return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserDoesNotExist };
+                user.IsBlocked = userAccessDto.Blocked;
+                _unitOfWork.UsersRepository.Update(user);
+                _unitOfWork.Commit();
+                return new ResultMessage { Status = HttpStatusCode.OK };
+            }
+            catch (Exception ex)
+            {
+                return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
+            }
+        }
+
+
+
+
         // private helper methods
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
@@ -405,6 +428,7 @@ namespace Authentication.Services
             user.EmailConfirmed = userEntity.EmailConfirmed;
             return user;
         }
+
 
     }
 }

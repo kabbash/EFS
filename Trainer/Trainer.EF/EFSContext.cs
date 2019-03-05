@@ -45,11 +45,9 @@ namespace Trainer.EF
         public virtual DbSet<Trainers> Trainers { get; set; }
         public virtual DbSet<TrainersPrograms> TrainersPrograms { get; set; }
         public virtual DbSet<EntityRating> EntityRatings { get; set; }
-        public virtual DbSet<EntityTypes> EntityTypes { get; set; }
         public virtual DbSet<ItemsForReview> ItemsForReviews { get; set; }
         public virtual DbSet<Banner> Banners { get; set; }
         public virtual DbSet<FoodItem> FoodItems { get; set; }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -102,7 +100,9 @@ namespace Trainer.EF
                 entity.HasData(new ArticlesCategories[]
                 {
                     new ArticlesCategories {Id= 1 , Name = "وصفات الطعام" , PredefinedKey= 2, CreatedAt= DateTime.Now.ToUniversalTime(), CreatedBy= "admin", ProfilePicture="Files/Articles%20Categories/food.png"},
-                    new ArticlesCategories {Id=2, Name = "الأخبار" , PredefinedKey= 1, CreatedAt= DateTime.Now.ToUniversalTime(), CreatedBy= "admin", ProfilePicture="Files/Articles%20Categories/news.png"}
+                    new ArticlesCategories {Id=2, Name = "الأخبار" , PredefinedKey= 1, CreatedAt= DateTime.Now.ToUniversalTime(), CreatedBy= "admin", ProfilePicture="Files/Articles%20Categories/news.png"},
+                    new ArticlesCategories {Id=3, Name = "البطولات" , PredefinedKey= 3, CreatedAt= DateTime.Now.ToUniversalTime(), CreatedBy= "admin", ProfilePicture="Files/Articles%20Categories/championships.png"}
+
 
                 });
             });
@@ -598,25 +598,6 @@ namespace Trainer.EF
                     .HasForeignKey(d => d.TrainerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Trainers_Programs_Trainers");
-            });
-
-            modelBuilder.Entity<EntityTypes>(entity =>
-            {
-                entity.HasData(new EntityTypes
-                {
-                    Id = 1,
-                    Name = "product"
-                });
-                entity.HasData(new EntityTypes
-                {
-                    Id = 4,
-                    Name = "hamda"
-                });
-                entity.HasData(new EntityTypes
-                {
-                    Id = 9,
-                    Name = "m7maaa ma7rooos"
-                });
             });
         }
     }

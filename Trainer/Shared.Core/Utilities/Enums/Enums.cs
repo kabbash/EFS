@@ -9,15 +9,17 @@
         Temp,
         Banners
     }
-    public enum EntityTypesEnum
+    public enum RatingEntityTypesEnum
     {
-        Product = 1
+        ItemsForReview =1,
+        Product = 2
     }
 
     public enum PredefinedArticlesCategories
     {
-        News = 1,
-        Food = 2
+        Food = 1,
+        News = 2,
+        Championships = 3
     }
 
     public enum EntityDDLEnum

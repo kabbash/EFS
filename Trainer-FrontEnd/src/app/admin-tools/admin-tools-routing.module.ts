@@ -19,6 +19,9 @@ import { ProductsListComponent } from '../shared/products-list/products-list.com
 import { ManageProductsComponent } from './products/manage-products/manage-products.component';
 import { ProductResolver } from './resolvers/product.resolver';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
+import { AddBannerComponent } from './add-banner/add-banner.component';
+import { ManageBannersComponent } from './manage-banners/manage-banners.component';
+import { BannersResolver } from './resolvers/banners.resolver';
 import { UserManagementComponent } from './user-management/user-management.component';
 
 import { RolesResolver } from './resolvers/roles-list.resolver';
@@ -74,6 +77,19 @@ const routes: Routes = [
         path: config.admin.ProductsList.name,
         component: AdminProductsListComponent,
         resolve: { productsList: AdminProductsListResolver }
+      },
+      {
+        path: config.admin.addBanner.name,
+        component: AddBannerComponent
+      },
+      {
+        path: config.admin.editBanner.name,
+        component: AddBannerComponent
+      },
+      {
+        path: config.admin.manageBanners.name,
+        component: ManageBannersComponent,
+        resolve: {banners: BannersResolver}
       },
       {
         path: config.admin.users.name,

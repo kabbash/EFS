@@ -14,6 +14,6 @@ export class UsersListResolver implements Resolve<Observable<ResultMessage<Paged
     }
     resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<PagedResult<User>>> {
         let pageSize = AppConfig.settings.pagination.usersForAdmin.pageSize;
-        return this.service.getFilteredUsers('users/getfiltered?pageNo=1&pageSize=' + pageSize);
+        return this.service.getFilteredUsers('?PageNo=1&PageSize=' + pageSize);
     }
 }

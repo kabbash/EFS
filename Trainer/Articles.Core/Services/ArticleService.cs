@@ -5,7 +5,6 @@ using Attachments.Core.Interfaces;
 using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
-using DBModels = Shared.Core.Models;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
@@ -13,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using DBModels = Shared.Core.Models;
 
 namespace Articles.Core.Services
 {
@@ -38,7 +38,12 @@ namespace Articles.Core.Services
             try
             {
                 PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
-                result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+
+                if (filter.CategoryId == (int)PredefinedArticlesCategories.Championships)
+                    result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).ApplyChampionshipsFilter().OrderByDescending(c => c.Date.HasValue).ThenBy(c=> c.Date).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                else
+                    result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).OrderByDescending(c => c.CreatedAt).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+
                 return new ResultMessage
                 {
                     Data = result,
@@ -112,7 +117,7 @@ namespace Articles.Core.Services
             {
                 var articleEntity = article.Adapt<DBModels.Articles>();
                 articleEntity.CreatedAt = DateTime.Now;
-                articleEntity.CreatedBy = article.UserId;
+                articleEntity.CreatedBy = article.CurrentUserId;
 
                 var articleFolderName = Guid.NewGuid().ToString();
 
@@ -175,7 +180,7 @@ namespace Articles.Core.Services
 
                 article.Adapt(articleData, typeof(ArticleAddDto), typeof(DBModels.Articles));
                 articleData.UpdatedAt = DateTime.Now;
-                articleData.UpdatedBy = article.UserId;
+                articleData.UpdatedBy = article.CurrentUserId;
 
                 var sliderDto = new SliderDto
                 {
@@ -290,7 +295,7 @@ namespace Articles.Core.Services
                 }
 
                 articleData.UpdatedAt = DateTime.Now;
-                articleData.UpdatedBy = rejectDto.UserId;
+                articleData.UpdatedBy = rejectDto.CurrentUserId;
                 articleData.RejectReason = rejectDto.RejectReason;
                 articleData.IsActive = false;
 

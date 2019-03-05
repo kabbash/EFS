@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { config } from '../config/pages-config';
 import { YourToolsComponent } from './your-tools.component';
-import { YourToolsLandingComponent } from './landing/landing.component';
+import { YourToolsCalculatorsComponent } from './calculators/calculators.component';
+import { MealsComponent } from './meals/meals.component';
 
 const routes: Routes = [
   {
@@ -10,8 +11,12 @@ const routes: Routes = [
     component: YourToolsComponent,
     children: [
       {
-        path: config.yourTools.landing.name,
-        component: YourToolsLandingComponent
+        path: config.yourTools.calculators.name,
+        component: YourToolsCalculatorsComponent
+      },
+      {
+        path: config.yourTools.meals.name,
+        component: MealsComponent
       }
     ]
   }

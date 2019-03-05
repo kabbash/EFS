@@ -8,8 +8,9 @@ import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ArticleDetailsResolver } from './resolvers/article-details.resolver';
 import { ArticleListResolver } from './resolvers/article-list.resolver';
 import { ArticleCategoriesResolver } from '../shared/resolvers/article-categories.resolver';
-import { NewsResolver } from './resolvers/news.resolver';
+import { NewsResolver } from './resolvers/articles.news.resolver';
 import { ArticlesFoodResolver } from './resolvers/articles.food.resolver';
+import { ArticlesChampionshipsResolver } from './resolvers/articles.championships.resolver';
 
 const routes: Routes = [
   {
@@ -40,6 +41,11 @@ const routes: Routes = [
         path: config.articles.food.name,
         component: ArticlesListComponent,
         resolve: {articleList: ArticlesFoodResolver}
+      },
+      {
+        path: config.articles.championships.name,
+        component: ArticlesListComponent,
+        resolve: {articleList: ArticlesChampionshipsResolver}
       }
     ]
   }

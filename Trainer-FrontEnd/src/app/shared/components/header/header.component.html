@@ -28,8 +28,8 @@
         <li class="nav-item dropdown ">
           <a class="nav-link dropdown-anchore">أدواتك<i class="fa fa-chevron-down arrow-margin"></i></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-item nav-link" href="#">حساب الدهون</a></li>
-            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/yourTools/landing']">حساب السعرات</a></li>
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/yourTools/meals']">الوجبات</a></li>
+            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="['/yourTools/calculators']">حساب الدهون و السعرات</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -51,7 +51,7 @@
           <a class="nav-link dropdown-anchore">الأخبار<i class="fa fa-chevron-down arrow-margin"></i></a>
           <ul class="dropdown-menu">
             <li><a class="nav-item nav-link" [routerLink]="['/articles/news']">أخبار كمال الأجسام</a></li>
-            <li><a class="nav-item nav-link">مواعيد البطولات</a></li>
+            <li><a class="nav-item nav-link" [routerLink]="['/articles/championships']" >مواعيد البطولات</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -61,7 +61,7 @@
           <a class="nav-link" href="#"> السيرة الذاتية</a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="#"> تواصل معنا</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/contactus/contactusForm']"> تواصل معنا</a>
 
         </li>
         <li class="nav-item " *ngIf="!authService.isLoggedIn()">

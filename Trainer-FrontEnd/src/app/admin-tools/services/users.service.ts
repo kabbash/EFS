@@ -10,19 +10,19 @@ export class UsersService {
 
   constructor(private service: RepositoryService) { }
 
-  delete(userId: Number) {
-    return this.service.delete("authentication/" + userId);
-  }
-
   getFilteredUsers(filterUrl: string) {
     return this.service.getData<PagedResult<User>>("authentication/GetAll" + filterUrl);
   }
 
-  update(userId: number, product: FormData): any {
-    return this.service.update("authentication/" + userId, product);
+  updateUserAccess(username, blocked): any {
+    return this.service.create("authentication/UpdateUserAccess", { Username: username, Blocked: blocked });
   }
 
-  add(product: FormData): any {
-    return this.service.postForm("authentication" , product);
+  addRoleToUser(username, role) {
+    return this.service.create("authentication/AddRoleToUser", { Username: username, RoleName: role });
+  }
+
+  removeRoleFromUSer(username, role) {
+    return this.service.create("authentication/RemoveRoleFromUser", { Username: username, RoleName: role });
   }
 }

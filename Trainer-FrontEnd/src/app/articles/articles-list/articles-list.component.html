@@ -4,8 +4,10 @@
         <div class="no-results-search"><i class="fa fa-warning waring-search-icon"></i>لا يوجد اي مقالات فى هذ القسـم
         </div>
     </div>
-    <app-articles-list-item *ngFor="let article of articles" (click)="articlesDetails(article.id)" [cardName]="article.name"
-        [cardImage]="'url(' + baseurl + article.profilePicture + ')'" [cardShortDescription]="article.description.substr(0,200)"></app-articles-list-item>
+    <app-articles-list-item *ngFor="let article of articles" (click)="articlesDetails(article.id)" [articleDto]="article"
+        [showDateAndPlace]="isChampionShipsModule" [hideDescription]="isChampionShipsModule">
+    </app-articles-list-item>
+    
 </div>
 
 <div class="pagination-container" *ngIf="pagerData.pagesCount > 1">

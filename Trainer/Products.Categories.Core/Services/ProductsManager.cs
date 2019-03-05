@@ -40,7 +40,7 @@ namespace Products.Core.Services
             try
             {
                 PagedResult<ProductsDto> result = new PagedResult<ProductsDto>();
-                result = _unitOfWork.ProductsRepository.Get(includeProperties: includeProperities ?? "").ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                result = _unitOfWork.ProductsRepository.Get(includeProperties: includeProperities ?? "").OrderByDescending(c=>c.CreatedAt).ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
                 return new ResultMessage()
                 {
                     Data = result,
@@ -74,7 +74,7 @@ namespace Products.Core.Services
                 var newProduct = newProductDto.Adapt<DBModels.Products>();
                 newProduct.IsActive = null;
                 newProduct.CreatedAt = DateTime.Now;
-                newProduct.CreatedBy = newProductDto.CreatedBy;
+                newProduct.CreatedBy = newProductDto.CurrentUserId;
                 newProduct.SubFolderName = productFolderName;
 
                 var sliderDto = new SliderDto
@@ -184,7 +184,7 @@ namespace Products.Core.Services
                     oldProduct.Description = product.Description;
                     oldProduct.CategoryId = product.CategoryId;
 
-                    oldProduct.UpdatedBy = product.UpdatedBy;
+                    oldProduct.UpdatedBy = product.CurrentUserId;
                     oldProduct.UpdatedAt = DateTime.Now;
 
                     var sliderDto = new SliderDto
@@ -304,7 +304,7 @@ namespace Products.Core.Services
                 product.UpdatedAt = DateTime.Now;
                 product.IsActive = false;
                 product.RejectReason = rejectModel.RejectReason;
-                product.UpdatedBy = rejectModel.UserId;
+                product.UpdatedBy = rejectModel.CurrentUserId;
 
                 _unitOfWork.ProductsRepository.Update(product);
                 _unitOfWork.Commit();

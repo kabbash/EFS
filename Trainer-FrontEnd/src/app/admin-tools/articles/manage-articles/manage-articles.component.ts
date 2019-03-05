@@ -7,6 +7,7 @@ import { ArticleDetailsEditmodeComponent } from '../../../shared/article-details
 import { config } from '../../../config/pages-config';
 import { SliderItemDto } from '../../../shared/models/slider/slider-item.dto';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
+import { PredefinedCategories } from 'src/app/shared/models/articles/articles-predefined-categories.enum';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class ManageArticlesComponent implements OnInit {
   viewMode = true;
   isNew = false;
   originalArticle: ArticleDetialsDto;
+  isChampionshipModule: boolean = false;
 
   @ViewChild(ArticleDetailsEditmodeComponent) articleDetailsEditmodeComponent: ArticleDetailsEditmodeComponent;
 
@@ -41,14 +43,15 @@ export class ManageArticlesComponent implements OnInit {
         this.article = result.articleDetails.data;
         this.article.updatedImages = new Array<SliderItemDto>();
         this.originalArticle = JSON.parse(JSON.stringify(this.article));
-        this.appService.loading = false;
+        this.appService.loading = false;        
+        this.isChampionshipModule = this.article.categoryId === PredefinedCategories.Championships;
       });
 
     } else {
       this.article = new ArticleDetialsDto();
       this.viewMode = false;
       this.isNew = true;
-    }
+    }    
   }
 
   // article main methods

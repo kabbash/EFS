@@ -77,3 +77,34 @@ div.modal-body img {
     margin-left: 0;
     margin-right: 10px;
 }
+
+.input-group-nowrap {
+    position: relative;
+    display: flex;
+    /* flex-wrap: wrap; */
+    align-items: stretch;
+    width: 100%;
+}
+.calendar i{
+    color: #00bcd4;
+}
+
+.calendar{
+    margin-right: -40px;
+    border-color: transparent;
+}
+
+.form-control-group {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    /* background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
+}

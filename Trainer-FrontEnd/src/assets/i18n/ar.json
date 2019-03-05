@@ -28,6 +28,7 @@
 
       }
     },
+
     "manageCategories": {
       "messages": {
         "confirmDeleteParent": "هل أنت متأكد من أنك تريد حذف هذاالعنصر الرئيسي؟",
@@ -38,7 +39,9 @@
     "editArticle": {
         "formValidations": {
             "nameRequired": "يجب ادخال اسم المقال",
-            "categoryRequired" : "يجب اختيار القسم"
+            "categoryRequired" : "يجب اختيار القسم",
+            "placeRequired": "يجب ادخال مكان البطوله",
+            "dateRequired": "يجب ادخال موعد البطوله"
         },
         "messages": {
 
@@ -46,10 +49,69 @@
         "errorCodes": {
             "1007": "gdgdfgdfg"
         }
+
     },
     "adminMenu": {
       "manageArticleCategories": "فئات المقالات",
       "manageProductCategories": "فئات المنتجات",
-      "itemReviewList": "مراجعة المنتجات"
+      "itemReviewList": "مراجعة المنتجات",
+      "manageBanners":"الملصقات",
+      "users":"المستخدمين"
+    },
+    "addBanner": {
+      "title": "العنوان",
+      "buttonText": "نص الزر",
+      "buttonUrl": "رابط الزر",
+      "buttonAlign": "محاذاة الزر",
+      "titleAlign": "محاذاة العنوان",
+      "buttonColor": "لون الزر",
+      "picture": "الصورة",
+      "left": "يسار",
+      "right": "يمين",
+      "center": "وسط",
+      "blue": "ازرق",
+      "white": "ابيض",
+      "black": "اسود",
+      "submit": "حفظ",
+      "reset": "إعادة تعيين",
+      "formValidations": {
+        "title": {
+          "required": "يحب ادخال العنوان"
+        },
+        "buttonText": {
+          "required": "يجب ادخال نص الزر"
+        },
+        "buttonUrl": {
+          "required": "يجب ادخال رابط الزر"
+        },
+        "picture": {
+          "required": "يحب ادخال الصورة"
+        }
+      },
+      "messages": {
+
+      },
+      "errorCodes": {
+
+      }
+    },
+    "registerForm": {
+    "formValidations": {
+      "fullNameRequired": "يجب ادخال اسم المستخدم",
+      "emailRequired": "يجب ادخال البريد الالكترونى",
+      "emailNotValid": "برجاء ادخال بريد الكترونى صحيح",
+      "phoneRequired": "يجب ادخال رقم الهاتف",
+      "passwordRequired": "يجب ادخال كلمة المرور",
+      "confirmPasswordRequired": "يجب تاكيد كلمة المرور",
+      "passwordNotMatch": "كلمة المرور غير متطابقه"    
     }
+  },
+  "contactus":{
+    "formValidations": {
+      "nameRequired": "يجب ادخال الاسـم",
+      "emailRequired": "يجب ادخال البريد الالكترونى",
+      "detailsRequired": "يجب ادخال الرسـاله",
+      "emailNotValid" : "برجاء ادخال بريد الكترونى صحيح"
+    }
+  }
 }

@@ -17,6 +17,17 @@ export class UtilitiesService {
 
     return (shortYear ? year.substring(2) : year) + '/' + month + '/' + day;
   }
+
+  getArabicDate(dateStr: string) {
+
+    var date = new Date(dateStr);
+    var months = ["يناير", "فبراير", "مارس", "إبريل", "مايو", "يونيو",
+      "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+    ];
+    var days = ["اﻷحد", "اﻷثنين", "الثلاثاء", "اﻷربعاء", "الخميس", "الجمعة", "السبت"];
+    return days[date.getDay()] + ', ' + date.getDate() + ' ' + months[date.getMonth()] + ', ' + date.getFullYear();
+  }
+
   mapToSliderDto(data) {
     const sliderDto = new SliderItemDto();
     sliderDto.description = data.text;

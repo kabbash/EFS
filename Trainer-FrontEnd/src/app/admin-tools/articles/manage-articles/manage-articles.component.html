@@ -12,7 +12,7 @@
   </div>
 </div>
 <div *ngIf="!viewMode">
-  <app-article-details-editmode [modifiedArticle]="article"></app-article-details-editmode>
+  <app-article-details-editmode [modifiedArticle]="article" [showDateAndPlace]="isChampionshipModule"></app-article-details-editmode>
   <div class="action-btns-container">
     <button class="btn btn-info" *ngIf="! showAddbtn()" (click)="update()"> تعديل</button>
     <button class="btn btn-danger" *ngIf="! showAddbtn()" (click)="cancelUpdates()"> الغاء</button>

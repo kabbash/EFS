@@ -14,7 +14,7 @@ export class ArticlesFoodResolver implements Resolve<Observable<ResultMessage<ar
   }
     resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<articleListItemDto[]>> {
       let pageSize = AppConfig.settings.pagination.articlesForAny.pageSize;
-      return  this.repositoryService.getData<articleListItemDto[]>('articles?pageNo=1&pageSize='+ pageSize + '&categoryId='+ PredefinedCategories.food);
+      return  this.repositoryService.getData<articleListItemDto[]>('articles?pageNo=1&pageSize='+ pageSize + '&categoryId='+ PredefinedCategories.Food);
     }
 }
  

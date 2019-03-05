@@ -17,5 +17,6 @@ namespace Authentication.Interfaces
         ResultMessage ResetPassword(ResetPasswordDto data);
         ResultMessage SetResetedPassword(SetPasswordDto data);
         ResultMessage ChangePassword(ChanePasswordDto data);
+        ResultMessage UpdateUserAccess(UserAccessDto userAccessDto);
     }
 }

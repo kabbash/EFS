@@ -15,12 +15,20 @@
         </div>
     </div>
     <app-client-filter *ngIf="products.length" (search)="filterItems()"></app-client-filter>
+    <!-- Special Products -->
+    <div class="col-md-12" style="display: contents;" *ngIf="currentPageSpecialProducts.length">
+        <app-product-item *ngFor="let product of currentPageSpecialProducts" (click)="openProductDetails(product)"
+            [price]="product.price" [product]="product" [currentRate]="product.rate" [cardName]="product.name"
+            [cardImage]="baseurl + product.profilePicture" [isSpecial]="true"></app-product-item>
+    </div>
+    <div *ngIf="products.length" class="separator" style="width:100%">
+    </div>
     <app-product-item *ngFor="let product of products" (click)="openProductDetails(product)" [price]="product.price"
         [product]="product" [currentRate]="product.rate" [cardName]="product.name" [cardImage]="baseurl + product.profilePicture"
-        [isSpecial]="product.isSpecial"></app-product-item>
+        [isSpecial]="false"></app-product-item>
 </div>
 <div class="pagination-container" *ngIf="pagerData.pagesCount > 1">
     <ngb-pagination [collectionSize]="pagerData.itmesCount" [pageSize]="pagerData.pageSize" [(page)]="pagerData.currentPage"
         [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getNextPage()"></ngb-pagination>
 </div>
-<app-modal *ngIf="!isProductReview && !isManageProductReview" [product]="selectedProduct"></app-modal>
+<app-modal *ngIf="!isProductReview && !isManageProductReview" [product]="selectedProduct" (rateUpdated)="rateUpdated($event)"></app-modal>

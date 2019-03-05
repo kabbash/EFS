@@ -34,6 +34,8 @@ namespace Trainer.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(128);
 
+                    b.Property<DateTime?>("Date");
+
                     b.Property<string>("Description")
                         .IsRequired();
 
@@ -41,6 +43,8 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired();
+
+                    b.Property<string>("Place");
 
                     b.Property<string>("ProfilePicture")
                         .IsRequired();
@@ -97,8 +101,9 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
 
                     b.HasData(
-                        new { Id = 1, CreatedAt = new DateTime(2019, 2, 19, 18, 48, 39, 665, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
-                        new { Id = 2, CreatedAt = new DateTime(2019, 2, 19, 18, 48, 39, 668, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" }
+                        new { Id = 1, CreatedAt = new DateTime(2019, 3, 5, 19, 26, 47, 440, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
+                        new { Id = 2, CreatedAt = new DateTime(2019, 3, 5, 19, 26, 47, 443, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" },
+                        new { Id = 3, CreatedAt = new DateTime(2019, 3, 5, 19, 26, 47, 443, DateTimeKind.Utc), CreatedBy = "admin", Name = "البطولات", PredefinedKey = 3, ProfilePicture = "Files/Articles%20Categories/championships.png" }
                     );
                 });
 
@@ -222,6 +227,8 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("Hometown");
 
+                    b.Property<bool>("IsBlocked");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTime?>("LockoutEndDateUtc")
@@ -257,7 +264,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", LockoutEnabled = false, PasswordHash = new byte[] { 137, 205, 209, 252, 122, 146, 218, 6, 238, 156, 141, 31, 15, 115, 143, 205, 53, 84, 74, 201, 80, 247, 66, 158, 91, 33, 145, 230, 186, 230, 87, 220, 47, 26, 154, 160, 15, 228, 188, 210, 108, 139, 166, 30, 34, 199, 165, 193, 168, 32, 162, 112, 156, 177, 238, 206, 151, 49, 159, 68, 71, 124, 182, 136 }, PasswordSalt = new byte[] { 204, 177, 11, 181, 44, 131, 74, 170, 79, 215, 218, 191, 135, 5, 5, 93, 149, 16, 138, 6, 119, 127, 206, 152, 62, 197, 149, 112, 164, 189, 126, 250, 14, 45, 46, 63, 22, 117, 219, 151, 236, 91, 228, 221, 252, 225, 226, 94, 35, 211, 176, 65, 157, 110, 220, 159, 218, 48, 22, 18, 94, 140, 251, 49, 138, 111, 172, 207, 163, 84, 163, 228, 200, 219, 94, 164, 180, 242, 254, 5, 180, 123, 45, 242, 30, 187, 137, 4, 248, 224, 92, 133, 138, 139, 127, 41, 212, 153, 6, 215, 124, 183, 75, 36, 6, 163, 255, 54, 250, 32, 17, 253, 45, 149, 43, 30, 227, 26, 86, 119, 184, 238, 62, 9, 94, 152, 9, 157 }, PhoneNumber = "01014991554", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "ahmedkabbash@gmail.com" }
+                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", IsBlocked = false, LockoutEnabled = false, PasswordHash = new byte[] { 103, 13, 102, 122, 0, 123, 210, 79, 71, 52, 199, 182, 144, 142, 151, 123, 117, 16, 63, 134, 33, 156, 58, 43, 23, 90, 187, 33, 91, 100, 136, 178, 219, 251, 254, 254, 20, 24, 225, 64, 121, 110, 142, 147, 75, 33, 211, 20, 139, 175, 206, 151, 112, 192, 148, 101, 64, 53, 182, 253, 174, 74, 35, 146 }, PasswordSalt = new byte[] { 186, 251, 13, 151, 209, 120, 16, 95, 228, 154, 143, 11, 234, 20, 66, 128, 121, 155, 82, 149, 176, 147, 192, 79, 253, 221, 15, 254, 53, 17, 188, 139, 194, 223, 136, 89, 189, 95, 226, 173, 194, 164, 121, 130, 139, 240, 223, 248, 39, 84, 139, 77, 34, 163, 186, 131, 147, 242, 168, 119, 200, 62, 23, 2, 242, 30, 91, 30, 139, 173, 153, 79, 197, 102, 43, 53, 42, 10, 215, 83, 65, 60, 230, 194, 133, 104, 239, 62, 96, 246, 200, 165, 74, 227, 58, 236, 75, 70, 29, 150, 4, 208, 117, 46, 196, 67, 165, 127, 93, 245, 240, 175, 239, 163, 58, 4, 185, 68, 153, 198, 95, 186, 157, 253, 218, 189, 203, 70 }, PhoneNumber = "01014991554", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "ahmedkabbash@gmail.com" }
                     );
                 });
 
@@ -549,30 +556,9 @@ namespace Trainer.EF.Migrations
 
                     b.HasIndex("CreatedBy");
 
-                    b.HasIndex("EntityTypeId");
-
                     b.HasIndex("ItemsForReviewId");
 
                     b.ToTable("EntityRatings");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.EntityTypes", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EntityTypes");
-
-                    b.HasData(
-                        new { Id = 1, Name = "product" },
-                        new { Id = 4, Name = "hamda" },
-                        new { Id = 9, Name = "m7maaa ma7rooos" }
-                    );
                 });
 
             modelBuilder.Entity("Shared.Core.Models.FoodItem", b =>
@@ -1085,11 +1071,6 @@ namespace Trainer.EF.Migrations
                     b.HasOne("Shared.Core.Models.AspNetUsers", "Reviwer")
                         .WithMany()
                         .HasForeignKey("CreatedBy");
-
-                    b.HasOne("Shared.Core.Models.EntityTypes", "EntityType")
-                        .WithMany()
-                        .HasForeignKey("EntityTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Shared.Core.Models.ItemsForReview")
                         .WithMany("Reviews")

@@ -18,10 +18,10 @@ export class ProductRatingComponent implements OnInit {
   product: productListItemDto;
   rate = new RatingDto();
   baseurl = environment.filesBaseUrl;
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
     private repositoryService: RepositoryService,
-  private router: Router,
-  public util: UtilitiesService) { }
+    private router: Router,
+    public util: UtilitiesService) { }
 
   ngOnInit() {
     this.route.data.subscribe(result => {
@@ -32,27 +32,31 @@ export class ProductRatingComponent implements OnInit {
 
   submitRate() {
     const user = JSON.parse(localStorage.getItem('currentUser'));
-    const reveiw = new Review();
-    reveiw.comment = this.rate.comment;
-    reveiw.rate = this.rate.rate;
-    reveiw.reviwer = new Reviewer();
-    reveiw.reviwer.fullName = user.fullName;
     if (!user) {
       alert('login first');
       this.router.navigate([config.userAccount.loginPage.route]);
       return;
     } else {
-      this.rate.createdBy = user.id;
+      const reveiw = new Review();
+      reveiw.comment = this.rate.comment;
+      reveiw.rate = this.rate.rate;
+      reveiw.reviwer = new Reviewer();
+      reveiw.reviwer.fullName = user.fullName;
+      reveiw.createdAt = this.util.getDateFormatted((new Date()).toISOString());
       this.rate.entityId = this.product.id;
-      this.rate.entityTypeId = 1;
       this.repositoryService.create('itemsreview/AddRate', this.rate).subscribe(data => {
         alert('success');
+
+        this.product.reviews = this.product.reviews.filter(function (item, idx) {
+          return item.isCurrent !== true;
+        });
+
         this.product.reviews.push(reveiw);
       }, error => {
         alert(error);
       });
     }
-    
+
   }
 
 }

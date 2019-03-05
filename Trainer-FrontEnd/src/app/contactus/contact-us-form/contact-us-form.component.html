@@ -1,0 +1,57 @@
+<div class="col-md-8">
+   <div class="card">
+      <div class="card-header">
+         <strong>تواصل معنا</strong>
+      </div>
+      <div class="card-header">
+         للإعلانات المميزه من فضلك قم بإدخال البريد الإلكتروني ورقم التليفون حتي نستطيع التواصل معك و تقديم الدعم
+         المطلوب.
+      </div>
+      <div class="card-body">
+         <form class="form-horizontal" [formGroup]="contactusForm">
+            <div class="form-group row">
+               <label class="col-md-3 col-form-label" for="text-input">الإسم</label>
+               <div class="col-md-9">
+                  <input type="text" id="text-input" name="text-input" class="form-control" formControlName="name">
+                  <div *ngIf="(submitted || contactusForm.controls['name'].touched ) && f.name.errors" class="text-danger">
+                     <div *ngIf="f.name.errors.required"> {{'contactus.formValidations.nameRequired' | translate}}</div>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group row">
+               <label class="col-md-3 col-form-label" for="email-input">البريد الإلكتروني</label>
+               <div class="col-md-9">
+                  <input type="email" id="email-input" name="email-input" class="form-control" formControlName="email">
+                  <div *ngIf="(submitted || contactusForm.controls['email'].touched ) && f.email.errors" class="text-danger">
+                     <div *ngIf="f.email.errors.required"> {{'contactus.formValidations.emailRequired' | translate}}</div>
+                     <div *ngIf="f.email.errors.email"> {{'contactus.formValidations.emailNotValid' | translate}}</div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group row">
+               <label class="col-md-3 col-form-label" for="text-input">رقم الهاتف</label>
+               <div class="col-md-9">
+                  <input type="text" id="text-input" name="text-input" class="form-control" formControlName="phoneNumber">
+               </div>
+            </div>
+            <div class="form-group row">
+               <label class="col-md-3 col-form-label" for="textarea-input">التفاصيـل</label>
+               <div class="col-md-9">
+                  <textarea id="textarea-input" name="textarea-input" rows="8" class="form-control" formControlName="details"></textarea>
+                  <div *ngIf="(submitted || contactusForm.controls['details'].touched ) && f.details.errors" class="text-danger">
+                     <div *ngIf="f.details.errors.required"> {{'contactus.formValidations.detailsRequired' |
+                        translate}}</div>
+                  </div>
+               </div>
+            </div>
+         </form>
+      </div>
+      <div class="card-footer row">
+         <span class="col-md-3"></span>
+         <div class="col-md-9">
+            <button class="btn btn-primary-1" (click)="send()"><i class="fa fa-dot-circle-o"></i> إرسال</button>
+         </div>
+      </div>
+   </div>
+</div>

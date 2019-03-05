@@ -1,7 +1,7 @@
-export class UsersFilter{
-    searchText: string;
+export class UsersFilter {
+    searchText: string = "";
     pageNo: number;
     pageSize: number;
-    isBlocked: boolean;
-    role: string;
+    isBlocked: boolean = null;
+    role: string = null;
 }

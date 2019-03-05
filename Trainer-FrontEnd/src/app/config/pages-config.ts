@@ -24,6 +24,10 @@ export let config = {
         'food': {
             'name': 'food',
             'route': '/articles/food'
+        },
+        'championships': {
+            'name': 'championships',
+            'route': '/articles/championships'
         }
     }, 'yourTools': {
         'name': 'yourTools',
@@ -31,9 +35,23 @@ export let config = {
         'loadChildren': './your-tools/your-tools.module#YourToolsModule',
         // 'permissionList': ['Authorized'],
         /** this is capital to match routes for tagging  */
-        'landing': {
-            'name': 'landing',
-            'route': '/yourTools/landing',
+        'calculators': {
+            'name': 'calculators',
+            'route': '/yourTools/calculators',
+        },
+        'meals': {
+            'name': 'meals',
+            'route': '/yourTools/meals',
+        }
+    }, 'contactus': {
+        'name': 'contactus',
+        'route': 'contactus',
+        'loadChildren': './contactus/contactus.module#ContactusModule',
+        // 'permissionList': ['Authorized'],
+        /** this is capital to match routes for tagging  */
+        'form': {
+            'name': 'contactusForm',
+            'route': '/contactus/contactusForm',
         }
     },
     'products': {
@@ -126,54 +144,67 @@ export let config = {
         }
     },
     'admin': {
-      'name': 'admin',
-      'route': 'admin',
-    //   'loadChildren': './admin/admin.module#AdminToolsModule',
+        'name': 'admin',
+        'route': 'admin',
+        //   'loadChildren': './admin/admin.module#AdminToolsModule',
 
-      'addCategory': {
-        'name': 'addCategory',
-        'route': '/admin/addCategory'
-      },
-      'manageArticlesCategories': {
-        'name': 'manageArticlesCategories',
-        'route': '/admin/manageArticlesCategories'
-      },
-      'addArticle': {
-        'name': 'addArticle',
-        'route': '/admin/addArticle'
-      },
-      'manageArticles': {
-        'name': 'manageArticles/:articleId',
-        'route': '/admin/manageArticles'
-      },
-      'articleslist': {
-        'name': 'articleslist',
-        'route': '/admin/articleslist'
-      },
-      'manageProductsCategories': {
-        'name': 'manageProductsCategories',
-        'route': '/admin/manageProductsCategories'
-      },
-      'addItemForReview': {
-        'name': 'addItemForReview',
-        'route': '/admin/addItemForReview'
-      },
-      'itemReviewList': {
-          'name': 'itemReviewList',
-          'route': '/admin/itemReviewList'
-      },
-      'manageProducts': {
-        'name': 'manageProducts/:productId',
-        'route': '/admin/manageProducts'
-      },
-      'ProductsList': {
-        'name': 'ProductList',
-        'route': '/admin/ProductList'
-      }
-      ,
-      'users': {
-        'name': 'users',
-        'route': '/admin/users'
-      }
+        'addCategory': {
+            'name': 'addCategory',
+            'route': '/admin/addCategory'
+        },
+        'manageArticlesCategories': {
+            'name': 'manageArticlesCategories',
+            'route': '/admin/manageArticlesCategories'
+        },
+        'addArticle': {
+            'name': 'addArticle',
+            'route': '/admin/addArticle'
+        },
+        'manageArticles': {
+            'name': 'manageArticles/:articleId',
+            'route': '/admin/manageArticles'
+        },
+        'articleslist': {
+            'name': 'articleslist',
+            'route': '/admin/articleslist'
+        },
+        'manageProductsCategories': {
+            'name': 'manageProductsCategories',
+            'route': '/admin/manageProductsCategories'
+        },
+        'addItemForReview': {
+            'name': 'addItemForReview',
+            'route': '/admin/addItemForReview'
+        },
+        'itemReviewList': {
+            'name': 'itemReviewList',
+            'route': '/admin/itemReviewList'
+        },
+        'manageProducts': {
+            'name': 'manageProducts/:productId',
+            'route': '/admin/manageProducts'
+        },
+        'ProductsList': {
+            'name': 'ProductList',
+            'route': '/admin/ProductList'
+        },
+        'addBanner': {
+            'name': 'addBanner',
+            'route': '/admin/addBanner'
+        },
+        'editBanner': {
+            'name': 'editBanner/:bannerId',
+            'route': '/admin/editBanner/:bannerId'
+        },
+        'manageBanners': {
+            'name': 'manageBanners',
+            'route': '/admin/manageBanners'
+        }
+        ,
+        'users': {
+            'name': 'users',
+            'route': '/admin/users'
+        }
     }
+
 };

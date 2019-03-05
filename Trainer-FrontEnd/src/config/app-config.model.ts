@@ -3,6 +3,9 @@ export interface IAppConfig {
         productsForAny: {
             pageSize: number;
         },
+        specialProductsForAny: {
+            pageSize: number;
+        },
         productsForAdmin: {
             pageSize: number;
         },

@@ -24,10 +24,14 @@ import { ProductListItemEditComponent } from './products/product-list-item-edit/
 import { NgbUTCStringAdapter } from '../shared/services/ngb-string.adapter';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
 import { AdminArticlesService } from './services/admin.articles.services';
+import { AddBannerComponent } from './add-banner/add-banner.component';
+import { ManageBannerService } from './services/manage-banner.service';
+import { ManageBannersComponent } from './manage-banners/manage-banners.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { RolesResolver } from './resolvers/roles-list.resolver';
 import { UsersListResolver } from './resolvers/users-list.resolver';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -58,6 +62,9 @@ import { UsersListResolver } from './resolvers/users-list.resolver';
       ManageProductsComponent,
       ProductListItemComponent,
       ProductListItemEditComponent,
+      AddBannerComponent,
+      ManageBannersComponent,
+      ProductListItemEditComponent,
       UserManagementComponent
     ],
 
@@ -67,7 +74,9 @@ import { UsersListResolver } from './resolvers/users-list.resolver';
     ProductResolver,
     LeafProductCategoriesResolver,
     { provide: NgbDateAdapter, useClass: NgbUTCStringAdapter },
+
     AdminArticlesService,
+    ManageBannerService,
     RolesResolver,
     UsersListResolver
   ]

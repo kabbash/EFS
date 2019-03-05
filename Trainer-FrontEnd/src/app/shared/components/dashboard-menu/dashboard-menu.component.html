@@ -6,11 +6,13 @@
         <div>كابتن عبدالله</div>
     </div>
 </div>
-<a >
+
+<a routerLinkActive="active" [routerLink]="['/admin/users']">
     <div class="dash-item">
-        <i class="fa fa-edit"></i><span>المستخدمين</span>
+        <i class="fa fa-edit"></i><span>{{'adminMenu.users' | translate}}</span>
     </div>
 </a>
+
 <a routerLinkActive="active" [routerLink]="['/admin/articleslist']">
     <div class="dash-item">
         <i class="fa fa-edit"></i><span>المقالات</span>
@@ -27,11 +29,11 @@
     </div>
 </a>
 <a routerLinkActive="active" [routerLink]="['/admin/manageArticlesCategories']">
-  <div class="dash-item">
-      <i class="fa fa-edit"></i><span>{{'adminMenu.manageArticleCategories' | translate}}</span>
-  </div>
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>{{'adminMenu.manageArticleCategories' | translate}}</span>
+    </div>
 </a>
-<a >
+<a>
     <div class="dash-item">
         <i class="fa fa-edit"></i><span>جدول السعرات</span>
     </div>
@@ -40,4 +42,10 @@
     <div class="dash-item">
         <i class="fa fa-edit"></i><span>{{'adminMenu.itemReviewList' | translate}}</span>
     </div>
-  </a>
+</a>
+
+<a routerLinkActive="active" [routerLink]="['/admin/manageBanners']">
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>{{'adminMenu.manageBanners' | translate}}</span>
+    </div>
+</a>

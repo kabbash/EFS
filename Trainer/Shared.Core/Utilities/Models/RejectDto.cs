@@ -8,6 +8,6 @@ namespace Shared.Core.Utilities.Models
     {
         public int Id { get; set; }
         public string RejectReason { get; set; }
-        public string UserId { get; set; }
+        public string CurrentUserId { get; set; }
     }
 }

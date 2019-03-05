@@ -12,6 +12,6 @@ export class ProductsListResolver implements Resolve<Observable<ResultMessage<pr
   }
   resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<productListItemDto[]>> {
     let pageSize = AppConfig.settings.pagination.productsForAny.pageSize;
-    return this.repositoryService.getData<productListItemDto[]>('products?pageNo=1&pageSize=' + pageSize + '&categoryId=' + route.params['categoryId']);
+    return this.repositoryService.getData<productListItemDto[]>('products?isSpecial=false&pageNo=1&pageSize=' + pageSize + '&categoryId=' + route.params['categoryId']);
   }
 }

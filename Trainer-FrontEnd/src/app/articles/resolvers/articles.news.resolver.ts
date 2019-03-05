@@ -14,7 +14,7 @@ export class NewsResolver implements Resolve<Observable<ResultMessage<articleLis
   }
     resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<articleListItemDto[]>> {
       let pageSize = AppConfig.settings.pagination.articlesForAny.pageSize;
-      return  this.repositoryService.getData<articleListItemDto[]>('articles?pageNo=1&pageSize='+ pageSize + '&categoryId='+ PredefinedCategories.news);
+      return  this.repositoryService.getData<articleListItemDto[]>('articles?pageNo=1&pageSize='+ pageSize + '&categoryId='+ PredefinedCategories.News);
     }
 }
  
