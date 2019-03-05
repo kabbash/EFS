@@ -12,7 +12,6 @@ namespace Shared.Core.Validators
         {
             RuleFor(a => a.Id).NotEmpty();
             RuleFor(a => a.RejectReason).NotEmpty();
-            RuleFor(a => a.CurrentUserId).NotEmpty();
         }
     }
 }

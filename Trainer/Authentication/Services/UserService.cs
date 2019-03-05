@@ -343,7 +343,7 @@ namespace Authentication.Services
             var user = userEntity.Adapt<User>();
             if (userEntity.AspNetUserRoles != null && userEntity.AspNetUserRoles.Count > 0)
             {
-                user.Roles = userEntity.AspNetUserRoles.Select(x => x.RoleId).ToList();
+                //user.Roles = userEntity.AspNetUserRoles.Select(x => x.RoleId).ToList();
                 userRoles = GetUserRoles(userEntity.AspNetUserRoles.Select(x => x.RoleId).ToList());
             }
             var userClaims = SetUserClaims(userEntity.Id.ToString(), userRoles);
@@ -359,6 +359,7 @@ namespace Authentication.Services
             user.Token = tokenHandler.WriteToken(token);
             user.Password = null;
             user.EmailConfirmed = userEntity.EmailConfirmed;
+            user.Roles = userRoles;
             return user;
         }
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Articles.Core.Models
 {
-    public class ArticleAddDto : IUserDto
+    public class ArticleAddDto
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -15,6 +15,5 @@ namespace Articles.Core.Models
         public string ProfilePicture { get; set; }
         public List<SliderItemDto> Images { get; set; }
         public List<SliderItemDto> UpdatedImages { get; set; }
-        public string CurrentUserId { get; set; }
     }
 }

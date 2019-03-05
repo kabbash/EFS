@@ -40,7 +40,7 @@ namespace Products.Core.Services
             try
             {
                 PagedResult<ProductsDto> result = new PagedResult<ProductsDto>();
-                result = _unitOfWork.ProductsRepository.Get(includeProperties: includeProperities ?? "").OrderByDescending(c=>c.CreatedAt).ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                result = _unitOfWork.ProductsRepository.Get(includeProperties: includeProperities ?? "").OrderByDescending(c => c.CreatedAt).ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
                 return new ResultMessage()
                 {
                     Data = result,
@@ -58,7 +58,7 @@ namespace Products.Core.Services
                 };
             }
         }
-        public ResultMessage Insert(ProductsDto newProductDto)
+        public ResultMessage Insert(ProductsDto newProductDto, IUserDto user)
         {
             var validationResult = _validator.Validate(newProductDto);
             if (!validationResult.IsValid)
@@ -74,7 +74,7 @@ namespace Products.Core.Services
                 var newProduct = newProductDto.Adapt<DBModels.Products>();
                 newProduct.IsActive = null;
                 newProduct.CreatedAt = DateTime.Now;
-                newProduct.CreatedBy = newProductDto.CurrentUserId;
+                newProduct.CreatedBy = user.Id;
                 newProduct.SubFolderName = productFolderName;
 
                 var sliderDto = new SliderDto
@@ -151,7 +151,7 @@ namespace Products.Core.Services
                 };
             }
         }
-        public ResultMessage Update(ProductsDto product, int id)
+        public ResultMessage Update(ProductsDto product, int id, IUserDto user)
         {
             var validationResult = _validator.Validate(product);
             if (!validationResult.IsValid)
@@ -164,63 +164,66 @@ namespace Products.Core.Services
             try
             {
                 var oldProduct = _unitOfWork.ProductsRepository.GetById(id);
-                if (oldProduct != null)
-                {
-                    oldProduct.Name = product.Name;
-                    if (product.ProfilePictureFile != null)
-                    {
-                        oldProduct.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
-                        {
-                            attachmentType = AttachmentTypesEnum.Products,
-                            CanChangeName = true,
-                            File = product.ProfilePictureFile
-                        });
-                    }
-
-                    oldProduct.IsActive = product.IsActive = null;
-                    oldProduct.IsSpecial = product.IsSpecial;
-                    oldProduct.Price = product.Price;
-                    oldProduct.ExpDate = product.ExpDate;
-                    oldProduct.Description = product.Description;
-                    oldProduct.CategoryId = product.CategoryId;
-
-                    oldProduct.UpdatedBy = product.CurrentUserId;
-                    oldProduct.UpdatedAt = DateTime.Now;
-
-                    var sliderDto = new SliderDto
-                    {
-                        attachmentType = AttachmentTypesEnum.Products,
-                        Items = product.UpdatedImages ?? new List<SliderItemDto>(),
-                        SubFolderName = oldProduct.SubFolderName,
-                        ParentId = id
-                    };
-
-                    //check profile picture
-                    if (sliderDto.Items.Count > 0)
-                        oldProduct.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto, oldProduct.ProfilePicture);
-
-
-                    _unitOfWork.ProductsRepository.Update(oldProduct);
-                    _unitOfWork.Commit();
-
-                    // update files                
-                    if (sliderDto.Items.Count > 0)
-                        _sliderManager.Update(sliderDto);
-
-                    return new ResultMessage
-                    {
-                        Status = HttpStatusCode.OK,
-                        Data = oldProduct.Adapt<ProductsDto>()
-                    };
-                }
-                else
-                {
+                if (oldProduct == null)
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound,
                         ErrorCode = (int)ProductsErrorsCodeEnum.ProductsNotFoundError
                     };
+
+                if (!user.IsAdmin && oldProduct.CreatedBy != user.Id)
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.NotFound,
+                        ErrorCode = (int)ProductsErrorsCodeEnum.ProductsNotFoundError
+                    };
+
+                oldProduct.Name = product.Name;
+                if (product.ProfilePictureFile != null)
+                {
+                    oldProduct.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
+                    {
+                        attachmentType = AttachmentTypesEnum.Products,
+                        CanChangeName = true,
+                        File = product.ProfilePictureFile
+                    });
                 }
+
+                oldProduct.IsActive = product.IsActive = null;
+                oldProduct.IsSpecial = product.IsSpecial;
+                oldProduct.Price = product.Price;
+                oldProduct.ExpDate = product.ExpDate;
+                oldProduct.Description = product.Description;
+                oldProduct.CategoryId = product.CategoryId;
+
+                oldProduct.UpdatedBy = user.Id;
+                oldProduct.UpdatedAt = DateTime.Now;
+
+                var sliderDto = new SliderDto
+                {
+                    attachmentType = AttachmentTypesEnum.Products,
+                    Items = product.UpdatedImages ?? new List<SliderItemDto>(),
+                    SubFolderName = oldProduct.SubFolderName,
+                    ParentId = id
+                };
+
+                //check profile picture
+                if (sliderDto.Items.Count > 0)
+                    oldProduct.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto, oldProduct.ProfilePicture);
+
+
+                _unitOfWork.ProductsRepository.Update(oldProduct);
+                _unitOfWork.Commit();
+
+                // update files                
+                if (sliderDto.Items.Count > 0)
+                    _sliderManager.Update(sliderDto);
+
+                return new ResultMessage
+                {
+                    Status = HttpStatusCode.OK,
+                    Data = oldProduct.Adapt<ProductsDto>()
+                };
             }
             catch (Exception ex)
             {
@@ -232,10 +235,24 @@ namespace Products.Core.Services
                 };
             }
         }
-        public ResultMessage Delete(int id)
+        public ResultMessage Delete(int id, IUserDto user)
         {
             try
             {
+                var product = _unitOfWork.ProductsRepository.GetById(id);
+                if (product == null)
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.NotFound
+                    };
+
+                if (!user.IsAdmin && product.CreatedBy != user.Id)
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.Unauthorized,
+                        ErrorCode = (int)ProductsErrorsCodeEnum.ProductsNotFoundError
+                    };
+
                 _unitOfWork.ProductsRepository.Delete(id);
                 _unitOfWork.Commit();
                 return new ResultMessage()
@@ -287,7 +304,7 @@ namespace Products.Core.Services
 
             }
         }
-        public ResultMessage Reject(RejectDto rejectModel)
+        public ResultMessage Reject(RejectDto rejectModel, IUserDto user)
         {
 
             try
@@ -304,7 +321,7 @@ namespace Products.Core.Services
                 product.UpdatedAt = DateTime.Now;
                 product.IsActive = false;
                 product.RejectReason = rejectModel.RejectReason;
-                product.UpdatedBy = rejectModel.CurrentUserId;
+                product.UpdatedBy = user.Id;
 
                 _unitOfWork.ProductsRepository.Update(product);
                 _unitOfWork.Commit();

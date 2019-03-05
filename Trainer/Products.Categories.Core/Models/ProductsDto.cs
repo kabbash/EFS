@@ -18,7 +18,6 @@ namespace Products.Core.Models
         public List<SliderItemDto> UpdatedImages { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public string CurrentUserId { get; set; }
         //public string CreatedBy { get; set; }
         //public string UpdatedBy { get; set; }
         public bool? IsActive { get; set; }
