@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output} from '@angular/core';
-import { articleCategoryDto } from '../models/articles/article-category-dto';
-import { environment } from '../../../environments/environment';
-import { config } from '../../config/pages-config';
+import { articleCategoryDto } from '../../models/articles/article-category-dto';
+import { environment } from '../../../../environments/environment';
+import { config } from '../../../config/pages-config';
 import { Router } from '@angular/router';
-import { RepositoryService } from '../services/repository.service';
-import { CategoriesService } from '../../admin-tools/services/categories.service';
-import { AppService } from '../../app.service';
+import { RepositoryService } from '../../services/repository.service';
+import { CategoriesService } from '../../../admin-tools/services/categories.service';
+import { AppService } from '../../../app.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

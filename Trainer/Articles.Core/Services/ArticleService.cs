@@ -40,7 +40,7 @@ namespace Articles.Core.Services
                 PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
 
                 if (filter.CategoryId == (int)PredefinedArticlesCategories.Championships)
-                    result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).ApplyChampionshipsFilter().OrderByDescending(c => c.Date.HasValue).ThenBy(c=> c.Date).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                    result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).ApplyChampionshipsFilter().OrderByDescending(c => c.Date.HasValue).ThenBy(c => c.Date).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
                 else
                     result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).OrderByDescending(c => c.CreatedAt).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
 
@@ -101,8 +101,7 @@ namespace Articles.Core.Services
                 };
             }
         }
-
-        public ResultMessage Insert(ArticleAddDto article)
+        public ResultMessage Insert(ArticleAddDto article, IUserDto user)
         {
             var validationResult = _addValidator.Validate(article);
             if (!validationResult.IsValid)
@@ -117,7 +116,7 @@ namespace Articles.Core.Services
             {
                 var articleEntity = article.Adapt<DBModels.Articles>();
                 articleEntity.CreatedAt = DateTime.Now;
-                articleEntity.CreatedBy = article.CurrentUserId;
+                articleEntity.CreatedBy = user.Id;
 
                 var articleFolderName = Guid.NewGuid().ToString();
 
@@ -156,7 +155,7 @@ namespace Articles.Core.Services
                 };
             }
         }
-        public ResultMessage Update(ArticleAddDto article, int articleId)
+        public ResultMessage Update(ArticleAddDto article, int articleId, IUserDto user)
         {
             var validationResult = _addValidator.Validate(article);
             if (!validationResult.IsValid)
@@ -178,33 +177,45 @@ namespace Articles.Core.Services
                     };
                 }
 
-                article.Adapt(articleData, typeof(ArticleAddDto), typeof(DBModels.Articles));
-                articleData.UpdatedAt = DateTime.Now;
-                articleData.UpdatedBy = article.CurrentUserId;
 
-                var sliderDto = new SliderDto
+                if (user.IsAdmin || ( user.Id != articleData.CreatedBy && (! articleData.IsActive.HasValue || ! articleData.IsActive.Value)))
                 {
-                    attachmentType = AttachmentTypesEnum.Articles,
-                    Items = article.UpdatedImages ?? new List<SliderItemDto>(),
-                    SubFolderName = articleData.SubFolderName,
-                    ParentId = articleId
-                };
+                    article.Adapt(articleData, typeof(ArticleAddDto), typeof(DBModels.Articles));
+                    articleData.UpdatedAt = DateTime.Now;
+                    articleData.UpdatedBy = user.Id;
 
-                //check profile picture
-                if (sliderDto.Items.Count > 0)
-                    articleData.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto, article.ProfilePicture);
+                    var sliderDto = new SliderDto
+                    {
+                        attachmentType = AttachmentTypesEnum.Articles,
+                        Items = article.UpdatedImages ?? new List<SliderItemDto>(),
+                        SubFolderName = articleData.SubFolderName,
+                        ParentId = articleId
+                    };
 
-                _unitOfWork.ArticlesRepository.Update(articleData);
-                _unitOfWork.Commit();
+                    //check profile picture
+                    if (sliderDto.Items.Count > 0)
+                        articleData.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto, article.ProfilePicture);
 
-                // update files                
-                if (sliderDto.Items.Count > 0)
-                    _sliderManager.Update(sliderDto);
+                    _unitOfWork.ArticlesRepository.Update(articleData);
+                    _unitOfWork.Commit();
 
-                return new ResultMessage
+                    // update files                
+                    if (sliderDto.Items.Count > 0)
+                        _sliderManager.Update(sliderDto);
+
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.OK
+                    };
+                }
+                else
                 {
-                    Status = HttpStatusCode.OK
-                };
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.Unauthorized
+                    };
+                }
+
             }
             catch (Exception ex)
             {
@@ -215,21 +226,41 @@ namespace Articles.Core.Services
                 };
             }
         }
-        public ResultMessage Delete(int id)
+        public ResultMessage Delete(int id, IUserDto user)
         {
             try
             {
-
-                var articleFolder = _unitOfWork.ArticlesRepository.GetById(id).SubFolderName;
-                if (!string.IsNullOrEmpty(articleFolder))
-                    _attachmentsManager.DeleteFolder(articleFolder, AttachmentTypesEnum.Articles);
-
-                _unitOfWork.ArticlesRepository.Delete(id);
-                _unitOfWork.Commit();
-                return new ResultMessage
+                var article = _unitOfWork.ArticlesRepository.GetById(id);
+                if (article == null)
                 {
-                    Status = HttpStatusCode.OK
-                };
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.NotFound
+
+                    };
+                }
+
+                if (user.IsAdmin || ( user.Id == article.CreatedBy && ( !article.IsActive.HasValue || !article.IsActive.Value)))
+                {
+                    var articleFolder = article.SubFolderName;
+                    if (!string.IsNullOrEmpty(articleFolder))
+                        _attachmentsManager.DeleteFolder(articleFolder, AttachmentTypesEnum.Articles);
+
+                    _unitOfWork.ArticlesRepository.Delete(id);
+                    _unitOfWork.Commit();
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.OK
+                    };
+                }
+                else
+                {
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.Unauthorized
+                    };
+                }
+
             }
             catch (Exception ex)
             {
@@ -272,7 +303,7 @@ namespace Articles.Core.Services
 
             }
         }
-        public ResultMessage Reject(RejectDto rejectDto)
+        public ResultMessage Reject(RejectDto rejectDto, IUserDto user)
         {
             var validationResult = _rejectValidator.Validate(rejectDto);
             if (!validationResult.IsValid)
@@ -295,7 +326,7 @@ namespace Articles.Core.Services
                 }
 
                 articleData.UpdatedAt = DateTime.Now;
-                articleData.UpdatedBy = rejectDto.CurrentUserId;
+                articleData.UpdatedBy = user.Id;
                 articleData.RejectReason = rejectDto.RejectReason;
                 articleData.IsActive = false;
 

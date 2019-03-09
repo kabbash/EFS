@@ -12,15 +12,12 @@ import { ManageArticlesCategoriesComponent } from './articles/manage-articles-ca
 import { ManageArticlesComponent } from './articles/manage-articles/manage-articles.component';
 import { AddItemForReviewComponent } from './add-item-for-review/add-item-for-review.component';
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
-import { ArticleDetailsEditmodeComponent } from '../shared/article-details-editmode/article-details-editmode.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { AdminProductsListComponent } from './products/admin-products-list/admin-products-list.component';
 import { NgbModule, NgbPaginationModule, NgbAlertModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { AdminProductsListResolver } from './resolvers/products-list-resolver';
 import { ManageProductsComponent } from './products/manage-products/manage-products.component';
-import { ProductListItemComponent } from './products/product-list-item/product-list-item.component';
 import { ProductResolver } from './resolvers/product.resolver';
-import { ProductListItemEditComponent } from './products/product-list-item-edit/product-list-item-edit.component';
 import { NgbUTCStringAdapter } from '../shared/services/ngb-string.adapter';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
 import { AdminArticlesService } from './services/admin.articles.services';
@@ -51,11 +48,10 @@ import { ManageBannersComponent } from './manage-banners/manage-banners.componen
       ManageArticlesComponent,
       AddItemForReviewComponent,
       ArticlesListComponent,
-      ArticleDetailsEditmodeComponent,
       AdminProductsListComponent,
       ManageProductsComponent,
-      ProductListItemComponent,
-      ProductListItemEditComponent,
+      // ProductListItemComponent,
+      // ProductListItemEditComponent,
       AddBannerComponent,
       ManageBannersComponent
     ],

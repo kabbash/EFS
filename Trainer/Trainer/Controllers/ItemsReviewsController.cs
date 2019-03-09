@@ -36,7 +36,7 @@ namespace Trainer.Controllers
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            return GetStatusCodeResult(_itemsReviewManager.GetById(id,CurrentUserId));
+            return GetStatusCodeResult(_itemsReviewManager.GetById(id,GetCurrentUser().Id));
         }
 
         // POST: api/itemsreview
@@ -78,11 +78,7 @@ namespace Trainer.Controllers
         [HttpPost("AddRate")]
         public ActionResult AddRate(RatingDto newRate)
         {
-            if (string.IsNullOrEmpty(CurrentUserId))
-            {
-                return StatusCode((int)HttpStatusCode.Unauthorized);
-            }
-            newRate.CurrentUserId = CurrentUserId;
+            newRate.CurrentUserId = GetCurrentUser().Id;
             newRate.EntityTypeId = (int)RatingEntityTypesEnum.ItemsForReview;
             return GetStatusCodeResult(_ratingManager.AddOrUpdate(newRate));
         }   

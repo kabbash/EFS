@@ -31,6 +31,9 @@ namespace Articles.Core.Extensions
             if (!string.IsNullOrEmpty(filter.SearchText))
                 articles = articles.Where(c => c.Name.ToLower().Contains(filter.SearchText.ToLower()));
 
+            if (!string.IsNullOrEmpty(filter.CreatedBy))
+                articles = articles.Where(c => c.CreatedBy == filter.CreatedBy);
+
             return articles;
         }
 

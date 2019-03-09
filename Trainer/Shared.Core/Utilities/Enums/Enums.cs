@@ -35,4 +35,13 @@
         Pending,
         Rejected
     }
+
+    public enum UserRoles
+    {
+        Admin,
+        RegularUser,
+        Client,
+        ProductOwner,
+        ArticleWriter
+    }
 }

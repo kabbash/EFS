@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppService } from '../../app.service';
-import { productListItemDto } from '../models/products/product-list-item-dto';
-import { environment } from '../../../environments/environment';
-import { RepositoryService } from '../../shared/services/repository.service';
-import { config } from '../../config/pages-config';
-import { ProductReviewService } from '../../admin-tools/services/product-review.service';
-import { PagerDto } from '../../shared/models/pager.dto';
-import { ModalComponent } from '../modal/modal.component';
-import { ProductsService } from '../../products/products.service';
-import { ClientFilterComponent } from '../client-filter/client-filter.component';
-import { RatingDto } from '../models/rating.dto';
-import { AppConfig } from '../../../config/app.config';
+import { AppService } from '../../../app.service';
+import { productListItemDto } from '../../models/products/product-list-item-dto';
+import { environment } from '../../../../environments/environment';
+import { RepositoryService } from '../../../shared/services/repository.service';
+import { config } from '../../../config/pages-config';
+import { ProductReviewService } from '../../../admin-tools/services/product-review.service';
+import { PagerDto } from '../../../shared/models/pager.dto';
+import { ModalComponent } from '../../modal/modal.component';
+import { ProductsService } from '../../../products/products.service';
+import { ClientFilterComponent } from '../../client-filter/client-filter.component';
+import { RatingDto } from '../../models/rating.dto';
+import { AppConfig } from '../../../../config/app.config';
 
 @Component({
   selector: 'app-all-products',

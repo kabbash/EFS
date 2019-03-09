@@ -15,7 +15,7 @@ import { ItemReviewResolver } from './resolvers/item-review.resolver';
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
 import { AdminProductsListComponent } from './products/admin-products-list/admin-products-list.component';
 import { AdminProductsListResolver } from './resolvers/products-list-resolver';
-import { ProductsListComponent } from '../shared/products-list/products-list.component';
+import { ProductsListComponent } from '../shared/products/products-list/products-list.component';
 import { ManageProductsComponent } from './products/manage-products/manage-products.component';
 import { ProductResolver } from './resolvers/product.resolver';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';

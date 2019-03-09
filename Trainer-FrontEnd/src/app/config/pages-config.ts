@@ -200,5 +200,34 @@ export let config = {
         'name': 'manageBanners',
         'route': '/admin/manageBanners'
     }
-    }
+    },
+    'writers': {
+        'name': 'writers',
+        'route': 'writers',
+        'loadChildren': './writers/writers.module#WritersModule',
+  
+        'manageArticle': {
+          'name': 'manageArticle/:articleId',
+          'route': '/writers/manageArticle'
+        },
+        'articleslist': {
+          'name': 'articleslist',
+          'route': '/writers/articleslist'
+        }
+      },
+    'users': {
+        'name': 'users',
+        'route': 'users',
+        'loadChildren': './users/users.module#UsersModule',
+  
+        'manageproduct': {
+          'name': 'manageproduct/:productId',
+          'route': '/users/manageproduct'
+        },
+        'productslist': {
+          'name': 'productslist',
+          'route': '/users/productslist'
+        }
+      }
+
 };
