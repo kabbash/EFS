@@ -8,7 +8,7 @@ import { config } from '../../../config/pages-config';
 import { AppService } from '../../../app.service';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
 import { SliderItemDto } from '../../../shared/models/slider/slider-item.dto';
-import { ProductListItemEditComponent } from 'src/app/shared/products/product-list-item-edit/product-list-item-edit.component';
+import { ProductListItemEditComponent } from '../../../shared/products/product-list-item-edit/product-list-item-edit.component';
 
 @Component({
   selector: 'app-manage-products',

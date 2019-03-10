@@ -7,7 +7,7 @@ import { ArticleDetailsEditmodeComponent } from '../../../shared/articles/articl
 import { config } from '../../../config/pages-config';
 import { SliderItemDto } from '../../../shared/models/slider/slider-item.dto';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
-import { PredefinedCategories } from 'src/app/shared/models/articles/articles-predefined-categories.enum';
+import { PredefinedCategories } from '../../../shared/models/articles/articles-predefined-categories.enum';
 
 
 @Component({

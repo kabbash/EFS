@@ -14,7 +14,7 @@ import { SafeHtml } from '@angular/platform-browser';
 import { SecurityContext } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { config } from '../../config/pages-config';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-add-banner',

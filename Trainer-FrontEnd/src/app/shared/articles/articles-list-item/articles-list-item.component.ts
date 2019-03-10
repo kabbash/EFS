@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from '../../../app.service';
 import { articleListItemDto } from '../../models/articles/article-list-item-dto';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../../environments/environment';
 import { UtilitiesService } from '../../services/utilities.service';
 
 @Component({
