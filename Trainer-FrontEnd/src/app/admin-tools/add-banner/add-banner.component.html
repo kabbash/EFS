@@ -3,7 +3,7 @@
     [ngStyle]="{'background-image': !banner.imagePath ? 'url(' + addedImageUrl + ')' : 'url(' + baseurl + banner?.imagePath + ')'}">
     <div class="container">
       <span #titleHtml>
-        <div class="carousel-caption"
+        <div class=""
           [ngClass]="{'text-left':titleAlign === 'left' , 'text-right': titleAlign === 'right', 'text-center': titleAlign === 'center'}">
           <h1>
             <pre>{{bannerForm.controls['title'].value}}</pre>
@@ -11,7 +11,7 @@
         </div>
       </span>
       <span #buttonHtml>
-        <div class=".carousel-button"
+        <div class=""
           [ngClass]="{'text-left':buttonAlign === 'left' , 'text-right': buttonAlign === 'right', 'text-center': buttonAlign === 'center'}">
           <p><a class="btn btn-lg"
               [ngClass]="{'btn-blue': buttonColor === 'blue', 'btn-white': buttonColor === 'white', 'btn-black': buttonColor === 'black'}"
