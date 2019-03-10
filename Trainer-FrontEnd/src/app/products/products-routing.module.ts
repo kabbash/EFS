@@ -8,7 +8,7 @@ import { ProductsListResolver } from './resolvers/products-list.resolver';
 import { ProductsCategoriesResolver } from './resolvers/products-categories.resolver';
 import { ItemReviewResolver } from '../admin-tools/resolvers/item-review.resolver';
 import { ProdcutRatingResolver } from './resolvers/product-rating.resolver';
-import { ProductsListComponent } from '../shared/products-list/products-list.component';
+import { ProductsListComponent } from '../shared/products/products-list/products-list.component';
 import { ProductsSpecialListResolver } from './resolvers/products-special-list.resolver';
 
 const routes: Routes = [

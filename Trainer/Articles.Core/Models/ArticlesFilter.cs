@@ -7,5 +7,6 @@
         public int PageNo { get; set; }
         public int PageSize { get; set; }
         public int CategoryId { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

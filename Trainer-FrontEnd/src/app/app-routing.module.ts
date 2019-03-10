@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { config } from './config/pages-config';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
-import { ArticlesComponent } from './articles/articles.component';
 import { BannersResolver } from './admin-tools/resolvers/banners.resolver';
 
 const routes: Routes = [
@@ -42,6 +41,14 @@ const routes: Routes = [
   {
     path: config.contactus.name,
     loadChildren: './contactus/contactus.module#ContactusModule'
+  },
+  {
+    path: config.writers.name,
+    loadChildren: './writers/writers.module#WritersModule'
+  },
+  {
+    path: config.users.name,
+    loadChildren: './users/users.module#UsersModule'
   },
   { path: '**', redirectTo: 'home' }
 ];

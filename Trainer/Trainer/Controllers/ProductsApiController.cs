@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Products.Core.Interfaces;
 using Products.Core.Models;
 using Rating.Core.Interfaces;
@@ -38,45 +39,30 @@ namespace Trainer.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Post([FromForm] ProductsDto productsDto)
         {
-            if (String.IsNullOrEmpty(CurrentUserId))
-            {
-                return StatusCode((int)HttpStatusCode.Unauthorized);
-            }
-
-            productsDto.CurrentUserId = CurrentUserId;
-            return GetStatusCodeResult(_productsManager.Insert(productsDto));
+            return GetStatusCodeResult(_productsManager.Insert(productsDto, GetCurrentUser()));
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public ActionResult Put(int id, [FromForm] ProductsDto productsDto)
         {
-            if (string.IsNullOrEmpty(CurrentUserId))
-            {
-                return StatusCode((int)HttpStatusCode.Unauthorized);
-            }
-
-            productsDto.CurrentUserId = CurrentUserId;
-            return GetStatusCodeResult(_productsManager.Update(productsDto, id));
+            return GetStatusCodeResult(_productsManager.Update(productsDto, id, GetCurrentUser()));
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
+        [Authorize]
         public ActionResult Delete(int id)
         {
-            return GetStatusCodeResult(_productsManager.Delete(id));
+            return GetStatusCodeResult(_productsManager.Delete(id,GetCurrentUser()));
         }
 
         [HttpPost("addrate")]
         public ActionResult AddRate(RatingDto newRate)
         {
-            if (string.IsNullOrEmpty(CurrentUserId))
-            {
-                return StatusCode((int)HttpStatusCode.Unauthorized);
-            }
-
-            newRate.CurrentUserId = CurrentUserId;
+            newRate.CurrentUserId = GetCurrentUser().Id;
             newRate.EntityTypeId = (int)RatingEntityTypesEnum.Product;
             return GetStatusCodeResult(_ratingManager.AddOrUpdate(newRate));
         }
@@ -84,13 +70,24 @@ namespace Trainer.Controllers
         #region Administration 
 
         [HttpGet("getforadmin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult GetForAdmin([FromQuery]ProductFilter filter)
         {
             return GetStatusCodeResult(_productsManager.GetAll(filter));
         }
 
+        [HttpGet("getforowners")]
+        [Authorize]
+        public ActionResult GetForOwners([FromQuery]ProductFilter filter)
+        {
+            filter.CreatedBy = GetCurrentUser().Id;
+            return GetStatusCodeResult(_productsManager.GetAll(filter));
+        }
+
+
         [HttpPost]
         [Route("Approve")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Approve([FromBody]baseDto model)
         {
 
@@ -99,11 +96,10 @@ namespace Trainer.Controllers
 
         [HttpPost]
         [Route("Reject")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Reject([FromBody]RejectDto model)
         {
-            model.CurrentUserId = User.Identity.Name;
-            return GetStatusCodeResult(_productsManager.Reject(model));
+            return GetStatusCodeResult(_productsManager.Reject(model,GetCurrentUser()));
         }
 
         #endregion

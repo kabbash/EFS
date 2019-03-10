@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { config } from '../../config/pages-config';
+import { config } from '../../../config/pages-config';
 import { Router } from '@angular/router';
-import { RepositoryService } from '../../shared/services/repository.service';
-import { productListItemDto } from '../models/products/product-list-item-dto';
-import { ProductReviewService } from '../../admin-tools/services/product-review.service';
-import { ProductReviewDto } from '../models/products/product-review.dto';
+import { RepositoryService } from '../../../shared/services/repository.service';
+import { productListItemDto } from '../../models/products/product-list-item-dto';
+import { ProductReviewService } from '../../../admin-tools/services/product-review.service';
+import { ProductReviewDto } from '../../models/products/product-review.dto';
 
 @Component({
   selector: 'app-product-item',
