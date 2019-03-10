@@ -148,57 +148,57 @@ export let config = {
         'route': 'admin',
         //   'loadChildren': './admin/admin.module#AdminToolsModule',
 
-      'addCategory': {
-        'name': 'addCategory',
-        'route': '/admin/addCategory'
-      },
-      'manageArticlesCategories': {
-        'name': 'manageArticlesCategories',
-        'route': '/admin/manageArticlesCategories'
-      },
-      'addArticle': {
-        'name': 'addArticle',
-        'route': '/admin/addArticle'
-      },
-      'manageArticles': {
-        'name': 'manageArticles/:articleId',
-        'route': '/admin/manageArticles'
-      },
-      'articleslist': {
-        'name': 'articleslist',
-        'route': '/admin/articleslist'
-      },
-      'manageProductsCategories': {
-        'name': 'manageProductsCategories',
-        'route': '/admin/manageProductsCategories'
-      },
-      'addItemForReview': {
-        'name': 'addItemForReview',
-        'route': '/admin/addItemForReview'
-      },
-      'itemReviewList': {
-          'name': 'itemReviewList',
-          'route': '/admin/itemReviewList'
-      },
-      'manageProducts': {
-        'name': 'manageProducts/:productId',
-        'route': '/admin/manageProducts'
-      },
-      'ProductsList': {
-        'name': 'ProductList',
-        'route': '/admin/ProductList'
-      },
-      'addBanner': {
-          'name': 'addBanner',
-          'route': '/admin/addBanner'
-      },
-      'editBanner': {
-        'name': 'editBanner/:bannerId',
-        'route': '/admin/editBanner/:bannerId'
-    },
-    'manageBanners': {
-        'name': 'manageBanners',
-        'route': '/admin/manageBanners'
+        'addCategory': {
+            'name': 'addCategory',
+            'route': '/admin/addCategory'
+        },
+        'manageArticlesCategories': {
+            'name': 'manageArticlesCategories',
+            'route': '/admin/manageArticlesCategories'
+        },
+        'addArticle': {
+            'name': 'addArticle',
+            'route': '/admin/addArticle'
+        },
+        'manageArticles': {
+            'name': 'manageArticles/:articleId',
+            'route': '/admin/manageArticles'
+        },
+        'articleslist': {
+            'name': 'articleslist',
+            'route': '/admin/articleslist'
+        },
+        'manageProductsCategories': {
+            'name': 'manageProductsCategories',
+            'route': '/admin/manageProductsCategories'
+        },
+        'addItemForReview': {
+            'name': 'addItemForReview',
+            'route': '/admin/addItemForReview'
+        },
+        'itemReviewList': {
+            'name': 'itemReviewList',
+            'route': '/admin/itemReviewList'
+        },
+        'manageProducts': {
+            'name': 'manageProducts/:productId',
+            'route': '/admin/manageProducts'
+        },
+        'ProductsList': {
+            'name': 'ProductList',
+            'route': '/admin/ProductList'
+        },
+        'addBanner': {
+            'name': 'addBanner',
+            'route': '/admin/addBanner'
+        },
+        'editBanner': {
+            'name': 'editBanner/:bannerId',
+            'route': '/admin/editBanner/:bannerId'
+        },
+        'manageBanners': {
+            'name': 'manageBanners',
+            'route': '/admin/manageBanners'
         },
         'users': {
             'name': 'users',
@@ -209,29 +209,29 @@ export let config = {
         'name': 'writers',
         'route': 'writers',
         'loadChildren': './writers/writers.module#WritersModule',
-  
+
         'manageArticle': {
-          'name': 'manageArticle/:articleId',
-          'route': '/writers/manageArticle'
+            'name': 'manageArticle/:articleId',
+            'route': '/writers/manageArticle'
         },
         'articleslist': {
-          'name': 'articleslist',
-          'route': '/writers/articleslist'
+            'name': 'articleslist',
+            'route': '/writers/articleslist'
         }
-      },
+    },
     'users': {
         'name': 'users',
         'route': 'users',
         'loadChildren': './users/users.module#UsersModule',
-  
+
         'manageproduct': {
-          'name': 'manageproduct/:productId',
-          'route': '/users/manageproduct'
+            'name': 'manageproduct/:productId',
+            'route': '/users/manageproduct'
         },
         'productslist': {
-          'name': 'productslist',
-          'route': '/users/productslist'
+            'name': 'productslist',
+            'route': '/users/productslist'
         }
-      }
+    }
 
 };

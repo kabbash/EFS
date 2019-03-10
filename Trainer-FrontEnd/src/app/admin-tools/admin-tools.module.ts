@@ -60,7 +60,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
       // ProductListItemEditComponent,
       AddBannerComponent,
       ManageBannersComponent,
-      ProductListItemEditComponent,
+      // ProductListItemEditComponent,
       UserManagementComponent
     ],
 
