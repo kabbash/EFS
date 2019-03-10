@@ -15,7 +15,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^6.1.0",
+    "@angular/animations": "^6.1.10",
     "@angular/common": "^6.1.0",
     "@angular/compiler": "^6.1.0",
     "@angular/core": "^6.1.0",
@@ -39,6 +39,7 @@
     "jquery": "^3.3.1",
     "localstorage-polyfill": "^1.0.1",
     "mock-browser": "^0.92.14",
+    "ngx-toastr": "^9.1.2",
     "rxjs": "~6.2.0",
     "ts-loader": "^5.1.1",
     "zone.js": "~0.8.26"
