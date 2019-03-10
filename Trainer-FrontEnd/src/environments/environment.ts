@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   baseUrl: 'https://localhost:44394/api/',
   filesBaseUrl : 'https://localhost:44394/',
-  frontEndBaseUrl: 'http://ec2-54-188-217-195.us-west-2.compute.amazonaws.com:4400/'
+  frontEndBaseUrl: 'http://ec2-54-188-217-195.us-west-2.compute.amazonaws.com:4400'
 
 };
 
