@@ -24,7 +24,7 @@
         الكل
       </option>
       <option *ngFor="let item of roles" [ngValue]="item">
-        {{item}}
+        {{'manageUsers.roles.'+ item | translate}}
       </option>
     </select>
   </div>
@@ -58,7 +58,12 @@
         <span>التصنيف</span>
       </ng-template>
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        {{value}}
+        <!-- {{'manageUsers.roles.'+ value | translate}} -->
+        <ul>
+          <li *ngFor="let item of value">
+            {{'manageUsers.roles.'+ item | translate}}
+          </li>
+        </ul>
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="emailConfirmed">
@@ -96,7 +101,7 @@
     <span>إضافة تصنيف</span>
     <select [(ngModel)]="roleToAdd" class="form-control">
       <option *ngFor="let item of roles" [ngValue]="item">
-        {{item}}
+        {{'manageUsers.roles.'+ item | translate}}
       </option>
     </select>
     <button (click)="addRole()" class="btn buy-price filter-search-button">إضافة</button>
@@ -104,7 +109,7 @@
   <div *ngIf="selected[0]?.roles?.length > 0">
     <ul>
       <li *ngFor='let sel of selected[0].roles'>
-        <span (click)="removeRole(sel)">{{sel}} <i class="fa fa-times" aria-hidden="true"></i> </span>
+        <span (click)="removeRole(sel)">{{'manageUsers.roles.'+ sel | translate}} <i class="fa fa-times" aria-hidden="true"></i> </span>
       </li>
     </ul>
   </div>

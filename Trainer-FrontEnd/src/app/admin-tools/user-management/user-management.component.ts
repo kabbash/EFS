@@ -104,7 +104,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   updateUserAccess(username,blocked){
-    this.appService.loading = true;
+    this.appService.loading = true;    
     this.service.updateUserAccess(username, blocked)
       .pipe(first(), finalize(() => {
         this.appService.loading = false;

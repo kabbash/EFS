@@ -20,7 +20,7 @@ namespace Authentication.Extensions
                 users = users.Where(c => c.IsBlocked == filter.IsBlocked);
 
             if (!string.IsNullOrEmpty(filter.SearchText))
-                users = users.Where(p => p.FullName.ToLower().Contains(filter.SearchText.ToLower()));
+                users = users.Where(p => p.FullName.ToLower().Contains(filter.SearchText.ToLower())|| p.Email.ToLower().Contains(filter.SearchText.ToLower()));
 
             return users;
         }
