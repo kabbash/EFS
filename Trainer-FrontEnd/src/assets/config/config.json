@@ -23,6 +23,9 @@
         },
         "itemsForReview": {
             "pageSize": 10
+        },
+        "usersForAdmin": {
+            "pageSize": 10
         }
     }
 }

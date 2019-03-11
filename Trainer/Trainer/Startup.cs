@@ -51,6 +51,7 @@ using Shared.Core.Models;
 using Shared.Core.Resources;
 using Shared.Core.Utilities.Models;
 using Shared.Core.Validators;
+using System.Linq;
 using System.Text;
 using test.core.Model;
 using test.core.Validators;
@@ -187,6 +188,8 @@ namespace Trainer
                                                    .Map(dest => dest.CategoryName, src => (src.Category ?? new ProductsCategories()).Name);
             TypeAdapterConfig<DBModels.ProductsCategories, ProductsCategoryDto>.NewConfig()
                                                    .Map(dest => dest.HasSubCategory, src => src.Subcategories != null && src.Subcategories.Count > 0);
+            TypeAdapterConfig<DBModels.AspNetUsers, User>.NewConfig()
+                                                  .Map(dest => dest.Roles, src => src.AspNetUserRoles != null ? src.AspNetUserRoles.Select(r => r.Role.Name) : null);
 
         }
         #endregion

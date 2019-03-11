@@ -22,6 +22,10 @@ import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categori
 import { AddBannerComponent } from './add-banner/add-banner.component';
 import { ManageBannersComponent } from './manage-banners/manage-banners.component';
 import { BannersResolver } from './resolvers/banners.resolver';
+import { UserManagementComponent } from './user-management/user-management.component';
+
+import { RolesResolver } from './resolvers/roles-list.resolver';
+import { UsersListResolver } from './resolvers/users-list.resolver';
 
 
 const routes: Routes = [
@@ -86,6 +90,11 @@ const routes: Routes = [
         path: config.admin.manageBanners.name,
         component: ManageBannersComponent,
         resolve: {banners: BannersResolver}
+      },
+      {
+        path: config.admin.users.name,
+        component: UserManagementComponent,
+        resolve: { users: UsersListResolver}
       }
     ]
   },

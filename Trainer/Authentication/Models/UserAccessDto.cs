@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Authentication.Models
 {
-    public class UserRoleDto
+    public class UserAccessDto
     {
         public string Username { get; set; }
-        public string RoleName { get; set; }
+        public bool Blocked { get; set; }
     }
 }

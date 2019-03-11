@@ -208,6 +208,19 @@ namespace Trainer.EF
             }
         }
 
+        private IRepository<FoodItem> _foodItemRepo;
+        public IRepository<FoodItem> FoodItemsRepository
+        {
+            get
+            {
+                if (_foodItemRepo == null)
+                {
+                    _foodItemRepo = new Repository<FoodItem>(_dbContext);
+                }
+                return _foodItemRepo;
+            }
+        }
+
 
         #endregion
 

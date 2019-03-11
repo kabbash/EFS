@@ -24,6 +24,11 @@ import { AdminArticlesService } from './services/admin.articles.services';
 import { AddBannerComponent } from './add-banner/add-banner.component';
 import { ManageBannerService } from './services/manage-banner.service';
 import { ManageBannersComponent } from './manage-banners/manage-banners.component';
+import { UserManagementComponent } from './user-management/user-management.component';
+import { RolesResolver } from './resolvers/roles-list.resolver';
+import { UsersListResolver } from './resolvers/users-list.resolver';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -37,6 +42,7 @@ import { ManageBannersComponent } from './manage-banners/manage-banners.componen
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
+    NgxDatatableModule
   ],
   declarations:
     [
@@ -53,7 +59,9 @@ import { ManageBannersComponent } from './manage-banners/manage-banners.componen
       // ProductListItemComponent,
       // ProductListItemEditComponent,
       AddBannerComponent,
-      ManageBannersComponent
+      ManageBannersComponent,
+      // ProductListItemEditComponent,
+      UserManagementComponent
     ],
 
   providers: [
@@ -65,6 +73,8 @@ import { ManageBannersComponent } from './manage-banners/manage-banners.componen
 
     AdminArticlesService,
     ManageBannerService,
+    RolesResolver,
+    UsersListResolver
   ]
 })
 export class AdminToolsModule { }

@@ -1,0 +1,116 @@
+<div class="row" class="filter-wrapper">
+  <div class="col-sm-4">
+    <span> الإسم</span>
+    <input type="text" class="form-control" [(ngModel)]="filter.searchText">
+  </div>
+  <div class="col-sm-3">
+    <span> اختر الحاله </span>
+    <select [(ngModel)]="filter.isBlocked" class="form-control">
+      <option [ngValue]="null">
+        الكل
+      </option>
+      <option [ngValue]="false">
+        النشط
+      </option>
+      <option [ngValue]="true">
+        المحظور
+      </option>
+    </select>
+  </div>
+  <div class="col-sm-3">
+    <span> اختر التصنيف </span>
+    <select [(ngModel)]="filter.role" class="form-control">
+      <option [ngValue]="null">
+        الكل
+      </option>
+      <option *ngFor="let item of roles" [ngValue]="item">
+        {{'manageUsers.roles.'+ item | translate}}
+      </option>
+    </select>
+  </div>
+  <div class="col-sm-2 submit-filter-button">
+    <button type="button" (click)="search()" class="btn buy-price filter-search-button">بحـث</button>
+  </div>
+</div>
+<div class="data-table">
+  <ngx-datatable class="material" [rows]="usersList" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+    [rowHeight]="'auto'" [externalPaging]="true" [count]="pagerDto.itmesCount" [offset]="pagerDto.currentPage"
+    [limit]="pagerDto.pageSize" [selected]="selected" [selectionType]="'single'" (page)='setPage($event)'
+    (select)='onSelect($event)'>
+    <ngx-datatable-column name="fullName">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>الإسم</span>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="email">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>البريد الإلكتروني</span>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="roles">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>التصنيف</span>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <!-- {{'manageUsers.roles.'+ value | translate}} -->
+        <ul>
+          <li *ngFor="let item of value">
+            {{'manageUsers.roles.'+ item | translate}}
+          </li>
+        </ul>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="emailConfirmed">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>تم تأكيد البريد الإلكتروني</span>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value ? 'نعم' : 'لا' }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="isBlocked">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>محظور</span>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value ? 'نعم' : 'لا' }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Block">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <!-- <span>حظر</span> -->
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <button (click)="updateUserAccess(row.email, !row.isBlocked)">
+          <!-- <i class="fa fa-ban" aria-hidden="true"></i> -->
+          {{row.isBlocked? "فك حظر"  : "حظر"}}
+        </button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
+<div class="selection">
+  <div *ngIf="selected?.length > 0">
+    <div>{{selected[0].fullName}}</div>
+    <span>إضافة تصنيف</span>
+    <select [(ngModel)]="roleToAdd" class="form-control">
+      <option *ngFor="let item of roles" [ngValue]="item">
+        {{'manageUsers.roles.'+ item | translate}}
+      </option>
+    </select>
+    <button (click)="addRole()" class="btn buy-price filter-search-button">إضافة</button>
+  </div>
+  <div *ngIf="selected[0]?.roles?.length > 0">
+    <ul>
+      <li *ngFor='let sel of selected[0].roles'>
+        <span (click)="removeRole(sel)">{{'manageUsers.roles.'+ sel | translate}} <i class="fa fa-times" aria-hidden="true"></i> </span>
+      </li>
+    </ul>
+  </div>
+</div>

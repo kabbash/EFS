@@ -9,7 +9,7 @@ export interface IAppConfig {
         productsForAdmin: {
             pageSize: number;
         },
-        productsForOwners:{
+        productsForOwners: {
             pageSize: number;
         }
         articlesForAny: {
@@ -17,11 +17,14 @@ export interface IAppConfig {
         },
         articlesForAdmin: {
             pageSize: number;
-        },        
+        },
         articlesForWriters: {
             pageSize: number;
         },
         itemsForReview: {
+            pageSize: number;
+        },
+        usersForAdmin: {
             pageSize: number;
         }
     };

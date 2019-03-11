@@ -4,4 +4,7 @@ export class User {
     username: string;
     token: string;
     roles: string[];
+    emailConfirmed: boolean;
+    isBlocked: boolean;
+    email: string;
 }
