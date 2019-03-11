@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { articleCategoryDto } from '../../models/articles/article-category-dto';
 import { environment } from '../../../../environments/environment';
 import { config } from '../../../config/pages-config';
@@ -22,6 +22,8 @@ export class ArticlesCardComponent implements OnInit {
   @Input() articleCategory: articleCategoryDto;
   @Input() localImageUrl: string;
   @Input() apiUrl: string;
+  @Input() showImageCropIcon = false;
+  @Output() cropEvent = new EventEmitter<any>();
   baseurl = environment.filesBaseUrl;
   constructor(private router: Router,
     private categoriesService: CategoriesService,
@@ -67,6 +69,9 @@ export class ArticlesCardComponent implements OnInit {
       }  
     });
     
+  }
+  cropClicked() {
+    this.cropEvent.emit()
   }
 
 }

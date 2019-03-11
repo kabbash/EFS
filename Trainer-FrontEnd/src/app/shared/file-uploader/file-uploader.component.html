@@ -1,1 +1,11 @@
-<input #file type="file" id="file-input" name="file-input"  (change)="onSelectFile(file.files[0])" [disabled]="isDisabled" [required]="isRequired" [class]="classList">
+<input #file type="file" id="file-input" name="file-input"  (change)="onSelectFile($event)" [disabled]="isDisabled" [required]="isRequired" [class]="classList">
+<!-- <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="4 / 3"
+    [resizeToWidth]="128"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (loadImageFailed)="loadImageFailed()"
+></image-cropper> -->

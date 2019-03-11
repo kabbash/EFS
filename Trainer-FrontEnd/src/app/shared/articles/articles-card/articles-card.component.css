@@ -20,7 +20,7 @@
     background-position: 50%;
     background-repeat: no-repeat;
     margin-top: 38px;
-
+    position: relative;
 }
 
 
@@ -45,4 +45,8 @@
 :host:hover .card-title-container p {
     color: #00bcd4;
     text-decoration: underline;
+}
+.crop-btn{
+    position: absolute;
+    left: 0;
 }

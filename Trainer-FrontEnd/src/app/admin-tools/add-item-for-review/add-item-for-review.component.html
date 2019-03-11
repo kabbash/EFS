@@ -23,7 +23,7 @@
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="file-input">File input</label>
               <div class="col-md-9">
-                <app-file-uploader formControlName=profilePictureFile (change)="onFileSelect($event.target.files[0])"></app-file-uploader>
+                <app-file-uploader formControlName=profilePictureFile (change)="onFileSelect($event)"></app-file-uploader>
               </div>
             </div>
             <div class="card-footer">
@@ -36,7 +36,8 @@
       </div>
     </div>
     <div class="col-md-4">
-      <app-product-item #itemForReview [cardName]="reviewForm.value['name']" [cardImage]="productReviewService.productReviewToUpdate ?(baseUrl + reviewForm.value['profilePicture']) : reviewForm.value['profilePicture']"></app-product-item>
+      <app-product-item #itemForReview [cardName]="reviewForm.value['name']" [cardImage]="productReviewService.productReviewToUpdate ?(baseUrl + reviewForm.value['profilePicture']) : reviewForm.value['profilePicture']" (cropEvent)="openCropper()" [showImageCropIcon]="imageAdded"></app-product-item>
     </div>
   </div>
+  <app-image-cropper #cropper [imageEvent]="imageEvent" (imageCroppedEvent)="onFileSelect($event, true)"></app-image-cropper>
 </div>
