@@ -111,3 +111,11 @@ div.modal-body img {
 .no-pics {
     margin-bottom: 30px;
 }
+
+.carousel-darker-overlay {
+    position: relative;
+}
+.crop-btn{
+    position: absolute;
+    left: 0;
+}

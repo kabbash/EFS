@@ -7,6 +7,7 @@ import { config } from '../../config/pages-config';
 import { Router } from '@angular/router';
 import { UtilitiesService } from '../../shared/services/utilities.service';
 import { environment } from '../../../environments/environment';
+import { ImageCropperComponent } from 'src/app/shared/image-cropper/image-cropper.component';
 
 @Component({
   selector: 'app-add-item-for-review',
@@ -18,6 +19,8 @@ export class AddItemForReviewComponent implements OnInit {
   imageAdded = false;
   baseUrl = environment.filesBaseUrl;
   @ViewChild('itemForReview') item: ProductItemComponent;
+  @ViewChild('cropper') cropper: ImageCropperComponent;
+  imageEvent;
   constructor(private fb: FormBuilder,
     private repositoryService: RepositoryService,
     public productReviewService: ProductReviewService,
@@ -66,7 +69,9 @@ export class AddItemForReviewComponent implements OnInit {
     });
   }
 
-  onFileSelect(file) {
+  onFileSelect(event, isCropped) {
+    this.imageEvent = isCropped ? null : event;
+    const file = isCropped ? event : event.target.files[0];
     this.reviewForm.controls['profilePictureFile'].setValue(file);
     const reader = new FileReader();
     reader.onload = (e: any) => {
@@ -76,4 +81,7 @@ export class AddItemForReviewComponent implements OnInit {
     this.imageAdded = true;
   }
 
+  openCropper() {
+    this.cropper.open();
+  }
 }

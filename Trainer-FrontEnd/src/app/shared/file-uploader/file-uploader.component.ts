@@ -62,8 +62,8 @@ export class FileUploaderComponent implements OnInit, ControlValueAccessor {
 
   onSelectFile(event) {
     this.file = event.target.files[0];
-    this.onChanged(event.target.files[0]);
-    this.imageChangedEvent = event;
+    this.onChanged(event);
+    // this.imageChangedEvent = event;
   }
 
   imageCropped(event: ImageCroppedEvent) {

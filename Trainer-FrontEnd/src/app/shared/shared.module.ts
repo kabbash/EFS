@@ -31,6 +31,7 @@ import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { ProductsService } from '../products/products.service';
 import { ClientFilterComponent } from './client-filter/client-filter.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 
 @NgModule({
   imports: [
@@ -64,7 +65,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     SliderEditModeComponent,
     SearchFilterComponent,
     ClientFilterComponent,
-    ImageCropperModule
+    ImageCropperModule,
+    ImageCropperComponent
   ],
   declarations: [
     FooterComponent,
@@ -84,7 +86,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ModalComponent,
     SliderEditModeComponent,
     SearchFilterComponent,
-    ClientFilterComponent
+    ClientFilterComponent,
+    ImageCropperComponent
   ],
   providers: [
     UtilitiesService,

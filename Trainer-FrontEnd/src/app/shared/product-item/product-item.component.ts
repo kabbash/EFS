@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { config } from '../../config/pages-config';
 import { Router } from '@angular/router';
 import { RepositoryService } from '../../shared/services/repository.service';
@@ -21,6 +21,8 @@ export class ProductItemComponent implements OnInit {
   @Input() shortDesc: string;
   @Input() showDetailsButton = true;
   @Input() product : productListItemDto;
+  @Input() showImageCropIcon = false;
+  @Output() cropEvent = new EventEmitter();
   isAddItemForReview = false;
   constructor(private route: Router,
      private repository: RepositoryService,
@@ -58,6 +60,10 @@ export class ProductItemComponent implements OnInit {
     this.productReviewService.productReviewToUpdate.profilePictureFile = null;
     
     
+  }
+
+  cropClicked() {
+    this.cropEvent.emit();
   }
 
 }

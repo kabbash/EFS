@@ -50,7 +50,7 @@ export class ProductsListComponent implements OnInit {
     this.route.data.subscribe(result => {
 
       this.pagerData = result.productList.data;
-      this.specialProducts = result.productSpecialList.data.results;
+      this.specialProducts = result.productSpecialList ? result.productSpecialList.data.results : [];
       this.currentPageSpecialProducts = this.specialProducts.slice(0, this.specialProductsPageSize);
       this.productReviewService.productReviewList = result.productList.data.results;
       this.products = this.productReviewService.productReviewList;

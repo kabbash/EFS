@@ -25,7 +25,7 @@
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="file-input">{{'addCategory.picture' | translate}}</label>
               <div class="col-md-9">
-                <app-file-uploader formControlName=profilePictureFile (imageCroppedEvent)="onFileSelect($event)" [buttonValue]="'addCategory.chooseFile'"></app-file-uploader>
+                <app-file-uploader formControlName=profilePictureFile (change)="onFileSelect($event)" [buttonValue]="'addCategory.chooseFile'"></app-file-uploader>
                 <div *ngIf="categoryForm.controls['profilePictureFile'].touched && categoryForm.controls['profilePictureFile'].errors" class="text-danger" > <!-- class="invalid-feedback"-->
                   <div *ngIf="categoryForm.controls['profilePictureFile'].errors.required">{{'addCategory.formValidations.profilePictureFile.required' | translate}}</div>
               </div>
@@ -46,7 +46,9 @@
       </div>
     </div>
     <div class="col-md-6">
-      <app-articles-card [localImageUrl]="addedImageUrl" [addMode]="true" [articleCategory]="articleCategory"></app-articles-card>
+      <app-articles-card [localImageUrl]="addedImageUrl" [addMode]="true" [articleCategory]="articleCategory" (cropEvent)="openCropper()" [showImageCropIcon]="addedImageUrl"></app-articles-card>
     </div>
   </div>
+  <app-image-cropper #cropper [imageEvent]="imageEvent" (imageCroppedEvent)="onFileSelect($event, true)"></app-image-cropper>
 </div>
+
