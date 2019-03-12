@@ -9,13 +9,22 @@ export interface IAppConfig {
         productsForAdmin: {
             pageSize: number;
         },
+        productsForOwners: {
+            pageSize: number;
+        }
         articlesForAny: {
             pageSize: number;
         },
         articlesForAdmin: {
             pageSize: number;
         },
+        articlesForWriters: {
+            pageSize: number;
+        },
         itemsForReview: {
+            pageSize: number;
+        },
+        usersForAdmin: {
             pageSize: number;
         }
     };

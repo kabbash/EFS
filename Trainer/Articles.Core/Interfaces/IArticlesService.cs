@@ -7,10 +7,10 @@ namespace Articles.Core.Interfaces
     {
         ResultMessage GetAll(ArticlesFilter filter);
         ResultMessage GetById(int id);
-        ResultMessage Insert(ArticleAddDto product);        
-        ResultMessage Update(ArticleAddDto product, int id);
-        ResultMessage Delete(int id);
+        ResultMessage Insert(ArticleAddDto product, IUserDto user);
+        ResultMessage Update(ArticleAddDto product, int id , IUserDto user);
+        ResultMessage Delete(int id,IUserDto user);
         ResultMessage Approve(int id);
-        ResultMessage Reject(RejectDto rejectDto);                
+        ResultMessage Reject(RejectDto rejectDto, IUserDto user);
     }
 }

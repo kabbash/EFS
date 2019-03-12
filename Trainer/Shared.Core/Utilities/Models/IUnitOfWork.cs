@@ -18,6 +18,7 @@ namespace Shared.Core.Utilities.Models
         IRepository<ArticlesCategories> ArticlesCategoriesRepository { get; }
         IRepository<ItemsForReview> ItemsReviewsRepository { get; }
         IRepository<Banner> BannersRepository { get; }
+        IRepository<FoodItem> FoodItemsRepository { get; }
 
 
 

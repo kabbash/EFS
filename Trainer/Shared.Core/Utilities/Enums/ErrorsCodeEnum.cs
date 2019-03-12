@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Shared.Core.Utilities.Enums
-{  
+{
     public enum ProductsErrorsCodeEnum
     {
         ProductsCategoriesGetAllError,
@@ -34,7 +34,10 @@ namespace Shared.Core.Utilities.Enums
         AuthenticationError,
         EmailNotConfirmed,
         UserDoesNotExist,
-        OldPasswordMismatch
+        OldPasswordMismatch,
+        UserBlocked,
+        RoleDoesNotExist,
+        UserRoleError
     }
     public enum RatingErrorsCodeEnum
     {
@@ -51,6 +54,15 @@ namespace Shared.Core.Utilities.Enums
     }
 
     public enum BannersErrorsCodeEnum
+    {
+        GetAllError,
+        AddError,
+        NotFoundError,
+        GetByIdError,
+        UpdateError,
+        DeleteError
+    }
+    public enum FoodItemsErrorsCodeEnum
     {
         GetAllError,
         AddError,

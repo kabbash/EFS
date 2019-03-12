@@ -25,7 +25,7 @@ export let config = {
             'name': 'food',
             'route': '/articles/food'
         },
-        'championships' : {
+        'championships': {
             'name': 'championships',
             'route': '/articles/championships'
         }
@@ -144,61 +144,94 @@ export let config = {
         }
     },
     'admin': {
-      'name': 'admin',
-      'route': 'admin',
-    //   'loadChildren': './admin/admin.module#AdminToolsModule',
+        'name': 'admin',
+        'route': 'admin',
+        //   'loadChildren': './admin/admin.module#AdminToolsModule',
 
-      'addCategory': {
-        'name': 'addCategory',
-        'route': '/admin/addCategory'
-      },
-      'manageArticlesCategories': {
-        'name': 'manageArticlesCategories',
-        'route': '/admin/manageArticlesCategories'
-      },
-      'addArticle': {
-        'name': 'addArticle',
-        'route': '/admin/addArticle'
-      },
-      'manageArticles': {
-        'name': 'manageArticles/:articleId',
-        'route': '/admin/manageArticles'
-      },
-      'articleslist': {
-        'name': 'articleslist',
-        'route': '/admin/articleslist'
-      },
-      'manageProductsCategories': {
-        'name': 'manageProductsCategories',
-        'route': '/admin/manageProductsCategories'
-      },
-      'addItemForReview': {
-        'name': 'addItemForReview',
-        'route': '/admin/addItemForReview'
-      },
-      'itemReviewList': {
-          'name': 'itemReviewList',
-          'route': '/admin/itemReviewList'
-      },
-      'manageProducts': {
-        'name': 'manageProducts/:productId',
-        'route': '/admin/manageProducts'
-      },
-      'ProductsList': {
-        'name': 'ProductList',
-        'route': '/admin/ProductList'
-      },
-      'addBanner': {
-          'name': 'addBanner',
-          'route': '/admin/addBanner'
-      },
-      'editBanner': {
-        'name': 'editBanner/:bannerId',
-        'route': '/admin/editBanner/:bannerId'
+        'addCategory': {
+            'name': 'addCategory',
+            'route': '/admin/addCategory'
+        },
+        'manageArticlesCategories': {
+            'name': 'manageArticlesCategories',
+            'route': '/admin/manageArticlesCategories'
+        },
+        'addArticle': {
+            'name': 'addArticle',
+            'route': '/admin/addArticle'
+        },
+        'manageArticles': {
+            'name': 'manageArticles/:articleId',
+            'route': '/admin/manageArticles'
+        },
+        'articleslist': {
+            'name': 'articleslist',
+            'route': '/admin/articleslist'
+        },
+        'manageProductsCategories': {
+            'name': 'manageProductsCategories',
+            'route': '/admin/manageProductsCategories'
+        },
+        'addItemForReview': {
+            'name': 'addItemForReview',
+            'route': '/admin/addItemForReview'
+        },
+        'itemReviewList': {
+            'name': 'itemReviewList',
+            'route': '/admin/itemReviewList'
+        },
+        'manageProducts': {
+            'name': 'manageProducts/:productId',
+            'route': '/admin/manageProducts'
+        },
+        'ProductsList': {
+            'name': 'ProductList',
+            'route': '/admin/ProductList'
+        },
+        'addBanner': {
+            'name': 'addBanner',
+            'route': '/admin/addBanner'
+        },
+        'editBanner': {
+            'name': 'editBanner/:bannerId',
+            'route': '/admin/editBanner/:bannerId'
+        },
+        'manageBanners': {
+            'name': 'manageBanners',
+            'route': '/admin/manageBanners'
+        },
+        'users': {
+            'name': 'users',
+            'route': '/admin/users'
+        }
     },
-    'manageBanners': {
-        'name': 'manageBanners',
-        'route': '/admin/manageBanners'
+    'writers': {
+        'name': 'writers',
+        'route': 'writers',
+        'loadChildren': './writers/writers.module#WritersModule',
+
+        'manageArticle': {
+            'name': 'manageArticle/:articleId',
+            'route': '/writers/manageArticle'
+        },
+        'articleslist': {
+            'name': 'articleslist',
+            'route': '/writers/articleslist'
+        }
+    },
+    'users': {
+        'name': 'users',
+        'route': 'users',
+        'loadChildren': './users/users.module#UsersModule',
+
+        'manageproduct': {
+            'name': 'manageproduct/:productId',
+            'route': '/users/manageproduct'
+        },
+        'productslist': {
+            'name': 'productslist',
+            'route': '/users/productslist'
+        }
     }
-    }
+
 };

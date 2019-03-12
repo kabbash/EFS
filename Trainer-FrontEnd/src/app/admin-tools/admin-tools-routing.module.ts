@@ -15,13 +15,17 @@ import { ItemReviewResolver } from './resolvers/item-review.resolver';
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
 import { AdminProductsListComponent } from './products/admin-products-list/admin-products-list.component';
 import { AdminProductsListResolver } from './resolvers/products-list-resolver';
-import { ProductsListComponent } from '../shared/products-list/products-list.component';
+import { ProductsListComponent } from '../shared/products/products-list/products-list.component';
 import { ManageProductsComponent } from './products/manage-products/manage-products.component';
 import { ProductResolver } from './resolvers/product.resolver';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
 import { AddBannerComponent } from './add-banner/add-banner.component';
 import { ManageBannersComponent } from './manage-banners/manage-banners.component';
 import { BannersResolver } from './resolvers/banners.resolver';
+import { UserManagementComponent } from './user-management/user-management.component';
+
+import { RolesResolver } from './resolvers/roles-list.resolver';
+import { UsersListResolver } from './resolvers/users-list.resolver';
 
 
 const routes: Routes = [
@@ -86,6 +90,11 @@ const routes: Routes = [
         path: config.admin.manageBanners.name,
         component: ManageBannersComponent,
         resolve: {banners: BannersResolver}
+      },
+      {
+        path: config.admin.users.name,
+        component: UserManagementComponent,
+        resolve: { users: UsersListResolver}
       }
     ]
   },

@@ -15,7 +15,7 @@ namespace Trainer.EF.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -101,9 +101,9 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
 
                     b.HasData(
-                        new { Id = 1, CreatedAt = new DateTime(2019, 2, 24, 17, 31, 50, 946, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
-                        new { Id = 2, CreatedAt = new DateTime(2019, 2, 24, 17, 31, 50, 948, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" },
-                        new { Id = 3, CreatedAt = new DateTime(2019, 2, 24, 17, 31, 50, 948, DateTimeKind.Utc), CreatedBy = "admin", Name = "البطولات", PredefinedKey = 3, ProfilePicture = "Files/Articles%20Categories/championships.png" }
+                        new { Id = 1, CreatedAt = new DateTime(2019, 3, 5, 19, 26, 47, 440, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
+                        new { Id = 2, CreatedAt = new DateTime(2019, 3, 5, 19, 26, 47, 443, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" },
+                        new { Id = 3, CreatedAt = new DateTime(2019, 3, 5, 19, 26, 47, 443, DateTimeKind.Utc), CreatedBy = "admin", Name = "البطولات", PredefinedKey = 3, ProfilePicture = "Files/Articles%20Categories/championships.png" }
                     );
                 });
 
@@ -227,6 +227,8 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("Hometown");
 
+                    b.Property<bool>("IsBlocked");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTime?>("LockoutEndDateUtc")
@@ -262,7 +264,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", LockoutEnabled = false, PasswordHash = new byte[] { 218, 207, 69, 166, 235, 103, 82, 231, 5, 111, 112, 232, 203, 145, 25, 101, 212, 172, 189, 80, 43, 15, 217, 175, 219, 92, 124, 215, 188, 136, 30, 125, 126, 207, 104, 39, 142, 188, 226, 157, 92, 194, 164, 73, 83, 224, 113, 244, 112, 195, 144, 82, 149, 180, 116, 245, 242, 183, 247, 62, 32, 113, 150, 186 }, PasswordSalt = new byte[] { 172, 161, 120, 109, 175, 39, 49, 189, 229, 25, 155, 132, 44, 199, 46, 159, 254, 171, 123, 40, 135, 81, 15, 127, 153, 134, 150, 60, 127, 46, 81, 187, 213, 212, 12, 48, 180, 194, 242, 114, 6, 131, 161, 196, 165, 5, 179, 81, 135, 114, 11, 128, 78, 135, 139, 76, 163, 112, 151, 120, 240, 247, 168, 41, 53, 192, 53, 75, 105, 193, 192, 202, 122, 56, 193, 2, 183, 122, 106, 58, 69, 26, 162, 26, 143, 33, 92, 13, 34, 24, 17, 163, 166, 15, 94, 228, 217, 49, 20, 159, 189, 187, 225, 29, 221, 252, 78, 137, 60, 206, 145, 249, 135, 127, 179, 21, 62, 8, 49, 239, 213, 204, 83, 18, 43, 113, 208, 73 }, PhoneNumber = "01014991554", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "ahmedkabbash@gmail.com" }
+                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", IsBlocked = false, LockoutEnabled = false, PasswordHash = new byte[] { 103, 13, 102, 122, 0, 123, 210, 79, 71, 52, 199, 182, 144, 142, 151, 123, 117, 16, 63, 134, 33, 156, 58, 43, 23, 90, 187, 33, 91, 100, 136, 178, 219, 251, 254, 254, 20, 24, 225, 64, 121, 110, 142, 147, 75, 33, 211, 20, 139, 175, 206, 151, 112, 192, 148, 101, 64, 53, 182, 253, 174, 74, 35, 146 }, PasswordSalt = new byte[] { 186, 251, 13, 151, 209, 120, 16, 95, 228, 154, 143, 11, 234, 20, 66, 128, 121, 155, 82, 149, 176, 147, 192, 79, 253, 221, 15, 254, 53, 17, 188, 139, 194, 223, 136, 89, 189, 95, 226, 173, 194, 164, 121, 130, 139, 240, 223, 248, 39, 84, 139, 77, 34, 163, 186, 131, 147, 242, 168, 119, 200, 62, 23, 2, 242, 30, 91, 30, 139, 173, 153, 79, 197, 102, 43, 53, 42, 10, 215, 83, 65, 60, 230, 194, 133, 104, 239, 62, 96, 246, 200, 165, 74, 227, 58, 236, 75, 70, 29, 150, 4, 208, 117, 46, 196, 67, 165, 127, 93, 245, 240, 175, 239, 163, 58, 4, 185, 68, 153, 198, 95, 186, 157, 253, 218, 189, 203, 70 }, PhoneNumber = "01014991554", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "ahmedkabbash@gmail.com" }
                     );
                 });
 
@@ -557,6 +559,135 @@ namespace Trainer.EF.Migrations
                     b.HasIndex("ItemsForReviewId");
 
                     b.ToTable("EntityRatings");
+                });
+
+            modelBuilder.Entity("Shared.Core.Models.FoodItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Alcohol");
+
+                    b.Property<decimal>("Amount");
+
+                    b.Property<decimal>("B1");
+
+                    b.Property<decimal>("B12");
+
+                    b.Property<decimal>("B2");
+
+                    b.Property<decimal>("B3");
+
+                    b.Property<decimal>("B5");
+
+                    b.Property<decimal>("B6");
+
+                    b.Property<decimal>("Caffiene");
+
+                    b.Property<decimal>("Calcuim");
+
+                    b.Property<decimal>("Calories");
+
+                    b.Property<decimal>("Carbs");
+
+                    b.Property<decimal>("Cholesterol");
+
+                    b.Property<decimal>("Copper");
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<decimal>("Cystine");
+
+                    b.Property<decimal>("Energy");
+
+                    b.Property<decimal>("Fat");
+
+                    b.Property<decimal>("Fiber");
+
+                    b.Property<decimal>("Folate");
+
+                    b.Property<decimal>("Histidine");
+
+                    b.Property<decimal>("Iron");
+
+                    b.Property<decimal>("Isoleucine");
+
+                    b.Property<decimal>("Leucine");
+
+                    b.Property<decimal>("Lysine");
+
+                    b.Property<decimal>("Magnesium");
+
+                    b.Property<decimal>("Manganese");
+
+                    b.Property<decimal>("Methionine");
+
+                    b.Property<decimal>("Monounsaturated");
+
+                    b.Property<string>("Name");
+
+                    b.Property<decimal>("NetCarbs");
+
+                    b.Property<decimal>("Omega3");
+
+                    b.Property<decimal>("Omega6");
+
+                    b.Property<decimal>("Phenylalanine");
+
+                    b.Property<decimal>("Phosphorus");
+
+                    b.Property<decimal>("Polyunsaturated");
+
+                    b.Property<decimal>("Potassium");
+
+                    b.Property<decimal>("Protein");
+
+                    b.Property<decimal>("Saturated");
+
+                    b.Property<decimal>("Selenium");
+
+                    b.Property<decimal>("Sodium");
+
+                    b.Property<decimal>("Starch");
+
+                    b.Property<decimal>("Sugars");
+
+                    b.Property<decimal>("Threonine");
+
+                    b.Property<decimal>("TransFats");
+
+                    b.Property<decimal>("Tryptophan");
+
+                    b.Property<decimal>("Tyrosine");
+
+                    b.Property<DateTime?>("UpdatedAt");
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.Property<decimal>("Valine");
+
+                    b.Property<decimal>("VitaminA");
+
+                    b.Property<decimal>("VitaminC");
+
+                    b.Property<decimal>("VitaminD");
+
+                    b.Property<decimal>("VitaminE");
+
+                    b.Property<decimal>("VitaminK");
+
+                    b.Property<decimal>("Water");
+
+                    b.Property<decimal>("Zinc");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.ToTable("FoodItems");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.ItemsForReview", b =>
@@ -944,6 +1075,13 @@ namespace Trainer.EF.Migrations
                     b.HasOne("Shared.Core.Models.ItemsForReview")
                         .WithMany("Reviews")
                         .HasForeignKey("ItemsForReviewId");
+                });
+
+            modelBuilder.Entity("Shared.Core.Models.FoodItem", b =>
+                {
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "Author")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.Products", b =>

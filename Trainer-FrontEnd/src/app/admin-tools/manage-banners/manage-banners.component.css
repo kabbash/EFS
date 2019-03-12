@@ -3,6 +3,17 @@
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
+:host {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  flex: 1;
+  /* cursor: pointer; */
+  margin-right: 1rem;
+  padding-top: 50px;
+}
+
 /* Carousel base class */
 .carousel {}
 
@@ -32,15 +43,15 @@
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 35rem;
+  height: 100%;
   background-color: #777;
   display: flex;
-  margin: 2rem;
-  
 }
 .banners-container{
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex: 1;
 }
 
 .carousel-item>img {
@@ -56,11 +67,19 @@
   bottom: 7rem;
   z-index: 10;
 }
+.carousel-container {
+  background: rgba(255, 255, 255, .75);
+  border-radius: 12px;
+  box-shadow: 0 0px 19px 0px rgba(255, 255, 255, .5);
+  height: 280px;
+  flex: 0 0 600px;
+  padding: 10px;
+  margin: 15px;
+}
 .dashboard-carousel{
   background-size: cover;
   background-position: 50%;
   background-repeat: no-repeat;
-  height: 560px;
 }
 @media (min-width: 40em) {
 

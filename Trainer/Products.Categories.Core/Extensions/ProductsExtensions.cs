@@ -35,6 +35,9 @@ namespace Products.Core.Extensions
             if (!string.IsNullOrEmpty(filter.SearchText))
                 products = products.Where(p => p.Name.ToLower().Contains(filter.SearchText.ToLower()));
 
+            if(!string.IsNullOrEmpty(filter.CreatedBy))
+                products = products.Where(p => p.CreatedBy == filter.CreatedBy);
+
             return products;
         }
     }

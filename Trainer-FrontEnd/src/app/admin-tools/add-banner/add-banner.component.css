@@ -1,4 +1,13 @@
-
+:host {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  flex: 1;
+  /* cursor: pointer; */
+  margin-right: 1rem;
+  padding-top: 50px;
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -39,7 +48,12 @@
 .add-banner-container{
   display: flex;
   flex-direction: column;
-  margin-right: 2rem;
+  flex: 0 0 600px;
+  background: rgba(255, 255, 255, .75);
+  border-radius: 12px;
+  box-shadow: 0 0px 19px 0px rgba(255, 255, 255, .5);
+  padding: 10px;
+  margin: 15px;
 }
 
 .carousel-item>img {
@@ -59,7 +73,13 @@
   background-size: cover;
   background-position: 50%;
   background-repeat: no-repeat;
-  height: 560px;
+  height: 280px;
+  margin-bottom: 20px;
+}
+
+.form-radio{
+  position: relative;
+  top: 6px;
 }
 @media (min-width: 40em) {
 

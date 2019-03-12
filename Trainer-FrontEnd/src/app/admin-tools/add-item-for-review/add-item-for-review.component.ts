@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RepositoryService } from '../../shared/services/repository.service';
-import { ProductItemComponent } from '../../shared/product-item/product-item.component';
+import { ProductItemComponent } from '../../shared/products/product-item/product-item.component';
 import { ProductReviewService } from '../../admin-tools/services/product-review.service';
 import { config } from '../../config/pages-config';
 import { Router } from '@angular/router';

@@ -1,21 +1,26 @@
-
 <div class="add-banner-container">
-  <div class="carousel-item dashboard-carousel" [ngStyle]="{'background-image': !banner.imagePath ? 'url(' + addedImageUrl + ')' : 'url(' + baseurl + banner?.imagePath + ')'}">
+  <div class="carousel-item dashboard-carousel"
+    [ngStyle]="{'background-image': !banner.imagePath ? 'url(' + addedImageUrl + ')' : 'url(' + baseurl + banner?.imagePath + ')'}">
     <div class="container">
       <span #titleHtml>
-          <div class="carousel-caption" [ngClass]="{'text-left':titleAlign === 'left' , 'text-right': titleAlign === 'right', 'text-center': titleAlign === 'center'}">
-              <h1>
-                <pre>{{bannerForm.controls['title'].value}}</pre>
-              </h1>
-            </div>
+        <div class=""
+          [ngClass]="{'text-left':titleAlign === 'left' , 'text-right': titleAlign === 'right', 'text-center': titleAlign === 'center'}">
+          <h1>
+            <pre>{{bannerForm.controls['title'].value}}</pre>
+          </h1>
+        </div>
       </span>
       <span #buttonHtml>
-          <div class=".carousel-button" [ngClass]="{'text-left':buttonAlign === 'left' , 'text-right': buttonAlign === 'right', 'text-center': buttonAlign === 'center', 'btn-blue': buttonColor === 'blue', 'btn-white': buttonColor === 'white', 'btn-black': buttonColor === 'black'}">
-              <p><a class="btn btn-lg btn-outline-primary" href="#" role="button"> {{bannerForm.controls['buttonText'].value}} <i class="fa fa-arrow-left"></i></a></p>          
-              
-            </div>
+        <div class=""
+          [ngClass]="{'text-left':buttonAlign === 'left' , 'text-right': buttonAlign === 'right', 'text-center': buttonAlign === 'center'}">
+          <p><a class="btn btn-lg"
+              [ngClass]="{'btn-blue': buttonColor === 'blue', 'btn-white': buttonColor === 'white', 'btn-black': buttonColor === 'black'}"
+              href="#" role="button">
+              {{bannerForm.controls['buttonText'].value}} <i class="fa fa-arrow-left"></i></a></p>
+
+        </div>
       </span>
-      
+
     </div>
   </div>
   <div class="banner-form">
@@ -23,81 +28,126 @@
       <div class="form-group row">
         <label class="col-md-3 col-form-label" for="text-input">{{'addBanner.title' | translate}}</label>
         <div class="col-md-9">
-          <textarea rows="2" id="text-input" name="text-input" class="form-control" placeholder="Text" formControlName="title"></textarea>
+          <textarea rows="2" id="text-input" name="text-input" class="form-control" placeholder="Text"
+            formControlName="title"></textarea>
 
-          <div *ngIf="bannerForm.controls['title'].errors" class="text-danger" > <!-- class="invalid-feedback"-->
-            <div *ngIf="bannerForm.controls['title'].errors.required && (bannerForm.controls['title'].touched || isSubmitted)">{{'addBanner.formValidations.title.required' | translate}}</div>
-        </div>
+          <div *ngIf="bannerForm.controls['title'].errors" class="text-danger">
+            <!-- class="invalid-feedback"-->
+            <div
+              *ngIf="bannerForm.controls['title'].errors.required && (bannerForm.controls['title'].touched || isSubmitted)">
+              {{'addBanner.formValidations.title.required' | translate}}</div>
+          </div>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-md-3 col-form-label" for="text-input">{{'addBanner.titleAlign' | translate}}</label>
         <div class="col-md-9">
-          <label class="col-md-3 col-form-label" for="title-radio-left">{{'addBanner.left' | translate}}</label>
-          <input type="radio" id="title-radio-left" name="text-input" class="form-control"    [(ngModel)]="titleAlign" [ngModelOptions]="{standalone: true}" name="titleAlign" value="left">
-          <label class="col-md-3 col-form-label" for="title-radio-right">{{'addBanner.right' | translate}}</label>
-          <input type="radio" id="title-radio-right" name="text-input" class="form-control"   [(ngModel)]="titleAlign" [ngModelOptions]="{standalone: true}" name="titleAlign" value="right">        
-          <label class="col-md-3 col-form-label" for="title-text-center">{{'addBanner.center' | translate}}</label>
-          <input type="radio" id="title-text-center" name="text-input" class="form-control"   [(ngModel)]="titleAlign" [ngModelOptions]="{standalone: true}" name="titleAlign" value="center">   
+          <label class="col-md-3 col-form-label" for="title-radio-left">
+            {{'addBanner.left' | translate}}
+            <input type="radio" id="title-radio-left" name="text-input" class="form-radio" [(ngModel)]="titleAlign"
+              [ngModelOptions]="{standalone: true}" name="titleAlign" value="left">
+          </label>
+
+          <label class="col-md-3 col-form-label" for="title-radio-right">
+            {{'addBanner.right' | translate}}
+            <input type="radio" id="title-radio-right" name="text-input" class="form-radio" [(ngModel)]="titleAlign"
+              [ngModelOptions]="{standalone: true}" name="titleAlign" value="right">
+          </label>
+          <label class="col-md-3 col-form-label" for="title-text-center">
+            {{'addBanner.center' | translate}}
+            <input type="radio" id="title-text-center" name="text-input" class="form-radio" [(ngModel)]="titleAlign"
+              [ngModelOptions]="{standalone: true}" name="titleAlign" value="center">
+          </label>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-md-3 col-form-label" for="text-input">{{'addBanner.buttonText' | translate}}</label>
         <div class="col-md-9">
-          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text" formControlName="buttonText">
-          <div *ngIf="bannerForm.controls['buttonText'].errors" class="text-danger" >
-            <div *ngIf="bannerForm.controls['buttonText'].errors.required && (bannerForm.controls['buttonText'].touched || isSubmitted)">{{'addBanner.formValidations.buttonText.required' | translate}}</div>
-        </div>
+          <input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text"
+            formControlName="buttonText">
+          <div *ngIf="bannerForm.controls['buttonText'].errors" class="text-danger">
+            <div
+              *ngIf="bannerForm.controls['buttonText'].errors.required && (bannerForm.controls['buttonText'].touched || isSubmitted)">
+              {{'addBanner.formValidations.buttonText.required' | translate}}</div>
+          </div>
         </div>
       </div>
 
       <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="text-input">{{'addBanner.buttonUrl' | translate}}</label>
-          <div class="col-md-9">
-            <input type="text" rows="2" id="text-input" name="text-input" class="form-control" placeholder="Text" formControlName="buttonUrl">
-  
-            <div *ngIf="bannerForm.controls['buttonUrl'].errors" class="text-danger" > <!-- class="invalid-feedback"-->
-              <div *ngIf="bannerForm.controls['buttonUrl'].errors.required && (bannerForm.controls['buttonUrl'].touched || isSubmitted)">{{'addBanner.formValidations.buttonUrl.required' | translate}}</div>
-          </div>
+        <label class="col-md-3 col-form-label" for="text-input">{{'addBanner.buttonUrl' | translate}}</label>
+        <div class="col-md-9">
+          <input type="text" rows="2" id="text-input" name="text-input" class="form-control" placeholder="Text"
+            formControlName="buttonUrl">
+
+          <div *ngIf="bannerForm.controls['buttonUrl'].errors" class="text-danger">
+            <!-- class="invalid-feedback"-->
+            <div
+              *ngIf="bannerForm.controls['buttonUrl'].errors.required && (bannerForm.controls['buttonUrl'].touched || isSubmitted)">
+              {{'addBanner.formValidations.buttonUrl.required' | translate}}</div>
           </div>
         </div>
+      </div>
 
       <div class="form-group row">
         <label class="col-md-3 col-form-label" for="text-input">{{'addBanner.buttonAlign' | translate}}</label>
         <div class="col-md-9">
-            <label class="col-md-3 col-form-label" for="button-left">{{'addBanner.left' | translate}}</label>          
-          <input type="radio" id="button-left" name="text-input" class="form-control"    [(ngModel)]="buttonAlign" [ngModelOptions]="{standalone: true}" name="buttonAlign" value="left">
-          <label class="col-md-3 col-form-label" for="button-right">{{'addBanner.right' | translate}}</label>
-          <input type="radio" id="button-right" name="text-input" class="form-control"   [(ngModel)]="buttonAlign" [ngModelOptions]="{standalone: true}" name="buttonAlign" value="right">
-          <label class="col-md-3 col-form-label" for="button-center">{{'addBanner.center' | translate}}</label>
-          <input type="radio" id="button-center" name="text-input" class="form-control"   [(ngModel)]="buttonAlign" [ngModelOptions]="{standalone: true}" name="buttonAlign" value="center">
+          <label class="col-md-3 col-form-label" for="button-left">
+            {{'addBanner.left' | translate}}
+            <input type="radio" id="button-left" name="text-input" class="form-radio" [(ngModel)]="buttonAlign"
+              [ngModelOptions]="{standalone: true}" name="buttonAlign" value="left">
+          </label>
+          <label class="col-md-3 col-form-label" for="button-right">
+            {{'addBanner.right' | translate}}
+            <input type="radio" id="button-right" name="text-input" class="form-radio" [(ngModel)]="buttonAlign"
+              [ngModelOptions]="{standalone: true}" name="buttonAlign" value="right">
+          </label>
+          <label class="col-md-3 col-form-label" for="button-center">
+            {{'addBanner.center' | translate}}
+            <input type="radio" id="button-center" name="text-input" class="form-radio" [(ngModel)]="buttonAlign"
+              [ngModelOptions]="{standalone: true}" name="buttonAlign" value="center">
+          </label>
         </div>
       </div>
-      
+
       <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="text-input">{{'addBanner.buttonColor' | translate}}</label>
-          <div class="col-md-9">
-              <label class="col-md-3 col-form-label" for="button-blue">{{'addBanner.blue' | translate}}</label>          
-            <input type="radio" id="button-blue" name="text-input" class="form-control"    [(ngModel)]="buttonColor" [ngModelOptions]="{standalone: true}" name="buttonColor" value="blue">
-            <label class="col-md-3 col-form-label" for="button-white">{{'addBanner.white' | translate}}</label>
-            <input type="radio" id="button-white" name="text-input" class="form-control"   [(ngModel)]="buttonColor" [ngModelOptions]="{standalone: true}" name="buttonColor" value="white">
-            <label class="col-md-3 col-form-label" for="button-black">{{'addBanner.black' | translate}}</label>
-            <input type="radio" id="button-black" name="text-input" class="form-control"   [(ngModel)]="buttonColor" [ngModelOptions]="{standalone: true}" name="buttonColor" value="black">
-          </div>
+        <label class="col-md-3 col-form-label" for="text-input">{{'addBanner.buttonColor' | translate}}</label>
+        <div class="col-md-9">
+          <label class="col-md-3 col-form-label" for="button-blue">
+            {{'addBanner.blue' | translate}}
+            <input type="radio" id="button-blue" name="text-input" class="form-radio" [(ngModel)]="buttonColor"
+              [ngModelOptions]="{standalone: true}" name="buttonColor" value="blue">
+          </label>
+          <label class="col-md-3 col-form-label" for="button-white">
+            {{'addBanner.white' | translate}}
+            <input type="radio" id="button-white" name="text-input" class="form-radio" [(ngModel)]="buttonColor"
+              [ngModelOptions]="{standalone: true}" name="buttonColor" value="white">
+          </label>
+          <label class="col-md-3 col-form-label" for="button-black">
+            {{'addBanner.black' | translate}}
+            <input type="radio" id="button-black" name="text-input" class="form-radio" [(ngModel)]="buttonColor"
+              [ngModelOptions]="{standalone: true}" name="buttonColor" value="black">
+          </label>
         </div>
-      
+      </div>
+
       <div class="form-group row">
         <label class="col-md-3 col-form-label" for="file-input">{{'addBanner.picture' | translate}}</label>
         <div class="col-md-9">
-          <app-file-uploader formControlName=imageFile (change)="onFileSelect($event.target.files[0])" ></app-file-uploader>
-          <div *ngIf="bannerForm.controls['imageFile'].errors" class="text-danger" > <!-- class="invalid-feedback"-->
-            <div *ngIf="bannerForm.controls['imageFile'].errors.required && (bannerForm.controls['imageFile'].touched || isSubmitted)">{{'addBanner.formValidations.picture.required' | translate}}</div>
-        </div>
+          <app-file-uploader formControlName=imageFile (change)="onFileSelect($event.target.files[0])">
+          </app-file-uploader>
+          <div *ngIf="bannerForm.controls['imageFile'].errors" class="text-danger">
+            <!-- class="invalid-feedback"-->
+            <div
+              *ngIf="bannerForm.controls['imageFile'].errors.required && (bannerForm.controls['imageFile'].touched || isSubmitted)">
+              {{'addBanner.formValidations.picture.required' | translate}}</div>
+          </div>
         </div>
       </div>
       <div class="card-footer">
-        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> {{'addBanner.submit' | translate}}</button>
-        <button type="reset" class="btn btn-sm btn-danger" (click)="reset()"><i class="fa fa-ban"></i> {{'addBanner.reset' | translate}}</button>
+        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i>
+          {{'addBanner.submit' | translate}}</button>
+        <button type="reset" class="btn btn-sm btn-danger" (click)="reset()"><i class="fa fa-ban"></i>
+          {{'addBanner.reset' | translate}}</button>
       </div>
     </form>
   </div>
