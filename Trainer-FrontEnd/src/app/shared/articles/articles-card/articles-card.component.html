@@ -1,5 +1,7 @@
 <div class="card-img-container" [ngStyle]="{'background-image': localImageUrl ? 'url(' + localImageUrl + ')' : 'url(' + baseurl + articleCategory?.profilePicture + ')'}">
   <!-- <img #cardImageTag *ngIf="cardImage" [src]="cardImage"> -->
+  <button *ngIf="showImageCropIcon" (click)="cropClicked()"  class="btn btn-danger crop-btn"><i class="fa fa-crop"></i></button>
+  
 </div>
 <div class="card-separtator"></div>
 <div class="card-title-container">

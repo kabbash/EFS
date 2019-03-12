@@ -28,6 +28,8 @@ import { ArticleDetailsResolver } from '../articles/resolvers/article-details.re
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { ProductsService } from '../products/products.service';
 import { ClientFilterComponent } from './client-filter/client-filter.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import { ArticleDetailsEditmodeComponent } from './articles/article-details-editmode/article-details-editmode.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { ProductItemComponent } from './products/product-item/product-item.component';
@@ -44,6 +46,7 @@ import { ProductListItemComponent } from './products/product-list-item/product-l
     TranslateModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
+    ImageCropperModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -67,7 +70,9 @@ import { ProductListItemComponent } from './products/product-list-item/product-l
     DashboardMenuComponent,
     SliderEditModeComponent,
     SearchFilterComponent,
-    ClientFilterComponent
+    ClientFilterComponent,
+    ImageCropperModule,
+    ImageCropperComponent
   ],
   declarations: [
     FooterComponent,
@@ -90,7 +95,8 @@ import { ProductListItemComponent } from './products/product-list-item/product-l
     ModalComponent,
     SliderEditModeComponent,
     SearchFilterComponent,
-    ClientFilterComponent
+    ClientFilterComponent,
+    ImageCropperComponent
   ],
   providers: [
     UtilitiesService,

@@ -1,0 +1,13 @@
+
+<ng-template #cropper let-cropperModal>
+  <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="4 / 5"
+    [resizeToWidth]="imageWidth"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (loadImageFailed)="loadImageFailed()">
+  </image-cropper>
+</ng-template>

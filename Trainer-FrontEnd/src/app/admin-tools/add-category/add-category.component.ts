@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { RepositoryService } from '../../shared/services/repository.service';
 import {articleCategoryDto} from '../../shared/models/articles/article-category-dto';
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { config } from '../../config/pages-config';
 import { AppService } from '../../app.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ImageCropperComponent } from 'src/app/shared/image-cropper/image-cropper.component';
 
 @Component({
   selector: 'app-add-category',
@@ -29,8 +30,10 @@ export class AddCategoryComponent implements OnInit {
   dropDownData: DropDownDto[] = [];
   addedImageUrl: string;
   successMessage: string;
+  imageEvent;
   @Input() isAddArticleCategory = false;
   @Input() apiUrl = 'Articles/Categories/';
+  @ViewChild('cropper') cropper: ImageCropperComponent;
   ngOnInit() {
     this.articleCategory = this.categoryService.articleCategoryToEdit || new articleCategoryDto();
 
@@ -93,8 +96,12 @@ export class AddCategoryComponent implements OnInit {
     return formData;
   }
 
-  onFileSelect(file) {
+  onFileSelect(event, isCropped) {
+    this.imageEvent = isCropped ? null : event;
+    const file = isCropped ? event : event.target.files[0]
+    // file.name = 'image.'+ file.type.split('/')[1];
     this.articleCategory.profilePictureFile = file;
+    this.categoryForm.controls['profilePictureFile'].setValue(file)
     const reader = new FileReader();
     reader.onload = (e: any) => {
       // this.articleCategory.profilePicture = e.target.result;
@@ -121,5 +128,8 @@ export class AddCategoryComponent implements OnInit {
     } else {
       this.router.navigate([config.admin.manageArticlesCategories.route]);
     }
+  }
+  openCropper() {
+    this.cropper.open();
   }
 }

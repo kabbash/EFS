@@ -17,7 +17,6 @@ import { AuthGuard } from './auth/guards/auth.guard';
 import { NgbUTCStringAdapter } from './shared/services/ngb-string.adapter';
 import { AppConfig } from '../config/app.config';
 import { BannersResolver } from './admin-tools/resolvers/banners.resolver';
-
 export function CreateTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
