@@ -29,6 +29,7 @@ using Lookups.Core.Interfaces;
 using Lookups.Core.Services;
 using MailProvider.Core;
 using MailProvider.Core.Interfaces;
+using MailProvider.Core.Resources;
 using MailProvider.Core.Services;
 using Mapster;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -137,10 +138,11 @@ namespace Trainer
         private void ConfigureSettings(IServiceCollection services)
         {
             services.Configure<AuthenticationSettings>(Configuration.GetSection("AppSettings"));
-            services.Configure<MailSettings>(Configuration.GetSection("Email"));
             var resources = Configuration.GetSection("Resources");
             services.Configure<AttachmentsResources>(resources.GetSection("FilesPaths").GetSection("Attachments"));
             services.Configure<ProductsResources>(resources.GetSection("ProductsResources"));
+            services.Configure<EmailTemplatesPathsResources>(resources.GetSection("EmailTemplates"));
+            services.Configure<MailSettings>(Configuration.GetSection("Email"));
         }
         private void ConfigureValidations(IServiceCollection services)
         {
