@@ -44,4 +44,11 @@
         ProductOwner,
         ArticleWriter
     }
+
+    public enum EmailTemplatesEnum
+    {
+        Register,
+        ResetPassword,
+        ContactUs
+    }
 }

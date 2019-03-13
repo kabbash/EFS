@@ -241,8 +241,9 @@ namespace Authentication.Services
                         });
                         break;
                 }
-                var mailBody = _emailSettings.RegisterEmail.Body.Replace("{0}", userEntity.FullName).Replace("{1}", _emailSettings.RegisterEmail.VerifyEmailUrl.Replace("{0}", userEntity.SecurityStamp));
-                _emailService.SendEmailAsync(userEntity.Email, _emailSettings.RegisterEmail.Subject, mailBody);
+
+                var replacements = SetRegisterMailReplacements(userEntity.FullName, userEntity.Email, _emailSettings.RegisterEmail.VerifyEmailUrl.Replace("{0}", userEntity.SecurityStamp));
+                _emailService.SendEmailAsync(userEntity.Email, _emailSettings.RegisterEmail.Subject, EmailTemplatesEnum.Register, replacements);
                 return new ResultMessage { Status = HttpStatusCode.OK };
             }
             catch (Exception ex)
@@ -287,8 +288,8 @@ namespace Authentication.Services
                 if (user.IsBlocked)
                     return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserBlocked };
 
-                var mailBody = _emailSettings.ResetPasswordEmail.Body.Replace("{0}", user.FullName).Replace("{1}", _emailSettings.ResetPasswordEmail.ResetPasswordUrl.Replace("{0}", user.SecurityStamp));
-                _emailService.SendEmailAsync(user.Email, _emailSettings.RegisterEmail.Subject, mailBody);
+                var replacements = SetRegisterMailReplacements(user.FullName, user.Email, _emailSettings.ResetPasswordEmail.ResetPasswordUrl.Replace("{0}", user.SecurityStamp));
+                _emailService.SendEmailAsync(user.Email, _emailSettings.ResetPasswordEmail.Subject, EmailTemplatesEnum.ResetPassword, replacements);
                 return new ResultMessage { Status = HttpStatusCode.OK, Data = true };
             }
             catch (Exception ex)
@@ -369,8 +370,6 @@ namespace Authentication.Services
         }
 
 
-
-
         // private helper methods
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
@@ -430,6 +429,22 @@ namespace Authentication.Services
             return user;
         }
 
+        private Dictionary<string, string> SetRegisterMailReplacements(string fullName, string email, string callBackUrl)
+        {
+            var replacements = new Dictionary<string, string>();
+            replacements.Add(EmailPlaceHolders.UserName, fullName);
+            replacements.Add(EmailPlaceHolders.CallBackURL, callBackUrl);
+            replacements.Add(EmailPlaceHolders.UserEmail, email);
+            return replacements;
+        }
+        private Dictionary<string, string> SetResetPasswordMailReplacements(string fullName, string email, string callBackUrl)
+        {
+            var replacements = new Dictionary<string, string>();
+            replacements.Add(EmailPlaceHolders.UserName, fullName);
+            replacements.Add(EmailPlaceHolders.CallBackURL, callBackUrl);
+            replacements.Add(EmailPlaceHolders.UserEmail, email);
+            return replacements;
+        }
 
     }
 }

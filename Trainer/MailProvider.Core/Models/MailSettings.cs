@@ -5,6 +5,7 @@ namespace MailProvider.Core
 {
     public class MailSettings
     {
+        public string IconsBaseURL { get; set; }
         public string AdminMail { get; set; }
         public string FromName { get; set; }
         public string FromAddress { get; set; }

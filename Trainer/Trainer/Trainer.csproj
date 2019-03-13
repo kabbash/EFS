@@ -6,13 +6,15 @@
 
   <ItemGroup>
     <Compile Remove="wwwroot\Attachments\Articles Categories\**" />
-    <Compile Remove="wwwroot\Images\Articles Categories\**" />
     <Content Remove="wwwroot\Attachments\Articles Categories\**" />
-    <Content Remove="wwwroot\Images\Articles Categories\**" />
     <EmbeddedResource Remove="wwwroot\Attachments\Articles Categories\**" />
-    <EmbeddedResource Remove="wwwroot\Images\Articles Categories\**" />
     <None Remove="wwwroot\Attachments\Articles Categories\**" />
-    <None Remove="wwwroot\Images\Articles Categories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\EmailTemplates\ContactUs.html" />
+    <Content Remove="wwwroot\EmailTemplates\RegisterTemplate.html" />
+    <Content Remove="wwwroot\EmailTemplates\ResetPassword.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,7 +51,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
     <Folder Include="wwwroot\Tmp\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\EmailTemplates\ContactUs.html" />
+    <None Include="wwwroot\EmailTemplates\ResetPassword.html" />
   </ItemGroup>
 
 </Project>
