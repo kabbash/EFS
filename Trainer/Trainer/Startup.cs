@@ -7,7 +7,6 @@ using Attachments.Core.Interfaces;
 using Attachments.Core.Models;
 using Attachments.Core.Services;
 using Attachments.Core.Validators;
-using Authentication;
 using Authentication.Interfaces;
 using Authentication.Models;
 using Authentication.Services;
@@ -27,9 +26,7 @@ using ItemsReview.Services;
 using ItemsReview.Validators;
 using Lookups.Core.Interfaces;
 using Lookups.Core.Services;
-using MailProvider.Core;
 using MailProvider.Core.Interfaces;
-using MailProvider.Core.Resources;
 using MailProvider.Core.Services;
 using Mapster;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -49,13 +46,11 @@ using Rating.Core.Models;
 using Rating.Core.Services;
 using Rating.Core.Validators;
 using Shared.Core.Models;
-using Shared.Core.Resources;
+using Shared.Core.Settings;
 using Shared.Core.Utilities.Models;
 using Shared.Core.Validators;
 using System.Linq;
 using System.Text;
-using test.core.Model;
-using test.core.Validators;
 using Trainer.EF;
 using DBModels = Shared.Core.Models;
 
@@ -137,16 +132,10 @@ namespace Trainer
         }
         private void ConfigureSettings(IServiceCollection services)
         {
-            services.Configure<AuthenticationSettings>(Configuration.GetSection("AppSettings"));
-            var resources = Configuration.GetSection("Resources");
-            services.Configure<AttachmentsResources>(resources.GetSection("FilesPaths").GetSection("Attachments"));
-            services.Configure<ProductsResources>(resources.GetSection("ProductsResources"));
-            services.Configure<EmailTemplatesPathsResources>(resources.GetSection("EmailTemplates"));
-            services.Configure<MailSettings>(Configuration.GetSection("Email"));
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
         }
         private void ConfigureValidations(IServiceCollection services)
         {
-            services.AddTransient<IValidator<CaloriesDto>, CaloriesDtoValidator>();
             services.AddTransient<IValidator<ArticlesCategoriesDto>, ArticlesCategoriesValidator>();
             services.AddTransient<IValidator<UploadFileDto>, UploadFileDtoValidator>();
             services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
@@ -161,9 +150,8 @@ namespace Trainer
         }
         private void ConfigureJwtAuthentication(IServiceCollection services)
         {
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            var appSettings = appSettingsSection.Get<AuthenticationSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            var appSettings = Configuration.GetSection("AppSettings").Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.AuthenticationSettings.Secret);
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

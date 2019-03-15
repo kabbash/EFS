@@ -2,12 +2,12 @@
 using Authentication.Interfaces;
 using Authentication.Models;
 using FluentValidation;
-using MailProvider.Core;
 using MailProvider.Core.Interfaces;
 using Mapster;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Core.Models;
+using Shared.Core.Settings;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Helpers;
@@ -25,21 +25,18 @@ namespace Authentication.Services
     public class UserService : IUserService
     {
         protected IUnitOfWork _unitOfWork;
-        private readonly AuthenticationSettings _settings;
+        private readonly AppSettings _settings;
         private readonly IValidator<RegisterDto> _validator;
         private readonly IEmailService _emailService;
-        private readonly MailSettings _emailSettings;
         public UserService(IUnitOfWork unitOfWork,
-            IOptions<AuthenticationSettings> settings,
+            IOptions<AppSettings> settings,
             IValidator<RegisterDto> validator,
-            IEmailService emailService,
-            IOptions<MailSettings> mailSettings)
+            IEmailService emailService)
         {
             _unitOfWork = unitOfWork;
             _settings = settings.Value;
             _validator = validator;
             _emailService = emailService;
-            _emailSettings = mailSettings.Value;
         }
 
         public ResultMessage Authenticate(string username, string password)
@@ -60,7 +57,6 @@ namespace Authentication.Services
 
             return new ResultMessage { Status = HttpStatusCode.OK, Data = AuthenticateUser(userEntity) };
         }
-
         private Claim[] SetUserClaims(string userId, List<string> userRoles)
         {
             var claims = new List<Claim>();
@@ -71,7 +67,6 @@ namespace Authentication.Services
             claims.Add(new Claim(ClaimTypes.Name, userId));
             return claims.ToArray();
         }
-
         private List<string> GetUserRoles(List<string> rolesIds)
         {
             var userRoles = new List<string>();
@@ -81,7 +76,6 @@ namespace Authentication.Services
             }
             return userRoles;
         }
-
         public ResultMessage GetAll(UsersFilter filter)
         {
             PagedResult<User> result = new PagedResult<User>();
@@ -92,7 +86,6 @@ namespace Authentication.Services
                 Status = HttpStatusCode.OK
             };
         }
-
         public ResultMessage AddRoleToUser(UserRoleDto data)
         {
             var userEntity = _unitOfWork.UsersRepository.Get(u => u.UserName == data.Username).FirstOrDefault();
@@ -120,7 +113,6 @@ namespace Authentication.Services
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserRoleError };
             }
         }
-
         public ResultMessage RemoveRoleFromUser(UserRoleDto data)
         {
             var userEntity = _unitOfWork.UsersRepository.Get(u => u.UserName == data.Username).FirstOrDefault();
@@ -148,7 +140,6 @@ namespace Authentication.Services
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserRoleError };
             }
         }
-
         public bool AddRole(RoleDto data)
         {
             try
@@ -165,7 +156,6 @@ namespace Authentication.Services
                 return false;
             }
         }
-
         public bool DeleteRole(string roleName)
         {
             try
@@ -190,7 +180,6 @@ namespace Authentication.Services
                 return false;
             }
         }
-
         public ResultMessage Register(RegisterDto userData)
         {
             var validatationResult = _validator.Validate(userData);
@@ -242,8 +231,8 @@ namespace Authentication.Services
                         break;
                 }
 
-                var replacements = SetRegisterMailReplacements(userEntity.FullName, userEntity.Email, _emailSettings.RegisterEmail.VerifyEmailUrl.Replace("{0}", userEntity.SecurityStamp));
-                _emailService.SendEmailAsync(userEntity.Email, _emailSettings.RegisterEmail.Subject, EmailTemplatesEnum.Register, replacements);
+                var replacements = SetRegisterMailReplacements(userEntity.FullName, userEntity.Email, _settings.EmailSettings.RegisterEmail.VerifyEmailUrl, userEntity.SecurityStamp);
+                _emailService.SendEmailAsync(userEntity.Email, _settings.EmailSettings.RegisterEmail.Subject, EmailTemplatesEnum.Register, replacements);
                 return new ResultMessage { Status = HttpStatusCode.OK };
             }
             catch (Exception ex)
@@ -254,7 +243,6 @@ namespace Authentication.Services
 
 
         }
-
         public ResultMessage VerifyEmail(string token)
         {
             try
@@ -273,7 +261,6 @@ namespace Authentication.Services
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
-
         public ResultMessage ResetPassword(ResetPasswordDto data)
         {
             try
@@ -288,8 +275,8 @@ namespace Authentication.Services
                 if (user.IsBlocked)
                     return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserBlocked };
 
-                var replacements = SetRegisterMailReplacements(user.FullName, user.Email, _emailSettings.ResetPasswordEmail.ResetPasswordUrl.Replace("{0}", user.SecurityStamp));
-                _emailService.SendEmailAsync(user.Email, _emailSettings.ResetPasswordEmail.Subject, EmailTemplatesEnum.ResetPassword, replacements);
+                var replacements = SetResetPasswordMailReplacements(user.FullName, user.Email, _settings.EmailSettings.ResetPasswordEmail.ResetPasswordUrl, user.SecurityStamp);
+                _emailService.SendEmailAsync(user.Email, _settings.EmailSettings.ResetPasswordEmail.Subject, EmailTemplatesEnum.ResetPassword, replacements);
                 return new ResultMessage { Status = HttpStatusCode.OK, Data = true };
             }
             catch (Exception ex)
@@ -297,7 +284,6 @@ namespace Authentication.Services
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
-
         public ResultMessage SetResetedPassword(SetPasswordDto data)
         {
             try
@@ -320,7 +306,6 @@ namespace Authentication.Services
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
-
         public ResultMessage ChangePassword(ChanePasswordDto data)
         {
             try
@@ -349,7 +334,6 @@ namespace Authentication.Services
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
-
         public ResultMessage UpdateUserAccess(UserAccessDto userAccessDto)
         {
             try
@@ -369,9 +353,7 @@ namespace Authentication.Services
             }
         }
 
-
         // private helper methods
-
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             if (password == null) throw new ArgumentNullException("password");
@@ -383,7 +365,6 @@ namespace Authentication.Services
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
-
         private bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
         {
             if (password == null) throw new ArgumentNullException("password");
@@ -402,7 +383,6 @@ namespace Authentication.Services
 
             return true;
         }
-
         private User AuthenticateUser(AspNetUsers userEntity)
         {
             var userRoles = new List<string>();
@@ -414,7 +394,7 @@ namespace Authentication.Services
             }
             var userClaims = SetUserClaims(userEntity.Id.ToString(), userRoles);
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_settings.Secret);
+            var key = Encoding.ASCII.GetBytes(_settings.AuthenticationSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(userClaims),
@@ -428,21 +408,22 @@ namespace Authentication.Services
             user.Roles = userRoles;
             return user;
         }
-
-        private Dictionary<string, string> SetRegisterMailReplacements(string fullName, string email, string callBackUrl)
+        private Dictionary<string, string> SetRegisterMailReplacements(string fullName, string email, string callBackUrl, string securityStamp)
         {
-            var replacements = new Dictionary<string, string>();
-            replacements.Add(EmailPlaceHolders.UserName, fullName);
-            replacements.Add(EmailPlaceHolders.CallBackURL, callBackUrl);
-            replacements.Add(EmailPlaceHolders.UserEmail, email);
-            return replacements;
+            return SetCommonAuthenticationMailReplacements(fullName, email, callBackUrl, securityStamp);
         }
-        private Dictionary<string, string> SetResetPasswordMailReplacements(string fullName, string email, string callBackUrl)
+        private Dictionary<string, string> SetResetPasswordMailReplacements(string fullName, string email, string callBackUrl, string securityStamp)
+        {
+            return SetCommonAuthenticationMailReplacements(fullName, email, callBackUrl, securityStamp);
+        }
+        private Dictionary<string, string> SetCommonAuthenticationMailReplacements(string fullName, string email, string callBackUrl, string securityStamp)
         {
             var replacements = new Dictionary<string, string>();
             replacements.Add(EmailPlaceHolders.UserName, fullName);
             replacements.Add(EmailPlaceHolders.CallBackURL, callBackUrl);
+            replacements.Add(EmailPlaceHolders.CallBackBaseURL, _settings.AppUrlsSettings.FEApplicationBase);
             replacements.Add(EmailPlaceHolders.UserEmail, email);
+            replacements.Add(EmailPlaceHolders.SecurityStamp, securityStamp);
             return replacements;
         }
 

@@ -1,49 +1,46 @@
 ﻿using MailProvider.Core.Interfaces;
-using MailProvider.Core.Resources;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using Shared.Core.Settings;
 using Shared.Core.Utilities.Enums;
+using Shared.Core.Utilities.Extensions;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using Shared.Core.Utilities.Extensions;
-using Shared.Core.Utilities.Models;
 
 namespace MailProvider.Core.Services
 {
     public class MailService: IEmailService
     {
-        private readonly MailSettings _settings;
-        private readonly EmailTemplatesPathsResources _tempaltesUrls;
+        private readonly AppSettings _settings;
         private readonly IHostingEnvironment _hostingEnvironment;
 
-        public MailService(IOptions<MailSettings> settings, IOptions<EmailTemplatesPathsResources> templatesUrlsResources, IHostingEnvironment environment)
+        public MailService(IOptions<AppSettings> settings, IHostingEnvironment environment)
         {
             _settings = settings.Value;
             _hostingEnvironment = environment;
-            _tempaltesUrls = templatesUrlsResources.Value;
         }
 
         public async Task SendEmailAsync(string email, string subject, EmailTemplatesEnum emailTemplate, Dictionary<string,string> replacements)
         {
             try
             {
-
-                var emailBody = GetTemplateByType(emailTemplate).ApplyReplacements(replacements).Replace(EmailPlaceHolders.BaseURL, _settings.IconsBaseURL);
+                replacements = SetCommonReplacements(replacements);
+                var emailBody = GetTemplateByType(emailTemplate).ApplyReplacements(replacements);
                 var smtpClient = new SmtpClient
                 {
-                    Host = _settings.MailServerAddress, // set your SMTP server name here
-                    Port = _settings.MailServerPort, // Port 
+                    Host = _settings.EmailSettings.MailServerAddress, // set your SMTP server name here
+                    Port = _settings.EmailSettings.MailServerPort, // Port 
                     EnableSsl = true,
-                    Credentials = new NetworkCredential(_settings.UserId, _settings.UserPassword),
-                    
+                    Credentials = new NetworkCredential(_settings.EmailSettings.UserId, _settings.EmailSettings.UserPassword),                    
                 };
 
-                using (var mailMessage = new MailMessage(_settings.FromAddress, email)
+                using (var mailMessage = new MailMessage(_settings.EmailSettings.FromAddress, email)
                 {
                     Subject = subject,
                     Body = emailBody,
@@ -58,7 +55,6 @@ namespace MailProvider.Core.Services
                 
             }           
         }       
-
         private string GetTemplateByType(EmailTemplatesEnum emailTemplate)
         {
             var templateRelativePath = string.Empty;
@@ -67,13 +63,13 @@ namespace MailProvider.Core.Services
             switch (emailTemplate)
             {
                 case EmailTemplatesEnum.Register:
-                    templateRelativePath = _tempaltesUrls.Register;
+                    templateRelativePath = _settings.AppPathsSettings.EmailTemplates.Register;
                     break;
                 case EmailTemplatesEnum.ResetPassword:
-                    templateRelativePath = _tempaltesUrls.ResetPassword;
+                    templateRelativePath = _settings.AppPathsSettings.EmailTemplates.ResetPassword;
                     break;
                 case EmailTemplatesEnum.ContactUs:
-                    templateRelativePath = _tempaltesUrls.ContactUs;
+                    templateRelativePath = _settings.AppPathsSettings.EmailTemplates.ContactUs;
                     break;
             }
             var templatePath = _hostingEnvironment.WebRootPath + Path.DirectorySeparatorChar.ToString() + templateRelativePath;
@@ -83,6 +79,15 @@ namespace MailProvider.Core.Services
                 builder.HtmlBody = SourceReader.ReadToEnd();
             }
             return builder.HtmlBody;
+        }
+        private Dictionary<string, string> SetCommonReplacements(Dictionary<string, string> replacements)
+        {
+            replacements.Add(EmailPlaceHolders.AdminFBurl, _settings.EmailSettings.AdminFBurl);
+            replacements.Add(EmailPlaceHolders.AdminTWurl, _settings.EmailSettings.AdminTWurl);
+            replacements.Add(EmailPlaceHolders.AdminPhoneNumber, _settings.EmailSettings.AdminPhoneNumber);
+            replacements.Add(EmailPlaceHolders.AdminWhatsAppNo, _settings.EmailSettings.AdminWhatsAppNo);
+            replacements.Add(EmailPlaceHolders.IconsBaseURL, _settings.AppUrlsSettings.BEApplicationBase);
+            return replacements;
         }
     }
 }

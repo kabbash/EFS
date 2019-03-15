@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using Home.Core.Interfaces;
 using Home.Core.Models;
-using MailProvider.Core;
 using MailProvider.Core.Interfaces;
 using Microsoft.Extensions.Options;
+using Shared.Core.Settings;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
@@ -17,15 +17,15 @@ namespace Home.Core.Services
     {
         private readonly IValidator<ContactUsDto> _validator;
         private readonly IEmailService _emailService;
-        private readonly MailSettings _emailSettings;
+        private readonly AppSettings _settings;
 
         public HomeService(IValidator<ContactUsDto> validator,
             IEmailService emailService,
-            IOptions<MailSettings> mailSettings)
+            IOptions<AppSettings> settings)
         {
             _validator = validator;
             _emailService = emailService;
-            _emailSettings = mailSettings.Value;
+            _settings = settings.Value;
         }
 
         public ResultMessage ContactUs(ContactUsDto contactUsDto)
@@ -41,7 +41,7 @@ namespace Home.Core.Services
             try
             {
                 var replacements = SetContactUsMailReplacements(contactUsDto.Name, contactUsDto.Email, contactUsDto.PhoneNumber,contactUsDto.Details);
-                _emailService.SendEmailAsync(_emailSettings.AdminMail, _emailSettings.ContactUsEmail.Subject, EmailTemplatesEnum.ContactUs , replacements);
+                _emailService.SendEmailAsync(_settings.EmailSettings.AdminMail, _settings.EmailSettings.ContactUsEmail.Subject, EmailTemplatesEnum.ContactUs , replacements);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.OK

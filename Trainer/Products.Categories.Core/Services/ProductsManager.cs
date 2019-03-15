@@ -6,7 +6,6 @@ using Microsoft.Extensions.Options;
 using Products.Core.Extensions;
 using Products.Core.Interfaces;
 using Products.Core.Models;
-using Shared.Core.Resources;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
@@ -22,16 +21,14 @@ namespace Products.Core.Services
     {
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<ProductsDto> _validator;
-        private readonly IOptions<ProductsResources> _productsResources;
         private readonly IAttachmentsManager _attachmentsManager;
         private readonly ISliderManager<DBModels.ProductsImages> _sliderManager;
 
 
-        public ProductsManager(IUnitOfWork unitOfWork, IValidator<ProductsDto> validator, IOptions<ProductsResources> productsResources, IAttachmentsManager attachmentsManager, ISliderManager<DBModels.ProductsImages> sliderManager)
+        public ProductsManager(IUnitOfWork unitOfWork, IValidator<ProductsDto> validator, IAttachmentsManager attachmentsManager, ISliderManager<DBModels.ProductsImages> sliderManager)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
-            _productsResources = productsResources;
             _attachmentsManager = attachmentsManager;
             _sliderManager = sliderManager;
         }
