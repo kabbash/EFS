@@ -46,7 +46,6 @@
     <ProjectReference Include="..\Rating.Core\Rating.Core.csproj" />
    
     <ProjectReference Include="..\Shared.Core\Shared.Core.csproj" />
-    <ProjectReference Include="..\test.core\test.core.csproj" />
     <ProjectReference Include="..\Trainer.EF\Trainer.EF.csproj" />
   </ItemGroup>
 

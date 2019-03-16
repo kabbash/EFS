@@ -1,6 +1,6 @@
-﻿namespace Shared.Core.Resources
+﻿namespace Shared.Core.Settings.Sub
 {
-    public class AttachmentsResources
+    public class AttachmentsSettings
     {
         public string ArticlesFolder { get; set; }
         public string ArticlesCategoriesFolder { get; set; }

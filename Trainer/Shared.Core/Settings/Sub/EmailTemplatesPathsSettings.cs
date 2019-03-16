@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MailProvider.Core.Resources
+﻿namespace Shared.Core.Settings.Sub
 {
-    public class EmailTemplatesPathsResources
+    public class EmailTemplatesPathsSettings
     {
         public string Register { get; set; }
         public string ResetPassword { get; set; }
