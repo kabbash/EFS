@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using Microsoft.Extensions.Logging;
 using Neutrints.Core.Extensions;
 using Neutrints.Core.Interfaces;
 using Neutrints.Core.Models;
@@ -16,9 +17,11 @@ namespace Neutrints.Core.Services
     public class NeutrintsManager : INeutrintsManager
     {
         protected IUnitOfWork _unitOfWork;
-        public NeutrintsManager(IUnitOfWork unitOfWork)
+        private readonly ILogger<NeutrintsManager> _logger;
+        public NeutrintsManager(IUnitOfWork unitOfWork, ILogger<NeutrintsManager> logger)
         {
             _unitOfWork = unitOfWork;
+            _logger = logger;
 
         }
         public ResultMessage GetAll(FoodIemFilter filter = null, string includeProperities = "")
@@ -35,11 +38,10 @@ namespace Neutrints.Core.Services
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)FoodItemsErrorsCodeEnum.GetAllError,
-                    exception = ex,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -71,10 +73,10 @@ namespace Neutrints.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)FoodItemsErrorsCodeEnum.AddError,
-                    exception = ex,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -103,7 +105,7 @@ namespace Neutrints.Core.Services
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)FoodItemsErrorsCodeEnum.GetByIdError,
@@ -206,10 +208,10 @@ namespace Neutrints.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    exception = ex,
                     ErrorCode = (int)FoodItemsErrorsCodeEnum.UpdateError
                 };
             }
@@ -227,10 +229,10 @@ namespace Neutrints.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    exception = ex,
                     ErrorCode = (int)FoodItemsErrorsCodeEnum.DeleteError
                 };
             }

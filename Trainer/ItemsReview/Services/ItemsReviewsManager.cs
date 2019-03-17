@@ -3,6 +3,7 @@ using ItemsReview.Extensions;
 using ItemsReview.Interfaces;
 using ItemsReview.Models;
 using Mapster;
+using Microsoft.Extensions.Logging;
 using Rating.Core.Interfaces;
 using Shared.Core.Models;
 using Shared.Core.Utilities.Enums;
@@ -18,11 +19,13 @@ namespace ItemsReview.Services
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<ItemReviewDto> _validator;
         private readonly IRatingManager<ItemsForReview> _ratingManager;
-        public ItemsReviewsManager(IUnitOfWork unitOfWork, IValidator<ItemReviewDto> validator, IRatingManager<ItemsForReview> ratingManager)
+        private readonly ILogger<ItemsReviewsManager> _logger;
+        public ItemsReviewsManager(IUnitOfWork unitOfWork, IValidator<ItemReviewDto> validator, IRatingManager<ItemsForReview> ratingManager, ILogger<ItemsReviewsManager> logger)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
             _ratingManager = ratingManager;
+            _logger = logger;
         }
         public ResultMessage GetAll(ItemsReviewFilter filter)
         {
@@ -39,7 +42,7 @@ namespace ItemsReview.Services
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ItemsReviewsErrorsCodeEnum.ItemsGetAllError,
@@ -68,6 +71,7 @@ namespace ItemsReview.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ItemsReviewsErrorsCodeEnum.ItemsInsertError,
@@ -108,7 +112,7 @@ namespace ItemsReview.Services
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ItemsReviewsErrorsCodeEnum.ItemsGetByIdError,
@@ -151,6 +155,7 @@ namespace ItemsReview.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
@@ -171,6 +176,7 @@ namespace ItemsReview.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,

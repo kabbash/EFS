@@ -36,6 +36,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Products.Core.Interfaces;
 using Products.Core.Models;
@@ -45,6 +46,7 @@ using Rating.Core.Interfaces;
 using Rating.Core.Models;
 using Rating.Core.Services;
 using Rating.Core.Validators;
+using Serilog;
 using Shared.Core.Models;
 using Shared.Core.Settings;
 using Shared.Core.Utilities.Models;
@@ -62,6 +64,8 @@ namespace Trainer
 
         public Startup(IConfiguration configuration)
         {
+            // Init Serilog configuration
+            Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
             Configuration = configuration;
         }
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -87,9 +91,10 @@ namespace Trainer
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseStaticFiles();
+            // logging
+            loggerFactory.AddSerilog();
 
             if (env.IsDevelopment())
             {
@@ -101,6 +106,7 @@ namespace Trainer
             }
 
             // app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseCors("AllowAllOrigins");
             app.UseAuthentication();
             app.UseMvc();

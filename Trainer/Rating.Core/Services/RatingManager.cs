@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Mapster;
+using Microsoft.Extensions.Logging;
 using Rating.Core.Helpers;
 using Rating.Core.Interfaces;
 using Rating.Core.Models;
@@ -20,12 +21,14 @@ namespace Rating.Core.Services
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<RatingDto> _validator;
         private readonly IRepository<TEntity> _ratedEntityRepository;
+        private readonly ILogger<RatingManager<TEntity>> _logger;
 
-        public RatingManager(IUnitOfWork unitOfWork, IValidator<RatingDto> validator)
+        public RatingManager(IUnitOfWork unitOfWork, IValidator<RatingDto> validator, ILogger<RatingManager<TEntity>> logger)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
             _ratedEntityRepository = _unitOfWork.getRepoByType(typeof(IRepository<TEntity>)) as IRepository<TEntity>;
+            _logger = logger;
         }
         public ResultMessage AddOrUpdate(RatingDto ratingDto)
         {
@@ -49,6 +52,7 @@ namespace Rating.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)RatingErrorsCodeEnum.RatingInsertError,

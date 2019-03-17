@@ -4,13 +4,12 @@ using Banner.Core.Interfaces;
 using Banner.Core.Models;
 using FluentValidation;
 using Mapster;
+using Microsoft.Extensions.Logging;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
 using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Text;
 
 namespace Banner.Core.Services
 {
@@ -19,12 +18,13 @@ namespace Banner.Core.Services
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<BannerDto> _validator;
         private readonly IAttachmentsManager _attachmentsManager;
-
-        public BannerManager(IUnitOfWork unitOfWork, IValidator<BannerDto> validator, IAttachmentsManager attachmentsManager)
+        private readonly ILogger<IBannerManager> _logger;
+        public BannerManager(IUnitOfWork unitOfWork, IValidator<BannerDto> validator, IAttachmentsManager attachmentsManager, ILogger<IBannerManager> logger)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
             _attachmentsManager = attachmentsManager;
+            _logger = logger;
         }
         public ResultMessage Add(BannerDto banner)
         {
@@ -56,10 +56,10 @@ namespace Banner.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesInsertError,
-                    exception = ex,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -80,6 +80,7 @@ namespace Banner.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
@@ -155,10 +156,10 @@ namespace Banner.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    exception = ex,
                     ErrorCode = (int)BannersErrorsCodeEnum.UpdateError
                 };
             }

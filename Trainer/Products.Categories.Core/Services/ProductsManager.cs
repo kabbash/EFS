@@ -2,6 +2,7 @@
 using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Products.Core.Extensions;
 using Products.Core.Interfaces;
@@ -23,14 +24,16 @@ namespace Products.Core.Services
         private readonly IValidator<ProductsDto> _validator;
         private readonly IAttachmentsManager _attachmentsManager;
         private readonly ISliderManager<DBModels.ProductsImages> _sliderManager;
+        private readonly ILogger<ProductsManager> _logger;
 
 
-        public ProductsManager(IUnitOfWork unitOfWork, IValidator<ProductsDto> validator, IAttachmentsManager attachmentsManager, ISliderManager<DBModels.ProductsImages> sliderManager)
+        public ProductsManager(IUnitOfWork unitOfWork, IValidator<ProductsDto> validator, IAttachmentsManager attachmentsManager, ISliderManager<DBModels.ProductsImages> sliderManager, ILogger<ProductsManager> logger)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
             _attachmentsManager = attachmentsManager;
             _sliderManager = sliderManager;
+            _logger = logger;
         }
         public ResultMessage GetAll(ProductFilter filter = null, string includeProperities = "")
         {
@@ -46,11 +49,10 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
-                    exception = ex,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -98,10 +100,10 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsInsertError,
-                    exception = ex,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -140,7 +142,7 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetByIdError,
@@ -224,10 +226,10 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    exception = ex,
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsUpdateError
                 };
             }
@@ -259,10 +261,10 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    exception = ex,
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsDeleteError
                 };
             }
@@ -294,6 +296,7 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError
@@ -329,11 +332,11 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError
                 };
-
             }
         }
     }

@@ -2,6 +2,7 @@
 using Home.Core.Interfaces;
 using Home.Core.Models;
 using MailProvider.Core.Interfaces;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Shared.Core.Settings;
 using Shared.Core.Utilities.Enums;
@@ -18,14 +19,17 @@ namespace Home.Core.Services
         private readonly IValidator<ContactUsDto> _validator;
         private readonly IEmailService _emailService;
         private readonly AppSettings _settings;
+        private readonly ILogger<HomeService> _logger;
 
         public HomeService(IValidator<ContactUsDto> validator,
             IEmailService emailService,
-            IOptions<AppSettings> settings)
+            IOptions<AppSettings> settings,
+            ILogger<HomeService> logger)
         {
             _validator = validator;
             _emailService = emailService;
             _settings = settings.Value;
+            _logger = logger;
         }
 
         public ResultMessage ContactUs(ContactUsDto contactUsDto)
@@ -49,10 +53,10 @@ namespace Home.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)HomeErrorsCodeEnum.ContactUs,
-                    exception = ex,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
