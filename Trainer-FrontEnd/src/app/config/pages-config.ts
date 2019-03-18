@@ -203,6 +203,14 @@ export let config = {
         'users': {
             'name': 'users',
             'route': '/admin/users'
+        },
+        'neutrintsList':{
+            'name':'neutrintsList',
+            'route':"/admin/neutrintsList"
+        },
+        'manageNeutrints':{
+            'name':'manageNeutrints/:foodItemId',
+            'route':'/admin/manageNeutrints'
         }
     },
     'writers': {

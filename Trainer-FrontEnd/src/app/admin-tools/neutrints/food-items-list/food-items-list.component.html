@@ -1,0 +1,44 @@
+<div class="row" class="filter-wrapper">
+  <div class="col-sm-4">
+    <span> الإسم</span>
+    <input type="text" class="form-control" [(ngModel)]="filter.searchText">
+  </div>
+  <div class="col-sm-2 submit-filter-button">
+    <button type="button" (click)="search()" class="btn buy-price filter-search-button">بحـث</button>
+  </div>
+</div>
+<div class="row admin-neutrints-list-wrapper">
+  <button class="btn admin-add-button" (click)="add()"> <i _ngcontent-c6="" class="fa fa-plus"></i></button>
+  <div class="data-table">
+    <ngx-datatable class="material" [rows]="foodItemsList" [columnMode]="'force'" [headerHeight]="50"
+      [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true" [count]="pagerDto.itmesCount"
+      [offset]="pagerDto.currentPage" [limit]="pagerDto.pageSize" (page)='setPage($event)'>
+      <ngx-datatable-column name="name">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <span>الإسم</span>
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Edit">
+        <ng-template let-column="column" ngx-datatable-header-template>
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <button (click)="edit(row.id)" class="btn">
+            <i class="fa fa-edit"></i>
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Delete">
+        <ng-template let-column="column" ngx-datatable-header-template>
+        </ng-template>
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <button (click)="delete(row.id)" class="btn btn-danger">
+            <i class="fa fa-trash"></i>
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>

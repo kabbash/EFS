@@ -39,6 +39,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Neutrints.Core.Interfaces;
+using Neutrints.Core.Services;
 using Products.Core.Interfaces;
 using Products.Core.Models;
 using Products.Core.Services;
@@ -128,6 +130,7 @@ namespace Trainer
             services.AddScoped<ICommonService, CommonService>();
             services.AddScoped<IBannerManager, BannerManager>();
             services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<INeutrintsManager, NeutrintsManager>();
 
             // Generic Services 
             services.AddScoped(typeof(ISliderManager<>), typeof(SliderManager<>));

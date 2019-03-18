@@ -26,6 +26,9 @@
         },
         "usersForAdmin": {
             "pageSize": 10
+        },
+        "neutrintsForAdmin": {
+            "pageSize": 10
         }
     }
 }
