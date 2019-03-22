@@ -4,6 +4,7 @@ import { config } from '../config/pages-config';
 
 import { ContactusFormComponent } from './contact-us-form/contact-us-form.component';
 import { ContactusComponent } from './contactus.component';
+import { BioComponent } from './bio/bio.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
       {
         path: config.contactus.form.name,
         component: ContactusFormComponent
+      },
+      {
+        path: config.contactus.bio.name,
+        component: BioComponent
       }
     ]
   }
