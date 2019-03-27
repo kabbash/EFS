@@ -38,6 +38,7 @@
     <ProjectReference Include="..\Home.Core\Home.Core.csproj" />
     <ProjectReference Include="..\ItemsReview\ItemsReview.csproj" />
     <ProjectReference Include="..\Lookups.Core\Lookups.Core.csproj" />
+    <ProjectReference Include="..\OTraining.Core\OTraining.Core.csproj" />
 
     <ProjectReference Include="..\Products.Categories.Core\Products.Core.csproj" />
 

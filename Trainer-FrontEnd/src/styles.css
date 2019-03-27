@@ -300,3 +300,48 @@ span pre {
 .carousel-item .container a.btn.btn-white:hover {
   color: black;
 }
+
+span pre {
+  display: block;
+  font-size: 30px;
+  overflow: visible;
+  word-break: break-word;
+  white-space: normal;
+  flex-wrap: wrap;
+  font-family: 'Cairo','sans-serif'
+}
+
+.darker-background{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.2);
+}
+
+.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+  font-weight: bold;
+  font-size: 14px;
+  padding-right: 5px;
+  padding-left: 5px;
+  text-align: center;
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group,
+.ngx-datatable.material.single-selection .datatable-body-row.active{
+  background-color: transparent;
+}
+
+.ngx-datatable *{
+  word-break: break-all;
+    text-align: right;
+}
+
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active:hover{
+
+  background-color: #00bcd4;
+}

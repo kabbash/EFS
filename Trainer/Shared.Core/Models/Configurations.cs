@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Shared.Core.Models
 {
-    public partial class Overloads
+    public class Configurations
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public byte TypeId { get; set; }
+        public byte Type { get; set; }
+        public string Value { get; set; }
     }
 }

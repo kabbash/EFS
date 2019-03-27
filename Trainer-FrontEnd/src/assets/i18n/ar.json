@@ -48,7 +48,8 @@
     "manageProductCategories": "فئات المنتجات",
     "itemReviewList": "مراجعة المنتجات",
     "manageBanners": "الملصقات",
-    "users": "المستخدمين"
+    "users": "المستخدمين",
+    "onlineTraining" : "التدريب الاونلاين"
   },
   "addBanner": {
     "title": "العنوان",

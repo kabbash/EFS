@@ -29,6 +29,7 @@ import { RolesResolver } from './resolvers/roles-list.resolver';
 import { UsersListResolver } from './resolvers/users-list.resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ManageOnlineTrainingComponent } from './manage-online-training/manage-online-training.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
       AddBannerComponent,
       ManageBannersComponent,
       // ProductListItemEditComponent,
-      UserManagementComponent
+      UserManagementComponent,
+      ManageOnlineTrainingComponent
     ],
 
   providers: [

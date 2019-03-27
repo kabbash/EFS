@@ -1,6 +1,7 @@
 <div class="add-banner-container">
   <div class="carousel-item dashboard-carousel"
     [ngStyle]="{'background-image': !banner.imagePath ? 'url(' + addedImageUrl + ')' : 'url(' + baseurl + banner?.imagePath + ')'}">
+    <div class="darker-background"></div>
     <div class="container">
       <span #titleHtml>
         <div class=""
