@@ -23,9 +23,9 @@ import { AddBannerComponent } from './add-banner/add-banner.component';
 import { ManageBannersComponent } from './manage-banners/manage-banners.component';
 import { BannersResolver } from './resolvers/banners.resolver';
 import { UserManagementComponent } from './user-management/user-management.component';
-
-import { RolesResolver } from './resolvers/roles-list.resolver';
 import { UsersListResolver } from './resolvers/users-list.resolver';
+import { ManageOnlineTrainingComponent } from './manage-online-training/manage-online-training.component';
+import { TrainingResolver } from './resolvers/training-resolver';
 
 
 const routes: Routes = [
@@ -90,6 +90,11 @@ const routes: Routes = [
         path: config.admin.manageBanners.name,
         component: ManageBannersComponent,
         resolve: {banners: BannersResolver}
+      },
+      {
+        path: config.admin.onlineTraining.name,
+        component: ManageOnlineTrainingComponent,
+        resolve: {trainingInfo: TrainingResolver}
       },
       {
         path: config.admin.users.name,

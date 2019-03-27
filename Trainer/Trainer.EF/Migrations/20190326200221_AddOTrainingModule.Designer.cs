@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20190326200221_AddOTrainingModule")]
+    partial class AddOTrainingModule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,9 +103,9 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
 
                     b.HasData(
-                        new { Id = 1, CreatedAt = new DateTime(2019, 3, 27, 5, 33, 24, 630, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
-                        new { Id = 2, CreatedAt = new DateTime(2019, 3, 27, 5, 33, 24, 637, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" },
-                        new { Id = 3, CreatedAt = new DateTime(2019, 3, 27, 5, 33, 24, 637, DateTimeKind.Utc), CreatedBy = "admin", Name = "البطولات", PredefinedKey = 3, ProfilePicture = "Files/Articles%20Categories/championships.png" }
+                        new { Id = 1, CreatedAt = new DateTime(2019, 3, 26, 20, 2, 17, 199, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
+                        new { Id = 2, CreatedAt = new DateTime(2019, 3, 26, 20, 2, 17, 214, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" },
+                        new { Id = 3, CreatedAt = new DateTime(2019, 3, 26, 20, 2, 17, 214, DateTimeKind.Utc), CreatedBy = "admin", Name = "البطولات", PredefinedKey = 3, ProfilePicture = "Files/Articles%20Categories/championships.png" }
                     );
                 });
 
@@ -264,7 +266,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", IsBlocked = false, LockoutEnabled = false, PasswordHash = new byte[] { 230, 142, 177, 92, 114, 169, 241, 147, 125, 91, 136, 65, 68, 4, 153, 73, 125, 94, 151, 77, 203, 110, 118, 249, 96, 126, 95, 82, 53, 250, 238, 21, 51, 35, 118, 227, 90, 92, 142, 97, 62, 64, 201, 76, 10, 139, 206, 86, 161, 255, 114, 152, 89, 208, 59, 96, 153, 99, 159, 46, 79, 79, 163, 159 }, PasswordSalt = new byte[] { 46, 246, 159, 12, 112, 176, 229, 31, 106, 72, 162, 219, 42, 137, 57, 247, 123, 229, 145, 99, 49, 108, 60, 214, 151, 186, 71, 2, 119, 31, 36, 46, 84, 203, 122, 152, 157, 211, 87, 53, 162, 237, 89, 40, 231, 190, 48, 241, 92, 36, 180, 10, 152, 62, 22, 108, 109, 37, 72, 17, 232, 136, 194, 49, 47, 53, 251, 189, 232, 19, 70, 2, 24, 218, 88, 168, 44, 220, 119, 38, 180, 186, 177, 138, 193, 134, 164, 72, 189, 69, 245, 180, 9, 97, 180, 231, 243, 39, 119, 51, 33, 102, 193, 88, 185, 179, 121, 6, 44, 142, 196, 206, 104, 108, 223, 77, 206, 44, 236, 76, 225, 199, 11, 203, 220, 176, 14, 244 }, PhoneNumber = "01014991554", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "ahmedkabbash@gmail.com" }
+                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", IsBlocked = false, LockoutEnabled = false, PasswordHash = new byte[] { 108, 98, 244, 11, 118, 60, 28, 62, 142, 10, 169, 112, 109, 52, 158, 164, 120, 186, 166, 162, 83, 44, 67, 121, 254, 32, 162, 218, 209, 216, 255, 113, 185, 213, 63, 15, 102, 186, 142, 41, 93, 101, 216, 149, 165, 107, 255, 59, 237, 179, 186, 211, 140, 169, 178, 161, 125, 84, 44, 73, 73, 227, 135, 147 }, PasswordSalt = new byte[] { 111, 211, 53, 173, 34, 74, 226, 183, 142, 138, 124, 108, 201, 189, 82, 43, 111, 142, 110, 184, 173, 191, 76, 223, 100, 177, 189, 3, 98, 84, 117, 223, 181, 188, 66, 179, 30, 187, 159, 121, 94, 164, 157, 162, 250, 55, 183, 8, 112, 73, 15, 111, 167, 90, 94, 204, 158, 204, 20, 12, 170, 116, 253, 192, 189, 111, 228, 110, 220, 178, 251, 105, 19, 34, 139, 223, 100, 64, 46, 62, 242, 230, 206, 190, 169, 173, 30, 39, 106, 44, 180, 29, 188, 173, 81, 6, 191, 213, 3, 95, 169, 160, 93, 173, 249, 11, 52, 138, 125, 109, 182, 183, 78, 8, 11, 139, 1, 134, 109, 218, 103, 46, 165, 102, 200, 121, 174, 87 }, PhoneNumber = "01014991554", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "ahmedkabbash@gmail.com" }
                     );
                 });
 
@@ -295,21 +297,6 @@ namespace Trainer.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Banners");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.Configurations", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<byte>("Type");
-
-                    b.Property<string>("Value");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Configurations");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.EntityRating", b =>
@@ -494,6 +481,21 @@ namespace Trainer.EF.Migrations
                     b.ToTable("ItemsForReviews");
                 });
 
+            modelBuilder.Entity("Shared.Core.Models.OTraining", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("ForJoin");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OTraining");
+                });
+
             modelBuilder.Entity("Shared.Core.Models.OTrainingPrograms", b =>
                 {
                     b.Property<int>("Id")
@@ -507,8 +509,6 @@ namespace Trainer.EF.Migrations
                     b.Property<string>("Features");
 
                     b.Property<string>("Name");
-
-                    b.Property<string>("ProfilePicture");
 
                     b.Property<DateTime?>("UpdatedAt");
 

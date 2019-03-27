@@ -7,7 +7,8 @@
         Articles_Categories,
         Articles,
         Temp,
-        Banners
+        Banners,
+        OTrainingProgram
     }
     public enum RatingEntityTypesEnum
     {
@@ -50,5 +51,11 @@
         Register,
         ResetPassword,
         ContactUs
+    }
+
+    public enum ConfigurationsEnum
+    {
+        OTrainingDetails = 1,
+        OTrainingForJoin
     }
 }

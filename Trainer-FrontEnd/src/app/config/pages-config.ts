@@ -200,6 +200,10 @@ export let config = {
             'name': 'manageBanners',
             'route': '/admin/manageBanners'
         },
+        'onlineTraining': {
+            'name': 'onlineTraining',
+            'route': '/admin/onlineTraining'
+        },
         'users': {
             'name': 'users',
             'route': '/admin/users'

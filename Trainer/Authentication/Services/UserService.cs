@@ -205,8 +205,6 @@ namespace Authentication.Services
                 switch (userData.Type)
                 {
                     case Enums.UserEnum.Clinet:
-                        _unitOfWork.ClientsRepository.Insert(new Clients { Id = userEntity.Id });
-                        _unitOfWork.Commit();
                         AddRoleToUser(new UserRoleDto
                         {
                             RoleName = "Client",
@@ -214,8 +212,6 @@ namespace Authentication.Services
                         });
                         break;
                     case Enums.UserEnum.Trainer:
-                        _unitOfWork.TrainersRepository.Insert(new Trainers { Id = userEntity.Id });
-                        _unitOfWork.Commit();
                         AddRoleToUser(new UserRoleDto
                         {
                             RoleName = "RegularUser",

@@ -37,6 +37,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using OTraining.Core.Interfaces;
+using OTraining.Core.Models;
+using OTraining.Core.Services;
+using OTraining.Core.Validators;
 using Products.Core.Interfaces;
 using Products.Core.Models;
 using Products.Core.Services;
@@ -116,6 +120,7 @@ namespace Trainer
             services.AddScoped<IAttachmentsManager, AttachmentsManager>();
             services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
             services.AddScoped<IProductsManager, ProductsManager>();
+            services.AddScoped<IOTrainingManager, OTrainingManager>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddTransient<IEmailService, MailService>();
@@ -140,6 +145,8 @@ namespace Trainer
             services.AddTransient<IValidator<UploadFileDto>, UploadFileDtoValidator>();
             services.AddTransient<IValidator<ProductsCategoryDto>, ProductsCategoryDtoValidator>();
             services.AddTransient<IValidator<ProductsDto>, ProductsDtoValidator>();
+            services.AddTransient<IValidator<OTrainingDetailsDto>, OTrainingDetailsDtoValidator>();
+            services.AddTransient<IValidator<OTrainingProgramDto>, ProgramDtoValidator>();
             services.AddTransient<IValidator<RatingDto>, RatingDtoValidator>();
             services.AddTransient<IValidator<RegisterDto>, RegisterValidator>();
             services.AddTransient<IValidator<ArticleAddDto>, ArticleAddDtoValidator>();
