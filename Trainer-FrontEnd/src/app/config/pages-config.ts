@@ -52,6 +52,10 @@ export let config = {
         'form': {
             'name': 'contactusForm',
             'route': '/contactus/contactusForm',
+        },
+        'bio': {
+            'name': 'bio',
+            'route': '/contactus/bio',
         }
     },
     'products': {

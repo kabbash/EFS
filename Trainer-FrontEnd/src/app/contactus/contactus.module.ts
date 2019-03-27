@@ -4,6 +4,7 @@ import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng
 import { ContactusComponent } from './contactus.component';
 import { ContactusFormComponent } from './contact-us-form/contact-us-form.component';
 import { ContactusRoutingModule } from './contactus-routing.module';
+import { BioComponent } from './bio/bio.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import { ContactusRoutingModule } from './contactus-routing.module';
     NgbPaginationModule,
     NgbAlertModule,
   ],
-  declarations: [ContactusComponent, ContactusFormComponent],
+  declarations: [ContactusComponent, ContactusFormComponent, BioComponent],
   providers: [
   ]
 })
