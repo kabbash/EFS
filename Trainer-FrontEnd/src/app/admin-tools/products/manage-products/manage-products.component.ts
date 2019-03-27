@@ -134,7 +134,7 @@ export class ManageProductsComponent implements OnInit {
   }
 
   delete() {
-    if (confirm("هل انت متأكد من مسح هذا المقال ؟ ")) {
+    if (confirm("هل انت متأكد من مسح هذا المنتج ؟ ")) {
       this.service.delete(this.productId).subscribe(c => { 
         console.log(c);
         alert('deleted');

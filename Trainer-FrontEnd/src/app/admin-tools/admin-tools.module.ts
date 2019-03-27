@@ -29,7 +29,12 @@ import { RolesResolver } from './resolvers/roles-list.resolver';
 import { UsersListResolver } from './resolvers/users-list.resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ManageNeutrintsComponent } from './neutrints/manage-neutrints/manage-neutrints.component';
+import { FoodItemsListComponent } from './neutrints/food-items-list/food-items-list.component';
+import { FoodItemResolver } from './resolvers/food-item-resolver';
+import { FoodItemsListResolver } from './resolvers/food-items-list.resolver';
 import { ManageOnlineTrainingComponent } from './manage-online-training/manage-online-training.component';
+
 
 
 @NgModule({
@@ -63,6 +68,8 @@ import { ManageOnlineTrainingComponent } from './manage-online-training/manage-o
       ManageBannersComponent,
       // ProductListItemEditComponent,
       UserManagementComponent,
+      ManageNeutrintsComponent,
+      FoodItemsListComponent,
       ManageOnlineTrainingComponent
     ],
 
@@ -76,7 +83,9 @@ import { ManageOnlineTrainingComponent } from './manage-online-training/manage-o
     AdminArticlesService,
     ManageBannerService,
     RolesResolver,
-    UsersListResolver
+    UsersListResolver,
+    FoodItemResolver,
+    FoodItemsListResolver
   ]
 })
 export class AdminToolsModule { }

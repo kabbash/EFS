@@ -24,7 +24,7 @@ namespace Trainer.Controllers
 
             return Ok(user);
         }
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [Route("GetAll")]
         public IActionResult GetAll([FromQuery] UsersFilter usersFilter)
@@ -33,7 +33,7 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(users);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("AddRoleToUser")]
         public IActionResult AddRoleToUser([FromBody] UserRoleDto data)
@@ -42,7 +42,7 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(result);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("RemoveRoleFromUser")]
         public IActionResult RemoveRoleFromUser([FromBody] UserRoleDto data)
@@ -51,7 +51,7 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(result);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("UpdateUserAccess")]
         public IActionResult UpdateUserAccess([FromBody] UserAccessDto data)

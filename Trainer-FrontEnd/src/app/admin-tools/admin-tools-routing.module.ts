@@ -24,8 +24,13 @@ import { ManageBannersComponent } from './manage-banners/manage-banners.componen
 import { BannersResolver } from './resolvers/banners.resolver';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { UsersListResolver } from './resolvers/users-list.resolver';
+import { FoodItemsListComponent } from './neutrints/food-items-list/food-items-list.component';
+import { FoodItemsListResolver } from './resolvers/food-items-list.resolver';
+import { ManageNeutrintsComponent } from './neutrints/manage-neutrints/manage-neutrints.component';
+import { FoodItemResolver } from './resolvers/food-item-resolver';
 import { ManageOnlineTrainingComponent } from './manage-online-training/manage-online-training.component';
 import { TrainingResolver } from './resolvers/training-resolver';
+
 
 
 const routes: Routes = [
@@ -89,7 +94,7 @@ const routes: Routes = [
       {
         path: config.admin.manageBanners.name,
         component: ManageBannersComponent,
-        resolve: {banners: BannersResolver}
+        resolve: { banners: BannersResolver }
       },
       {
         path: config.admin.onlineTraining.name,
@@ -99,7 +104,17 @@ const routes: Routes = [
       {
         path: config.admin.users.name,
         component: UserManagementComponent,
-        resolve: { users: UsersListResolver}
+        resolve: { users: UsersListResolver }
+      },
+      {
+        path: config.admin.neutrintsList.name,
+        component: FoodItemsListComponent,
+        resolve: { foodItemsList: FoodItemsListResolver }
+      },
+      {
+        path: config.admin.manageNeutrints.name,
+        component: ManageNeutrintsComponent,
+        resolve: { foodItem: FoodItemResolver }
       }
     ]
   },

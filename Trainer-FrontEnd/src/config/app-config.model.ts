@@ -26,6 +26,9 @@ export interface IAppConfig {
         },
         usersForAdmin: {
             pageSize: number;
+        },
+        neutrintsForAdmin: {
+            pageSize: number;
         }
     };
 }
