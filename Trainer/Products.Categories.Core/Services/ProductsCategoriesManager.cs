@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 using Products.Core.Interfaces;
 using Products.Core.Models;
 using Shared.Core.Models;
-using Shared.Core.Resources;
+using Shared.Core.Settings;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
@@ -21,15 +21,13 @@ namespace Products.Core.Services
     {
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<ProductsCategoryDto> _validator;
-        private readonly IOptions<ProductsResources> _productsResources;
         private readonly IAttachmentsManager _attachmentsManager;
         private readonly IHostingEnvironment _hostingEnvironment;
 
-        public ProductsCategoriesManager(IUnitOfWork unitOfWork, IValidator<ProductsCategoryDto> validator, IOptions<ProductsResources> productsResources, IAttachmentsManager attachmentsManager, IHostingEnvironment hostingEnvironment)
+        public ProductsCategoriesManager(IUnitOfWork unitOfWork, IValidator<ProductsCategoryDto> validator, IAttachmentsManager attachmentsManager, IHostingEnvironment hostingEnvironment)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
-            _productsResources = productsResources;
             _attachmentsManager = attachmentsManager;
             _hostingEnvironment = hostingEnvironment;
         }

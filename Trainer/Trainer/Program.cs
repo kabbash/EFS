@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using System.IO;
 
 namespace Trainer
@@ -15,11 +14,12 @@ namespace Trainer
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
          WebHost.CreateDefaultBuilder(args)
            .UseContentRoot(Directory.GetCurrentDirectory())
-            .ConfigureAppConfiguration((hostingContext, config) =>
-            {
-                config.AddJsonFile("emailTemplates.json", optional: false, reloadOnChange: false);
-            })
            .UseStartup<Startup>()
            .PreferHostingUrls(true);
+
+        //.ConfigureAppConfiguration((hostingContext, config) =>
+        //{
+        //    config.AddJsonFile("emailTemplates.json", optional: false, reloadOnChange: false);
+        //})
     }
 }

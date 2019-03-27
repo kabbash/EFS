@@ -52,6 +52,10 @@ export let config = {
         'form': {
             'name': 'contactusForm',
             'route': '/contactus/contactusForm',
+        },
+        'bio': {
+            'name': 'bio',
+            'route': '/contactus/bio',
         }
     },
     'products': {
@@ -199,6 +203,10 @@ export let config = {
         'manageBanners': {
             'name': 'manageBanners',
             'route': '/admin/manageBanners'
+        },
+        'onlineTraining': {
+            'name': 'onlineTraining',
+            'route': '/admin/onlineTraining'
         },
         'users': {
             'name': 'users',

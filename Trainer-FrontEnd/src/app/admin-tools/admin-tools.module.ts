@@ -33,6 +33,8 @@ import { ManageNeutrintsComponent } from './neutrints/manage-neutrints/manage-ne
 import { FoodItemsListComponent } from './neutrints/food-items-list/food-items-list.component';
 import { FoodItemResolver } from './resolvers/food-item-resolver';
 import { FoodItemsListResolver } from './resolvers/food-items-list.resolver';
+import { ManageOnlineTrainingComponent } from './manage-online-training/manage-online-training.component';
+
 
 
 @NgModule({
@@ -67,7 +69,8 @@ import { FoodItemsListResolver } from './resolvers/food-items-list.resolver';
       // ProductListItemEditComponent,
       UserManagementComponent,
       ManageNeutrintsComponent,
-      FoodItemsListComponent
+      FoodItemsListComponent,
+      ManageOnlineTrainingComponent
     ],
 
   providers: [
