@@ -4,6 +4,7 @@ using Authentication.Models;
 using FluentValidation;
 using MailProvider.Core.Interfaces;
 using Mapster;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Core.Models;
@@ -28,15 +29,17 @@ namespace Authentication.Services
         private readonly AppSettings _settings;
         private readonly IValidator<RegisterDto> _validator;
         private readonly IEmailService _emailService;
+        private readonly ILogger<UserService> _logger;
         public UserService(IUnitOfWork unitOfWork,
             IOptions<AppSettings> settings,
             IValidator<RegisterDto> validator,
-            IEmailService emailService)
+            IEmailService emailService, ILogger<UserService> logger)
         {
             _unitOfWork = unitOfWork;
             _settings = settings.Value;
             _validator = validator;
             _emailService = emailService;
+            _logger = logger;
         }
 
         public ResultMessage Authenticate(string username, string password)
@@ -110,6 +113,7 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserRoleError };
             }
         }
@@ -137,6 +141,7 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserRoleError };
             }
         }
@@ -152,7 +157,7 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex, string.Empty);
                 return false;
             }
         }
@@ -176,7 +181,7 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex, string.Empty);
                 return false;
             }
         }
@@ -233,7 +238,7 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError };
             }
 
@@ -254,6 +259,7 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
@@ -277,6 +283,7 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
@@ -299,6 +306,7 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
@@ -327,6 +335,7 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
@@ -345,6 +354,7 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }

@@ -5,6 +5,7 @@ using Attachments.Core.Interfaces;
 using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
+using Microsoft.Extensions.Logging;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
@@ -12,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using DBModels = Shared.Core.Models;
 
 namespace Articles.Core.Services
@@ -23,14 +25,16 @@ namespace Articles.Core.Services
         private readonly IValidator<RejectDto> _rejectValidator;
         private readonly IAttachmentsManager _attachmentsManager;
         private readonly ISliderManager<DBModels.ArticlesImages> _sliderManager;
+        private readonly ILogger<ArticleService> _logger;
 
-        public ArticleService(IUnitOfWork unitOfWork, IValidator<ArticleAddDto> addvalidator, IValidator<RejectDto> rejectvalidator, IAttachmentsManager attachmentsManager, ISliderManager<DBModels.ArticlesImages> sliderManager)
+        public ArticleService(IUnitOfWork unitOfWork, IValidator<ArticleAddDto> addvalidator, IValidator<RejectDto> rejectvalidator, IAttachmentsManager attachmentsManager, ISliderManager<DBModels.ArticlesImages> sliderManager, ILogger<ArticleService> logger)
         {
             _unitOfWork = unitOfWork;
             _addValidator = addvalidator;
             _rejectValidator = rejectvalidator;
             _attachmentsManager = attachmentsManager;
             _sliderManager = sliderManager;
+            _logger = logger;
         }
 
         public ResultMessage GetAll(ArticlesFilter filter)
@@ -52,12 +56,11 @@ namespace Articles.Core.Services
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsGetAllError,
-                    Status = HttpStatusCode.InternalServerError,
-                    exception = ex
+                    Status = HttpStatusCode.InternalServerError
                 };
             }
         }
@@ -94,10 +97,10 @@ namespace Articles.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
-                    Status = HttpStatusCode.InternalServerError,
-                    exception = ex
+                    Status = HttpStatusCode.InternalServerError
                 };
             }
         }
@@ -146,11 +149,10 @@ namespace Articles.Core.Services
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsInsertError,
-                    exception = ex,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -178,7 +180,7 @@ namespace Articles.Core.Services
                 }
 
 
-                if (user.IsAdmin || ( user.Id != articleData.CreatedBy && (! articleData.IsActive.HasValue || ! articleData.IsActive.Value)))
+                if (user.IsAdmin || (user.Id != articleData.CreatedBy && (!articleData.IsActive.HasValue || !articleData.IsActive.Value)))
                 {
                     article.Adapt(articleData, typeof(ArticleAddDto), typeof(DBModels.Articles));
                     articleData.UpdatedAt = DateTime.Now;
@@ -219,10 +221,10 @@ namespace Articles.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
-                    Status = HttpStatusCode.InternalServerError,
-                    exception = ex
+                    Status = HttpStatusCode.InternalServerError
                 };
             }
         }
@@ -240,7 +242,7 @@ namespace Articles.Core.Services
                     };
                 }
 
-                if (user.IsAdmin || ( user.Id == article.CreatedBy && ( !article.IsActive.HasValue || !article.IsActive.Value)))
+                if (user.IsAdmin || (user.Id == article.CreatedBy && (!article.IsActive.HasValue || !article.IsActive.Value)))
                 {
                     var articleFolder = article.SubFolderName;
                     if (!string.IsNullOrEmpty(articleFolder))
@@ -264,6 +266,7 @@ namespace Articles.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError
@@ -296,6 +299,7 @@ namespace Articles.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError
@@ -341,6 +345,7 @@ namespace Articles.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError

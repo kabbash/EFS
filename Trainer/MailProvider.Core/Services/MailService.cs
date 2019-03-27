@@ -1,5 +1,6 @@
 ﻿using MailProvider.Core.Interfaces;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using Shared.Core.Settings;
@@ -15,18 +16,20 @@ using System.Threading.Tasks;
 
 namespace MailProvider.Core.Services
 {
-    public class MailService: IEmailService
+    public class MailService : IEmailService
     {
         private readonly AppSettings _settings;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly ILogger<MailService> _logger;
 
-        public MailService(IOptions<AppSettings> settings, IHostingEnvironment environment)
+        public MailService(IOptions<AppSettings> settings, IHostingEnvironment environment, ILogger<MailService> logger)
         {
             _settings = settings.Value;
             _hostingEnvironment = environment;
+            _logger = logger;
         }
 
-        public async Task SendEmailAsync(string email, string subject, EmailTemplatesEnum emailTemplate, Dictionary<string,string> replacements)
+        public async Task SendEmailAsync(string email, string subject, EmailTemplatesEnum emailTemplate, Dictionary<string, string> replacements)
         {
             try
             {
@@ -37,7 +40,7 @@ namespace MailProvider.Core.Services
                     Host = _settings.EmailSettings.MailServerAddress, // set your SMTP server name here
                     Port = _settings.EmailSettings.MailServerPort, // Port 
                     EnableSsl = true,
-                    Credentials = new NetworkCredential(_settings.EmailSettings.UserId, _settings.EmailSettings.UserPassword),                    
+                    Credentials = new NetworkCredential(_settings.EmailSettings.UserId, _settings.EmailSettings.UserPassword),
                 };
 
                 using (var mailMessage = new MailMessage(_settings.EmailSettings.FromAddress, email)
@@ -52,9 +55,9 @@ namespace MailProvider.Core.Services
             }
             catch (Exception ex)
             {
-                
-            }           
-        }       
+                _logger.LogError(ex, string.Empty);
+            }
+        }
         private string GetTemplateByType(EmailTemplatesEnum emailTemplate)
         {
             var templateRelativePath = string.Empty;

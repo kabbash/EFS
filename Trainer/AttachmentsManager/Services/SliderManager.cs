@@ -1,10 +1,10 @@
 ﻿using Attachments.Core.Models;
 using Mapster;
+using Microsoft.Extensions.Logging;
 using Shared.Core.Models;
 using Shared.Core.Models.Base;
 using Shared.Core.Utilities.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Attachments.Core.Interfaces
@@ -14,12 +14,14 @@ namespace Attachments.Core.Interfaces
         private readonly IAttachmentsManager _attachmentsManager;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<T> _repository;
+        private readonly ILogger<SliderManager<T>> _logger;
 
-        public SliderManager(IUnitOfWork unitOfWork, IAttachmentsManager attachmentsManager)
+        public SliderManager(IUnitOfWork unitOfWork, IAttachmentsManager attachmentsManager, ILogger<SliderManager<T>> logger)
         {
             _unitOfWork = unitOfWork;
             _repository = _unitOfWork.getRepoByType(typeof(IRepository<T>)) as IRepository<T>;
             _attachmentsManager = attachmentsManager;
+            _logger = logger;
         }
 
         public bool Add(SliderDto dto)
@@ -48,7 +50,8 @@ namespace Attachments.Core.Interfaces
             }
             catch (Exception ex)
             {
-                throw ex;
+                _logger.LogError(ex, string.Empty);
+                return false;
             }
         }
         public bool Update(SliderDto dto)
@@ -99,8 +102,8 @@ namespace Attachments.Core.Interfaces
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                _logger.LogError(ex, string.Empty);
+                return false;
             }
         }
         public bool Delete(SliderDto dto)
@@ -122,8 +125,8 @@ namespace Attachments.Core.Interfaces
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                _logger.LogError(ex, string.Empty);
+                return false;
             }
         }
         public string GetProfilePicturePath(SliderDto dto, string oldPath=null)

@@ -2,6 +2,7 @@
 using Attachments.Core.Models;
 using FluentValidation;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Shared.Core.Settings;
 using Shared.Core.Utilities.Enums;
@@ -16,12 +17,15 @@ namespace Attachments.Core.Services
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly AppSettings _settings;
         private readonly IValidator<UploadFileDto> _validator;
+        private readonly ILogger<AttachmentsManager> _logger;
 
-        public AttachmentsManager(IOptions<AppSettings> settings, IValidator<UploadFileDto> validator, IHostingEnvironment environment)
+
+        public AttachmentsManager(IOptions<AppSettings> settings, IValidator<UploadFileDto> validator, IHostingEnvironment environment, ILogger<AttachmentsManager> logger)
         {
             _settings = settings.Value;
             _validator = validator;
             _hostingEnvironment = environment;
+            _logger = logger;
         }
 
         /// <summary>
@@ -53,6 +57,7 @@ namespace Attachments.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return string.Empty;
             }
         }
@@ -85,6 +90,7 @@ namespace Attachments.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return string.Empty;
             }
         }
@@ -110,7 +116,7 @@ namespace Attachments.Core.Services
             }
             catch (Exception ex)
             {
-                //log error
+                _logger.LogError(ex, string.Empty);
                 return false;
             }
         }
@@ -154,7 +160,7 @@ namespace Attachments.Core.Services
             }
             catch (Exception ex)
             {
-                //log error
+                _logger.LogError(ex, string.Empty);
                 return false;
             }
         }
