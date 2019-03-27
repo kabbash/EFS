@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { foodItem } from 'src/app/shared/models/neutrints/food-item-dto';
+import { FoodItem } from 'src/app/shared/models/neutrints/food-item-dto';
 import { PagerDto } from 'src/app/shared/models/pager.dto';
 import { FoodIemFilter } from 'src/app/shared/models/neutrints/food-item-filter';
-import { NeutrintsService } from '../../services/neutrints.service';
+import { NeutrintsService } from '../../../shared/services/neutrints.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import { AppConfig } from 'src/config/app.config';
@@ -15,7 +15,7 @@ import { first, finalize } from 'rxjs/operators';
   styleUrls: ['./food-items-list.component.css']
 })
 export class FoodItemsListComponent implements OnInit {
-  foodItemsList: foodItem[];
+  foodItemsList: FoodItem[];
   pagerDto = new PagerDto();
   filter = new FoodIemFilter();
 

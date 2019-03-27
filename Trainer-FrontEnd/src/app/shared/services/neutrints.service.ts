@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { PagedResult } from '../../shared/models/paged-result';
-import { RepositoryService } from '../../shared/services/repository.service';
-import { foodItem } from 'src/app/shared/models/neutrints/food-item-dto';
+import { PagedResult } from '../models/paged-result';
+import { RepositoryService } from './repository.service';
+import { FoodItem } from 'src/app/shared/models/neutrints/food-item-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,11 @@ export class NeutrintsService {
   }
 
   get(filterUrl: string) {
-    return this.service.getData<PagedResult<foodItem>>("FoodItems" + filterUrl);
+    return this.service.getData<PagedResult<FoodItem>>("FoodItems" + filterUrl);
   }
 
   getById(id: number) {
-    return this.service.getData<PagedResult<foodItem>>("FoodItems/" + id);
+    return this.service.getData<PagedResult<FoodItem>>("FoodItems/" + id);
   }
 
   update(foodItemId: number, foodItem: FormData): any {

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { foodItem } from 'src/app/shared/models/neutrints/food-item-dto';
+import { FoodItem } from 'src/app/shared/models/neutrints/food-item-dto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import { config } from 'src/app/config/pages-config';
 import { UtilitiesService } from 'src/app/shared/services/utilities.service';
-import { NeutrintsService } from '../../services/neutrints.service';
+import { NeutrintsService } from '../../../shared/services/neutrints.service';
 import { first, finalize } from 'rxjs/operators';
 
 @Component({
@@ -14,7 +14,7 @@ import { first, finalize } from 'rxjs/operators';
 })
 export class ManageNeutrintsComponent implements OnInit {
   itemId: number;
-  item: foodItem;
+  item: FoodItem;
   isNew: boolean;
 
   constructor(private route: ActivatedRoute, private router: Router, private appService: AppService, private service: NeutrintsService, private util: UtilitiesService) { }
@@ -30,7 +30,7 @@ export class ManageNeutrintsComponent implements OnInit {
         });
       }
       else {
-        this.item = new foodItem();
+        this.item = new FoodItem();
         this.isNew = true;
       }
     });
