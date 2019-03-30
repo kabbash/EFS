@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using OTraining.Core.Models;
+using Shared.Core.Utilities.Enums;
 
 namespace OTraining.Core.Validators
 {
@@ -7,8 +8,8 @@ namespace OTraining.Core.Validators
     {
         public ProgramDtoValidator()
         {
-            RuleFor(c => c.Name).NotEmpty();
-            RuleFor(c => c.Features).NotEmpty().MinimumLength(10);
+            RuleFor(c => c.Name).NotEmpty().WithMessage(((int)OTrainingErrorsCodeEnum.ValidationDescriptionRequired).ToString());
+            RuleFor(c => c.Features).NotEmpty().WithMessage(((int)OTrainingErrorsCodeEnum.ValidationProgramFeaturesRequired).ToString());
         }
     }
 }
