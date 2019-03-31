@@ -1,5 +1,6 @@
 ﻿using Articles.Core.Models;
 using FluentValidation;
+using Shared.Core.Utilities.Enums;
 
 namespace Articles.Core.Validators
 {
@@ -7,8 +8,7 @@ namespace Articles.Core.Validators
     {
         public ArticlesCategoriesValidator()
         {
-            RuleFor(model => model.Name).NotEmpty();
-            // RuleFor(model => model.ProfilePictureFile).NotEmpty();
+            RuleFor(model => model.Name).NotEmpty().WithMessage(((int)ArticlesErrorsCodeEnum.ValidationsCategoryNameRequired).ToString()); ;
         }
     }
 }

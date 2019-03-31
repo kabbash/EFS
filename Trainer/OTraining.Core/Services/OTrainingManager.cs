@@ -235,7 +235,6 @@ namespace OTraining.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    exception = ex,
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesUpdateError
                 };
             }
