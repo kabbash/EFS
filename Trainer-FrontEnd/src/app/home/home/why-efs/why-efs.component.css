@@ -1,13 +1,13 @@
 /* section why  */
 .why-sect {
     height: 50px;
-    background-color: #028798;
+    background-color: #f8f9fa;
     line-height: 50px !important;
   
   }
   
   .why-sect p {
-    color: #fff;
+    color: #000000;
     margin: 0;
     height: 50px;
     font-size: 25px

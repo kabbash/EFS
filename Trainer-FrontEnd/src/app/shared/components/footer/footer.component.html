@@ -1,19 +1,45 @@
- <!-- footer -->
- <footer id="Footer" class="clearfix" [ngClass]="{'show-logo':footerLogo}">
+<!-- footer -->
+<footer id="Footer" class="clearfix" [ngClass]="{'show-logo':footerLogo}">
   <div class="widgets_wrapper" *ngIf="footerLogo">
     <div class="container">
       <div class="row">
         <aside class="col">
           <div class="textwidget">
-            <div class="justify-content-center" style="text-align: center">
+            <div class="justify-content-center">
               <img src="../../../../../assets/images/footer-logo.png" width="150">
-              <hr class="no_line" style="margin: 0 auto 10px">
+              <div>
+                <div class="links-to-creator">
+                  <i class="fa fa-facebook-f">
+                  </i>
+                  www.facebook.com
+                </div>
+                <div class="links-to-creator">
+                  <i class="fa fa-whatsapp">
+                  </i>
+                  web.whatsapp.com
+                </div>
+                <div class="links-to-creator">
+                  <i class="fa fa fa-skype">
+                  </i>
+                  www.skype.com
+                </div>
+                <div class="links-to-creator">
+                  <i class="fa fa-twitter">
+                  </i>
+                  www.twitter.com
+                </div>
+                <div class="links-to-creator">
+                  <i class="fa fa-youtube">
+                  </i>
+                  www.youtube.com
+                </div>
+              </div>
             </div>
           </div>
         </aside>
       </div>
 
-     <!-- <div class="row">
+      <!-- <div class="row">
         <div class="col ">
             <aside class="widget_text widget widget_custom_html rtl">
               <h4> اللينكات السريعه</h4>
@@ -106,32 +132,32 @@
 
     </div>
   </div>
-  <div class="footer_copy"  [ngClass]="{'show-logo':footerLogo}">
+  <div class="footer_copy" [ngClass]="{'show-logo':footerLogo}">
     <div class="container">
-     <div class="">
-        <div class="col">             
-            <div class="copyright">
-              © 2018 EFS - HTML by <a target="_blank" rel="nofollow" href="">EFS TEAM</a>
-            </div>
-            <ul class="social">
-              <li class="skype">
-                <a href="#" title="Skype"><i class="fa fa-skype"></i></a>
-              </li>
-              <li class="facebook">
-                <a href="#" title="Facebook"><i class="fa fa-facebook-f"></i></a>
-              </li>
-              <li class="googleplus">
-                <a href="#" title="Google+"><i class="fa fa-google-plus"></i></a>
-              </li>
-              <li class="twitter">
-                <a href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
-              </li>
-              <li class="youtube">
-                <a href="#" title="YouTube"><i class="fa fa-youtube"></i></a>
-              </li>
-            </ul>
+      <div class="">
+        <div class="col">
+          <div class="copyright">
+            © 2018 EFS - HTML by <a target="_blank" rel="nofollow" href="">EFS TEAM</a>
           </div>
-     </div>
+          <ul class="social">
+            <li class="skype">
+              <a href="#" title="Skype"><i class="fa fa-skype"></i></a>
+            </li>
+            <li class="facebook">
+              <a href="#" title="Facebook"><i class="fa fa-facebook-f"></i></a>
+            </li>
+            <li class="googleplus">
+              <a href="#" title="Google+"><i class="fa fa-google-plus"></i></a>
+            </li>
+            <li class="twitter">
+              <a href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
+            </li>
+            <li class="youtube">
+              <a href="#" title="YouTube"><i class="fa fa-youtube"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </footer>

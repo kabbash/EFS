@@ -4,6 +4,10 @@
     padding-top: 60px;
     position: relative;
     overflow: hidden;
+    background: #333333;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 40px;
   }
 
   .reverse-order{
@@ -14,18 +18,18 @@
     bottom: 0;
   }
   .Coach .header-section h3 {
-    color: #333 !important;
+    color: #fff !important;
     font-size: 40px;
     font-weight: 800;
   }
   
   .coach-data {
     padding-top: 55px;
-    color: #333;
+    color: #fff;
   }
   .button-stroke a:hover {
    text-decoration: unset;
-   color: #333;
+   color: #fff;
 }
 .button-stroke{
   display: flex;
@@ -33,7 +37,7 @@
   justify-content: center;
 }
 .button-stroke a.button-white{
-  color : #333;
+  color : #fff;
 }
 .counter .count-text {
   color: #00bcd4;
