@@ -70,7 +70,7 @@ export class AddItemForReviewComponent implements OnInit {
     });
   }
 
-  onFileSelect(event, isCropped) {
+  onFileSelect(event, isCropped?) {
     this.imageEvent = isCropped ? null : event;
     const file = isCropped ? event : event.target.files[0];
     this.reviewForm.controls['profilePictureFile'].setValue(file);

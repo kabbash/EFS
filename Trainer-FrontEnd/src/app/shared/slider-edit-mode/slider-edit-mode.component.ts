@@ -68,7 +68,7 @@ export class SliderEditModeComponent implements OnInit {
     this.modalService.open(deleteModalContent);
   }
 
-  onFileSelect(event, isCropped) {
+  onFileSelect(event, isCropped?) {
     const file = isCropped ? event :  event.target.files[0];
     this.imageEvent = isCropped ? null : event; 
     const image = isCropped ?  this.sliderData[this.croppedImageIndex] : this.newImage;

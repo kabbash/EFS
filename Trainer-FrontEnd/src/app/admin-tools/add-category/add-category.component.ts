@@ -95,12 +95,12 @@ export class AddCategoryComponent implements OnInit {
     return formData;
   }
 
-  onFileSelect(event, isCropped) {
+  onFileSelect(event, isCropped?) {
     this.imageEvent = isCropped ? null : event;
-    const file = isCropped ? event : event.target.files[0]
+    const file = isCropped ? event : event.target.files[0];
     // file.name = 'image.'+ file.type.split('/')[1];
     this.articleCategory.profilePictureFile = file;
-    this.categoryForm.controls['profilePictureFile'].setValue(file)
+    this.categoryForm.controls['profilePictureFile'].setValue(file);
     const reader = new FileReader();
     reader.onload = (e: any) => {
       // this.articleCategory.profilePicture = e.target.result;

@@ -12,7 +12,7 @@
   <div class="data-table">
     <ngx-datatable class="material" [rows]="foodItemsList" [columnMode]="'force'" [headerHeight]="50"
       [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true" [count]="pagerDto.itmesCount"
-      [offset]="pagerDto.currentPage" [limit]="pagerDto.pageSize" (page)='setPage($event)'>
+      [offset]="pagerDto.currentPage" [limit]="pagerDto.pageSize">
       <ngx-datatable-column name="name">
         <ng-template let-column="column" ngx-datatable-header-template>
           <span>الإسم</span>
