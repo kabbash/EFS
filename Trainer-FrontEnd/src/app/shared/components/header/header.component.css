@@ -3,6 +3,10 @@
 .navbar {
   font-family: 'Cairo', sans-serif;
 }
+.fixed-top{
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
 
 .esf-nav a {
   padding: 0 20px !important;
@@ -161,7 +165,10 @@
 }
 
 li.nav-item.hovered-item {
-  background-color: gainsboro;
+  background-color: rgba(0, 188, 212,.5);
+}
+.hovered-item  .nav-link:hover,.hovered-item  .nav-link{
+  color: #ffffff !important;
 }
 
 li.nav-item {
@@ -188,16 +195,19 @@ li.nav-item {
   display: flex;
   align-items: center;
   padding: 0 !important;
-  justify-content: center;
+  justify-content: flex-end;
+  border: none;
 }
 
 .navbar-collapse ul.dropdown-menu {
   padding: 0;
-  background: gainsboro;
+  background: rgba(0, 188, 212,.5);
   border: none;
   border-radius: 0;
-  top: 96%;
+  top: 97%;
   left: inherit;
+  width: 300px;
+  padding: 0px 15px;
 }
 
 .navbar-collapse ul.dropdown-menu li a::before {

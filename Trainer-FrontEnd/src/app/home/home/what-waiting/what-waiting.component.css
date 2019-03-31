@@ -1,14 +1,14 @@
 /* section why  */
 .why-sect {
     height: 50px;
-    background-color: #028798;
+    background-color: #f8f9fa;
     line-height: 50px !important;
   
   }
   
-  .why-sect p {
-    color: #fff;
-    margin: 0;
+  .why-sect p ,.why-sect div {
+    color: #000000;
+    margin: auto;
     height: 50px;
     font-size: 25px;
     animation: myfont 2s;
