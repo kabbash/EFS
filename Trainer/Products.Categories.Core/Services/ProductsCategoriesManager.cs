@@ -3,11 +3,10 @@ using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 using Products.Core.Interfaces;
 using Products.Core.Models;
 using Shared.Core.Models;
-using Shared.Core.Resources;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
@@ -21,17 +20,17 @@ namespace Products.Core.Services
     {
         protected IUnitOfWork _unitOfWork;
         private readonly IValidator<ProductsCategoryDto> _validator;
-        private readonly IOptions<ProductsResources> _productsResources;
         private readonly IAttachmentsManager _attachmentsManager;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly ILogger<ProductsCategoriesManager> _logger;
 
-        public ProductsCategoriesManager(IUnitOfWork unitOfWork, IValidator<ProductsCategoryDto> validator, IOptions<ProductsResources> productsResources, IAttachmentsManager attachmentsManager, IHostingEnvironment hostingEnvironment)
+        public ProductsCategoriesManager(IUnitOfWork unitOfWork, IValidator<ProductsCategoryDto> validator, IAttachmentsManager attachmentsManager, IHostingEnvironment hostingEnvironment, ILogger<ProductsCategoriesManager> logger)
         {
             _unitOfWork = unitOfWork;
             _validator = validator;
-            _productsResources = productsResources;
             _attachmentsManager = attachmentsManager;
             _hostingEnvironment = hostingEnvironment;
+            _logger = logger;
         }
         public ResultMessage GetAll()
         {
@@ -48,11 +47,10 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesGetAllError,
-                    exception = ex,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -88,10 +86,10 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesInsertError,
-                    exception = ex,
                     Status = HttpStatusCode.InternalServerError
                 };
             }
@@ -116,7 +114,7 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesGetByIdError,
@@ -163,10 +161,10 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
-                    exception = ex,
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesUpdateError
                 };
             }
@@ -192,6 +190,7 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
@@ -215,7 +214,7 @@ namespace Products.Core.Services
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int)ProductsErrorsCodeEnum.ProductsCategoriesGetAllError,

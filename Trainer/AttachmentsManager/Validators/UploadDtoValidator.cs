@@ -1,18 +1,15 @@
 ﻿using Attachments.Core.Models;
 using FluentValidation;
-using Microsoft.Extensions.Options;
-using Shared.Core.Resources;
+using Shared.Core.Utilities.Enums;
 
 namespace Attachments.Core.Validators
 {
     public class UploadFileDtoValidator : AbstractValidator<UploadFileDto>
     {
-        private readonly IOptions<AttachmentsResources> _attachmentsResources;
-        public UploadFileDtoValidator(IOptions<AttachmentsResources> attachmentsResources)
+        public UploadFileDtoValidator()
         {
-            _attachmentsResources = attachmentsResources;
-            RuleFor(c => c.Bytes).NotEmpty();
-            RuleFor(c => c.FileName).NotEmpty();
+            RuleFor(c => c.Bytes).NotEmpty().WithMessage(((int)AttachmentsErrorsCodeEnum.ValidationFileEmpty).ToString());
+            RuleFor(c => c.FileName).NotEmpty().WithMessage(((int)AttachmentsErrorsCodeEnum.ValidationFileNameRequired).ToString());
         }
     }
 }

@@ -6,13 +6,15 @@
 
   <ItemGroup>
     <Compile Remove="wwwroot\Attachments\Articles Categories\**" />
-    <Compile Remove="wwwroot\Images\Articles Categories\**" />
     <Content Remove="wwwroot\Attachments\Articles Categories\**" />
-    <Content Remove="wwwroot\Images\Articles Categories\**" />
     <EmbeddedResource Remove="wwwroot\Attachments\Articles Categories\**" />
-    <EmbeddedResource Remove="wwwroot\Images\Articles Categories\**" />
     <None Remove="wwwroot\Attachments\Articles Categories\**" />
-    <None Remove="wwwroot\Images\Articles Categories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\EmailTemplates\ContactUs.html" />
+    <Content Remove="wwwroot\EmailTemplates\RegisterTemplate.html" />
+    <Content Remove="wwwroot\EmailTemplates\ResetPassword.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +28,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +41,10 @@
     <ProjectReference Include="..\Home.Core\Home.Core.csproj" />
     <ProjectReference Include="..\ItemsReview\ItemsReview.csproj" />
     <ProjectReference Include="..\Lookups.Core\Lookups.Core.csproj" />
+    
+    <ProjectReference Include="..\Neutrints.Core\Neutrints.Core.csproj" />
+    
+    <ProjectReference Include="..\OTraining.Core\OTraining.Core.csproj" />
 
     <ProjectReference Include="..\Products.Categories.Core\Products.Core.csproj" />
 
@@ -44,12 +53,17 @@
     <ProjectReference Include="..\Rating.Core\Rating.Core.csproj" />
    
     <ProjectReference Include="..\Shared.Core\Shared.Core.csproj" />
-    <ProjectReference Include="..\test.core\test.core.csproj" />
     <ProjectReference Include="..\Trainer.EF\Trainer.EF.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
     <Folder Include="wwwroot\Tmp\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\EmailTemplates\ContactUs.html" />
+    <None Include="wwwroot\EmailTemplates\ResetPassword.html" />
   </ItemGroup>
 
 </Project>

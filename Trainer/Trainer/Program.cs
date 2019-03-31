@@ -16,5 +16,10 @@ namespace Trainer
            .UseContentRoot(Directory.GetCurrentDirectory())
            .UseStartup<Startup>()
            .PreferHostingUrls(true);
+
+        //.ConfigureAppConfiguration((hostingContext, config) =>
+        //{
+        //    config.AddJsonFile("emailTemplates.json", optional: false, reloadOnChange: false);
+        //})
     }
 }

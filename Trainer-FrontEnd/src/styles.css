@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Cairo:300,400,600,700|Tajawal:300,400,500,700&amp;subset=arabic,latin-ext');
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
-html,
-body {
+@import url('https://fonts.googleapis.com/css?family=Cairo:300,400,600,700|Tajawal:300,400,500,700&amp;subset=arabic,latin-ext');
+html, body {
   overflow-x: hidden;
   direction: rtl;
   font-family: 'Cairo', sans-serif !important;
@@ -13,7 +16,7 @@ body {
   padding-top: 69px;
 }
 
-.fr-box.fr-basic.fr-top .fr-wrapper{
+.fr-box.fr-basic.fr-top .fr-wrapper {
   min-height: 350px;
 }
 
@@ -28,11 +31,12 @@ body {
 .lh-150 {
   line-height: 1.5;
 }
+
 .button-stroke a {
-border: 2px solid #007bff;
-padding: 10px 20px;
-border-radius: 3px;
-color: #fff;
+  border: 2px solid #007bff;
+  padding: 10px 20px;
+  border-radius: 3px;
+  color: #fff;
 }
 
 @media (max-width: 520px) {
@@ -43,7 +47,6 @@ color: #fff;
     font-size: 0.95rem !important;
   }
 }
-
 
 .btn-primary-1 {
   color: #fff;
@@ -59,16 +62,15 @@ color: #fff;
 
 .btn-black {
   color: #fff;
-  background-color:black;
+  background-color: black;
   border-color: rgb(2, 2, 2);
 }
 
 .btn-white {
   color: black;
-  background-color:white;
+  background-color: white;
   border-color: wheat;
 }
-
 
 div.modal-body {
   padding-top: 0;
@@ -76,13 +78,13 @@ div.modal-body {
   min-height: 400px;
 }
 
-.modal-body .img-wrapper{
+.modal-body .img-wrapper {
   padding: 20px;
   border: 1px solid gray;
   border-radius: 10px;
 }
 
-.modal-body .modal-img{
+.modal-body .modal-img {
   flex: 0 0 200px;
   display: flex;
   align-items: center;
@@ -90,22 +92,21 @@ div.modal-body {
   flex-direction: column;
 }
 
-.modal-body .modal-img img{
+.modal-body .modal-img img {
   max-height: 150px;
 }
 
-.modal-body .modal-description{
+.modal-body .modal-description {
   flex: 1;
-  padding-top:20px;
+  padding-top: 20px;
 }
 
 .modal-close-container {
-    width: 100%;
-    justify-content: flex-end;
-    display: flex;
-    padding: 5px 10px;
+  width: 100%;
+  justify-content: flex-end;
+  display: flex;
+  padding: 5px 10px;
 }
-
 
 .buy-price {
   padding: 10px 20px;
@@ -121,55 +122,61 @@ div.modal-body {
   cursor: pointer;
 }
 
-.modal-description .desc-item{
+.modal-description .desc-item {
   padding: 10px 0;
   border-bottom: .5px solid #333;
 }
-.modal-description .desc-item:last-child{
+
+.modal-description .desc-item:last-child {
   border-bottom: none;
 }
 
-.modal-description .desc-item>div{
+.modal-description .desc-item>div {
   width: 90%;
 }
-.modal-description .desc-entity{
-    color: #00bcd4;
-}
 
-.rating-word{
+.modal-description .desc-entity {
   color: #00bcd4;
 }
 
-.secondary-color{
+.rating-word {
   color: #00bcd4;
+}
+
+.secondary-color {
+  color: #00bcd4;
+}
+
+.white-color {
+  color: #ffffff;
 }
 
 .filled-modal {
   color: gold;
 }
 
-.rating-stars{
+.rating-stars {
   direction: ltr;
 }
 
-a.page-link:hover,a.page-link{
+a.page-link:hover, a.page-link {
   color: #00bcd4;
 }
 
-li.page-item.active .page-link{
+li.page-item.active .page-link {
   z-index: 1;
   color: #fff;
   background-color: #00bcd4;
   border-color: #00bcd4;
 }
 
-.products-container{
+.products-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.pagination-container{
+.pagination-container {
   direction: ltr;
   display: flex;
   justify-content: center;
@@ -179,7 +186,7 @@ li.page-item.active .page-link{
   padding-top: 10%;
 }
 
-.btn.admin-add-button{
+.btn.admin-add-button {
   position: ABSOLUTE;
   left: 10px;
   bottom: 30px;
@@ -191,46 +198,46 @@ li.page-item.active .page-link{
   z-index: 5;
 }
 
-.carousel-default-img{
+.carousel-default-img {
   background-image: url(assets/images/articles-default.jpg);
-  background-size:cover;
+  background-size: cover;
   background-position: 50%;
   height: 500px;
 }
 
-.carousel-darker-overlay{
+.carousel-darker-overlay {
   height: 100%;
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0, 0, 0, .6);
 }
 
-
-.dropdown-menu{
+.dropdown-menu {
   direction: ltr;
 }
-.product-img-wrapper{
+
+.product-img-wrapper {
   max-width: 175px;
 }
 
-.edit-delete-card{
+.edit-delete-card {
   position: ABSOLUTE;
   left: 0;
   top: 0;
 }
 
-.edit-delete-card button.btn{
+.edit-delete-card button.btn {
   border-radius: 0;
 }
 
 .action-btns-container {
-    width: 76%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 35px;
-    background-color: #dedddd;
-    padding: 18px 0;
-    border-radius: 12px;
+  width: 76%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 35px;
+  background-color: #dedddd;
+  padding: 18px 0;
+  border-radius: 12px;
 }
 
 .loading-container {
@@ -258,7 +265,7 @@ li.page-item.active .page-link{
   margin: auto;
 }
 
-.no-results-search{
+.no-results-search {
   width: 60%;
   font-size: 25px;
   padding: 30px 0;
@@ -270,17 +277,75 @@ li.page-item.active .page-link{
   margin: auto;
 }
 
-.waring-search-icon{
+.waring-search-icon {
   color: #00bcd4;
   margin-left: 15px;
   font-size: 39px;
 }
 
-.no-results-search-wrapper{
-  width:100%;
-  max-height:100px;
+.no-results-search-wrapper {
+  width: 100%;
+  max-height: 100px;
 }
-.form-radio{
+
+.form-radio {
   height: 20px;
   width: 20px;
+}
+
+span pre {
+  color: white;
+}
+
+.carousel-item .container a.btn:hover {
+  color: white;
+}
+
+.carousel-item .container a.btn.btn-white:hover {
+  color: black;
+}
+
+span pre {
+  display: block;
+  font-size: 30px;
+  overflow: visible;
+  word-break: break-word;
+  white-space: normal;
+  flex-wrap: wrap;
+  font-family: 'Cairo','sans-serif'
+}
+
+.darker-background{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.2);
+}
+
+.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+  font-weight: bold;
+  font-size: 14px;
+  padding-right: 5px;
+  padding-left: 5px;
+  text-align: center;
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group,
+.ngx-datatable.material.single-selection .datatable-body-row.active{
+  background-color: transparent;
+}
+
+.ngx-datatable *{
+  word-break: break-all;
+    text-align: right;
+}
+
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active:hover{
+
+  background-color: #00bcd4;
 }

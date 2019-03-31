@@ -25,7 +25,7 @@ export let config = {
             'name': 'food',
             'route': '/articles/food'
         },
-        'championships' : {
+        'championships': {
             'name': 'championships',
             'route': '/articles/championships'
         }
@@ -52,6 +52,10 @@ export let config = {
         'form': {
             'name': 'contactusForm',
             'route': '/contactus/contactusForm',
+        },
+        'bio': {
+            'name': 'bio',
+            'route': '/contactus/bio',
         }
     },
     'products': {
@@ -143,6 +147,10 @@ export let config = {
             'route': '/demos/pagination',
         }
     },
+    'home': {
+        'name': 'home',
+        'route': '/'
+    },
     'admin': {
         'name': 'admin',
         'route': 'admin',
@@ -199,10 +207,51 @@ export let config = {
         'manageBanners': {
             'name': 'manageBanners',
             'route': '/admin/manageBanners'
+        },
+        'onlineTraining': {
+            'name': 'onlineTraining',
+            'route': '/admin/onlineTraining'
+        },
+        'users': {
+            'name': 'users',
+            'route': '/admin/users'
+        },
+        'neutrintsList': {
+            'name': 'neutrintsList',
+            'route': '/admin/neutrintsList'
+        },
+        'manageNeutrints': {
+            'name': 'manageNeutrints/:foodItemId',
+            'route': '/admin/manageNeutrints'
         }
     },
-    'home': {
-        'name': 'home',
-        'route': '/'
+    'writers': {
+        'name': 'writers',
+        'route': 'writers',
+        'loadChildren': './writers/writers.module#WritersModule',
+
+        'manageArticle': {
+            'name': 'manageArticle/:articleId',
+            'route': '/writers/manageArticle'
+        },
+        'articleslist': {
+            'name': 'articleslist',
+            'route': '/writers/articleslist'
+        }
+    },
+    'users': {
+        'name': 'users',
+        'route': 'users',
+        'loadChildren': './users/users.module#UsersModule',
+
+        'manageproduct': {
+            'name': 'manageproduct/:productId',
+            'route': '/users/manageproduct'
+        },
+        'productslist': {
+            'name': 'productslist',
+            'route': '/users/productslist'
+        }
     }
+
 };

@@ -6,6 +6,7 @@ namespace Shared.Core.Utilities.Models
 {
     public interface IUserDto
     {
-        string CurrentUserId { get; set; }
+        string Id { get; set; }
+        bool IsAdmin { get; set; }
     }
 }

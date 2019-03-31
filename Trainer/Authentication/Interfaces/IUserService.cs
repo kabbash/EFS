@@ -7,8 +7,9 @@ namespace Authentication.Interfaces
     public interface IUserService
     {
         ResultMessage Authenticate(string username, string password);
-        IEnumerable<User> GetAll();
-        bool AddRoleToUser(AddRoleToUserDto data);
+        ResultMessage GetAll(UsersFilter filter);
+        ResultMessage AddRoleToUser(UserRoleDto data);
+        ResultMessage RemoveRoleFromUser(UserRoleDto data);
         bool AddRole(RoleDto data);
         bool DeleteRole(string data);
         ResultMessage Register(RegisterDto userData);
@@ -16,5 +17,6 @@ namespace Authentication.Interfaces
         ResultMessage ResetPassword(ResetPasswordDto data);
         ResultMessage SetResetedPassword(SetPasswordDto data);
         ResultMessage ChangePassword(ChanePasswordDto data);
+        ResultMessage UpdateUserAccess(UserAccessDto userAccessDto);
     }
 }

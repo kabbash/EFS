@@ -101,9 +101,9 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Articles_Categories");
 
                     b.HasData(
-                        new { Id = 1, CreatedAt = new DateTime(2019, 2, 24, 17, 31, 50, 946, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
-                        new { Id = 2, CreatedAt = new DateTime(2019, 2, 24, 17, 31, 50, 948, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" },
-                        new { Id = 3, CreatedAt = new DateTime(2019, 2, 24, 17, 31, 50, 948, DateTimeKind.Utc), CreatedBy = "admin", Name = "البطولات", PredefinedKey = 3, ProfilePicture = "Files/Articles%20Categories/championships.png" }
+                        new { Id = 1, CreatedAt = new DateTime(2019, 3, 27, 5, 33, 24, 630, DateTimeKind.Utc), CreatedBy = "admin", Name = "وصفات الطعام", PredefinedKey = 2, ProfilePicture = "Files/Articles%20Categories/food.png" },
+                        new { Id = 2, CreatedAt = new DateTime(2019, 3, 27, 5, 33, 24, 637, DateTimeKind.Utc), CreatedBy = "admin", Name = "الأخبار", PredefinedKey = 1, ProfilePicture = "Files/Articles%20Categories/news.png" },
+                        new { Id = 3, CreatedAt = new DateTime(2019, 3, 27, 5, 33, 24, 637, DateTimeKind.Utc), CreatedBy = "admin", Name = "البطولات", PredefinedKey = 3, ProfilePicture = "Files/Articles%20Categories/championships.png" }
                     );
                 });
 
@@ -227,6 +227,8 @@ namespace Trainer.EF.Migrations
 
                     b.Property<string>("Hometown");
 
+                    b.Property<bool>("IsBlocked");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTime?>("LockoutEndDateUtc")
@@ -262,7 +264,7 @@ namespace Trainer.EF.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", LockoutEnabled = false, PasswordHash = new byte[] { 218, 207, 69, 166, 235, 103, 82, 231, 5, 111, 112, 232, 203, 145, 25, 101, 212, 172, 189, 80, 43, 15, 217, 175, 219, 92, 124, 215, 188, 136, 30, 125, 126, 207, 104, 39, 142, 188, 226, 157, 92, 194, 164, 73, 83, 224, 113, 244, 112, 195, 144, 82, 149, 180, 116, 245, 242, 183, 247, 62, 32, 113, 150, 186 }, PasswordSalt = new byte[] { 172, 161, 120, 109, 175, 39, 49, 189, 229, 25, 155, 132, 44, 199, 46, 159, 254, 171, 123, 40, 135, 81, 15, 127, 153, 134, 150, 60, 127, 46, 81, 187, 213, 212, 12, 48, 180, 194, 242, 114, 6, 131, 161, 196, 165, 5, 179, 81, 135, 114, 11, 128, 78, 135, 139, 76, 163, 112, 151, 120, 240, 247, 168, 41, 53, 192, 53, 75, 105, 193, 192, 202, 122, 56, 193, 2, 183, 122, 106, 58, 69, 26, 162, 26, 143, 33, 92, 13, 34, 24, 17, 163, 166, 15, 94, 228, 217, 49, 20, 159, 189, 187, 225, 29, 221, 252, 78, 137, 60, 206, 145, 249, 135, 127, 179, 21, 62, 8, 49, 239, 213, 204, 83, 18, 43, 113, 208, 73 }, PhoneNumber = "01014991554", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "ahmedkabbash@gmail.com" }
+                        new { Id = "7c654344-ad42-4428-a77a-00a8c1299c3f", AccessFailedCount = 0, Email = "ahmedkabbash@gmail.com", EmailConfirmed = true, FullName = "ahmed kabbash", IsBlocked = false, LockoutEnabled = false, PasswordHash = new byte[] { 230, 142, 177, 92, 114, 169, 241, 147, 125, 91, 136, 65, 68, 4, 153, 73, 125, 94, 151, 77, 203, 110, 118, 249, 96, 126, 95, 82, 53, 250, 238, 21, 51, 35, 118, 227, 90, 92, 142, 97, 62, 64, 201, 76, 10, 139, 206, 86, 161, 255, 114, 152, 89, 208, 59, 96, 153, 99, 159, 46, 79, 79, 163, 159 }, PasswordSalt = new byte[] { 46, 246, 159, 12, 112, 176, 229, 31, 106, 72, 162, 219, 42, 137, 57, 247, 123, 229, 145, 99, 49, 108, 60, 214, 151, 186, 71, 2, 119, 31, 36, 46, 84, 203, 122, 152, 157, 211, 87, 53, 162, 237, 89, 40, 231, 190, 48, 241, 92, 36, 180, 10, 152, 62, 22, 108, 109, 37, 72, 17, 232, 136, 194, 49, 47, 53, 251, 189, 232, 19, 70, 2, 24, 218, 88, 168, 44, 220, 119, 38, 180, 186, 177, 138, 193, 134, 164, 72, 189, 69, 245, 180, 9, 97, 180, 231, 243, 39, 119, 51, 33, 102, 193, 88, 185, 179, 121, 6, 44, 142, 196, 206, 104, 108, 223, 77, 206, 44, 236, 76, 225, 199, 11, 203, 220, 176, 14, 244 }, PhoneNumber = "01014991554", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "ahmedkabbash@gmail.com" }
                     );
                 });
 
@@ -295,235 +297,19 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Banners");
                 });
 
-            modelBuilder.Entity("Shared.Core.Models.Calories", b =>
+            modelBuilder.Entity("Shared.Core.Models.Configurations", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
+                    b.Property<byte>("Type");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(128);
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(10, 2)");
+                    b.Property<string>("Value");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Calories");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.Championships", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Description")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<string>("Place")
-                        .IsRequired();
-
-                    b.Property<string>("ProfilePicture")
-                        .IsRequired();
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(128);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Championships");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.Clients", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(128);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ClientsDocuments", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClientId")
-                        .IsRequired()
-                        .HasColumnName("ClientID")
-                        .HasMaxLength(128);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<string>("Path")
-                        .IsRequired();
-
-                    b.Property<bool>("SentToClient");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("Clients_Documents");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ClientsImages", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClientId")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<string>("Path")
-                        .IsRequired();
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("Clients_Images");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ClientsMeasurments", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClientId")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<byte>("TypeId");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(128);
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(8, 2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("Clients_Measurments");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ClientsOverloads", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClientId")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<byte>("TypeId");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(128);
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(8, 2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("Clients_Overloads");
+                    b.ToTable("Configurations");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.EntityRating", b =>
@@ -559,6 +345,135 @@ namespace Trainer.EF.Migrations
                     b.ToTable("EntityRatings");
                 });
 
+            modelBuilder.Entity("Shared.Core.Models.FoodItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Alcohol");
+
+                    b.Property<decimal>("Amount");
+
+                    b.Property<decimal>("B1");
+
+                    b.Property<decimal>("B12");
+
+                    b.Property<decimal>("B2");
+
+                    b.Property<decimal>("B3");
+
+                    b.Property<decimal>("B5");
+
+                    b.Property<decimal>("B6");
+
+                    b.Property<decimal>("Caffiene");
+
+                    b.Property<decimal>("Calcuim");
+
+                    b.Property<decimal>("Calories");
+
+                    b.Property<decimal>("Carbs");
+
+                    b.Property<decimal>("Cholesterol");
+
+                    b.Property<decimal>("Copper");
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<decimal>("Cystine");
+
+                    b.Property<decimal>("Energy");
+
+                    b.Property<decimal>("Fat");
+
+                    b.Property<decimal>("Fiber");
+
+                    b.Property<decimal>("Folate");
+
+                    b.Property<decimal>("Histidine");
+
+                    b.Property<decimal>("Iron");
+
+                    b.Property<decimal>("Isoleucine");
+
+                    b.Property<decimal>("Leucine");
+
+                    b.Property<decimal>("Lysine");
+
+                    b.Property<decimal>("Magnesium");
+
+                    b.Property<decimal>("Manganese");
+
+                    b.Property<decimal>("Methionine");
+
+                    b.Property<decimal>("Monounsaturated");
+
+                    b.Property<string>("Name");
+
+                    b.Property<decimal>("NetCarbs");
+
+                    b.Property<decimal>("Omega3");
+
+                    b.Property<decimal>("Omega6");
+
+                    b.Property<decimal>("Phenylalanine");
+
+                    b.Property<decimal>("Phosphorus");
+
+                    b.Property<decimal>("Polyunsaturated");
+
+                    b.Property<decimal>("Potassium");
+
+                    b.Property<decimal>("Protein");
+
+                    b.Property<decimal>("Saturated");
+
+                    b.Property<decimal>("Selenium");
+
+                    b.Property<decimal>("Sodium");
+
+                    b.Property<decimal>("Starch");
+
+                    b.Property<decimal>("Sugars");
+
+                    b.Property<decimal>("Threonine");
+
+                    b.Property<decimal>("TransFats");
+
+                    b.Property<decimal>("Tryptophan");
+
+                    b.Property<decimal>("Tyrosine");
+
+                    b.Property<DateTime?>("UpdatedAt");
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.Property<decimal>("Valine");
+
+                    b.Property<decimal>("VitaminA");
+
+                    b.Property<decimal>("VitaminC");
+
+                    b.Property<decimal>("VitaminD");
+
+                    b.Property<decimal>("VitaminE");
+
+                    b.Property<decimal>("VitaminK");
+
+                    b.Property<decimal>("Water");
+
+                    b.Property<decimal>("Zinc");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.ToTable("FoodItems");
+                });
+
             modelBuilder.Entity("Shared.Core.Models.ItemsForReview", b =>
                 {
                     b.Property<int>("Id")
@@ -579,58 +494,29 @@ namespace Trainer.EF.Migrations
                     b.ToTable("ItemsForReviews");
                 });
 
-            modelBuilder.Entity("Shared.Core.Models.Measurments", b =>
+            modelBuilder.Entity("Shared.Core.Models.OTrainingPrograms", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128);
+                    b.Property<DateTime>("CreatedAt");
 
-                    b.Property<byte>("TypeId");
+                    b.Property<string>("CreatedBy");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Features");
 
-                    b.ToTable("Measurments");
-                });
+                    b.Property<string>("Name");
 
-            modelBuilder.Entity("Shared.Core.Models.MigrationHistory", b =>
-                {
-                    b.Property<string>("MigrationId")
-                        .HasMaxLength(150);
+                    b.Property<string>("ProfilePicture");
 
-                    b.Property<string>("ContextKey")
-                        .HasMaxLength(300);
+                    b.Property<DateTime?>("UpdatedAt");
 
-                    b.Property<byte[]>("Model")
-                        .IsRequired();
-
-                    b.Property<string>("ProductVersion")
-                        .IsRequired()
-                        .HasMaxLength(32);
-
-                    b.HasKey("MigrationId", "ContextKey");
-
-                    b.ToTable("__MigrationHistory");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.Overloads", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<byte>("TypeId");
+                    b.Property<string>("UpdatedBy");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Overloads");
+                    b.ToTable("OTrainingPrograms");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.Products", b =>
@@ -743,103 +629,6 @@ namespace Trainer.EF.Migrations
                     b.ToTable("Products_Images");
                 });
 
-            modelBuilder.Entity("Shared.Core.Models.ProgramsImages", b =>
-                {
-                    b.Property<int>("Id");
-
-                    b.Property<string>("Description");
-
-                    b.Property<int>("ParentId");
-
-                    b.Property<string>("Path")
-                        .IsRequired();
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentId");
-
-                    b.ToTable("Programs_Images");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProgramsPrices", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Duration")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(10, 2)");
-
-                    b.Property<int>("ProgramId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProgramId");
-
-                    b.ToTable("Programs_Prices");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.Trainers", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasMaxLength(128);
-
-                    b.Property<string>("Bio")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Trainers");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.TrainersPrograms", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<string>("Description")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<string>("ProfilePicture")
-                        .IsRequired();
-
-                    b.Property<string>("TrainerId")
-                        .IsRequired()
-                        .HasMaxLength(128);
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(128);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TrainerId");
-
-                    b.ToTable("Trainers_Programs");
-                });
-
             modelBuilder.Entity("Shared.Core.Models.Articles", b =>
                 {
                     b.HasOne("Shared.Core.Models.ArticlesCategories", "Category")
@@ -894,47 +683,6 @@ namespace Trainer.EF.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Shared.Core.Models.Clients", b =>
-                {
-                    b.HasOne("Shared.Core.Models.AspNetUsers", "IdNavigation")
-                        .WithOne("Clients")
-                        .HasForeignKey("Shared.Core.Models.Clients", "Id")
-                        .HasConstraintName("FK_Clients_dbo.AspNetUsers")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ClientsDocuments", b =>
-                {
-                    b.HasOne("Shared.Core.Models.Clients", "Client")
-                        .WithMany("ClientsDocuments")
-                        .HasForeignKey("ClientId")
-                        .HasConstraintName("FK_Clients_Documents_Clients");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ClientsImages", b =>
-                {
-                    b.HasOne("Shared.Core.Models.Clients", "Client")
-                        .WithMany("ClientsImages")
-                        .HasForeignKey("ClientId")
-                        .HasConstraintName("FK_Clients_Images_Clients");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ClientsMeasurments", b =>
-                {
-                    b.HasOne("Shared.Core.Models.Clients", "Client")
-                        .WithMany("ClientsMeasurments")
-                        .HasForeignKey("ClientId")
-                        .HasConstraintName("FK_Clients_Measurments_Clients");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ClientsOverloads", b =>
-                {
-                    b.HasOne("Shared.Core.Models.Clients", "Client")
-                        .WithMany("ClientsOverloads")
-                        .HasForeignKey("ClientId")
-                        .HasConstraintName("FK_Clients_Overloads_Clients");
-                });
-
             modelBuilder.Entity("Shared.Core.Models.EntityRating", b =>
                 {
                     b.HasOne("Shared.Core.Models.AspNetUsers", "Reviwer")
@@ -944,6 +692,13 @@ namespace Trainer.EF.Migrations
                     b.HasOne("Shared.Core.Models.ItemsForReview")
                         .WithMany("Reviews")
                         .HasForeignKey("ItemsForReviewId");
+                });
+
+            modelBuilder.Entity("Shared.Core.Models.FoodItem", b =>
+                {
+                    b.HasOne("Shared.Core.Models.AspNetUsers", "Author")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy");
                 });
 
             modelBuilder.Entity("Shared.Core.Models.Products", b =>
@@ -974,39 +729,6 @@ namespace Trainer.EF.Migrations
                         .HasForeignKey("ParentId")
                         .HasConstraintName("FK_Products_Images_Products")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProgramsImages", b =>
-                {
-                    b.HasOne("Shared.Core.Models.TrainersPrograms", "Program")
-                        .WithMany("ProgramsImages")
-                        .HasForeignKey("ParentId")
-                        .HasConstraintName("FK_Programs_Images_Trainers_Programs");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.ProgramsPrices", b =>
-                {
-                    b.HasOne("Shared.Core.Models.TrainersPrograms", "Program")
-                        .WithMany("ProgramsPrices")
-                        .HasForeignKey("ProgramId")
-                        .HasConstraintName("FK_Programs_Prices_Trainers_Programs");
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.Trainers", b =>
-                {
-                    b.HasOne("Shared.Core.Models.AspNetUsers", "IdNavigation")
-                        .WithOne("Trainers")
-                        .HasForeignKey("Shared.Core.Models.Trainers", "Id")
-                        .HasConstraintName("FK_Trainers_dbo_AspNetUsers")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Shared.Core.Models.TrainersPrograms", b =>
-                {
-                    b.HasOne("Shared.Core.Models.Trainers", "Trainer")
-                        .WithMany("TrainersPrograms")
-                        .HasForeignKey("TrainerId")
-                        .HasConstraintName("FK_Trainers_Programs_Trainers");
                 });
 #pragma warning restore 612, 618
         }

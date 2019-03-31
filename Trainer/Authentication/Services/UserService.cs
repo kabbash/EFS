@@ -1,12 +1,14 @@
-﻿using Authentication.Interfaces;
+﻿using Authentication.Extensions;
+using Authentication.Interfaces;
 using Authentication.Models;
 using FluentValidation;
-using MailProvider.Core;
 using MailProvider.Core.Interfaces;
 using Mapster;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Core.Models;
+using Shared.Core.Settings;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Helpers;
@@ -24,21 +26,20 @@ namespace Authentication.Services
     public class UserService : IUserService
     {
         protected IUnitOfWork _unitOfWork;
-        private readonly AuthenticationSettings _settings;
+        private readonly AppSettings _settings;
         private readonly IValidator<RegisterDto> _validator;
         private readonly IEmailService _emailService;
-        private readonly MailSettings _emailSettings;
+        private readonly ILogger<UserService> _logger;
         public UserService(IUnitOfWork unitOfWork,
-            IOptions<AuthenticationSettings> settings,
+            IOptions<AppSettings> settings,
             IValidator<RegisterDto> validator,
-            IEmailService emailService,
-            IOptions<MailSettings> mailSettings)
+            IEmailService emailService, ILogger<UserService> logger)
         {
             _unitOfWork = unitOfWork;
             _settings = settings.Value;
             _validator = validator;
             _emailService = emailService;
-            _emailSettings = mailSettings.Value;
+            _logger = logger;
         }
 
         public ResultMessage Authenticate(string username, string password)
@@ -54,9 +55,11 @@ namespace Authentication.Services
             if (!userEntity.EmailConfirmed)
                 return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.EmailNotConfirmed };
 
+            if (userEntity.IsBlocked)
+                return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserBlocked };
+
             return new ResultMessage { Status = HttpStatusCode.OK, Data = AuthenticateUser(userEntity) };
         }
-
         private Claim[] SetUserClaims(string userId, List<string> userRoles)
         {
             var claims = new List<Claim>();
@@ -67,7 +70,6 @@ namespace Authentication.Services
             claims.Add(new Claim(ClaimTypes.Name, userId));
             return claims.ToArray();
         }
-
         private List<string> GetUserRoles(List<string> rolesIds)
         {
             var userRoles = new List<string>();
@@ -77,38 +79,72 @@ namespace Authentication.Services
             }
             return userRoles;
         }
-
-        public IEnumerable<User> GetAll()
+        public ResultMessage GetAll(UsersFilter filter)
         {
-            var users = _unitOfWork.UsersRepository.Get().ToList();
-            return users.Adapt<List<User>>();
+            PagedResult<User> result = new PagedResult<User>();
+            var users = _unitOfWork.UsersRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+            return new ResultMessage()
+            {
+                Data = users,
+                Status = HttpStatusCode.OK
+            };
         }
-
-        public bool AddRoleToUser(AddRoleToUserDto data)
+        public ResultMessage AddRoleToUser(UserRoleDto data)
         {
             var userEntity = _unitOfWork.UsersRepository.Get(u => u.UserName == data.Username).FirstOrDefault();
             if (userEntity == null)
             {
-                return false;
+                return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserDoesNotExist };
             }
             var roleEntity = _unitOfWork.RolesRepository.Get(r => r.Name == data.RoleName).FirstOrDefault();
-            if (userEntity == null)
+            if (roleEntity == null)
             {
-                return false;
+                return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.RoleDoesNotExist };
             }
             try
             {
-                _unitOfWork.UsersRolesRepository.Insert(new AspNetUserRoles { RoleId = roleEntity.Id, UserId = userEntity.Id });
-                _unitOfWork.Commit();
-                return true;
+                var existingUserRole = _unitOfWork.UsersRolesRepository.Get(u => u.RoleId == roleEntity.Id && u.UserId == userEntity.Id).FirstOrDefault();
+                if (existingUserRole == null)
+                {
+                    _unitOfWork.UsersRolesRepository.Insert(new AspNetUserRoles { RoleId = roleEntity.Id, UserId = userEntity.Id });
+                    _unitOfWork.Commit();
+                }
+                return new ResultMessage { Status = HttpStatusCode.OK };
             }
             catch (Exception ex)
             {
-
-                return false;
+                _logger.LogError(ex, string.Empty);
+                return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserRoleError };
             }
         }
-
+        public ResultMessage RemoveRoleFromUser(UserRoleDto data)
+        {
+            var userEntity = _unitOfWork.UsersRepository.Get(u => u.UserName == data.Username).FirstOrDefault();
+            if (userEntity == null)
+            {
+                return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserDoesNotExist };
+            }
+            var roleEntity = _unitOfWork.RolesRepository.Get(r => r.Name == data.RoleName).FirstOrDefault();
+            if (roleEntity == null)
+            {
+                return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.RoleDoesNotExist };
+            }
+            try
+            {
+                var existingUserRole = _unitOfWork.UsersRolesRepository.Get(u => u.RoleId == roleEntity.Id && u.UserId == userEntity.Id).FirstOrDefault();
+                if (existingUserRole != null)
+                {
+                    _unitOfWork.UsersRolesRepository.Delete(existingUserRole);
+                    _unitOfWork.Commit();
+                }
+                return new ResultMessage { Status = HttpStatusCode.OK };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserRoleError };
+            }
+        }
         public bool AddRole(RoleDto data)
         {
             try
@@ -121,11 +157,10 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex, string.Empty);
                 return false;
             }
         }
-
         public bool DeleteRole(string roleName)
         {
             try
@@ -146,11 +181,10 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex, string.Empty);
                 return false;
             }
         }
-
         public ResultMessage Register(RegisterDto userData)
         {
             var validatationResult = _validator.Validate(userData);
@@ -176,44 +210,40 @@ namespace Authentication.Services
                 switch (userData.Type)
                 {
                     case Enums.UserEnum.Clinet:
-                        _unitOfWork.ClientsRepository.Insert(new Clients { Id = userEntity.Id });
-                        _unitOfWork.Commit();
-                        AddRoleToUser(new AddRoleToUserDto
+                        AddRoleToUser(new UserRoleDto
                         {
                             RoleName = "Client",
                             Username = userData.Email
                         });
                         break;
                     case Enums.UserEnum.Trainer:
-                        _unitOfWork.TrainersRepository.Insert(new Trainers { Id = userEntity.Id });
-                        _unitOfWork.Commit();
-                        AddRoleToUser(new AddRoleToUserDto
+                        AddRoleToUser(new UserRoleDto
                         {
                             RoleName = "RegularUser",
                             Username = userData.Email
                         });
                         break;
                     default:
-                        AddRoleToUser(new AddRoleToUserDto
+                        AddRoleToUser(new UserRoleDto
                         {
                             RoleName = "RegularUser",
                             Username = userData.Email
                         });
                         break;
                 }
-                var mailBody = _emailSettings.RegisterEmail.Body.Replace("{0}", userEntity.FullName).Replace("{1}", _emailSettings.RegisterEmail.VerifyEmailUrl.Replace("{0}", userEntity.SecurityStamp));
-                _emailService.SendEmailAsync(userEntity.Email, _emailSettings.RegisterEmail.Subject, mailBody);
+
+                var replacements = SetRegisterMailReplacements(userEntity.FullName, userEntity.Email, _settings.EmailSettings.RegisterEmail.VerifyEmailUrl, userEntity.SecurityStamp);
+                _emailService.SendEmailAsync(userEntity.Email, _settings.EmailSettings.RegisterEmail.Subject, EmailTemplatesEnum.Register, replacements);
                 return new ResultMessage { Status = HttpStatusCode.OK };
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError };
             }
 
 
         }
-
         public ResultMessage VerifyEmail(string token)
         {
             try
@@ -229,10 +259,10 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
-
         public ResultMessage ResetPassword(ResetPasswordDto data)
         {
             try
@@ -244,17 +274,19 @@ namespace Authentication.Services
 
                 if (!user.EmailConfirmed)
                     return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.EmailNotConfirmed };
+                if (user.IsBlocked)
+                    return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserBlocked };
 
-                var mailBody = _emailSettings.ResetPasswordEmail.Body.Replace("{0}", user.FullName).Replace("{1}", _emailSettings.ResetPasswordEmail.ResetPasswordUrl.Replace("{0}", user.SecurityStamp));
-                _emailService.SendEmailAsync(user.Email, _emailSettings.RegisterEmail.Subject, mailBody);
+                var replacements = SetResetPasswordMailReplacements(user.FullName, user.Email, _settings.EmailSettings.ResetPasswordEmail.ResetPasswordUrl, user.SecurityStamp);
+                _emailService.SendEmailAsync(user.Email, _settings.EmailSettings.ResetPasswordEmail.Subject, EmailTemplatesEnum.ResetPassword, replacements);
                 return new ResultMessage { Status = HttpStatusCode.OK, Data = true };
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
-
         public ResultMessage SetResetedPassword(SetPasswordDto data)
         {
             try
@@ -274,10 +306,10 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
-
         public ResultMessage ChangePassword(ChanePasswordDto data)
         {
             try
@@ -285,6 +317,9 @@ namespace Authentication.Services
                 var user = _unitOfWork.UsersRepository.Get(u => u.Id == data.UserId).First();
                 if (user == null)
                     return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserDoesNotExist };
+
+                if (user.IsBlocked)
+                    return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserBlocked };
 
                 if (!VerifyPasswordHash(data.OldPassword, user.PasswordHash, user.PasswordSalt))
                     return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.OldPasswordMismatch };
@@ -300,12 +335,31 @@ namespace Authentication.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
+                return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
+            }
+        }
+        public ResultMessage UpdateUserAccess(UserAccessDto userAccessDto)
+        {
+            try
+            {
+
+                var user = _unitOfWork.UsersRepository.Get(u => u.UserName == userAccessDto.Username).First();
+                if (user == null)
+                    return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserDoesNotExist };
+                user.IsBlocked = userAccessDto.Blocked;
+                _unitOfWork.UsersRepository.Update(user);
+                _unitOfWork.Commit();
+                return new ResultMessage { Status = HttpStatusCode.OK };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage { Status = HttpStatusCode.InternalServerError, ErrorCode = (int)AuthenticationErrorsCodeEnum.AuthenticationError };
             }
         }
 
         // private helper methods
-
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             if (password == null) throw new ArgumentNullException("password");
@@ -317,7 +371,6 @@ namespace Authentication.Services
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
-
         private bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
         {
             if (password == null) throw new ArgumentNullException("password");
@@ -336,19 +389,18 @@ namespace Authentication.Services
 
             return true;
         }
-
         private User AuthenticateUser(AspNetUsers userEntity)
         {
             var userRoles = new List<string>();
             var user = userEntity.Adapt<User>();
             if (userEntity.AspNetUserRoles != null && userEntity.AspNetUserRoles.Count > 0)
             {
-                user.Roles = userEntity.AspNetUserRoles.Select(x => x.RoleId).ToList();
+                //user.Roles = userEntity.AspNetUserRoles.Select(x => x.RoleId).ToList();
                 userRoles = GetUserRoles(userEntity.AspNetUserRoles.Select(x => x.RoleId).ToList());
             }
             var userClaims = SetUserClaims(userEntity.Id.ToString(), userRoles);
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_settings.Secret);
+            var key = Encoding.ASCII.GetBytes(_settings.AuthenticationSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(userClaims),
@@ -359,7 +411,26 @@ namespace Authentication.Services
             user.Token = tokenHandler.WriteToken(token);
             user.Password = null;
             user.EmailConfirmed = userEntity.EmailConfirmed;
+            user.Roles = userRoles;
             return user;
+        }
+        private Dictionary<string, string> SetRegisterMailReplacements(string fullName, string email, string callBackUrl, string securityStamp)
+        {
+            return SetCommonAuthenticationMailReplacements(fullName, email, callBackUrl, securityStamp);
+        }
+        private Dictionary<string, string> SetResetPasswordMailReplacements(string fullName, string email, string callBackUrl, string securityStamp)
+        {
+            return SetCommonAuthenticationMailReplacements(fullName, email, callBackUrl, securityStamp);
+        }
+        private Dictionary<string, string> SetCommonAuthenticationMailReplacements(string fullName, string email, string callBackUrl, string securityStamp)
+        {
+            var replacements = new Dictionary<string, string>();
+            replacements.Add(EmailPlaceHolders.UserName, fullName);
+            replacements.Add(EmailPlaceHolders.CallBackURL, callBackUrl);
+            replacements.Add(EmailPlaceHolders.CallBackBaseURL, _settings.AppUrlsSettings.FEApplicationBase);
+            replacements.Add(EmailPlaceHolders.UserEmail, email);
+            replacements.Add(EmailPlaceHolders.SecurityStamp, securityStamp);
+            return replacements;
         }
 
     }

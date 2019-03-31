@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SliderItemDto } from '../models/slider/slider-item.dto';
+import { ImageCropperComponent } from 'src/app/shared/image-cropper/image-cropper.component';
 
 
 @Component({
@@ -22,8 +23,12 @@ export class SliderEditModeComponent implements OnInit {
   selectedIndexForDelete: number;
   deleteModal: any;
   showUploader = false;
+  croppedImageIndex;
+  croppedImage: SliderItemDto;
   newImage =  new SliderItemDto();
   @Input() resultImageList: SliderItemDto[];
+  @ViewChild('cropper') cropperModal: ImageCropperComponent;
+  imageEvent;
   constructor(
     private modalService: NgbModal) { }
 
@@ -63,16 +68,24 @@ export class SliderEditModeComponent implements OnInit {
     this.modalService.open(deleteModalContent);
   }
 
-  onFileSelect(file) {
+  onFileSelect(event, isCropped) {
+    const file = isCropped ? event :  event.target.files[0];
+    this.imageEvent = isCropped ? null : event; 
+    const image = isCropped ?  this.sliderData[this.croppedImageIndex] : this.newImage;
     const reader = new FileReader();
     reader.onload = (e: any) => {
-      this.newImage.path = e.target.result;
+      image.path = e.target.result;              
     };
-    this.newImage.file = file;
+    image.file = file;
     reader.readAsDataURL(file);
+    if (isCropped) {
+      this.croppedImage.file = file;
+    }
   }
-  addNewImage(modal) {
-    modal.close();
+  addNewImage(modal?) {
+    if (modal) {
+      modal.close();    
+    }
     this.newImage.isNew = true;
     this.sliderData.push(Object.assign({}, this.newImage));
     this.newImage.path = '';
@@ -96,5 +109,12 @@ export class SliderEditModeComponent implements OnInit {
     this.resultImageList.forEach(image => {
       image.isProfilePicture = false;
     });
+  }
+  cropClicked(index) {
+    this.cropperModal.open();
+    this.croppedImageIndex = index;
+    this.croppedImage = this.resultImageList.find(img => {
+      return img.file === this.sliderData[this.croppedImageIndex].file;
+    })
   }
 }

@@ -1,18 +1,15 @@
 ﻿using FluentValidation;
+using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Shared.Core.Validators
 {
     public class RejectDtoValidator : AbstractValidator<RejectDto>
     {
         public RejectDtoValidator()
-        {
-            RuleFor(a => a.Id).NotEmpty();
-            RuleFor(a => a.RejectReason).NotEmpty();
-            RuleFor(a => a.CurrentUserId).NotEmpty();
+        {            
+            RuleFor(a => a.Id).NotEmpty().WithMessage(((int)SharedErrorsCodeEnum.ValidationRejectIdRequired).ToString());
+            RuleFor(a => a.RejectReason).NotEmpty().WithMessage(((int)SharedErrorsCodeEnum.ValidationRejectReasonRequired).ToString());
         }
     }
 }

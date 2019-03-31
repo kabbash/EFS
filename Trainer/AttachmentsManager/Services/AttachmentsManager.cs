@@ -2,8 +2,9 @@
 using Attachments.Core.Models;
 using FluentValidation;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Shared.Core.Resources;
+using Shared.Core.Settings;
 using Shared.Core.Utilities.Enums;
 using System;
 using System.IO;
@@ -14,14 +15,17 @@ namespace Attachments.Core.Services
     public class AttachmentsManager : IAttachmentsManager
     {
         private readonly IHostingEnvironment _hostingEnvironment;
-        private readonly IOptions<AttachmentsResources> _attachmentsResources;
+        private readonly AppSettings _settings;
         private readonly IValidator<UploadFileDto> _validator;
+        private readonly ILogger<AttachmentsManager> _logger;
 
-        public AttachmentsManager(IOptions<AttachmentsResources> attachmentsResources, IValidator<UploadFileDto> validator, IHostingEnvironment environment)
+
+        public AttachmentsManager(IOptions<AppSettings> settings, IValidator<UploadFileDto> validator, IHostingEnvironment environment, ILogger<AttachmentsManager> logger)
         {
-            _attachmentsResources = attachmentsResources;
+            _settings = settings.Value;
             _validator = validator;
             _hostingEnvironment = environment;
+            _logger = logger;
         }
 
         /// <summary>
@@ -35,8 +39,9 @@ namespace Attachments.Core.Services
             {
 
                 var rootPath = _hostingEnvironment.WebRootPath;
-
-                var fileName = fileDto.CanChangeName ? $"{Guid.NewGuid()}{Path.GetExtension(fileDto.File.FileName)}" : fileDto.File.Name;
+                var fileExtension = Path.GetExtension(fileDto.File.ContentType);
+                fileExtension = string.IsNullOrEmpty(fileExtension) ? ".png" : fileExtension;
+                var fileName = fileDto.CanChangeName ? $"{Guid.NewGuid()}{fileExtension}" : fileDto.File.Name;
 
                 var attachmentPath = Path.Combine(GetAttachmentTypePath(fileDto.attachmentType), fileDto.SubFolderName ?? "");
                 var relativeFilePath = Path.Combine(attachmentPath, fileName);
@@ -52,6 +57,7 @@ namespace Attachments.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return string.Empty;
             }
         }
@@ -84,6 +90,7 @@ namespace Attachments.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return string.Empty;
             }
         }
@@ -109,7 +116,7 @@ namespace Attachments.Core.Services
             }
             catch (Exception ex)
             {
-                //log error
+                _logger.LogError(ex, string.Empty);
                 return false;
             }
         }
@@ -124,15 +131,15 @@ namespace Attachments.Core.Services
             switch (type)
             {
                 case AttachmentTypesEnum.Products_Categories:
-                    return _attachmentsResources.Value.ProductsCategoriesFolder;
+                    return _settings.AppPathsSettings.Attachments.ProductsCategoriesFolder;
                 case AttachmentTypesEnum.Products:
-                    return _attachmentsResources.Value.ProductsFolder;
+                    return _settings.AppPathsSettings.Attachments.ProductsFolder;
                 case AttachmentTypesEnum.Articles_Categories:
-                    return _attachmentsResources.Value.ArticlesCategoriesFolder;
+                    return _settings.AppPathsSettings.Attachments.ArticlesCategoriesFolder;
                 case AttachmentTypesEnum.Articles:
-                    return _attachmentsResources.Value.ArticlesFolder;
+                    return _settings.AppPathsSettings.Attachments.ArticlesFolder;
                 case AttachmentTypesEnum.Banners:
-                    return _attachmentsResources.Value.BannersFolder;
+                    return _settings.AppPathsSettings.Attachments.BannersFolder;
                 default:
                     throw new NotImplementedException();
             }
@@ -153,7 +160,7 @@ namespace Attachments.Core.Services
             }
             catch (Exception ex)
             {
-                //log error
+                _logger.LogError(ex, string.Empty);
                 return false;
             }
         }

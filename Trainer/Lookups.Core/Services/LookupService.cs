@@ -2,6 +2,7 @@
 using FluentValidation;
 using Lookups.Core.Interfaces;
 using Mapster;
+using Microsoft.Extensions.Logging;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
@@ -18,13 +19,15 @@ namespace Lookups.Core.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<E> _repository;
         private readonly IAttachmentsManager _attachmentManager;
+        private readonly ILogger<LookupService<DTO, E>> _logger;
 
-        public LookupService(IValidator<DTO> validator, IUnitOfWork unitOfWork, IAttachmentsManager attachmentsManager)
+        public LookupService(IValidator<DTO> validator, IUnitOfWork unitOfWork, IAttachmentsManager attachmentsManager, ILogger<LookupService<DTO, E>> logger)
         {
             _validator = validator;
             _unitOfWork = unitOfWork;
             _repository = _unitOfWork.getRepoByType(typeof(IRepository<E>)) as IRepository<E>;
             _attachmentManager = attachmentsManager;
+            _logger = logger;
         }
         public ResultMessage GetAll()
         {
@@ -49,7 +52,7 @@ namespace Lookups.Core.Services
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int) ProductsErrorsCodeEnum.ProductsSubCategoriesGetAllError,
@@ -83,6 +86,7 @@ namespace Lookups.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int) ProductsErrorsCodeEnum.ProductsSubCategoriesInsertError,
@@ -110,7 +114,7 @@ namespace Lookups.Core.Services
             }
             catch (Exception ex)
             {
-                //log ex
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     ErrorCode = (int) ProductsErrorsCodeEnum.ProductsGetByIdError,
@@ -157,6 +161,7 @@ namespace Lookups.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
@@ -180,6 +185,7 @@ namespace Lookups.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,

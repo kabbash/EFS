@@ -15,13 +15,22 @@ import { ItemReviewResolver } from './resolvers/item-review.resolver';
 import { ArticlesListComponent } from './articles/articles-list/articles-list.component';
 import { AdminProductsListComponent } from './products/admin-products-list/admin-products-list.component';
 import { AdminProductsListResolver } from './resolvers/products-list-resolver';
-import { ProductsListComponent } from '../shared/products-list/products-list.component';
+import { ProductsListComponent } from '../shared/products/products-list/products-list.component';
 import { ManageProductsComponent } from './products/manage-products/manage-products.component';
 import { ProductResolver } from './resolvers/product.resolver';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
 import { AddBannerComponent } from './add-banner/add-banner.component';
 import { ManageBannersComponent } from './manage-banners/manage-banners.component';
 import { BannersResolver } from './resolvers/banners.resolver';
+import { UserManagementComponent } from './user-management/user-management.component';
+import { UsersListResolver } from './resolvers/users-list.resolver';
+import { FoodItemsListComponent } from './neutrints/food-items-list/food-items-list.component';
+import { FoodItemsListResolver } from './resolvers/food-items-list.resolver';
+import { ManageNeutrintsComponent } from './neutrints/manage-neutrints/manage-neutrints.component';
+import { FoodItemResolver } from './resolvers/food-item-resolver';
+import { ManageOnlineTrainingComponent } from './manage-online-training/manage-online-training.component';
+import { TrainingResolver } from './resolvers/training-resolver';
+
 
 
 const routes: Routes = [
@@ -85,7 +94,27 @@ const routes: Routes = [
       {
         path: config.admin.manageBanners.name,
         component: ManageBannersComponent,
-        resolve: {banners: BannersResolver}
+        resolve: { banners: BannersResolver }
+      },
+      {
+        path: config.admin.onlineTraining.name,
+        component: ManageOnlineTrainingComponent,
+        resolve: {trainingInfo: TrainingResolver}
+      },
+      {
+        path: config.admin.users.name,
+        component: UserManagementComponent,
+        resolve: { users: UsersListResolver }
+      },
+      {
+        path: config.admin.neutrintsList.name,
+        component: FoodItemsListComponent,
+        resolve: { foodItemsList: FoodItemsListResolver }
+      },
+      {
+        path: config.admin.manageNeutrints.name,
+        component: ManageNeutrintsComponent,
+        resolve: { foodItem: FoodItemResolver }
       }
     ]
   },

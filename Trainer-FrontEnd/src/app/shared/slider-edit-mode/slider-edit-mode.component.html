@@ -7,7 +7,7 @@
   </div>
   <div class="modal-body">
     <div class="simulate-img" [ngStyle]="{'background-image':'url(' +  newImage.path + ')'}">صوره جديده</div>
-    <app-file-uploader (change)="onFileSelect($event.target.files[0])"></app-file-uploader>
+    <app-file-uploader (change)="onFileSelect($event)"></app-file-uploader>
     <input _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.title" placeholder="العنوان" type="text">
     <textarea _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.description" placeholder="الوصف" rows="3"></textarea>
     <input _ngcontent-c11 class="form-control" [(ngModel)]="newImage.isProfilePicture" placeholder="الصورة الرئيسية" type="checkbox">
@@ -73,8 +73,13 @@
         <div class="edit-image" (click)="deleteSlideModal(delete,i)">
           <i class="fa fa-trash"></i>
         </div>
+        <div class="edit-image" (click)="cropClicked(i)">
+          <i class="fa fa-crop"></i>
+        </div>
       </div>
       <img [src]="!image.isNew ? (baseurl + image.path) : (image.path)" class="slider-img" alt="images">
+      <!-- <button (click)="cropClicked()"  class="btn btn-danger crop-btn"><i class="fa fa-crop"></i></button> -->
+     
       <div class="carousel-caption" *ngIf="!hideText">
         <h3>{{image.title}}</h3>
         <p>{{image.description}}</p>
@@ -93,3 +98,4 @@
     </ng-template>
   </ngb-carousel>
 </div>
+<app-image-cropper #cropper [imageEvent]="imageEvent" (imageCroppedEvent)="onFileSelect($event, true)"></app-image-cropper>

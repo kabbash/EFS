@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ArticleDetialsDto } from '../../../shared/models/articles/article-details-dto';
 import { AppService } from '../../../app.service';
 import { AdminArticlesService } from '../../services/admin.articles.services';
-import { ArticleDetailsEditmodeComponent } from '../../../shared/article-details-editmode/article-details-editmode.component';
+import { ArticleDetailsEditmodeComponent } from '../../../shared/articles/article-details-editmode/article-details-editmode.component';
 import { config } from '../../../config/pages-config';
 import { SliderItemDto } from '../../../shared/models/slider/slider-item.dto';
 import { UtilitiesService } from '../../../shared/services/utilities.service';

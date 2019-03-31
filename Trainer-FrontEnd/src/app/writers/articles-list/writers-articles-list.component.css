@@ -1,0 +1,56 @@
+
+:host {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+    flex: 1;
+    /* cursor: pointer; */
+    margin-right: 1rem;
+    padding-top: 50px;
+}
+
+:host ::ng-deep app-articles-list-item {
+    width: 350px;
+}
+
+.filter-wrapper {
+    display: FLEX;
+    align-items: center;
+    width: 75%;
+    margin-top: 40px;
+    background-color: #dedddd;
+    padding: 14px 0 22px;
+    border-radius: 12px;
+    max-height: 100px;
+}
+
+.submit-filter-button {
+    min-height: 61px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+
+.submit-filter-button  button{
+    color: white;
+} 
+
+.filter-wrapper .form-control {
+    padding-top: 0;
+}
+
+.filter-wrapper span {
+    color: #212529;
+}
+
+.articles-admin-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.article-search-button{
+    color: white;
+}

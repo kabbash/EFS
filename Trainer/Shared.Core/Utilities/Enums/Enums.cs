@@ -7,7 +7,8 @@
         Articles_Categories,
         Articles,
         Temp,
-        Banners
+        Banners,
+        OTrainingProgram
     }
     public enum RatingEntityTypesEnum
     {
@@ -34,5 +35,27 @@
         Active,
         Pending,
         Rejected
+    }
+
+    public enum UserRoles
+    {
+        Admin,
+        RegularUser,
+        Client,
+        ProductOwner,
+        ArticleWriter
+    }
+
+    public enum EmailTemplatesEnum
+    {
+        Register,
+        ResetPassword,
+        ContactUs
+    }
+
+    public enum ConfigurationsEnum
+    {
+        OTrainingDetails = 1,
+        OTrainingForJoin
     }
 }

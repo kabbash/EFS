@@ -27,10 +27,11 @@ export class HeroPanerComponent implements OnInit {
       banner.buttonText = this.sanitizer.sanitize(SecurityContext.NONE, banner.buttonText);
       banner.title = this.sanitizer.sanitize(SecurityContext.NONE, banner.title);
       
-    })
+    });
   }
 
-  navigateToButtonUrl(url) {
+  navigateToButtonUrl(url, e) {
+    e.preventDefault();
     this.router.navigate([url]);
   }
 

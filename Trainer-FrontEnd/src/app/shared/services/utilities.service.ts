@@ -45,7 +45,7 @@ export class UtilitiesService {
   }
   appendFormData(formData, data, root = null) {
     root = root || '';
-    if (data instanceof File) {
+    if (data instanceof File || data instanceof Blob) {
       formData.append(root, data);
     } else if (Array.isArray(data)) {
       for (let i = 0; i < data.length; i++) {

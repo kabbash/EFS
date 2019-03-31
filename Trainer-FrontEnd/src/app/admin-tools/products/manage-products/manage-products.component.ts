@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminProductsService } from '../../services/admin.products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first, finalize } from 'rxjs/operators';
-import { ProductListItemEditComponent } from '../product-list-item-edit/product-list-item-edit.component';
 import { productListItemDto } from '../../../shared/models/products/product-list-item-dto';
 import { ProductCategoryDTO } from '../../../shared/models/products/product-category-dto';
 import { config } from '../../../config/pages-config';
@@ -11,6 +10,7 @@ import { UtilitiesService } from '../../../shared/services/utilities.service';
 import { SliderItemDto } from '../../../shared/models/slider/slider-item.dto';
 import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
 import { PAGES } from 'src/app/config/defines';
+import { ProductListItemEditComponent } from 'src/app/shared/products/product-list-item-edit/product-list-item-edit.component';
 
 @Component({
   selector: 'app-manage-products',
@@ -141,7 +141,7 @@ export class ManageProductsComponent implements OnInit {
   }
 
   delete() {
-    if (confirm("هل انت متأكد من مسح هذا المقال ؟ ")) {
+    if (confirm("هل انت متأكد من مسح هذا المنتج ؟ ")) {
       this.service.delete(this.productId).subscribe(c => { 
         console.log(c);
         alert('deleted');

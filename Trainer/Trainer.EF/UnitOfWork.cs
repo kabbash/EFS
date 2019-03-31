@@ -13,19 +13,6 @@ namespace Trainer.EF
 
         #region repositories
 
-        private IRepository<Calories> _testRepo;
-        public IRepository<Calories> TestRepository
-        {
-            get
-            {
-                if (_testRepo == null)
-                {
-                    _testRepo = new Repository<Calories>(_dbContext);
-                }
-                return _testRepo;
-            }
-        }
-
         private IRepository<AspNetUsers> _usersRepo;
         public IRepository<AspNetUsers> UsersRepository
         {
@@ -36,32 +23,6 @@ namespace Trainer.EF
                     _usersRepo = new Repository<AspNetUsers>(_dbContext);
                 }
                 return _usersRepo;
-            }
-        }
-
-        private IRepository<Clients> _clientsRepo;
-        public IRepository<Clients> ClientsRepository
-        {
-            get
-            {
-                if (_clientsRepo == null)
-                {
-                    _clientsRepo = new Repository<Clients>(_dbContext);
-                }
-                return _clientsRepo;
-            }
-        }
-
-        private IRepository<Trainers> _trainersRepo;
-        public IRepository<Trainers> TrainersRepository
-        {
-            get
-            {
-                if (_trainersRepo == null)
-                {
-                    _trainersRepo = new Repository<Trainers>(_dbContext);
-                }
-                return _trainersRepo;
             }
         }
 
@@ -205,6 +166,45 @@ namespace Trainer.EF
                     _bannersRepo = new Repository<Banner>(_dbContext);
                 }
                 return _bannersRepo;
+            }
+        }
+
+        private IRepository<FoodItem> _foodItemRepo;
+        public IRepository<FoodItem> FoodItemsRepository
+        {
+            get
+            {
+                if (_foodItemRepo == null)
+                {
+                    _foodItemRepo = new Repository<FoodItem>(_dbContext);
+                }
+                return _foodItemRepo;
+            }
+        }
+
+        private IRepository<Configurations> _configRepo;
+        public IRepository<Configurations> ConfigurationsRepository
+        {
+            get
+            {
+                if (_configRepo == null)
+                {
+                    _configRepo = new Repository<Configurations>(_dbContext);
+                }
+                return _configRepo;
+            }
+        }
+
+        private IRepository<OTrainingPrograms> _oTrainingProgramsRepo;
+        public IRepository<OTrainingPrograms> OTrainingProgramsRepository
+        {
+            get
+            {
+                if (_oTrainingProgramsRepo == null)
+                {
+                    _oTrainingProgramsRepo = new Repository<OTrainingPrograms>(_dbContext);
+                }
+                return _oTrainingProgramsRepo;
             }
         }
 

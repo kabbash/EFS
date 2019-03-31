@@ -1,0 +1,41 @@
+:host {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 50px;
+    flex-direction: column;
+    margin-right: 1rem;
+}
+
+.filter-wrapper {
+    display: FLEX;
+    align-items: center;
+    width: 75%;
+    /* margin-top: 60px; */
+    background-color: rgba(222, 221, 221, 0.8);    
+    padding: 14px 0 22px;
+    border-radius: 12px;
+    max-height: 100px;
+}
+
+.submit-filter-button {
+    min-height: 61px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+
+.submit-filter-button  button{
+    color: white;
+} 
+
+.filter-wrapper .form-control {
+    padding-top: 0;
+}
+
+.data-table{
+    float:right;
+    width: 75%;
+}

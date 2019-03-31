@@ -3,6 +3,7 @@ using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Shared.Core.Utilities.Extensions
 {
@@ -26,6 +27,15 @@ namespace Shared.Core.Utilities.Extensions
             result.Results = query.Skip(skip).Take(pageSize).ToList();
 
             return result;
+        }
+        public static string ApplyReplacements(this string text,Dictionary<string,string> keyValues)
+        {
+            var sb = new StringBuilder(text);
+            foreach (var kv in keyValues)
+            {
+                sb.Replace(kv.Key, kv.Value != null ? kv.Value.ToString() : "");
+            }
+            return sb.ToString();
         }
     }
 }

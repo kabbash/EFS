@@ -1,0 +1,127 @@
+<div class="bio-section">
+   <img class="bio-img" src="./assets/images/man.png" alt="">
+   <div class="bio-name-wrapper">
+      <h3 class="secondary-color">دكتور عبدالله</h3>
+      <h4 class="white-color">مدرب شخصي متخصص فى التغذيه واللياقه</h4>
+      <div class="bio-name-border"></div>
+   </div>
+</div>
+
+<div class="bio-section second-section-bio">
+   <h4 class="white-color">
+      <span>الهدف من الموقع</span> :
+      <p class="reform-p">وبعد تصرّف العصبة بلا و. مدن الثقيلة الخارجية عل, ٣٠ حلّت الشمال العصبة غير. تلك خلاف أراض
+         التقليدي في. مسرح
+         الشرق، عسكرياً أضف في, هذه ليركز مقاومة المشتّتون قد, بشرية الشرقية ٣٠ لمّ. لهذه مدينة و تحت, ضرب ثم أوروبا
+         ليرتفع, دار بل وتنامت العالم،.</p>
+   </h4>
+   <div class="section-border-wrapper">
+      <div class="bio-name-border"></div>
+   </div>
+</div>
+<div class="bio-section ">
+   <h3 class="secondary-color section-header">
+      المؤهلات العلميه :
+   </h3>
+   <ul class="bio-full-width white-color bio-exp">
+      <li>حاصل على بكالريوس صيدله</li>
+      <li>حاصل على دكتوراه في التغذيه</li>
+      <li>حاصل على شهادة خبره في التدريب</li>
+   </ul>
+   <div class="section-border-wrapper">
+      <div class="bio-name-border"></div>
+   </div>
+</div>
+
+
+
+<div class="bio-section  slider-section">
+   <h3 class="secondary-color section-header">
+      الشهادات :
+   </h3>
+   <section class="slider">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+         <ol class="carousel-indicators">
+            <li *ngFor="let banner of banners; let i = index" data-target="#myCarousel" [attr.data-slide-to]="i"
+               [ngClass]="{'active': i===0}"></li>
+         </ol>
+         <div class="carousel-inner">
+            <div *ngFor="let banner of banners; let i = index" class="carousel-item dashboard-carousel"
+               [ngClass]="{'active': i == 0}" [ngStyle]="{'background-image': 'url('+ banner?.imagePath + ')'}">
+            </div>
+         </div>
+         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+         </a>
+         <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+         </a>
+      </div>
+   </section>
+
+   <div class="section-border-wrapper">
+      <div class="bio-name-border"></div>
+   </div>
+</div>
+
+
+<div class="bio-section  slider-section adjust-sections">
+   <h3 class="secondary-color section-header">
+      بعض التحولات :
+   </h3>
+   <section class="slider">
+      <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+         <ol class="carousel-indicators">
+            <li *ngFor="let banner of banners2; let i = index" data-target="#myCarousel2" [attr.data-slide-to]="i"
+               [ngClass]="{'active': i===0}"></li>
+         </ol>
+         <div class="carousel-inner">
+            <div *ngFor="let banner of banners2; let i = index" class="carousel-item dashboard-carousel"
+               [ngClass]="{'active': i == 0}" [ngStyle]="{'background-image': 'url('+ banner?.imagePath + ')'}">
+            </div>
+         </div>
+         <a class="carousel-control-prev" href="#myCarousel2" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+         </a>
+         <a class="carousel-control-next" href="#myCarousel2" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+         </a>
+      </div>
+   </section>
+
+   <div class="section-border-wrapper">
+      <div class="bio-name-border"></div>
+   </div>
+</div>
+
+<div class="bio-section  slider-section adjust-sections last-section">
+   <h3 class="secondary-color section-header">
+      أراء بعض المتدربين :
+   </h3>
+   <section class="slider">
+      <div id="myCarousel3" class="carousel slide" data-ride="carousel">
+         <ol class="carousel-indicators">
+            <li *ngFor="let banner of banners; let i = index" data-target="#myCarousel3" [attr.data-slide-to]="i"
+               [ngClass]="{'active': i===0}"></li>
+         </ol>
+         <div class="carousel-inner">
+            <div *ngFor="let banner of banners; let i = index" class="carousel-item dashboard-carousel"
+               [ngClass]="{'active': i == 0}" [ngStyle]="{'background-image': 'url('+ banner?.imagePath + ')'}">
+            </div>
+         </div>
+         <a class="carousel-control-prev" href="#myCarousel3" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+         </a>
+         <a class="carousel-control-next" href="#myCarousel3" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+         </a>
+      </div>
+   </section>
+
+</div>

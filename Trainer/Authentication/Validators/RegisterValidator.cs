@@ -1,5 +1,6 @@
 ﻿using Authentication.Models;
 using FluentValidation;
+using Shared.Core.Utilities.Enums;
 
 namespace Authentication.Validators
 {
@@ -7,12 +8,10 @@ namespace Authentication.Validators
     {
         public RegisterValidator()
         {
-            RuleFor(model => model.Email).NotEmpty().EmailAddress();
-            RuleFor(model => model.FullName).NotEmpty();
-            //RuleFor(model => model.LastName).NotEmpty();
-            RuleFor(model => model.Password).NotEmpty();
-
-
+            RuleFor(model => model.Email).NotEmpty().WithMessage(((int)AuthenticationErrorsCodeEnum.ValidationEmailRequired).ToString());
+            RuleFor(model => model.Email).EmailAddress().WithMessage(((int)AuthenticationErrorsCodeEnum.ValidationEmailRequired).ToString());                
+            RuleFor(model => model.FullName).NotEmpty().WithMessage(((int)AuthenticationErrorsCodeEnum.ValidationFullNameRequired).ToString());
+            RuleFor(model => model.Password).NotEmpty().WithMessage(((int)AuthenticationErrorsCodeEnum.ValidationPasswordRequired).ToString());
         }
     }
 }

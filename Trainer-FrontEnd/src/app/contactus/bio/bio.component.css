@@ -1,0 +1,95 @@
+:host {
+    width: 985px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    flex-direction: column;
+}
+
+.bio-section {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bio-img {
+    height: 300px;
+    border: 1px solid #01bbd4;
+    border-radius: 12px;
+}
+
+.bio-name-wrapper {
+    height: fit-content;
+    margin-top: 65px;
+    margin-right: 35px;
+}
+
+.bio-name-border {
+    height: 1px;
+    background-color: white;
+    margin-top: 35px;
+}
+
+.reform-p {
+    display: inline;
+    line-height: 2.5;
+    font-size: 18px;
+}
+
+.second-section-bio {
+    margin-top: 90px
+}
+
+.section-border-wrapper {
+    width: 40%;
+    margin-right: 30%;
+}
+
+.bio-full-width {
+    width: 100%;
+}
+
+.section-header {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.bio-exp li {
+    margin-bottom: 15px;
+}
+
+.slider-section {
+    height: 400px;
+}
+
+.slider-section section {
+    height: 100%;
+    width: 100%;
+}
+
+.carousel {
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-item {
+    width: 100%;
+    margin: AUTO;
+    height: 100%;
+    background-size: 350px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.adjust-sections {
+    margin-top: 110px;
+}
+
+.last-section {
+    margin-bottom: 150px;
+}

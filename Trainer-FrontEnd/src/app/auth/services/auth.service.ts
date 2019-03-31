@@ -26,6 +26,10 @@ export class AuthService {
     return this.isInRole(Roles.Admin);
   }
 
+  isArticlesWriter(): boolean {
+    return this.isInRole(Roles.ArticleWriter);
+  }
+
   isInRole(role: Roles): boolean {
     return this.isLoggedIn() && this.getUserInfo().roles.some((item => item == role));
   }

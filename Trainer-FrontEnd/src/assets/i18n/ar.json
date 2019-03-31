@@ -103,96 +103,84 @@
           "required": "يجب ادخال صورة"
         }
       },
-      "messages": {
-
+      "messages": {},
+      "errorMessages": {}
+  },
+  "manageCategories": {
+    "messages": {
+      "confirmDeleteParent": "هل أنت متأكد من أنك تريد حذف هذاالعنصر الرئيسي؟",
+      "confirmDelete": "هل أنت متأكد من أنك تريد حذف هذاالعنصر؟",
+      "success": "تمت العملية بنجاح"
+    }
+  },
+  "editArticle": {
+    "formValidations": {
+      "nameRequired": "يجب ادخال اسم المقال",
+      "categoryRequired": "يجب اختيار القسم",
+      "placeRequired": "يجب ادخال مكان البطوله",
+      "dateRequired": "يجب ادخال موعد البطوله"
+    },
+    "messages": {},
+    "errorCodes": {
+      "1007": "gdgdfgdfg"
+    }
+  },
+  "adminMenu": {
+    "manageArticleCategories": "فئات المقالات",
+    "manageProductCategories": "فئات المنتجات",
+    "itemReviewList": "مراجعة المنتجات",
+    "manageBanners": "الملصقات",
+    "users": "المستخدمين",
+    "onlineTraining" : "التدريب الاونلاين"
+  },
+  "addBanner": {
+    "title": "العنوان",
+    "buttonText": "نص الزر",
+    "buttonUrl": "رابط الزر",
+    "buttonAlign": "محاذاة الزر",
+    "titleAlign": "محاذاة العنوان",
+    "buttonColor": "لون الزر",
+    "picture": "الصورة",
+    "left": "يسار",
+    "right": "يمين",
+    "center": "وسط",
+    "blue": "ازرق",
+    "white": "ابيض",
+    "black": "اسود",
+    "submit": "حفظ",
+    "reset": "إعادة تعيين",
+    "formValidations": {
+      "title": {
+        "required": "يحب ادخال العنوان"
       },
-      "errorMessages": {
-
-      }
-    },
-
-    "manageCategories": {
-      "messages": {
-        "confirmDeleteParent": "هل أنت متأكد من أنك تريد حذف هذاالعنصر الرئيسي؟",
-        "confirmDelete": "هل أنت متأكد من أنك تريد حذف هذاالعنصر؟",
-        "success": "تمت العملية بنجاح"
-      }
-    },
-    "editArticle": {
-        "formValidations": {
-            "nameRequired": "يجب ادخال اسم المقال",
-            "categoryRequired" : "يجب اختيار القسم",
-            "placeRequired": "يجب ادخال مكان البطوله",
-            "dateRequired": "يجب ادخال موعد البطوله"
-        },
-        "messages": {
-
-        },
-        "errorCodes": {
-            "1007": "gdgdfgdfg"
-        }
-
-    },
-    "adminMenu": {
-      "manageArticleCategories": "فئات المقالات",
-      "manageProductCategories": "فئات المنتجات",
-      "itemReviewList": "مراجعة المنتجات",
-      "manageBanners":"الملصقات"
-    },
-    "addBanner": {
-      "title": "العنوان",
-      "buttonText": "نص الزر",
-      "buttonUrl": "رابط الزر",
-      "buttonAlign": "محاذاة الزر",
-      "titleAlign": "محاذاة العنوان",
-      "buttonColor": "لون الزر",
-      "picture": "الصورة",
-      "left": "يسار",
-      "right": "يمين",
-      "center": "وسط",
-      "blue": "ازرق",
-      "white": "ابيض",
-      "black": "اسود",
-      "submit": "حفظ",
-      "reset": "إعادة تعيين",
-      "formValidations": {
-        "title": {
-          "required": "يحب ادخال العنوان"
-        },
-        "buttonText": {
-          "required": "يجب ادخال نص الزر"
-        },
-        "buttonUrl": {
-          "required": "يجب ادخال رابط الزر"
-        },
-        "picture": {
-          "required": "يحب ادخال الصورة"
-        }
+      "buttonText": {
+        "required": "يجب ادخال نص الزر"
       },
-      "messages": {
-
+      "buttonUrl": {
+        "required": "يجب ادخال رابط الزر"
       },
-      "errorCodes": {
-
+      "picture": {
+        "required": "يحب ادخال الصورة"
       }
-    },
-    "registerForm": {
-      "formValidations": {
-        "fullNameRequired": "يجب ادخال اسم المستخدم",
-        "emailRequired": "يجب ادخال البريد الالكترونى",
-        "emailNotValid": "برجاء ادخال بريد الكترونى صحيح",
-        "phoneRequired": "يجب ادخال رقم الهاتف",
-        "passwordRequired": "يجب ادخال كلمة المرور",
-        "confirmPasswordRequired": "يجب تاكيد كلمة المرور",
-        "passwordNotMatch": "كلمة المرور غير متطابقه"    
-      }
-    },
+    }
+  },
+  "registerForm": {
+    "formValidations": {
+      "fullNameRequired": "يجب ادخال اسم المستخدم",
+      "emailRequired": "يجب ادخال البريد الالكترونى",
+      "emailNotValid": "برجاء ادخال بريد الكترونى صحيح",
+      "phoneRequired": "يجب ادخال رقم الهاتف",
+      "passwordRequired": "يجب ادخال كلمة المرور",
+      "confirmPasswordRequired": "يجب تاكيد كلمة المرور",
+      "passwordNotMatch": "كلمة المرور غير متطابقه"    
+    }
+  },
   "contactus":{
     "formValidations": {
       "nameRequired": "يجب ادخال الاسـم",
       "emailRequired": "يجب ادخال البريد الالكترونى",
       "detailsRequired": "يجب ادخال الرسـاله",
-      "emailNotValid" : "برجاء ادخال بريد الكترونى صحيح"
+      "emailNotValid": "برجاء ادخال بريد الكترونى صحيح"
     }
   },
   "defaultErrorMessages": {
@@ -200,5 +188,75 @@
     "400": "somthing went wrong",
     "401": "ay haga",
     "500": "server error"
+  },
+  "manageUsers": {
+    "roles": {
+      "Admin": "Admin",
+      "Client": "Client",
+      "RegularUser": "Regular User",
+      "Trainer": "Trainer",
+      "ArticleWriter": "Article Writer"
+    }
+  },
+  "neutrints": {
+    "name": "الأسم",
+    "amount": "الكمية",
+    "general": "عام",
+    "vitamins": "الفيتامينات",
+    "lipids": "الدهون",
+    "minerals": "المعادن",
+    "proteins": "البروتينات",
+    "calories": "السعرات الحرارية",
+    "energy": "الطاقة",
+    "alcohol": "الكحول",
+    "caffiene": "الكافين",
+    "water": "المياه",
+    "carbs": "الكربوهيدرات",
+    "fiber": "الالياف",
+    "starch": "النشا",
+    "sugars": "السكريات",
+    "netCarbs": "الكربوهيدرات الصافية",
+    "fat": "شحم",
+    "monounsaturated": "غير المشبعة الاحادية",
+    "polyunsaturated": "المشبعة المتعددة",
+    "omega3": "اوميجا 3",
+    "omega6": "وميجا 6",
+    "saturated": "مشبع",
+    "transFats": "الدهون المتحولة",
+    "cholesterol": "الكوليسترول",
+    "protein": "بروتين",
+    "cystine": "سيستين",
+    "histidine": "الحامض الاميني",
+    "isoleucine": "ايسولوسين",
+    "leucine": "يسين",
+    "lysine": "لايسين",
+    "methionine": "ميثيونين",
+    "phenylalanine": "الفينيل ألانين",
+    "threonine": "ثريونين",
+    "tryptophan": "التربتوفان",
+    "tyrosine": "التيروزين",
+    "valine": "حمض أميني أساسي",
+    "b1": "B1 (الثيامين)",
+    "b2": "B2 (ريبوفلافين)",
+    "b3": "B3 (النياسين)",
+    "b5": "B5 (حمض البانتوثينيك)",
+    "b6": "B6 (البيريدوكسين)",
+    "b12": "B12 (كوبالامين)",
+    "folate": "حمض الفوليك",
+    "vitaminA": "فيتامين A",
+    "vitaminC": "فيتامين C",
+    "vitaminD": "فيتامين D",
+    "vitaminE": "فيتامين E",
+    "vitaminK": "فيتامين K",
+    "calcuim": "كالسيوم",
+    "copper": "نحاس",
+    "iron": "حديد",
+    "magnesium": "ماغنسيوم",
+    "manganese": "منغنيز",
+    "phosphorus": "فسفور",
+    "potassium": "بوتاسيوم",
+    "selenium": "سيلينيوم",
+    "sodium": "صوديوم",
+    "zinc": "زنك"
   }
 }

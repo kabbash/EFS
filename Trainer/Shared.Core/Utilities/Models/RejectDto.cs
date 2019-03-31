@@ -4,10 +4,9 @@ using System.Text;
 
 namespace Shared.Core.Utilities.Models
 {
-    public class RejectDto : IUserDto
+    public class RejectDto
     {
         public int Id { get; set; }
         public string RejectReason { get; set; }
-        public string CurrentUserId { get; set; }
     }
 }
