@@ -15,6 +15,8 @@ import { SecurityContext } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { config } from '../../config/pages-config';
 import { AppService } from 'src/app/app.service';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { PAGES } from 'src/app/config/defines';
 
 @Component({
   selector: 'app-add-banner',
@@ -41,7 +43,8 @@ export class AddBannerComponent implements OnInit {
     private route: ActivatedRoute,
     private sanitizer: Sanitizer,
     private router: Router,
-    private appService: AppService) { }
+    private appService: AppService,
+    private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
     this.bannerForm = this.fb.group({
@@ -49,7 +52,7 @@ export class AddBannerComponent implements OnInit {
       'buttonText': ['',  Validators.required],
       'imageFile': [null, Validators.required],
       'buttonUrl': ['', Validators.required]
-    }); 
+    });
     this.buttonAlign = 'center';
     this.buttonColor = 'blue';
     this.titleAlign = 'center';
@@ -76,13 +79,12 @@ export class AddBannerComponent implements OnInit {
     const formData = new FormData();
     this.util.appendFormData(formData, this.banner);
     this.bannerService.add(formData).subscribe(data => {
-      alert('success');
       this.router.navigate([config.admin.manageBanners.route]);
       this.appService.loading = false;
-    } ,error => {
-      alert(error);
+    } , error => {
+      this.errorHandlingService.handle(error, PAGES.BANNER);
       this.appService.loading = false;
-    })
+    });
   }
   prepareData() {
     this.banner.title = this.titleHtml.nativeElement.innerHTML;

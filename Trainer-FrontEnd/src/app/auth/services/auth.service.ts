@@ -63,8 +63,8 @@ export class AuthService {
   }
 
   private setUserToken(result: ResultMessage<User>) {
-    if (result.status == 200) {
-      let user = result.data;
+    if (result.status === 200) {
+      const user = result.data;
       // login successful if there's a jwt token in the response
       if (user && user.token) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes

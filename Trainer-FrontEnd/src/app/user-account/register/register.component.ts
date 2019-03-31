@@ -6,6 +6,8 @@ import { AuthService } from '../../auth/services/auth.service';
 import { AppService } from '../../app.service';
 import { first, finalize } from 'rxjs/operators';
 import { CustomValidators } from '../Validators/custom-validators';
+import { PAGES } from 'src/app/config/defines';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +21,8 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private authenticationService: AuthService,
-    private appService: AppService) { }
+    private appService: AppService,
+    private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -52,6 +55,8 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         data => {
           this.router.navigate([config.userAccount.accountRegistered.route]);
+        }, error => {
+          this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
         });
   }
   navigateToLogin() {

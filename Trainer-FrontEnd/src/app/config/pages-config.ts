@@ -144,61 +144,65 @@ export let config = {
         }
     },
     'admin': {
-      'name': 'admin',
-      'route': 'admin',
-    //   'loadChildren': './admin/admin.module#AdminToolsModule',
+        'name': 'admin',
+        'route': 'admin',
+        //   'loadChildren': './admin/admin.module#AdminToolsModule',
 
-      'addCategory': {
-        'name': 'addCategory',
-        'route': '/admin/addCategory'
-      },
-      'manageArticlesCategories': {
-        'name': 'manageArticlesCategories',
-        'route': '/admin/manageArticlesCategories'
-      },
-      'addArticle': {
-        'name': 'addArticle',
-        'route': '/admin/addArticle'
-      },
-      'manageArticles': {
-        'name': 'manageArticles/:articleId',
-        'route': '/admin/manageArticles'
-      },
-      'articleslist': {
-        'name': 'articleslist',
-        'route': '/admin/articleslist'
-      },
-      'manageProductsCategories': {
-        'name': 'manageProductsCategories',
-        'route': '/admin/manageProductsCategories'
-      },
-      'addItemForReview': {
-        'name': 'addItemForReview',
-        'route': '/admin/addItemForReview'
-      },
-      'itemReviewList': {
-          'name': 'itemReviewList',
-          'route': '/admin/itemReviewList'
-      },
-      'manageProducts': {
-        'name': 'manageProducts/:productId',
-        'route': '/admin/manageProducts'
-      },
-      'ProductsList': {
-        'name': 'ProductList',
-        'route': '/admin/ProductList'
-      },
-      'addBanner': {
-          'name': 'addBanner',
-          'route': '/admin/addBanner'
-      },
-      'editBanner': {
-        'name': 'editBanner/:bannerId',
-        'route': '/admin/editBanner/:bannerId'
+        'addCategory': {
+            'name': 'addCategory',
+            'route': '/admin/addCategory'
+        },
+        'manageArticlesCategories': {
+            'name': 'manageArticlesCategories',
+            'route': '/admin/manageArticlesCategories'
+        },
+        'addArticle': {
+            'name': 'addArticle',
+            'route': '/admin/addArticle'
+        },
+        'manageArticles': {
+            'name': 'manageArticles/:articleId',
+            'route': '/admin/manageArticles'
+        },
+        'articleslist': {
+            'name': 'articleslist',
+            'route': '/admin/articleslist'
+        },
+        'manageProductsCategories': {
+            'name': 'manageProductsCategories',
+            'route': '/admin/manageProductsCategories'
+        },
+        'addItemForReview': {
+            'name': 'addItemForReview',
+            'route': '/admin/addItemForReview'
+        },
+        'itemReviewList': {
+            'name': 'itemReviewList',
+            'route': '/admin/itemReviewList'
+        },
+        'manageProducts': {
+            'name': 'manageProducts/:productId',
+            'route': '/admin/manageProducts'
+        },
+        'ProductsList': {
+            'name': 'ProductList',
+            'route': '/admin/ProductList'
+        },
+        'addBanner': {
+            'name': 'addBanner',
+            'route': '/admin/addBanner'
+        },
+        'editBanner': {
+            'name': 'editBanner/:bannerId',
+            'route': '/admin/editBanner/:bannerId'
+        },
+        'manageBanners': {
+            'name': 'manageBanners',
+            'route': '/admin/manageBanners'
+        }
     },
-    'manageBanners': {
-        'name': 'manageBanners',
-        'route': '/admin/manageBanners'
-    }
+    'home': {
+        'name': 'home',
+        'route': '/'
     }
 };

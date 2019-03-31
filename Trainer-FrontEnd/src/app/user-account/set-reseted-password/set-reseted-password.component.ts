@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { finalize, first } from 'rxjs/operators';
 import { AuthService } from '../../auth/services/auth.service';
 import { AppService } from '../../app.service';
+import { PAGES } from 'src/app/config/defines';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
 
 @Component({
   selector: 'app-set-reseted-password',
@@ -19,7 +21,8 @@ export class SetResetedPasswordComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthService,
     private appService: AppService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
     this.resetPasswordForm = this.formBuilder.group({
@@ -50,6 +53,8 @@ export class SetResetedPasswordComponent implements OnInit {
       .subscribe(
         data => {
           this.router.navigate(['/']);
+        }, error => {
+          this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
         });
   }
 }

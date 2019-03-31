@@ -6,6 +6,8 @@ import { PagerDto } from '../../shared/models/pager.dto';
 import { AppService } from '../../app.service';
 import { environment } from '../../../environments/environment';
 import { config } from '../../config/pages-config';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { PAGES } from 'src/app/config/defines';
 
 @Component({
   selector: 'app-manage-banners',
@@ -15,12 +17,13 @@ import { config } from '../../config/pages-config';
 export class ManageBannersComponent implements OnInit {
   banners: BannerDto[];
   pagerData: PagerDto;
-  baseurl = environment.filesBaseUrl
+  baseurl = environment.filesBaseUrl;
   constructor(private sanitizer: Sanitizer,
   private bannerService: ManageBannerService,
   private route: ActivatedRoute,
   private appService: AppService,
-  private router: Router) { }
+  private router: Router,
+  private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
     this.route.data.subscribe(result => {
@@ -61,8 +64,8 @@ export class ManageBannersComponent implements OnInit {
         this.banners.splice(this.banners.findIndex(banner => banner.id === bannerId), 1);
       }, error => {
         this.appService.loading = false;
-        alert(error);
-      })
+        this.errorHandlingService.handle(error, PAGES.BANNER);
+      });
     }
   }
 

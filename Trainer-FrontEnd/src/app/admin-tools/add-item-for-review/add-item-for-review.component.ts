@@ -7,6 +7,8 @@ import { config } from '../../config/pages-config';
 import { Router } from '@angular/router';
 import { UtilitiesService } from '../../shared/services/utilities.service';
 import { environment } from '../../../environments/environment';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { PAGES } from 'src/app/config/defines';
 
 @Component({
   selector: 'app-add-item-for-review',
@@ -22,7 +24,8 @@ export class AddItemForReviewComponent implements OnInit {
     private repositoryService: RepositoryService,
     public productReviewService: ProductReviewService,
     private router: Router,
-    private util: UtilitiesService) { }
+    private util: UtilitiesService,
+    private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
     this.reviewForm = this.fb.group({
@@ -39,30 +42,28 @@ export class AddItemForReviewComponent implements OnInit {
   }
   submit() {
     if (this.reviewForm.valid) {
-      this.productReviewService.productReviewToUpdate ? this.update() : this.create(); 
+      this.productReviewService.productReviewToUpdate ? this.update() : this.create();
     }
   }
   create() {
     const formData = new FormData();
     this.util.appendFormData(formData, this.reviewForm.value);
     this.repositoryService.create('itemsreview', formData).subscribe(data => {
-      alert('success');
       this.router.navigate([config.admin.itemReviewList.route]);
     }, error => {
-      alert(error);
+      this.errorHandlingService.handle(error, PAGES.ITEMREVIEWS);
     });
   }
 
   update() {
     const formData = new FormData();
     this.util.appendFormData(formData, this.reviewForm.value);
-    this.repositoryService.update('itemsreview/' + this.productReviewService.productReviewToUpdate.id, 
+    this.repositoryService.update('itemsreview/' + this.productReviewService.productReviewToUpdate.id,
     formData).subscribe(data => {
       this.productReviewService.productReviewToUpdate = null;
-      alert('success');
-      this.router.navigate([config.admin.itemReviewList.route]);      
+      this.router.navigate([config.admin.itemReviewList.route]);
     }, error => {
-      alert(error);
+      this.errorHandlingService.handle(error, PAGES.ITEMREVIEWS);
     });
   }
 

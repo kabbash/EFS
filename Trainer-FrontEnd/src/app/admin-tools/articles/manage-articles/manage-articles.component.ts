@@ -8,6 +8,8 @@ import { config } from '../../../config/pages-config';
 import { SliderItemDto } from '../../../shared/models/slider/slider-item.dto';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
 import { PredefinedCategories } from 'src/app/shared/models/articles/articles-predefined-categories.enum';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { PAGES } from 'src/app/config/defines';
 
 
 @Component({
@@ -22,7 +24,7 @@ export class ManageArticlesComponent implements OnInit {
   viewMode = true;
   isNew = false;
   originalArticle: ArticleDetialsDto;
-  isChampionshipModule: boolean = false;
+  isChampionshipModule = false;
 
   @ViewChild(ArticleDetailsEditmodeComponent) articleDetailsEditmodeComponent: ArticleDetailsEditmodeComponent;
 
@@ -30,7 +32,8 @@ export class ManageArticlesComponent implements OnInit {
     private router: Router,
      private appService: AppService,
       private service: AdminArticlesService,
-      private util: UtilitiesService) {
+      private util: UtilitiesService,
+      private errorHandlingService: ErrorHandlingService) {
     this.route.params.subscribe(params => {
       this.articleId = params['articleId'];
     });
@@ -43,7 +46,7 @@ export class ManageArticlesComponent implements OnInit {
         this.article = result.articleDetails.data;
         this.article.updatedImages = new Array<SliderItemDto>();
         this.originalArticle = JSON.parse(JSON.stringify(this.article));
-        this.appService.loading = false;        
+        this.appService.loading = false;
         this.isChampionshipModule = this.article.categoryId === PredefinedCategories.Championships;
       });
 
@@ -51,7 +54,7 @@ export class ManageArticlesComponent implements OnInit {
       this.article = new ArticleDetialsDto();
       this.viewMode = false;
       this.isNew = true;
-    }    
+    }
   }
 
   // article main methods
@@ -59,12 +62,13 @@ export class ManageArticlesComponent implements OnInit {
   approve() {
     if (confirm('هل انت متأكد من الموافقه على هذا المقال ؟ ')) {
       this.appService.loading = true;
-      this.service.approve(this.articleId).subscribe(c => { 
+      this.service.approve(this.articleId).subscribe(c => {
         alert('تمت الموافقه على المقال بنجاح');
          this.returnToBase();
          this.appService.loading = false;
          }, error => {
            this.appService.loading = false;
+           this.errorHandlingService.handle(error, PAGES.ARTICLES);
          });
     }
   }
@@ -76,9 +80,11 @@ export class ManageArticlesComponent implements OnInit {
       .subscribe(c => {
          alert('تم رفض المقال بنجاح');
           this.returnToBase();
-          this.appService.loading = false; 
+          this.appService.loading = false;
         }, error => {
           this.appService.loading = false;
+          this.errorHandlingService.handle(error, PAGES.ARTICLES);
+
         });
     }
   }
@@ -86,13 +92,15 @@ export class ManageArticlesComponent implements OnInit {
   delete() {
     if (confirm('هل انت متأكد من مسح هذا المقال ؟ ')) {
       this.appService.loading = true;
-      this.service.delete(this.articleId).subscribe(c => { 
+      this.service.delete(this.articleId).subscribe(c => {
         console.log(c);
          alert('تم مسح المقال بنجاح');
           this.returnToBase();
           this.appService.loading = false;
          }, error => {
            this.appService.loading = false;
+           this.errorHandlingService.handle(error, PAGES.ARTICLES);
+
          });
     }
   }
@@ -103,8 +111,8 @@ export class ManageArticlesComponent implements OnInit {
     if (!this.articleDetailsEditmodeComponent.articleForm.valid) {
       return false;
     }
-    this.util.setSliderProfilePic(this.articleDetailsEditmodeComponent.modifiedArticle, false);        
-    const articleToUpdate = Object.assign({}, this.articleDetailsEditmodeComponent.modifiedArticle)
+    this.util.setSliderProfilePic(this.articleDetailsEditmodeComponent.modifiedArticle, false);
+    const articleToUpdate = Object.assign({}, this.articleDetailsEditmodeComponent.modifiedArticle);
     delete articleToUpdate.images;
     const formData = new FormData();
     this.util.appendFormData(formData, articleToUpdate);
@@ -116,7 +124,7 @@ export class ManageArticlesComponent implements OnInit {
         this.appService.loading = false;
 
       }, error => {
-        alert(error);
+        this.errorHandlingService.handle(error, PAGES.ARTICLES);
         this.appService.loading = false;
       }
     );
@@ -129,7 +137,7 @@ export class ManageArticlesComponent implements OnInit {
       return false;
     }
 
-    this.util.setSliderProfilePic(this.articleDetailsEditmodeComponent.modifiedArticle, true);    
+    this.util.setSliderProfilePic(this.articleDetailsEditmodeComponent.modifiedArticle, true);
     const formData = new FormData();
     this.util.appendFormData(formData, this.articleDetailsEditmodeComponent.modifiedArticle);
     this.appService.loading = true;
@@ -139,7 +147,7 @@ export class ManageArticlesComponent implements OnInit {
         this.returnToBase();
         this.appService.loading = false;
       }, error => {
-        alert(error);
+        this.errorHandlingService.handle(error, PAGES.ARTICLES);
         this.appService.loading = false;
       }
     );

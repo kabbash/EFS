@@ -1,6 +1,88 @@
 {
     "home": {
-        "title": "حماده"
+      "errorCodes": {
+        "0": ""
+      }
+    },
+    "articles": {
+      "errorCodes": {
+        "0": "",
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": "",
+        "10": "",
+        "11": "",
+        "12": "",
+        "13": "",
+        "14": "",
+        "15": "",
+        "16": "",
+        "17": ""
+      }
+    },
+    "products": {
+      "errorCodes": {
+        "0": "",
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": "",
+        "10": "",
+        "11": "",
+        "12": "",
+        "13": "",
+        "14": "",
+        "15": "",
+        "16": "",
+        "17": ""
+      }
+    },
+    "attachements": {
+      "errorCodes": {
+        "0": ""
+      }
+    },
+    "authentication": {
+      "errorCodes": {
+        "0": "",
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    "rating": {
+      "errorCodes": {
+        "0": ""
+      }
+    },
+    "itemReviews": {
+      "errorCodes": {
+        "0": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": ""
+      }
+    },
+    "banner": {
+      "errorCodes": {
+        "0": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": ""
+      }
     },
     "addCategory": {
       "articleCategory": "فئة المقال",
@@ -95,16 +177,16 @@
       }
     },
     "registerForm": {
-    "formValidations": {
-      "fullNameRequired": "يجب ادخال اسم المستخدم",
-      "emailRequired": "يجب ادخال البريد الالكترونى",
-      "emailNotValid": "برجاء ادخال بريد الكترونى صحيح",
-      "phoneRequired": "يجب ادخال رقم الهاتف",
-      "passwordRequired": "يجب ادخال كلمة المرور",
-      "confirmPasswordRequired": "يجب تاكيد كلمة المرور",
-      "passwordNotMatch": "كلمة المرور غير متطابقه"    
-    }
-  },
+      "formValidations": {
+        "fullNameRequired": "يجب ادخال اسم المستخدم",
+        "emailRequired": "يجب ادخال البريد الالكترونى",
+        "emailNotValid": "برجاء ادخال بريد الكترونى صحيح",
+        "phoneRequired": "يجب ادخال رقم الهاتف",
+        "passwordRequired": "يجب ادخال كلمة المرور",
+        "confirmPasswordRequired": "يجب تاكيد كلمة المرور",
+        "passwordNotMatch": "كلمة المرور غير متطابقه"    
+      }
+    },
   "contactus":{
     "formValidations": {
       "nameRequired": "يجب ادخال الاسـم",
@@ -112,5 +194,11 @@
       "detailsRequired": "يجب ادخال الرسـاله",
       "emailNotValid" : "برجاء ادخال بريد الكترونى صحيح"
     }
+  },
+  "defaultErrorMessages": {
+    "defaultMessage": "something went wrong",
+    "400": "somthing went wrong",
+    "401": "ay haga",
+    "500": "server error"
   }
 }

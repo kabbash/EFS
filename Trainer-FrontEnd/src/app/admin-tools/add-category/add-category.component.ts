@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { config } from '../../config/pages-config';
 import { AppService } from '../../app.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { PAGES } from 'src/app/config/defines';
 
 @Component({
   selector: 'app-add-category',
@@ -21,7 +23,8 @@ export class AddCategoryComponent implements OnInit {
     public categoryService: CategoriesService,
     private router: Router,
     private appService: AppService,
-    private translate: TranslateService) { }
+    private translate: TranslateService,
+    private errorHandlingService: ErrorHandlingService) { }
 
   categoryForm: FormGroup;
   imageUrl: string;
@@ -43,13 +46,12 @@ export class AddCategoryComponent implements OnInit {
     this.setDropDownData();
     this.translate.get('manageCategories.messages.success').subscribe(data => {
       this.successMessage = data;
-    })
+    });
   }
   submit() {
     this.categoryForm.controls['profilePictureFile'].markAsTouched();
     this.categoryForm.controls['name'].markAsTouched();
     this.appService.loading = true;
-    
     if (this.categoryForm.valid) {
       if (this.categoryService.articleCategoryToEdit) {
         this.updateCategory();
@@ -57,29 +59,26 @@ export class AddCategoryComponent implements OnInit {
         this.addCategory();
       }
     } else {
-      this.appService.loading = false;      
+      this.appService.loading = false;
       alert('form not valid');
     }
   }
   addCategory() {
     this.reposatoryService.create(this.categoryService.apiUrl, this.prepareData(this.categoryForm.value)).subscribe(data => {
-      
-      alert(this.successMessage);
       this.navigateToListing();
     }, error => {
       this.appService.loading = false;
-      alert(error);
+      this.errorHandlingService.handle(error, PAGES.PRODUCTS);
     });
   }
   updateCategory() {
     this.reposatoryService.update(this.categoryService.apiUrl + this.articleCategory.id, this.prepareData(this.articleCategory)).subscribe(
       () => {
-        alert(this.successMessage);
         this.navigateToListing();
 
       }, error => {
         this.appService.loading = false;
-        alert(error);
+        this.errorHandlingService.handle(error, PAGES.PRODUCTS);
       }
     );
   }

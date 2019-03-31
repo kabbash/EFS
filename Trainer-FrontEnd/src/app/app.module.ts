@@ -49,7 +49,9 @@ export function initializeApp(appConfig: AppConfig) {
     }),
     AngularFontAwesomeModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-full-width'
+    })
   ],
   providers: [
     AuthService,

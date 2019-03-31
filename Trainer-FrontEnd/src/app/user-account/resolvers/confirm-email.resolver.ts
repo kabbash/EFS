@@ -4,15 +4,23 @@ import { Observable } from 'rxjs';
 import { ResultMessage } from '../../shared/models/result-message';
 import { AuthService } from '../../auth/services/auth.service';
 import { User } from '../../auth/models/user';
+import { map, catchError } from 'rxjs/operators';
+import { PAGES } from 'src/app/config/defines';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
 
 @Injectable()
 export class ConfirmEmailResolver implements Resolve<Observable<ResultMessage<User>>> {
 
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService, private errorHandlingService: ErrorHandlingService) {
     }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResultMessage<User>> {
-        return this.authService.verifyEmail(route.queryParams.activationToken || "");
+        return this.authService.verifyEmail(route.queryParams.activationToken || "").pipe(
+            map((data: Observable<ResultMessage<User>>) => data), catchError(error => {
+                this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
+                return null;
+            })
+        );
     }
 }

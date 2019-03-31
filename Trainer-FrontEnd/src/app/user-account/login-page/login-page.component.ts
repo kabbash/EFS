@@ -6,6 +6,8 @@ import { AuthService } from '../../auth/services/auth.service';
 import { first, finalize } from 'rxjs/operators';
 import { AppService } from '../../app.service';
 import { AuthenticationErrorsCode } from '../models/authentication-error-code.enum';
+import { PAGES } from 'src/app/config/defines';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
 
 
 @Component({
@@ -24,7 +26,8 @@ export class LoginPageComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private authenticationService: AuthService,
-    private appService: AppService) {
+    private appService: AppService,
+    private errorHandlingService: ErrorHandlingService) {
 
   }
 
@@ -63,6 +66,8 @@ export class LoginPageComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
         else if (result.errorCode == AuthenticationErrorsCode.EmailNotConfirmed)
           this.router.navigate([config.userAccount.emailNotConfirmed.route]);
+      }, error => {
+        this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
       });
   }
 }

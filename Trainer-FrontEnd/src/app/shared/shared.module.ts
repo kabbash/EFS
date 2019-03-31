@@ -30,6 +30,7 @@ import { ArticleDetailsResolver } from '../articles/resolvers/article-details.re
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { ProductsService } from '../products/products.service';
 import { ClientFilterComponent } from './client-filter/client-filter.component';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
 
 @NgModule({
   imports: [
@@ -90,7 +91,8 @@ import { ClientFilterComponent } from './client-filter/client-filter.component';
     ProductsCategoriesResolver,
     ProductReviewService,
     ArticleDetailsResolver,
-    ProductsService
+    ProductsService,
+    ErrorHandlingService
   ]
 })
 export class SharedModule { }
