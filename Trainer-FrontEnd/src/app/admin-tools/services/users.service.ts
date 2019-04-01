@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PagedResult } from '../../shared/models/paged-result';
 import { RepositoryService } from '../../shared/services/repository.service';
-import { User } from 'src/app/auth/models/user';
+import { User } from '../../auth/models/user';
 
 @Injectable({
   providedIn: 'root'

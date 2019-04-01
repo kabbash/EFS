@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FoodItem } from 'src/app/shared/models/neutrints/food-item-dto';
-import { PagerDto } from 'src/app/shared/models/pager.dto';
-import { FoodIemFilter } from 'src/app/shared/models/neutrints/food-item-filter';
+import { FoodItem } from '../../../shared/models/neutrints/food-item-dto';
+import { PagerDto } from '../../../shared/models/pager.dto';
+import { FoodIemFilter } from '../../../shared/models/neutrints/food-item-filter';
 import { NeutrintsService } from '../../../shared/services/neutrints.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppService } from 'src/app/app.service';
-import { AppConfig } from 'src/config/app.config';
-import { config } from 'src/app/config/pages-config';
+import { AppService } from '../../../app.service';
+import { AppConfig } from '../../../../config/app.config';
+import { config } from '../../../config/pages-config';
 import { first, finalize } from 'rxjs/operators';
 
 @Component({

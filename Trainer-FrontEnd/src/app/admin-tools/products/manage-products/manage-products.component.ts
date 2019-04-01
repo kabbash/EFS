@@ -8,7 +8,9 @@ import { config } from '../../../config/pages-config';
 import { AppService } from '../../../app.service';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
 import { SliderItemDto } from '../../../shared/models/slider/slider-item.dto';
-import { ProductListItemEditComponent } from 'src/app/shared/products/product-list-item-edit/product-list-item-edit.component';
+import { ErrorHandlingService } from '../../../shared/services/error-handling.service';
+import { PAGES } from '../../../config/defines';
+import { ProductListItemEditComponent } from '../../../shared/products/product-list-item-edit/product-list-item-edit.component';
 
 @Component({
   selector: 'app-manage-products',
@@ -25,7 +27,7 @@ export class ManageProductsComponent implements OnInit {
   @ViewChild(ProductListItemEditComponent) productListItemEditComponent: ProductListItemEditComponent;
 
   constructor(private route: ActivatedRoute, private router: Router, private appService: AppService,
-    private service: AdminProductsService, private util: UtilitiesService) { }
+    private service: AdminProductsService, private util: UtilitiesService, private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -65,7 +67,7 @@ export class ManageProductsComponent implements OnInit {
   add() {
     this.productListItemEditComponent.submitted = true;
     // stop here if form is invalid
-    if (this.productListItemEditComponent.editForm.invalid) {
+    if (false) {
       return;
     }
 
@@ -82,11 +84,13 @@ export class ManageProductsComponent implements OnInit {
             this.viewMode = true;
             this.isNew = false;
             this.productId = this.product.id;
-            this.product.categoryName = this.categories.find(c => c.id == this.product.categoryId).name;
+            this.product.categoryName = this.categories.find(c => c.id === this.product.categoryId).name;
             alert("تم إضافة المنتج بنجاح");
-            this.router.navigate([config.admin.ProductsList.route]); 
-            
+            this.router.navigate([config.admin.ProductsList.route]);
+
           }
+        }, error => {
+          this.errorHandlingService.handle(error, PAGES.PRODUCTS);
         });
   }
 
@@ -109,27 +113,30 @@ export class ManageProductsComponent implements OnInit {
             this.router.navigate([config.admin.ProductsList.route]); 
             
           }
+        }, error => {
+          this.errorHandlingService.handle(error, PAGES.PRODUCTS);
         });
   }
 
   approve() {
     if (confirm("هل انت متأكد من الموافقه على هذا المنتج ؟ ")) {
       this.service.approve(this.productId).subscribe(c => { 
-        console.log(c);
-        alert('approved'); 
-        this.product.isActive = true;   
-      });
+        alert('approved');
+        this.product.isActive = true;
+      }, error => {
+        this.errorHandlingService.handle(error, PAGES.PRODUCTS);
+      } );
     }
   }
 
   reject() {
     if (confirm("هل انت متأكد من رفض هذا المنتج ؟ ")) {
       this.service.reject(this.productId, prompt("من فضلك ، ادخل سبب الرفض؟")).subscribe(c => { 
-        console.log(c); 
         alert('rejected');
         this.product.isActive = false;
-        
-       });
+       }, error => {
+        this.errorHandlingService.handle(error, PAGES.PRODUCTS);
+      });
     }
   }
 
@@ -139,6 +146,8 @@ export class ManageProductsComponent implements OnInit {
         console.log(c);
         alert('deleted');
         this.router.navigate([config.admin.ProductsList.route]); 
+      }, error => {
+        this.errorHandlingService.handle(error, PAGES.PRODUCTS);
       });
     }
   }

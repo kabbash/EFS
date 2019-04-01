@@ -14,7 +14,10 @@ import { SafeHtml } from '@angular/platform-browser';
 import { SecurityContext } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { config } from '../../config/pages-config';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../../app.service';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
+import { ImageCropperComponent } from '../../shared/image-cropper/image-cropper.component';
 
 @Component({
   selector: 'app-add-banner',
@@ -35,13 +38,16 @@ export class AddBannerComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   @ViewChild("titleHtml") titleHtml: ElementRef;
   @ViewChild("buttonHtml") buttonHtml: ElementRef;
+  @ViewChild('cropper') cropperModal: ImageCropperComponent;
+  imageEvent;
   isSubmitted = false;
   constructor(private fb: FormBuilder, private bannerService: ManageBannerService,
      private util: UtilitiesService,
     private route: ActivatedRoute,
     private sanitizer: Sanitizer,
     private router: Router,
-    private appService: AppService) { }
+    private appService: AppService,
+    private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
     this.bannerForm = this.fb.group({
@@ -49,13 +55,15 @@ export class AddBannerComponent implements OnInit {
       'buttonText': ['',  Validators.required],
       'imageFile': [null, Validators.required],
       'buttonUrl': ['', Validators.required]
-    }); 
+    });
     this.buttonAlign = 'center';
     this.buttonColor = 'blue';
     this.titleAlign = 'center';
   }
 
-  onFileSelect(file) {
+  onFileSelect(event, isCropped?) {
+    this.imageEvent = isCropped ? null : event;
+    const file = isCropped ? event : event.target.files[0];
     this.banner.imageFile = file;
     const reader = new FileReader();
     reader.onload = (e: any) => {
@@ -76,13 +84,12 @@ export class AddBannerComponent implements OnInit {
     const formData = new FormData();
     this.util.appendFormData(formData, this.banner);
     this.bannerService.add(formData).subscribe(data => {
-      alert('success');
       this.router.navigate([config.admin.manageBanners.route]);
       this.appService.loading = false;
-    } ,error => {
-      alert(error);
+    } , error => {
+      this.errorHandlingService.handle(error, PAGES.BANNER);
       this.appService.loading = false;
-    })
+    });
   }
   prepareData() {
     this.banner.title = this.titleHtml.nativeElement.innerHTML;
@@ -92,5 +99,8 @@ export class AddBannerComponent implements OnInit {
   reset() {
     this.banner = new BannerDto();
     this.isSubmitted = false;
+  }
+  cropClicked() {
+    this.cropperModal.open();
   }
 }

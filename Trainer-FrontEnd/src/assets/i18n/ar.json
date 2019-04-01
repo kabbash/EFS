@@ -1,28 +1,110 @@
 {
-  "home": {
-    "title": "حماده"
-  },
-  "addCategory": {
-    "articleCategory": "فئة المقال",
-    "productCategory": "فئة المنتج",
-    "name": "الأسم",
-    "picture": "الصورة",
-    "submit": "حفظ",
-    "reset": "إعادة تعيين",
-    "chooseFile": "اختر ملف",
-    "noFileChoosen": "لم تقم باختيار ملف",
-    "parentCategory": "الفئة الرئيسية",
-    "description": "الوصـف",
-    "formValidations": {
-      "name": {
-        "required": "يجب ادخال اسم الفئة"
-      },
-      "profilePictureFile": {
-        "required": "يجب ادخال صورة"
+    "home": {
+      "errorCodes": {
+        "0": ""
       }
     },
-    "messages": {},
-    "errorMessages": {}
+    "articles": {
+      "errorCodes": {
+        "0": "",
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": "",
+        "10": "",
+        "11": "",
+        "12": "",
+        "13": "",
+        "14": "",
+        "15": "",
+        "16": "",
+        "17": ""
+      }
+    },
+    "products": {
+      "errorCodes": {
+        "0": "",
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": "",
+        "10": "",
+        "11": "",
+        "12": "",
+        "13": "",
+        "14": "",
+        "15": "",
+        "16": "",
+        "17": ""
+      }
+    },
+    "attachements": {
+      "errorCodes": {
+        "0": ""
+      }
+    },
+    "authentication": {
+      "errorCodes": {
+        "0": "",
+        "1": "",
+        "2": "",
+        "3": ""
+      }
+    },
+    "rating": {
+      "errorCodes": {
+        "0": ""
+      }
+    },
+    "itemReviews": {
+      "errorCodes": {
+        "0": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": ""
+      }
+    },
+    "banner": {
+      "errorCodes": {
+        "0": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": ""
+      }
+    },
+    "addCategory": {
+      "articleCategory": "فئة المقال",
+      "productCategory": "فئة المنتج",
+      "name": "الأسم",
+      "picture": "الصورة",
+      "submit": "حفظ",
+      "reset": "إعادة تعيين",
+      "chooseFile": "اختر ملف",
+      "noFileChoosen": "لم تقم باختيار ملف",
+      "parentCategory": "الفئة الرئيسية",
+      "description": "الوصـف",
+      "formValidations": {
+        "name": {
+          "required": "يجب ادخال اسم الفئة"
+        },
+        "profilePictureFile": {
+          "required": "يجب ادخال صورة"
+        }
+      },
+      "messages": {},
+      "errorMessages": {}
   },
   "manageCategories": {
     "messages": {
@@ -80,9 +162,7 @@
       "picture": {
         "required": "يحب ادخال الصورة"
       }
-    },
-    "messages": {},
-    "errorCodes": {}
+    }
   },
   "registerForm": {
     "formValidations": {
@@ -92,10 +172,10 @@
       "phoneRequired": "يجب ادخال رقم الهاتف",
       "passwordRequired": "يجب ادخال كلمة المرور",
       "confirmPasswordRequired": "يجب تاكيد كلمة المرور",
-      "passwordNotMatch": "كلمة المرور غير متطابقه"
+      "passwordNotMatch": "كلمة المرور غير متطابقه"    
     }
   },
-  "contactus": {
+  "contactus":{
     "formValidations": {
       "nameRequired": "يجب ادخال الاسـم",
       "emailRequired": "يجب ادخال البريد الالكترونى",
@@ -115,6 +195,13 @@
       "featuresRequired": "يجب ادخال تفاصيل الاشتراك",
       "profilePictureFileRequired" : "يجب اختيار صوره"
     }
+  },
+  "defaultErrorMessages": {
+    "defaultMessage": "something went wrong",
+    "400": "somthing went wrong",
+    "401": "ay haga",
+    "500": "server error"
+
   },
   "manageUsers": {
     "roles": {

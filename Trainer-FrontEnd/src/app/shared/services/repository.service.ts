@@ -3,6 +3,7 @@ import { HttpHeaders } from "@angular/common/http";
 import { HttpClient } from "@angular/common/http";
 import { apiUrl } from  "../../../config/api.config";
 import { ResultMessage } from "../../shared/models/result-message";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class RepositoryService {
 
   constructor(private http: HttpClient) { }
 
-  public getData<T>(route: string) {
+  public getData<T>(route: string): Observable<ResultMessage<T>> {
     return this.http.get<ResultMessage<T>>(this.createCompleteRoute(route));
   }
 

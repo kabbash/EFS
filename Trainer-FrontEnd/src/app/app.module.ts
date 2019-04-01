@@ -18,6 +18,8 @@ import { NgbUTCStringAdapter } from './shared/services/ngb-string.adapter';
 import { AppConfig } from '../config/app.config';
 import { BannersResolver } from './admin-tools/resolvers/banners.resolver';
 import { TrainingResolver } from './admin-tools/resolvers/training-resolver';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 export function CreateTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -46,7 +48,11 @@ export function initializeApp(appConfig: AppConfig) {
 
       }
     }),
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-full-width'
+    })
   ],
   providers: [
     AuthService,

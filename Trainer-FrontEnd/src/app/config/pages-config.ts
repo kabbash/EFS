@@ -147,6 +147,10 @@ export let config = {
             'route': '/demos/pagination',
         }
     },
+    'home': {
+        'name': 'home',
+        'route': '/'
+    },
     'admin': {
         'name': 'admin',
         'route': 'admin',
@@ -216,13 +220,13 @@ export let config = {
             'name': 'users',
             'route': '/admin/users'
         },
-        'neutrintsList':{
-            'name':'neutrintsList',
-            'route':"/admin/neutrintsList"
+        'neutrintsList': {
+            'name': 'neutrintsList',
+            'route': '/admin/neutrintsList'
         },
-        'manageNeutrints':{
-            'name':'manageNeutrints/:foodItemId',
-            'route':'/admin/manageNeutrints'
+        'manageNeutrints': {
+            'name': 'manageNeutrints/:foodItemId',
+            'route': '/admin/manageNeutrints'
         }
     },
     'writers': {

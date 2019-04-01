@@ -36,17 +36,9 @@ export class ArticlesCatergoriesComponent implements OnInit {
       this.appService.loading = false;
 
     });
-    // this.getCategories();
   }
 
   articlesList(categoryId) {
     this.router.navigate([config.articles.articlesList.route, categoryId]);
   }
-
-  getCategories() {
-    this.repositoryService.getData<articleCategoryDto[]>('articles/categories').subscribe(result => {
-      this.categories = result.data;
-    });
-  }
-
 }

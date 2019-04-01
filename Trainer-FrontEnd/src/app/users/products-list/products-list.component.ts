@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { productListItemDto } from 'src/app/shared/models/products/product-list-item-dto';
-import { environment } from 'src/environments/environment';
-import { PagerDto } from 'src/app/shared/models/pager.dto';
-import { AppConfig } from 'src/config/app.config';
-import { SearchFilterComponent } from 'src/app/shared/search-filter/search-filter.component';
+import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
+import { environment } from '../../../environments/environment';
+import { PagerDto } from '../../shared/models/pager.dto';
+import { AppConfig } from '../../../config/app.config';
+import { SearchFilterComponent } from '../../shared/search-filter/search-filter.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../../app.service';
 import { UsersService } from '../services/users.service';
-import { config } from 'src/app/config/pages-config';
+import { config } from '../../config/pages-config';
 
 @Component({
   selector: 'app-products-list',

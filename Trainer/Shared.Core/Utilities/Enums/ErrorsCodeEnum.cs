@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Shared.Core.Utilities.Enums
+﻿namespace Shared.Core.Utilities.Enums
 {
     public enum ProductsErrorsCodeEnum
     {
-        ProductsCategoriesGetAllError,
+        ProductsCategoriesGetAllError = 1 ,
         ProductsCategoriesInsertError,
         ProductsCategoriesNotFoundError,
         ProductsCategoriesGetByIdError,
@@ -24,47 +20,97 @@ namespace Shared.Core.Utilities.Enums
         ProductsSubCategoriesGetByIdError,
         ProductsSubCategoriesUpdateError,
         ProductsSubCategoriesDeleteError,
+        ValidationProductNameRequired,
+        ValidationPriceRequired,
+        ValidationProductCategoryRequired,
+        ValidationProductExpDateRequired,
+        ValidationProductImageRequired
+    }
+    public enum ArticlesErrorsCodeEnum
+    {
+        ArticlesCategoriesGetAllError =1,
+        ArticlesCategoriesInsertError,
+        ArticlesCategoriesNotFoundError,
+        ArticlesCategoriesGetByIdError,
+        ArticlesCategoriesUpdateError,
+        ArticlesCategoriesDeleteError,
+        ArticlesGetAllError,
+        ArticlesInsertError,
+        ArticlesNotFoundError,
+        ArticlesGetByIdError,
+        ArticlesUpdateError,
+        ArticlesDeleteError,
+        ArticlesSubCategoriesGetAllError,
+        ArticlesSubCategoriesInsertError,
+        ArticlesSubCategoriesNotFoundError,
+        ArticlesSubCategoriesGetByIdError,
+        ArticlesSubCategoriesUpdateError,
+        ArticlesSubCategoriesDeleteError,
+        ValidationsArticleNameRequired,
+        ValidationsArticleDescRequired,
+        ValidationsCategoryNameRequired
     }
     public enum AttachmentsErrorsCodeEnum
     {
-        AttachmentsUploadError
+        AttachmentsUploadError=1,
+        ValidationFileEmpty,
+        ValidationFileNameRequired
     }
     public enum AuthenticationErrorsCodeEnum
     {
-        AuthenticationError,
+        AuthenticationError =1,
         EmailNotConfirmed,
         UserDoesNotExist,
         OldPasswordMismatch,
         UserBlocked,
         RoleDoesNotExist,
-        UserRoleError
+        UserRoleError,
+        ValidationEmailRequired,
+        ValidationEmailInvalid,
+        ValidationFullNameRequired,
+        ValidationPasswordRequired
     }
     public enum RatingErrorsCodeEnum
     {
-        RatingInsertError
+        RatingInsertError=1,
+        ValidationRateRequired,
+        ValidationEntityIdRequired,
+        ValidationEntityTypeRequired
+    }
+    public enum OTrainingErrorsCodeEnum
+    {
+        ValidationDescriptionRequired=1,
+        ValidationForJoinRequired,
+        ValidationProgramFeaturesRequired,
+        ValidationProgramNameRequired
     }
     public enum ItemsReviewsErrorsCodeEnum
     {
-        ItemsGetAllError,
+        ItemsGetAllError =1,
         ItemsInsertError,
         ItemsNotFoundError,
         ItemsGetByIdError,
         ItemsUpdateError,
-        ItemsDeleteError
+        ItemsDeleteError,
+        ValidationNameRequired
     }
 
     public enum BannersErrorsCodeEnum
     {
-        GetAllError,
+        GetAllError =1,
         AddError,
         NotFoundError,
         GetByIdError,
         UpdateError,
-        DeleteError
+        DeleteError,
+        ValidationTitleRequired,
+        ValidationImageRequired,
+        ValidationButtonTextRequired,
+        ValidationButtonURLRequired
     }
     public enum FoodItemsErrorsCodeEnum
     {
-        GetAllError,
+        GetAllError =1,
         AddError,
         NotFoundError,
         GetByIdError,
@@ -74,6 +120,17 @@ namespace Shared.Core.Utilities.Enums
 
     public enum HomeErrorsCodeEnum
     {
-        ContactUs
+        ContactUs =1,
+        ValidationEmailRequired,
+        ValidationEmailInvalid,
+        ValidationNameRequired,
+        ValidationDetailsRequired,
+        ValidationPhoneNumRequired
+    }
+
+    public enum SharedErrorsCodeEnum
+    {
+        ValidationRejectIdRequired =1,
+        ValidationRejectReasonRequired
     }
 }

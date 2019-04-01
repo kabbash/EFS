@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FoodItem } from 'src/app/shared/models/neutrints/food-item-dto';
+import { FoodItem } from '../../shared/models/neutrints/food-item-dto';
 import { Subject } from 'rxjs';
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/distinctUntilChanged";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/mergeMap";
-import "rxjs/add/operator/map";
-import { NeutrintsService } from 'src/app/shared/services/neutrints.service';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/map';
+import { NeutrintsService } from '../../shared/services/neutrints.service';
 
 @Component({
   selector: 'app-your-tools-meals-catergories',
@@ -19,7 +18,7 @@ export class MealsComponent implements OnInit {
   rows: FoodItem[];
   selected: FoodItem[] = [];
   searchTextChanged = new Subject<string>();
-  searchTxt = "";
+  searchTxt = '';
   servingAmont: number;
   selectedFoodItems: FoodItem[] = [];
   loading = false;
@@ -81,7 +80,7 @@ export class MealsComponent implements OnInit {
         }
       }
       foodItem.amount = this.servingAmont;
-      this.searchTxt = "";
+      this.searchTxt = '';
       this.rows = [];
       this.servingAmont = null;
       this.selectedFoodItems.push(foodItem);

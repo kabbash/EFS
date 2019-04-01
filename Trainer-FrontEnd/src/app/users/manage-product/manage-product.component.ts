@@ -1,15 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsersService } from '../services/users.service';
-import { config } from 'src/app/config/pages-config';
+import { config } from '../../config/pages-config';
 import { finalize, first } from 'rxjs/operators';
-import { productListItemDto } from 'src/app/shared/models/products/product-list-item-dto';
-import { SliderItemDto } from 'src/app/shared/models/slider/slider-item.dto';
-import { UtilitiesService } from 'src/app/shared/services/utilities.service';
+import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
+import { SliderItemDto } from '../../shared/models/slider/slider-item.dto';
+import { UtilitiesService } from '../../shared/services/utilities.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AppService } from 'src/app/app.service';
-import { AdminProductsService } from 'src/app/admin-tools/services/admin.products.service';
-import { ProductCategoryDTO } from 'src/app/shared/models/products/product-category-dto';
-import { ProductListItemEditComponent } from 'src/app/shared/products/product-list-item-edit/product-list-item-edit.component';
+import { AppService } from '../../app.service';
+import { AdminProductsService } from '../../admin-tools/services/admin.products.service';
+import { ProductCategoryDTO } from '../../shared/models/products/product-category-dto';
+import { ProductListItemEditComponent } from '../../shared/products/product-list-item-edit/product-list-item-edit.component';
 
 @Component({
   selector: 'app-manage-product',

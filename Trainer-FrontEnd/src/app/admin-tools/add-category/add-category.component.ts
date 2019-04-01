@@ -8,7 +8,9 @@ import { Router } from '@angular/router';
 import { config } from '../../config/pages-config';
 import { AppService } from '../../app.service';
 import { TranslateService } from '@ngx-translate/core';
-import { ImageCropperComponent } from 'src/app/shared/image-cropper/image-cropper.component';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
+import { ImageCropperComponent } from '../../shared/image-cropper/image-cropper.component';
 
 @Component({
   selector: 'app-add-category',
@@ -22,7 +24,8 @@ export class AddCategoryComponent implements OnInit {
     public categoryService: CategoriesService,
     private router: Router,
     private appService: AppService,
-    private translate: TranslateService) { }
+    private translate: TranslateService,
+    private errorHandlingService: ErrorHandlingService) { }
 
   categoryForm: FormGroup;
   imageUrl: string;
@@ -46,43 +49,39 @@ export class AddCategoryComponent implements OnInit {
     this.setDropDownData();
     this.translate.get('manageCategories.messages.success').subscribe(data => {
       this.successMessage = data;
-    })
+    });
   }
   submit() {
     this.categoryForm.controls['profilePictureFile'].markAsTouched();
     this.categoryForm.controls['name'].markAsTouched();
     this.appService.loading = true;
-    
-    if (this.categoryForm.valid) {
+    if (true) {
       if (this.categoryService.articleCategoryToEdit) {
         this.updateCategory();
       } else {
         this.addCategory();
       }
     } else {
-      this.appService.loading = false;      
+      this.appService.loading = false;
       alert('form not valid');
     }
   }
   addCategory() {
     this.reposatoryService.create(this.categoryService.apiUrl, this.prepareData(this.categoryForm.value)).subscribe(data => {
-      
-      alert(this.successMessage);
       this.navigateToListing();
     }, error => {
       this.appService.loading = false;
-      alert(error);
+      this.errorHandlingService.handle(error, PAGES.PRODUCTS);
     });
   }
   updateCategory() {
     this.reposatoryService.update(this.categoryService.apiUrl + this.articleCategory.id, this.prepareData(this.articleCategory)).subscribe(
       () => {
-        alert(this.successMessage);
         this.navigateToListing();
 
       }, error => {
         this.appService.loading = false;
-        alert(error);
+        this.errorHandlingService.handle(error, PAGES.PRODUCTS);
       }
     );
   }
@@ -96,12 +95,12 @@ export class AddCategoryComponent implements OnInit {
     return formData;
   }
 
-  onFileSelect(event, isCropped) {
+  onFileSelect(event, isCropped?) {
     this.imageEvent = isCropped ? null : event;
-    const file = isCropped ? event : event.target.files[0]
+    const file = isCropped ? event : event.target.files[0];
     // file.name = 'image.'+ file.type.split('/')[1];
     this.articleCategory.profilePictureFile = file;
-    this.categoryForm.controls['profilePictureFile'].setValue(file)
+    this.categoryForm.controls['profilePictureFile'].setValue(file);
     const reader = new FileReader();
     reader.onload = (e: any) => {
       // this.articleCategory.profilePicture = e.target.result;

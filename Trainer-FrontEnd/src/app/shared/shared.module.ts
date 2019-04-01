@@ -10,7 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentsComponent } from './comments/comments.component';
 import { SiteMapComponent } from './site-map/site-map.component';
-import { UtilitiesService } from './services/utilities.service'; 
+import { UtilitiesService } from './services/utilities.service';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
@@ -28,6 +28,7 @@ import { ArticleDetailsResolver } from '../articles/resolvers/article-details.re
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { ProductsService } from '../products/products.service';
 import { ClientFilterComponent } from './client-filter/client-filter.component';
+import { ErrorHandlingService } from '../shared/services/error-handling.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import { ArticleDetailsEditmodeComponent } from './articles/article-details-editmode/article-details-editmode.component';
@@ -105,7 +106,8 @@ import { ProductListItemComponent } from './products/product-list-item/product-l
     ProductsCategoriesResolver,
     ProductReviewService,
     ArticleDetailsResolver,
-    ProductsService
+    ProductsService,
+    ErrorHandlingService
   ]
 })
 export class SharedModule { }

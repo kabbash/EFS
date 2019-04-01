@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/services/auth.service';
 import { AppService } from '../../app.service';
 import { first, finalize } from 'rxjs/operators';
+import { PAGES } from '../../config/defines';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -20,7 +22,8 @@ export class ResetPasswordComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private authenticationService: AuthService,
-    private appService: AppService
+    private appService: AppService,
+    private errorHandlingService: ErrorHandlingService
   ) { }
 
   ngOnInit() {
@@ -52,6 +55,8 @@ export class ResetPasswordComponent implements OnInit {
       .subscribe(
         data => {
           this.mailSent = true;
+        }, error => {
+          this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
         });
   }
 

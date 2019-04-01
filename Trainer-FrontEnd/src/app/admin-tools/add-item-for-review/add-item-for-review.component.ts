@@ -7,7 +7,9 @@ import { config } from '../../config/pages-config';
 import { Router } from '@angular/router';
 import { UtilitiesService } from '../../shared/services/utilities.service';
 import { environment } from '../../../environments/environment';
-import { ImageCropperComponent } from 'src/app/shared/image-cropper/image-cropper.component';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
+import { ImageCropperComponent } from '../../shared/image-cropper/image-cropper.component';
 
 @Component({
   selector: 'app-add-item-for-review',
@@ -25,7 +27,8 @@ export class AddItemForReviewComponent implements OnInit {
     private repositoryService: RepositoryService,
     public productReviewService: ProductReviewService,
     private router: Router,
-    private util: UtilitiesService) { }
+    private util: UtilitiesService,
+    private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
     this.reviewForm = this.fb.group({
@@ -42,34 +45,32 @@ export class AddItemForReviewComponent implements OnInit {
   }
   submit() {
     if (this.reviewForm.valid) {
-      this.productReviewService.productReviewToUpdate ? this.update() : this.create(); 
+      this.productReviewService.productReviewToUpdate ? this.update() : this.create();
     }
   }
   create() {
     const formData = new FormData();
     this.util.appendFormData(formData, this.reviewForm.value);
     this.repositoryService.create('itemsreview', formData).subscribe(data => {
-      alert('success');
       this.router.navigate([config.admin.itemReviewList.route]);
     }, error => {
-      alert(error);
+      this.errorHandlingService.handle(error, PAGES.ITEMREVIEWS);
     });
   }
 
   update() {
     const formData = new FormData();
     this.util.appendFormData(formData, this.reviewForm.value);
-    this.repositoryService.update('itemsreview/' + this.productReviewService.productReviewToUpdate.id, 
+    this.repositoryService.update('itemsreview/' + this.productReviewService.productReviewToUpdate.id,
     formData).subscribe(data => {
       this.productReviewService.productReviewToUpdate = null;
-      alert('success');
-      this.router.navigate([config.admin.itemReviewList.route]);      
+      this.router.navigate([config.admin.itemReviewList.route]);
     }, error => {
-      alert(error);
+      this.errorHandlingService.handle(error, PAGES.ITEMREVIEWS);
     });
   }
 
-  onFileSelect(event, isCropped) {
+  onFileSelect(event, isCropped?) {
     this.imageEvent = isCropped ? null : event;
     const file = isCropped ? event : event.target.files[0];
     this.reviewForm.controls['profilePictureFile'].setValue(file);

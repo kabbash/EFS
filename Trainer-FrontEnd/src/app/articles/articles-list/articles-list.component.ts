@@ -8,7 +8,9 @@ import { AppService } from '../../app.service';
 import { PagerDto } from '../../shared/models/pager.dto';
 import { debug } from 'util';
 import { ClientFilterComponent } from '../../shared/client-filter/client-filter.component';
-import { PredefinedCategories } from 'src/app/shared/models/articles/articles-predefined-categories.enum';
+import { PredefinedCategories } from '../../shared/models/articles/articles-predefined-categories.enum';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
 
 
 @Component({
@@ -28,7 +30,7 @@ export class ArticlesListComponent implements OnInit {
 
 
   constructor(private router: Router, private appService: AppService, private repositoryService: RepositoryService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute, private errorHandlingService: ErrorHandlingService) {
   }
 
   ngOnInit() {
@@ -53,6 +55,9 @@ export class ArticlesListComponent implements OnInit {
       this.pagerData = response.data;
       this.articles = response.data.results;
       this.appService.loading = false;
+    }, error => {
+      this.appService.loading = false;
+      this.errorHandlingService.handle(error, PAGES.ARTICLES);
     });
   }
 
