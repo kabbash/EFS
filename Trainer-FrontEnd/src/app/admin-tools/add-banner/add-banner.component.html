@@ -23,7 +23,10 @@
       </span>
 
     </div>
+
   </div>
+  <button (click)="cropClicked()" class="btn btn-danger crop-btn"><i class="fa fa-crop"></i></button>
+
   <div class="banner-form">
     <form (submit)="submit()" class="form-horizontal" [formGroup]="bannerForm">
       <div class="form-group row">
@@ -134,7 +137,7 @@
       <div class="form-group row">
         <label class="col-md-3 col-form-label" for="file-input">{{'addBanner.picture' | translate}}</label>
         <div class="col-md-9">
-          <app-file-uploader formControlName=imageFile (change)="onFileSelect($event.target.files[0])">
+          <app-file-uploader formControlName=imageFile (change)="onFileSelect($event)">
           </app-file-uploader>
           <div *ngIf="bannerForm.controls['imageFile'].errors" class="text-danger">
             <!-- class="invalid-feedback"-->
@@ -152,4 +155,5 @@
       </div>
     </form>
   </div>
+  <app-image-cropper #cropper [imageEvent]="imageEvent" (imageCroppedEvent)="onFileSelect($event, true)"></app-image-cropper>
 </div>

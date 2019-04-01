@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Resolve } from "@angular/router";
 import { ResultMessage } from "../../shared/models/result-message";
 import { BannerDto } from "../../shared/models/banner.dto";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { RepositoryService } from "../../shared/services/repository.service";
 import { AppConfig } from "../../../config/app.config";
 import { ErrorHandlingService } from "src/app/shared/services/error-handling.service";
@@ -23,7 +23,7 @@ export class BannersResolver implements Resolve<ResultMessage<BannerDto[]>>{
             return this.repositoryService.getData('banners?pageNo=1&pageSize=' + pageSize).pipe(
                 map((data: Observable<ResultMessage<BannerDto[]>> ) => data), catchError((err: HttpErrorResponse) => {
                     this.errorHandlingService.handle(err);
-                    return null;
+                    return throwError(err);
                   })
             );
 

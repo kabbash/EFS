@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { ResultMessage } from '../models/result-message';
 import { RepositoryService } from '../services/repository.service';
 import { map, catchError } from 'rxjs/operators';
@@ -14,7 +14,7 @@ export class ArticleCategoriesResolver implements Resolve<Observable<ResultMessa
     return this.repositoryService.getData('articles/categories').pipe(
       map((data: Observable<ResultMessage<any>>) => data) , catchError((error: HttpErrorResponse) => {
         this.errorHandlingService.handle(error);
-        return null;
+        return throwError(error);
       })
     );
   }

@@ -1,19 +1,27 @@
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { ResultMessage } from '../../shared/models/result-message';
 import { PagedResult } from '../../shared/models/paged-result';
 import { AppConfig } from '../../../config/app.config';
 import { User } from 'src/app/auth/models/user';
 import { UsersService } from '../services/users.service';
+import { catchError, map } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
 
 @Injectable()
 export class UsersListResolver implements Resolve<Observable<ResultMessage<PagedResult<User>>>> {
 
-    constructor(private service: UsersService) {
+    constructor(private service: UsersService, private errorHandlingService: ErrorHandlingService) {
     }
     resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<PagedResult<User>>> {
-        let pageSize = AppConfig.settings.pagination.usersForAdmin.pageSize;
-        return this.service.getFilteredUsers('?PageNo=1&PageSize=' + pageSize);
+        const pageSize = AppConfig.settings.pagination.usersForAdmin.pageSize;
+        return this.service.getFilteredUsers('?PageNo=1&PageSize=' + pageSize).pipe(
+            map((data: Observable<ResultMessage<PagedResult<User>>>) => data), catchError((error: HttpErrorResponse) => {
+                this.errorHandlingService.handle(error);
+                return throwError(error);
+            })
+        );
     }
 }

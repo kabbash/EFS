@@ -17,6 +17,7 @@ import { config } from '../../config/pages-config';
 import { AppService } from 'src/app/app.service';
 import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
 import { PAGES } from 'src/app/config/defines';
+import { ImageCropperComponent } from 'src/app/shared/image-cropper/image-cropper.component';
 
 @Component({
   selector: 'app-add-banner',
@@ -37,6 +38,8 @@ export class AddBannerComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   @ViewChild("titleHtml") titleHtml: ElementRef;
   @ViewChild("buttonHtml") buttonHtml: ElementRef;
+  @ViewChild('cropper') cropperModal: ImageCropperComponent;
+  imageEvent;
   isSubmitted = false;
   constructor(private fb: FormBuilder, private bannerService: ManageBannerService,
      private util: UtilitiesService,
@@ -58,7 +61,9 @@ export class AddBannerComponent implements OnInit {
     this.titleAlign = 'center';
   }
 
-  onFileSelect(file) {
+  onFileSelect(event, isCropped?) {
+    this.imageEvent = isCropped ? null : event;
+    const file = isCropped ? event : event.target.files[0];
     this.banner.imageFile = file;
     const reader = new FileReader();
     reader.onload = (e: any) => {
@@ -94,5 +99,8 @@ export class AddBannerComponent implements OnInit {
   reset() {
     this.banner = new BannerDto();
     this.isSubmitted = false;
+  }
+  cropClicked() {
+    this.cropperModal.open();
   }
 }

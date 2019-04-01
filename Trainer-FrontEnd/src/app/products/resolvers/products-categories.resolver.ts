@@ -1,6 +1,6 @@
 import { Resolve} from '@angular/router';
 import { ResultMessage } from '../../shared/models/result-message';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ProductCategoryDTO } from '../../shared/models/products/product-category-dto';
 import { Injectable } from '@angular/core';
@@ -17,7 +17,7 @@ export class ProductsCategoriesResolver implements Resolve<Observable<ResultMess
     return this.repositoryService.getData<ProductCategoryDTO[]>('products/categories').pipe(
       map((data: Observable<ResultMessage<ProductCategoryDTO[]>>) => data), catchError((error: HttpErrorResponse) => {
         this.errorHandlingService.handle(error, PAGES.PRODUCTS);
-        return null;
+        return throwError(error);
       })
     );
   }

@@ -1,6 +1,6 @@
 import { Resolve, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { ArticleDetialsDto } from '../../shared/models/articles/article-details-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
@@ -19,7 +19,7 @@ export class ArticleDetailsResolver implements Resolve<Observable<ResultMessage<
       return this.repositoryService.getData<ArticleDetialsDto>('articles/' + route.params['articleId']).pipe(
         map((data: Observable<ResultMessage<ArticleDetialsDto>>) => data) , catchError((error: HttpErrorResponse) => {
           this.errorHandlingService.handle(error, PAGES.ARTICLES);
-          return null;
+          return throwError(error);
         })
       );
     } else {

@@ -15,7 +15,7 @@ export class ProductResolver implements Resolve<Observable<ResultMessage<any>>> 
         return route.params.productId > 0 ? this.repositoryService.getData('products/' + route.params.productId).pipe(
             map((data: Observable<ResultMessage<any>>) => data), catchError((error: HttpErrorResponse) => {
                 this.errorHandlingService.handle(error);
-                return null;
+                return Observable.throw(error);
             })
         ) : null;
     }

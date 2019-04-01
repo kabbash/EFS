@@ -1,6 +1,6 @@
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { ResultMessage } from '../../shared/models/result-message';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { Injectable } from '@angular/core';
@@ -22,7 +22,7 @@ export class ProductsSpecialListResolver implements Resolve<Observable<ResultMes
     + pageSize + '&categoryId=' + route.params['categoryId']).pipe(
       map((data: Observable<ResultMessage<productListItemDto[]>>) => data), catchError((error: HttpErrorResponse) => {
         this.errorHandlingService.handle(error, PAGES.PRODUCTS);
-        return null;
+        return throwError(error);
       })
     );
   }

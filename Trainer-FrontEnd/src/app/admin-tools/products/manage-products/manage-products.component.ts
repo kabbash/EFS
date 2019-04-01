@@ -67,7 +67,7 @@ export class ManageProductsComponent implements OnInit {
   add() {
     this.productListItemEditComponent.submitted = true;
     // stop here if form is invalid
-    if (this.productListItemEditComponent.editForm.invalid) {
+    if (false) {
       return;
     }
 

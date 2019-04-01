@@ -1,6 +1,6 @@
 import { Resolve, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { articleListItemDto } from '../../shared/models/articles/article-list-item-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
@@ -22,7 +22,7 @@ export class ArticlesChampionshipsResolver implements Resolve<Observable<ResultM
       pageSize + '&categoryId=' + PredefinedCategories.Championships).pipe(
         map((data: Observable<ResultMessage<articleListItemDto[]>>) => data), catchError((error: HttpErrorResponse) => {
           this.errorHandlingService.handle(error, PAGES.ARTICLES);
-          return null;
+          return throwError(error);
         })
       );
     }

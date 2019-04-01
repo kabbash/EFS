@@ -17,7 +17,7 @@ export class LeafProductCategoriesResolver implements Resolve<Observable<ResultM
         return this.repositoryService.getData<ProductCategoryDTO[]>('Products/Categories').pipe(
             map((data: Observable<ResultMessage<ProductCategoryDTO[]>>) => data), catchError((error: HttpErrorResponse) => {
                 this.errorHandlingService.handle(error);
-                return null;
+                return Observable.throw(error);
             })
         );
     }

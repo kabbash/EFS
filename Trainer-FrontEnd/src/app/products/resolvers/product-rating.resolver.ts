@@ -1,6 +1,6 @@
 import { Resolve} from '@angular/router';
 import { ResultMessage } from '../../shared/models/result-message';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { Injectable } from '@angular/core';
 import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
@@ -18,7 +18,7 @@ export class ProdcutRatingResolver implements Resolve<Observable<ResultMessage<p
     return this.repositoryService.getData<productListItemDto>('itemsreview/' + route.params['productId']).pipe(
       map((data: Observable<ResultMessage<productListItemDto>>) => data), catchError((error: HttpErrorResponse) => {
         this.errorHandlingService.handle(error, PAGES.RATING);
-        return null;
+        return throwError(error);
       })
     );
   }

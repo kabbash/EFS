@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { ResultMessage } from '../../shared/models/result-message';
 import { AuthService } from '../../auth/services/auth.service';
 import { User } from '../../auth/models/user';
@@ -19,7 +19,7 @@ export class ConfirmEmailResolver implements Resolve<Observable<ResultMessage<Us
         return this.authService.verifyEmail(route.queryParams.activationToken || "").pipe(
             map((data: Observable<ResultMessage<User>>) => data), catchError(error => {
                 this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
-                return null;
+                return throwError(error);
             })
         );
     }

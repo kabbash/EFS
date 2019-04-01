@@ -1,6 +1,6 @@
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { articleListItemDto } from '../../shared/models/articles/article-list-item-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
@@ -23,7 +23,7 @@ export class AdminArticlesListResolver implements Resolve<Observable<ResultMessa
     return this.repositoryService.getData<PagedResult<articleListItemDto>>('articles/getforadmin?pageNo=1&pageSize=' + pageSize).pipe(
       map((data: Observable<ResultMessage<PagedResult<articleCategoryDto>>>) => data), catchError((error: HttpErrorResponse) => {
         this.errorHandlingService.handle(error);
-        return null;
+        return throwError(error);
       })
     );
   }
