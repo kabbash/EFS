@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { ResultMessage } from '../../shared/models/result-message';
-import { FoodItem } from 'src/app/shared/models/neutrints/food-item-dto';
+import { FoodItem } from '../../shared/models/neutrints/food-item-dto';
 import { NeutrintsService } from '../../shared/services/neutrints.service';
-import { PagedResult } from 'src/app/shared/models/paged-result';
-import { AppConfig } from 'src/config/app.config';
+import { PagedResult } from '../../shared/models/paged-result';
+import { AppConfig } from '../../../config/app.config';
 import { catchError, map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 @Injectable()
 export class FoodItemsListResolver implements Resolve<Observable<ResultMessage<PagedResult<FoodItem>>>> {
     constructor(private service: NeutrintsService, private errorHandlingService: ErrorHandlingService) {

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import * as JSONPATH from 'jsonpath';
 import { TranslateService } from '@ngx-translate/core';
-import { config } from 'src/app/config/pages-config';
+import { config } from '../../config/pages-config';
 import { Router } from '@angular/router';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../../app.service';
 
 @Injectable()
 export class ErrorHandlingService {

@@ -8,10 +8,9 @@ import { PagedResult } from '../../shared/models/paged-result';
 import { AppConfig } from '../../../config/app.config';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
-import { articleCategoryDto } from 'src/app/shared/models/articles/article-category-dto';
-import { HttpErrorResponse } from '@angular/common/http/src/response';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
-import { PAGES } from 'src/app/config/defines';
+import { articleCategoryDto } from '../../shared/models/articles/article-category-dto';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 @Injectable()
 export class AdminArticlesListResolver implements Resolve<Observable<ResultMessage<PagedResult<articleListItemDto>>>> {

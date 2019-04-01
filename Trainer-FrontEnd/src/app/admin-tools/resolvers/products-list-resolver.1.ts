@@ -8,7 +8,7 @@ import { productListItemDto } from '../../shared/models/products/product-list-it
 import { AppConfig } from '../../../config/app.config';
 import { map, catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 @Injectable()
 export class AdminProductsListResolver implements Resolve<Observable<ResultMessage<PagedResult<productListItemDto>>>> {

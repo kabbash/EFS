@@ -3,10 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
-import { config } from 'src/app/config/pages-config';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
-import { PAGES } from 'src/app/config/defines';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 
 

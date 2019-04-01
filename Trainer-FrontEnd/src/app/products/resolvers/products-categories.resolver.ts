@@ -6,8 +6,8 @@ import { ProductCategoryDTO } from '../../shared/models/products/product-categor
 import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
-import { PAGES } from 'src/app/config/defines';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
 
 @Injectable()
 export class ProductsCategoriesResolver implements Resolve<Observable<ResultMessage<ProductCategoryDTO[]>>> {

@@ -6,8 +6,8 @@ import { AuthService } from '../../auth/services/auth.service';
 import { first, finalize } from 'rxjs/operators';
 import { AppService } from '../../app.service';
 import { AuthenticationErrorsCode } from '../models/authentication-error-code.enum';
-import { PAGES } from 'src/app/config/defines';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 
 @Component({

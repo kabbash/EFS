@@ -6,8 +6,8 @@ import { PagerDto } from '../../shared/models/pager.dto';
 import { AppService } from '../../app.service';
 import { environment } from '../../../environments/environment';
 import { config } from '../../config/pages-config';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
-import { PAGES } from 'src/app/config/defines';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
 
 @Component({
   selector: 'app-manage-banners',

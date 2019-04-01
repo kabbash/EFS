@@ -4,11 +4,11 @@ import { Observable, throwError } from 'rxjs';
 import { ResultMessage } from '../../shared/models/result-message';
 import { PagedResult } from '../../shared/models/paged-result';
 import { AppConfig } from '../../../config/app.config';
-import { User } from 'src/app/auth/models/user';
+import { User } from '../../auth/models/user';
 import { UsersService } from '../services/users.service';
 import { catchError, map } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 @Injectable()
 export class UsersListResolver implements Resolve<Observable<ResultMessage<PagedResult<User>>>> {

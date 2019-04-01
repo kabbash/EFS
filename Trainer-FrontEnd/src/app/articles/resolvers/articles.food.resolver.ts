@@ -8,8 +8,8 @@ import { PredefinedCategories } from '../../shared/models/articles/articles-pred
 import { AppConfig } from '../../../config/app.config';
 import { map, catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
-import { PAGES } from 'src/app/config/defines';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
 
 @Injectable()
 export class ArticlesFoodResolver implements Resolve<Observable<ResultMessage<articleListItemDto[]>>> {

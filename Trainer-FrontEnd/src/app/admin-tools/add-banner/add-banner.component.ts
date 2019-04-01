@@ -14,10 +14,10 @@ import { SafeHtml } from '@angular/platform-browser';
 import { SecurityContext } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { config } from '../../config/pages-config';
-import { AppService } from 'src/app/app.service';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
-import { PAGES } from 'src/app/config/defines';
-import { ImageCropperComponent } from 'src/app/shared/image-cropper/image-cropper.component';
+import { AppService } from '../../app.service';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
+import { ImageCropperComponent } from '../../shared/image-cropper/image-cropper.component';
 
 @Component({
   selector: 'app-add-banner',

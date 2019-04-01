@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { PagerDto } from 'src/app/shared/models/pager.dto';
-import { AppConfig } from 'src/config/app.config';
+import { PagerDto } from '../../shared/models/pager.dto';
+import { AppConfig } from '../../../config/app.config';
 import { UsersService } from '../services/users.service';
-import { User } from 'src/app/auth/models/user';
-import { AppService } from 'src/app/app.service';
-import { UsersFilter } from 'src/app/shared/models/users/users-filter';
+import { User } from '../../auth/models/user';
+import { AppService } from '../../app.service';
+import { UsersFilter } from '../../shared/models/users/users-filter';
 import { ActivatedRoute } from '@angular/router';
-import { Roles } from 'src/app/auth/models/roles.enum';
+import { Roles } from '../../auth/models/roles.enum';
 import { first, finalize } from 'rxjs/operators';
 
 @Component({

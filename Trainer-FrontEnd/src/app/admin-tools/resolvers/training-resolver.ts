@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { Resolve } from "@angular/router";
-import { ResultMessage } from "../../shared/models/result-message";
-import { BannerDto } from "../../shared/models/banner.dto";
-import { Observable, throwError } from "rxjs";
-import { RepositoryService } from "../../shared/services/repository.service";
-import { catchError, map } from "rxjs/operators";
-import { HttpErrorResponse } from "@angular/common/http";
-import { ErrorHandlingService } from "src/app/shared/services/error-handling.service";
+import { Injectable } from '@angular/core';
+import { Resolve } from '@angular/router';
+import { ResultMessage } from '../../shared/models/result-message';
+import { BannerDto } from '../../shared/models/banner.dto';
+import { Observable, throwError } from 'rxjs';
+import { RepositoryService } from '../../shared/services/repository.service';
+import { catchError, map } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 @Injectable()
 export class TrainingResolver implements Resolve<ResultMessage<BannerDto[]>>{

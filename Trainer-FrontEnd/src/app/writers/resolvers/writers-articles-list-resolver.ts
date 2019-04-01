@@ -7,7 +7,7 @@ import { ResultMessage } from '../../shared/models/result-message';
 import { PagedResult } from '../../shared/models/paged-result';
 import { AppConfig } from '../../../config/app.config';
 import { map, catchError } from 'rxjs/operators';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 @Injectable()
 export class WritersArticlesListResolver implements Resolve<Observable<ResultMessage<PagedResult<articleListItemDto>>>> {

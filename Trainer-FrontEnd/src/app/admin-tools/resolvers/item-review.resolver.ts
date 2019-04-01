@@ -6,11 +6,9 @@ import { ResultMessage } from '../../shared/models/result-message';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { AppConfig } from '../../../config/app.config';
 import { catchError } from 'rxjs/internal/operators/catchError';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
-import { of } from 'rxjs/internal/observable/of';
-import { HttpErrorResponse } from '@angular/common/http/src/response';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
-import { PAGES } from 'src/app/config/defines';
 
 @Injectable()
 export class ItemReviewResolver implements Resolve<Observable<ResultMessage<productListItemDto[]>>> {

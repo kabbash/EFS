@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SliderItemDto } from '../models/slider/slider-item.dto';
-import { ImageCropperComponent } from 'src/app/shared/image-cropper/image-cropper.component';
+import { ImageCropperComponent } from '../../shared/image-cropper/image-cropper.component';
 
 
 @Component({

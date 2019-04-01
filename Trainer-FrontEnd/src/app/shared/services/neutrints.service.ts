@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PagedResult } from '../models/paged-result';
 import { RepositoryService } from './repository.service';
-import { FoodItem } from 'src/app/shared/models/neutrints/food-item-dto';
+import { FoodItem } from '../../shared/models/neutrints/food-item-dto';
 
 @Injectable({
   providedIn: 'root'

@@ -4,8 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { finalize, first } from 'rxjs/operators';
 import { AuthService } from '../../auth/services/auth.service';
 import { AppService } from '../../app.service';
-import { PAGES } from 'src/app/config/defines';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 @Component({
   selector: 'app-set-reseted-password',

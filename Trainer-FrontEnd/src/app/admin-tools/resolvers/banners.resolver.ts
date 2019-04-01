@@ -1,17 +1,14 @@
-import { Injectable } from "@angular/core";
-import { Resolve } from "@angular/router";
-import { ResultMessage } from "../../shared/models/result-message";
-import { BannerDto } from "../../shared/models/banner.dto";
-import { Observable, throwError } from "rxjs";
-import { RepositoryService } from "../../shared/services/repository.service";
-import { AppConfig } from "../../../config/app.config";
-import { ErrorHandlingService } from "src/app/shared/services/error-handling.service";
-import { PAGES } from "src/app/config/defines";
-import { map } from "rxjs/internal/operators/map";
-import { catchError } from "rxjs/internal/operators/catchError";
-import { observable } from "rxjs/internal/symbol/observable";
-import { of } from "rxjs/internal/observable/of";
-import { HttpErrorResponse } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { Resolve } from '@angular/router';
+import { ResultMessage } from '../../shared/models/result-message';
+import { BannerDto } from '../../shared/models/banner.dto';
+import { Observable, throwError } from 'rxjs';
+import { RepositoryService } from '../../shared/services/repository.service';
+import { AppConfig } from '../../../config/app.config';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { map } from 'rxjs/internal/operators/map';
+import { catchError } from 'rxjs/internal/operators/catchError';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class BannersResolver implements Resolve<ResultMessage<BannerDto[]>>{

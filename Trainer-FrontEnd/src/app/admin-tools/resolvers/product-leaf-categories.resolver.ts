@@ -6,7 +6,7 @@ import { ResultMessage } from '../../shared/models/result-message';
 import { ProductCategoryDTO } from '../../shared/models/products/product-category-dto';
 import { map, catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 @Injectable()
 export class LeafProductCategoriesResolver implements Resolve<Observable<ResultMessage<ProductCategoryDTO[]>>>{

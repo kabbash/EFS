@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FoodItem } from 'src/app/shared/models/neutrints/food-item-dto';
+import { FoodItem } from '../../../shared/models/neutrints/food-item-dto';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppService } from 'src/app/app.service';
-import { config } from 'src/app/config/pages-config';
-import { UtilitiesService } from 'src/app/shared/services/utilities.service';
+import { AppService } from '../../../app.service';
+import { config } from '../../../config/pages-config';
+import { UtilitiesService } from '../../../shared/services/utilities.service';
 import { NeutrintsService } from '../../../shared/services/neutrints.service';
 import { first, finalize } from 'rxjs/operators';
 

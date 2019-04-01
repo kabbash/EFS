@@ -8,9 +8,9 @@ import { AppService } from '../../app.service';
 import { PagerDto } from '../../shared/models/pager.dto';
 import { debug } from 'util';
 import { ClientFilterComponent } from '../../shared/client-filter/client-filter.component';
-import { PredefinedCategories } from 'src/app/shared/models/articles/articles-predefined-categories.enum';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
-import { PAGES } from 'src/app/config/defines';
+import { PredefinedCategories } from '../../shared/models/articles/articles-predefined-categories.enum';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
 
 
 @Component({

@@ -6,7 +6,7 @@ import { RepositoryService } from '../../shared/services/repository.service';
 import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
 import { map, catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 @Injectable()
 export class ProductResolver implements Resolve<Observable<ResultMessage<any>>> {
     constructor(private repositoryService: RepositoryService, private errorHandlingService: ErrorHandlingService) {

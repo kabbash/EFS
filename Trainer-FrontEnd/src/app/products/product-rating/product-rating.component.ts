@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 import { config } from '../../config/pages-config';
 import { UtilitiesService } from '../../shared/services/utilities.service';
 import { environment } from '../../../environments/environment';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
-import { PAGES } from 'src/app/config/defines';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
 
 @Component({
   selector: 'app-product-rating',

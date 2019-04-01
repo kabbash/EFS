@@ -5,7 +5,7 @@ import { ArticleDetialsDto } from '../../shared/models/articles/article-details-
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
 import { map, catchError } from 'rxjs/operators';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 @Injectable()
 export class WritersArticleDetailsResolver implements Resolve<Observable<ResultMessage<ArticleDetialsDto>>> {

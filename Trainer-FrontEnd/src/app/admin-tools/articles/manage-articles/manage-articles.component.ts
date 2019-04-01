@@ -7,9 +7,9 @@ import { ArticleDetailsEditmodeComponent } from '../../../shared/articles/articl
 import { config } from '../../../config/pages-config';
 import { SliderItemDto } from '../../../shared/models/slider/slider-item.dto';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
-import { PredefinedCategories } from 'src/app/shared/models/articles/articles-predefined-categories.enum';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
-import { PAGES } from 'src/app/config/defines';
+import { PredefinedCategories } from '../../../shared/models/articles/articles-predefined-categories.enum';
+import { ErrorHandlingService } from '../../../shared/services/error-handling.service';
+import { PAGES } from '../../../config/defines';
 
 
 @Component({

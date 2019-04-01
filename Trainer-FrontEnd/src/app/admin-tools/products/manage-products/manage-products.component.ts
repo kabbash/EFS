@@ -8,9 +8,9 @@ import { config } from '../../../config/pages-config';
 import { AppService } from '../../../app.service';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
 import { SliderItemDto } from '../../../shared/models/slider/slider-item.dto';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
-import { PAGES } from 'src/app/config/defines';
-import { ProductListItemEditComponent } from 'src/app/shared/products/product-list-item-edit/product-list-item-edit.component';
+import { ErrorHandlingService } from '../../../shared/services/error-handling.service';
+import { PAGES } from '../../../config/defines';
+import { ProductListItemEditComponent } from '../../../shared/products/product-list-item-edit/product-list-item-edit.component';
 
 @Component({
   selector: 'app-manage-products',

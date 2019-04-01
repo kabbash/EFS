@@ -7,9 +7,9 @@ import { config } from '../../config/pages-config';
 import { Router } from '@angular/router';
 import { UtilitiesService } from '../../shared/services/utilities.service';
 import { environment } from '../../../environments/environment';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
-import { PAGES } from 'src/app/config/defines';
-import { ImageCropperComponent } from 'src/app/shared/image-cropper/image-cropper.component';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
+import { ImageCropperComponent } from '../../shared/image-cropper/image-cropper.component';
 
 @Component({
   selector: 'app-add-item-for-review',

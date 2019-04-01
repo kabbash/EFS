@@ -5,8 +5,8 @@ import { ResultMessage } from '../../shared/models/result-message';
 import { AuthService } from '../../auth/services/auth.service';
 import { User } from '../../auth/models/user';
 import { map, catchError } from 'rxjs/operators';
-import { PAGES } from 'src/app/config/defines';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 @Injectable()
 export class ConfirmEmailResolver implements Resolve<Observable<ResultMessage<User>>> {

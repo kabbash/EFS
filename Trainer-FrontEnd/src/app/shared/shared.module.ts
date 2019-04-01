@@ -28,7 +28,7 @@ import { ArticleDetailsResolver } from '../articles/resolvers/article-details.re
 import { SearchFilterComponent } from './search-filter/search-filter.component';
 import { ProductsService } from '../products/products.service';
 import { ClientFilterComponent } from './client-filter/client-filter.component';
-import { ErrorHandlingService } from 'src/app/shared/services/error-handling.service';
+import { ErrorHandlingService } from '../shared/services/error-handling.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import { ArticleDetailsEditmodeComponent } from './articles/article-details-editmode/article-details-editmode.component';
