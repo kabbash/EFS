@@ -4,6 +4,8 @@ import { first, finalize } from 'rxjs/operators';
 import { CustomValidators } from '../Validators/custom-validators';
 import { AuthService } from '../../auth/services/auth.service';
 import { AppService } from '../../app.service';
+import { PAGES } from '../../config/defines';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 @Component({
   selector: 'app-change-password',
@@ -18,7 +20,8 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private authenticationService: AuthService,
-    private appService: AppService) { }
+    private appService: AppService,
+    private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
     this.changePasswordForm = this.formBuilder.group({
@@ -50,6 +53,8 @@ export class ChangePasswordComponent implements OnInit {
       .subscribe(
         data => {
           this.changed = true;
+        }, error => {
+          this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
         });
   }
 

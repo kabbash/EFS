@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { config } from '../../config/pages-config';
 import { UtilitiesService } from '../../shared/services/utilities.service';
 import { environment } from '../../../environments/environment';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { PAGES } from '../../config/defines';
 
 @Component({
   selector: 'app-product-rating',
@@ -21,7 +23,8 @@ export class ProductRatingComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private repositoryService: RepositoryService,
     private router: Router,
-    public util: UtilitiesService) { }
+    public util: UtilitiesService,
+    private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
     this.route.data.subscribe(result => {
@@ -53,7 +56,7 @@ export class ProductRatingComponent implements OnInit {
 
         this.product.reviews.push(reveiw);
       }, error => {
-        alert(error);
+        this.errorHandlingService.handle(error, PAGES.RATING);
       });
     }
 

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SliderItemDto } from '../models/slider/slider-item.dto';
-import { ImageCropperComponent } from 'src/app/shared/image-cropper/image-cropper.component';
+import { ImageCropperComponent } from '../../shared/image-cropper/image-cropper.component';
 
 
 @Component({
@@ -68,7 +68,7 @@ export class SliderEditModeComponent implements OnInit {
     this.modalService.open(deleteModalContent);
   }
 
-  onFileSelect(event, isCropped) {
+  onFileSelect(event, isCropped?) {
     const file = isCropped ? event :  event.target.files[0];
     this.imageEvent = isCropped ? null : event; 
     const image = isCropped ?  this.sliderData[this.croppedImageIndex] : this.newImage;
