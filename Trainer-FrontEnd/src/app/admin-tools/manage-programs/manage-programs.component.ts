@@ -100,12 +100,10 @@ export class ManageProgramsComponent implements OnInit {
     formData.append('features', categoryData.features);
     formData.append('profilePictureFile', categoryData.profilePictureFile);
     formData.append('profilePicture', categoryData.profilePicture ? categoryData.profilePicture : '');
-    debugger;
     return formData;
   }
 
-  onFileSelect(event, isCropped) {
-    debugger;
+  onFileSelect(event, isCropped?) {
     this.imageEvent = isCropped ? null : event;
     const file = isCropped ? event : event.target.files[0]
     this.program.profilePictureFile = file;
