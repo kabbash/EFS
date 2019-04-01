@@ -30,6 +30,8 @@ import { ManageNeutrintsComponent } from './neutrints/manage-neutrints/manage-ne
 import { FoodItemResolver } from './resolvers/food-item-resolver';
 import { ManageOnlineTrainingComponent } from './manage-online-training/manage-online-training.component';
 import { TrainingResolver } from './resolvers/training-resolver';
+import { ManageProgramsComponent } from './manage-programs/manage-programs.component';
+import { ProgramDetailsResolver } from './resolvers/program-details-resolver';
 
 
 
@@ -100,6 +102,11 @@ const routes: Routes = [
         path: config.admin.onlineTraining.name,
         component: ManageOnlineTrainingComponent,
         resolve: {trainingInfo: TrainingResolver}
+      },
+      {
+        path: config.admin.managePrograms.name,
+        component: ManageProgramsComponent,
+        resolve: { programDetails: ProgramDetailsResolver }
       },
       {
         path: config.admin.users.name,

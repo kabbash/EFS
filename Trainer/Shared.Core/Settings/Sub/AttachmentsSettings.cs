@@ -7,5 +7,6 @@
         public string ProductsFolder { get; set; }
         public string ProductsCategoriesFolder { get; set; }
         public string BannersFolder { get; set; }
+        public string OTrainingFolder { get; set; }
     }
 }

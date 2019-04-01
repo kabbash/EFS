@@ -9,6 +9,7 @@ namespace OTraining.Core.Models
         public OTrainingDto()
         {
             ProgramsDto = new HashSet<OTrainingProgramDto>();
+            DetailsDto = new OTrainingDetailsDto();
         }
         public OTrainingDetailsDto DetailsDto { get; set; }
         public IEnumerable<OTrainingProgramDto> ProgramsDto { get; set; }

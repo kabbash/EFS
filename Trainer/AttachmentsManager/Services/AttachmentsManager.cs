@@ -140,6 +140,8 @@ namespace Attachments.Core.Services
                     return _settings.AppPathsSettings.Attachments.ArticlesFolder;
                 case AttachmentTypesEnum.Banners:
                     return _settings.AppPathsSettings.Attachments.BannersFolder;
+                case AttachmentTypesEnum.OTrainingProgram:
+                    return _settings.AppPathsSettings.Attachments.OTrainingFolder;
                 default:
                     throw new NotImplementedException();
             }

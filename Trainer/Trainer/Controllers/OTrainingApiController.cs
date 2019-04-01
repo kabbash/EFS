@@ -26,7 +26,7 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_oTrainingManager.GetAll());
         }
 
-        [HttpGet("getprogram")]
+        [HttpGet("getprogram/{id}")]
         [Authorize(Roles = "Admin")]
         public ActionResult GetProgram(int id)
         {

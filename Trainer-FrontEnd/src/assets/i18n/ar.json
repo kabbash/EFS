@@ -103,6 +103,19 @@
       "emailNotValid": "برجاء ادخال بريد الكترونى صحيح"
     }
   },
+  "onlinetrainingForm": {
+    "formValidations": {
+      "descriptionRequired": "يجب ادخال تعريف للتدريب الاونلاين",
+      "forJoinRequired": "يجب ادخال تفاصيل الاشتراك"
+    }
+  },
+  "programForm": {
+    "formValidations": {
+      "nameRequired": "يجب ادخال تعريف للتدريب الاونلاين",
+      "featuresRequired": "يجب ادخال تفاصيل الاشتراك",
+      "profilePictureFileRequired" : "يجب اختيار صوره"
+    }
+  },
   "manageUsers": {
     "roles": {
       "Admin": "Admin",
