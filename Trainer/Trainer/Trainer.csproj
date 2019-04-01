@@ -57,6 +57,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Files\Programs\" />
     <Folder Include="wwwroot\Images\" />
     <Folder Include="wwwroot\Tmp\" />
   </ItemGroup>

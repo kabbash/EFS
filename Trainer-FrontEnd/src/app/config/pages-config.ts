@@ -212,6 +212,10 @@ export let config = {
             'name': 'onlineTraining',
             'route': '/admin/onlineTraining'
         },
+        'managePrograms': {
+            'name': 'managePrograms/:programId',
+            'route': '/admin/managePrograms'
+        },
         'users': {
             'name': 'users',
             'route': '/admin/users'

@@ -183,11 +183,25 @@
       "emailNotValid": "برجاء ادخال بريد الكترونى صحيح"
     }
   },
+  "onlinetrainingForm": {
+    "formValidations": {
+      "descriptionRequired": "يجب ادخال تعريف للتدريب الاونلاين",
+      "forJoinRequired": "يجب ادخال تفاصيل الاشتراك"
+    }
+  },
+  "programForm": {
+    "formValidations": {
+      "nameRequired": "يجب ادخال تعريف للتدريب الاونلاين",
+      "featuresRequired": "يجب ادخال تفاصيل الاشتراك",
+      "profilePictureFileRequired" : "يجب اختيار صوره"
+    }
+  },
   "defaultErrorMessages": {
     "defaultMessage": "something went wrong",
     "400": "somthing went wrong",
     "401": "ay haga",
     "500": "server error"
+
   },
   "manageUsers": {
     "roles": {

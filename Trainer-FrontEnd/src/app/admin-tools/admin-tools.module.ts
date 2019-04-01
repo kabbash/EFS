@@ -34,6 +34,9 @@ import { FoodItemsListComponent } from './neutrints/food-items-list/food-items-l
 import { FoodItemResolver } from './resolvers/food-item-resolver';
 import { FoodItemsListResolver } from './resolvers/food-items-list.resolver';
 import { ManageOnlineTrainingComponent } from './manage-online-training/manage-online-training.component';
+import { TrainingResolver } from './resolvers/training-resolver';
+import { ManageProgramsComponent } from './manage-programs/manage-programs.component';
+import { ProgramDetailsResolver } from './resolvers/program-details-resolver';
 
 
 
@@ -70,14 +73,17 @@ import { ManageOnlineTrainingComponent } from './manage-online-training/manage-o
       UserManagementComponent,
       ManageNeutrintsComponent,
       FoodItemsListComponent,
-      ManageOnlineTrainingComponent
+      ManageOnlineTrainingComponent,
+      ManageProgramsComponent
     ],
 
   providers: [
     AdminArticlesListResolver,
     AdminProductsListResolver,
     ProductResolver,
+    TrainingResolver,
     LeafProductCategoriesResolver,
+    ProgramDetailsResolver,
     { provide: NgbDateAdapter, useClass: NgbUTCStringAdapter },
 
     AdminArticlesService,
