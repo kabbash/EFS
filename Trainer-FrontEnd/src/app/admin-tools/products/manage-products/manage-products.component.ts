@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminProductsService } from '../../services/admin.products.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first, finalize } from 'rxjs/operators';
+import { first} from 'rxjs/operators/first';
+import {finalize} from 'rxjs/operators/finalize';
 import { productListItemDto } from '../../../shared/models/products/product-list-item-dto';
 import { ProductCategoryDTO } from '../../../shared/models/products/product-category-dto';
 import { config } from '../../../config/pages-config';

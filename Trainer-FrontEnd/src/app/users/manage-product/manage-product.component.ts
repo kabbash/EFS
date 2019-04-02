@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { config } from '../../config/pages-config';
-import { finalize, first } from 'rxjs/operators';
+import { first} from 'rxjs/operators/first';
+import {finalize} from 'rxjs/operators/finalize';
 import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
 import { SliderItemDto } from '../../shared/models/slider/slider-item.dto';
 import { UtilitiesService } from '../../shared/services/utilities.service';

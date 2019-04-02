@@ -3,7 +3,8 @@ import { Resolve } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { ResultMessage } from '../models/result-message';
 import { RepositoryService } from '../services/repository.service';
-import { map, catchError } from 'rxjs/operators';
+import { map} from 'rxjs/operators/map';
+import {catchError} from 'rxjs/operators/catchError';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlingService } from '../services/error-handling.service';
 @Injectable()

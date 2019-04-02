@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map } from 'rxjs/operators/map';
 import { Roles } from '../models/roles.enum';
 import { User } from '../models/user';
 import { RepositoryService } from '../../shared/services/repository.service';

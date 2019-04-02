@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
 import { ProductCategoryDTO } from '../../shared/models/products/product-category-dto';
-import { map, catchError } from 'rxjs/operators';
+import { map} from 'rxjs/operators/map';
+import {catchError} from 'rxjs/operators/catchError';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 

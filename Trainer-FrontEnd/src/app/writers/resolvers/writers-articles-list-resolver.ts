@@ -6,7 +6,8 @@ import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
 import { PagedResult } from '../../shared/models/paged-result';
 import { AppConfig } from '../../../config/app.config';
-import { map, catchError } from 'rxjs/operators';
+import { map} from 'rxjs/operators/map';
+import {catchError} from 'rxjs/operators/catchError';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
 @Injectable()

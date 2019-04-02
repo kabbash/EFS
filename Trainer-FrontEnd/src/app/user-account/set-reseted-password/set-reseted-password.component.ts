@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { finalize, first } from 'rxjs/operators';
+import { first} from 'rxjs/operators/first';
+import {finalize} from 'rxjs/operators/finalize';
 import { AuthService } from '../../auth/services/auth.service';
 import { AppService } from '../../app.service';
 import { PAGES } from '../../config/defines';

@@ -7,7 +7,8 @@ import { ResultMessage } from '../../shared/models/result-message';
 import { PagedResult } from '../../shared/models/paged-result';
 import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
 import { AppConfig } from '../../../config/app.config';
-import { map, catchError } from 'rxjs/operators';
+import { map} from 'rxjs/operators/map';
+import {catchError} from 'rxjs/operators/catchError';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 

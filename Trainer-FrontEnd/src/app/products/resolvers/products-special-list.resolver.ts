@@ -5,7 +5,8 @@ import { productListItemDto } from '../../shared/models/products/product-list-it
 import { RepositoryService } from '../../shared/services/repository.service';
 import { Injectable } from '@angular/core';
 import { AppConfig } from '../../../config/app.config';
-import { map, catchError } from 'rxjs/operators';
+import { map} from 'rxjs/operators/map';
+import {catchError} from 'rxjs/operators/catchError';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 import { PAGES } from '../../config/defines';

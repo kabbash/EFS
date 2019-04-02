@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { first, finalize } from 'rxjs/operators';
+import { first} from 'rxjs/operators/first';
+import {finalize} from 'rxjs/operators/finalize';
 import { CustomValidators } from '../Validators/custom-validators';
 import { AuthService } from '../../auth/services/auth.service';
 import { AppService } from '../../app.service';

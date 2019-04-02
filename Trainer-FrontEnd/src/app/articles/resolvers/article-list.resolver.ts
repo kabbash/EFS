@@ -5,7 +5,8 @@ import { articleListItemDto } from '../../shared/models/articles/article-list-it
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
 import { AppConfig } from '../../../config/app.config';
-import { map, catchError } from 'rxjs/operators';
+import { map} from 'rxjs/operators/map';
+import {catchError} from 'rxjs/operators/catchError';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 import { PAGES } from '../../config/defines';

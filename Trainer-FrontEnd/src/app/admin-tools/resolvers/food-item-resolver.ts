@@ -5,7 +5,8 @@ import { ResultMessage } from '../../shared/models/result-message';
 import { FoodItem } from '../../shared/models/neutrints/food-item-dto';
 import { NeutrintsService } from '../../shared/services/neutrints.service';
 import { PagedResult } from '../../shared/models/paged-result';
-import { map, catchError } from 'rxjs/operators';
+import { map} from 'rxjs/operators/map';
+import {catchError} from 'rxjs/operators/catchError';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 @Injectable()

@@ -3,8 +3,8 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs';
 import { ResultMessage } from '../../shared/models/result-message';
 import { RepositoryService } from '../../shared/services/repository.service';
-import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
-import { map, catchError } from 'rxjs/operators';
+import { map} from 'rxjs/operators/map';
+import {catchError} from 'rxjs/operators/catchError';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 @Injectable()

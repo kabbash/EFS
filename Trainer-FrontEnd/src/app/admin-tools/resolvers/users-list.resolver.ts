@@ -6,7 +6,8 @@ import { PagedResult } from '../../shared/models/paged-result';
 import { AppConfig } from '../../../config/app.config';
 import { User } from '../../auth/models/user';
 import { UsersService } from '../services/users.service';
-import { catchError, map } from 'rxjs/operators';
+import { map} from 'rxjs/operators/map';
+import {catchError} from 'rxjs/operators/catchError';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 

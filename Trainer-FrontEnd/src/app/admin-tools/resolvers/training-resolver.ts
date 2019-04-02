@@ -5,7 +5,8 @@ import { ResultMessage } from '../../shared/models/result-message';
 import { OTrainingDto } from "../../shared/models/otraining/otraining-dto";
 import { Observable, throwError } from 'rxjs';
 import { RepositoryService } from '../../shared/services/repository.service';
-import { catchError, map } from 'rxjs/operators';
+import { map} from 'rxjs/operators/map';
+import {catchError} from 'rxjs/operators/catchError';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 

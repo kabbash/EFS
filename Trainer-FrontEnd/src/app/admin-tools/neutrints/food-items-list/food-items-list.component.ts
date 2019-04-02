@@ -7,7 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../../app.service';
 import { AppConfig } from '../../../../config/app.config';
 import { config } from '../../../config/pages-config';
-import { first, finalize } from 'rxjs/operators';
+import { first} from 'rxjs/operators/first';
+import {finalize} from 'rxjs/operators/finalize';
 
 @Component({
   selector: 'app-food-items-list',

@@ -4,7 +4,8 @@ import { Observable, throwError } from 'rxjs';
 import { ResultMessage } from '../../shared/models/result-message';
 import { AuthService } from '../../auth/services/auth.service';
 import { User } from '../../auth/models/user';
-import { map, catchError } from 'rxjs/operators';
+import { map} from 'rxjs/operators/map';
+import {catchError} from 'rxjs/operators/catchError';
 import { PAGES } from '../../config/defines';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 

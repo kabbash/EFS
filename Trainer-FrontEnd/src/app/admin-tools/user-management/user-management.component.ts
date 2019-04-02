@@ -7,7 +7,8 @@ import { AppService } from '../../app.service';
 import { UsersFilter } from '../../shared/models/users/users-filter';
 import { ActivatedRoute } from '@angular/router';
 import { Roles } from '../../auth/models/roles.enum';
-import { first, finalize } from 'rxjs/operators';
+import { first} from 'rxjs/operators/first';
+import {finalize} from 'rxjs/operators/finalize';
 
 @Component({
   selector: 'app-user-management',

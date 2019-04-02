@@ -5,7 +5,8 @@ import { AppService } from '../../../app.service';
 import { config } from '../../../config/pages-config';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
 import { NeutrintsService } from '../../../shared/services/neutrints.service';
-import { first, finalize } from 'rxjs/operators';
+import { first} from 'rxjs/operators/first';
+import {finalize} from 'rxjs/operators/finalize';
 
 @Component({
   selector: 'app-manage-neutrints',
