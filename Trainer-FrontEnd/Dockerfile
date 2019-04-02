@@ -1,6 +1,7 @@
 FROM node:8-alpine as buildContainer
 WORKDIR /app
 COPY ./package.json ./package-lock.json /app/
+RUN npm cache clean
 RUN npm install
 COPY . /app
 RUN node_modules/.bin/ng build --prod --aot
