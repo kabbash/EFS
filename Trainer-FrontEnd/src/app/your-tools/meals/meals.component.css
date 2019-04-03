@@ -30,8 +30,8 @@
 .add-food span {
     display: flex;
     align-items: center;
-    color: #01bbd4;
-    font-size: 37px;
+    color: white;
+    font-size: 30px;
     justify-content: center;
     margin-top: 5px;
     margin-right: 12px;
@@ -80,8 +80,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex: 0 0 80px;
-    height: 80px;
+    flex: 0 0 100px;
+    height: 100px;
     border: 4px solid #cccccc;
     background-color: #f8f6f6;
     border-radius: 50%;
@@ -96,7 +96,7 @@
 }
 
 .circle-name {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
 }
 
@@ -112,6 +112,7 @@
     border-radius: 10px;
     box-shadow: 0 0px 19px 0px rgba(255, 255, 255, .5);
     overflow: hidden;
+    height: fit-content;
 }
 
 .table-header {
@@ -139,4 +140,37 @@
 .table-cell {
     flex: 1px;
     padding: 15px 5px;
+}
+
+.modal-body {
+    flex-direction: column;
+}
+
+:host ngx-datatable {
+    box-shadow: none;
+    background: #f8f9fa;
+    border: 1px solid gainsboro;
+}
+
+.add-food-input {
+    padding: 8px;
+    margin: 15px auto;
+    width: 50%;
+    margin: 17px 10px;
+}
+
+.modal-dialog {
+    max-width: 650px;
+}
+
+.button-add-restyle {
+    padding: 8px;
+    position: relative;
+    bottom: 2px;
+}
+
+.open-modal-btn {
+    display: FLEX;
+    align-items: center;
+    justify-content: center;
 }
