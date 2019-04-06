@@ -2,8 +2,8 @@
 
    <div class="main-table-container">
       <div class="add-food">
-         <button (click)="openModal()">
-            اضافه طعام<span class="fa fa-plus" data-toggle="modal" data-target="#searchModal"></span>
+         <button class="open-modal-btn btn btn-info" data-toggle="modal" data-target="#searchModal" (click)="openModal()">
+            اضافه طعام<span class="fa fa-plus" ></span>
          </button>
       </div>
       <div class="table">
@@ -432,7 +432,7 @@
          </div>
          <div class="modal-body">
             <div>
-               <input type='text' style='padding:8px;margin:15px auto;width:30%;'
+               <input type='text' style='padding:8px;margin:15px auto;width:60%;'
                   placeholder='Type to filter food items' (keyup)='search($event)' [(ngModel)]=searchTxt />
                <ngx-datatable #table class='material' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
                   [rowHeight]="50" [scrollbarV]="true" [selected]="selected" [selectionType]="'single'"
@@ -449,7 +449,8 @@
             </div>
             <div>
                <span>الكمية</span>
-               <input type="number" [(ngModel)]=servingAmont /><button data-toggle="modal" data-target="#searchModal"
+               <input class="add-food-input" type="number" [(ngModel)]=servingAmont />
+               <button class="btn btn-info button-add-restyle" data-toggle="modal" data-target="#searchModal"
                   (click)=addFoodItem() [disabled]="!servingAmont || servingAmont <= '0'">
                   إضافة
                </button></div>
