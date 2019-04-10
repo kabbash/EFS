@@ -32,7 +32,7 @@
     <button type="button" (click)="search()" class="btn buy-price filter-search-button">بحـث</button>
   </div>
 </div>
-<div class="data-table">
+<!-- <div class="data-table">
   <ngx-datatable class="material" [rows]="usersList" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
     [rowHeight]="'auto'" [externalPaging]="true" [count]="pagerDto.itmesCount" [offset]="pagerDto.currentPage"
     [limit]="pagerDto.pageSize" [selected]="selected" [selectionType]="'single'" (page)='setPage($event)'
@@ -58,7 +58,6 @@
         <span>التصنيف</span>
       </ng-template>
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <!-- {{'manageUsers.roles.'+ value | translate}} -->
         <ul>
           <li *ngFor="let item of value">
             {{'manageUsers.roles.'+ item | translate}}
@@ -84,18 +83,16 @@
     </ngx-datatable-column>
     <ngx-datatable-column name="Block">
       <ng-template let-column="column" ngx-datatable-header-template>
-        <!-- <span>حظر</span> -->
       </ng-template>
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
         <button (click)="updateUserAccess(row.email, !row.isBlocked)">
-          <!-- <i class="fa fa-ban" aria-hidden="true"></i> -->
           {{row.isBlocked? "فك حظر"  : "حظر"}}
         </button>
       </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>
-</div>
-<div class="selection">
+</div> -->
+<!-- <div class="selection">
   <div *ngIf="selected?.length > 0">
     <div>{{selected[0].fullName}}</div>
     <span>إضافة تصنيف</span>
@@ -113,4 +110,4 @@
       </li>
     </ul>
   </div>
-</div>
+</div> -->
