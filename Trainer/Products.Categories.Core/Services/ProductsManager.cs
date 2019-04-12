@@ -194,6 +194,7 @@ namespace Products.Core.Services
                 oldProduct.ExpDate = product.ExpDate;
                 oldProduct.Description = product.Description;
                 oldProduct.CategoryId = product.CategoryId;
+                oldProduct.PhoneNumber = product.PhoneNumber;
 
                 oldProduct.UpdatedBy = user.Id;
                 oldProduct.UpdatedAt = DateTime.Now;

@@ -48,7 +48,7 @@ export class LoginPageComponent implements OnInit {
   navigateToRegister() {
     this.router.navigate([config.userAccount.register.route]);
   }
-  navigateToResetPassword(){
+  navigateToResetPassword() {
     this.router.navigate([config.userAccount.resetPassword.route]);
   }
   onSubmit() {
@@ -64,10 +64,13 @@ export class LoginPageComponent implements OnInit {
       .subscribe(result => {
         if (result.status == 200)
           this.router.navigate([this.returnUrl]);
-        else if (result.errorCode == AuthenticationErrorsCode.EmailNotConfirmed)
-          this.router.navigate([config.userAccount.emailNotConfirmed.route]);
+
       }, error => {
-        this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
+        debugger;
+        if (error.error.errorCode == AuthenticationErrorsCode.EmailNotConfirmed)
+          this.router.navigate([config.userAccount.emailNotConfirmed.route]);
+        else
+          this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
       });
   }
 }

@@ -67,11 +67,16 @@ export class MealsComponent implements OnInit {
   }
 
   openModal() {
+    this.selected = [];
+    this.searchTxt = '';
+    this.rows = [];
+    this.servingAmont = null;
     this.showModal = true;
   }
 
   addFoodItem() {
-    if (this.selected) {
+    debugger;
+    if (this.selected && this.selected.length > 0) {
       let foodItem = this.selected[0];
       let factor = this.servingAmont / foodItem.amount;
       for (const key in foodItem) {
@@ -83,6 +88,7 @@ export class MealsComponent implements OnInit {
       this.searchTxt = '';
       this.rows = [];
       this.servingAmont = null;
+      this.selected = [];
       this.selectedFoodItems.push(foodItem);
       this.selectedFoodItems = [...this.selectedFoodItems]
       this.showModal = false;
