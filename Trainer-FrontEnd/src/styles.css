@@ -332,7 +332,12 @@ span pre {
 
 .ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group,
 .ngx-datatable.material.single-selection .datatable-body-row.active{
-  background-color: transparent;
+  background-color: #00bcd4;
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group:hover,
+.ngx-datatable.material.single-selection .datatable-body-row.active:hover{
+  background-color: #00bcd4;
 }
 
 .ngx-datatable *{
@@ -341,15 +346,26 @@ span pre {
 }
 
 .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell{
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.ngx-datatable.material.single-selection .datatable-body-row.active:hover{
+/* .ngx-datatable.material.single-selection .datatable-body-row.active:hover{
 
-  background-color: #00bcd4;
-}
+  /* background-color: #00bcd4; 
+} */
 
 .ngx-datatable.scroll-vertical .datatable-body{
   min-height: 210px !important;
+  overflow-x: hidden;
+}
+
+.datatable-row-center datatable-body-cell:not(:first-child),.datatable-row-center datatable-header-cell:not(:first-child){
+  width:25% !important;
+}
+.datatable-row-center datatable-body-cell:not(:first-child)>div,.datatable-row-center datatable-header-cell:not(:first-child)>div{
+  text-align:center;
+}
+.datatable-row-center datatable-body-cell:first-child,.datatable-row-center datatable-header-cell:first-child{
+  width:50% !important;
 }

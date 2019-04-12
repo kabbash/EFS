@@ -1,11 +1,9 @@
 :host {
     flex: 1;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-top: 50px;
     flex-direction: column;
-    margin-right: 1rem;
+    align-items: center;
+    padding-top: 50px;
 }
 
 .filter-wrapper {
@@ -17,6 +15,7 @@
     padding: 14px 0 22px;
     border-radius: 12px;
     max-height: 100px;
+    margin-bottom: 20px;
 }
 
 .submit-filter-button {
@@ -38,6 +37,9 @@
 .data-table{
     float:right;
     width: 75%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 60px;
 }
 
 .selection{

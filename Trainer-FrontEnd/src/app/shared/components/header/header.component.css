@@ -15,6 +15,7 @@
   position: relative;
   right: 0;
   color: rgba(0, 0, 0);
+  transition: color 0.7s ease;
   font-weight: bold;
 }
 
