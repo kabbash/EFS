@@ -2,8 +2,8 @@
 
    <div class="main-table-container">
       <div class="add-food">
-         <button class="open-modal-btn btn btn-info" data-toggle="modal" data-target="#searchModal" (click)="openModal()">
-            اضافه طعام<span class="fa fa-plus" ></span>
+         <button class="open-modal-btn btn btn-info btn-sm" data-toggle="modal" data-target="#searchModal" (click)="openModal()">
+            اضافه صنف جديد<span class="fa fa-plus fa-sm" ></span>
          </button>
       </div>
       <div class="table">
@@ -19,7 +19,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="amount">
                <ng-template let-column="column" ngx-datatable-header-template>
-                  <span>الكمية</span>
+                  <span>الكمية بالجرام</span>
                </ng-template>
                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                   {{value}}
@@ -448,7 +448,7 @@
                </ngx-datatable>
             </div>
             <div>
-               <span>الكمية</span>
+               <span>الكمية بالجرام</span>
                <input class="add-food-input" type="number" [(ngModel)]=servingAmont />
                <button class="btn btn-info button-add-restyle" data-toggle="modal" data-target="#searchModal"
                   (click)=addFoodItem() [disabled]="!servingAmont || servingAmont <= '0'">

@@ -51,7 +51,11 @@ export class ManageNeutrintsComponent implements OnInit {
         data => {
           if (data.status === 200) {
             this.item = data.data;
-            alert("تم تعديل المنتج بنجاح");
+            if (this.isNew)
+              alert("تم اضافة صنف جديد بنجاح");
+            else
+              alert("تم تعديل الصنف بنجاح");
+
             this.router.navigate([config.admin.neutrintsList.route]);
           }
         });

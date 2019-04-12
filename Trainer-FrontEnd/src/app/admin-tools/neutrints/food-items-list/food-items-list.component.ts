@@ -55,10 +55,10 @@ export class FoodItemsListComponent implements OnInit {
   }
 
   delete(foodItemId: number) {
-    if (confirm("هل انت متأكد من مسح هذا الطعام ؟ ")) {
+    if (confirm("هل انت متأكد من مسح هذا الصنف ؟ ")) {
       this.service.delete(foodItemId).subscribe(c => {
         console.log(c);
-        alert('deleted');
+        alert('تم مسح الصنف بنجاح');
         this.foodItemsList = this.foodItemsList.filter(obj => obj.id !== foodItemId);
       });
     }

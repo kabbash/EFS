@@ -9,7 +9,7 @@
       <ng-template ngbSlide *ngFor="let image of article.images;let i = index">
           <div class="carousel-darker-overlay">
             <img [src]="image.isNew? image.path : (baseurl + image.path)" class="slider-img" alt="article images">
-            <div class="carousel-caption">
+            <div [ngClass]="{'carousel-caption': (image.title|| image.text ) }" >
               <h3>{{image.title}}</h3>
               <p>{{image.text}}</p>
             </div>
