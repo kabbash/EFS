@@ -170,10 +170,20 @@ li.nav-item.hovered-item {
 .hovered-item  .nav-link:hover,.hovered-item  .nav-link{
   color: #ffffff !important;
 }
+.hovered-item  .nav-link:hover{
+  color: gainsboro !important;
+}
+.hovered-item  .nav-link.dropdown-anchore:hover{
+  color: white !important;
+}
+
+.hovered-item  .nav-link:hover:before{
+  display:none;
+}
 
 li.nav-item {
   background-color: #f8f9fa;
-  transition: background-color 700ms ease;
+  transition: all 700ms ease;
 }
 .arrow-margin{
   margin-right: 4px;
@@ -206,8 +216,10 @@ li.nav-item {
   border-radius: 0;
   top: 97%;
   left: inherit;
-  width: 300px;
+  width: 230px;
   padding: 0px 15px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .navbar-collapse ul.dropdown-menu li a::before {

@@ -349,3 +349,7 @@ span pre {
 
   background-color: #00bcd4;
 }
+
+.ngx-datatable.scroll-vertical .datatable-body{
+  min-height: 210px !important;
+}
