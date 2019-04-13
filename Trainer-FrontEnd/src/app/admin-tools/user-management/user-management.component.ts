@@ -60,8 +60,13 @@ export class UserManagementComponent implements OnInit {
   }
 
   onSelect({ selected }) {
-
+    let selectedElm= document.getElementById('GoToSelection');
     this.selected = selected;
+    window.scrollTo({
+      top: selectedElm.offsetTop,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
   removeRole(sel) {

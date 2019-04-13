@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { config } from '../../../config/pages-config';
 import { AuthService } from '../../../auth/services/auth.service';
+import { UtilitiesService } from '../../services/utilities.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,9 +12,15 @@ export class HeaderComponent implements OnInit {
   hideSearch: boolean;
   smallSize: boolean;
   configUrls = config;
-  constructor(private router: Router, public authService: AuthService) {
+  currentRoute: string;
+  constructor(private router: Router, public authService: AuthService, private utilitiesService: UtilitiesService) {
     router.events.subscribe((val: any) => {
-      // see also
+
+      if (val instanceof NavigationEnd) {
+        console.log(val.url)
+        this.currentRoute = val.url;
+      }
+
       if (val && val.route && val.route.path && val.route.path === 'home') {
         this.hideSearch = true;
       } else if (val && val.route && val.route.path && val.route.path !== 'home') {
@@ -30,52 +36,6 @@ export class HeaderComponent implements OnInit {
       this.smallSize = true;
 
     }
-    $(document).ready(function () {
-      if (document.body.clientWidth > 991) {
-        this.smallSize = false;
-        $('#navbarsExampleDefault li.dropdown').hover(
-          function () {
-            $(this).addClass('hovered-item');
-            $(this)
-              .find('.dropdown-menu')
-              .stop(true, true)
-              .delay(200)
-              .slideDown(200);
-          },
-          function () {
-            $(this).removeClass('hovered-item');
-            $(this)
-              .find('.dropdown-menu')
-              .stop(true, true)
-              .delay(200)
-              .slideUp(100);
-          }
-        );
-      } else {
-        $('.nav-item').click(function () {
-          if ($('.navbar-collapse').hasClass('open') && !$(this).hasClass('dropdown')) {
-            $('.navbar-collapse').removeClass('open');
-          }
-        });
-        $('#navbarsExampleDefault li.dropdown').click(function () {
-          if (!$(this).hasClass('hovered-item')) {
-            $(this).addClass('hovered-item');
-            $(this)
-              .find('.dropdown-menu')
-              .stop(true, true)
-              .delay(200)
-              .slideDown(200);
-          } else {
-            $(this).removeClass('hovered-item');
-            $(this)
-              .find('.dropdown-menu')
-              .stop(true, true)
-              .delay(200)
-              .slideUp(200);
-          }
-        });
-      }
-    });
   }
 
   SearchBox() {
@@ -99,7 +59,7 @@ export class HeaderComponent implements OnInit {
     x.classList.toggle('open');
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
     this.router.navigate(['/']);
   }
@@ -115,5 +75,9 @@ export class HeaderComponent implements OnInit {
   //     $(this).find('.dropdown-list').slideUp();
   //   });
   // }
+
+  ngAfterViewInit() {
+    this.utilitiesService.handleHeaderMenu();
+  }
 
 }
