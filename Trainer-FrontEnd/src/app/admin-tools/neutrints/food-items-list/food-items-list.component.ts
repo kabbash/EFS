@@ -20,7 +20,6 @@ export class FoodItemsListComponent implements OnInit {
   filter = new FoodIemFilter();
 
   constructor(private route: ActivatedRoute, private service: NeutrintsService, private appService: AppService, private router: Router) { 
-    debugger;
   }
 
   ngOnInit() {
