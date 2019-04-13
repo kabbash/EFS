@@ -87,7 +87,8 @@
         <!-- <span>حظر</span> -->
       </ng-template>
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <button (click)="updateUserAccess(row.email, !row.isBlocked)">
+        <button class="btn" [ngClass]="{'btn-danger':!row.isBlocked,'btn-dark':row.isBlocked}"
+          (click)="updateUserAccess(row.email, !row.isBlocked)">
           <!-- <i class="fa fa-ban" aria-hidden="true"></i> -->
           {{row.isBlocked? "فك حظر"  : "حظر"}}
         </button>
@@ -95,22 +96,27 @@
     </ngx-datatable-column>
   </ngx-datatable>
 </div>
-<div class="selection">
+<div class="selection" id="GoToSelection">
   <div *ngIf="selected?.length > 0">
-    <div>{{selected[0].fullName}}</div>
-    <span>إضافة تصنيف</span>
-    <select [(ngModel)]="roleToAdd" class="form-control">
-      <option *ngFor="let item of roles" [ngValue]="item">
-        {{'manageUsers.roles.'+ item | translate}}
-      </option>
-    </select>
-    <button (click)="addRole()" class="btn buy-price filter-search-button">إضافة</button>
+    <div class="selected-name">{{selected[0].fullName}}</div>
+    <div class="add-select-wrapper">
+      <select [(ngModel)]="roleToAdd" class="form-control">
+        <option selected value="">
+          <span>إضافة تصنيف</span>
+        </option>
+        <option *ngFor="let item of roles" [ngValue]="item">
+          {{'manageUsers.roles.'+ item | translate}}
+        </option>
+      </select>
+      <button (click)="addRole()" class="btn buy-price filter-search-button">إضافة</button>
+    </div>
   </div>
   <div *ngIf="selected[0]?.roles?.length > 0">
-    <ul>
-      <li *ngFor='let sel of selected[0].roles'>
-        <span (click)="removeRole(sel)">{{'manageUsers.roles.'+ sel | translate}} <i class="fa fa-times" aria-hidden="true"></i> </span>
-      </li>
-    </ul>
+    <div class="selected-roles-wrapper">
+      <div class="selected-role" *ngFor='let sel of selected[0].roles'>
+        <span>{{'manageUsers.roles.'+ sel | translate}} <i (click)="removeRole(sel)"
+            class="fa fa-times remove-role-icon" aria-hidden="true"></i> </span>
+      </div>
+    </div>
   </div>
 </div>

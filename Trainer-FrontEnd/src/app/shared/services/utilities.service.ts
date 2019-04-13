@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SliderItemDto } from '../models/slider/slider-item.dto';
 import { ISliderDto } from '../models/slider/ISlider.dto';
+import * as $ from 'jquery';
 
 @Injectable()
 export class UtilitiesService {
@@ -89,5 +90,55 @@ export class UtilitiesService {
       }
     }
 
+  }
+
+  handleHeaderMenu(){
+    
+    $(document).ready(function () {
+      if (document.body.clientWidth > 991) {
+        this.smallSize = false;
+        $('#navbarsExampleDefault li.dropdown').hover(
+          function () {
+            $(this).addClass('hovered-item');
+            $(this)
+              .find('.dropdown-menu')
+              .stop(true, true)
+              .delay(200)
+              .slideDown(200);
+          },
+          function () {
+            $(this).removeClass('hovered-item');
+            $(this)
+              .find('.dropdown-menu')
+              .stop(true, true)
+              .delay(200)
+              .slideUp(100);
+          }
+        );
+      } else {
+        $('.nav-item').click(function () {
+          if ($('.navbar-collapse').hasClass('open') && !$(this).hasClass('dropdown')) {
+            $('.navbar-collapse').removeClass('open');
+          }
+        });
+        $('#navbarsExampleDefault li.dropdown').click(function () {
+          if (!$(this).hasClass('hovered-item')) {
+            $(this).addClass('hovered-item');
+            $(this)
+              .find('.dropdown-menu')
+              .stop(true, true)
+              .delay(200)
+              .slideDown(200);
+          } else {
+            $(this).removeClass('hovered-item');
+            $(this)
+              .find('.dropdown-menu')
+              .stop(true, true)
+              .delay(200)
+              .slideUp(200);
+          }
+        });
+      }
+    });
   }
 }
