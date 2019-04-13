@@ -108,8 +108,8 @@
   },
   "manageCategories": {
     "messages": {
-      "confirmDeleteParent": "هل أنت متأكد من أنك تريد حذف هذاالعنصر الرئيسي؟",
-      "confirmDelete": "هل أنت متأكد من أنك تريد حذف هذاالعنصر؟",
+      "confirmDeleteParent": "هل أنت متأكد من أنك تريد حذف هذاالقسم الرئيسي؟",
+      "confirmDelete": "هل أنت متأكد من أنك تريد حذف هذا القسم ؟",
       "success": "تمت العملية بنجاح"
     }
   },
@@ -208,13 +208,12 @@
       "Admin": "Admin",
       "Client": "Client",
       "RegularUser": "Regular User",
-      "Trainer": "Trainer",
       "ArticleWriter": "Article Writer"
     }
   },
   "neutrints": {
-    "name": "الأسم",
-    "amount": "الكمية",
+    "name": "اسم الصنف",
+    "amount": " الكمية بالجرام",
     "general": "عام",
     "vitamins": "الفيتامينات",
     "lipids": "الدهون",

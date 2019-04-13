@@ -15,15 +15,16 @@ export class ArticleWriterGuard implements CanActivate {
     if (!this.authService.isLoggedIn()) {
       // not logged in so redirect to login page with the return url
       this.router.navigate([config.userAccount.loginPage.route], { queryParams: { returnUrl: state.url } });
-      return false;
+      return false;     
 
     }
-    if (!this.authService.isInRole(Roles.Trainer)) { 
-      // not trainer so redirect to not authorized 
+    if (!this.authService.isInRole(Roles.ArticleWriter)) {  
+      // not ArticleWriter so redirect to not authorized 
       this.router.navigate([config.notfound.route], { queryParams: { returnUrl: state.url } });
       return false;
     }
-    // logged in and trainer so return true
+    // logged in and ArticleWriter so return true
     return true;
   }
 }
+ 

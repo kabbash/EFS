@@ -126,7 +126,6 @@ namespace Trainer
         private void ConfigureManagers(IServiceCollection services)
         {
             services.AddScoped<IAttachmentsManager, AttachmentsManager>();
-            services.AddScoped<IProductsCategoriesManager, ProductsCategoriesManager>();
             services.AddScoped<IProductsManager, ProductsManager>();
             services.AddScoped<IOTrainingManager, OTrainingManager>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
