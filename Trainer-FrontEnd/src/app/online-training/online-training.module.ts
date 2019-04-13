@@ -3,6 +3,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { OnlineTrainingComponent } from './online-training.component';
 import { OnlineTrainingRoutingModule } from './online-training-routing.module';
+import { PackagesComponent } from './packages/packages.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { OnlineTrainingRoutingModule } from './online-training-routing.module';
     NgbPaginationModule,
     NgbAlertModule,
   ],
-  declarations: [OnlineTrainingComponent],
+  declarations: [OnlineTrainingComponent, PackagesComponent],
   providers: [
   ]
 })

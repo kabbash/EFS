@@ -1,0 +1,47 @@
+.online-training-container{
+    background-image: url('/assets/images/online-pg2.jpg');
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .title-style{
+        background: linear-gradient(to bottom, #1a1a1a00, #479099);
+        font-size: 30px;
+        color: white;
+        border:none;
+        margin: auto;
+        display: block;
+        padding: 2px 10px;
+        border-radius: 10px;
+        padding: 0 10px;
+    }
+    .desc-style{
+        .desc-title{
+            margin: 30px 0;
+        }
+        .desc-content{
+            margin-top: 40px;
+            P{
+                font-size: 23px;
+                color: white;
+                line-height: 1.5;
+                text-align: justify;
+            }
+        }
+    }
+    .online-training-desc{
+        margin-top:100px;
+    }
+    .packages{
+        margin-top: 50px;
+        .packages-item{
+            margin:50px 0;
+        }
+    }
+    .apply-desc{
+        margin-bottom: 30px;
+    }
+}
