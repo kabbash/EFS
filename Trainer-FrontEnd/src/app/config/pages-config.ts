@@ -256,6 +256,15 @@ export let config = {
             'name': 'productslist',
             'route': '/users/productslist'
         }
-    }
+    },
+    'onlinetraining': {
+        'name': 'onlinetraining',
+        'route': 'onlinetraining',
+        'loadChildren': './online-training/online-training.module#OnlineTrainingModule',
+        // 'onlinetraining': {
+        //     'name': 'allDemos',
+        //     'route': '/demos/allDemos',
+        // },
+    },
 
 };

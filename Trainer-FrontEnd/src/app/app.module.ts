@@ -29,7 +29,7 @@ export function initializeApp(appConfig: AppConfig) {
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'Trainer-FrontEnd' }),
