@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { ProductCategoryDTO } from '../../../shared/models/products/product-category-dto';
 import { debug } from 'util';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-product-list-item-edit',
@@ -34,9 +35,13 @@ export class ProductListItemEditComponent implements OnInit {
       : undefined)
   }
 
-  constructor(private fb: FormBuilder, private util: UtilitiesService) { }
+  constructor(private fb: FormBuilder, private util: UtilitiesService, private authService: AuthService) { }
 
   ngOnInit() {
+    let currentUser = this.authService.getUserInfo();
+    this.product.phoneNumber = this.product.phoneNumber || this.product.seller.phoneNumber || currentUser.phoneNumber;
+    this.product.seller.fullName = this.product.seller.fullName || currentUser.fullName;
+    
     this.editForm = this.fb.group({
       name: [this.product.name, Validators.required],
       price: [this.product.price, [Validators.required, Validators.pattern(/^\d+$/)]],
@@ -44,7 +49,8 @@ export class ProductListItemEditComponent implements OnInit {
       // profilePicture: [this.profilePicture, [Validators.required]],
       expDate: [this.product.expDate, [Validators.required]],
       isSpecial: [this.product.isSpecial, [Validators.required]],
-      categoryId: [this.product.categoryId, [Validators.required]]
+      categoryId: [this.product.categoryId, [Validators.required]],
+      phoneNumber: [this.product.phoneNumber, Validators.required]
     });
 
   }
@@ -52,8 +58,8 @@ export class ProductListItemEditComponent implements OnInit {
   get f() { return this.editForm.controls; }
 
 
-  getData(isUpdate?:boolean) {
-    
+  getData(isUpdate?: boolean) {
+
     let editedProduct = new productListItemDto();
     editedProduct.name = this.f.name.value;
     editedProduct.price = this.f.price.value;
@@ -63,11 +69,12 @@ export class ProductListItemEditComponent implements OnInit {
     editedProduct.categoryId = this.f.categoryId.value;
     editedProduct.updatedImages = this.product.updatedImages;
     editedProduct.isActive = this.product.isActive;
+    editedProduct.phoneNumber = this.f.phoneNumber.value;
 
     this.util.setSliderProfilePic(editedProduct, this.product.id == 0);
 
     const formData = new FormData();
-     
+
     this.util.appendFormData(formData, editedProduct);
     return formData;
   }

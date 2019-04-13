@@ -62,16 +62,14 @@ export class LoginPageComponent implements OnInit {
         this.appService.loading = false;
       }))
       .subscribe(result => {
-        debugger;
         if (result.status == 200)
           this.router.navigate([this.returnUrl]);
-        else if (result.errorCode == AuthenticationErrorsCode.EmailNotConfirmed)
-          this.router.navigate([config.userAccount.emailNotConfirmed.route]);
-
 
       }, error => {
-        debugger;
-        this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
+        if (error.error.errorCode == AuthenticationErrorsCode.EmailNotConfirmed)
+          this.router.navigate([config.userAccount.emailNotConfirmed.route]);
+        else
+          this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
       });
   }
 }

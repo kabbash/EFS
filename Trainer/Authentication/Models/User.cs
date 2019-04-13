@@ -15,5 +15,6 @@ namespace Authentication.Models
         public bool EmailConfirmed { get; set; }
         public List<string> Roles { get; internal set; }
         public bool IsBlocked { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }
