@@ -6,6 +6,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import { NeutrintsService } from '../../shared/services/neutrints.service';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-your-tools-meals-catergories',
@@ -23,7 +24,7 @@ export class MealsComponent implements OnInit {
   selectedFoodItems: FoodItem[] = [];
   loading = false;
 
-  constructor(private service: NeutrintsService) { }
+  constructor(private service: NeutrintsService, public appService: AppService) { }
 
   ngOnInit() {
     this.searchTextChanged
