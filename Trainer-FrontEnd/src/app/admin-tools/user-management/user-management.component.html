@@ -53,19 +53,18 @@
         {{value}}
       </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="roles">
+    <!-- <ngx-datatable-column name="roles">
       <ng-template let-column="column" ngx-datatable-header-template>
         <span>التصنيف</span>
       </ng-template>
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <!-- {{'manageUsers.roles.'+ value | translate}} -->
         <ul>
           <li *ngFor="let item of value">
             {{'manageUsers.roles.'+ item | translate}}
           </li>
         </ul>
       </ng-template>
-    </ngx-datatable-column>
+    </ngx-datatable-column> -->
     <ngx-datatable-column name="emailConfirmed">
       <ng-template let-column="column" ngx-datatable-header-template>
         <span>مؤكد</span>
@@ -96,7 +95,7 @@
     </ngx-datatable-column>
   </ngx-datatable>
 </div>
-<div class="selection" id="GoToSelection">
+<div class="selection" id="GoToSelection" [ngClass]="{'hide-till-selection':!selected?.length}">
   <div *ngIf="selected?.length > 0">
     <div class="selected-name">{{selected[0].fullName}}</div>
     <div class="add-select-wrapper">

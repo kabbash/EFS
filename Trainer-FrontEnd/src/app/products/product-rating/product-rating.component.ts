@@ -48,7 +48,7 @@ export class ProductRatingComponent implements OnInit {
       reveiw.createdAt = this.util.getDateFormatted((new Date()).toISOString());
       this.rate.entityId = this.product.id;
       this.repositoryService.create('itemsreview/AddRate', this.rate).subscribe(data => {
-        alert('success');
+        alert('تم اضافة التقييم');
 
         this.product.reviews = this.product.reviews.filter(function (item, idx) {
           return item.isCurrent !== true;

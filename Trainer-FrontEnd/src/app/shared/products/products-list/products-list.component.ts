@@ -109,7 +109,7 @@ export class ProductsListComponent implements OnInit {
     rateDto.entityId = event.productId;
     rateDto.rate = event.rate;
     this.repositoryService.create('products/addrate', rateDto).subscribe(data => {
-      alert('success');
+      alert('تم تعديل التقييم');
       this.appService.loading = false;
     }, error => {
       alert(error);

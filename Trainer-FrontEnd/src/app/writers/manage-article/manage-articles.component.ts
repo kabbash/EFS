@@ -38,6 +38,7 @@ export class ManageArticlesComponent implements OnInit {
 
   ngOnInit() {
 
+    debugger;
     if (this.articleId > 0) {
       this.route.data.subscribe(result => {
         this.article = result.articleDetails.data;
