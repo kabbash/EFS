@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
     "serve:ssr": "node dist/server",
-    "build:client-and-server-bundles": "ng build --prod && ng run Trainer-FrontEnd:server",
+    "build:client-and-server-bundles": "ng build --prod --aot && ng run Trainer-FrontEnd:server",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
   },
   "private": true,
@@ -30,7 +30,7 @@
     "@nguniversal/module-map-ngfactory-loader": "^6.1.0",
     "@ngx-translate/core": "^11.0.0",
     "@ngx-translate/http-loader": "^4.0.0",
-    "@swimlane/ngx-datatable": "^14.0.0",
+    "@swimlane/ngx-datatable": "~10.4.0",
     "angular-font-awesome": "^3.1.2",
     "angular-froala-wysiwyg": "^2.9.1",
     "bootbox": "^4.4.0",
