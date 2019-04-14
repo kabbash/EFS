@@ -3,7 +3,7 @@
    <div class="main-table-container">
       <div class="add-food">
          <button class="open-modal-btn btn btn-info btn-sm" data-toggle="modal" data-target="#searchModal" (click)="openModal()">
-            اضافه صنف جديد<span class="fa fa-plus fa-sm" ></span>
+            اضافه طعام<span class="fa fa-plus fa-sm" ></span>
          </button>
       </div>
       <div class="table">
@@ -19,7 +19,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="amount">
                <ng-template let-column="column" ngx-datatable-header-template>
-                  <span>الكمية بالجرام</span>
+                  <span>الكمية</span>
                </ng-template>
                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                   {{value}}
@@ -433,7 +433,7 @@
          <div class="modal-body">
             <div>
                <input type='text' style='padding:8px;margin:15px auto;width:60%;'
-                  placeholder='Type to filter food items' (keyup)='search($event)' [(ngModel)]=searchTxt />
+                  placeholder='اختر صنف' (keyup)='search($event)' [(ngModel)]=searchTxt />
                <ngx-datatable #table class='material' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
                   [rowHeight]="50" [scrollbarV]="true" [selected]="selected" [selectionType]="'single'"
                   (select)='onSelect($event)' [rows]='rows' [loadingIndicator]="loading">
@@ -448,10 +448,10 @@
                </ngx-datatable>
             </div>
             <div>
-               <span>الكمية بالجرام</span>
+               <span>الكمية</span>
                <input class="add-food-input" type="number" [(ngModel)]=servingAmont />
                <button class="btn btn-info button-add-restyle" data-toggle="modal" data-target="#searchModal"
-                  (click)=addFoodItem() [disabled]="!servingAmont || servingAmont <= '0'">
+                  (click)=addFoodItem() [disabled]="!servingAmont || servingAmont <= '0' || !selected || selected.length <= 0">
                   إضافة
                </button></div>
          </div>

@@ -7,4 +7,5 @@ export class User {
     emailConfirmed: boolean;
     isBlocked: boolean;
     email: string;
+    phoneNumber: string = "";
 }

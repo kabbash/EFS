@@ -24,5 +24,6 @@ namespace Products.Core.Models
         public bool IsSpecial { get; set; }
         public decimal Rate { get; set; }
         public SellerInfo Seller { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

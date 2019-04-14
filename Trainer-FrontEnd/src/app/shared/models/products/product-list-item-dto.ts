@@ -19,7 +19,8 @@ export class productListItemDto implements ISliderDto {
   isActive: boolean = null;
   images: SliderItemDto[];
   updatedImages: SliderItemDto[];
-
+  phoneNumber: string;
+  
   constructor() {
     this.images = new Array<SliderItemDto>();
     this.updatedImages = new Array<SliderItemDto>();
@@ -31,7 +32,7 @@ export class Seller {
   phoneNumber: string;
 }
 export class Review {
-  comment : string;
+  comment: string;
   createdAt: string;
   rate: Number;
   reviwer: Reviewer;

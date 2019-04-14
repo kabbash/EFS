@@ -32,6 +32,7 @@ namespace Shared.Core.Models
         public decimal Rate { get; set; }
         public bool IsSpecial { get; set; }
         public string RejectReason { get; set; }
+        public string PhoneNumber { get; set; }
 
         [ForeignKey("CategoryId")]
         public virtual ProductsCategories Category { get; set; }

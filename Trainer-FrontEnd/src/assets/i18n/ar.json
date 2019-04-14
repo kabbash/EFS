@@ -56,7 +56,7 @@
     "authentication": {
       "errorCodes": {
         "0": "",
-        "1": "",
+        "1": "اسم المستخدم او كلمة المرور غير صحيحة",
         "2": "",
         "3": ""
       }
@@ -108,8 +108,8 @@
   },
   "manageCategories": {
     "messages": {
-      "confirmDeleteParent": "هل أنت متأكد من أنك تريد حذف هذاالقسم الرئيسي؟",
-      "confirmDelete": "هل أنت متأكد من أنك تريد حذف هذا القسم ؟",
+      "confirmDeleteParent": "هل أنت متأكد من أنك تريد حذف هذاالعنصر الرئيسي؟",
+      "confirmDelete": "هل أنت متأكد من أنك تريد حذف هذاالعنصر؟",
       "success": "تمت العملية بنجاح"
     }
   },
@@ -208,12 +208,13 @@
       "Admin": "Admin",
       "Client": "Client",
       "RegularUser": "Regular User",
+      "Trainer": "Trainer",
       "ArticleWriter": "Article Writer"
     }
   },
   "neutrints": {
-    "name": "اسم الصنف",
-    "amount": " الكمية بالجرام",
+    "name": "الأسم",
+    "amount": "الكمية",
     "general": "عام",
     "vitamins": "الفيتامينات",
     "lipids": "الدهون",
