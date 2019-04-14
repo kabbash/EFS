@@ -1,8 +1,8 @@
 FROM node:8-alpine as buildContainer
 WORKDIR /app
 COPY ./package.json ./package-lock.json /app/
-# RUN npm config set cache ../npm-cache --global 
-# RUN npm cache clean --force
+RUN npm config set cache ../npm-cache --global 
+RUN npm cache clean --force
 RUN npm install
 RUN npm unistall @types/lodash
 COPY . /app
