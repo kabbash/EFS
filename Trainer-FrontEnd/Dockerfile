@@ -4,6 +4,7 @@ COPY ./package.json ./package-lock.json /app/
 # RUN npm config set cache ../npm-cache --global 
 # RUN npm cache clean --force
 RUN npm install
+RUN npm unistall @types/lodash
 COPY . /app
 RUN node_modules/.bin/ng build --prod --aot
 RUN node_modules/.bin/ng run Trainer-FrontEnd:server
