@@ -6,7 +6,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import { NeutrintsService } from '../../shared/services/neutrints.service';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-your-tools-meals-catergories',
