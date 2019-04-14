@@ -13,9 +13,7 @@ module.exports = {
     filename: '[name].js'
   },
   module: {
-    rules: [{ test: /\.ts$/, loader: 'ts-loader' },
-    { test: /\.css$/, use: ['to-string-loader', 'css-loader', 'postcss-loader'] }
-  ]
+    rules: [{ test: /\.ts$/, loader: 'ts-loader' }]
   },
   plugins: [
     // Temporary Fix for issue: https://github.com/angular/angular/issues/11580
