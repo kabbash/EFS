@@ -5,7 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { ProductCategoryDTO } from '../../../shared/models/products/product-category-dto';
 import { debug } from 'util';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-product-list-item-edit',
