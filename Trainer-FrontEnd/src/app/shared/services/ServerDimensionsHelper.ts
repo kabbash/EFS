@@ -1,10 +1,13 @@
 import { Injectable, Inject } from '@angular/core';
 import { Request } from 'express';
 import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { DimensionsHelper } from '@swimlane/ngx-datatable/src/services';
+
 @Injectable()
-export class ServerDimensionsHelper {
+export class ServerDimensionsHelper extends DimensionsHelper {
 
     constructor(@Inject(REQUEST) private request: Request) {
+        super();
     }
 
     getDimensions(element: Element): ClientRect {

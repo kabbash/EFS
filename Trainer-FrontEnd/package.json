@@ -30,7 +30,7 @@
     "@nguniversal/module-map-ngfactory-loader": "^6.1.0",
     "@ngx-translate/core": "^11.0.0",
     "@ngx-translate/http-loader": "^4.0.0",
-    "@swimlane/ngx-datatable": "~10.4.0",
+    "@swimlane/ngx-datatable": "~11.3.0",
     "angular-font-awesome": "^3.1.2",
     "angular-froala-wysiwyg": "^2.9.1",
     "bootbox": "^4.4.0",

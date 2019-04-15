@@ -38,6 +38,8 @@ import { ProductListItemEditComponent } from './products/product-list-item-edit/
 import { ProductListItemComponent } from './products/product-list-item/product-list-item.component';
 import { ScrollbarHelper } from '@swimlane/ngx-datatable/release/services';
 import { ServerScrollBarHelper } from './services/ServerScrollBarHelper';
+import { DimensionsHelper } from '@swimlane/ngx-datatable/src/services';
+import { ServerDimensionsHelper } from './services/ServerDimensionsHelper';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 @NgModule({
   imports: [
@@ -111,11 +113,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     ProductReviewService,
     ArticleDetailsResolver,
     ProductsService,
-    ErrorHandlingService,
-    {
-      provide: ScrollbarHelper,
-      useClass: ServerScrollBarHelper
-    }
+    ErrorHandlingService
   ]
 })
 export class SharedModule { }
