@@ -9,9 +9,20 @@ import { join } from 'path';
 import 'localstorage-polyfill';
 const MockBrowser = require('mock-browser').mocks.MockBrowser;
 const mock = new MockBrowser();
+const domino = require('domino');
+const fs = require('fs');
+const path = require('path');
+const templateA = fs
+  .readFileSync(path.join('dist/browser', 'index.html'))
+  .toString();
+const win = domino.createWindow(templateA);
+win.Object = Object;
+win.Math = Math;
 
-global['localStorage'] = localStorage;
-global['window'] = mock.getWindow();
+global['window'] = win;
+global['document'] = win.document;
+global['branch'] = null;
+global['object'] = win.object;
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
