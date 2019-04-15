@@ -28,10 +28,7 @@
               "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
               "node_modules/froala-editor/css/froala_style.min.css",
               "node_modules/font-awesome/css/font-awesome.css",
-              "node_modules/ngx-toastr/toastr.css",
-              "node_modules/@swimlane/ngx-datatable/release/index.css",
-              "node_modules/@swimlane/ngx-datatable/release/themes/material.css",
-              "node_modules/@swimlane/ngx-datatable/release/assets/icons.css"
+              "node_modules/ngx-toastr/toastr.css"
 
             ],
             "scripts": [
