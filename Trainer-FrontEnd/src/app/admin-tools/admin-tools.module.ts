@@ -27,8 +27,6 @@ import { ManageBannersComponent } from './manage-banners/manage-banners.componen
 import { UserManagementComponent } from './user-management/user-management.component';
 import { RolesResolver } from './resolvers/roles-list.resolver';
 import { UsersListResolver } from './resolvers/users-list.resolver';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ManageNeutrintsComponent } from './neutrints/manage-neutrints/manage-neutrints.component';
 import { FoodItemsListComponent } from './neutrints/food-items-list/food-items-list.component';
 import { FoodItemResolver } from './resolvers/food-item-resolver';
@@ -51,7 +49,6 @@ import { ProgramDetailsResolver } from './resolvers/program-details-resolver';
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
-    NgxDatatableModule
   ],
   declarations:
     [

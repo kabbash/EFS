@@ -36,6 +36,11 @@ import { ProductsListComponent } from './products/products-list/products-list.co
 import { ProductItemComponent } from './products/product-item/product-item.component';
 import { ProductListItemEditComponent } from './products/product-list-item-edit/product-list-item-edit.component';
 import { ProductListItemComponent } from './products/product-list-item/product-list-item.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ScrollbarHelper } from '@swimlane/ngx-datatable/release/services';
+import { ServerScrollBarHelper } from './services/ServerScrollBarHelper';
+import { DimensionsHelper } from '@swimlane/ngx-datatable/src/services';
+import { ServerDimensionsHelper } from './services/ServerDimensionsHelper';
 
 @NgModule({
   imports: [
@@ -47,7 +52,8 @@ import { ProductListItemComponent } from './products/product-list-item/product-l
     TranslateModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
-    ImageCropperModule
+    ImageCropperModule,
+    NgxDatatableModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -107,7 +113,15 @@ import { ProductListItemComponent } from './products/product-list-item/product-l
     ProductReviewService,
     ArticleDetailsResolver,
     ProductsService,
-    ErrorHandlingService
+    ErrorHandlingService,
+    {
+      provide: ScrollbarHelper,
+      useClass: ServerScrollBarHelper
+    },
+    {
+      provide: DimensionsHelper,
+      useClass: ServerDimensionsHelper
+    }
   ]
 })
 export class SharedModule { }
