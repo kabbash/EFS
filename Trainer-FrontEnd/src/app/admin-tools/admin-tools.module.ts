@@ -48,7 +48,7 @@ import { ProgramDetailsResolver } from './resolvers/program-details-resolver';
     FroalaViewModule.forRoot(),
     NgbModule,
     NgbPaginationModule,
-    NgbAlertModule,
+    NgbAlertModule
   ],
   declarations:
     [

@@ -36,12 +36,11 @@ import { ProductsListComponent } from './products/products-list/products-list.co
 import { ProductItemComponent } from './products/product-item/product-item.component';
 import { ProductListItemEditComponent } from './products/product-list-item-edit/product-list-item-edit.component';
 import { ProductListItemComponent } from './products/product-list-item/product-list-item.component';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ScrollbarHelper } from '@swimlane/ngx-datatable/release/services';
 import { ServerScrollBarHelper } from './services/ServerScrollBarHelper';
 import { DimensionsHelper } from '@swimlane/ngx-datatable/src/services';
 import { ServerDimensionsHelper } from './services/ServerDimensionsHelper';
-
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 @NgModule({
   imports: [
     CommonModule,
@@ -79,7 +78,8 @@ import { ServerDimensionsHelper } from './services/ServerDimensionsHelper';
     SearchFilterComponent,
     ClientFilterComponent,
     ImageCropperModule,
-    ImageCropperComponent
+    ImageCropperComponent,
+    NgxDatatableModule
   ],
   declarations: [
     FooterComponent,
@@ -103,7 +103,8 @@ import { ServerDimensionsHelper } from './services/ServerDimensionsHelper';
     SliderEditModeComponent,
     SearchFilterComponent,
     ClientFilterComponent,
-    ImageCropperComponent
+    ImageCropperComponent,
+    NgxDatatableModule
   ],
   providers: [
     UtilitiesService,
