@@ -39,7 +39,7 @@ export class ProductItemComponent implements OnInit {
           this.productReviewService.productReviewList.findIndex(el => el.id === this.product.id),
           1
         );
-        alert('success');
+        alert('تم حذف المنتج');
       }, error => {
         alert(error);
       });

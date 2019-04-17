@@ -181,11 +181,12 @@
 }
 
 li.nav-item.hovered-item {
-  background-color: rgba(0, 188, 212, .5);
+  background-color: rgba(0, 188, 212, .8);
 }
 
 .hovered-item .nav-link:hover, .hovered-item .nav-link {
   color: #ffffff !important;
+  cursor: pointer;
 }
 
 .hovered-item .nav-link:hover {
@@ -234,7 +235,7 @@ li.nav-item {
 
 .navbar-collapse ul.dropdown-menu {
   padding: 0;
-  background: rgba(0, 188, 212, .5);
+  background: rgba(0, 188, 212, .8);
   border: none;
   border-radius: 0;
   top: 97%;

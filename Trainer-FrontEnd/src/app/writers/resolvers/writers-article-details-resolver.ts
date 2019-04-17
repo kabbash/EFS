@@ -13,16 +13,15 @@ export class WritersArticleDetailsResolver implements Resolve<Observable<ResultM
   constructor(private repositoryService: RepositoryService, private errorHandlingService: ErrorHandlingService) {
   }
   resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<ArticleDetialsDto>> {
-    if (route.params['articleId'] !== 0) {
-     return this.repositoryService.getData<ArticleDetialsDto>('articles/' + route.params['articleId']).pipe(
-       map((data) => data), catchError(error => {
-         this.errorHandlingService.handle(error);
-        return throwError(error);
-       })
-     );
-    } else {
+    debugger;
+    if (!route.params['articleId'] || route.params['articleId'] == "0")
       return null;
 
-    }
+    return this.repositoryService.getData<ArticleDetialsDto>('articles/' + route.params['articleId']).pipe(
+      map((data) => data), catchError(error => {
+        this.errorHandlingService.handle(error);
+        return throwError(error);
+      })
+    );
   }
 }

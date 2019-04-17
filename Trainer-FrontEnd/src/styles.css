@@ -14,6 +14,7 @@ html, body {
 
 body {
   padding-top: 69px;
+  padding-right: 0 !important;
 }
 
 .fr-box.fr-basic.fr-top .fr-wrapper {
@@ -75,17 +76,33 @@ body {
 div.modal-body {
   padding-top: 0;
   display: flex;
+  flex-direction: column;
   min-height: 400px;
 }
 
+div.body-most {
+  padding-top: 0;
+  display: flex;
+  min-height: 300px;
+}
+.rate-add{
+  display: flex;
+  justify-content: center;
+  min-height: 50px;
+  align-items: flex-end;
+}
 .modal-body .img-wrapper {
   padding: 20px;
   border: 1px solid gray;
   border-radius: 10px;
 }
 
+div.modal-dialog{
+  min-width: 750px;
+}
 .modal-body .modal-img {
-  flex: 0 0 200px;
+  flex: 0 0 325px;
+  padding-top: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,7 +110,7 @@ div.modal-body {
 }
 
 .modal-body .modal-img img {
-  max-height: 150px;
+  height: 185px;
 }
 
 .modal-body .modal-description {
@@ -215,7 +232,10 @@ li.page-item.active .page-link {
 }
 
 .product-img-wrapper {
-  max-width: 175px;
+  max-width: fit-content;
+  padding: 0 !important;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .edit-delete-card {

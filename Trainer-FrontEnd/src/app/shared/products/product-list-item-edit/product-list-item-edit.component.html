@@ -5,19 +5,17 @@
                 <div class="form-group-inline">
                     <label class="desc-entity">الفئة</label>
                     &nbsp;
-                    <select class="form-control" [value]=product.categoryId formControlName="categoryId"
-                        [ngClass]="{ 'is-invalid': submitted && f.categoryId.errors,'is-valid': submitted && !f.categoryId.errors}">
+                    <select class="form-control" [value]=product.categoryId formControlName="categoryId" [ngClass]="{ 'is-invalid': submitted && f.categoryId.errors,'is-valid': submitted && !f.categoryId.errors}">
                         <option *ngFor="let category of categories" [value]="category.id">
                             {{category.name}}
                         </option>
                     </select>
                 </div>
             </div>
-            <div class="desc-item">
+            <div *ngIf="showProductType" class="desc-item">
                 <div class="form-group-inline">
                     <label class="desc-entity">النوع</label>
-                    <div class="form-control-group"
-                        [ngClass]="{ 'is-invalid': submitted && f.isSpecial.errors,'is-valid': submitted && !f.isSpecial.errors}">
+                    <div class="form-control-group" [ngClass]="{ 'is-invalid': submitted && f.isSpecial.errors,'is-valid': submitted && !f.isSpecial.errors}">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input-rtl" type="radio" name="isSpecial" id="isSpecialTrue"
                                 formControlName="isSpecial" [value]="true">
@@ -35,16 +33,14 @@
                 <div class="form-group-inline">
                     <label class="desc-entity">السعر</label>
                     &nbsp;
-                    <input type="number" class="form-control" [value]="product.price" formControlName="price"
-                        [ngClass]="{ 'is-invalid': submitted && f.price.errors,'is-valid': submitted && !f.price.errors}">
+                    <input type="number" class="form-control" [value]="product.price" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f.price.errors,'is-valid': submitted && !f.price.errors}">
                 </div>
             </div>
             <div class="desc-item">
                 <div class="form-group-inline">
                     <label class="desc-entity">الإسم</label>
                     &nbsp;
-                    <input type="text" class="form-control" [value]="product.name" formControlName="name"
-                        [ngClass]="{ 'is-invalid': submitted && f.name.errors,'is-valid': submitted && !f.name.errors}">
+                    <input type="text" class="form-control" [value]="product.name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors,'is-valid': submitted && !f.name.errors}">
                 </div>
             </div>
             <div class="desc-item">
@@ -65,9 +61,8 @@
                     <label class="desc-entity">تاريخ الإنتهاء</label>
                     &nbsp;
                     <div class="input-group-nowrap">
-                        <input class="form-control" name="dp" [(ngModel)]="product.expDate" ngbDatepicker
-                            #d="ngbDatepicker" formControlName="expDate" readonly (click)="d.toggle()"
-                            [ngClass]="{ 'is-invalid': submitted && f.expDate.errors,'is-valid': submitted && !f.expDate.errors}">
+                        <input class="form-control" name="dp" [(ngModel)]="product.expDate" ngbDatepicker #d="ngbDatepicker"
+                            formControlName="expDate" readonly (click)="d.toggle()" [ngClass]="{ 'is-invalid': submitted && f.expDate.errors,'is-valid': submitted && !f.expDate.errors}">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
                                 <i class="fa fa-calendar"></i></button>

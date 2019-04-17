@@ -19,6 +19,7 @@ export class ProductListItemEditComponent implements OnInit {
   uploadedFile: string | ArrayBuffer;
   editForm: FormGroup;
   submitted = false;
+  showProductType  = false;
   @Input() categories: ProductCategoryDTO[];
 
   get imageSrc() {
@@ -39,9 +40,10 @@ export class ProductListItemEditComponent implements OnInit {
 
   ngOnInit() {
     let currentUser = this.authService.getUserInfo();
-    this.product.phoneNumber = this.product.phoneNumber || this.product.seller.phoneNumber || currentUser.phoneNumber;
+    this.product.phoneNumber = this.product.phoneNumber || this.product.seller.phoneNumber || currentUser.phoneNumber || "";
     this.product.seller.fullName = this.product.seller.fullName || currentUser.fullName;
-    
+    this.showProductType = this.authService.isAdmin();
+
     this.editForm = this.fb.group({
       name: [this.product.name, Validators.required],
       price: [this.product.price, [Validators.required, Validators.pattern(/^\d+$/)]],

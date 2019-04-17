@@ -21,6 +21,7 @@ export class ProductsListComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   selectedProduct: productListItemDto;
   pagerData: PagerDto;
+  hasItems = false;
   private pageSize = AppConfig.settings.pagination.productsForAdmin.pageSize;
 
   @ViewChild(SearchFilterComponent) searchFilterComponent: SearchFilterComponent;
@@ -30,12 +31,14 @@ export class ProductsListComponent implements OnInit {
     private router: Router, private service: UsersService, private appService: AppService) { }
 
   ngOnInit() {
+    debugger;
     this.route.data.subscribe(result => {
       this.pagerData = result.productsList.data;
       this.productsList = result.productsList.data.results;
+      this.hasItems = result.productsList.data.results.length > 0 ;
     });
 
-    this.searchFilterComponent.filterStatuses.selectedValue = 1;
+    // this.searchFilterComponent.filterStatuses.selectedValue = 1;
   }
 
   reloadItems() {
