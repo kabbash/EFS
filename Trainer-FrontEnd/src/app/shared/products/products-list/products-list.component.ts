@@ -21,6 +21,7 @@ import { AppConfig } from '../../../../config/app.config';
 export class ProductsListComponent implements OnInit {
   products: productListItemDto[];
   specialProducts: productListItemDto[];
+  filteredSpecialProducts: productListItemDto[];
   currentPageSpecialProducts: productListItemDto[];
   baseurl = environment.filesBaseUrl;
   selectedProduct: productListItemDto;
@@ -30,6 +31,7 @@ export class ProductsListComponent implements OnInit {
   isManageProductReview = false;
   pagerData: PagerDto;
   nextPageUrl: string;
+  hasItems = false;
   specialProductsPageSize: number = AppConfig.settings.pagination.specialProductsForAny.pageSize;
 
   @ViewChild(ClientFilterComponent) searchFilterComponent: ClientFilterComponent;
@@ -43,7 +45,6 @@ export class ProductsListComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
     });
-    this.categoryDescription = this.productsService.selectedCategory ? this.productsService.selectedCategory.description : '';
   }
 
   ngOnInit() {
@@ -54,6 +55,10 @@ export class ProductsListComponent implements OnInit {
       this.currentPageSpecialProducts = this.specialProducts.slice(0, this.specialProductsPageSize);
       this.productReviewService.productReviewList = result.productList.data.results;
       this.products = this.productReviewService.productReviewList;
+      this.hasItems = (this.productReviewService.productReviewList && this.productReviewService.productReviewList.length > 0)
+        || this.specialProducts.length > 0;
+
+      this.categoryDescription = this.productsService.selectedCategory ? this.productsService.selectedCategory.description : '';
       this.appService.loading = false;
     });
     this.isProductReview = this.router.url === config.products.productReviews.route;
@@ -78,8 +83,14 @@ export class ProductsListComponent implements OnInit {
 
   setSpecialProducts() {
 
-    if (this.pagerData.currentPage <= 4)
-      this.currentPageSpecialProducts = this.specialProducts.slice(((this.pagerData.currentPage - 1) * this.specialProductsPageSize), this.pagerData.currentPage * this.specialProductsPageSize);
+    debugger;
+    if (this.searchFilterComponent.searchTxt)
+      this.filteredSpecialProducts = this.specialProducts.filter(c => c.name.indexOf(this.searchFilterComponent.searchTxt) != -1);
+    else
+      this.filteredSpecialProducts = Object.assign([], this.specialProducts);
+
+    if (this.pagerData.currentPage <= 3 && this.filteredSpecialProducts.length)
+      this.currentPageSpecialProducts = this.filteredSpecialProducts.slice(((this.pagerData.currentPage - 1) * this.specialProductsPageSize), this.pagerData.currentPage * this.specialProductsPageSize);
     else
       this.currentPageSpecialProducts = [];
   }
@@ -87,6 +98,7 @@ export class ProductsListComponent implements OnInit {
     this.appService.loading = true;
 
     this.setSpecialProducts();
+
     this.repositoryService.getData(`${this.nextPageUrl}?isSpecial=false&pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}&searchText=${this.searchFilterComponent.searchTxt}&categoryId=${this.categoryId}`).subscribe((data: any) => {
       this.pagerData = data.data;
       this.productReviewService.productReviewList = data.data.results;

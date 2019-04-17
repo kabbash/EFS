@@ -1,6 +1,8 @@
-<app-search-filter (search)="reloadItems()"></app-search-filter>
-<div class="no-results-search-wrapper" *ngIf="!productsList.length">
-  <div class="no-results-search"><i class="fa fa-warning waring-search-icon"></i>لا يوجد اي نتائج للبحث</div>
+<app-search-filter (search)="reloadItems()" *ngIf="hasItems"></app-search-filter>
+<div class="no-results-search-wrapper" *ngIf="! productsList.length">
+  <div class="no-results-search"><i class="fa fa-warning waring-search-icon"></i>
+    {{ hasItems ? 'لا يوجد اى نتائج للبحث ' : 'لا يوجد لديك اي منتجـات '}}
+  </div>
 </div>
 <div class="row admin-product-list-wrapper">
   <button class="btn admin-add-button" (click)="addProduct()"> <i _ngcontent-c6="" class="fa fa-plus"></i></button>

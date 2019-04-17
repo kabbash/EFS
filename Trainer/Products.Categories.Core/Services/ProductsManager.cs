@@ -83,7 +83,7 @@ namespace Products.Core.Services
                     SubFolderName = productFolderName
                 };
 
-                if (sliderDto.Items.Count > 0)
+                if (sliderDto.Items != null && sliderDto.Items.Count > 0)
                     newProduct.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto);
 
                 _unitOfWork.ProductsRepository.Insert(newProduct);
@@ -95,7 +95,7 @@ namespace Products.Core.Services
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.OK,
-                    Data = GetById(newProduct.Id).Data //_unitOfWork.ProductsRepository.GetById(newProduct.Id).Adapt<ProductsDto>()
+                    Data = GetById(newProduct.Id).Data
                 };
             }
             catch (Exception ex)

@@ -7,11 +7,12 @@
 }
 
 :host ::ng-deep .carousel-control-prev {
-    left: -18px;
-    background: black;
+    left: 0;
+    background: rgba(0,0,0,0.4);
 }
 
 :host ::ng-deep .carousel-control-next {
-    right: -18px;
-    background: black;
+    right: 0;
+    background: rgba(0,0,0,0.4);
+    
 }
