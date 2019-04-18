@@ -28,6 +28,7 @@ export class WritersArticlesListComponent implements OnInit {
   pagerData: PagerDto;
   public championshipsCategory= PredefinedCategories.Championships;
   private pageSize = AppConfig.settings.pagination.articlesForWriters.pageSize;
+  hasItems: boolean;
 
   @ViewChild(SearchFilterComponent) searchFilterComponent: SearchFilterComponent;
 
@@ -38,6 +39,7 @@ export class WritersArticlesListComponent implements OnInit {
     this.route.data.subscribe(result => {
       this.articlesList = result.articlesList.data.results;
       this.pagerData = result.articlesList.data;
+      this.hasItems = true;
     });
   }
 

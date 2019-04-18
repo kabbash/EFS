@@ -207,30 +207,12 @@ namespace Authentication.Services
 
                 _unitOfWork.UsersRepository.Insert(userEntity);
                 _unitOfWork.Commit();
-                switch (userData.Type)
+
+                AddRoleToUser(new UserRoleDto
                 {
-                    case Enums.UserEnum.Clinet:
-                        AddRoleToUser(new UserRoleDto
-                        {
-                            RoleName = "Client",
-                            Username = userData.Email
-                        });
-                        break;
-                    case Enums.UserEnum.Trainer:
-                        AddRoleToUser(new UserRoleDto
-                        {
-                            RoleName = "RegularUser",
-                            Username = userData.Email
-                        });
-                        break;
-                    default:
-                        AddRoleToUser(new UserRoleDto
-                        {
-                            RoleName = "RegularUser",
-                            Username = userData.Email
-                        });
-                        break;
-                }
+                    RoleName = "RegularUser",
+                    Username = userData.Email
+                });
 
                 var replacements = SetRegisterMailReplacements(userEntity.FullName, userEntity.Email, _settings.EmailSettings.RegisterEmail.VerifyEmailUrl, userEntity.SecurityStamp);
                 _emailService.SendEmailAsync(userEntity.Email, _settings.EmailSettings.RegisterEmail.Subject, EmailTemplatesEnum.Register, replacements);

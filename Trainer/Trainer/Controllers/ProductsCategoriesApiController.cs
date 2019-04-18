@@ -24,27 +24,18 @@ namespace Trainer.Controllers
             _attachmentManager = attachmentsManager;
         }
 
-        // GET: api/ProductsCategories
         [HttpGet]
         public ActionResult Get()
         {
             return GetStatusCodeResult(_categoriesManager.GetAll());
         }
 
-
-        //[HttpGet("getLeafCategories")]
-        //public ActionResult GetLeafCategories()
-        //{
-        //    return GetStatusCodeResult(_categoriesManager.GetLeafCategories());
-        //}
-        // GET: api/ProductsCategories/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
             return GetStatusCodeResult(_categoriesManager.GetById(id));
         }
 
-        // POST: api/ProductsCategories
         [HttpPost]
         public ActionResult Post([FromForm] ProductsCategoryDto categoryDto)
         {
@@ -58,7 +49,6 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_categoriesManager.Insert(categoryDto));
         }
 
-        // PUT: api/ProductsCategories/5
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromForm] ProductsCategoryDto categoryDto)
         {
@@ -74,7 +64,6 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_categoriesManager.Update(categoryDto, id));
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {

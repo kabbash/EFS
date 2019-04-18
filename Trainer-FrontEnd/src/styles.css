@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Cairo:300,400,600,700|Tajawal:300,400,500,700&amp;subset=arabic,latin-ext');
-@import '~@swimlane/ngx-datatable/release/index.css';
-@import '~@swimlane/ngx-datatable/release/themes/material.css';
-@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import '../node_modules/@swimlane/ngx-datatable/release/index.css';
+@import '../node_modules/@swimlane/ngx-datatable/release/themes/material.css';
+@import '../node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
 
 @import url('https://fonts.googleapis.com/css?family=Cairo:300,400,600,700|Tajawal:300,400,500,700&amp;subset=arabic,latin-ext');
 @font-face {
@@ -25,6 +25,7 @@ html, body {
 
 body {
   padding-top: 69px;
+  padding-right: 0 !important;
 }
 
 .fr-box.fr-basic.fr-top .fr-wrapper {
@@ -86,17 +87,33 @@ body {
 div.modal-body {
   padding-top: 0;
   display: flex;
+  flex-direction: column;
   min-height: 400px;
 }
 
+div.body-most {
+  padding-top: 0;
+  display: flex;
+  min-height: 300px;
+}
+.rate-add{
+  display: flex;
+  justify-content: center;
+  min-height: 50px;
+  align-items: flex-end;
+}
 .modal-body .img-wrapper {
   padding: 20px;
   border: 1px solid gray;
   border-radius: 10px;
 }
 
+div.modal-dialog{
+  min-width: 750px;
+}
 .modal-body .modal-img {
-  flex: 0 0 200px;
+  flex: 0 0 325px;
+  padding-top: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,7 +121,7 @@ div.modal-body {
 }
 
 .modal-body .modal-img img {
-  max-height: 150px;
+  height: 185px;
 }
 
 .modal-body .modal-description {
@@ -226,7 +243,10 @@ li.page-item.active .page-link {
 }
 
 .product-img-wrapper {
-  max-width: 175px;
+  max-width: fit-content;
+  padding: 0 !important;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .edit-delete-card {
@@ -343,7 +363,12 @@ span pre {
 
 .ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group,
 .ngx-datatable.material.single-selection .datatable-body-row.active{
-  background-color: transparent;
+  background-color: #00bcd4;
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group:hover,
+.ngx-datatable.material.single-selection .datatable-body-row.active:hover{
+  background-color: #00bcd4;
 }
 
 .ngx-datatable *{
@@ -352,11 +377,26 @@ span pre {
 }
 
 .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell{
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.ngx-datatable.material.single-selection .datatable-body-row.active:hover{
+/* .ngx-datatable.material.single-selection .datatable-body-row.active:hover{
 
-  background-color: #00bcd4;
+  /* background-color: #00bcd4; 
+} */
+
+.ngx-datatable.scroll-vertical .datatable-body{
+  min-height: 210px !important;
+  overflow-x: hidden;
+}
+
+.datatable-row-center datatable-body-cell:not(:first-child),.datatable-row-center datatable-header-cell:not(:first-child){
+  width:25% !important;
+}
+.datatable-row-center datatable-body-cell:not(:first-child)>div,.datatable-row-center datatable-header-cell:not(:first-child)>div{
+  text-align:center;
+}
+.datatable-row-center datatable-body-cell:first-child,.datatable-row-center datatable-header-cell:first-child{
+  width:50% !important;
 }
