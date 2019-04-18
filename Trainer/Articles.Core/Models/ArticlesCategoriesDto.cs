@@ -9,9 +9,9 @@ namespace Articles.Core.Models
         public string Name { get; set; }
         public string ProfilePicture { get; set; }
         public IFormFile ProfilePictureFile { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
+        //public DateTime CreatedAt { get; set; }
+        //public DateTime? UpdatedAt { get; set; }
+        //public string CreatedBy { get; set; }
+        //public string UpdatedBy { get; set; }
     }
 }

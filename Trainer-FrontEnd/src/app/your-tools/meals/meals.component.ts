@@ -77,7 +77,7 @@ export class MealsComponent implements OnInit {
       for (const key in foodItem) {
         if (key != 'id' && key != 'amount' && typeof foodItem[key] === 'number') {
           foodItem[key] = foodItem[key] * factor;
-        }
+        } 
       }
       foodItem.amount = this.servingAmont;
       this.searchTxt = '';

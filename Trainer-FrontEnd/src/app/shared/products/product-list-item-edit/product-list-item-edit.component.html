@@ -12,7 +12,7 @@
                     </select>
                 </div>
             </div>
-            <div class="desc-item">
+            <div *ngIf="showProductType" class="desc-item">
                 <div class="form-group-inline">
                     <label class="desc-entity">النوع</label>
                     <div class="form-control-group" [ngClass]="{ 'is-invalid': submitted && f.isSpecial.errors,'is-valid': submitted && !f.isSpecial.errors}">
@@ -33,7 +33,7 @@
                 <div class="form-group-inline">
                     <label class="desc-entity">السعر</label>
                     &nbsp;
-                    <input type="text" class="form-control" [value]="product.price" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f.price.errors,'is-valid': submitted && !f.price.errors}">
+                    <input type="number" class="form-control" [value]="product.price" formControlName="price" [ngClass]="{ 'is-invalid': submitted && f.price.errors,'is-valid': submitted && !f.price.errors}">
                 </div>
             </div>
             <div class="desc-item">
@@ -71,25 +71,22 @@
                 </div>
             </div>
             <div class="desc-item">
-                <div>
+                <div class="form-group-inline">
                     <span class="desc-entity">البائع</span>
-                    &nbsp;
-                    :
-                    &nbsp;
-                    {{product.seller.fullName}}
+                    <span> {{product.seller.fullName}}</span>
                 </div>
             </div>
             <div class="desc-item">
-                <div>
+                <div class="form-group-inline">
                     <span class="desc-entity">للشــراء</span>
-                    &nbsp;
-                    :
-                    &nbsp;
-                    {{product.seller.phoneNumber}}
+                    <!-- {{product.seller.phoneNumber}} -->
+                    <input type="text" class="form-control" [value]="product.phoneNumber" formControlName="phoneNumber"
+                        [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors,'is-valid': submitted && !f.phoneNumber.errors}">
                 </div>
             </div>
             <div class="desc-item">
-                <app-slider-edit-mode [sliderData]="product.images" [resultImageList]="product.updatedImages" [hideText]="true"> </app-slider-edit-mode>
+                <app-slider-edit-mode [sliderData]="product.images" [resultImageList]="product.updatedImages"
+                    [hideText]="true"> </app-slider-edit-mode>
             </div>
         </div>
     </form>

@@ -10,6 +10,7 @@ import { AppService } from '../../app.service';
 import { AdminProductsService } from '../../admin-tools/services/admin.products.service';
 import { ProductCategoryDTO } from '../../shared/models/products/product-category-dto';
 import { ProductListItemEditComponent } from '../../shared/products/product-list-item-edit/product-list-item-edit.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-product',
@@ -28,7 +29,7 @@ export class ManageProductComponent implements OnInit {
   @ViewChild(ProductListItemEditComponent) productListItemEditComponent: ProductListItemEditComponent;
 
   constructor(private route: ActivatedRoute, private router: Router, private appService: AppService,
-    private service: AdminProductsService, private util: UtilitiesService) { }
+    private service: AdminProductsService, private util: UtilitiesService,private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -72,6 +73,12 @@ export class ManageProductComponent implements OnInit {
       return;
     }
 
+    if (!this.productListItemEditComponent.product.updatedImages || !this.productListItemEditComponent.product.updatedImages.length)
+    {
+      this.toastrService.error('يجب ادخال صور للمنتج')
+      return;
+    }
+
     this.appService.loading = true;
 
     this.service.add(this.productListItemEditComponent.getData())
@@ -86,8 +93,8 @@ export class ManageProductComponent implements OnInit {
             this.isNew = false;
             this.productId = this.product.id;
             this.product.categoryName = this.categories.find(c => c.id == this.product.categoryId).name;
-            alert("تم إضافة المنتج بنجاح");
-            this.router.navigate([config.admin.ProductsList.route]);
+            this.toastrService.info("تم إضافة المنتج بنجاح");
+            this.router.navigate([config.users.productslist.route]);
 
           }
         });
@@ -108,7 +115,7 @@ export class ManageProductComponent implements OnInit {
           if (data.status === 200) {
             this.product = data.data;
             this.viewMode = true;
-            alert("تم تعديل المنتج بنجاح");
+            this.toastrService.info("تم تعديل المنتج بنجاح");
             this.router.navigate([config.admin.ProductsList.route]);
 
           }
@@ -119,7 +126,7 @@ export class ManageProductComponent implements OnInit {
     if (confirm("هل انت متأكد من مسح هذا المقال ؟ ")) {
       this.service.delete(this.productId).subscribe(c => {
         console.log(c);
-        alert('deleted');
+        this.toastrService.info('تم مسح المقال');
         this.router.navigate([config.users.productslist.route]);
       });
     }

@@ -24,6 +24,7 @@ export class ArticlesListComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   categoryId: number;
   pagerData: PagerDto;
+  public hideSearch: boolean = false;
   private isChampionShipsModule = false;
 
   @ViewChild(ClientFilterComponent) searchFilterComponent: ClientFilterComponent;
@@ -40,7 +41,11 @@ export class ArticlesListComponent implements OnInit {
       this.appService.loading = false;
     });
     //  this.categoryId = Number(this.route.snapshot.paramMap.get("categoryId"));
-    this.categoryId = this.route.snapshot.data && this.route.snapshot.data.articleList.data.results.length ? this.route.snapshot.data.articleList.data.results[0].categoryId : 0;
+
+    this.categoryId = this.route.snapshot.params.categoryId;
+    this.hideSearch =  (! this.route.snapshot.data ||  ! this.route.snapshot.data.articleList.data.results.length);
+    if (! this.categoryId)
+      this.categoryId = this.route.snapshot.data && this.route.snapshot.data.articleList.data.results.length ? this.route.snapshot.data.articleList.data.results[0].categoryId : 0;
     this.isChampionShipsModule = this.categoryId === PredefinedCategories.Championships;
   }
 
@@ -62,6 +67,7 @@ export class ArticlesListComponent implements OnInit {
   }
 
   filterItems() {
+    debugger;
     this.pagerData.currentPage = 1;
     this.getNextPage();
   }

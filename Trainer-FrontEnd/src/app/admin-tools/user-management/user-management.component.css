@@ -1,11 +1,9 @@
 :host {
     flex: 1;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-top: 50px;
     flex-direction: column;
-    margin-right: 1rem;
+    align-items: center;
+    padding-top: 50px;
 }
 
 .filter-wrapper {
@@ -13,10 +11,11 @@
     align-items: center;
     width: 75%;
     /* margin-top: 60px; */
-    background-color: rgba(222, 221, 221, 0.8);    
+    background-color: rgba(222, 221, 221, 0.8);
     padding: 14px 0 22px;
     border-radius: 12px;
     max-height: 100px;
+    margin-bottom: 20px;
 }
 
 .submit-filter-button {
@@ -26,22 +25,64 @@
     justify-content: center;
 }
 
-
-.submit-filter-button  button{
+.submit-filter-button button {
     color: white;
-} 
+}
 
 .filter-wrapper .form-control {
     padding-top: 0;
 }
 
-.data-table{
-    float:right;
+.data-table {
+    float: right;
     width: 75%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 60px;
 }
 
-.selection{
+.selection {
     float: left;
     width: 25%;
-    background-color: rgba(222, 221, 221, 0.8);    
+    background-color: white;
+    padding: 20px;
+    width: 440px;
+    margin-bottom: 60px
+}
+
+.add-select-wrapper {
+    display: flex
+}
+
+.add-select-wrapper button {
+    margin-right: 10px;
+    color: white;
+}
+
+.selected-name {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 7px;
+}
+
+.selected-roles-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px; 
+}
+
+.selected-role {
+    padding: 10px;
+    margin: 0 0 10px 10px;
+    border: 1px solid gainsboro;
+    border-radius: 4px;
+}
+
+.remove-role-icon {
+    cursor: pointer;
+    margin-right: 7px;
+}
+
+.hide-till-selection{
+    visibility: hidden !important;
 }

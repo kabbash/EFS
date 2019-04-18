@@ -59,7 +59,7 @@ export class ManageBannersComponent implements OnInit {
     if (confirmMessage) {
       this.appService.loading = true;
       this.bannerService.delete(bannerId).subscribe(data => {
-        alert('success');
+        alert('تم مسح البانر');
         this.appService.loading = false;
         this.banners.splice(this.banners.findIndex(banner => banner.id === bannerId), 1);
       }, error => {
