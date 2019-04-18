@@ -12,6 +12,7 @@ const mock = new MockBrowser();
 
 global['localStorage'] = localStorage;
 global['window'] = mock.getWindow();
+global['document'] = global['window'];
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
