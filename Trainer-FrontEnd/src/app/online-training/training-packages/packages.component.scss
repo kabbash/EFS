@@ -1,0 +1,42 @@
+.packages{
+    display:inline-flex;
+    margin: 10px 0;
+    .item{
+        background-color: white;
+        border-radius: 15px;
+        .thumbnail{
+            img{
+                width: 100%;
+                border-top-right-radius: 15px;
+                border-top-left-radius: 15px;
+            }
+        }
+        .caption{
+            padding: 20px;
+            h3{
+                font-size: 20px;
+                color:black;
+            }
+            p{
+                font-size: 15px;
+                color:#23bacd;
+                text-align: right;
+                height: 80px;
+                word-wrap: break-word;
+                word-break: break-all;
+            }
+        }
+        .btn{
+            border: 1px solid #23bacd;
+            background-color: white;
+            font-size: 20px;
+            text-align: center;
+            display: block;
+            margin: auto;
+            display: block;
+            width: 80%;
+    
+    
+        }
+    }
+}
