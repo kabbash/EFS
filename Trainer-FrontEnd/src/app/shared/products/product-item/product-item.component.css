@@ -18,8 +18,7 @@
     background-size: contain;
     background-position: 50%;
     background-repeat: no-repeat;
-    min-height: 185px;
-    margin-top: 37px;
+    min-height: 130px;
     position: relative;
 }
 
@@ -35,9 +34,15 @@
     color: #333;
     font-size: 15px;
     font-weight: bold;
-    text-align: right;
+    text-align: center;
     padding: 0 20px;
     line-height: 1.2;
+    text-align: center;
+    margin: 10px;
+}
+
+.edit-delete-p-admin {
+    text-align: left;
 }
 
 div.price-rating {
@@ -115,7 +120,8 @@ div.price-rating {
 .desc-no-special {
     padding-left: 20px;
 }
-.crop-btn{
+
+.crop-btn {
     position: absolute;
     left: 0;
 }

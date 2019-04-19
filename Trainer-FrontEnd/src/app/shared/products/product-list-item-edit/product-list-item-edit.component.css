@@ -1,19 +1,24 @@
-:host ::ng-deep app-slider-edit-mode{
+:host ::ng-deep app-slider-edit-mode {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .form-inline-nowrap {
     display: flex;
     flex-flow: row;
     align-items: center;
     background-color: white;
     width: 450px;
-    margin-top:50px;
+    margin-top: 50px;
     border-radius: 10px;
 }
 
-.form-group-inline{
+.remove-bottom-border {
+    border-bottom: none !important;
+}
+
+.form-group-inline {
     display: inline-flex;
     align-items: center;
     padding-left: 0;
@@ -38,45 +43,48 @@
     left: 0;
     color: #00bcd4;
     display: flex;
-    align-items: center;    
+    align-items: center;
     font-size: 22px;
     cursor: pointer;
 }
 
 .product-description {
     flex: 0 0 auto;
-    width:100%;
+    width: 100%;
 }
 
-.product-description .desc-item{
+.product-description .desc-item {
     padding: 10px 0;
     border-bottom: .5px solid gainsboro;
     padding: 16px 18px;
-  }
-  .product-description .desc-item:last-child{
-    border-bottom: none;
-  }
-  
-  .product-description .desc-item>div{
-    width: 95%;
-  }
-  .product-description .desc-entity{
-      color: #00bcd4;
-      min-width: 70px;
-  }
+}
 
-  .input-group-nowrap {
+.product-description .desc-item:last-child {
+    border-bottom: none;
+}
+
+.product-description .desc-item>div {
+    width: 95%;
+}
+
+.product-description .desc-entity {
+    color: #00bcd4;
+    min-width: 70px;
+}
+
+.input-group-nowrap {
     position: relative;
     display: flex;
     /* flex-wrap: wrap; */
     align-items: stretch;
     width: 100%;
 }
-.calendar i{
+
+.calendar i {
     color: #00bcd4;
 }
 
-.calendar{
+.calendar {
     margin-right: -40px;
     border-color: transparent;
 }
@@ -95,14 +103,15 @@
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
 }
-.is-valid{
+
+.is-valid {
     border: 1px solid #28a745;
     border-radius: .25rem;
     border-radius: .25rem;
 }
 
-.is-invalid{
-    border:1px solid #dc3545;
+.is-invalid {
+    border: 1px solid #dc3545;
     border-radius: .25rem;
     border-radius: .25rem;
 }

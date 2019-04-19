@@ -6,7 +6,6 @@
 
 .slider-img {
     border-radius: 12px;
-    height: 500px;
     width: 100%;
 }
 
@@ -68,13 +67,16 @@ div.modal-body img {
 }
 
 .simulate-img {
-    width: 328px;
-    height: 150px;
+    width: 100%;
     background-color: gainsboro;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 25px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 230px;
 }
 
 .new-pic-btn {
@@ -92,4 +94,18 @@ div.modal-body img {
 
 .no-pics {
     margin-bottom: 30px;
+}
+
+.p-checkbox {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.p-checkbox input {
+    margin-left: 10px;
+    height: 18px;
+    width: 18px;
 }

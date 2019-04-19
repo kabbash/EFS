@@ -8,10 +8,15 @@
   <div class="modal-body">
     <div class="simulate-img" [ngStyle]="{'background-image':'url(' +  newImage.path + ')'}">صوره جديده</div>
     <app-file-uploader (change)="onFileSelect($event)"></app-file-uploader>
-    <input _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.title" placeholder="العنوان" type="text">
-    <textarea _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.description" placeholder="الوصف" rows="3"></textarea>
-    <input _ngcontent-c11 class="form-control" [(ngModel)]="newImage.isProfilePicture" placeholder="الصورة الرئيسية" type="checkbox">
-
+    <input _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.title" placeholder="العنوان"
+      type="text">
+    <textarea _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.description"
+      placeholder="الوصف" rows="3"></textarea>
+    <div class="p-checkbox">
+      <label for="mainPage">وضع المرفق كصوره شخصيه</label>
+      <input _ngcontent-c11 [(ngModel)]="newImage.isProfilePicture" name="mainPage" placeholder="الصورة الرئيسية"
+        type="checkbox">
+    </div>
   </div>
 
   <div class="modal-footer">
@@ -20,16 +25,23 @@
 </ng-template>
 <ng-template #edit let-editModal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title" >تعديل الصوره</h4>
+    <h4 class="modal-title" id="modal-basic-title">تعديل الصوره</h4>
     <button type="button" class="close" aria-label="Close" (click)="editModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <img [src]="baseurl + selectedImg.path" alt="">
-    <input _ngcontent-c11="" *ngIf="!hideText" class="form-control" [(ngModel)]="selectedImg.title" placeholder="العنوان" type="text">
-    <textarea _ngcontent-c11="" *ngIf="!hideText" class="form-control" [(ngModel)]="selectedImg.description" placeholder="الوصف" rows="3"></textarea>
-    <input _ngcontent-c11 class="form-control" [(ngModel)]="selectedImg.isProfilePicture" placeholder="الصورة الرئيسية" type="checkbox">
+    <input _ngcontent-c11="" *ngIf="!hideText" class="form-control" [(ngModel)]="selectedImg.title"
+      placeholder="العنوان" type="text">
+    <textarea _ngcontent-c11="" *ngIf="!hideText" class="form-control" [(ngModel)]="selectedImg.description"
+      placeholder="الوصف" rows="3"></textarea>
+
+    <div class="p-checkbox">
+      <label for="mainPage2">وضع المرفق كصوره شخصيه</label>
+      <input _ngcontent-c11 name="mainPage2" [(ngModel)]="selectedImg.isProfilePicture" placeholder="الصورة الرئيسية"
+        type="checkbox">
+    </div>
   </div>
 
 
@@ -53,13 +65,13 @@
   </div>
 </ng-template>
 
- <div class="add-new-img-wrapper" *ngIf="sliderData.length<3 && sliderData.length !== 0">
-    <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)">إضافة صوره جديده يمكنك إضافة
-      {{3-sliderData.length }} صوره</button>
-  </div>
-  <div class="add-new-img-wrapper" *ngIf="sliderData.length === 0">
-    <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)"> لا توجد صور قم بإضافة صوره جديده</button>
-  </div>
+<div class="add-new-img-wrapper" *ngIf="sliderData.length<3 && sliderData.length !== 0">
+  <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)">إضافة صوره جديده يمكنك إضافة
+    {{3-sliderData.length }} صوره</button>
+</div>
+<div class="add-new-img-wrapper" *ngIf="sliderData.length === 0">
+  <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)"> لا توجد صور قم بإضافة صوره جديده</button>
+</div>
 <!-- <div class="add-new-img-wrapper" [ngClass]="{'no-pics':!sliderData.length}" >
   <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)">إضافة صوره جديده</button>
 </div> -->
@@ -79,7 +91,7 @@
       </div>
       <img [src]="!image.isNew ? (baseurl + image.path) : (image.path)" class="slider-img" alt="images">
       <!-- <button (click)="cropClicked()"  class="btn btn-danger crop-btn"><i class="fa fa-crop"></i></button> -->
-     
+
       <div class="carousel-caption" *ngIf="!hideText">
         <h3>{{image.title}}</h3>
         <p>{{image.description}}</p>
@@ -98,4 +110,5 @@
     </ng-template>
   </ngb-carousel>
 </div>
-<app-image-cropper #cropper [imageEvent]="imageEvent" (imageCroppedEvent)="onFileSelect($event, true)"></app-image-cropper>
+<app-image-cropper #cropper [imageEvent]="imageEvent" (imageCroppedEvent)="onFileSelect($event, true)">
+</app-image-cropper>
