@@ -9,7 +9,7 @@
 </div>
 <div class="row admin-neutrints-list-wrapper">
   <button class="btn admin-add-button" (click)="add()"> <i _ngcontent-c6="" class="fa fa-plus"></i></button>
-  <div class="data-table">
+  <div class="data-table" *ngIf="appService.isBrowser()">
     <ngx-datatable class="material" [rows]="foodItemsList" [columnMode]="'force'" [headerHeight]="50"
       [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true" [count]="pagerDto.itmesCount"
       [offset]="pagerDto.currentPage" [limit]="pagerDto.pageSize">

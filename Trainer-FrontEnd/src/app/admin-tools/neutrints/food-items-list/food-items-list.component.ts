@@ -20,7 +20,7 @@ export class FoodItemsListComponent implements OnInit {
   pagerDto = new PagerDto();
   filter = new FoodIemFilter();
 
-  constructor(private route: ActivatedRoute, private service: NeutrintsService, private appService: AppService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private service: NeutrintsService, public appService: AppService, private router: Router) { }
 
   ngOnInit() {
     this.pagerDto.pageSize = this.filter.pageSize = AppConfig.settings.pagination.neutrintsForAdmin.pageSize;
