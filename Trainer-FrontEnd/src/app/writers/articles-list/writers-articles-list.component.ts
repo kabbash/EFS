@@ -39,7 +39,7 @@ export class WritersArticlesListComponent implements OnInit {
     this.route.data.subscribe(result => {
       this.articlesList = result.articlesList.data.results;
       this.pagerData = result.articlesList.data;
-      this.hasItems = true;
+      this.hasItems = result.articlesList.data.results.length > 0;
     });
   }
 

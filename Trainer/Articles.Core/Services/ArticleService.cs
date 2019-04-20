@@ -180,7 +180,7 @@ namespace Articles.Core.Services
                 }
 
 
-                if (user.IsAdmin || (user.Id != articleData.CreatedBy && (!articleData.IsActive.HasValue || !articleData.IsActive.Value)))
+                if (user.IsAdmin || (user.Id == articleData.CreatedBy && (!articleData.IsActive.HasValue || !articleData.IsActive.Value)))
                 {
                     article.Adapt(articleData, typeof(ArticleAddDto), typeof(DBModels.Articles));
                     articleData.UpdatedAt = DateTime.Now;

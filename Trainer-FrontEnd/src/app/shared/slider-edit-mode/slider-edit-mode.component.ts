@@ -18,7 +18,7 @@ export class SliderEditModeComponent implements OnInit {
   closeResult: string;
   selectedImg: SliderItemDto;
   newPic = false;
-  newImgDesc = '';
+  // newImgDesc = '';
   newImgTitle = '';
   selectedIndexForDelete: number;
   deleteModal: any;
