@@ -152,10 +152,10 @@ namespace Attachments.Core.Interfaces
                         }
                         return c.Path;
                     }
-                    else
-                    {
-                        return null;
-                    }
+                    //else
+                    //{
+                    //    return null;
+                    //}
                 }
             }
             return oldPath;
