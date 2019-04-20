@@ -7,7 +7,7 @@ RUN npm install
 COPY . /app
 RUN node_modules/.bin/ng build --prod --aot
 RUN node_modules/.bin/ng run Trainer-FrontEnd:server
-RUN node_modules/.bin/webpack --config webpack.server.config.js --progress --colors
+RUN node_modules/.bin/webpack --config webpack.server.config.js --progress --colors; exit 0
 
 
 
