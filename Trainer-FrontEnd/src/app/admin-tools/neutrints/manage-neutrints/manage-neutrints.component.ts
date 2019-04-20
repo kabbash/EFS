@@ -6,6 +6,7 @@ import { config } from '../../../config/pages-config';
 import { UtilitiesService } from '../../../shared/services/utilities.service';
 import { NeutrintsService } from '../../../shared/services/neutrints.service';
 import { first, finalize } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-neutrints',
@@ -17,7 +18,7 @@ export class ManageNeutrintsComponent implements OnInit {
   item: FoodItem;
   isNew: boolean;
 
-  constructor(private route: ActivatedRoute, private router: Router, private appService: AppService, private service: NeutrintsService, private util: UtilitiesService) { }
+  constructor(private route: ActivatedRoute, private toastrService: ToastrService, private router: Router, private appService: AppService, private service: NeutrintsService, private util: UtilitiesService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -52,9 +53,9 @@ export class ManageNeutrintsComponent implements OnInit {
           if (data.status === 200) {
             this.item = data.data;
             if (this.isNew)
-              alert("تم اضافة صنف جديد بنجاح");
+              this.toastrService.info("تم اضافة صنف جديد بنجاح");
             else
-              alert("تم تعديل الصنف بنجاح");
+            this.toastrService.info("تم تعديل الصنف بنجاح");
 
             this.router.navigate([config.admin.neutrintsList.route]);
           }

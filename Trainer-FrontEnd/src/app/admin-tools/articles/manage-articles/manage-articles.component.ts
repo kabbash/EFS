@@ -10,6 +10,7 @@ import { UtilitiesService } from '../../../shared/services/utilities.service';
 import { PredefinedCategories } from '../../../shared/models/articles/articles-predefined-categories.enum';
 import { ErrorHandlingService } from '../../../shared/services/error-handling.service';
 import { PAGES } from '../../../config/defines';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class ManageArticlesComponent implements OnInit {
      private appService: AppService,
       private service: AdminArticlesService,
       private util: UtilitiesService,
+      private toastrService: ToastrService,
       private errorHandlingService: ErrorHandlingService) {
     this.route.params.subscribe(params => {
       this.articleId = params['articleId'];
@@ -63,7 +65,7 @@ export class ManageArticlesComponent implements OnInit {
     if (confirm('هل انت متأكد من الموافقه على هذا المقال ؟ ')) {
       this.appService.loading = true;
       this.service.approve(this.articleId).subscribe(c => {
-        alert('تمت الموافقه على المقال بنجاح');
+        this.toastrService.info('تمت الموافقه على المقال بنجاح');
          this.returnToBase();
          this.appService.loading = false;
          }, error => {
@@ -78,7 +80,7 @@ export class ManageArticlesComponent implements OnInit {
       this.appService.loading = true;
       this.service.reject(this.articleId, prompt('من فضلك ، ادخل سبب الرفض؟'))
       .subscribe(c => {
-         alert('تم رفض المقال بنجاح');
+        this.toastrService.info('تم رفض المقال بنجاح');
           this.returnToBase();
           this.appService.loading = false;
         }, error => {
@@ -94,7 +96,7 @@ export class ManageArticlesComponent implements OnInit {
       this.appService.loading = true;
       this.service.delete(this.articleId).subscribe(c => {
         console.log(c);
-         alert('تم مسح المقال بنجاح');
+        this.toastrService.info('تم مسح المقال بنجاح');
           this.returnToBase();
           this.appService.loading = false;
          }, error => {
@@ -119,7 +121,7 @@ export class ManageArticlesComponent implements OnInit {
     this.appService.loading = true;
     this.service.update(this.articleId, formData).subscribe(
       () => {
-        alert('تم تعديل المقال بنجاح');
+        this.toastrService.info('تم تعديل المقال بنجاح');
         this.enableViewMode();
         this.appService.loading = false;
 
@@ -143,7 +145,7 @@ export class ManageArticlesComponent implements OnInit {
     this.appService.loading = true;
     this.service.add(formData).subscribe(
       () => {
-        alert('تم اضافة المقال بنجاح');
+        this.toastrService.info('تم اضافة المقال بنجاح');
         this.returnToBase();
         this.appService.loading = false;
       }, error => {

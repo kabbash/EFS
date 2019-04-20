@@ -44,7 +44,7 @@ export class WritersArticlesListComponent implements OnInit {
   }
 
   articlesDetails(articleId) {
-    debugger;
+
     this.router.navigate([config.writers.manageArticle.route, articleId]);
   }
   addArticle() {

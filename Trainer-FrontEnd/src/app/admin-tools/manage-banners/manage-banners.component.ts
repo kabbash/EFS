@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 import { config } from '../../config/pages-config';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 import { PAGES } from '../../config/defines';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-banners',
@@ -23,6 +24,7 @@ export class ManageBannersComponent implements OnInit {
   private route: ActivatedRoute,
   private appService: AppService,
   private router: Router,
+  private toastrService: ToastrService,
   private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
@@ -59,7 +61,7 @@ export class ManageBannersComponent implements OnInit {
     if (confirmMessage) {
       this.appService.loading = true;
       this.bannerService.delete(bannerId).subscribe(data => {
-        alert('تم مسح البانر');
+        this.toastrService.info('تم مسح البانر');
         this.appService.loading = false;
         this.banners.splice(this.banners.findIndex(banner => banner.id === bannerId), 1);
       }, error => {

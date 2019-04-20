@@ -54,7 +54,7 @@ export class ProductListItemEditComponent implements OnInit {
       description: [this.product.description, [Validators.required]],
       // profilePicture: [this.profilePicture, [Validators.required]],
       expDate: [this.product.expDate, [Validators.required]],
-      isSpecial: [this.product.isSpecial, [Validators.required]],
+      // isSpecial: [this.product.isSpecial, [Validators.required]],
       categoryId: [this.product.categoryId, [Validators.required , Validators.min(1)]],
       phoneNumber: [this.product.phoneNumber, Validators.required]
     });
@@ -70,7 +70,7 @@ export class ProductListItemEditComponent implements OnInit {
     editedProduct.name = this.f.name.value;
     editedProduct.price = this.f.price.value;
     editedProduct.description = this.f.description.value;
-    editedProduct.isSpecial = this.f.isSpecial.value;
+    editedProduct.isSpecial = this.f.isSpecial ?  this.f.isSpecial.value : false;
     editedProduct.expDate = this.f.expDate.value;
     editedProduct.categoryId = this.f.categoryId.value;
     editedProduct.updatedImages = this.product.updatedImages;

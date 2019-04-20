@@ -6,6 +6,7 @@ import { OTrainingDetailsDto, OTrainingProgramDto } from '../../shared/models/ot
 import { AppService } from '../../app.service';
 import { UtilitiesService } from '../../shared/services/utilities.service';
 import { config } from '../../config/pages-config';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-online-training',
@@ -24,6 +25,7 @@ export class ManageOnlineTrainingComponent implements OnInit {
     private router: Router,
     private util: UtilitiesService,
     private appService: AppService,
+    private toastrService: ToastrService,
     private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -54,11 +56,11 @@ export class ManageOnlineTrainingComponent implements OnInit {
     this.appService.loading = true;
     this.service.update("otraining/updatedetails", formData).subscribe(
       () => {
-        alert('تم تعديل بيانات التدريب الاونلاين');
+        this.toastrService.info('تم تعديل بيانات التدريب الاونلاين');
         this.appService.loading = false;
         this.submitted = false;
       }, error => {
-        alert(error);
+        this.toastrService.error(error);
         this.appService.loading = false;
       }
     );

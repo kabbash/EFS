@@ -7,7 +7,6 @@ import { SliderItemDto } from '../../shared/models/slider/slider-item.dto';
 import { UtilitiesService } from '../../shared/services/utilities.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
-import { AdminProductsService } from '../../admin-tools/services/admin.products.service';
 import { ProductCategoryDTO } from '../../shared/models/products/product-category-dto';
 import { ProductListItemEditComponent } from '../../shared/products/product-list-item-edit/product-list-item-edit.component';
 import { ToastrService } from 'ngx-toastr';
@@ -29,7 +28,7 @@ export class ManageProductComponent implements OnInit {
   @ViewChild(ProductListItemEditComponent) productListItemEditComponent: ProductListItemEditComponent;
 
   constructor(private route: ActivatedRoute, private router: Router, private appService: AppService,
-    private service: AdminProductsService, private util: UtilitiesService,private toastrService: ToastrService) { }
+    private service: UsersService, private util: UtilitiesService,private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -63,7 +62,7 @@ export class ManageProductComponent implements OnInit {
     this.viewMode = true;
   }
   cancelAdd() {
-    this.router.navigate([config.admin.ProductsList.route]);
+    this.router.navigate([config.users.productslist.route]);
   }
 
   add() {
@@ -116,8 +115,7 @@ export class ManageProductComponent implements OnInit {
             this.product = data.data;
             this.viewMode = true;
             this.toastrService.info("تم تعديل المنتج بنجاح");
-            this.router.navigate([config.admin.ProductsList.route]);
-
+            this.router.navigate([config.users.productslist.route]);
           }
         });
   }

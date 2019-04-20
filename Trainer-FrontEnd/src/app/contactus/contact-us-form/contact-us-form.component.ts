@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class ContactusFormComponent implements OnInit {
   submitted = false;
   constructor(private service: RepositoryService,
     private router: Router,
+    private toastr: ToastrService,
     private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -35,7 +37,7 @@ export class ContactusFormComponent implements OnInit {
     }
 
     this.service.create<any>('home/contactus', this.contactusForm.value).subscribe(res=> {
-      alert('تمت العمليه بنجاح، شكرا لتواصلك معنا');      
+      this.toastr.info('تمت العمليه بنجاح، شكرا لتواصلك معنا');      
       this.submitted = false;
       this.contactusForm.reset();
     });

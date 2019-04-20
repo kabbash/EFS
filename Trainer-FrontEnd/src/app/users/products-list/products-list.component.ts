@@ -31,7 +31,7 @@ export class ProductsListComponent implements OnInit {
     private router: Router, private service: UsersService, private appService: AppService) { }
 
   ngOnInit() {
-    debugger;
+
     this.route.data.subscribe(result => {
       this.pagerData = result.productsList.data;
       this.productsList = result.productsList.data.results;
