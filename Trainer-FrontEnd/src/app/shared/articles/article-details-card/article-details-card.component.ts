@@ -20,7 +20,7 @@ export class ArticleDetailsCardComponent implements OnInit {
   closeResult: string;
   selectedImg = {};
   newPic = false;
-  newImgDesc = '';
+  // newImgDesc = '';
   newImgTitle = '';
   selectedIndexForDelete: number;
   deleteModal: any;

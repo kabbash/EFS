@@ -129,8 +129,11 @@ namespace Attachments.Core.Interfaces
                 return false;
             }
         }
-        public string GetProfilePicturePath(SliderDto dto, string oldPath=null)
+        public string GetProfilePicturePath(SliderDto dto, string oldPath = null)
         {
+            if (!dto.Items.Any(c => c.IsProfilePicture && !c.IsDeleted))
+                dto.Items.First(c => !c.IsDeleted).IsProfilePicture = true;
+
             foreach (var c in dto.Items)
             {
                 if (c.IsProfilePicture)
@@ -149,10 +152,10 @@ namespace Attachments.Core.Interfaces
                         }
                         return c.Path;
                     }
-                    else
-                    {
-                        return null;
-                    }
+                    //else
+                    //{
+                    //    return null;
+                    //}
                 }
             }
             return oldPath;

@@ -91,10 +91,10 @@
       </div>
       <img [src]="!image.isNew ? (baseurl + image.path) : (image.path)" class="slider-img" alt="images">
       <!-- <button (click)="cropClicked()"  class="btn btn-danger crop-btn"><i class="fa fa-crop"></i></button> -->
-
-      <div class="carousel-caption" *ngIf="!hideText">
+     
+      <div class="carousel-caption" *ngIf="!hideText && image.title">
         <h3>{{image.title}}</h3>
-        <p>{{image.description}}</p>
+        <!-- <p>{{image.description}}</p> -->
       </div>
     </ng-template>
   </ngb-carousel>

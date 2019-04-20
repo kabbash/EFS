@@ -14,7 +14,7 @@
 
 .main-table-container .total {
     background-color: #e2dbda;
-    height: 70px;
+    height: 70px; 
 }
 
 .main-table-container .total .table-cell {
@@ -25,7 +25,8 @@
 
 .add-food {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
+    color: #f8f9fa !important;
 }
 
 .add-food span {
