@@ -32,7 +32,7 @@
     <button type="button" (click)="search()" class="btn buy-price filter-search-button">بحـث</button>
   </div>
 </div>
-<div class="data-table">
+<div class="data-table" *ngIf="appService.isBrowser()">
   <ngx-datatable class="material" [rows]="usersList" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
     [rowHeight]="'auto'" [externalPaging]="true" [count]="pagerDto.itmesCount" [offset]="pagerDto.currentPage"
     [limit]="pagerDto.pageSize" [selected]="selected" [selectionType]="'single'" (page)='setPage($event)'

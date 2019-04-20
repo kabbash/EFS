@@ -6,7 +6,7 @@
             اضـف عناصر وجباتك<span class="fa fa-plus fa-sm" ></span>
          </button>
       </div>
-      <div class="table">
+      <div class="table" *ngIf="appService.isBrowser()">
          <ngx-datatable class='material' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50"
             [scrollbarV]="true" [rows]='selectedFoodItems'>
             <ngx-datatable-column name="name">
