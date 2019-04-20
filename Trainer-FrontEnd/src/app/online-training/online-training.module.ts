@@ -1,10 +1,11 @@
+
+
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { OnlineTrainingComponent } from './online-training.component';
 import { OnlineTrainingRoutingModule } from './online-training-routing.module';
-import { PackagesComponent } from './packages/packages.component';
-
+import { PackagesComponent } from './training-packages/packages.component';
 @NgModule({
   imports: [
     SharedModule,
@@ -14,7 +15,7 @@ import { PackagesComponent } from './packages/packages.component';
     NgbAlertModule,
   ],
   declarations: [OnlineTrainingComponent, PackagesComponent],
-  providers: [
-  ]
+  providers: []
 })
-export class OnlineTrainingModule { }
+export class OnlineTrainingModule {
+}
