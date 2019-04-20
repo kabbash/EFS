@@ -55,16 +55,11 @@ export class AddCategoryComponent implements OnInit {
     this.categoryForm.controls['profilePictureFile'].markAsTouched();
     this.categoryForm.controls['name'].markAsTouched();
     this.appService.loading = true;
-    if (true) {
       if (this.categoryService.articleCategoryToEdit) {
         this.updateCategory();
       } else {
         this.addCategory();
       }
-    } else {
-      this.appService.loading = false;
-      alert('form not valid');
-    }
   }
   addCategory() {
     this.reposatoryService.create(this.categoryService.apiUrl, this.prepareData(this.categoryForm.value)).subscribe(data => {

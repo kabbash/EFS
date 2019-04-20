@@ -41,7 +41,6 @@ export class ManageArticlesComponent implements OnInit {
 
   ngOnInit() {
 
-    debugger;
     if (this.articleId > 0) {
       this.route.data.subscribe(result => {
         this.article = result.articleDetails.data;
@@ -65,7 +64,7 @@ export class ManageArticlesComponent implements OnInit {
       this.appService.loading = true;
       this.service.delete(this.articleId).subscribe(c => { 
         console.log(c);
-         alert('تم مسح المقال بنجاح');
+        this.toastrService.info('تم مسح المقال بنجاح');
           this.returnToBase();
           this.appService.loading = false;
          }, error => {
@@ -81,7 +80,6 @@ export class ManageArticlesComponent implements OnInit {
       return false;
     }
 
-    debugger;
     if (!this.articleDetailsEditmodeComponent.modifiedArticle.updatedImages.filter(c=>! c.isDeleted).length && !this.articleDetailsEditmodeComponent.modifiedArticle.images.length) {
       this.toastrService.error('يجب ادخال صور للمقال')
       return false;
@@ -95,12 +93,12 @@ export class ManageArticlesComponent implements OnInit {
     this.appService.loading = true;
     this.service.update(this.articleId, formData).subscribe(
       () => {
-        alert('تم تعديل المقال بنجاح');
+        this.toastrService.info('تم تعديل المقال بنجاح');
         this.enableViewMode();
         this.appService.loading = false;
 
       }, error => {
-        alert(error);
+        this.toastrService.error(error);
         this.appService.loading = false;
       }
     );
@@ -124,11 +122,11 @@ export class ManageArticlesComponent implements OnInit {
     this.appService.loading = true;
     this.service.add(formData).subscribe(
       () => {
-        alert('تم اضافة المقال بنجاح');
+        this.toastrService.info('تم اضافة المقال بنجاح');
         this.returnToBase();
         this.appService.loading = false;
       }, error => {
-        alert(error);
+        this.toastrService.error(error);
         this.appService.loading = false;
       }
     );
@@ -163,7 +161,6 @@ export class ManageArticlesComponent implements OnInit {
   }
 
   showEditDeleteButtons() {
-    debugger;
     return !this.article.isActive;
   }
 }

@@ -12,6 +12,7 @@ import { ProductsService } from '../../../products/products.service';
 import { ClientFilterComponent } from '../../client-filter/client-filter.component';
 import { RatingDto } from '../../models/rating.dto';
 import { AppConfig } from '../../../../config/app.config';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-all-products',
@@ -41,6 +42,7 @@ export class ProductsListComponent implements OnInit {
     private repositoryService: RepositoryService,
     private appService: AppService,
     private productsService: ProductsService,
+    private toastr: ToastrService,
     private productReviewService: ProductReviewService) {
     this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
@@ -83,7 +85,6 @@ export class ProductsListComponent implements OnInit {
 
   setSpecialProducts() {
 
-    debugger;
     if (this.searchFilterComponent.searchTxt)
       this.filteredSpecialProducts = this.specialProducts.filter(c => c.name.indexOf(this.searchFilterComponent.searchTxt) != -1);
     else
@@ -121,11 +122,11 @@ export class ProductsListComponent implements OnInit {
     rateDto.entityId = event.productId;
     rateDto.rate = event.rate;
     this.repositoryService.create('products/addrate', rateDto).subscribe(data => {
-      alert('تم تعديل التقييم');
+      this.toastr.info('تم تعديل التقييم');
       this.appService.loading = false;
     }, error => {
-      alert(error);
-      this.appService.loading = false;
+      this.toastr.error(error);
+      this.appService.loading = false; 
     });
   }
 }

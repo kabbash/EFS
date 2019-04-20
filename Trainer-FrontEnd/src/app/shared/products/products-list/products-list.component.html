@@ -1,6 +1,6 @@
 <button *ngIf="isManageProductReview" class="btn admin-add-button" (click)="gotoAddProductReview()"><i class="fa fa-plus"></i></button>
 
-<div *ngIf="!isProductReview && !isManageProductReview && hasItems " class="products-container short-desc">
+<div *ngIf="!isProductReview && !isManageProductReview && hasItems && categoryDescription " class="products-container short-desc">
     {{categoryDescription}}
 </div>
 <div class="products-container">

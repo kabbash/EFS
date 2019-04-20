@@ -5,6 +5,7 @@ import { RepositoryService } from '../../../shared/services/repository.service';
 import { productListItemDto } from '../../models/products/product-list-item-dto';
 import { ProductReviewService } from '../../../admin-tools/services/product-review.service';
 import { ProductReviewDto } from '../../models/products/product-review.dto';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-item',
@@ -26,6 +27,7 @@ export class ProductItemComponent implements OnInit {
   isAddItemForReview = false;
   constructor(private route: Router,
      private repository: RepositoryService,
+     private toastr: ToastrService,
      private productReviewService: ProductReviewService) { }
 
   ngOnInit() {
@@ -39,9 +41,9 @@ export class ProductItemComponent implements OnInit {
           this.productReviewService.productReviewList.findIndex(el => el.id === this.product.id),
           1
         );
-        alert('تم حذف المنتج');
+        this.toastr.info('تم حذف المنتج');
       }, error => {
-        alert(error);
+        this.toastr.error(error);
       });
     }
   }

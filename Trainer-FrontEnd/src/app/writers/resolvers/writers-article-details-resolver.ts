@@ -13,7 +13,7 @@ export class WritersArticleDetailsResolver implements Resolve<Observable<ResultM
   constructor(private repositoryService: RepositoryService, private errorHandlingService: ErrorHandlingService) {
   }
   resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<ArticleDetialsDto>> {
-    debugger;
+
     if (!route.params['articleId'] || route.params['articleId'] == "0")
       return null;
 

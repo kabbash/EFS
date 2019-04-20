@@ -197,10 +197,10 @@
     }
   },
   "defaultErrorMessages": {
-    "defaultMessage": "something went wrong",
-    "400": "somthing went wrong",
-    "401": "ay haga",
-    "500": "server error"
+    "defaultMessage": "حدث خطأ ما اثناء التنفيذ ، برجاء المحاوله لاحقا",
+    "400": "400",
+    "401": "401",
+    "500": "500"
 
   },
   "manageUsers": {

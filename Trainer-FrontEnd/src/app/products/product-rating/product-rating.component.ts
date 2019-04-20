@@ -9,6 +9,7 @@ import { UtilitiesService } from '../../shared/services/utilities.service';
 import { environment } from '../../../environments/environment';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 import { PAGES } from '../../config/defines';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-rating',
@@ -24,6 +25,7 @@ export class ProductRatingComponent implements OnInit {
     private repositoryService: RepositoryService,
     private router: Router,
     public util: UtilitiesService,
+    private toastr :ToastrService,
     private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
@@ -36,7 +38,7 @@ export class ProductRatingComponent implements OnInit {
   submitRate() {
     const user = JSON.parse(localStorage.getItem('currentUser'));
     if (!user) {
-      alert('login first');
+      this.toastr.error('برجاء تسجيل الدخول اولا ');
       this.router.navigate([config.userAccount.loginPage.route]);
       return;
     } else {
@@ -48,7 +50,7 @@ export class ProductRatingComponent implements OnInit {
       reveiw.createdAt = this.util.getDateFormatted((new Date()).toISOString());
       this.rate.entityId = this.product.id;
       this.repositoryService.create('itemsreview/AddRate', this.rate).subscribe(data => {
-        alert('تم اضافة التقييم');
+        this.toastr.info('تم اضافة التقييم');
 
         this.product.reviews = this.product.reviews.filter(function (item, idx) {
           return item.isCurrent !== true;

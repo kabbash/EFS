@@ -9,6 +9,7 @@ import { AppService } from '../../../app.service';
 import { AppConfig } from '../../../../config/app.config';
 import { config } from '../../../config/pages-config';
 import { first, finalize } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-food-items-list',
@@ -20,7 +21,7 @@ export class FoodItemsListComponent implements OnInit {
   pagerDto = new PagerDto();
   filter = new FoodIemFilter();
 
-  constructor(private route: ActivatedRoute, private service: NeutrintsService, private appService: AppService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private toastrService: ToastrService, private service: NeutrintsService, private appService: AppService, private router: Router) { }
 
   ngOnInit() {
     this.pagerDto.pageSize = this.filter.pageSize = AppConfig.settings.pagination.neutrintsForAdmin.pageSize;
@@ -59,7 +60,7 @@ export class FoodItemsListComponent implements OnInit {
     if (confirm("هل انت متأكد من مسح هذا الصنف ؟ ")) {
       this.service.delete(foodItemId).subscribe(c => {
         console.log(c);
-        alert('تم مسح الصنف بنجاح');
+        this.toastrService.info('تم مسح الصنف بنجاح');
         this.foodItemsList = this.foodItemsList.filter(obj => obj.id !== foodItemId);
       });
     }

@@ -11,6 +11,7 @@ import { SliderItemDto } from '../../../shared/models/slider/slider-item.dto';
 import { ErrorHandlingService } from '../../../shared/services/error-handling.service';
 import { PAGES } from '../../../config/defines';
 import { ProductListItemEditComponent } from '../../../shared/products/product-list-item-edit/product-list-item-edit.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-products',
@@ -26,7 +27,7 @@ export class ManageProductsComponent implements OnInit {
   categories: ProductCategoryDTO[];
   @ViewChild(ProductListItemEditComponent) productListItemEditComponent: ProductListItemEditComponent;
 
-  constructor(private route: ActivatedRoute, private router: Router, private appService: AppService,
+  constructor(private route: ActivatedRoute, private router: Router, private appService: AppService,private toastrService : ToastrService,
     private service: AdminProductsService, private util: UtilitiesService, private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
@@ -85,7 +86,7 @@ export class ManageProductsComponent implements OnInit {
             this.isNew = false;
             this.productId = this.product.id;
             this.product.categoryName = this.categories.find(c => c.id === this.product.categoryId).name;
-            alert("تم إضافة المنتج بنجاح");
+            this.toastrService.info("تم إضافة المنتج بنجاح");
             this.router.navigate([config.admin.ProductsList.route]);
 
           }
@@ -109,7 +110,7 @@ export class ManageProductsComponent implements OnInit {
           if (data.status === 200) {
             this.product = data.data;
             this.viewMode = true;
-            alert("تم تعديل المنتج بنجاح");
+            this.toastrService.info("تم تعديل المنتج بنجاح");
             this.router.navigate([config.admin.ProductsList.route]); 
             
           }
@@ -121,7 +122,7 @@ export class ManageProductsComponent implements OnInit {
   approve() {
     if (confirm("هل انت متأكد من الموافقه على هذا المنتج ؟ ")) {
       this.service.approve(this.productId).subscribe(c => { 
-        alert('approved');
+        this.toastrService.info('تمت الموافقه على المنتج');
         this.product.isActive = true;
       }, error => {
         this.errorHandlingService.handle(error, PAGES.PRODUCTS);
@@ -132,7 +133,7 @@ export class ManageProductsComponent implements OnInit {
   reject() {
     if (confirm("هل انت متأكد من رفض هذا المنتج ؟ ")) {
       this.service.reject(this.productId, prompt("من فضلك ، ادخل سبب الرفض؟")).subscribe(c => { 
-        alert('rejected');
+        this.toastrService.info('تم رفض المنتج');
         this.product.isActive = false;
        }, error => {
         this.errorHandlingService.handle(error, PAGES.PRODUCTS);
@@ -144,7 +145,7 @@ export class ManageProductsComponent implements OnInit {
     if (confirm("هل انت متأكد من مسح هذا المنتج ؟ ")) {
       this.service.delete(this.productId).subscribe(c => { 
         console.log(c);
-        alert('deleted');
+        this.toastrService.info('تم مسح المنتج');
         this.router.navigate([config.admin.ProductsList.route]); 
       }, error => {
         this.errorHandlingService.handle(error, PAGES.PRODUCTS);

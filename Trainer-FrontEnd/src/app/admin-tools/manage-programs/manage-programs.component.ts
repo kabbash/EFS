@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ImageCropperComponent } from '../../shared/image-cropper/image-cropper.component';
 import { config } from '../../config/pages-config';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-programs',
@@ -20,6 +21,7 @@ export class ManageProgramsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private appService: AppService,
+    private toastrService: ToastrService,
     private translate: TranslateService) {
       this.route.params.subscribe(params => {
         this.programId = params['programId'];
@@ -75,22 +77,22 @@ export class ManageProgramsComponent implements OnInit {
   addProgram() {
     this.reposatoryService.create('OTraining/AddProgram', this.prepareData(this.programForm.value)).subscribe(data => {
       
-      alert('تم اضافة البرنامج بنجاح');
+      this.toastrService.info('تم اضافة البرنامج بنجاح');
       this.navigateToListing();
     }, error => {
       this.appService.loading = false;
-      alert(error);
+      this.toastrService.error(error);
     });
   }
   updateProgram() {
     this.reposatoryService.update('otraining/updateprogram/' + this.programId , this.prepareData(this.programForm.value)).subscribe(
       () => {
-        alert('تم تعديل البرنامج');
+        this.toastrService.info('تم تعديل البرنامج');
         this.navigateToListing();
 
       }, error => {
         this.appService.loading = false;
-        alert(error);
+        this.toastrService.error(error);
       }
     );
   }

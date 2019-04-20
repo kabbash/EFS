@@ -7,6 +7,7 @@ import { RepositoryService } from '../../services/repository.service';
 import { CategoriesService } from '../../../admin-tools/services/categories.service';
 import { AppService } from '../../../app.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-articles-card',
@@ -29,6 +30,7 @@ export class ArticlesCardComponent implements OnInit {
     private categoriesService: CategoriesService,
     private repoService: RepositoryService,
     private appService: AppService,
+    private toastr: ToastrService,
     private translate: TranslateService) { }
 
   ngOnInit() {
@@ -53,7 +55,7 @@ export class ArticlesCardComponent implements OnInit {
         this.appService.loading = true;
         this.repoService.delete(this.apiUrl + this.articleCategory.id).subscribe(() => {
           this.appService.loading = false;
-          alert(data.success);
+          this.toastr.info(data.success);
           this.categoriesService.allCategoriesList.splice(
             this.categoriesService.allCategoriesList.findIndex(el => el.id === this.articleCategory.id),
             1
@@ -64,7 +66,7 @@ export class ArticlesCardComponent implements OnInit {
           );
         }, error => {
           this.appService.loading = false;
-          alert(error);
+          this.toastr.error(error);
         });
       }  
     });

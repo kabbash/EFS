@@ -18,6 +18,8 @@ import { AppService } from '../../app.service';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 import { PAGES } from '../../config/defines';
 import { ImageCropperComponent } from '../../shared/image-cropper/image-cropper.component';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-add-banner',
@@ -46,6 +48,7 @@ export class AddBannerComponent implements OnInit {
     private route: ActivatedRoute,
     private sanitizer: Sanitizer,
     private router: Router,
+    private toastrService: ToastrService,
     private appService: AppService,
     private errorHandlingService: ErrorHandlingService) { }
 
@@ -76,7 +79,7 @@ export class AddBannerComponent implements OnInit {
     this.isSubmitted = true;
     this.appService.loading = true;
     if (this.bannerForm.invalid) {
-      alert('invalid data');
+      this.toastrService.error('البيانات غير صحيحه');
       this.appService.loading = false;
       return;
     }

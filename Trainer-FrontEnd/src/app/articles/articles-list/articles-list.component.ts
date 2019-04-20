@@ -67,7 +67,6 @@ export class ArticlesListComponent implements OnInit {
   }
 
   filterItems() {
-    debugger;
     this.pagerData.currentPage = 1;
     this.getNextPage();
   }
