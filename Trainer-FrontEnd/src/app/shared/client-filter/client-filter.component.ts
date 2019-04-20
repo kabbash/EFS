@@ -15,7 +15,14 @@ export class ClientFilterComponent implements OnInit {
   ngOnInit() {
   }
 
-  searchClicked(){
-    this.search.emit();
+
+
+  onKey(evt) {
+    if (evt.code == 'Enter') {
+
+      this.search.emit();
+    }
+  }
+  searchClicked() {
   }
 }

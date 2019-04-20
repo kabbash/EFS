@@ -6,7 +6,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <div class="simulate-img" [ngStyle]="{'background-image':'url(' +  newImage.path + ')'}">صوره جديده</div>
+    <div class="simulate-img" [ngStyle]="{'background-image':'url(' +  newImage.path + ')'}"></div>
     <app-file-uploader (change)="onFileSelect($event)"></app-file-uploader>
     <input _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.title" placeholder="العنوان"
       type="text">
@@ -91,7 +91,7 @@
       </div>
       <img [src]="!image.isNew ? (baseurl + image.path) : (image.path)" class="slider-img" alt="images">
       <!-- <button (click)="cropClicked()"  class="btn btn-danger crop-btn"><i class="fa fa-crop"></i></button> -->
-     
+
       <div class="carousel-caption" *ngIf="!hideText && image.title">
         <h3>{{image.title}}</h3>
         <!-- <p>{{image.description}}</p> -->
