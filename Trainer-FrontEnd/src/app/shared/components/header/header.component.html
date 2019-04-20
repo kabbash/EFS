@@ -42,8 +42,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'selected-router':currentRoute =='/demos/allDemos'}" routerLinkActive="active"
-            [routerLink]="['/demos/allDemos']">التدريب اون لاين</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/onlinetraining']">التدريب اون لاين</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [ngClass]="{'selected-router':currentRoute =='/articles/articlesCategories'|| (currentRoute && currentRoute.search('articles/articlesList') != -1 )}"

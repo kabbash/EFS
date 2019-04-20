@@ -47,6 +47,10 @@ const routes: Routes = [
     loadChildren: './writers/writers.module#WritersModule'
   },
   {
+    path: config.onlinetraining.name,
+    loadChildren: './online-training/online-training.module#OnlineTrainingModule'
+  },
+  {
     path: config.users.name,
     loadChildren: './users/users.module#UsersModule'
   },
