@@ -10,10 +10,10 @@
     <app-file-uploader (change)="onFileSelect($event)"></app-file-uploader>
     <input _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.title" placeholder="العنوان"
       type="text">
-    <textarea _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.description"
-      placeholder="الوصف" rows="3"></textarea>
+    <!-- <textarea _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.description"
+      placeholder="الوصف" rows="3"></textarea> -->
     <div class="p-checkbox">
-      <label for="mainPage">وضع المرفق كصوره شخصيه</label>
+      <label for="mainPage">استخدم هذه الصورة للواجهه</label>
       <input _ngcontent-c11 [(ngModel)]="newImage.isProfilePicture" name="mainPage" placeholder="الصورة الرئيسية"
         type="checkbox">
     </div>
@@ -34,11 +34,11 @@
     <img [src]="baseurl + selectedImg.path" alt="">
     <input _ngcontent-c11="" *ngIf="!hideText" class="form-control" [(ngModel)]="selectedImg.title"
       placeholder="العنوان" type="text">
-    <textarea _ngcontent-c11="" *ngIf="!hideText" class="form-control" [(ngModel)]="selectedImg.description"
-      placeholder="الوصف" rows="3"></textarea>
+    <!-- <textarea _ngcontent-c11="" *ngIf="!hideText" class="form-control" [(ngModel)]="selectedImg.description"
+      placeholder="الوصف" rows="3"></textarea> -->
 
     <div class="p-checkbox">
-      <label for="mainPage2">وضع المرفق كصوره شخصيه</label>
+      <label for="mainPage2">استخدم هذه الصورة للواجهه</label>
       <input _ngcontent-c11 name="mainPage2" [(ngModel)]="selectedImg.isProfilePicture" placeholder="الصورة الرئيسية"
         type="checkbox">
     </div>
