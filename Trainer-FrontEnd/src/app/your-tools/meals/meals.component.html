@@ -3,7 +3,7 @@
    <div class="main-table-container">
       <div class="add-food">
          <button class="open-modal-btn btn btn-info btn-sm" data-toggle="modal" data-target="#searchModal" (click)="openModal()">
-            اضافه طعام<span class="fa fa-plus fa-sm" ></span>
+            اضـف عناصر وجباتك<span class="fa fa-plus fa-sm" ></span>
          </button>
       </div>
       <div class="table">
@@ -448,7 +448,7 @@
                </ngx-datatable>
             </div>
             <div>
-               <span>الكمية</span>
+               <span>الكمية بالجرام</span>
                <input class="add-food-input" type="number" [(ngModel)]=servingAmont />
                <button class="btn btn-info button-add-restyle" data-toggle="modal" data-target="#searchModal"
                   (click)=addFoodItem() [disabled]="!servingAmont || servingAmont <= '0' || !selected || selected.length <= 0">

@@ -5,7 +5,7 @@
 <div class="row admin-product-list-wrapper">
   <button class="btn admin-add-button" (click)="addProduct()"> <i _ngcontent-c6="" class="fa fa-plus"></i></button>
   <div *ngFor="let product of productsList">
-    <app-product-item (click)="openProductModal(product)" [price]="product.price + ' EGP'" [currentRate]="product.rate"
+    <app-product-item  (click)="openProductModal(product)" [price]="product.price + ' EGP'" [currentRate]="product.rate"
       [cardName]="product.name" [cardImage]="baseurl + product.profilePicture"></app-product-item>
   </div>
   <div class="pagination-container" *ngIf="pagerData.pagesCount > 1">

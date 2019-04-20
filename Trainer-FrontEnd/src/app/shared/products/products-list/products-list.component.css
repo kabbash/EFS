@@ -9,13 +9,11 @@
     margin-top: 30px;
 }
 
-
-
 :host ::ng-deep div.card-img-container {
     background-size: contain;
 }
 
-.short-desc{
+.short-desc {
     background: rgba(255, 255, 255, .75);
     border-radius: 12px;
     box-shadow: 0 0px 19px 0px rgba(255, 255, 255, .5);

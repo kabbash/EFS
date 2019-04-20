@@ -43,6 +43,10 @@ export class ProductListItemEditComponent implements OnInit {
     this.product.phoneNumber = this.product.phoneNumber || this.product.seller.phoneNumber || currentUser.phoneNumber || "";
     this.product.seller.fullName = this.product.seller.fullName || currentUser.fullName;
     this.showProductType = this.authService.isAdmin();
+    if(this.product.id == 0){
+      this.product.categoryId = 0;
+      this.product.phoneNumber = "";
+    }
 
     this.editForm = this.fb.group({
       name: [this.product.name, Validators.required],
@@ -51,7 +55,7 @@ export class ProductListItemEditComponent implements OnInit {
       // profilePicture: [this.profilePicture, [Validators.required]],
       expDate: [this.product.expDate, [Validators.required]],
       isSpecial: [this.product.isSpecial, [Validators.required]],
-      categoryId: [this.product.categoryId, [Validators.required]],
+      categoryId: [this.product.categoryId, [Validators.required , Validators.min(1)]],
       phoneNumber: [this.product.phoneNumber, Validators.required]
     });
 

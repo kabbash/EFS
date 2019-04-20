@@ -1,17 +1,26 @@
-<div class="product-short-desc" *ngIf="isSpecial || shortDesc" [ngClass]="{ 'no-short-desc': !shortDesc && isSpecial,'desc-no-special':shortDesc&&!isSpecial }">
+<div class="product-short-desc" *ngIf="isSpecial || shortDesc"
+  [ngClass]="{ 'no-short-desc': !shortDesc && isSpecial,'desc-no-special':shortDesc&&!isSpecial }">
   <div class="special-shape" *ngIf="isSpecial">مميز</div>
   <span *ngIf="shortDesc">{{shortDesc}}</span>
 </div>
-<div class="card-img-container" [ngStyle]="{'background-image': 'url(' + cardImage + ')'}">
-  <button *ngIf="showImageCropIcon" (click)="cropClicked()"  class="btn btn-danger crop-btn"><i class="fa fa-crop"></i></button>
 
+<div class="edit-delete-p-admin">
+  <button (click)="delete($event)" *ngIf="isAddItemForReview" class="btn btn-danger"><i
+      class="fa fa-trash"></i></button>
+  <button (click)="edit($event)" *ngIf="isAddItemForReview" class="btn"><i class="fa fa-edit"></i></button>
 </div>
-<div class="card-separtator"></div>
+
 <div class="card-title-container">
   <p>
     {{cardName}}
   </p>
 </div>
+<div class="card-img-container" [ngStyle]="{'background-image': 'url(' + cardImage + ')'}">
+  <button *ngIf="showImageCropIcon" (click)="cropClicked()" class="btn btn-danger crop-btn"><i
+      class="fa fa-crop"></i></button>
+
+</div>
+<div class="card-separtator"></div>
 
 <div class="price-rating">
   <span *ngIf="price">{{price + ' EGP'}}</span>
@@ -25,8 +34,3 @@
 </div>
 
 <div *ngIf="!isAddItemForReview" class="buy-now" data-toggle="modal" data-target="#exampleModal">عرض التفاصيل</div>
-
-<div class="edit-delete-card">
-    <button (click)="delete($event)" *ngIf="isAddItemForReview" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-    <button (click)="edit($event)" *ngIf="isAddItemForReview" class="btn"><i class="fa fa-edit"></i></button>
-  </div>

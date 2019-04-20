@@ -8,6 +8,8 @@ import { WritersService } from '../services/articles-writers.services';
 import { UtilitiesService } from '../../shared/services/utilities.service';
 import { SliderItemDto } from '../../shared/models/slider/slider-item.dto';
 import { config } from '../../config/pages-config';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 @Component({
@@ -30,6 +32,7 @@ export class ManageArticlesComponent implements OnInit {
     private router: Router,
      private appService: AppService,
       private service: WritersService,
+      private toastrService: ToastrService,
       private util: UtilitiesService) {
     this.route.params.subscribe(params => {
       this.articleId = params['articleId'];
@@ -77,6 +80,13 @@ export class ManageArticlesComponent implements OnInit {
     if (!this.articleDetailsEditmodeComponent.articleForm.valid) {
       return false;
     }
+
+    debugger;
+    if (!this.articleDetailsEditmodeComponent.modifiedArticle.updatedImages.filter(c=>! c.isDeleted).length && !this.articleDetailsEditmodeComponent.modifiedArticle.images.length) {
+      this.toastrService.error('يجب ادخال صور للمقال')
+      return false;
+    }
+
     this.util.setSliderProfilePic(this.articleDetailsEditmodeComponent.modifiedArticle, false);        
     const articleToUpdate = Object.assign({}, this.articleDetailsEditmodeComponent.modifiedArticle)
     delete articleToUpdate.images;
@@ -100,6 +110,11 @@ export class ManageArticlesComponent implements OnInit {
 
     this.articleDetailsEditmodeComponent.submitted = true;
     if (!this.articleDetailsEditmodeComponent.articleForm.valid) {
+      return false;
+    }
+
+    if (!this.articleDetailsEditmodeComponent.modifiedArticle.images.length) {
+      this.toastrService.error('يجب ادخال صور للمقال')
       return false;
     }
 

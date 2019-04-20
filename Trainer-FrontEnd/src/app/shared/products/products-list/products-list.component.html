@@ -27,4 +27,4 @@
     <ngb-pagination [collectionSize]="pagerData.itmesCount" [pageSize]="pagerData.pageSize" [(page)]="pagerData.currentPage"
         [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getNextPage()"></ngb-pagination>
 </div>
-<app-modal *ngIf="!isProductReview && !isManageProductReview" [product]="selectedProduct" (rateUpdated)="rateUpdated($event)"></app-modal>
+<app-modal *ngIf="!isProductReview && !isManageProductReview" class="product-details-component-modal" [product]="selectedProduct" (rateUpdated)="rateUpdated($event)"></app-modal>
