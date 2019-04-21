@@ -2,6 +2,7 @@
 using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
+using Microsoft.Extensions.Logging;
 using OTraining.Core.Interfaces;
 using OTraining.Core.Models;
 using Shared.Core.Models;
@@ -9,7 +10,6 @@ using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
@@ -21,13 +21,16 @@ namespace OTraining.Core.Services
         private readonly IAttachmentsManager _attachmentsManager;
         private readonly IValidator<OTrainingDetailsDto> _detailsValidator;
         private readonly IValidator<OTrainingProgramDto> _programValidator;
+        private readonly ILogger<OTrainingManager> _logger;
 
-        public OTrainingManager(IUnitOfWork unitOfWork, IValidator<OTrainingDetailsDto> detailsValidator, IValidator<OTrainingProgramDto> programValidator, IAttachmentsManager attachmentsManager)
+
+        public OTrainingManager(IUnitOfWork unitOfWork, IValidator<OTrainingDetailsDto> detailsValidator, IValidator<OTrainingProgramDto> programValidator, IAttachmentsManager attachmentsManager, ILogger<OTrainingManager> logger)
         {
             _unitOfWork = unitOfWork;
             _programValidator = programValidator;
             _detailsValidator = detailsValidator;
             _attachmentsManager = attachmentsManager;
+            _logger = logger;
         }
 
         public ResultMessage GetAll()
@@ -43,7 +46,8 @@ namespace OTraining.Core.Services
                 dto.ProgramsDto = _unitOfWork.OTrainingProgramsRepository.Get().Select(c => new OTrainingProgramDto
                 {
                     Name = c.Name,
-                    Features = c.Features
+                    Features = c.Features,
+                    ProfilePicture = c.ProfilePicture
                 }).ToList();
 
                 return new ResultMessage
@@ -54,6 +58,7 @@ namespace OTraining.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     Status = HttpStatusCode.InternalServerError
@@ -83,6 +88,7 @@ namespace OTraining.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     Status = HttpStatusCode.InternalServerError
@@ -121,6 +127,7 @@ namespace OTraining.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     Status = HttpStatusCode.InternalServerError
@@ -179,6 +186,7 @@ namespace OTraining.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError
@@ -232,6 +240,7 @@ namespace OTraining.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
@@ -261,6 +270,7 @@ namespace OTraining.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError

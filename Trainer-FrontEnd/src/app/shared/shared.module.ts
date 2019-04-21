@@ -36,6 +36,7 @@ import { ProductsListComponent } from './products/products-list/products-list.co
 import { ProductItemComponent } from './products/product-item/product-item.component';
 import { ProductListItemEditComponent } from './products/product-list-item-edit/product-list-item-edit.component';
 import { ProductListItemComponent } from './products/product-list-item/product-list-item.component';
+import { OTrainingProgramComponent } from './otraining/training-programs/programs.component';
 
 @NgModule({
   imports: [
@@ -64,6 +65,7 @@ import { ProductListItemComponent } from './products/product-list-item/product-l
     ProductListItemComponent,
     ProductListItemEditComponent,
     ProductItemComponent,
+    OTrainingProgramComponent,
     CommentsComponent,
     SiteMapComponent,
     FileUploaderComponent,
@@ -87,6 +89,7 @@ import { ProductListItemComponent } from './products/product-list-item/product-l
     ProductListItemComponent,
     ProductListItemEditComponent,
     ProductItemComponent,
+    OTrainingProgramComponent,
     CommentsComponent,
     SiteMapComponent,
     FileUploaderComponent,
