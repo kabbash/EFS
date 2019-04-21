@@ -1,44 +1,61 @@
-<div class="row">
-   <div class="col-md-6">
-      <div class="card">
-         <div class="card-header">
-            <strong> حاسبة الاحتياجات اليومية من السعرات الحرارية</strong>
-         </div>
-         <div class="card-header">
-            <p> لحرق الدهون او زيادة الوزن بفاعلية و بسرعة يجب معرفة احتياجاتك اليومية من السعرات الحرارية. و الاحتياجات
-               اليومية من السرات الحرارية تسمى بال TDEE او Total Daily Energy Expenditure</p>
-         </div>
-         <div class="card-body">
+<div class="">
+   <h2 class="secondary-color text-center calculator-title">حساب نسبة الدهون</h2>
+   <div class="text-center white-color calculator-desc">
+      <p> إن أفضل طريقة للحصول على الجسم المثالي , هي تحديد نسبة الدهون الحالية و تحديد نسبة الدهون
+         المستهدفة.
+         و
+         بالتالي عند قيامك بنظام غذائي لحرق الدهون , يكون كل تركيزك على حرق دهون الجسم فقط و الحفاظ على الكتلة
+         العضلية .</p>
+      <p>فالوزن لوحده ليس مؤشر كافي على رشاقتك أو قوتك شكل جسمك . حتى مؤشر كتلة الجسم BMI لا يحدد
+         شكلك
+         و نسبة
+         دهونك و كتلتك العضلية .</p>
+      <p>
+         أدخل وزنك و طولك و مقاسات المتر في الحاسبة ( أرقام أنجليزية و ليست عربية )
+      </p>
+   </div>
+</div>
+<div class="calculator-form-container">
+   <div class="card">
+      <div class="card-body">
+         <div class="col-sm-5">
             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="select1">النوع</label>
-                  <div class="col-md-9">
-                     <select id="select1" name="select1" class="form-control">
-                        <option value="0">اختر</option>
-                        <option value="1">ذكر</option>
-                        <option value="2">أنثى</option>
-                     </select>
+                  <div class="col-md-9 col-form-label">
+                     <div class="form-check gender">
+                        <span>
+                           <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+                           <label class="form-check-label" for="male">
+                              ذكرد
+                           </label>
+                        </span>
+                        <span>
+                           <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                           <label class="form-check-label" for="female">
+                              أنثى
+                           </label>
+                        </span>
+                     </div>
                   </div>
                </div>
                <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="text-input">السن</label>
-                  <div class="col-md-9">
+                  <div class="col-md-5">
                      <input type="text" id="text-input" name="text-input" class="form-control">
-                     <span class="help-block">عدد السنين</span>
                   </div>
+                  <label class="col-md-4 col-form-label" for="text-input">من 15 - 80</label>
                </div>
                <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="text-input">الطول</label>
                   <div class="col-md-9">
-                     <input type="text" id="text-input" name="text-input" class="form-control">
-                     <span class="help-block">بالسنتيمتر</span>
+                     <input type="text" id="text-input" placeholder="سم" name="text-input" class="form-control">
                   </div>
                </div>
                <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="text-input">الوزن</label>
                   <div class="col-md-9">
-                     <input type="text" id="text-input" name="text-input" class="form-control">
-                     <span class="help-block">بالكيلوجرام</span>
+                     <input type="text" id="text-input" placeholder="كجم" name="text-input" class="form-control">
                   </div>
                </div>
                <div class="form-group row">
@@ -66,7 +83,7 @@
                </div>
 
                <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="select1">مستوى النشاط</label>
+                  <label class="col-md-3 col-form-label" for="select1"> النشاط</label>
                   <div class="col-md-9">
                      <select id="select1" name="select1" class="form-control">
                         <option value="0">معدل الأيض الاساسي</option>
@@ -82,31 +99,24 @@
                      </select>
                   </div>
                </div>
+               <div class="form-group row">
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-8">
+                     <div class="col-sm-6 text-left buttons">
+                        <button type="button" class="btn btn-outline-info">احذف</button>
+                     </div>
+
+                     <div class="col-sm-6 text-left buttons">
+                        <button type="button" class="btn btn-outline-info">احسب</button>
+                     </div>
+                  </div>
+               </div>
             </form>
-         </div>
-         <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> حساب
-               النتيجه</button>
-         </div>
-         <div class="card-footer row">
-            <label class="col-md-3 col-form-label" for="select1">معدل الأيض الاساسي:</label>
-            <div class="col-md-9">
-               <span>****</span><span>
-                  سعر حراري /يوم
-               </span>
-            </div>
-         </div>
-         <div class="card-footer row">
-            <label class="col-md-3 col-form-label" for="select1">الاحتياجات اليومية من السعرات:</label>
-            <div class="col-md-9">
-               <span>****</span><span>
-                  سعر حراري /يوم
-               </span>
-            </div>
          </div>
       </div>
    </div>
-   <div class="col-md-6">
+</div>
+<!-- <div class="col-md-6">
       <div class="card">
          <div class="card-header">
             <strong> أهمية حساب نسبة الدهون في الجسم</strong>
@@ -207,5 +217,4 @@
             </div>
          </div>
       </div>
-   </div>
-</div>
+   </div> -->
