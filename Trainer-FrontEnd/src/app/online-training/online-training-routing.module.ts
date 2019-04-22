@@ -1,18 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { config } from '../config/pages-config';
 import { OnlineTrainingComponent } from './online-training.component';
+import { OTrainingResolver } from './resolvers/otraining.resolver';
 
 const routes: Routes = [
   {
     path: '',
-    component: OnlineTrainingComponent,
-    children: [
-      {
-        path: config.contactus.form.name,
-        component: OnlineTrainingComponent
-      },
-    ]
+    component: OnlineTrainingComponent,    
+    resolve: { resultObj: OTrainingResolver }
   }
 ];
 

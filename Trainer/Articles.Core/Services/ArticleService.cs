@@ -13,7 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using DBModels = Shared.Core.Models;
 
 namespace Articles.Core.Services
