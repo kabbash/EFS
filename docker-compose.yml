@@ -8,8 +8,8 @@ services:
         source: ./server-backup/wwwroot
         target: /app/wwwroot
       - type: bind
-        source: ./server-backup/log
-        target: /app/log
+        source: ./server-backup/logs
+        target: /app/logs
     deploy:
       replicas: 1
       resources:
