@@ -3,7 +3,6 @@ using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Products.Core.Extensions;
 using Products.Core.Interfaces;
 using Products.Core.Models;
@@ -252,6 +251,12 @@ namespace Products.Core.Services
                         Status = HttpStatusCode.Unauthorized,
                         ErrorCode = (int)ProductsErrorsCodeEnum.ProductsNotFoundError
                     };
+                
+                //delete attachments 
+                var productFolder = product.SubFolderName;
+                if (!string.IsNullOrEmpty(productFolder))
+                    _attachmentsManager.DeleteFolder(productFolder, AttachmentTypesEnum.Products);
+
 
                 _unitOfWork.ProductsRepository.Delete(id);
                 _unitOfWork.Commit();
