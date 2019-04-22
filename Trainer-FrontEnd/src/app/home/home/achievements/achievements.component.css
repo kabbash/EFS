@@ -2,7 +2,7 @@
 /*  achievements */
 .achievements {
     /* The image used */
-    background-image: url("./../../../../assets/images/homepage-counter.png");
+    background-image: url("/assets/images/homepage-counter.png");
   
     /* Set a specific height */
     height: 500px;

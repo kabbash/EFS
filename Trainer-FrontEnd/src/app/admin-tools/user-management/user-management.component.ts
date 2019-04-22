@@ -21,7 +21,7 @@ export class UserManagementComponent implements OnInit {
   roles: string[];
   selected = [];
   roleToAdd = "";
-  constructor(private route: ActivatedRoute, private service: UsersService, private appService: AppService) { }
+  constructor(private route: ActivatedRoute, private service: UsersService, public appService: AppService) { }
 
   ngOnInit() {
     this.roles = Object.keys(Roles);

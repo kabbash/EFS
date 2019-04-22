@@ -1,13 +1,11 @@
 FROM node:8-alpine as buildContainer
 WORKDIR /app
 COPY ./package.json ./package-lock.json /app/
-RUN npm config set cache ../npm-cache --global 
-RUN npm cache clean --force
 RUN npm install
 COPY . /app
-RUN node_modules/.bin/ng build --prod --aot
+RUN node_modules/.bin/ng build --aot  --progress
 RUN node_modules/.bin/ng run Trainer-FrontEnd:server
-RUN node_modules/.bin/webpack --config webpack.server.config.js --progress --colors
+RUN node_modules/.bin/webpack --config webpack.server.config.js --progress --colors; exit 0
 
 
 
