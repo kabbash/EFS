@@ -45,6 +45,7 @@ namespace OTraining.Core.Services
                 dto.DetailsDto.ForJoin = trainingDetails.FirstOrDefault(c => c.Type == (int)ConfigurationsEnum.OTrainingForJoin)?.Value ?? "";
                 dto.ProgramsDto = _unitOfWork.OTrainingProgramsRepository.Get().Select(c => new OTrainingProgramDto
                 {
+                    Id = c.Id,
                     Name = c.Name,
                     Features = c.Features,
                     ProfilePicture = c.ProfilePicture
@@ -215,12 +216,15 @@ namespace OTraining.Core.Services
                     program.UpdatedAt = DateTime.Now;
 
                     if (programDto.ProfilePictureFile != null && programDto.ProfilePictureFile.Length > 0)
+                    {
+                        _attachmentsManager.Delete(program.ProfilePicture);
                         program.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
                         {
                             File = programDto.ProfilePictureFile,
                             attachmentType = AttachmentTypesEnum.OTrainingProgram,
                             CanChangeName = true
                         });
+                    }
 
                     _unitOfWork.OTrainingProgramsRepository.Update(program);
                     _unitOfWork.Commit();
@@ -262,6 +266,7 @@ namespace OTraining.Core.Services
                     };
                 }
                 _unitOfWork.OTrainingProgramsRepository.Delete(id);
+                _attachmentsManager.Delete(program.ProfilePicture);
                 _unitOfWork.Commit();
                 return new ResultMessage()
                 {

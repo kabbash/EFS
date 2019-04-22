@@ -18,7 +18,6 @@ export class OnlineTrainingComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(response => {
-      debugger;
       this.otrainingModel = response.resultObj.data;
       this.appSrevice.loading = false;
     });

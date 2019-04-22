@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { OTrainingProgramDto } from '../../../shared/models/otraining/otraining-dto';
 import { environment } from '../../../../environments/environment';
 
@@ -10,6 +10,11 @@ import { environment } from '../../../../environments/environment';
 export class OTrainingProgramComponent implements OnInit {
 
   @Input() program: OTrainingProgramDto;
+  @Input() localImageUrl: string;
+  @Input() showActionBtns: boolean = false;
+  @Output() editClicked: EventEmitter<any> = new EventEmitter();
+  @Output() deleteClicked: EventEmitter<any> = new EventEmitter();
+
   programFeatures: string[];
   baseurl = environment.filesBaseUrl;
   programProfilePic = '';
@@ -17,9 +22,13 @@ export class OTrainingProgramComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    debugger;
-    this.programFeatures = this.program.features.split(',');
     this.programProfilePic = this.baseurl + this.program.profilePicture;
   }
 
+  deleteProgram() {
+    this.deleteClicked.emit(this.program.id);
+  }
+  editProgram() {
+    this.editClicked.emit(this.program.id);
+  }
 }

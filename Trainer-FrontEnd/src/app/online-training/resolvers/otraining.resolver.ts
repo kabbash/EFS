@@ -14,7 +14,6 @@ export class OTrainingResolver implements Resolve<Observable<ResultMessage<OTrai
   constructor(private repositoryService: RepositoryService, private errorHandlingService: ErrorHandlingService) {
   }
   resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<OTrainingDto[]>> {
-      debugger;
     return this.repositoryService.getData<OTrainingDto[]>('OTraining').pipe(
       map((data:  Observable<ResultMessage<OTrainingDto[]>>) => data), catchError((error: HttpErrorResponse) => {
         this.errorHandlingService.handle(error, PAGES.OTRAINING);
