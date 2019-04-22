@@ -15,16 +15,16 @@ export class ArticleDetailsResolver implements Resolve<Observable<ResultMessage<
   constructor(private repositoryService: RepositoryService, private errorHandlingService: ErrorHandlingService) {
   }
   resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<ArticleDetialsDto>> {
-    if (route.params['articleId'] !== 0) {
-      return this.repositoryService.getData<ArticleDetialsDto>('articles/' + route.params['articleId']).pipe(
-        map((data: Observable<ResultMessage<ArticleDetialsDto>>) => data) , catchError((error: HttpErrorResponse) => {
-          this.errorHandlingService.handle(error, PAGES.ARTICLES);
-          return throwError(error);
-        })
-      );
-    } else {
+
+    if (!route.params['articleId'] || route.params['articleId'] == "0")
       return null;
 
-    }
+    return this.repositoryService.getData<ArticleDetialsDto>('articles/' + route.params['articleId']).pipe(
+      map((data: Observable<ResultMessage<ArticleDetialsDto>>) => data), catchError((error: HttpErrorResponse) => {
+        this.errorHandlingService.handle(error, PAGES.ARTICLES);
+        return throwError(error);
+      })
+    );
+
   }
 }
