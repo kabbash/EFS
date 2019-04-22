@@ -574,7 +574,7 @@ span pre {
 
 input, .calculator-form-container select {
   background-color: #e7e8e9 !important;
-  border: none;
+  border: none !important;
 }
 
 .calculator-form-container {
@@ -600,4 +600,71 @@ input, .calculator-form-container select {
   border: 2px solid #00bcd4;
   font-weight: bold;
   border-radius: 0;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.calculator-form-container .card-body {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.calculator-form-container .card {
+  border: none;
+}
+
+.calculator-form-container .img-triangle-container {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  overflow: hidden;
+}
+
+.calculator-form-container .result-row {
+  display: flex;
+  margin: 14px 0;
+}
+
+.calculator-form-container .result-name {
+  background-color: #b9e5fb;
+  padding: 3px;
+  width: 160px;
+  border-radius: 5px;
+  margin-left: 25px;
+}
+
+.calculator-form-container .result-value {
+  padding: 3px;
+  background-color: #00bcd4;
+  color: #ffffff;
+  width: 45px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.calculator-form-container .fa-exclamation-circle {
+  color: #00bcd4;
+}
+
+.calculator-form-container .tri-overlay {
+  position: absolute;
+  height: 100%;
+  width: 146%;
+  top: 47%;
+  left: -11%;
+  z-index: 2;
+  background-color: white;
+  transform: rotate(147deg);
+}
+
+.calculator-form-container .card-main-data {
+  z-index: 4;
+}
+
+.calculator-form-container .percent-img {
+  position: absolute;
+  height: 300px;
+  bottom: -44px;
+  left: 0;
 }

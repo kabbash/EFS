@@ -9,35 +9,43 @@
       <ul class="navbar-nav ml-auto">
 
         <li class="nav-item dropdown " *ngIf="authService.isLoggedIn() && smallSize">
-          <a class="nav-link dropdown-anchore" id="userListItem"><i class="fa fa-user user-margin"></i>{{authService.getUserInfo()?.fullName}}<i
+          <a class="nav-link dropdown-anchore" id="userListItem"><i
+              class="fa fa-user user-margin"></i>{{authService.getUserInfo()?.fullName}}<i
               class="fa fa-chevron-down arrow-margin"></i></a>
           <ul class="dropdown-menu">
-            <li *ngIf="authService.isAdmin()"><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.admin.route]">صفحة
+            <li *ngIf="authService.isAdmin()"><a class="nav-item nav-link" routerLinkActive="active"
+                [routerLink]="[configUrls.admin.route]">صفحة
                 التحكم</a></li>
             <li *ngIf="authService.isArticlesWriter()"> <a class="nav-item nav-link" routerLinkActive="active"
                 [routerLink]="[configUrls.writers.articleslist.route]"> مقالاتى</a></li>
-            <li *ngIf="authService.isLoggedIn()"><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.users.productslist.route]">
+            <li *ngIf="authService.isLoggedIn()"><a class="nav-item nav-link" routerLinkActive="active"
+                [routerLink]="[configUrls.users.productslist.route]">
                 منتجاتى</a></li>
-            <li><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.userAccount.changePassword.route]">نغيير
+            <li><a class="nav-item nav-link" routerLinkActive="active"
+                [routerLink]="[configUrls.userAccount.changePassword.route]">نغيير
                 كلمة المرور</a></li>
             <li><a class="nav-item nav-link" (click)="logout()">تسجيل
                 الخروج</a></li>
           </ul>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" [ngClass]="{'selected-router':currentRoute =='/home' || currentRoute =='/'}" href="#">الرئيسية
+          <a class="nav-link" [ngClass]="{'selected-router':currentRoute =='/home' || currentRoute =='/'}"
+            href="#">الرئيسية
             <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item dropdown ">
-          <a class="nav-link dropdown-anchore" [ngClass]="{'selected-router':currentRoute =='/yourTools/meals' || currentRoute =='/yourTools/calculators'}">أدواتك<i
+          <a class="nav-link dropdown-anchore"
+            [ngClass]="{'selected-router':currentRoute =='/yourTools/meals' || currentRoute =='/yourTools/calculators' || currentRoute =='/yourTools/allCalculators'}">أدواتك<i
               class="fa fa-chevron-down arrow-margin"></i></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-item nav-link" routerLinkActive="active" [ngClass]="{'selected-dd-router':currentRoute =='/yourTools/meals'}"
+            <li><a class="nav-item nav-link" routerLinkActive="active"
+                [ngClass]="{'selected-dd-router':currentRoute =='/yourTools/meals'}"
                 [routerLink]="['/yourTools/meals']">الوجبات</a>
             </li>
-            <li><a class="nav-item nav-link" [ngClass]="{'selected-dd-router':currentRoute =='/yourTools/calculators'}"
-                routerLinkActive="active" [routerLink]="['/yourTools/calculators']">حساب
+            <li><a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute =='/yourTools/allCalculators'}" routerLinkActive="active"
+                [routerLink]="['/yourTools/allCalculators']">حساب
                 الدهون و السعرات</a></li>
           </ul>
         </li>
@@ -45,28 +53,34 @@
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/onlinetraining']">التدريب اون لاين</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'selected-router':currentRoute =='/articles/articlesCategories'|| (currentRoute && currentRoute.search('articles/articlesList') != -1 )}"
+          <a class="nav-link"
+            [ngClass]="{'selected-router':currentRoute =='/articles/articlesCategories'|| (currentRoute && currentRoute.search('articles/articlesList') != -1 )}"
             routerLinkActive="active" [routerLink]="['/articles/articlesCategories']"> المقالات</a>
         </li>
         <li class="nav-item dropdown ">
-          <a class="nav-link dropdown-anchore" [ngClass]="{'selected-router':currentRoute =='/products/productsCategories' ||
+          <a class="nav-link dropdown-anchore"
+            [ngClass]="{'selected-router':currentRoute =='/products/productsCategories' ||
             (currentRoute && currentRoute.split('/')[2] =='manageproduct') || currentRoute =='/products/productReviews'|| (currentRoute && currentRoute.search('products/productsList') != -1)}">بيع
             / شراء<i class="fa fa-chevron-down arrow-margin"></i></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-item nav-link" [ngClass]="{'selected-dd-router':currentRoute =='/products/productsCategories'}"
+            <li><a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute =='/products/productsCategories'}"
                 routerLinkActive="active" [routerLink]="['/products/productsCategories']">شراء
                 منتج</a></li>
-            <li *ngIf="authService.isLoggedIn()"><a class="nav-item nav-link" [ngClass]="{'selected-dd-router':currentRoute &&( currentRoute && currentRoute.split('/')[2] =='manageproduct')}"
+            <li *ngIf="authService.isLoggedIn()"><a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute &&( currentRoute && currentRoute.split('/')[2] =='manageproduct')}"
                 routerLinkActive="active" [routerLink]="[configUrls.users.manageproduct.route, 0]">بيع منتج</a></li>
             <!-- <li *ngIf="authService.isLoggedIn()"><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.users.productslist.route]">
               منتجاتى</a></li> -->
 
-            <li><a class="nav-item nav-link" [ngClass]="{'selected-dd-router':currentRoute =='/products/productReviews'}"
+            <li><a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute =='/products/productReviews'}"
                 [routerLink]="['/products/productReviews']">مراجعة المنتجات</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown ">
-          <a class="nav-link dropdown-anchore" [ngClass]="{'selected-router':currentRoute =='/articles/news' || currentRoute =='/articles/championships'}">الأخبار<i
+          <a class="nav-link dropdown-anchore"
+            [ngClass]="{'selected-router':currentRoute =='/articles/news' || currentRoute =='/articles/championships'}">الأخبار<i
               class="fa fa-chevron-down arrow-margin"></i></a>
           <ul class="dropdown-menu">
             <li><a class="nav-item nav-link" [ngClass]="{'selected-dd-router':currentRoute =='/articles/news'}"
@@ -76,7 +90,8 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [ngClass]="{'selected-router':currentRoute =='/articles/food'|| (currentRoute && currentRoute.split('/')[2]=='articleDetails')}"
+          <a class="nav-link" routerLinkActive="active"
+            [ngClass]="{'selected-router':currentRoute =='/articles/food'|| (currentRoute && currentRoute.split('/')[2]=='articleDetails')}"
             [routerLink]="['/articles/food']"> وصفات الطعام</a>
         </li>
         <li class="nav-item">
@@ -84,7 +99,8 @@
             [routerLink]="['/contactus/bio']"> السيرة الذاتية</a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" routerLinkActive="active" [ngClass]="{'selected-router':currentRoute =='/contactus/contactusForm'}"
+          <a class="nav-link" routerLinkActive="active"
+            [ngClass]="{'selected-router':currentRoute =='/contactus/contactusForm'}"
             [routerLink]="['/contactus/contactusForm']"> تواصل معنا</a>
 
         </li>
@@ -93,20 +109,25 @@
         </li>
 
         <li class="nav-item dropdown " id="userNameElm" [hidden]="!(authService.isLoggedIn() && !smallSize)">
-          <a class="nav-link dropdown-anchore" id="userListItem"><i class="fa fa-user user-margin"></i>{{authService.getUserInfo()?.fullName}}<i
+          <a class="nav-link dropdown-anchore" id="userListItem"><i
+              class="fa fa-user user-margin"></i>{{authService.getUserInfo()?.fullName}}<i
               class="fa fa-chevron-down arrow-margin"></i></a>
           <ul class="dropdown-menu user-dropdown">
 
-            <li *ngIf="authService.isAdmin()"><a class="nav-item nav-link" [ngClass]="{'selected-dd-router':currentRoute && currentRoute.split('/')[1] =='admin'}"
+            <li *ngIf="authService.isAdmin()"><a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute && currentRoute.split('/')[1] =='admin'}"
                 routerLinkActive="active" [routerLink]="[configUrls.admin.route]">صفحة
                 التحكم</a></li>
-            <li *ngIf="authService.isArticlesWriter()"> <a class="nav-item nav-link" [ngClass]="{'selected-dd-router':currentRoute ==configUrls.writers.articleslist.route}"
+            <li *ngIf="authService.isArticlesWriter()"> <a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute ==configUrls.writers.articleslist.route}"
                 routerLinkActive="active" [routerLink]="[configUrls.writers.articleslist.route]"> مقالاتى</a></li>
-            <li *ngIf="authService.isLoggedIn()"><a class="nav-item nav-link" [ngClass]="{'selected-dd-router':currentRoute == configUrls.users.productslist.route}"
+            <li *ngIf="authService.isLoggedIn()"><a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute == configUrls.users.productslist.route}"
                 routerLinkActive="active" [routerLink]="[configUrls.users.productslist.route]">
                 منتجاتى</a></li>
 
-            <li><a class="nav-item nav-link" routerLinkActive="active" [ngClass]="{'selected-dd-router':currentRoute == configUrls.userAccount.changePassword.route}"
+            <li><a class="nav-item nav-link" routerLinkActive="active"
+                [ngClass]="{'selected-dd-router':currentRoute == configUrls.userAccount.changePassword.route}"
                 [routerLink]="[configUrls.userAccount.changePassword.route]">نغيير
                 كلمة المرور</a></li>
             <li><a class="nav-item nav-link" (click)="logout()">تسجيل
