@@ -7,6 +7,9 @@ services:
       - type: bind
         source: ./server-backup/wwwroot
         target: /app/wwwroot
+      - type: bind
+        source: ./server-backup/log
+        target: /app/log
     deploy:
       replicas: 1
       resources:
