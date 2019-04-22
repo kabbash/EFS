@@ -41,7 +41,7 @@ export class ProductListItemEditComponent implements OnInit {
   ngOnInit() {
     let currentUser = this.authService.getUserInfo();
     this.product.phoneNumber = this.product.phoneNumber || this.product.seller.phoneNumber || currentUser.phoneNumber || "";
-    this.product.seller.fullName = this.product.seller.fullName || currentUser.fullName;
+    // this.product.seller.fullName = this.product.seller ? this.product.seller.fullName : currentUser.fullName;
     this.showProductType = this.authService.isAdmin();
     if(this.product.id == 0){
       this.product.categoryId = 0;
@@ -54,7 +54,7 @@ export class ProductListItemEditComponent implements OnInit {
       description: [this.product.description, [Validators.required]],
       // profilePicture: [this.profilePicture, [Validators.required]],
       expDate: [this.product.expDate, [Validators.required]],
-      // isSpecial: [this.product.isSpecial, [Validators.required]],
+      isSpecial: [this.product.isSpecial],
       categoryId: [this.product.categoryId, [Validators.required , Validators.min(1)]],
       phoneNumber: [this.product.phoneNumber, Validators.required]
     });

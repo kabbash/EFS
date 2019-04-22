@@ -15,7 +15,7 @@ export class productListItemDto implements ISliderDto {
   rate: number = 0;
   seller: Seller = new Seller();
   reviews: Review[];
-  isSpecial: boolean = null;
+  isSpecial: boolean = false;
   isActive: boolean = null;
   images: SliderItemDto[];
   updatedImages: SliderItemDto[];
