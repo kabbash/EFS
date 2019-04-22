@@ -11,6 +11,7 @@ using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
 using System;
 using System.Net;
+using System.Linq;
 
 namespace ItemsReview.Services
 {
@@ -32,7 +33,7 @@ namespace ItemsReview.Services
             try
             {
                 PagedResult<ItemReviewDto> result = new PagedResult<ItemReviewDto>();
-                result = _unitOfWork.ItemsReviewsRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                result = _unitOfWork.ItemsReviewsRepository.Get().ApplyFilter(filter).OrderBy(c=>c.Name).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
 
                 return new ResultMessage()
                 {
