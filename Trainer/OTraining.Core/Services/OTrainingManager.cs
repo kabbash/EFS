@@ -2,6 +2,7 @@
 using Attachments.Core.Models;
 using FluentValidation;
 using Mapster;
+using Microsoft.Extensions.Logging;
 using OTraining.Core.Interfaces;
 using OTraining.Core.Models;
 using Shared.Core.Models;
@@ -9,7 +10,6 @@ using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
@@ -21,13 +21,16 @@ namespace OTraining.Core.Services
         private readonly IAttachmentsManager _attachmentsManager;
         private readonly IValidator<OTrainingDetailsDto> _detailsValidator;
         private readonly IValidator<OTrainingProgramDto> _programValidator;
+        private readonly ILogger<OTrainingManager> _logger;
 
-        public OTrainingManager(IUnitOfWork unitOfWork, IValidator<OTrainingDetailsDto> detailsValidator, IValidator<OTrainingProgramDto> programValidator, IAttachmentsManager attachmentsManager)
+
+        public OTrainingManager(IUnitOfWork unitOfWork, IValidator<OTrainingDetailsDto> detailsValidator, IValidator<OTrainingProgramDto> programValidator, IAttachmentsManager attachmentsManager, ILogger<OTrainingManager> logger)
         {
             _unitOfWork = unitOfWork;
             _programValidator = programValidator;
             _detailsValidator = detailsValidator;
             _attachmentsManager = attachmentsManager;
+            _logger = logger;
         }
 
         public ResultMessage GetAll()
@@ -42,8 +45,10 @@ namespace OTraining.Core.Services
                 dto.DetailsDto.ForJoin = trainingDetails.FirstOrDefault(c => c.Type == (int)ConfigurationsEnum.OTrainingForJoin)?.Value ?? "";
                 dto.ProgramsDto = _unitOfWork.OTrainingProgramsRepository.Get().Select(c => new OTrainingProgramDto
                 {
+                    Id = c.Id,
                     Name = c.Name,
-                    Features = c.Features
+                    Features = c.Features,
+                    ProfilePicture = c.ProfilePicture
                 }).ToList();
 
                 return new ResultMessage
@@ -54,6 +59,7 @@ namespace OTraining.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     Status = HttpStatusCode.InternalServerError
@@ -83,6 +89,7 @@ namespace OTraining.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     Status = HttpStatusCode.InternalServerError
@@ -121,6 +128,7 @@ namespace OTraining.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage()
                 {
                     Status = HttpStatusCode.InternalServerError
@@ -179,6 +187,7 @@ namespace OTraining.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError
@@ -207,12 +216,15 @@ namespace OTraining.Core.Services
                     program.UpdatedAt = DateTime.Now;
 
                     if (programDto.ProfilePictureFile != null && programDto.ProfilePictureFile.Length > 0)
+                    {
+                        _attachmentsManager.Delete(program.ProfilePicture);
                         program.ProfilePicture = _attachmentsManager.Save(new SavedFileDto
                         {
                             File = programDto.ProfilePictureFile,
                             attachmentType = AttachmentTypesEnum.OTrainingProgram,
                             CanChangeName = true
                         });
+                    }
 
                     _unitOfWork.OTrainingProgramsRepository.Update(program);
                     _unitOfWork.Commit();
@@ -232,6 +244,7 @@ namespace OTraining.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError,
@@ -253,6 +266,7 @@ namespace OTraining.Core.Services
                     };
                 }
                 _unitOfWork.OTrainingProgramsRepository.Delete(id);
+                _attachmentsManager.Delete(program.ProfilePicture);
                 _unitOfWork.Commit();
                 return new ResultMessage()
                 {
@@ -261,6 +275,7 @@ namespace OTraining.Core.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, string.Empty);
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.InternalServerError

@@ -105,9 +105,7 @@ namespace Trainer.EF
                     .HasMaxLength(256);
                 entity.HasData(new AspNetRoles[] {
                     new AspNetRoles { Id = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3", Name = "Admin"},
-                    new AspNetRoles { Id = "b3c0d399-61f6-47e1-99eb-c545052992d6", Name = "Trainee"},
                     new AspNetRoles { Id = "07ab2dd0-83e1-49a4-a8dc-66d948355392", Name = "Regular User"},
-                    new AspNetRoles { Id = "7c433dc0-d62b-43da-91d5-5b63e41a902f", Name = "Food Articles Writer"},
                     new AspNetRoles { Id = "6a883f63-ef24-4693-a10f-ac30aaca972e", Name = "Articles Writer"}
                 }
                     );
@@ -164,10 +162,19 @@ namespace Trainer.EF
                     .WithMany(p => p.AspNetUserRoles)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId");
-                entity.HasData(new AspNetUserRoles
-                {
-                    RoleId = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3",
-                    UserId = "7c654344-ad42-4428-a77a-00a8c1299c3f"
+                entity.HasData(new AspNetUserRoles[] {
+                    new AspNetUserRoles {
+                        RoleId = "1d2b6cf6-8e86-46e9-9df2-2cdfc8f906f3",
+                        UserId = "7c654344-ad42-4428-a77a-00a8c1299c3f"
+                    },
+                    new AspNetUserRoles {
+                        RoleId = "6a883f63-ef24-4693-a10f-ac30aaca972e",
+                        UserId = "948f5fb5-00ce-4d61-9e4b-741290e20024"
+                    },
+                    new AspNetUserRoles {
+                        RoleId = "07ab2dd0-83e1-49a4-a8dc-66d948355392",
+                        UserId = "b62f98ba-68ea-45d0-8209-48ee24d40e53"
+                    }
                 });
             });
 
@@ -194,17 +201,40 @@ namespace Trainer.EF
                     .HasMaxLength(256);
                 entity.HasIndex(e => e.UserName).IsUnique();
                 entity.HasIndex(e => e.Email).IsUnique();
-                entity.HasData(new AspNetUsers
-                {
-                    Id = "7c654344-ad42-4428-a77a-00a8c1299c3f",
-                    Email = "ahmedkabbash@gmail.com",
-                    EmailConfirmed = true,
-                    FullName = "ahmed kabbash",
-                    UserName = "ahmedkabbash@gmail.com",
-                    PasswordSalt = hmac.Key,
-                    PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes("1234")),
-                    PhoneNumber = "01014991554"
+                entity.HasData(new AspNetUsers[] {
+                    new AspNetUsers {
+                        Id = "7c654344-ad42-4428-a77a-00a8c1299c3f",
+                        Email = "admin@efs.com",
+                        EmailConfirmed = true,
+                        FullName = "admin",
+                        UserName = "admin@efs.com",
+                        PasswordSalt = hmac.Key,
+                        PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes("1234")),
+                        PhoneNumber = "01012345678"
 
+                    },
+                    new AspNetUsers {
+                        Id = "948f5fb5-00ce-4d61-9e4b-741290e20024",
+                        Email = "writer@efs.com",
+                        EmailConfirmed = true,
+                        FullName = "articles writer",
+                        UserName = "writer@gmail.com",
+                        PasswordSalt = hmac.Key,
+                        PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes("1234")),
+                        PhoneNumber = "01012345678"
+
+                    },
+                    new AspNetUsers {
+                        Id = "b62f98ba-68ea-45d0-8209-48ee24d40e53",
+                        Email = "user@efs.com",
+                        EmailConfirmed = true,
+                        FullName = "regular user",
+                        UserName = "user@efs.com",
+                        PasswordSalt = hmac.Key,
+                        PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes("1234")),
+                        PhoneNumber = "01012345678"
+
+                    }
                 });
             });         
             modelBuilder.Entity<Products>(entity =>

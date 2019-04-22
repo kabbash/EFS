@@ -6,5 +6,6 @@ export const PAGES = {
     RATING: 'rating',
     ITEMREVIEWS: 'itemReviews',
     BANNER: 'banner',
-    ARTICLES: 'articles'
+    ARTICLES: 'articles',
+    OTRAINING: 'otraining'
 };

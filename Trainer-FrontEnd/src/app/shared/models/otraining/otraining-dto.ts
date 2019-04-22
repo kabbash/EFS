@@ -1,6 +1,6 @@
 export class OTrainingDto {
-    details: OTrainingDetailsDto;
-    programs: OTrainingProgramDto[];
+    detailsDto: OTrainingDetailsDto;
+    programsDto: OTrainingProgramDto[];
 }
 
 export class OTrainingDetailsDto {

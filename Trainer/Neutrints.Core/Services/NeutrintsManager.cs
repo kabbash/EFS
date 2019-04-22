@@ -8,9 +8,8 @@ using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Net;
-using System.Text;
 
 namespace Neutrints.Core.Services
 {
@@ -29,7 +28,7 @@ namespace Neutrints.Core.Services
             try
             {
                 PagedResult<FoodItemDto> result = new PagedResult<FoodItemDto>();
-                result = _unitOfWork.FoodItemsRepository.Get(includeProperties: includeProperities ?? "").ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                result = _unitOfWork.FoodItemsRepository.Get(includeProperties: includeProperities ?? "").ApplyFilter(filter).OrderBy(c=>c.Id).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
                 return new ResultMessage()
                 {
                     Data = result,

@@ -5,17 +5,17 @@ import { SharedModule } from '../shared/shared.module';
 import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { OnlineTrainingComponent } from './online-training.component';
 import { OnlineTrainingRoutingModule } from './online-training-routing.module';
-import { PackagesComponent } from './training-packages/packages.component';
+import { OTrainingResolver } from './resolvers/otraining.resolver';
 @NgModule({
-  imports: [
+  imports: [ 
     SharedModule,
     OnlineTrainingRoutingModule,
     NgbModule,
     NgbPaginationModule,
-    NgbAlertModule,
+    NgbAlertModule, 
   ],
-  declarations: [OnlineTrainingComponent, PackagesComponent],
-  providers: []
+  declarations: [OnlineTrainingComponent],
+  providers: [OTrainingResolver]
 })
 export class OnlineTrainingModule {
 }
