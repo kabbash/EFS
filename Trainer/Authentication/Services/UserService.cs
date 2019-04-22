@@ -82,7 +82,7 @@ namespace Authentication.Services
         public ResultMessage GetAll(UsersFilter filter)
         {
             PagedResult<User> result = new PagedResult<User>();
-            var users = _unitOfWork.UsersRepository.Get().ApplyFilter(filter).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+            var users = _unitOfWork.UsersRepository.Get().ApplyFilter(filter).OrderBy(c=>c.UserName).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
             return new ResultMessage()
             {
                 Data = users,

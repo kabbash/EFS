@@ -10,6 +10,7 @@ using Shared.Core.Utilities.Extensions;
 using Shared.Core.Utilities.Models;
 using System;
 using System.Net;
+using System.Linq;
 
 namespace Banner.Core.Services
 {
@@ -92,7 +93,7 @@ namespace Banner.Core.Services
         public ResultMessage Get(int pageNo, int pageSize)
         {
             PagedResult<BannerDto> result = new PagedResult<BannerDto>();
-            result = _unitOfWork.BannersRepository.Get().GetPaged(pageNo, pageSize).Adapt(result);
+            result = _unitOfWork.BannersRepository.Get().OrderBy(c=>c.Id).GetPaged(pageNo, pageSize).Adapt(result);
 
             return new ResultMessage()
             {
