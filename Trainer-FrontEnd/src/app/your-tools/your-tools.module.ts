@@ -6,6 +6,7 @@ import { YourToolsRoutingModule } from './your-tools-routing.module';
 import { YourToolsCalculatorsComponent } from './calculators/calculators.component';
 import { MealsComponent } from './meals/meals.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { YourToolsAllCalculatorsComponent } from './all-calculators/all-calculators.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     NgbAlertModule,
     NgxDatatableModule
   ],
-  declarations: [YourToolsComponent, YourToolsCalculatorsComponent, MealsComponent],
+  declarations: [YourToolsComponent, YourToolsCalculatorsComponent, MealsComponent, YourToolsAllCalculatorsComponent],
   providers: [
   ]
 })

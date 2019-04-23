@@ -13,9 +13,21 @@
     background: rgba(255, 255, 255, .75);
     border-radius: 12px;
     box-shadow: 0 0px 19px 0px rgba(255, 255, 255, .5);
-    background-size: 60%;
-    background-position: 50%;
-    background-repeat: no-repeat;
+    display: flex;
+    align-items: CENTER;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.with-img img {
+    max-width: 90%;
+}
+
+.img-title {
+    font-size: 24px;
+    font-weight: bold;
+    max-width: 90%;
+    margin-bottom: 7px;
 }
 
 .details-container {
@@ -60,10 +72,11 @@
     color: white;
 }
 
-.email{
+.email {
     margin-bottom: 20px;
 }
-.add-comment{
+
+.add-comment {
     width: 105px;
     height: 50px;
     background: #00bcd4;

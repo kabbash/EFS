@@ -115,6 +115,7 @@ export class ProductsListComponent implements OnInit {
     this.getNextPage();
   }
 
+
   rateUpdated(event) {
 
     let rateDto = new RatingDto();
@@ -126,7 +127,7 @@ export class ProductsListComponent implements OnInit {
       this.appService.loading = false;
     }, error => {
       this.toastr.error(error);
-      this.appService.loading = false; 
+      this.appService.loading = false;
     });
   }
 }

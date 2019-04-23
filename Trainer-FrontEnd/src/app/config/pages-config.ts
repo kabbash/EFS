@@ -39,6 +39,10 @@ export let config = {
             'name': 'calculators',
             'route': '/yourTools/calculators',
         },
+        'allCalculators': {
+            'name': 'allCalculators',
+            'route': '/yourTools/allCalculators',
+        },
         'meals': {
             'name': 'meals',
             'route': '/yourTools/meals',

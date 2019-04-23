@@ -7,20 +7,25 @@
 @import url('https://fonts.googleapis.com/css?family=Cairo:300,400,600,700|Tajawal:300,400,500,700&amp;subset=arabic,latin-ext');
 @font-face {
   font-family: 'Cocon-Light';
-  src:url('/assets/fonts/Cocon® Next Arabic-Light') format('otf')
+  src: url('/assets/fonts/Cocon® Next Arabic-Light') format('otf')
 }
+
 @font-face {
   font-family: 'Cocon-bold';
-  src:url('/assets/fonts/Cocon-Bold-Font.otf') format('otf')
+  src: url('/assets/fonts/Cocon-Bold-Font.otf') format('otf')
 }
+
 html, body {
   overflow-x: hidden;
-  direction: rtl;
+  direction: ltr;
   font-family: 'Cairo', sans-serif !important;
   text-align: right !important;
-    height: 100%;
-    margin: 0;
-  
+  height: 100%;
+  margin: 0;
+}
+
+app-root {
+  direction: rtl;
 }
 
 body {
@@ -406,4 +411,260 @@ span pre {
 
 .datatable-row-center datatable-body-cell:first-child, .datatable-row-center datatable-header-cell:first-child {
   width: 50% !important;
+}
+
+.container-search {
+  position: relative;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 500px;
+  height: 100px;
+}
+
+.container-search .search {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  background: #00bcd4;
+  border-radius: 50%;
+  transition: all 1s;
+  z-index: 4;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 0 25px 0 crimson; */
+}
+
+.container-search .search:hover {
+  cursor: pointer;
+}
+
+.container-search .search::before {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: 22px;
+  right: 0;
+  bottom: 0;
+  left: 22px;
+  width: 12px;
+  height: 2px;
+  background: white;
+  transform: rotate(45deg);
+  transition: all .5s;
+}
+
+.container-search .search::after {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: -5px;
+  right: 0;
+  bottom: 0;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: all .5s;
+}
+
+.container-search input {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border: none;
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
+  background: #00bcd4;
+  color: white;
+  text-shadow: 0 0 10px #00bcd4;
+  padding: 0 80px 0 20px;
+  border-radius: 30px;
+  box-shadow: 0 0 25px 0 #00bcd4, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: inset 0 0 25px 0 rgba(0, 0, 0, 0.5); */
+  transition: all 1s;
+  opacity: 0;
+  z-index: 5;
+  font-weight: bolder;
+}
+
+.container-search input:hover {
+  cursor: pointer;
+}
+
+.container-search input:focus {
+  width: 300px;
+  opacity: 1;
+  cursor: text;
+}
+
+.container-search input:focus~.search {
+  right: -250px;
+  background: #151515;
+  z-index: 6;
+}
+
+.container-search input:focus~.search::before {
+  top: 0;
+  left: 0;
+  width: 25px;
+}
+
+.container-search input:focus~.search::after {
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  border: none;
+  background: white;
+  border-radius: 0%;
+  transform: rotate(-45deg);
+}
+
+.container-search input::placeholder {
+  color: white;
+  opacity: 0.5;
+  font-weight: bolder;
+}
+
+/* calculator styles */
+
+.calculator-title {
+  margin-bottom: 35px;
+}
+
+.calculator-desc {
+  font-size: 19px;
+}
+
+.calculator-desc p {
+  margin-bottom: 8px;
+}
+
+.col-form-label {
+  padding: 0;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.gender span {
+  margin-left: 10px;
+}
+
+.form-check-label {
+  padding-right: 25px;
+}
+
+.form-check .form-check-input {
+  height: 20px;
+  width: 20px;
+}
+
+input, .calculator-form-container select {
+  background-color: #e7e8e9 !important;
+  border: none !important;
+}
+
+.calculator-form-container {
+  margin-top: 35px;
+}
+
+.calculator-form-container input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #333 !important;
+  /* Firefox */
+}
+
+.calculator-form-container .buttons {
+  float: right;
+  padding-left: 0;
+}
+
+.calculator-form-container .btn-outline-info {
+  color: #000;
+  font-size: 20px;
+  background-color: transparent;
+  background-image: none;
+  border: 2px solid #00bcd4;
+  font-weight: bold;
+  border-radius: 0;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.calculator-form-container .card-body {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.calculator-form-container .card {
+  border: none;
+}
+
+.calculator-form-container .img-triangle-container {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  overflow: hidden;
+}
+
+.calculator-form-container .result-row {
+  display: flex;
+  margin: 14px 0;
+}
+
+.calculator-form-container .result-name {
+  background-color: #b9e5fb;
+  padding: 3px;
+  width: 160px;
+  border-radius: 5px;
+  margin-left: 25px;
+}
+
+.calculator-form-container .result-value {
+  padding: 3px;
+  background-color: #00bcd4;
+  color: #ffffff;
+  width: 45px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.calculator-form-container .fa-exclamation-circle {
+  color: #00bcd4;
+}
+
+.calculator-form-container .tri-overlay {
+  position: absolute;
+  height: 100%;
+  width: 146%;
+  top: 47%;
+  left: -11%;
+  z-index: 2;
+  background-color: white;
+  transform: rotate(147deg);
+}
+
+.calculator-form-container .card-main-data {
+  z-index: 4;
+}
+
+.calculator-form-container .percent-img {
+  position: absolute;
+  height: 300px;
+  bottom: -44px;
+  left: 0;
 }

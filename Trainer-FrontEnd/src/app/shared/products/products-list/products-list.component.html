@@ -5,6 +5,8 @@
 </div>
 <div class="products-container">
     <app-client-filter *ngIf="hasItems" (search)="filterItems()"></app-client-filter>
+
+
     <!-- Special Products -->
     <div class="col-md-12" style="display: contents;" *ngIf="currentPageSpecialProducts.length">
         <app-product-item *ngFor="let product of currentPageSpecialProducts" (click)="openProductDetails(product)"
