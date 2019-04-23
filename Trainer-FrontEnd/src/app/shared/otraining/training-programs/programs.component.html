@@ -1,26 +1,28 @@
-<div class="col-sm-6 col-md-3 packages">
+<div class="packages">
    <div class=" item">
-      <div class="thumbnail ">
-         <img src="{{localImageUrl ?  localImageUrl : programProfilePic}}" class="img-responsive img-rounded" alt="صورة البرنامج">
+      <div class="thumbnail "
+         [ngStyle]="{'background-image': 'url(' + setImage(localImageUrl,programProfilePic) + ')'}">
+         <!-- <img src="" class="img-responsive img-rounded"
+            alt="صورة البرنامج"> -->
       </div>
 
       <div class="caption">
          <h3>{{program.name}}</h3>
-         <ul *ngIf="!showActionBtns && program.features">
+         <ul *ngIf="program.features">
             <li *ngFor="let feature of program.features.split(',')">
                <span>{{feature}}</span>
             </li>
          </ul>
-         <span *ngIf="!showActionBtns">
-            <a href="#" class="btn" role="button">
+         <span *ngIf="showActionBtns" class="join-now">
+            <a class="btn join" role="button" (click)="joinNow()">
                اشترك الان
             </a>
          </span>
 
       </div>
-      <div *ngIf="showActionBtns" class="edit-delete-card">
-         <button (click)="deleteProgram()"  class="btn btn-danger"><i class="fa fa-trash"></i></button>
-         <button (click)="editProgram()"  class="btn"><i class="fa fa-edit"></i></button>
+      <div *ngIf="!showActionBtns" class="edit-delete-card">
+         <button (click)="deleteProgram()" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+         <button (click)="editProgram()" class="btn"><i class="fa fa-edit"></i></button>
       </div>
    </div>
 </div>

@@ -14,10 +14,11 @@
       <button class=" title-style">البرامج</button>
     </div>
     <div class="packages-item">
-      <app-otraining-program *ngFor="let programModel of otrainingModel.programsDto" [program]="programModel"></app-otraining-program>
+      <app-otraining-program *ngFor="let programModel of otrainingModel.programsDto"  [showActionBtns]="true" [program]="programModel">
+      </app-otraining-program>
     </div>
   </div>
-  <div class="apply-desc desc-style">
+  <div class="apply-desc desc-style" id="nextSection">
     <div class="desc-title ">
       <button class=" title-style">طريقه الاشتراك</button>
     </div>
