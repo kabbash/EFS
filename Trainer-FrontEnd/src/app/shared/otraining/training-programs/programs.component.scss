@@ -1,44 +1,59 @@
-.packages{
-    display:inline-flex;
-    margin: 10px 0;
-    .item{
-        background-color: white;
-        border-radius: 15px;
-        .thumbnail{
-            img{
-                width: 100%;
-                border-top-right-radius: 15px;
-                border-top-left-radius: 15px;
-            }
-        }
-        .caption{
-            padding: 20px;
-            h3{
-                font-size: 20px;
-                color:black;
-                text-align: center;
-                padding-bottom: 16px;
-            }
-            li{
-                font-size: 14px;
-                color:#23bacd;
-                text-align: right;
-                // height: 80px;
-                word-wrap: break-word;
-                word-break: break-all;
-            }
-        }
-        .btn{
-            border: 1px solid #23bacd;
-            background-color: white;
-            font-size: 20px;
-            text-align: center;
-            display: block;
-            margin: auto;
-            display: block;
-            width: 80%;
-    
-    
-        }
+.packages {
+  display: inline-flex;
+  margin: 10px 20px;
+  width: 270px;
+  height: 440px;
+  padding-bottom: 80px;
+  background: white;
+  border-radius: 17px;
+  overflow: hidden;
+  position: relative;
+  .join-now {
+    position: absolute;
+    display: flex;
+    bottom: 22px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  .item {
+    background-color: #ffffff;
+    border-radius: 15px;
+    width: 100%;
+    .thumbnail {
+      height: 167px;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: cover;
+      background-color: gainsboro;
     }
+    .caption {
+      padding: 20px;
+      h3 {
+        font-size: 20px;
+        color: black;
+        text-align: center;
+        padding-bottom: 16px;
+      }
+      li {
+        font-size: 14px;
+        color: #23bacd;
+        text-align: right;
+        // height: 80px;
+        word-wrap: break-word;
+        word-break: break-all;
+      }
+    }
+    .btn.join {
+      border: 1px solid #23bacd;
+      background-color: white;
+      font-size: 20px;
+      text-align: center;
+      display: block;
+      margin: auto;
+      display: block;
+      width: 142px;
+      cursor: pointer;
+    }
+  }
 }

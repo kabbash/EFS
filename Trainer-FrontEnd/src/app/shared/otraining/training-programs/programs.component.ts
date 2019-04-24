@@ -31,4 +31,18 @@ export class OTrainingProgramComponent implements OnInit {
   editProgram() {
     this.editClicked.emit(this.program.id);
   }
+
+  setImage(localImageUrl, programProfilePic) {
+    return localImageUrl ? localImageUrl : programProfilePic;
+  }
+
+  joinNow() {
+
+    window.scrollTo({
+      top: document.getElementById('nextSection').offsetTop,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+
 }

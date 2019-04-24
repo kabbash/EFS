@@ -10,7 +10,7 @@ import { OTrainingDto } from '../shared/models/otraining/otraining-dto';
 })
 export class OnlineTrainingComponent implements OnInit {
 
-  otrainingModel :OTrainingDto;
+  otrainingModel: OTrainingDto;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -22,5 +22,6 @@ export class OnlineTrainingComponent implements OnInit {
       this.appSrevice.loading = false;
     });
   }
+  
 
 }
