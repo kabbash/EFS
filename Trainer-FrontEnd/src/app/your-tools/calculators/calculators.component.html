@@ -1,5 +1,5 @@
 <div class="">
-   <h2 class="secondary-color text-center calculator-title">حساب نسبة الدهون</h2>
+   <h2 class="secondary-color text-center calculator-title">حساب السعرات الحراريه</h2>
    <div class="text-center white-color calculator-desc">
       <p> إن أفضل طريقة للحصول على الجسم المثالي , هي تحديد نسبة الدهون الحالية و تحديد نسبة الدهون
          المستهدفة.
@@ -30,13 +30,15 @@
                   <div class="col-md-9 col-form-label">
                      <div class="form-check gender">
                         <span>
-                           <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+                           <input class="form-check-input" type="radio" name="gender" id="male" value="0"
+                              [(ngModel)]="caloriesObj.gender" checked>
                            <label class="form-check-label" for="male">
-                              ذكرد
+                              ذكر
                            </label>
                         </span>
                         <span>
-                           <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                           <input class="form-check-input" type="radio" name="gender" id="female" value="1"
+                              [(ngModel)]="caloriesObj.gender">
                            <label class="form-check-label" for="female">
                               أنثى
                            </label>
@@ -47,72 +49,82 @@
                <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="text-input">السن</label>
                   <div class="col-md-5">
-                     <input type="text" id="text-input" name="text-input" class="form-control">
+                     <input type="text" id="text-input" [(ngModel)]="caloriesObj.age" name="text-input"
+                        class="form-control">
                   </div>
                   <label class="col-md-4 col-form-label" for="text-input">من 15 - 80</label>
                </div>
                <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="text-input">الطول</label>
                   <div class="col-md-9">
-                     <input type="text" id="text-input" placeholder="سم" name="text-input" class="form-control">
+                     <input type="text" id="text-input" [(ngModel)]="caloriesObj.height" placeholder="سم"
+                        name="text-input" class="form-control">
                   </div>
                </div>
                <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="text-input">الوزن</label>
                   <div class="col-md-9">
-                     <input type="text" id="text-input" placeholder="كجم" name="text-input" class="form-control">
+                     <input type="text" id="text-input" [(ngModel)]="caloriesObj.weight" placeholder="كجم"
+                        name="text-input" class="form-control">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="select1"> النشاط</label>
+                  <div class="col-md-9">
+                     <select id="select1" name="select1" class="form-control" [(ngModel)]="caloriesObj.activityRange">
+                        <option value="1">معدل الأيض الاساسي</option>
+                        <option value="1.2">لا تمرين</option>
+                        <option value="1.375">1-3 مرات اسبوعيا</option>
+                        <option value="1.465">4-5 مرات اسبوعيا</option>
+                        <option value="1.55">3-4 مرات اسبوعيا بشدة عالية</option>
+                        <option value="1.725">6-7 مرات اسبوعيا بشدة عالية</option>
+                        <option value="1.9">تمرين كل يوم بشده عاليه او وظيفة بدنيه</option>
+                     </select>
                   </div>
                </div>
                <div class="form-group row">
                   <label class="col-md-3 col-form-label">المعادلة</label>
                   <div class="col-md-9 col-form-label">
                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radios" id="radio1" value="option1" checked>
+                        <input class="form-check-input" [(ngModel)]="caloriesObj.equation" type="radio" name="radios"
+                           id="radio1" value="0" checked>
                         <label class="form-check-label" for="radio1">
                            ملفين سانت جوير
                         </label>
                      </div>
                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radios" id="radio2" value="option2">
+                        <input class="form-check-input" [(ngModel)]="caloriesObj.equation" type="radio" name="radios"
+                           id="radio2" value="1">
                         <label class="form-check-label" for="radio2">
                            هاريس بندكت
                         </label>
                      </div>
                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radios" id="radio3" value="option3">
+                        <input class="form-check-input" [(ngModel)]="caloriesObj.equation" type="radio" name="radios"
+                           id="radio3" value="2">
                         <label class="form-check-label" for="radio3">
                            كاتش ماكردل
                         </label>
                      </div>
                   </div>
                </div>
-
-               <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="select1"> النشاط</label>
-                  <div class="col-md-9">
-                     <select id="select1" name="select1" class="form-control">
-                        <option value="0">معدل الأيض الاساسي</option>
-                        <option value="1">لا تمرين</option>
-                        <option value="2">3 مرات اسبوعيا</option>
-                        <option value="3">4 مرات اسبوعيا</option>
-                        <option value="3">5 مرات اسبوعيا</option>
-                        <option value="3">6 مرات اسبوعيا</option>
-                        <option value="3">5 مرات اسبوعيا بشدة عالية</option>
-                        <option value="3">كل يوم</option>
-                        <option value="3">كل يوم بشدة عالية او مرتين يوميا</option>
-                        <option value="3">كل يوم + وظيفة شاقة</option>
-                     </select>
+               <div class="form-group row" [hidden]="caloriesObj.equation != '2'">
+                  <label class="col-md-3 col-form-label" for="text-input"> الدهون </label>
+                  <div class="col-md-3">
+                     <input type="text" id="text-input" [(ngModel)]="caloriesObj.fats" name="text-input"
+                        class="form-control" placeholder="%" >
                   </div>
+                  <!-- <label class="col-md-4 col-form-label" for="text-input"></label> -->
                </div>
                <div class="form-group row">
                   <div class="col-sm-4"></div>
                   <div class="col-sm-8">
                      <div class="col-sm-6 text-left buttons">
-                        <button type="button" class="btn btn-outline-info">احذف</button>
+                        <button type="button" class="btn btn-outline-info" (click)="caloriesObj.calc()">احسب</button>
                      </div>
 
                      <div class="col-sm-6 text-left buttons">
-                        <button type="button" class="btn btn-outline-info">احسب</button>
+                        <button type="button" class="btn btn-outline-info" (click)="caloriesObj.reset()">احذف</button>
                      </div>
                   </div>
                </div>
@@ -121,20 +133,41 @@
          <div class="col-sm-4 col-md-4 card-main-data">
             <h5> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> النتيجه</h5>
             <div class="result-row">
-               <div class="result-name">- نسبة الدهون</div>
-               <div class="result-value">60%</div>
+               <div class="result-name">الحفاظ على الوزن
+                  <br>
+                  <span class="kilos-per-week">وزن ثابت</span>
+               </div>
+               <div class="result-value">{{caloriesObj.result.maintainWeight}}
+                  <br />
+                  <span class="result-unit">كالورى/يوم</span>
+               </div>
             </div>
             <div class="result-row">
-               <div class="result-name">- نسبة الدهون</div>
-               <div class="result-value">60%</div>
+               <div class="result-name"> خسارة وزن <br>
+                  <span class="kilos-per-week">1/4 كيلو اسبوعيا </span>
+               </div>
+               <div class="result-value">{{caloriesObj.result.lossQuarterKilo}}
+                  <br />
+                  <span class="result-unit">كالورى/يوم</span>
+               </div>
             </div>
             <div class="result-row">
-               <div class="result-name">- نسبة الدهون</div>
-               <div class="result-value">60%</div>
+               <div class="result-name"> خسارة وزن <br />
+                  <span class="kilos-per-week">1/2 كيلو اسبوعيا</span>
+               </div>
+               <div class="result-value">{{caloriesObj.result.lossHalfKilo}}
+                  <br />
+                  <span class="result-unit">كالورى/يوم</span>
+               </div>
             </div>
             <div class="result-row">
-               <div class="result-name">- نسبة الدهون</div>
-               <div class="result-value">60%</div>
+               <div class="result-name"> خسارة وزن<br>
+                  <span class="kilos-per-week">1 كيلو اسبوعيا </span>
+               </div>
+               <div class="result-value">{{caloriesObj.result.lossOneKilo}}
+                  <br />
+                  <span class="result-unit">كالورى/يوم</span>
+               </div>
             </div>
          </div>
       </div>

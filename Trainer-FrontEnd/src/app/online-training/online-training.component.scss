@@ -1,12 +1,17 @@
 .online-training-container{
-    background-image: url('/assets/images/online-pg2.jpg');
-    height: 100%; 
-    background-position: center;
+    background-image: url('/assets/images/Sergi-Constance-Fitness-Model.png');
+    // height: 100%; 
+    //background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-height: 620px;
+
+    background-attachment: fixed;
+    background-position: 50% 0%;
+
     .title-style{
         background: linear-gradient(to bottom, #1a1a1a00, #479099);
         font-size: 30px;

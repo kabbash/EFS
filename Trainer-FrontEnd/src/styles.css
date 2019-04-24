@@ -599,7 +599,7 @@ input, .calculator-form-container select {
   background-image: none;
   border: 2px solid #00bcd4;
   font-weight: bold;
-  border-radius: 0;
+  border-radius: 10px;
   font-size: 24px;
   margin-top: 20px;
 }
@@ -638,7 +638,7 @@ input, .calculator-form-container select {
   padding: 3px;
   background-color: #00bcd4;
   color: #ffffff;
-  width: 45px;
+  width: 100px;
   text-align: center;
   border-radius: 5px;
 }

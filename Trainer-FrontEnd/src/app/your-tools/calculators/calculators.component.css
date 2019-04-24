@@ -11,3 +11,12 @@
 .card {
     margin-bottom: 30px;
 }
+
+.kilos-per-week{
+    font-size: 10px;
+    color: grey;
+}
+.result-unit{
+    font-size: 10px;
+    color: white;
+}
