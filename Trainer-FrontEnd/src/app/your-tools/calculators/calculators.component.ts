@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { calroiesCalc } from '../Models/calories-dto';
 
 
 @Component({
@@ -8,11 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class YourToolsCalculatorsComponent implements OnInit {
 
+  caloriesObj = new calroiesCalc();
 
   constructor() { }
 
   ngOnInit() {
-
   }
-
 }

@@ -123,7 +123,6 @@ export class ManageProductComponent implements OnInit {
   delete() {
     if (confirm("هل انت متأكد من مسح هذا المقال ؟ ")) {
       this.service.delete(this.productId).subscribe(c => {
-        console.log(c);
         this.toastrService.info('تم مسح المقال');
         this.router.navigate([config.users.productslist.route]);
       });

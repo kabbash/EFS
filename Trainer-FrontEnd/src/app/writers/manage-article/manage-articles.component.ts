@@ -63,7 +63,7 @@ export class ManageArticlesComponent implements OnInit {
     if (confirm('هل انت متأكد من مسح هذا المقال ؟ ')) {
       this.appService.loading = true;
       this.service.delete(this.articleId).subscribe(c => { 
-        console.log(c);
+        // console.log(c);
         this.toastrService.info('تم مسح المقال بنجاح');
           this.returnToBase();
           this.appService.loading = false;
