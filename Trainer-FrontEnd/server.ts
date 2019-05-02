@@ -20,9 +20,6 @@ const templateA = fs
 const win = domino.createWindow(templateA);
 win.Object = Object;
 win.Math = Math;
-console.log(DIST_FOLDER);
-console.log(win);
-window = win;
 global['window'] = win;
 global['document'] = win.document;
 global['branch'] = null;
