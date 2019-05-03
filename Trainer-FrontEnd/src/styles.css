@@ -16,7 +16,7 @@
 }
 
 html, body {
-  direction: ltr;
+  /* direction: ltr; */
   font-family: 'Cairo', sans-serif !important;
   text-align: right !important;
   height: 100%;
@@ -441,7 +441,7 @@ span pre {
 }
 
 .container-search .search:hover {
-  cursor: pointer;
+  cursor: pointer; 
 }
 
 .container-search .search::before {
@@ -571,7 +571,7 @@ span pre {
   width: 20px;
 }
 
-input, .calculator-form-container select {
+.calculator-form-container select ,  .calculator-form-container input {
   background-color: #e7e8e9 !important;
   border: none !important;
 }

@@ -249,7 +249,7 @@ namespace Authentication.Services
         {
             try
             {
-                var user = _unitOfWork.UsersRepository.Get(u => u.UserName == data.Email).First();
+                var user = _unitOfWork.UsersRepository.Get(u => u.UserName == data.Email).FirstOrDefault();
 
                 if (user == null)
                     return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.UserDoesNotExist };

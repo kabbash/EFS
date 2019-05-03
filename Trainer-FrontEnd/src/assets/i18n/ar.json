@@ -1,110 +1,112 @@
 {
-    "home": {
-      "errorCodes": {
-        "0": ""
-      }
-    },
-    "articles": {
-      "errorCodes": {
-        "0": "",
-        "1": "",
-        "2": "",
-        "3": "",
-        "4": "",
-        "5": "",
-        "6": "",
-        "7": "",
-        "8": "",
-        "9": "",
-        "10": "",
-        "11": "",
-        "12": "",
-        "13": "",
-        "14": "",
-        "15": "",
-        "16": "",
-        "17": ""
-      }
-    },
-    "products": {
-      "errorCodes": {
-        "0": "",
-        "1": "",
-        "2": "",
-        "3": "",
-        "4": "",
-        "5": "",
-        "6": "",
-        "7": "",
-        "8": "",
-        "9": "",
-        "10": "",
-        "11": "",
-        "12": "",
-        "13": "",
-        "14": "",
-        "15": "",
-        "16": "",
-        "17": ""
-      }
-    },
-    "attachements": {
-      "errorCodes": {
-        "0": ""
-      }
-    },
-    "authentication": {
-      "errorCodes": {
-        "0": "",
-        "1": "اسم المستخدم او كلمة المرور غير صحيحة",
-        "2": "",
-        "3": ""
-      }
-    },
-    "rating": {
-      "errorCodes": {
-        "0": ""
-      }
-    },
-    "itemReviews": {
-      "errorCodes": {
-        "0": "",
-        "2": "",
-        "3": "",
-        "4": "",
-        "5": ""
-      }
-    },
-    "banner": {
-      "errorCodes": {
-        "0": "",
-        "2": "",
-        "3": "",
-        "4": "",
-        "5": ""
-      }
-    },
-    "addCategory": {
-      "articleCategory": "فئة المقال",
-      "productCategory": "فئة المنتج",
-      "name": "الأسم",
-      "picture": "الصورة",
-      "submit": "حفظ",
-      "reset": "إعادة تعيين",
-      "chooseFile": "اختر ملف",
-      "noFileChoosen": "لم تقم باختيار ملف",
-      "parentCategory": "الفئة الرئيسية",
-      "description": "الوصـف",
-      "formValidations": {
-        "name": {
-          "required": "يجب ادخال اسم الفئة"
-        },
-        "profilePictureFile": {
-          "required": "يجب ادخال صورة"
-        }
+  "home": {
+    "errorCodes": {
+      "0": ""
+    }
+  },
+  "articles": {
+    "errorCodes": {
+      "0": "",
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10": "",
+      "11": "",
+      "12": "",
+      "13": "",
+      "14": "",
+      "15": "",
+      "16": "",
+      "17": ""
+    }
+  },
+  "products": {
+    "errorCodes": {
+      "0": "",
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10": "",
+      "11": "",
+      "12": "",
+      "13": "",
+      "14": "",
+      "15": "",
+      "16": "",
+      "17": ""
+    }
+  },
+  "attachements": {
+    "errorCodes": {
+      "0": ""
+    }
+  },
+  "authentication": {
+    "errorCodes": {
+      "0": "",
+      "1": "اسم المستخدم او كلمة المرور غير صحيحة",
+      "2": "",
+      "3": "عفوا، البريد الالكترونى الذى قمت بإدخاله غير موجود من قبل.",
+      "4": "عفوا ، كلمة المرور القديمة غير صحيحه ، برجاء التأكد منها و إعادة المحاوله",
+      "5": ""
+    }
+  },
+  "rating": {
+    "errorCodes": {
+      "0": ""
+    }
+  },
+  "itemReviews": {
+    "errorCodes": {
+      "0": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": ""
+    }
+  },
+  "banner": {
+    "errorCodes": {
+      "0": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": ""
+    }
+  },
+  "addCategory": {
+    "articleCategory": "فئة المقال",
+    "productCategory": "فئة المنتج",
+    "name": "الأسم",
+    "picture": "الصورة",
+    "submit": "حفظ",
+    "reset": "إعادة تعيين",
+    "chooseFile": "اختر ملف",
+    "noFileChoosen": "لم تقم باختيار ملف",
+    "parentCategory": "الفئة الرئيسية",
+    "description": "الوصـف",
+    "formValidations": {
+      "name": {
+        "required": "يجب ادخال اسم الفئة"
       },
-      "messages": {},
-      "errorMessages": {}
+      "profilePictureFile": {
+        "required": "يجب ادخال صورة"
+      }
+    },
+    "messages": {},
+    "errorMessages": {}
   },
   "manageCategories": {
     "messages": {
@@ -131,7 +133,7 @@
     "itemReviewList": "مراجعة المنتجات",
     "manageBanners": "الملصقات",
     "users": "المستخدمين",
-    "onlineTraining" : "التدريب الاونلاين"
+    "onlineTraining": "التدريب الاونلاين"
   },
   "addBanner": {
     "title": "العنوان",
@@ -172,10 +174,10 @@
       "phoneRequired": "يجب ادخال رقم الهاتف",
       "passwordRequired": "يجب ادخال كلمة المرور",
       "confirmPasswordRequired": "يجب تاكيد كلمة المرور",
-      "passwordNotMatch": "كلمة المرور غير متطابقه"    
+      "passwordNotMatch": "كلمة المرور غير متطابقه"
     }
   },
-  "contactus":{
+  "contactus": {
     "formValidations": {
       "nameRequired": "يجب ادخال الاسـم",
       "emailRequired": "يجب ادخال البريد الالكترونى",
@@ -193,9 +195,9 @@
     "formValidations": {
       "nameRequired": "يجب ادخال تعريف للتدريب الاونلاين",
       "featuresRequired": "يجب ادخال تفاصيل الاشتراك",
-      "profilePictureFileRequired" : "يجب اختيار صوره"
+      "profilePictureFileRequired": "يجب اختيار صوره"
     },
-    "messages": {     
+    "messages": {
       "confirmDelete": "هل أنت متأكد من أنك تريد حذف هذاالعنصر؟",
       "success": "تمت العملية بنجاح"
     }
@@ -205,14 +207,11 @@
     "400": "400",
     "401": "401",
     "500": "500"
-
   },
   "manageUsers": {
     "roles": {
       "Admin": "Admin",
-      "Client": "Client",
       "RegularUser": "Regular User",
-      "Trainer": "Trainer",
       "ArticleWriter": "Article Writer"
     }
   },
@@ -276,5 +275,20 @@
     "selenium": "سيلينيوم",
     "sodium": "صوديوم",
     "zinc": "زنك"
+  },
+  "commonValidations": {
+    "password": {
+      "maxlength": "يجب الا تزيد كلمة المرور عن 20 حرف",
+      "minlength": "يجب الا تقل كلمة المرور عن 8 أحرف"
+    },
+    "phoneNumber": {
+      "invalid": "يجب ان يتكون رقم الهاتف من أرقام فقط",
+      "maxlength": "يجب الا يزيد رقم الهاتف عن 20 رقم",
+      "minlength": "يجب الا يقل رقم الهاتف عن 8 أرقام"
+    },
+    "email": {
+      "invalid" : "البريد الالكترونى غير صحيح",
+      "maxlength" : "يجب الا يزيد البريد الالكترونى عن 100 حرف"
+    }
   }
 }

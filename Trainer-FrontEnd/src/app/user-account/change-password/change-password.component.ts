@@ -6,6 +6,7 @@ import { AuthService } from '../../auth/services/auth.service';
 import { AppService } from '../../app.service';
 import { PAGES } from '../../config/defines';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-change-password',
@@ -21,16 +22,17 @@ export class ChangePasswordComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private authenticationService: AuthService,
     private appService: AppService,
+    private toastr : ToastrService,
     private errorHandlingService: ErrorHandlingService) { }
 
   ngOnInit() {
     this.changePasswordForm = this.formBuilder.group({
       oldPassword: ['', [Validators.required]],
-      newPassword: ['', [Validators.required]],
+      newPassword: ['', [Validators.required, Validators.maxLength(16) , Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required]]
     },
       {
-        Validator: CustomValidators.confirmPassword('newPassword', 'confirmPassword')
+        validator: CustomValidators.confirmPassword('newPassword', 'confirmPassword')
       });
 
   }
@@ -39,6 +41,7 @@ export class ChangePasswordComponent implements OnInit {
   get f() { return this.changePasswordForm.controls; }
 
   onSubmit() {
+
     this.submitted = true;
     this.changed = false;
     // stop here if form is invalid
@@ -52,7 +55,9 @@ export class ChangePasswordComponent implements OnInit {
       }))
       .subscribe(
         data => {
-          this.changed = true;
+          this.toastr.info('تم تغيير كلمة المرور بنجاح ');
+          this.submitted = false;
+          this.changePasswordForm.reset();
         }, error => {
           this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
         });

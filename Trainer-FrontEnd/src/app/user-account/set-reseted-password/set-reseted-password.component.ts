@@ -6,6 +6,7 @@ import { AuthService } from '../../auth/services/auth.service';
 import { AppService } from '../../app.service';
 import { PAGES } from '../../config/defines';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { CustomValidators } from '../Validators/custom-validators';
 
 @Component({
   selector: 'app-set-reseted-password',
@@ -26,8 +27,11 @@ export class SetResetedPasswordComponent implements OnInit {
 
   ngOnInit() {
     this.resetPasswordForm = this.formBuilder.group({
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required,Validators.maxLength(16) , Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required]]
+    },
+    {
+      validator: CustomValidators.confirmPassword('password', 'confirmPassword')
     });
     this.route.queryParams.subscribe(params => this.activationToken = params.activationToken || "")
   }

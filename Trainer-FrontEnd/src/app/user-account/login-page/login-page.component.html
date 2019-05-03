@@ -10,19 +10,27 @@
                                     <h2>تسجيل الدخول</h2>
                                     <p class="text-muted">قم بتسجيل الدخول لحسابك</p>
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="اسم المستخدم" autocomplete="username"
-                                            formControlName="userName" [ngClass]="{ 'is-invalid': submitted && form.controls.userName.errors }">
+                                        <input type="text" class="form-control" placeholder="البريد الالكترونى"
+                                            autocomplete="username" formControlName="userName"
+                                            [ngClass]="{ 'is-invalid': submitted && form.controls.userName.errors }">
+                                        <div *ngIf="submitted && form.controls.userName.errors" class="col-sm-12 text-danger">
+                                            <div *ngIf="form.controls.userName.errors.email">
+                                                {{'commonValidations.email.invalid' | translate}}
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="input-group mb-4">
                                         <input type="password" class="form-control" placeholder="كلمة المرور"
-                                            autocomplete="current-password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && form.controls.password.errors }">
+                                            autocomplete="current-password" formControlName="password"
+                                            [ngClass]="{ 'is-invalid': submitted && form.controls.password.errors }">
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <button type="submit" class="btn btn-primary-1 px-4" >الدخول</button>
+                                            <button type="submit" class="btn btn-primary-1 px-4">الدخول</button>
                                         </div>
                                         <div class="col-6 text-right">
-                                            <button type="button" class="btn btn-link px-0 main-color" (click)="navigateToResetPassword()">نسيت كلمة السر؟</button>
+                                            <button type="button" class="btn btn-link px-0 main-color"
+                                                (click)="navigateToResetPassword()">نسيت كلمة السر؟</button>
                                         </div>
                                     </div>
                                 </form>
@@ -33,7 +41,8 @@
                                 <div>
                                     <h3>إنشاء حساب جديد</h3>
                                     <p>إن لم يكن لك حساب خاص قم بالتسجيل للإستمتاع بمزايا الموقع</p>
-                                    <button type="button" class="btn btn-primary-1 mt-3" (click)="navigateToRegister()">قم
+                                    <button type="button" class="btn btn-primary-1 mt-3"
+                                        (click)="navigateToRegister()">قم
                                         بإنشاء حسابك!</button>
                                 </div>
                             </div>

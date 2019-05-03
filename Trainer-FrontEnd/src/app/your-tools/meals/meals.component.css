@@ -176,3 +176,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.close-button{
+    float: left;
+    margin-left: 10px;
+}

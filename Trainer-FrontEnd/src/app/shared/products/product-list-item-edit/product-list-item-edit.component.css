@@ -115,3 +115,7 @@
     border-radius: .25rem;
     border-radius: .25rem;
 }
+
+.form-check-label{
+    padding-right: 5px;
+}
