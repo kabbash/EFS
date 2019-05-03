@@ -3,7 +3,7 @@ WORKDIR /app
 COPY ./package.json ./package-lock.json /app/
 RUN npm install
 COPY . /app
-RUN node_modules/.bin/ng build --prod --aot  --progress
+RUN node --max_old_space_size=20048 ./node_modules/@angular/cli/bin/ng build --prod --aot  --progress
 RUN node_modules/.bin/ng run Trainer-FrontEnd:server
 RUN node_modules/.bin/webpack --config webpack.server.config.js --progress --colors; exit 0
 
