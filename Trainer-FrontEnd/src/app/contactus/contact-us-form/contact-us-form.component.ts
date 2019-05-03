@@ -21,10 +21,10 @@ export class ContactusFormComponent implements OnInit {
 
   ngOnInit() {
     this.contactusForm = this.fb.group({
-      'name': ['', Validators.required],
-      'email': ['', [Validators.required, Validators.email]],
-      'phoneNumber': [],
-      'details': ['', Validators.required]
+      'name': ['', [Validators.required, Validators.maxLength(200)]],
+      'email': ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
+      'phoneNumber': ['', [Validators.maxLength(20), Validators.minLength(8), Validators.pattern(/^\d+$/)]],
+      'details': ['', Validators.required, Validators.maxLength(250)]
     });
   }
   get f() { return this.contactusForm.controls; }
@@ -36,8 +36,8 @@ export class ContactusFormComponent implements OnInit {
       return;
     }
 
-    this.service.create<any>('home/contactus', this.contactusForm.value).subscribe(res=> {
-      this.toastr.info('تمت العمليه بنجاح، شكرا لتواصلك معنا');      
+    this.service.create<any>('home/contactus', this.contactusForm.value).subscribe(res => {
+      this.toastr.info('تم إرسال الرساله بنجاح، شكرا لتواصلك معنا');
       this.submitted = false;
       this.contactusForm.reset();
     });

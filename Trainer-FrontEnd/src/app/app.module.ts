@@ -51,7 +51,8 @@ export function initializeApp(appConfig: AppConfig) {
     AngularFontAwesomeModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
-      positionClass: 'toast-top-left'
+      positionClass: 'toast-top-left',
+      timeOut: 6000      
     })
   ],
   providers: [

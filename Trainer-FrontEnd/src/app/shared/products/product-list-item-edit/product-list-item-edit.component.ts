@@ -49,14 +49,14 @@ export class ProductListItemEditComponent implements OnInit {
     }
 
     this.editForm = this.fb.group({
-      name: [this.product.name, Validators.required],
+      name: [this.product.name, [Validators.required, Validators.maxLength(50)]],
       price: [this.product.price, [Validators.required, Validators.pattern(/^\d+$/)]],
-      description: [this.product.description, [Validators.required]],
+      description: [this.product.description, [Validators.required, Validators.maxLength(200)]],
       // profilePicture: [this.profilePicture, [Validators.required]],
       expDate: [this.product.expDate, [Validators.required]],
       isSpecial: [this.product.isSpecial],
-      categoryId: [this.product.categoryId, [Validators.required , Validators.min(1)]],
-      phoneNumber: [this.product.phoneNumber, Validators.required]
+      categoryId: [this.product.categoryId, [Validators.required, Validators.min(1)]],
+      phoneNumber: [this.product.phoneNumber, [Validators.required,Validators.maxLength(200)]]
     });
 
   }

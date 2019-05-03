@@ -7,8 +7,6 @@
             </div>
             <div class="desc-item">
                 <div class="form-group-inline">
-                    <!-- <label class="desc-entity">الفئة</label>
-                    &nbsp; -->
                     <select class="form-control" [value]=product.categoryId formControlName="categoryId"
                         [ngClass]="{ 'is-invalid': submitted && f.categoryId.errors,'is-valid': submitted && !f.categoryId.errors}">
                         <option [value]="0" selected> فئه المنتج </option>
@@ -16,6 +14,11 @@
                             {{category.name}}
                         </option>
                     </select>
+                    <div *ngIf="(submitted || editForm.controls['categoryId'].touched ) && f.categoryId.errors"
+                        class="text-danger">
+                        <div *ngIf="f.categoryId.errors.required">
+                            {{'products.formValidations.categoryIdRequired' | translate}}</div>
+                    </div>
                 </div>
             </div>
             <div *ngIf="showProductType" class="desc-item">
@@ -38,31 +41,32 @@
             </div>
             <div class="desc-item">
                 <div class="form-group-inline">
-                    <!-- <label class="desc-entity">السعر</label>
-                    &nbsp; -->
                     <input type="number" class="form-control" [value]="product.price" formControlName="price"
                         placeholder="السعر بالأرقام"
                         [ngClass]="{ 'is-invalid': submitted && f.price.errors,'is-valid': submitted && !f.price.errors}">
+                    <div *ngIf="(submitted || editForm.controls['price'].touched ) && f.categoryId.errors"
+                        class="text-danger">
+                        <div *ngIf="f.categoryId.errors.required">
+                            {{'products.formValidations.priceRequired' | translate}}</div>
+                    </div>
                 </div>
             </div>
             <div class="desc-item">
                 <div class="form-group-inline">
-                    <!-- <label class="desc-entity">الإسم</label>
-                    &nbsp; -->
                     <input type="text" class="form-control" [value]="product.name" formControlName="name"
                         placeholder="اسم المنتج"
                         [ngClass]="{ 'is-invalid': submitted && f.name.errors,'is-valid': submitted && !f.name.errors}">
+                    <div *ngIf="(submitted || editForm.controls['name'].touched ) && f.name.errors" class="text-danger">
+                        <div *ngIf="f.name.errors.required">
+                            {{'products.formValidations.nameRequired' | translate}}</div>
+                        <div *ngIf="f.name.errors.maxLength">
+                            {{'products.formValidations.nameMaxLength' | translate}}</div>
+
+                    </div>
                 </div>
             </div>
             <div class="desc-item">
-                <!-- <div class="form-group-inline">
-                    <label class="desc-entity">تاريخ الإنتهاء</label>
-                    &nbsp;
-                    <input type="date" class="form-control" [value]="product.expDate" formControlName="expDate">
-                </div> -->
                 <div class="form-group-inline">
-                    <!-- <label class="desc-entity">تاريخ الإنتهاء</label>
-                    &nbsp; -->
                     <div class="input-group-nowrap">
                         <input class="form-control" name="dp" [(ngModel)]="product.expDate" ngbDatepicker
                             placeholder="تاريخ الانتهـاء" #d="ngbDatepicker" formControlName="expDate" readonly
@@ -77,23 +81,34 @@
             </div>
             <div class="desc-item">
                 <div class="form-group-inline">
-                    <!-- <label class="desc-entity">الوصف</label>
-                    &nbsp; -->
                     <textarea type="text" class="form-control" [value]="product.description"
                         formControlName="description" placeholder="وصف المنتج"
                         [ngClass]="{ 'is-invalid': submitted && f.description.errors,'is-valid': submitted && !f.description.errors}">
                         </textarea>
+                    <div *ngIf="(submitted || editForm.controls['description'].touched ) && f.description.errors"
+                        class="text-danger">
+                        <div *ngIf="f.description.errors.required">
+                            {{'products.formValidations.descriptionRequired' | translate}}</div>
+                        <div *ngIf="f.description.errors.maxLength">
+                            {{'products.formValidations.descriptionMaxLength' | translate}}</div>
+
+                    </div>
                 </div>
             </div>
             <div class="desc-item">
                 <div class="form-group-inline">
-                    <!-- <span class="desc-entity">للتواصل </span> -->
-                    <!-- {{product.seller.phoneNumber}} -->
                     <textarea type="text" class="form-control" formControlName="phoneNumber"
                         placeholder="طريقة التواصل مع المشترى"
                         [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors,'is-valid': submitted && !f.phoneNumber.errors}">
-                        <!-- [value]="product.phoneNumber" -->
                         </textarea>
+                    <div *ngIf="(submitted || editForm.controls['phoneNumber'].touched ) && f.phoneNumber.errors"
+                        class="text-danger">
+                        <div *ngIf="f.phoneNumber.errors.required">
+                            {{'products.formValidations.phoneNumberRequired' | translate}}</div>
+                        <div *ngIf="f.phoneNumber.errors.maxLength">
+                            {{'products.formValidations.phoneNumberMaxLength' | translate}}</div>
+
+                    </div>
                 </div>
             </div>
             <div class="desc-item">
