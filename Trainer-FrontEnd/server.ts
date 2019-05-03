@@ -25,8 +25,6 @@ global['window'] = win;
 global['document'] = win.document;
 global['branch'] = null;
 global['object'] = win.object;
-global['MouseEvent'] = win.MouseEvent;
-global['KeyboardEvent'] = win.KeyboardEvent;
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
