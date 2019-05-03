@@ -16,6 +16,9 @@ export class AppComponent implements OnInit {
     translate.use('ar');
   }
   ngOnInit() {
+    if (!this.appService.isBrowser()) {
+      this.toaster.clear();
+    }
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.appService.loading = true;
