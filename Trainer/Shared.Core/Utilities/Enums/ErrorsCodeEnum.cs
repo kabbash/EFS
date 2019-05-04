@@ -68,7 +68,8 @@
         ValidationEmailRequired,
         ValidationEmailInvalid,
         ValidationFullNameRequired,
-        ValidationPasswordRequired
+        ValidationPasswordRequired,
+        EmailAlreadyExist
     }
     public enum RatingErrorsCodeEnum
     {

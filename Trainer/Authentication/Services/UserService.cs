@@ -82,7 +82,7 @@ namespace Authentication.Services
         public ResultMessage GetAll(UsersFilter filter)
         {
             PagedResult<User> result = new PagedResult<User>();
-            var users = _unitOfWork.UsersRepository.Get().ApplyFilter(filter).OrderBy(c=>c.UserName).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+            var users = _unitOfWork.UsersRepository.Get().ApplyFilter(filter).OrderBy(c => c.UserName).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
             return new ResultMessage()
             {
                 Data = users,
@@ -197,6 +197,12 @@ namespace Authentication.Services
             try
             {
                 var userEntity = userData.Adapt<AspNetUsers>();
+
+                if (_unitOfWork.UsersRepository.Get().Any(c => c.Email == userEntity.Email))
+                {
+                    return new ResultMessage { Status = HttpStatusCode.BadRequest, ErrorCode = (int)AuthenticationErrorsCodeEnum.EmailAlreadyExist };
+                }
+
                 userEntity.Id = Guid.NewGuid().ToString();
                 userEntity.UserName = userEntity.Email;
                 userEntity.SecurityStamp = Helper.GenerateToken();

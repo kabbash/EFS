@@ -30,7 +30,7 @@ export function createFileUploaderValidator(required: boolean) {
     }
   ]
 })
-export class FileUploaderComponent implements OnInit, ControlValueAccessor {
+export class FileUploaderComponent implements ControlValueAccessor {
 
   onTouched: () => void;
   onChanged: (_: any) => void;
@@ -43,6 +43,8 @@ export class FileUploaderComponent implements OnInit, ControlValueAccessor {
   @Input() classList: string;
   @Input() buttonValue: string;
   @Output() imageCroppedEvent = new EventEmitter<any>()
+  @Output() fileChanged = new EventEmitter<any>();
+  hasError = false;
   writeValue(obj: any): void {
     this.file = obj;
   }
@@ -61,33 +63,37 @@ export class FileUploaderComponent implements OnInit, ControlValueAccessor {
   }
 
   onSelectFile(event) {
+    if (!event.target || !event.target.files || !event.target.files.length) {
+      this.hasError = false;
+      this.file = null;
+      return;
+    }
+
+    if (event.target.files[0] && ((event.target.files[0].size / 1024) / 1024) > 5) {
+      this.hasError = true;
+      this.file = null;
+      return;
+    }
     this.file = event.target.files[0];
-    this.onChanged(event);
-    // this.imageChangedEvent = event;
+    this.fileChanged.emit(event);
   }
 
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
     this.file = event.file;
     this.imageCroppedEvent.emit(this.file);
-}
-
-  constructor() { }
-
-  ngOnInit() {
-    
   }
 
   imageLoaded() {
     alert('image loaded')
-}
-cropperReady() {
+  }
+  cropperReady() {
     // cropper ready
     alert('cropped ready')
-}
-loadImageFailed() {
+  }
+  loadImageFailed() {
     // show message
     alert('load failed')
-}
+  }
 
 }
