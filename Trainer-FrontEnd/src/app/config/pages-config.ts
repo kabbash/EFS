@@ -38,6 +38,21 @@ export let config = {
         'calculators': {
             'name': 'calculators',
             'route': '/yourTools/calculators',
+        }, 'carbCalc': {
+            'name': 'carbCalc',
+            'route': '/yourTools/carbCalc',
+        }, 'protienCalc': {
+            'name': 'protienCalc',
+            'route': '/yourTools/protienCalc',
+        }, 'fatCalc': {
+            'name': 'fatCalc',
+            'route': '/yourTools/fatCalc',
+        }, 'healthyFatCalc': {
+            'name': 'healthyFatCalc',
+            'route': '/yourTools/healthyFatCalc',
+        }, 'perfectWeightCalc': {
+            'name': 'perfectWeightCalc',
+            'route': '/yourTools/perfectWeightCalc',
         },
         'allCalculators': {
             'name': 'allCalculators',
