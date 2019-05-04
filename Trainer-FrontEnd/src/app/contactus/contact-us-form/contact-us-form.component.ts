@@ -24,7 +24,7 @@ export class ContactusFormComponent implements OnInit {
       'name': ['', [Validators.required, Validators.maxLength(200)]],
       'email': ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
       'phoneNumber': ['', [Validators.maxLength(20), Validators.minLength(8), Validators.pattern(/^\d+$/)]],
-      'details': ['', Validators.required, Validators.maxLength(250)]
+      'details': ['', [Validators.required, Validators.maxLength(500)]]
     });
   }
   get f() { return this.contactusForm.controls; }

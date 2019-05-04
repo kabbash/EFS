@@ -25,7 +25,7 @@ export class SliderEditModeComponent implements OnInit {
   showUploader = false;
   croppedImageIndex;
   croppedImage: SliderItemDto;
-  newImage =  new SliderItemDto();
+  newImage = new SliderItemDto();
   @Input() resultImageList: SliderItemDto[];
   @ViewChild('cropper') cropperModal: ImageCropperComponent;
   imageEvent;
@@ -54,12 +54,12 @@ export class SliderEditModeComponent implements OnInit {
     if (deletedImage.isNew) {
       const imageIndex = this.resultImageList.findIndex(image => image.file === deletedImage.file);
       this.resultImageList.splice(imageIndex, 1);
-      
+
     } else {
-      deletedImage.isDeleted = true;      
-      this.resultImageList.push(deletedImage);   
+      deletedImage.isDeleted = true;
+      this.resultImageList.push(deletedImage);
     }
-    this.sliderData.splice(this.selectedIndexForDelete, 1); 
+    this.sliderData.splice(this.selectedIndexForDelete, 1);
     this.modalService.dismissAll();
   }
 
@@ -69,12 +69,12 @@ export class SliderEditModeComponent implements OnInit {
   }
 
   onFileSelect(event, isCropped?) {
-    const file = isCropped ? event :  event.target.files[0];
-    this.imageEvent = isCropped ? null : event; 
-    const image = isCropped ?  this.sliderData[this.croppedImageIndex] : this.newImage;
+    const file = isCropped ? event : event.target.files[0];
+    this.imageEvent = isCropped ? null : event;
+    const image = isCropped ? this.sliderData[this.croppedImageIndex] : this.newImage;
     const reader = new FileReader();
     reader.onload = (e: any) => {
-      image.path = e.target.result;              
+      image.path = e.target.result;
     };
     image.file = file;
     reader.readAsDataURL(file);
@@ -83,8 +83,14 @@ export class SliderEditModeComponent implements OnInit {
     }
   }
   addNewImage(modal?) {
+
+    if (!this.newImage || !this.newImage.file) {
+      this.newImage = new SliderItemDto();
+      return;
+    }
+
     if (modal) {
-      modal.close();    
+      modal.close();
     }
     this.newImage.isNew = true;
     this.sliderData.push(Object.assign({}, this.newImage));
@@ -93,7 +99,7 @@ export class SliderEditModeComponent implements OnInit {
       this.setNewProfilePic();
     }
     this.resultImageList.push(Object.assign({}, this.newImage));
-    this.newImage = new  SliderItemDto();
+    this.newImage = new SliderItemDto();
 
   }
   eidtImage(modal) {
@@ -104,7 +110,7 @@ export class SliderEditModeComponent implements OnInit {
     }
     this.resultImageList.push(Object.assign({}, this.selectedImg));
   }
- 
+
   setNewProfilePic() {
     this.resultImageList.forEach(image => {
       image.isProfilePicture = false;
