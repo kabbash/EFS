@@ -7,6 +7,11 @@ import { YourToolsCalculatorsComponent } from './calculators/calculators.compone
 import { MealsComponent } from './meals/meals.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { YourToolsAllCalculatorsComponent } from './all-calculators/all-calculators.component';
+import { FatCalcComponent } from './fat-calc/fat-calc.component';
+import { PerfectWeightCalcComponent } from './perfect-weight-calc/perfect-weight-calc.component';
+import { ProtienCalcComponent } from './protien-calc/protien-calc.component';
+import { CarbCalcComponent } from './carb-calc/carb-calc.component';
+import { HealthyFatsCalcComponent } from './healthy-fats-calc/healthy-fats-calc.component';
 
 @NgModule({
   imports: [
@@ -17,7 +22,7 @@ import { YourToolsAllCalculatorsComponent } from './all-calculators/all-calculat
     NgbAlertModule,
     NgxDatatableModule
   ],
-  declarations: [YourToolsComponent, YourToolsCalculatorsComponent, MealsComponent, YourToolsAllCalculatorsComponent],
+  declarations: [YourToolsComponent, YourToolsCalculatorsComponent, MealsComponent, YourToolsAllCalculatorsComponent, FatCalcComponent, PerfectWeightCalcComponent, ProtienCalcComponent, CarbCalcComponent, HealthyFatsCalcComponent],
   providers: [
   ]
 })
