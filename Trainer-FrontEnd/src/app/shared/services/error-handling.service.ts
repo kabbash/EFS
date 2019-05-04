@@ -46,11 +46,15 @@ export class ErrorHandlingService {
     private getErrorMessage(errorKey) {
         this.translate.get(errorKey).subscribe(data => {
             if (data !== errorKey) {
-                this.toastrService.error(data);
+                if (this.appService.isBrowser()) {
+                    this.toastrService.error(data);
+                }
                 return;
             }
             this.translate.get('defaultErrorMessages.defaultMessage').subscribe(result => {
-                this.toastrService.error(result);
+                if (this.appService.isBrowser()) {
+                    this.toastrService.error(result);
+                }
                 return;
             });
         });
