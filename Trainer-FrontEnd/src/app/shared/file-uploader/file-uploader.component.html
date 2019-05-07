@@ -1,5 +1,8 @@
 <input #file type="file" id="file-input" name="file-input" (change)="onSelectFile($event)" [disabled]="isDisabled"
     [required]="isRequired" [class]="classList">
-<div *ngIf="hasError" class="col-sm-12 text-danger">
-        {{'commonValidations.file.invalidExtensionOrSize' | translate}}
+<div *ngIf="hasSizeError" class="col-sm-12 text-danger">
+        {{'commonValidations.file.invalidSize' | translate}}
+</div>
+<div *ngIf="hasExtError" class="col-sm-12 text-danger">
+        {{'commonValidations.file.invalidExtension' | translate}}
 </div>

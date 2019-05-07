@@ -137,12 +137,12 @@
       <div class="form-group row">
         <label class="col-md-3 col-form-label" for="file-input">{{'addBanner.picture' | translate}}</label>
         <div class="col-md-9">
-          <app-file-uploader formControlName=imageFile (change)="onFileSelect($event)">
+          <app-file-uploader formControlName=imageFile (fileChanged)="onFileSelect($event)">
           </app-file-uploader>
-          <div *ngIf="bannerForm.controls['imageFile'].errors" class="text-danger">
+          <div *ngIf="imageRequired" class="text-danger">
             <!-- class="invalid-feedback"-->
             <div
-              *ngIf="bannerForm.controls['imageFile'].errors.required && (bannerForm.controls['imageFile'].touched || isSubmitted)">
+              *ngIf="imageRequired">
               {{'addBanner.formValidations.picture.required' | translate}}</div>
           </div>
         </div>

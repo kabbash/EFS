@@ -9,7 +9,7 @@ export const environment = {
   production: false,
   baseUrl: 'https://localhost:44394/api/',
   filesBaseUrl: 'https://localhost:44394/',
-  frontEndBaseUrl: 'http://ec2-34-208-205-223.us-west-2.compute.amazonaws.com'
+  frontEndBaseUrl: 'http://localhost:4200'
 };
 
 /*
