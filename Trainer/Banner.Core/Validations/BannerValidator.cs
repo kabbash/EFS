@@ -11,10 +11,7 @@ namespace Banner.Core.Validations
     {
         public BannerValidator()
         {
-            RuleFor(b => b.Title).NotEmpty().WithMessage(((int)BannersErrorsCodeEnum.ValidationTitleRequired).ToString());
             RuleFor(b => b.ImageFile).NotEmpty().WithMessage(((int)BannersErrorsCodeEnum.ValidationImageRequired).ToString());
-            RuleFor(b => b.ButtonText).NotEmpty().WithMessage(((int)BannersErrorsCodeEnum.ValidationButtonTextRequired).ToString());
-            RuleFor(b => b.ButtonUrl).NotEmpty().WithMessage(((int)BannersErrorsCodeEnum.ValidationButtonURLRequired).ToString());
         }
     }
 }

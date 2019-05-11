@@ -7,7 +7,7 @@
         <div class=""
           [ngClass]="{'text-left':titleAlign === 'left' , 'text-right': titleAlign === 'right', 'text-center': titleAlign === 'center'}">
           <h1>
-            <pre>{{bannerForm.controls['title'].value}}</pre>
+            <pre [ngClass]="{'title-blue': titleColor === 'blue', 'title-white': titleColor === 'white', 'title-black': titleColor === 'black'}">{{bannerForm.controls['title'].value}}</pre>
           </h1>
         </div>
       </span>
@@ -41,6 +41,27 @@
               *ngIf="bannerForm.controls['title'].errors.required && (bannerForm.controls['title'].touched || isSubmitted)">
               {{'addBanner.formValidations.title.required' | translate}}</div>
           </div>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="text-input">{{'addBanner.titleColor' | translate}}</label>
+        <div class="col-md-9">
+          <label class="col-md-3 col-form-label" for="title-blue">
+            {{'addBanner.blue' | translate}}
+            <input type="radio" id="title-blue" name="text-input" class="form-radio" [(ngModel)]="titleColor"
+              [ngModelOptions]="{standalone: true}" name="titleColor" value="blue">
+          </label>
+          <label class="col-md-3 col-form-label" for="title-white">
+            {{'addBanner.white' | translate}}
+            <input type="radio" id="title-white" name="text-input" class="form-radio" [(ngModel)]="titleColor"
+              [ngModelOptions]="{standalone: true}" name="titleColor" value="white">
+          </label>
+          <label class="col-md-3 col-form-label" for="title-black">
+            {{'addBanner.black' | translate}}
+            <input type="radio" id="title-black" name="text-input" class="form-radio" [(ngModel)]="titleColor"
+              [ngModelOptions]="{standalone: true}" name="titleColor" value="black">
+          </label>
         </div>
       </div>
       <div class="form-group row">

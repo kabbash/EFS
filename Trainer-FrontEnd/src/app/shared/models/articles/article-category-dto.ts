@@ -6,5 +6,6 @@ export class articleCategoryDto{
     profilePicture: string;
     profilePictureFile: any;
     parentId: number;
+    predefinedKey: number;
 
 }

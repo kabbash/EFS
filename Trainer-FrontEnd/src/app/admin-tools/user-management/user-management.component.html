@@ -113,7 +113,7 @@
   <div *ngIf="selected[0]?.roles?.length > 0">
     <div class="selected-roles-wrapper">
       <div class="selected-role" *ngFor='let sel of selected[0].roles'>
-        <span>{{'manageUsers.roles.'+ sel | translate}} <i (click)="removeRole(sel)"
+        <span>{{'manageUsers.roles.'+ sel.replace(' ', '') | translate}} <i (click)="removeRole(sel)"
             class="fa fa-times remove-role-icon" aria-hidden="true"></i> </span>
       </div>
     </div>
