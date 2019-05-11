@@ -75,7 +75,6 @@ export class FileUploaderComponent implements ControlValueAccessor {
       return;
     }
 
-    debugger;
     if (event.target.files[0] && ((event.target.files[0].size / 1024) / 1024) > 5) {
       this.hasSizeError= true;
       this.file = null;
