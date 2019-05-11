@@ -44,7 +44,10 @@ export class FileUploaderComponent implements ControlValueAccessor {
   @Input() buttonValue: string;
   @Output() imageCroppedEvent = new EventEmitter<any>()
   @Output() fileChanged = new EventEmitter<any>();
-  hasError = false;
+  allowedExtension = ['jpg', 'png', 'jpeg'];
+  hasSizeError = false;
+  hasExtError = false;
+
   writeValue(obj: any): void {
     this.file = obj;
   }
@@ -63,14 +66,22 @@ export class FileUploaderComponent implements ControlValueAccessor {
   }
 
   onSelectFile(event) {
+
+    this.hasExtError = false;
+    this.hasSizeError = false;
+
     if (!event.target || !event.target.files || !event.target.files.length) {
-      this.hasError = false;
       this.file = null;
       return;
     }
 
     if (event.target.files[0] && ((event.target.files[0].size / 1024) / 1024) > 5) {
-      this.hasError = true;
+      this.hasSizeError= true;
+      this.file = null;
+      return;
+    }
+    if (event.target.files[0] && event.target.files[0].name && (this.allowedExtension.indexOf(event.target.files[0].name.split('.').pop().toLowerCase()) == -1)) {
+      this.hasExtError = true;
       this.file = null;
       return;
     }

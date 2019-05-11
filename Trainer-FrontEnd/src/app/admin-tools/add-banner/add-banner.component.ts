@@ -44,6 +44,7 @@ export class AddBannerComponent implements OnInit {
   @ViewChild('cropper') cropperModal: ImageCropperComponent;
   imageEvent;
   isSubmitted = false;
+  imageRequired: boolean = false;
   constructor(private fb: FormBuilder, private bannerService: ManageBannerService,
      private util: UtilitiesService,
     private route: ActivatedRoute,
@@ -75,6 +76,7 @@ export class AddBannerComponent implements OnInit {
       this.addedImageUrl = e.target.result;
     };
     reader.readAsDataURL(file);
+    this.imageRequired =false;
   }
 
   submit() {
@@ -85,6 +87,12 @@ export class AddBannerComponent implements OnInit {
       this.appService.loading = false;
       return;
     }
+    if(! this.banner.imageFile){
+      this.imageRequired = true;
+      this.appService.loading = false;
+      return;
+    }
+
     this.prepareData();
     const formData = new FormData();
     this.util.appendFormData(formData, this.banner);
