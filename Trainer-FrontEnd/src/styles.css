@@ -88,6 +88,18 @@ body {
   border-color: wheat;
 }
 
+.title-white {
+  color: white;
+}
+
+.title-blue {
+  color: blue;
+}
+
+.title-black {
+  color: black;
+}
+
 div.modal-body {
   padding-top: 0;
   display: flex;
