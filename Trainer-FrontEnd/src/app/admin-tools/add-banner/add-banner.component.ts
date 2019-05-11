@@ -71,6 +71,7 @@ export class AddBannerComponent implements OnInit {
     this.imageEvent = isCropped ? null : event;
     const file = isCropped ? event : event.target.files[0];
     this.banner.imageFile = file;
+    this.bannerForm.controls['imageFile'].setValue(file);
     const reader = new FileReader();
     reader.onload = (e: any) => {
       this.addedImageUrl = e.target.result;

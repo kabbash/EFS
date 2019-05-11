@@ -157,6 +157,7 @@
     "black": "اسود",
     "submit": "حفظ",
     "reset": "إعادة تعيين",
+    "titleColor": "لون العنوان",
     "formValidations": {
       "title": {
         "required": "يحب ادخال العنوان"
