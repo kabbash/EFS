@@ -219,7 +219,8 @@
     "roles": {
       "Admin": "Admin",
       "RegularUser": "Regular User",
-      "ArticleWriter": "Article Writer"
+      "ArticleWriter": "Article Writer",
+      "ArticlesWriter": "Article Writer"
     }
   },
   "neutrints": {

@@ -9,7 +9,7 @@
     {{articleCategory?.name}}
   </p>
   <div class="edit-delete-card">
-    <button (click)="deleteCategory($event)" *ngIf="editMode" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+    <button (click)="deleteCategory($event)" *ngIf="editMode && !articleCategory.predefinedKey" class="btn btn-danger"><i class="fa fa-trash"></i></button>
     <button (click)="editCategory($event)" *ngIf="editMode" class="btn"><i class="fa fa-edit"></i></button>
   </div>
 </div>

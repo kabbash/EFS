@@ -33,6 +33,7 @@ export class AddBannerComponent implements OnInit {
   addedImageUrl: string;
   buttonAlign: string;
   buttonColor: string;
+  titleColor: string;
   titleAlign: string;
   isAdd = true;
   editTitleHTML: SafeHtml;
@@ -55,13 +56,14 @@ export class AddBannerComponent implements OnInit {
 
   ngOnInit() {
     this.bannerForm = this.fb.group({
-      'title': ['', Validators.required],
-      'buttonText': ['',  Validators.required],
-      'imageFile': [],
-      'buttonUrl': ['', Validators.required]
+      'title': [''],
+      'buttonText': [''],
+      'imageFile': [null, Validators.required],
+      'buttonUrl': ['']
     });
     this.buttonAlign = 'center';
     this.buttonColor = 'blue';
+    this.titleColor = 'white';
     this.titleAlign = 'center';
   }
 
@@ -104,7 +106,7 @@ export class AddBannerComponent implements OnInit {
   }
   prepareData() {
     this.banner.title = this.titleHtml.nativeElement.innerHTML;
-    this.banner.buttonText = this.buttonHtml.nativeElement.innerHTML;
+    this.banner.buttonText = this.bannerForm.controls['buttonText'].value ?  this.buttonHtml.nativeElement.innerHTML : '';
     this.banner.buttonUrl = this.bannerForm.controls['buttonUrl'].value;
   }
   reset() {
