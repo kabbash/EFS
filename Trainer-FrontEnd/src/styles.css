@@ -93,7 +93,7 @@ body {
 }
 
 .title-blue {
-  color: blue;
+  color: #14818f;
 }
 
 .title-black {
@@ -361,7 +361,7 @@ span pre {
 
 span pre {
   display: block;
-  font-size: 30px;
+  /* font-size: 30px; */
   overflow: visible;
   word-break: break-word;
   white-space: normal;

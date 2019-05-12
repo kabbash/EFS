@@ -32,7 +32,7 @@
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="file-input">الصوره</label>
               <div class="col-md-9">
-                <app-file-uploader formControlName=profilePictureFile (change)="onFileSelect($event)" [buttonValue]="'اضافة صوره'"></app-file-uploader>
+                <app-file-uploader formControlName=profilePictureFile (fileChanged)="onFileSelect($event)" [buttonValue]="'اضافة صوره'"></app-file-uploader>
                 <div *ngIf="programForm.controls['profilePictureFile'].touched && programForm.controls['profilePictureFile'].errors"
                   class="text-danger">
                   <div *ngIf="programForm.controls['profilePictureFile'].errors.required">{{'programForm.formValidations.profilePictureFileRequired'
