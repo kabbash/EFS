@@ -125,3 +125,25 @@ div.price-rating {
     position: absolute;
     left: 0;
 }
+
+.hidden-visibility{ 
+    visibility: hidden !important;
+}
+
+.show-coming-soon{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-45deg);
+    color: #d20e0e;
+    font-size: 25px;
+    font-weight: bold;
+    opacity: .5;
+}
+
+.hidden-force{
+    display: none !important;
+}

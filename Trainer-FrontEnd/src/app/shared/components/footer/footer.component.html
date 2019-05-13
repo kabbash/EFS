@@ -2,36 +2,110 @@
 <footer id="Footer" class="clearfix footer-bg">
   <div class="widgets_wrapper">
     <div class="footer-mask">
-      <div class="row container">
-        <aside class="col">
+      <div class="row container space-even">
+        <aside class="col-xs-5">
           <div class="textwidget">
             <div class="justify-content-center">
-              <img src="assets/images/footer-logo.png" width="150">
-              <div>
-                <div class="links-to-creator">
+              <div class="col-xs-4">
+
+                <div class="links-to-creator" (click)="navigateTo('/home')">
                   <i class="fa fa-facebook-f">
                   </i>
-                  www.facebook.com
+                  الرئيسية
                 </div>
-                <div class="links-to-creator">
+                <div class="links-to-creator" (click)="navigateTo('/yourTools/meals')">
                   <i class="fa fa-whatsapp">
                   </i>
-                  web.whatsapp.com
+                  الوجبات
                 </div>
-                <div class="links-to-creator">
+                <div class="links-to-creator" (click)="navigateTo('/yourTools/allCalculators')">
                   <i class="fa fa fa-skype">
                   </i>
-                  www.skype.com
+                  الحاسبات
                 </div>
-                <div class="links-to-creator">
+
+              </div>
+              <div class="col-xs-4">
+
+
+                <div class="links-to-creator" (click)="navigateTo('/articles/articlesCategories')">
                   <i class="fa fa-twitter">
                   </i>
-                  www.twitter.com
+                  المقالات
                 </div>
-                <div class="links-to-creator">
+
+                <div class="links-to-creator" (click)="navigateTo('/products/productsCategories')">
                   <i class="fa fa-youtube">
                   </i>
-                  www.youtube.com
+                  شراء منتج
+                </div>
+
+                <div class="links-to-creator" (click)="navigateTo('/users/manageproduct')">
+                  <i class="fa fa-facebook-f">
+                  </i>
+                  بيع منتج
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </aside>
+        <aside class="col-xs-2">
+          <div class="textwidget">
+            <div class="justify-content-center">
+
+              <div class="col-xs-4">
+                <img src="assets/images/footer-logo.png" width="150">
+              </div>
+            </div>
+          </div>
+        </aside>
+        <aside class="col-xs-5">
+          <div class="textwidget">
+            <div class="justify-content-center">
+
+              <div class="col-xs-4">
+
+
+
+                <div class="links-to-creator" (click)="navigateTo('/products/productReviews')">
+                  <i class="fa fa-whatsapp">
+                  </i>
+                  مراجعة المنتجات
+                </div>
+                <div class="links-to-creator" (click)="navigateTo('/articles/news')">
+                  <i class="fa fa fa-skype">
+                  </i>
+                  أخبار كمال الأجسام
+                </div>
+                <div class="links-to-creator" (click)="navigateTo('/articles/championships')">
+                  <i class="fa fa-twitter">
+                  </i>
+                  مواعيد البطولات
+                </div>
+
+
+              </div>
+              <div class="col-xs-4">
+
+
+                <div class="links-to-creator" (click)="navigateTo('/articles/food')">
+                  <i class="fa fa-youtube">
+                  </i>
+                  وصفات الطعام
+                </div>
+
+                <div class="links-to-creator" (click)="navigateTo('/contactus/bio')">
+                  <i class="fa fa-facebook-f">
+                  </i>
+                  السيرة الذاتية
+                </div>
+
+
+                <div class="links-to-creator" (click)="navigateTo('/contactus/contactusForm')">
+                  <i class="fa fa-whatsapp">
+                  </i>
+                  تواصل معنا
                 </div>
               </div>
             </div>

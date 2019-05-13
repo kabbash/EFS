@@ -22,4 +22,8 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
   }
 
+  navigateTo(link) {
+    this.router.navigate([link]);
+  }
+
 }
