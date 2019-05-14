@@ -58,7 +58,7 @@ export class AddBannerComponent implements OnInit {
     this.bannerForm = this.fb.group({
       'title': [''],
       'buttonText': [''],
-      'imageFile': [null, Validators.required],
+      'imageFile': [''],
       'buttonUrl': ['']
     });
     this.buttonAlign = 'center';
@@ -81,6 +81,7 @@ export class AddBannerComponent implements OnInit {
   }
 
   submit() {
+    debugger;
     this.isSubmitted = true;
     this.appService.loading = true;
     if (this.bannerForm.invalid) {

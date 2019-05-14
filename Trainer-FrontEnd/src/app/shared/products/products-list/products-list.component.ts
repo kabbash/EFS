@@ -30,6 +30,7 @@ export class ProductsListComponent implements OnInit {
   categoryDescription: string;
   isProductReview = false;
   isManageProductReview = false;
+  hasSpecialProducts = false;
   pagerData: PagerDto;
   nextPageUrl: string;
   hasItems = false;
@@ -51,7 +52,6 @@ export class ProductsListComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(result => {
-
       this.pagerData = result.productList.data;
       this.specialProducts = result.productSpecialList ? result.productSpecialList.data.results : [];
       this.currentPageSpecialProducts = this.specialProducts.slice(0, this.specialProductsPageSize);
@@ -62,6 +62,18 @@ export class ProductsListComponent implements OnInit {
 
       this.categoryDescription = this.productsService.selectedCategory ? this.productsService.selectedCategory.description : '';
       this.appService.loading = false;
+
+      if (this.router.url !== config.products.productReviews.route && this.router.url !== config.admin.itemReviewList.route) {
+        this.hasSpecialProducts = this.currentPageSpecialProducts.length > 0;
+        if (this.currentPageSpecialProducts.length < 8) {
+          let adsCount = 8 - this.currentPageSpecialProducts.length;
+          for (let index = 0; index < adsCount; index++) {
+            let p = new productListItemDto();
+            p.isForAd = true;
+            this.currentPageSpecialProducts.push(p);
+          }
+        }
+      }
     });
     this.isProductReview = this.router.url === config.products.productReviews.route;
     this.isManageProductReview = this.router.url === config.admin.itemReviewList.route;
@@ -90,15 +102,27 @@ export class ProductsListComponent implements OnInit {
     else
       this.filteredSpecialProducts = Object.assign([], this.specialProducts);
 
-    if (this.pagerData.currentPage <= 3 && this.filteredSpecialProducts.length)
+    if (this.pagerData.currentPage <= 3) {  //this.filteredSpecialProducts.length
       this.currentPageSpecialProducts = this.filteredSpecialProducts.slice(((this.pagerData.currentPage - 1) * this.specialProductsPageSize), this.pagerData.currentPage * this.specialProductsPageSize);
+
+      this.hasSpecialProducts = this.currentPageSpecialProducts.length > 0;
+      if (this.currentPageSpecialProducts.length < 8) {
+        let adsCount = 8 - this.currentPageSpecialProducts.length;
+        for (let index = 0; index < adsCount; index++) {
+          let p = new productListItemDto();
+          p.isForAd = true;
+          this.currentPageSpecialProducts.push(p);
+        }
+      }
+    }
     else
       this.currentPageSpecialProducts = [];
   }
   getNextPage() {
     this.appService.loading = true;
 
-    this.setSpecialProducts();
+    if (this.nextPageUrl === 'products')
+      this.setSpecialProducts();
 
     this.repositoryService.getData(`${this.nextPageUrl}?isSpecial=false&pageNo=${this.pagerData.currentPage}&pageSize=${this.pagerData.pageSize}&searchText=${this.searchFilterComponent.searchTxt}&categoryId=${this.categoryId}`).subscribe((data: any) => {
       this.pagerData = data.data;

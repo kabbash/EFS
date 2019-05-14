@@ -20,7 +20,7 @@ export class productListItemDto implements ISliderDto {
   images: SliderItemDto[];
   updatedImages: SliderItemDto[];
   phoneNumber: string;
-  
+  isForAd: boolean = false;
   constructor() {
     this.images = new Array<SliderItemDto>();
     this.updatedImages = new Array<SliderItemDto>();

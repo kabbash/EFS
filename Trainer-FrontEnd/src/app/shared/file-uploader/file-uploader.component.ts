@@ -67,6 +67,7 @@ export class FileUploaderComponent implements ControlValueAccessor {
 
   onSelectFile(event) {
 
+    debugger;
     this.hasExtError = false;
     this.hasSizeError = false;
 

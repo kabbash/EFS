@@ -23,7 +23,7 @@
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="file-input">File input</label>
               <div class="col-md-9">
-                <app-file-uploader formControlName=profilePictureFile (change)="onFileSelect($event)"></app-file-uploader>
+                <app-file-uploader formControlName=profilePictureFile (fileChanged)="onFileSelect($event)"></app-file-uploader>
               </div>
             </div>
             <div class="card-footer">
