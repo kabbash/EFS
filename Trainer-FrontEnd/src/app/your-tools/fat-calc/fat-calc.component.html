@@ -75,7 +75,7 @@
                 class="form-control">
             </div>
           </div>
-          <div class="form-group row" [hidden]="calculator.gender != 1">
+          <div class="form-group row" [hidden]="calculator.gender !== '1'">
             <label class="col-md-3 col-form-label" for="text-input">المؤخرة</label>
             <div class="col-md-9">
               <input type="text" id="text-input" [(ngModel)]="calculator.hip" placeholder="سم" name="text-input"
