@@ -32,7 +32,8 @@ export class HeroPanerComponent implements OnInit {
 
   navigateToButtonUrl(url, e) {
     e.preventDefault();
-    this.router.navigate([url]);
-  }
+    // this.router.navigate([url]);
+    window.open(url, "_blank");
+  } 
 
 }

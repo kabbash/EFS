@@ -9,6 +9,7 @@
   background-position: 50% 4%;
   background-repeat: no-repeat;
   background-size: cover;
+  border-top: 5px solid #f8f9fa;
 }
 
 #Footer.show-logo {}
@@ -28,9 +29,9 @@
 }
 
 .footer_copy {
-  background-color: #fff;
-  height: 50px;
-  line-height: 50px;
+  background-color: #f8f9fa;
+  height: 25px;
+  /* line-height: 50px; */
   /* margin-top: 20px; */
 }
 
@@ -39,7 +40,10 @@
 }
 
 #Footer .footer_copy .copyright {
-  float: left;
+  /* float: left; */
+  font-size: 13px;
+  text-align: center;
+  padding-top: 3px;
 }
 
 #Footer .footer_copy .social {

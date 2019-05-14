@@ -15,11 +15,11 @@
 
 .card-img-container {
     flex: 1;
-    margin: 0 30px;
+    /* margin: 0 30px; */
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
-    margin-top: 38px;
+    /* margin-top: 38px; */
     position: relative;
 }
 
@@ -40,6 +40,7 @@
     color: white;
     text-align: center;
     font-size: 22px;
+    margin-top: 15px;
 }
 
 :host:hover .card-title-container p {
