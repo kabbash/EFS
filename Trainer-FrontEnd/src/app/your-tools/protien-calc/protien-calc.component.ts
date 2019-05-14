@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { calroiesCalc } from '../Models/calories-dto';
+import { Calculator } from '../Models/calories-dto';
 
 @Component({
   selector: 'app-protien-calc',
@@ -7,7 +7,7 @@ import { calroiesCalc } from '../Models/calories-dto';
   styleUrls: ['../calculators/calculators.component.css']
 })
 export class ProtienCalcComponent implements OnInit {
-  caloriesObj = new calroiesCalc();
+  calculator = new Calculator();
   constructor() { }
 
   ngOnInit() {

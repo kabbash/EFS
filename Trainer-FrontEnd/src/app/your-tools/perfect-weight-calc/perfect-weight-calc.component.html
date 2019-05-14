@@ -22,14 +22,14 @@
               <div class="form-check gender">
                 <span>
                   <input class="form-check-input" type="radio" name="gender" id="male" value="0"
-                    [(ngModel)]="caloriesObj.gender" checked>
+                    [(ngModel)]="calculator.gender" checked>
                   <label class="form-check-label" for="male">
                     ذكر
                   </label>
                 </span>
                 <span>
                   <input class="form-check-input" type="radio" name="gender" id="female" value="1"
-                    [(ngModel)]="caloriesObj.gender">
+                    [(ngModel)]="calculator.gender">
                   <label class="form-check-label" for="female">
                     أنثى
                   </label>
@@ -40,14 +40,14 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="text-input">السن</label>
             <div class="col-md-5">
-              <input type="text" id="text-input" [(ngModel)]="caloriesObj.age" name="text-input" class="form-control">
+              <input type="text" id="text-input" [(ngModel)]="calculator.age" name="text-input" class="form-control">
             </div>
             <label class="col-md-4 col-form-label" for="text-input">من 15 - 80</label>
           </div>
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="text-input">الطول</label>
             <div class="col-md-9">
-              <input type="text" id="text-input" [(ngModel)]="caloriesObj.height" placeholder="سم" name="text-input"
+              <input type="text" id="text-input" [(ngModel)]="calculator.height" placeholder="سم" name="text-input"
                 class="form-control">
             </div>
           </div>
@@ -56,64 +56,24 @@
             <div class="col-sm-4"></div>
             <div class="col-sm-8">
               <div class="col-sm-6 text-left buttons">
-                <button type="button" class="btn btn-outline-info" (click)="caloriesObj.calc()">احسب</button>
+                <button type="button" class="btn btn-outline-info" (click)="calculator.calcPerfectWeight()">احسب</button>
               </div>
 
               <div class="col-sm-6 text-left buttons">
-                <button type="button" class="btn btn-outline-info" (click)="caloriesObj.reset()">احذف</button>
+                <button type="button" class="btn btn-outline-info" (click)="calculator.reset()">احذف</button>
               </div>
             </div>
           </div>
         </form>
       </div>
-      <div class="col-sm-4 col-md-4 card-main-data">
+      <div class="col-sm-4 col-md-4 card-main-data" [hidden]="! calculator.showResult">
         <h5> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> النتيجه</h5>
         <div class="result-row">
-          <div class="result-name">Robinson
+          <div class="result-name">الوزن المثالى 
             <br>
-            <span class="kilos-per-week">(1983)</span>
+            <span class="kilos-per-week">Miller 1983</span>
           </div>
-          <div class="result-value">71
-            <br />
-            <span class="result-unit">كجم</span>
-          </div>
-        </div>
-        <div class="result-row">
-          <div class="result-name">Hamwi
-            <br>
-            <span class="kilos-per-week">(1964)</span>
-          </div>
-          <div class="result-value">71
-            <br />
-            <span class="result-unit">كجم</span>
-          </div>
-        </div>
-        <div class="result-row">
-          <div class="result-name">Miller
-            <br>
-            <span class="kilos-per-week">(1983)</span>
-          </div>
-          <div class="result-value">71
-            <br />
-            <span class="result-unit">كجم</span>
-          </div>
-        </div>
-        <div class="result-row">
-          <div class="result-name">Devine
-            <br>
-            <span class="kilos-per-week">(1974)</span>
-          </div>
-          <div class="result-value">71
-            <br />
-            <span class="result-unit">كجم</span>
-          </div>
-        </div>
-        <div class="result-row">
-          <div class="result-name">Healthy BMI
-            <br>
-            <span class="kilos-per-week">Range </span>
-          </div>
-          <div class="result-value">59.9 - 81.0
+          <div class="result-value">{{calculator.perfectWeightResult.miller}}
             <br />
             <span class="result-unit">كجم</span>
           </div>
