@@ -25,6 +25,8 @@ export class ProductItemComponent implements OnInit {
   @Input() showImageCropIcon = false;
   @Output() cropEvent = new EventEmitter();
   isAddItemForReview = false;
+  @Input() comingSoon = false;
+
   constructor(private route: Router,
      private repository: RepositoryService,
      private toastr: ToastrService,

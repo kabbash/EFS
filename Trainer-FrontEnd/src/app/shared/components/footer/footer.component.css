@@ -86,6 +86,13 @@
   flex-direction: row-reverse;
   font-size: 18px;
   font-family: cairo;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.links-to-creator:hover{
+  color: #00bcd4;
+  text-decoration: underline;
 }
 
 .links-to-creator i {
@@ -103,6 +110,13 @@
   margin: auto;
 }
 
+.space-even{
+  justify-content: space-evenly;
+}
+
+.links-to-creator i {
+  visibility: hidden;
+}
 @media (max-width: 520px) {
   .footer_copy {
     height: 100px;

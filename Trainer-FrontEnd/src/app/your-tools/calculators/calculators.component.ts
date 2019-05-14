@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { calroiesCalc } from '../Models/calories-dto';
+import { Calculator } from '../Models/calories-dto';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { calroiesCalc } from '../Models/calories-dto';
 })
 export class YourToolsCalculatorsComponent implements OnInit {
 
-  caloriesObj = new calroiesCalc();
+  calculator = new Calculator();
 
   constructor() { }
 
