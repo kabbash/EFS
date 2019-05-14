@@ -52,7 +52,6 @@ export class ProductsListComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(result => {
-      debugger;
       this.pagerData = result.productList.data;
       this.specialProducts = result.productSpecialList ? result.productSpecialList.data.results : [];
       this.currentPageSpecialProducts = this.specialProducts.slice(0, this.specialProductsPageSize);
