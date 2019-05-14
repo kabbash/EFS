@@ -15,7 +15,7 @@
 #Footer.show-logo {}
 
 #Footer h4 {
-  color: #fff;
+  color: #00bcd4;
 }
 
 #Footer ul {
@@ -106,7 +106,7 @@
 }
 
 .widgets_wrapper .container {
-  padding: 50px 0;
+  /* padding: 50px 0; */
   margin: auto;
 }
 
@@ -115,7 +115,7 @@
 }
 
 .links-to-creator i {
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 @media (max-width: 520px) {
   .footer_copy {

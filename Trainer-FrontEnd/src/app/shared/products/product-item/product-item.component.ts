@@ -70,4 +70,7 @@ export class ProductItemComponent implements OnInit {
     this.cropEvent.emit();
   }
 
+  redirectToContactUs(){
+    this.route.navigate(['/contactus/contactusForm']);
+  }
 }

@@ -36,6 +36,6 @@
 
   <div *ngIf="!isAddItemForReview" class="buy-now" data-toggle="modal" data-target="#exampleModal">عرض التفاصيل</div>
 </div>
-<div [ngClass]="{'show-coming-soon':comingSoon,'hidden-force':!comingSoon}">
-  coming soon
+<div (click)="redirectToContactUs()" [ngClass]="{'show-coming-soon':comingSoon,'hidden-force':!comingSoon}">
+  ضـع اعلانك هنـا
 </div>

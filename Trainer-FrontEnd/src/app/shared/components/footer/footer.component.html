@@ -3,72 +3,125 @@
   <div class="widgets_wrapper">
     <div class="footer-mask">
       <div class="row container space-even">
-        <aside class="col-xs-5">
-          <div class="textwidget">
-            <div class="justify-content-center">
-              <div class="col-xs-4">
-
-                <div class="links-to-creator" (click)="navigateTo('/home')">
-                  <i class="fa fa-facebook-f">
-                  </i>
-                  الرئيسية
-                </div>
-                <div class="links-to-creator" (click)="navigateTo('/yourTools/meals')">
-                  <i class="fa fa-whatsapp">
-                  </i>
-                  الوجبات
-                </div>
-                <div class="links-to-creator" (click)="navigateTo('/yourTools/allCalculators')">
-                  <i class="fa fa fa-skype">
-                  </i>
-                  الحاسبات
-                </div>
-
-              </div>
-              <div class="col-xs-4">
-
-
-                <div class="links-to-creator" (click)="navigateTo('/articles/articlesCategories')">
-                  <i class="fa fa-twitter">
-                  </i>
-                  المقالات
-                </div>
-
-                <div class="links-to-creator" (click)="navigateTo('/products/productsCategories')">
-                  <i class="fa fa-youtube">
-                  </i>
-                  شراء منتج
-                </div>
-
-                <div class="links-to-creator" (click)="navigateTo('/users/manageproduct')">
-                  <i class="fa fa-facebook-f">
-                  </i>
-                  بيع منتج
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </aside>
         <aside class="col-xs-2">
           <div class="textwidget">
             <div class="justify-content-center">
-
               <div class="col-xs-4">
                 <img src="assets/images/footer-logo.png" width="150">
               </div>
             </div>
           </div>
         </aside>
-        <aside class="col-xs-5">
+      </div>
+      <div class="row container space-even">
+        <aside class="col-xs-4">
+          <div class="textwidget">
+            <div class="justify-content-center">
+              <div class="col-xs-4">
+                <h4 style="margin-bottom: 30px;"> اللينكات السريعه</h4>
+                <div class="links-to-creator" (click)="navigateTo('/home')">
+                  الرئيسية
+                  <span style="color:#00bcd4;margin-left:5px">-</span>
+                </div>
+                <div class="links-to-creator" (click)="navigateTo('/yourTools/meals')">
+                  الوجبات
+                  <span style="color:#00bcd4;margin-left:5px">-</span>
+                </div>
+                <div class="links-to-creator" (click)="navigateTo('/yourTools/allCalculators')">
+                  الحاسبات
+                  <span style="color:#00bcd4;margin-left:5px">-</span>
+                </div>
+                <div class="links-to-creator" (click)="navigateTo('/contactus/bio')">
+                  السيرة الذاتية
+                  <span style="color:#00bcd4;margin-left:5px">-</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <aside class="col-xs-4">
+          <div class="textwidget">
+            <div class="justify-content-center">
+              <div class="col-xs-4">
+                <h4 style="margin-bottom: 30px;"> اللينكات السريعه</h4>
+                <div class="links-to-creator" (click)="navigateTo('/products/productsCategories')">
+                  شراء منتج
+                  <span style="color:#00bcd4;margin-left:5px">-</span>
+                </div>
+                <div class="links-to-creator" (click)="navigateTo('/users/manageproduct')">
+                  بيع منتج
+                  <span style="color:#00bcd4;margin-left:5px">-</span>
+                </div>
+                <div class="links-to-creator" (click)="navigateTo('/products/productReviews')">
+                  مراجعة المنتجات
+                  <span style="color:#00bcd4;margin-left:5px">-</span>
+                </div>
+                <div class="links-to-creator" (click)="navigateTo('/contactus/contactusForm')">
+                  تواصل معنا
+                  <span style="color:#00bcd4;margin-left:5px">-</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <aside class="col-xs-4">
+          <div class="textwidget">
+            <div class="justify-content-center">
+              <div class="col-xs-4">
+                <h4 style="margin-bottom: 30px;"> اللينكات السريعه</h4>
+                <div class="links-to-creator" (click)="navigateTo('/articles/articlesCategories')">
+                  المقالات
+                  <span style="color:#00bcd4;margin-left:5px">-</span>
+                </div>
+                <div class="links-to-creator" (click)="navigateTo('/articles/news')">
+                  أخبار كمال الأجسام
+                  <span style="color:#00bcd4;margin-left:5px">-</span>
+                </div>
+                <div class="links-to-creator" (click)="navigateTo('/articles/championships')">
+                  مواعيد البطولات
+                  <span style="color:#00bcd4;margin-left:5px">-</span>
+                </div>
+                <div class="links-to-creator" (click)="navigateTo('/articles/food')">
+                  وصفات الطعام
+                  <span style="color:#00bcd4;margin-left:5px">-</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <aside class="col-xs-4">
           <div class="textwidget">
             <div class="justify-content-center">
 
-              <div class="col-xs-4">
+              <div class="col-xs-4" style="margin-top: 35px;">
 
+                <div class="links-to-creator" style="display: inherit;text-align: left">
+                  www.facebook.com
+                  <i class="fa fa-facebook-f">
+                  </i>
+                </div>
+                <div class="links-to-creator" style="display: inherit;text-align: left">
+                  web.whatsapp.com
+                  <i class="fa fa-whatsapp">
+                  </i>
+                </div>
+                <div class="links-to-creator" style="display: inherit;text-align: left">
+                  www.skype.com
+                  <i class="fa fa fa-skype">
+                  </i>
+                </div>
+                <div class="links-to-creator" style="display: inherit;text-align: left">
+                  www.twitter.com
+                  <i class="fa fa-twitter">
+                  </i>
+                </div>
+                <div class="links-to-creator" style="display: inherit;text-align: left">
+                  www.youtube.com
+                  <i class="fa fa-youtube">
+                  </i>
+                </div>
 
-
-                <div class="links-to-creator" (click)="navigateTo('/products/productReviews')">
+                <!-- <div class="links-to-creator" (click)="navigateTo('/products/productReviews')">
                   <i class="fa fa-whatsapp">
                   </i>
                   مراجعة المنتجات
@@ -82,14 +135,14 @@
                   <i class="fa fa-twitter">
                   </i>
                   مواعيد البطولات
-                </div>
+                </div> -->
 
 
               </div>
               <div class="col-xs-4">
 
 
-                <div class="links-to-creator" (click)="navigateTo('/articles/food')">
+                <!-- <div class="links-to-creator" (click)="navigateTo('/articles/food')">
                   <i class="fa fa-youtube">
                   </i>
                   وصفات الطعام
@@ -106,7 +159,7 @@
                   <i class="fa fa-whatsapp">
                   </i>
                   تواصل معنا
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
