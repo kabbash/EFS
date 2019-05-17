@@ -75,7 +75,7 @@ namespace MailProvider.Core.Services
                     templateRelativePath = _settings.AppPathsSettings.EmailTemplates.ContactUs;
                     break;
             }
-            var templatePath = "/wwwroot" + Path.DirectorySeparatorChar.ToString() + templateRelativePath;
+            var templatePath = _hostingEnvironment.WebRootPath + Path.DirectorySeparatorChar.ToString() + templateRelativePath;
             var builder = new BodyBuilder();
             using (StreamReader SourceReader = File.OpenText(templatePath))
             {
