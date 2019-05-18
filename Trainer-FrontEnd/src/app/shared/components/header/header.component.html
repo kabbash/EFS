@@ -66,7 +66,7 @@
                 [ngClass]="{'selected-dd-router':currentRoute =='/products/productsCategories'}"
                 routerLinkActive="active" [routerLink]="['/products/productsCategories']">شراء
                 منتج</a></li>
-            <li *ngIf="authService.isLoggedIn()"><a class="nav-item nav-link"
+            <li><a class="nav-item nav-link"
                 [ngClass]="{'selected-dd-router':currentRoute &&( currentRoute && currentRoute.split('/')[2] =='manageproduct')}"
                 routerLinkActive="active" [routerLink]="[configUrls.users.manageproduct.route, 0]">بيع منتج</a></li>
             <!-- <li *ngIf="authService.isLoggedIn()"><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.users.productslist.route]">

@@ -7,6 +7,7 @@ import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductDetailsResolver } from './resolvers/product.resolver';
 import { ProductsListResolver } from './resolvers/products-list-resolver';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
+import { ManageProductGuard } from './guards/manage-product.guard';
 
 
 const routes: Routes = [
@@ -17,11 +18,12 @@ const routes: Routes = [
             {
                 path: config.users.manageproduct.name,
                 component: ManageProductComponent,
-                resolve: { productDetails: ProductDetailsResolver, productCategories: LeafProductCategoriesResolver }
+                resolve: { productDetails: ProductDetailsResolver, productCategories: LeafProductCategoriesResolver },
+                canActivate: [ManageProductGuard]
             },
             {
                 path: config.users.productslist.name,
-                component: ProductsListComponent,   
+                component: ProductsListComponent,
                 resolve: { productsList: ProductsListResolver }
             }
         ]
