@@ -135,6 +135,10 @@ namespace Articles.Core.Services
                 articleEntity.SubFolderName = articleFolderName;
                 articleEntity.Images = null;
                 articleEntity.IsActive = null;
+
+                if (user.IsAdmin)
+                    articleEntity.IsActive = true;
+
                 _unitOfWork.ArticlesRepository.Insert(articleEntity);
                 _unitOfWork.Commit();
 

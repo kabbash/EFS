@@ -136,7 +136,7 @@
   "adminMenu": {
     "manageArticleCategories": "فئات المقالات",
     "manageProductCategories": "فئات المنتجات",
-    "itemReviewList": "مراجعة المنتجات",
+    "itemReviewList": "تقييمات المكملات فى السوق المصرى",
     "manageBanners": "الملصقات",
     "users": "المستخدمين",
     "onlineTraining": "التدريب الاونلاين"
@@ -239,15 +239,15 @@
     "water": "المياه",
     "carbs": "الكربوهيدرات",
     "fiber": "الالياف",
-    "starch": "النشا",
+    "starch": "النشويات",
     "sugars": "السكريات",
     "netCarbs": "الكربوهيدرات الصافية",
-    "fat": "شحم",
-    "monounsaturated": "غير المشبعة الاحادية",
-    "polyunsaturated": "المشبعة المتعددة",
+    "fat": "الدهون",
+    "monounsaturated": "الاحادية الغير مشبعة ",
+    "polyunsaturated": "المتعددة الغير مشبعة ",
     "omega3": "اوميجا 3",
     "omega6": "وميجا 6",
-    "saturated": "مشبع",
+    "saturated": "المشبعة",
     "transFats": "الدهون المتحولة",
     "cholesterol": "الكوليسترول",
     "protein": "بروتين",
@@ -283,7 +283,12 @@
     "potassium": "بوتاسيوم",
     "selenium": "سيلينيوم",
     "sodium": "صوديوم",
-    "zinc": "زنك"
+    "zinc": "زنك",
+    "circleCalories":"السعرات الحرارية",
+    "circleCarbs":"الكربوهيدرات",
+    "circleFibers":"الالياف",
+    "circleFats":"الدهون",
+    "circleProtein":"البروتين"
   },
   "commonValidations": {
     "password": {

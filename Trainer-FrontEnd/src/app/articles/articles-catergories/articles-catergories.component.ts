@@ -29,12 +29,16 @@ export class ArticlesCatergoriesComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // start loading
+
     this.appService.loading = true;
     this.route.data.subscribe(result => {
       this.categories = result.categories.data;
+      if(result.categories.data.length){
+        this.categories = result.categories.data.sort((a, b) => {
+          return b.id - a.id;
+        });
+      }
       this.appService.loading = false;
-
     });
   }
 

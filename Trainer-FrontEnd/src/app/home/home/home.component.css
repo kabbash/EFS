@@ -2,3 +2,6 @@
     height: 5px;
     background:#f8f9fa;
 }
+:host ::ng-deep .carousel-control-next, :host ::ng-deep  .carousel-control-prev {
+    width: 9%;
+}

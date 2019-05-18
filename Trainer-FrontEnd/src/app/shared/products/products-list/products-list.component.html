@@ -20,8 +20,12 @@
             [price]="product.price" [product]="product" [currentRate]="product.rate" [cardName]="product.name"
             [cardImage]="baseurl + product.profilePicture" [isSpecial]="true" [comingSoon]="product.isForAd">
         </app-product-item>
+        <div class="section-border-wrapper">
+            <div class="bio-name-border"></div>
+        </div>
     </div>
-    <div *ngIf="products.length && currentPageSpecialProducts.length" class="separator" style="width:100%;height: 150px;">
+    <div *ngIf="products.length && currentPageSpecialProducts.length" class="separator"
+        style="width:100%;height: 50px;">
     </div>
     <app-product-item *ngFor="let product of products" (click)="openProductDetails(product)" [price]="product.price"
         [product]="product" [currentRate]="product.rate" [cardName]="product.name"

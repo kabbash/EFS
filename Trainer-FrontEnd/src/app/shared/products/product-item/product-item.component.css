@@ -109,6 +109,8 @@ div.price-rating {
     justify-content: center;
     transform: rotate(-45deg);
     padding-left: 22px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .no-short-desc {
@@ -139,7 +141,7 @@ div.price-rating {
     justify-content: center;
     transform: rotate(-45deg);
     color: #00bcd4;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     opacity: .5;
 }

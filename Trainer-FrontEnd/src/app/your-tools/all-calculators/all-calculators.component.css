@@ -16,7 +16,7 @@
 
 .card {
     height: 262px;
-    width: 259px;
+    width: 285px;
     align-items: center;
     justify-content: center;
     margin: 20px;
@@ -29,7 +29,8 @@
 
 .card img {
     height: 130px;
-    margin-bottom: 20px;
+    margin-bottom: 45px;
+    border-radius: 10px;
 }
 
 .disabled {

@@ -1,5 +1,5 @@
 <!-- <app-site-map [map]="articlesMap"></app-site-map> -->
-<div class="products-container">
+<div class="articles-categories-container">
    <app-articles-card *ngFor="let category of categories" (click)="articlesList(category.id)" [cardName]="category.name" [articleCategory]="category"></app-articles-card>
 </div>
 

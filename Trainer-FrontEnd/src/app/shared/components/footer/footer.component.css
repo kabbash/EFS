@@ -12,7 +12,7 @@
   border-top: 5px solid #f8f9fa;
 }
 
-#Footer.show-logo {}
+/* #Footer.show-logo {} */
 
 #Footer h4 {
   color: #00bcd4;
@@ -35,9 +35,9 @@
   /* margin-top: 20px; */
 }
 
-.footer_copy.show-logo {
-  /* margin-top: 20px; */
-}
+/* .footer_copy.show-logo {
+  /* margin-top: 20px; 
+} */
 
 #Footer .footer_copy .copyright {
   /* float: left; */
@@ -114,9 +114,10 @@
   justify-content: space-evenly;
 }
 
-.links-to-creator i {
-  /* visibility: hidden; */
-}
+/* .links-to-creator i {
+  /* visibility: hidden;
+} */
+
 @media (max-width: 520px) {
   .footer_copy {
     height: 100px;
