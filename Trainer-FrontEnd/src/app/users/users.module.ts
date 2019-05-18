@@ -10,6 +10,7 @@ import { ProductsListResolver } from './resolvers/products-list-resolver';
 import { ProductDetailsResolver } from './resolvers/product.resolver';
 import { UsersRoutingModule } from './users-routing.module';
 import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categories.resolver';
+import { ManageProductGuard } from './guards/manage-product.guard';
 
 @NgModule({
   imports: [
@@ -23,6 +24,6 @@ import { LeafProductCategoriesResolver } from './resolvers/product-leaf-categori
     UsersRoutingModule
   ],
   declarations: [ProductsListComponent, ManageProductComponent,UsersComponent],
-  providers: [ProductsListResolver,ProductDetailsResolver,LeafProductCategoriesResolver]
+  providers: [ProductsListResolver,ProductDetailsResolver,LeafProductCategoriesResolver, ManageProductGuard]
 })
 export class UsersModule { }
