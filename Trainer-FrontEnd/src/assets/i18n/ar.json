@@ -217,6 +217,7 @@
     "500": "500"
   },
   "manageUsers": {
+    "loginFirst": "من فضلك قم بتسجيل الدخول",
     "roles": {
       "Admin": "Admin",
       "RegularUser": "Regular User",
