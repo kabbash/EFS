@@ -89,13 +89,33 @@
 
          </div> -->
       </div>
-      <div class="add-food">الاهداف الغذائيه</div>
+      <div class="add-food">الاهداف الاساسية فى نظامك الغذائى</div>
    </div>
 
 
    <div class="circles">
 
       <div class="circle">
+         <span class="circle-percentage">{{item.energy}}</span>
+         <span class="circle-name">{{'neutrints.circleCalories' | translate}}</span>
+      </div>
+      <div class="circle">
+         <span class="circle-percentage">{{item.carbs}}</span>
+         <span class="circle-name">{{'neutrints.circleCarbs' | translate}}</span>
+      </div>
+      <div class="circle">
+         <span class="circle-percentage">{{item.fat}}</span>
+         <span class="circle-name">{{'neutrints.circleFats' | translate}}</span>
+      </div>
+      <div class="circle">
+         <span class="circle-percentage">{{item.protein}}</span>
+         <span class="circle-name">{{'neutrints.circleProtein' | translate}}</span>
+      </div>
+      <div class="circle">
+         <span class="circle-percentage">{{item.fiber}}</span>
+         <span class="circle-name">{{'neutrints.circleFibers' | translate}}</span>
+      </div>
+      <!-- <div class="circle">
          <span class="circle-percentage">{{item.fiber}}</span>
          <span class="circle-name">{{'neutrints.fiber' | translate}}</span>
       </div>
@@ -128,7 +148,7 @@
       <div class="circle">
          <span class="circle-percentage">{{item.folate}}</span>
          <span class="circle-name">{{'neutrints.folate' | translate}}</span>
-      </div>
+      </div> -->
 
       <!-- <div class="circle">
          <span class="circle-percentage">0%</span>
@@ -145,11 +165,11 @@
             <div class="table-cell text-center">{{item.energy }}</div>
             <div class="table-cell text-center">kcal</div>
          </div>
-         <div class="table-row">
+         <!-- <div class="table-row">
             <div class="table-cell">{{'neutrints.alcohol' | translate}}</div>
             <div class="table-cell text-center">{{item.alcohol }} </div>
             <div class="table-cell text-center">g</div>
-         </div>
+         </div> -->
          <div class="table-row">
             <div class="table-cell">{{'neutrints.caffiene' | translate}}</div>
             <div class="table-cell text-center">{{item.caffiene }}</div>
@@ -184,11 +204,11 @@
             <div class="table-cell text-center">{{item.sugars }}</div>
             <div class="table-cell text-center">g</div>
          </div>
-         <div class="table-row">
+         <!-- <div class="table-row">
             <div class="table-cell">{{'neutrints.netCarbs' | translate}}</div>
             <div class="table-cell text-center">{{item.netCarbs }}</div>
             <div class="table-cell text-center">g</div>
-         </div>
+         </div> -->
       </div>
 
       <div class="table">

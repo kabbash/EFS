@@ -3,7 +3,7 @@
   <div class="text-center white-color calculator-desc">
     <p> تقدر حاسبة الكربوهيدرات نسبة الكربوهيدرات التي يجب على الشخص تناولها يوميًا.
       <br><br>
-      يوصى بأن تحتوي الكربوهيدرات على 40-75٪ من السعرات الحرارية اليومية.</p>
+      يوصى بأن تحتوي الكربوهيدرات على 40-75٪ من السعرات الحرارية اليومية ( فى نظامك الغذائى )</p>
   </div>
 </div>
 <div class="calculator-form-container">
@@ -73,9 +73,9 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-9 col-form-label" for="text-input"> نسبة الكربوهيدرات التى تحتاجها فى نظامك </label>
+            <label class="col-md-9 col-form-label" for="text-input"> نسبة الكربوهيدرات التى تحتاجها فى نظامك ( 40% - 75% ) </label>
             <div class="col-md-3">
-              <input type="text" id="text-input" [(ngModel)]="calculator.carbPercentage" name="text-input" class="form-control"
+              <input type="text" id="text-input" type="number" [(ngModel)]="calculator.carbPercentage" name="text-input" class="form-control"
                 placeholder="%">
             </div>
           </div>

@@ -85,6 +85,9 @@ namespace Products.Core.Services
                 if (sliderDto.Items != null && sliderDto.Items.Count > 0)
                     newProduct.ProfilePicture = _sliderManager.GetProfilePicturePath(sliderDto);
 
+                if (user.IsAdmin)
+                    newProduct.IsActive = true;
+
                 _unitOfWork.ProductsRepository.Insert(newProduct);
                 _unitOfWork.Commit();
 
@@ -251,7 +254,7 @@ namespace Products.Core.Services
                         Status = HttpStatusCode.Unauthorized,
                         ErrorCode = (int)ProductsErrorsCodeEnum.ProductsNotFoundError
                     };
-                
+
                 //delete attachments 
                 var productFolder = product.SubFolderName;
                 if (!string.IsNullOrEmpty(productFolder))

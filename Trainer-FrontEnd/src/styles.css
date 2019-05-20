@@ -680,3 +680,12 @@ span pre {
   bottom: -44px;
   left: 0;
 }
+
+.calc-presshere-links{
+  color: #00bcd4;
+  text-decoration: none;
+  font-size: 20px;
+}
+.calc-presshere-links:hover {
+  color:#FF9800;
+}

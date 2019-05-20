@@ -25,3 +25,13 @@
     padding: 20px;
     margin-bottom: 25px;
 }
+
+.bio-name-border {
+    height: 1px;
+    background-color: white;
+    margin-top: 35px;
+}
+.section-border-wrapper {
+    width: 40%;
+    /* margin-right: 30%; */
+}
