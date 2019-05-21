@@ -1,7 +1,7 @@
 /* header */
 
 .navbar {
-  font-family: 'Cairo', sans-serif;
+  font-family: "Cairo", sans-serif;
 }
 
 .fixed-top {
@@ -133,7 +133,7 @@
     visibility: hidden;
     background-color: #343a40;
     transition-timing-function: ease-in-out;
-    transition-duration: .3s;
+    transition-duration: 0.3s;
     transition-property: left, visibility;
   }
   .offcanvas-collapse ul {
@@ -181,10 +181,11 @@
 }
 
 li.nav-item.hovered-item {
-  background-color: rgba(0, 188, 212, .8);
+  background-color: rgba(0, 188, 212, 0.8);
 }
 
-.hovered-item .nav-link:hover, .hovered-item .nav-link {
+.hovered-item .nav-link:hover,
+.hovered-item .nav-link {
   color: #ffffff !important;
   cursor: pointer;
 }
@@ -235,7 +236,7 @@ li.nav-item {
 
 .navbar-collapse ul.dropdown-menu {
   padding: 0;
-  background: rgba(0, 188, 212, .8);
+  background: rgba(0, 188, 212, 0.8);
   border: none;
   border-radius: 0;
   top: 97%;
@@ -250,7 +251,8 @@ li.nav-item {
   left: 0;
 }
 
-.navbar-collapse ul.dropdown-menu li a::before, .navbar-collapse li.dropdown:hover a::before {
+.navbar-collapse ul.dropdown-menu li a::before,
+.navbar-collapse li.dropdown:hover a::before {
   width: 0px;
   height: 0%;
   right: 0;
@@ -274,4 +276,19 @@ a#userListItem {
 #userNameElm {
   position: absolute;
   left: 10px;
+}
+@media (max-width: 720px) {
+  .esf-nav a:not(.dropdown-anchore):hover::before {
+    height: 0px;
+  }
+
+  .navbar-collapse ul.dropdown-menu {
+    background: rgb(10, 162, 183);
+    width: 100%;
+    margin-top: 0;
+  }
+
+  li.nav-item.hovered-item {
+    margin-top: -4px;
+  }
 }
