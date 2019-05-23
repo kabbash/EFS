@@ -30,18 +30,19 @@
     .caption {
       padding: 20px;
       h3 {
-        font-size: 20px;
-        color: black;
+        font-size: 17px;
+        color: #00bcd4;
         text-align: center;
         padding-bottom: 16px;
+        font-weight: bold;
       }
       li {
         font-size: 14px;
-        color: #23bacd;
+        color: #04050575;
         text-align: right;
-        // height: 80px;
         word-wrap: break-word;
         word-break: break-all;
+        font-weight: bold;
       }
     }
     .btn.join {
@@ -54,6 +55,7 @@
       display: block;
       width: 142px;
       cursor: pointer;
+      color: #04050575;
     }
   }
 }

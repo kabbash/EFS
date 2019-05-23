@@ -6,14 +6,14 @@
   </div>
 </div>
 <div class="details-container">
-  <div class="product-rating-row"><span>إسم المنتج</span> : <span>{{product.name}}</span></div>
-  <div class="product-rating-row"><span>الوصف</span> : <span>{{product.description}}</span></div>
-  <div class="product-rating-row comments"><span>التعليقات</span> : </div>
+  <div class="product-rating-row"><span class="title-label">اسم المنتج</span> : <span>{{product.name}}</span></div>
+  <div class="product-rating-row"><span class="title-label">الوصف</span> : <span>{{product.description}}</span></div>
+  <div class="product-rating-row comments"><span class="title-label">التعليقات</span> : </div>
   <app-comments *ngFor="let review of product.reviews" [commentOwner]="review.reviwer.fullName"
     [currentRate]="review.rate" [commentDate]="util.getDateFormatted(review.updatedAt || review.createdAt)"
     [comment]="review.comment"></app-comments>
   <div class="details-footer">
-    <h2>قيم هذا المنتج</h2>
+    <h3 class="add-rate-text">قيم هذا المنتج</h3>
     <span class="rate">
       <ngb-rating [(rate)]="rate.rate" max="5" class="star">
         <ng-template let-fill="fill" let-index="index">
