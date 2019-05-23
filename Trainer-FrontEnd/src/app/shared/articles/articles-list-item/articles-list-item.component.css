@@ -1,11 +1,11 @@
 :host {
-    width: 400px;
-    height: 370px;
+    width: 350px;
+    min-height: 295px;
     display: flex;
     margin: 38px 15px 0;
     background: rgba(255, 255, 255, .75);
     border-radius: 12px;
-    box-shadow: 0 0px 19px 0px rgba(255, 255, 255, .5);
+    box-shadow: 0 0px 10px 0px rgba(255, 255, 255, .5);
     flex-direction: column;
     overflow: hidden;
 }
@@ -18,7 +18,7 @@
 }
 
 .card-title-container {
-    flex: 0 0 125px;
+    flex: 0 0 100px;
     background-color: #dedddd;
     color: 424040;
 }
@@ -47,7 +47,7 @@ div.read-more {
     font-size: 18px;
     color: #00bcd4;
     text-align: left;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
 }
 
 div.read-more:hover {
