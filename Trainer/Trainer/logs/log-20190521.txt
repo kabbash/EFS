@@ -1,0 +1,179 @@
+2019-05-21 00:04:24.459 +02:00 [Information] Request starting HTTP/1.1 DEBUG http://localhost:4300/  0
+2019-05-21 00:04:24.459 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/api/values  
+2019-05-21 00:04:24.858 +02:00 [Information] Request finished in 387.5793ms 200 
+2019-05-21 00:04:25.441 +02:00 [Information] Request finished in 927.7662ms 404 
+2019-05-21 00:04:32.240 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/swagger/index.html  
+2019-05-21 00:04:32.361 +02:00 [Information] Request finished in 122.1824ms 200 text/html
+2019-05-21 00:04:33.761 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/swagger/v1/swagger.json  
+2019-05-21 00:04:34.003 +02:00 [Information] Request finished in 240.8936ms 200 application/json;charset=utf-8
+2019-05-21 00:05:28.572 +02:00 [Information] Request starting HTTP/1.1 DEBUG http://localhost:4300/  0
+2019-05-21 00:05:28.572 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/api/values  
+2019-05-21 00:05:28.699 +02:00 [Information] Request finished in 156.1292ms 200 
+2019-05-21 00:05:29.133 +02:00 [Information] Request finished in 504.7719ms 404 
+2019-05-21 00:05:34.965 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/swagger/index.html  
+2019-05-21 00:05:35.084 +02:00 [Information] Request finished in 119.9962ms 200 text/html
+2019-05-21 00:05:36.280 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/swagger/v1/swagger.json  
+2019-05-21 00:05:36.301 +02:00 [Information] Request finished in 7.5044ms 404 
+2019-05-21 00:06:20.868 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/api/values  
+2019-05-21 00:06:20.868 +02:00 [Information] Request starting HTTP/1.1 DEBUG http://localhost:4300/  0
+2019-05-21 00:06:20.968 +02:00 [Information] Request finished in 125.9766ms 200 
+2019-05-21 00:06:21.401 +02:00 [Information] Request finished in 498.7018ms 404 
+2019-05-21 00:06:26.963 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/swagger/index.html  
+2019-05-21 00:06:27.091 +02:00 [Information] Request finished in 134.5985ms 200 text/html
+2019-05-21 00:06:28.246 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/swagger/v1/swagger.json  
+2019-05-21 00:06:28.266 +02:00 [Information] Request finished in 6.1133ms 404 
+2019-05-21 00:07:32.385 +02:00 [Information] Request starting HTTP/1.1 DEBUG http://localhost:4300/  0
+2019-05-21 00:07:32.385 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/api/values  
+2019-05-21 00:07:32.484 +02:00 [Information] Request finished in 127.5845ms 200 
+2019-05-21 00:07:32.911 +02:00 [Information] Request finished in 506.7922ms 404 
+2019-05-21 00:07:36.537 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/swagger/index.html  
+2019-05-21 00:07:36.727 +02:00 [Information] Request finished in 186.7564ms 200 text/html
+2019-05-21 00:07:37.037 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/swagger/v1/swagger.json  
+2019-05-21 00:07:37.254 +02:00 [Information] Request finished in 218.3169ms 200 application/json;charset=utf-8
+2019-05-21 00:08:30.864 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/api/values  
+2019-05-21 00:08:30.864 +02:00 [Information] Request starting HTTP/1.1 DEBUG http://localhost:4300/  0
+2019-05-21 00:08:30.953 +02:00 [Information] Request finished in 116.4831ms 200 
+2019-05-21 00:08:31.352 +02:00 [Information] Request finished in 489.6911ms 404 
+2019-05-21 00:08:33.700 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/swagger/index.html  
+2019-05-21 00:08:33.841 +02:00 [Information] Request finished in 144.5192ms 200 text/html
+2019-05-21 00:08:34.368 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/swagger/v1/swagger.json  
+2019-05-21 00:08:34.586 +02:00 [Information] Request finished in 216.8902ms 200 application/json;charset=utf-8
+2019-05-21 00:09:03.290 +02:00 [Information] Request starting HTTP/1.1 POST http://localhost:44394/api/authentication/login application/json-patch+json 213
+2019-05-21 00:09:03.298 +02:00 [Information] Policy execution successful.
+2019-05-21 00:09:03.371 +02:00 [Information] Route matched with "{action = \"Authenticate\", controller = \"Authentication\"}". Executing action "Trainer.Controllers.AuthenticationController.Authenticate (Trainer)"
+2019-05-21 00:09:05.253 +02:00 [Warning] No type was specified for the decimal column '"Alcohol"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.256 +02:00 [Warning] No type was specified for the decimal column '"Amount"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.260 +02:00 [Warning] No type was specified for the decimal column '"B1"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.263 +02:00 [Warning] No type was specified for the decimal column '"B12"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.265 +02:00 [Warning] No type was specified for the decimal column '"B2"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.268 +02:00 [Warning] No type was specified for the decimal column '"B3"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.270 +02:00 [Warning] No type was specified for the decimal column '"B5"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.273 +02:00 [Warning] No type was specified for the decimal column '"B6"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.276 +02:00 [Warning] No type was specified for the decimal column '"Caffiene"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.279 +02:00 [Warning] No type was specified for the decimal column '"Calcuim"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.282 +02:00 [Warning] No type was specified for the decimal column '"Calories"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.284 +02:00 [Warning] No type was specified for the decimal column '"Carbs"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.286 +02:00 [Warning] No type was specified for the decimal column '"Cholesterol"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.289 +02:00 [Warning] No type was specified for the decimal column '"Copper"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.291 +02:00 [Warning] No type was specified for the decimal column '"Cystine"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.294 +02:00 [Warning] No type was specified for the decimal column '"Energy"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.297 +02:00 [Warning] No type was specified for the decimal column '"Fat"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.299 +02:00 [Warning] No type was specified for the decimal column '"Fiber"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.301 +02:00 [Warning] No type was specified for the decimal column '"Folate"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.303 +02:00 [Warning] No type was specified for the decimal column '"Histidine"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.306 +02:00 [Warning] No type was specified for the decimal column '"Iron"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.308 +02:00 [Warning] No type was specified for the decimal column '"Isoleucine"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.311 +02:00 [Warning] No type was specified for the decimal column '"Leucine"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.314 +02:00 [Warning] No type was specified for the decimal column '"Lysine"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.316 +02:00 [Warning] No type was specified for the decimal column '"Magnesium"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.318 +02:00 [Warning] No type was specified for the decimal column '"Manganese"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.320 +02:00 [Warning] No type was specified for the decimal column '"Methionine"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.323 +02:00 [Warning] No type was specified for the decimal column '"Monounsaturated"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.325 +02:00 [Warning] No type was specified for the decimal column '"NetCarbs"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.327 +02:00 [Warning] No type was specified for the decimal column '"Omega3"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.330 +02:00 [Warning] No type was specified for the decimal column '"Omega6"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.332 +02:00 [Warning] No type was specified for the decimal column '"Phenylalanine"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.334 +02:00 [Warning] No type was specified for the decimal column '"Phosphorus"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.336 +02:00 [Warning] No type was specified for the decimal column '"Polyunsaturated"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.339 +02:00 [Warning] No type was specified for the decimal column '"Potassium"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.341 +02:00 [Warning] No type was specified for the decimal column '"Protein"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.343 +02:00 [Warning] No type was specified for the decimal column '"Saturated"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.346 +02:00 [Warning] No type was specified for the decimal column '"Selenium"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.348 +02:00 [Warning] No type was specified for the decimal column '"Sodium"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.351 +02:00 [Warning] No type was specified for the decimal column '"Starch"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.353 +02:00 [Warning] No type was specified for the decimal column '"Sugars"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.355 +02:00 [Warning] No type was specified for the decimal column '"Threonine"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.357 +02:00 [Warning] No type was specified for the decimal column '"TransFats"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.360 +02:00 [Warning] No type was specified for the decimal column '"Tryptophan"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.362 +02:00 [Warning] No type was specified for the decimal column '"Tyrosine"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.365 +02:00 [Warning] No type was specified for the decimal column '"Valine"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.367 +02:00 [Warning] No type was specified for the decimal column '"VitaminA"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.369 +02:00 [Warning] No type was specified for the decimal column '"VitaminC"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.371 +02:00 [Warning] No type was specified for the decimal column '"VitaminD"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.373 +02:00 [Warning] No type was specified for the decimal column '"VitaminE"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.376 +02:00 [Warning] No type was specified for the decimal column '"VitaminK"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.380 +02:00 [Warning] No type was specified for the decimal column '"Water"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.382 +02:00 [Warning] No type was specified for the decimal column '"Zinc"' on entity type '"FoodItem"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'ForHasColumnType()'.
+2019-05-21 00:09:05.515 +02:00 [Information] Entity Framework Core "2.1.2-rtm-30932" initialized '"EFSContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies "
+2019-05-21 00:09:12.399 +02:00 [Information] Executed DbCommand ("474"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2019-05-21 00:09:12.407 +02:00 [Information] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2019-05-21 00:09:12.504 +02:00 [Information] Executed DbCommand ("81"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2019-05-21 00:09:12.538 +02:00 [Information] No migrations were applied. The database is already up to date.
+2019-05-21 00:09:12.812 +02:00 [Information] Executing action method "Trainer.Controllers.AuthenticationController.Authenticate (Trainer)" with arguments (["Authentication.Models.User"]) - Validation state: Valid
+2019-05-21 00:09:14.271 +02:00 [Information] Executed DbCommand ("165"ms) [Parameters=["@__username_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [usr].[Id], [usr].[AccessFailedCount], [usr].[Email], [usr].[EmailConfirmed], [usr].[FullName], [usr].[Hometown], [usr].[IsBlocked], [usr].[LockoutEnabled], [usr].[LockoutEndDateUtc], [usr].[PasswordHash], [usr].[PasswordSalt], [usr].[PhoneNumber], [usr].[PhoneNumberConfirmed], [usr].[ProfilePicture], [usr].[SecurityStamp], [usr].[TwoFactorEnabled], [usr].[UserName]
+FROM [AspNetUsers] AS [usr]
+WHERE [usr].[UserName] = @__username_0
+ORDER BY [usr].[Id]"
+2019-05-21 00:09:14.566 +02:00 [Information] Executed DbCommand ("88"ms) [Parameters=["@__username_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [usr.AspNetUserRoles].[UserId], [usr.AspNetUserRoles].[RoleId]
+FROM [AspNetUserRoles] AS [usr.AspNetUserRoles]
+INNER JOIN (
+    SELECT TOP(1) [usr0].[Id]
+    FROM [AspNetUsers] AS [usr0]
+    WHERE [usr0].[UserName] = @__username_0
+    ORDER BY [usr0].[Id]
+) AS [t] ON [usr.AspNetUserRoles].[UserId] = [t].[Id]
+ORDER BY [t].[Id]"
+2019-05-21 00:09:15.015 +02:00 [Information] Executed DbCommand ("43"ms) [Parameters=["@__get_Item_0='?' (Size = 128)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [e].[Id], [e].[Name]
+FROM [AspNetRoles] AS [e]
+WHERE [e].[Id] = @__get_Item_0"
+2019-05-21 00:09:15.114 +02:00 [Information] Executed action method "Trainer.Controllers.AuthenticationController.Authenticate (Trainer)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 2282.1737ms.
+2019-05-21 00:09:15.141 +02:00 [Information] Executing ObjectResult, writing value of type '"Shared.Core.Utilities.Models.ResultMessage"'.
+2019-05-21 00:09:15.239 +02:00 [Information] Executed action "Trainer.Controllers.AuthenticationController.Authenticate (Trainer)" in 11792.3449ms
+2019-05-21 00:09:15.276 +02:00 [Information] Request finished in 11963.6284ms 200 application/json; charset=utf-8
+2019-05-21 00:10:28.367 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/api/Articles/getforadmin?PageNo=1&PageSize=10&CategoryId=1  
+2019-05-21 00:10:28.802 +02:00 [Information] Successfully validated the token.
+2019-05-21 00:10:28.838 +02:00 [Information] Route matched with "{action = \"GetForAdmin\", controller = \"Articles\"}". Executing action "Trainer.Controllers.ArticlesController.GetForAdmin (Trainer)"
+2019-05-21 00:10:28.855 +02:00 [Information] Authorization was successful.
+2019-05-21 00:10:28.874 +02:00 [Information] Entity Framework Core "2.1.2-rtm-30932" initialized '"EFSContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies "
+2019-05-21 00:10:28.921 +02:00 [Information] Executed DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2019-05-21 00:10:28.969 +02:00 [Information] Executed DbCommand ("43"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT OBJECT_ID(N'[__EFMigrationsHistory]');"
+2019-05-21 00:10:28.975 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];"
+2019-05-21 00:10:28.980 +02:00 [Information] No migrations were applied. The database is already up to date.
+2019-05-21 00:10:29.031 +02:00 [Information] Executing action method "Trainer.Controllers.ArticlesController.GetForAdmin (Trainer)" with arguments (["Articles.Core.Models.ArticlesFilter"]) - Validation state: Valid
+2019-05-21 00:10:29.164 +02:00 [Information] Executed DbCommand ("65"ms) [Parameters=["@__filter_CategoryId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Articles] AS [c]
+WHERE [c].[CategoryId] = @__filter_CategoryId_0"
+2019-05-21 00:10:29.241 +02:00 [Information] Executed DbCommand ("60"ms) [Parameters=["@__filter_CategoryId_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[CategoryId], [c].[CreatedAt], [c].[CreatedBy], [c].[Date], [c].[Description], [c].[IsActive], [c].[Name], [c].[Place], [c].[ProfilePicture], [c].[RejectReason], [c].[SubFolderName], [c].[UpdatedAt], [c].[UpdatedBy]
+FROM [Articles] AS [c]
+WHERE [c].[CategoryId] = @__filter_CategoryId_0
+ORDER BY [c].[CreatedAt] DESC
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY"
+2019-05-21 00:10:29.752 +02:00 [Information] Executed DbCommand ("221"ms) [Parameters=["@__get_Item_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [e].[Id], [e].[Description], [e].[ParentId], [e].[Path], [e].[Title]
+FROM [ArticlesImages] AS [e]
+WHERE [e].[ParentId] = @__get_Item_0"
+2019-05-21 00:10:29.869 +02:00 [Information] Executed DbCommand ("77"ms) [Parameters=["@__get_Item_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [e].[Id], [e].[Description], [e].[ParentId], [e].[Path], [e].[Title]
+FROM [ArticlesImages] AS [e]
+WHERE [e].[ParentId] = @__get_Item_0"
+2019-05-21 00:10:29.882 +02:00 [Information] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [e].[Id], [e].[Description], [e].[ParentId], [e].[Path], [e].[Title]
+FROM [ArticlesImages] AS [e]
+WHERE [e].[ParentId] = @__get_Item_0"
+2019-05-21 00:10:29.888 +02:00 [Information] Executed DbCommand ("0"ms) [Parameters=["@__get_Item_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [e].[Id], [e].[Description], [e].[ParentId], [e].[Path], [e].[Title]
+FROM [ArticlesImages] AS [e]
+WHERE [e].[ParentId] = @__get_Item_0"
+2019-05-21 00:10:29.905 +02:00 [Information] Executed DbCommand ("5"ms) [Parameters=["@__get_Item_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [e].[Id], [e].[Description], [e].[ParentId], [e].[Path], [e].[Title]
+FROM [ArticlesImages] AS [e]
+WHERE [e].[ParentId] = @__get_Item_0"
+2019-05-21 00:10:29.917 +02:00 [Information] Executed action method "Trainer.Controllers.ArticlesController.GetForAdmin (Trainer)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 875.2097ms.
+2019-05-21 00:10:29.929 +02:00 [Information] Executing ObjectResult, writing value of type '"Shared.Core.Utilities.Models.ResultMessage"'.
+2019-05-21 00:10:29.956 +02:00 [Information] Executed action "Trainer.Controllers.ArticlesController.GetForAdmin (Trainer)" in 1113.5113ms
+2019-05-21 00:10:29.961 +02:00 [Information] Request finished in 1591.2072ms 200 application/json; charset=utf-8

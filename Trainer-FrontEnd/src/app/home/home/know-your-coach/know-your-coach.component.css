@@ -67,8 +67,11 @@
   .absoluteItem {
     position: absolute;
   }
+  .coach-data {
+    padding-top: 10px;
+  }
 }
 
-.know-font{
+.know-font {
   font-size: 17px;
 }
