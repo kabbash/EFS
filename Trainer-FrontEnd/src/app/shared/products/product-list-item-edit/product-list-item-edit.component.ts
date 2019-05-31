@@ -64,7 +64,6 @@ export class ProductListItemEditComponent implements OnInit {
 
 
   getData(isUpdate?: boolean) {
-    debugger;
     let editedProduct = new productListItemDto();
     editedProduct.name = this.f.name.value;
     editedProduct.price = this.f.price.value;
