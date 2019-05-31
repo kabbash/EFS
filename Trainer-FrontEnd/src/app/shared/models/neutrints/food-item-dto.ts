@@ -21,6 +21,14 @@ export class FoodItem {
     transFats: number = 0;
     cholesterol: number = 0;
     protein: number = 0;
+    alanine: number = 0;
+    argnine: number = 0;
+    asparticAcid: number = 0;
+    glotamicAcid: number = 0;
+    glycine: number = 0;
+    hydroxiplorien: number = 0;
+    proline: number = 0;
+    serine: number = 0;
     cystine: number = 0;
     histidine: number = 0;
     isoleucine: number = 0;
@@ -54,6 +62,11 @@ export class FoodItem {
     selenium: number = 0;
     sodium: number = 0;
     zinc: number = 0;
+    chromuim: number = 0;
+    florid: number = 0;
+    yod: number = 0;
+    moly: number = 0;
+
     createdAt: Date;
     createdBy: string;
     updatedAt: Date;

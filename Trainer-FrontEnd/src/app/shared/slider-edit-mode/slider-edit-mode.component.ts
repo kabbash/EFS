@@ -14,6 +14,10 @@ export class SliderEditModeComponent implements OnInit {
 
   @Input() sliderData: SliderItemDto[] = [];
   @Input() hideText = false;
+  @Input() defaultImage = "assets/images/articles-default";
+  @Input() imagesWidth= "300";
+  @Input() imagesHeight= "400";
+
   baseurl = environment.filesBaseUrl;
   closeResult: string;
   selectedImg: SliderItemDto;

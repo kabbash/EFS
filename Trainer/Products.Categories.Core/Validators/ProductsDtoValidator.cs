@@ -9,7 +9,6 @@ namespace Products.Core.Validators
         public ProductsDtoValidator()
         {
             RuleFor(c => c.Name).NotEmpty().WithMessage(((int)ProductsErrorsCodeEnum.ValidationProductNameRequired).ToString());
-            RuleFor(c => c.ExpDate).NotEmpty().WithMessage(((int)ProductsErrorsCodeEnum.ValidationProductExpDateRequired).ToString());
             RuleFor(c => c.Price).NotEmpty().WithMessage(((int)ProductsErrorsCodeEnum.ValidationPriceRequired).ToString());
             RuleFor(c => c.CategoryId).NotEmpty().WithMessage(((int)ProductsErrorsCodeEnum.ValidationProductCategoryRequired).ToString());
         }

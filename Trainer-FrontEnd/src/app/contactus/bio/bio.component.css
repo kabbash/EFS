@@ -110,8 +110,8 @@
 }
 
 .carousel-indicators li{
-    width: 8px;
-    height: 8px;
+    width: 3px;
+    height: 10px;
     border-radius: 5px;
     margin-right: 2px;
     margin-left: 2px;

@@ -37,10 +37,11 @@
 }
 
 .card-title-container p {
-    color: white;
+    color: #312e2f;
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
     margin-top: 15px;
+    font-weight: 600;
 }
 
 :host:hover .card-title-container p {

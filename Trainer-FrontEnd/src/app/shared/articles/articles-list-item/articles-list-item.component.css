@@ -1,6 +1,6 @@
 :host {
     width: 350px;
-    min-height: 295px;
+    min-height: 275px;
     display: flex;
     margin: 38px 15px 0;
     background: rgba(255, 255, 255, .75);
@@ -11,7 +11,7 @@
 }
 
 .card-img-container {
-    flex: 0 0 203px;
+    flex: 0 0 175px;
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;

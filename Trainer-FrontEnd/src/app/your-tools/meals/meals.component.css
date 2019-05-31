@@ -181,3 +181,7 @@
     float: left;
     margin-left: 10px;
 }
+
+.table-cell.special-nutrient {
+    color: #ff0000f0;
+}

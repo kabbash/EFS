@@ -6,8 +6,8 @@
 
 .slider-img {
     border-radius: 12px;
-    max-width: 100%;
-    max-height: 230px;
+    /* max-width: 100%;
+    max-height: 230px; */
 }
 
 :host ::ng-deep .carousel-caption {
@@ -81,7 +81,7 @@ div.modal-body img {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    height: 230px;
+    height: 250px;
 }
 
 .new-pic-btn {

@@ -66,6 +66,7 @@ export class ManageProductComponent implements OnInit {
   }
 
   add() {
+
     this.productListItemEditComponent.submitted = true;
     // stop here if form is invalid
     if (this.productListItemEditComponent.editForm.invalid) {
@@ -87,11 +88,11 @@ export class ManageProductComponent implements OnInit {
       .subscribe(
         data => {
           if (data.status === 200) {
-            this.product = data.data;
-            this.viewMode = true;
-            this.isNew = false;
-            this.productId = this.product.id;
-            this.product.categoryName = this.categories.find(c => c.id == this.product.categoryId).name;
+            // this.product = data.data;
+            // this.viewMode = true;
+            // this.isNew = false;
+            // this.productId = this.product.id;
+            // this.product.categoryName = this.categories.find(c => c.id == this.product.categoryId).name;
             this.toastrService.info("تم إضافة المنتج بنجاح");
             this.router.navigate([config.users.productslist.route]);
 
@@ -112,8 +113,8 @@ export class ManageProductComponent implements OnInit {
       .subscribe(
         data => {
           if (data.status === 200) {
-            this.product = data.data;
-            this.viewMode = true;
+            // this.product = data.data;
+            // this.viewMode = true;
             this.toastrService.info("تم تعديل المنتج بنجاح");
             this.router.navigate([config.users.productslist.route]);
           }
