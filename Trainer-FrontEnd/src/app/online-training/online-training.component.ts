@@ -11,6 +11,8 @@ import { OTrainingDto } from '../shared/models/otraining/otraining-dto';
 export class OnlineTrainingComponent implements OnInit {
 
   otrainingModel: OTrainingDto;
+  transformBanners = [];
+
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -21,7 +23,14 @@ export class OnlineTrainingComponent implements OnInit {
       this.otrainingModel = response.resultObj.data;
       this.appSrevice.loading = false;
     });
+
+    for (let index = 1; index < 43; index++) {
+
+      this.transformBanners.push({
+        imagePath: `assets/images/transform/${index}.jpg`
+      });
+    };
   }
-  
+
 
 }

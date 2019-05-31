@@ -43,6 +43,7 @@
   top: auto;
   bottom: 0px;
   margin-top: 20px;
+  min-height: 128px;
 
 }
 
@@ -99,6 +100,26 @@
   margin: auto;
 }
 
+.training-btn{
+  justify-content: center;
+  padding-bottom: 50px;
+  margin-top: 20px;
+}
+
+.button-stroke a:hover {
+  text-decoration: unset;
+  color: #fff;
+}
+
+.button-stroke {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-stroke a.button-white {
+  color: #fff;
+}
 
 
   @media (max-width: 520px) {

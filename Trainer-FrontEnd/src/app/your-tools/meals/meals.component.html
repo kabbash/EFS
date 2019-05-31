@@ -2,8 +2,9 @@
 
    <div class="main-table-container">
       <div class="add-food">
-         <button class="open-modal-btn btn btn-info btn-sm" data-toggle="modal" data-target="#searchModal" (click)="openModal()">
-            اضـف عناصر وجباتك<span class="fa fa-plus fa-sm" ></span>
+         <button class="open-modal-btn btn btn-info btn-sm" data-toggle="modal" data-target="#searchModal"
+            (click)="openModal()">
+            اضـف عناصر وجباتك<span class="fa fa-plus fa-sm"></span>
          </button>
       </div>
       <div class="table" *ngIf="appService.isBrowser()">
@@ -115,46 +116,6 @@
          <span class="circle-percentage">{{item.fiber}}</span>
          <span class="circle-name">{{'neutrints.circleFibers' | translate}}</span>
       </div>
-      <!-- <div class="circle">
-         <span class="circle-percentage">{{item.fiber}}</span>
-         <span class="circle-name">{{'neutrints.fiber' | translate}}</span>
-      </div>
-
-      <div class="circle">
-         <span class="circle-percentage">{{item.iron}}</span>
-         <span class="circle-name">{{'neutrints.iron' | translate}}</span>
-      </div>
-
-      <div class="circle">
-         <span class="circle-percentage">{{item.calcuim}}</span>
-         <span class="circle-name">{{'neutrints.calcuim' | translate}}</span>
-      </div>
-
-      <div class="circle">
-         <span class="circle-percentage">{{item.vitaminA}}</span>
-         <span class="circle-name">{{'neutrints.vitaminA' | translate}}</span>
-      </div>
-
-      <div class="circle">
-         <span class="circle-percentage">{{item.vitaminC}}</span>
-         <span class="circle-name">{{'neutrints.vitaminC' | translate}}</span>
-      </div>
-
-      <div class="circle">
-         <span class="circle-percentage">{{item.b12}}</span>
-         <span class="circle-name">{{'neutrints.b12' | translate}}</span>
-      </div>
-
-      <div class="circle">
-         <span class="circle-percentage">{{item.folate}}</span>
-         <span class="circle-name">{{'neutrints.folate' | translate}}</span>
-      </div> -->
-
-      <!-- <div class="circle">
-         <span class="circle-percentage">0%</span>
-         <span class="circle-name">الاهداف</span>
-      </div> -->
-
    </div>
    <div class="tables">
 
@@ -212,54 +173,25 @@
       </div>
 
       <div class="table">
-         <div class="table-header">{{'neutrints.lipids' | translate}}</div>
-         <div class="table-row">
-            <div class="table-cell">{{'neutrints.fat' | translate}}</div>
-            <div class="table-cell text-center">{{item.fat }}</div>
-            <div class="table-cell text-center">g</div>
-         </div>
-         <div class="table-row">
-            <div class="table-cell">{{'neutrints.monounsaturated' | translate}}</div>
-            <div class="table-cell text-center">{{item.monounsaturated }}</div>
-            <div class="table-cell text-center">g</div>
-         </div>
-         <div class="table-row">
-            <div class="table-cell">{{'neutrints.polyunsaturated' | translate}}</div>
-            <div class="table-cell text-center">{{item.polyunsaturated }}</div>
-            <div class="table-cell text-center">g</div>
-         </div>
-         <div class="table-row">
-            <div class="table-cell">{{'neutrints.omega3' | translate}}</div>
-            <div class="table-cell text-center">{{item.omega3 }}</div>
-            <div class="table-cell text-center">g</div>
-         </div>
-         <div class="table-row">
-            <div class="table-cell">{{'neutrints.omega6' | translate}}</div>
-            <div class="table-cell text-center">{{item.omega6 }}</div>
-            <div class="table-cell text-center">g</div>
-         </div>
-         <div class="table-row">
-            <div class="table-cell">{{'neutrints.saturated' | translate}}</div>
-            <div class="table-cell text-center">{{item.saturated }}</div>
-            <div class="table-cell text-center">g</div>
-         </div>
-         <div class="table-row">
-            <div class="table-cell">{{'neutrints.transFats' | translate}}</div>
-            <div class="table-cell text-center">{{item.transFats }}</div>
-            <div class="table-cell text-center">g</div>
-         </div>
-         <div class="table-row">
-            <div class="table-cell">{{'neutrints.cholesterol' | translate}}</div>
-            <div class="table-cell text-center">{{item.cholesterol }}</div>
-            <div class="table-cell text-center">mg</div>
-         </div>
-      </div>
-
-      <div class="table">
          <div class="table-header">{{'neutrints.proteins' | translate}}</div>
          <div class="table-row">
             <div class="table-cell">{{'neutrints.protein' | translate}}</div>
             <div class="table-cell text-center">{{item.protein }}</div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">ألانين</div>
+            <div class="table-cell text-center">{{item.alanine }}</div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">أرجنين</div>
+            <div class="table-cell text-center">{{item.argnine }}</div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">أسبارتك أسيد</div>
+            <div class="table-cell text-center">{{item.asparticAcid}}</div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
@@ -268,33 +200,63 @@
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
+            <div class="table-cell">جلوتاميك أسيد</div>
+            <div class="table-cell text-center">{{item.glotamicAcid }}</div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">جليسين</div>
+            <div class="table-cell text-center">{{item.glycine }}</div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
             <div class="table-cell">{{'neutrints.histidine' | translate}}</div>
             <div class="table-cell text-center">{{item.histidine }}</div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.isoleucine' | translate}}</div>
+            <div class="table-cell">الهيدروكسى برولين</div>
+            <div class="table-cell text-center">{{item.hydroxiplorien }}</div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell special-nutrient">الايزوليوسين - BCAA </div>
             <div class="table-cell text-center">{{item.isoleucine }}</div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.leucine' | translate}}</div>
+            <div class="table-cell special-nutrient">الليوسين - BCAA</div>
             <div class="table-cell text-center">{{item.leucine }}</div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.lysine' | translate}}</div>
+            <div class="table-cell special-nutrient">{{'neutrints.valine' | translate}}</div>
+            <div class="table-cell text-center">{{item.valine }}</div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">الليسين</div>
             <div class="table-cell text-center">{{item.lysine }}</div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.methionine' | translate}}</div>
+            <div class="table-cell">المثيونين</div>
             <div class="table-cell text-center">{{item.methionine }}</div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
             <div class="table-cell">{{'neutrints.phenylalanine' | translate}}</div>
             <div class="table-cell text-center">{{item.phenylalanine }}</div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">البرولين</div>
+            <div class="table-cell text-center">{{item.proline }}</div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">السيرين</div>
+            <div class="table-cell text-center">{{item.serine }}</div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
@@ -312,12 +274,82 @@
             <div class="table-cell text-center">{{item.tyrosine }}</div>
             <div class="table-cell text-center">g</div>
          </div>
+      </div>
+
+      <div class="table">
+         <div class="table-header">{{'neutrints.minerals' | translate}}</div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.valine' | translate}}</div>
-            <div class="table-cell text-center">{{item.valine }}</div>
-            <div class="table-cell text-center">g</div>
+            <div class="table-cell">{{'neutrints.calcuim' | translate}}</div>
+            <div class="table-cell text-center">{{item.calcuim }}</div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell"> كروميوم</div>
+            <div class="table-cell text-center">{{item.chromuim }}</div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">{{'neutrints.copper' | translate}}</div>
+            <div class="table-cell text-center">{{item.copper }}</div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">فلوريد</div>
+            <div class="table-cell text-center">{{item.florid }}</div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">يود</div>
+            <div class="table-cell text-center">{{item.yod }}</div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">{{'neutrints.iron' | translate}}</div>
+            <div class="table-cell text-center">{{item.iron }}</div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">{{'neutrints.magnesium' | translate}}</div>
+            <div class="table-cell text-center">{{item.magnesium }}</div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">{{'neutrints.manganese' | translate}}</div>
+            <div class="table-cell text-center">{{item.manganese }}</div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">موليبيدنيم</div>
+            <div class="table-cell text-center">{{item.moly }}</div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">{{'neutrints.phosphorus' | translate}}</div>
+            <div class="table-cell text-center">{{item.phosphorus }}</div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">{{'neutrints.potassium' | translate}}</div>
+            <div class="table-cell text-center">{{item.potassium }}</div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">{{'neutrints.selenium' | translate}}</div>
+            <div class="table-cell text-center">{{item.selenium }}</div>
+            <div class="table-cell text-center">µg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">{{'neutrints.sodium' | translate}}</div>
+            <div class="table-cell text-center">{{item.sodium }}</div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">{{'neutrints.zinc' | translate}}</div>
+            <div class="table-cell text-center">{{item.zinc }}</div>
+            <div class="table-cell text-center">mg</div>
          </div>
       </div>
+
 
       <div class="table">
          <div class="table-header">{{'neutrints.vitamins' | translate}}</div>
@@ -384,58 +416,49 @@
       </div>
 
       <div class="table">
-         <div class="table-header">{{'neutrints.minerals' | translate}}</div>
+         <div class="table-header">{{'neutrints.lipids' | translate}}</div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.calcuim' | translate}}</div>
-            <div class="table-cell text-center">{{item.calcuim }}</div>
-            <div class="table-cell text-center">mg</div>
+            <div class="table-cell">{{'neutrints.fat' | translate}}</div>
+            <div class="table-cell text-center">{{item.fat }}</div>
+            <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.copper' | translate}}</div>
-            <div class="table-cell text-center">{{item.copper }}</div>
-            <div class="table-cell text-center">mg</div>
+            <div class="table-cell">{{'neutrints.monounsaturated' | translate}}</div>
+            <div class="table-cell text-center">{{item.monounsaturated }}</div>
+            <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.iron' | translate}}</div>
-            <div class="table-cell text-center">{{item.iron }}</div>
-            <div class="table-cell text-center">mg</div>
+            <div class="table-cell">{{'neutrints.polyunsaturated' | translate}}</div>
+            <div class="table-cell text-center">{{item.polyunsaturated }}</div>
+            <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.magnesium' | translate}}</div>
-            <div class="table-cell text-center">{{item.magnesium }}</div>
-            <div class="table-cell text-center">mg</div>
+            <div class="table-cell">{{'neutrints.omega3' | translate}}</div>
+            <div class="table-cell text-center">{{item.omega3 }}</div>
+            <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.manganese' | translate}}</div>
-            <div class="table-cell text-center">{{item.manganese }}</div>
-            <div class="table-cell text-center">mg</div>
+            <div class="table-cell">{{'neutrints.omega6' | translate}}</div>
+            <div class="table-cell text-center">{{item.omega6 }}</div>
+            <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.phosphorus' | translate}}</div>
-            <div class="table-cell text-center">{{item.phosphorus }}</div>
-            <div class="table-cell text-center">mg</div>
+            <div class="table-cell">{{'neutrints.saturated' | translate}}</div>
+            <div class="table-cell text-center">{{item.saturated }}</div>
+            <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.potassium' | translate}}</div>
-            <div class="table-cell text-center">{{item.potassium }}</div>
-            <div class="table-cell text-center">mg</div>
+            <div class="table-cell">{{'neutrints.transFats' | translate}}</div>
+            <div class="table-cell text-center">{{item.transFats }}</div>
+            <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.selenium' | translate}}</div>
-            <div class="table-cell text-center">{{item.selenium }}</div>
-            <div class="table-cell text-center">µg</div>
-         </div>
-         <div class="table-row">
-            <div class="table-cell">{{'neutrints.sodium' | translate}}</div>
-            <div class="table-cell text-center">{{item.sodium }}</div>
-            <div class="table-cell text-center">mg</div>
-         </div>
-         <div class="table-row">
-            <div class="table-cell">{{'neutrints.zinc' | translate}}</div>
-            <div class="table-cell text-center">{{item.zinc }}</div>
+            <div class="table-cell">{{'neutrints.cholesterol' | translate}}</div>
+            <div class="table-cell text-center">{{item.cholesterol }}</div>
             <div class="table-cell text-center">mg</div>
          </div>
       </div>
+
 
 
    </div>
@@ -452,8 +475,8 @@
          </div>
          <div class="modal-body">
             <div>
-               <input type='text' style='padding:8px;margin:15px auto;width:60%;'
-                  placeholder='اختر صنف' (keyup)='search($event)' [(ngModel)]=searchTxt />
+               <input type='text' style='padding:8px;margin:15px auto;width:60%;' placeholder='اختر صنف'
+                  (keyup)='search($event)' [(ngModel)]=searchTxt />
                <ngx-datatable #table class='material' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
                   [rowHeight]="50" [scrollbarV]="true" [selected]="selected" [selectionType]="'single'"
                   (select)='onSelect($event)' [rows]='rows' [loadingIndicator]="loading">
@@ -471,7 +494,8 @@
                <span>الكمية بالجرام</span>
                <input class="add-food-input" type="number" [(ngModel)]=servingAmont />
                <button class="btn btn-info button-add-restyle" data-toggle="modal" data-target="#searchModal"
-                  (click)=addFoodItem() [disabled]="!servingAmont || servingAmont <= '0' || !selected || selected.length <= 0">
+                  (click)=addFoodItem()
+                  [disabled]="!servingAmont || servingAmont <= '0' || !selected || selected.length <= 0">
                   إضافة
                </button></div>
          </div>

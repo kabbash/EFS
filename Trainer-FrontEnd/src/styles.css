@@ -125,6 +125,7 @@ div.body-most {
   padding: 20px;
   border: 1px solid gray;
   border-radius: 10px;
+  max-width: 250px;
 }
 
 .product-details-component-modal div.modal-dialog {
@@ -141,7 +142,8 @@ div.body-most {
 }
 
 .product-details-component-modal .modal-body .modal-img img {
-  height: 185px;
+  max-height: 250px;
+  max-width: 250px
 }
 
 .product-details-component-modal .modal-body .modal-description {
@@ -248,7 +250,7 @@ li.page-item.active .page-link {
 }
 
 .carousel-default-img {
-  background-image: url(assets/images/articles-default.jpg);
+  /* background-image: url(assets/images/articles-default.jpg); */
   background-size: cover;
   background-position: 50%;
   height: 500px;

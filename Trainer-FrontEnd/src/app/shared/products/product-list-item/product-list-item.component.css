@@ -32,3 +32,16 @@
   .product-description .desc-entity{
       color: #00bcd4;
   }
+  .modal-img{
+    padding-top: 5%;
+    text-align: center;
+  }
+  .img-wrapper{
+    max-width: 300px !important;
+  }
+
+  img{
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 5px;
+  }

@@ -85,3 +85,6 @@
     flex: 1px;
     padding: 15px 5px;
 }
+.table-cell.special-nutrient {
+    color: #ff0000f0;
+}

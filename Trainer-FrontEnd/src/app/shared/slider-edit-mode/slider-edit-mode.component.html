@@ -6,7 +6,9 @@
     </button>
   </div>
   <div class="modal-body">
-    <div class="simulate-img" [ngStyle]="{'background-image':'url(' +  newImage.path + ')'}"></div>
+    <div class="simulate-img" 
+    [ngStyle]="{'background-image':'url(' +  newImage.path + ')' , 'max-height': imagesHeight , 'max-width' :imagesWidth}">
+  </div>
     <app-file-uploader (fileChanged)="onFileSelect($event)"></app-file-uploader>
     <input _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.title" placeholder="العنوان"
       type="text">
@@ -85,7 +87,9 @@
           <i class="fa fa-crop"></i>
         </div>
       </div>
-      <img [src]="!image.isNew ? (baseurl + image.path) : (image.path)" class="slider-img" alt="images">
+      <img [src]="!image.isNew ? (baseurl + image.path) : (image.path)" class="slider-img"
+      [ngStyle]="{'max-height': imagesHeight , 'max-width' :imagesWidth  }"
+      alt="images">
       <!-- <button (click)="cropClicked()"  class="btn btn-danger crop-btn"><i class="fa fa-crop"></i></button> -->
 
       <div class="carousel-caption" *ngIf="!hideText && image.title">
@@ -98,9 +102,9 @@
 <div class="carousel-container" *ngIf="!sliderData.length">
   <ngb-carousel *ngIf="sliderData">
     <ng-template ngbSlide *ngFor="let dummy of [1,2,3]">
-      <div class="carousel-default-img">
+      <div class="carousel-default-img" 
+      [ngStyle]="{'background-image': 'url(' + defaultImage + ')' , 'max-height': imagesHeight , 'max-width' :imagesWidth  }" >
         <div class="carousel-darker-overlay">
-
         </div>
       </div>
     </ng-template>

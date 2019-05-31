@@ -50,7 +50,7 @@
                 {{product.description}}
             </div>
         </div>
-        <div class="desc-item">
+        <div class="desc-item" *ngIf="product.expDate">
             <div>
                 <span class="desc-entity">تاريخ الإنتهاء</span>
                 &nbsp;

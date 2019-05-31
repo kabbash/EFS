@@ -67,7 +67,9 @@
             <div class="form-group row">
               <label class="col-sm-2 col-form-label" for="text-input">الصـور</label>
               <div class="col-sm-10">
-                <app-slider-edit-mode [sliderData]="modifiedArticle.images" [resultImageList]="modifiedArticle.updatedImages">
+                <app-slider-edit-mode
+                [defaultImage]="'assets/images/articles-default.jpg'" [imagesWidth]="'350px'" [imagesHeight]="'175px'" 
+                 [sliderData]="modifiedArticle.images" [resultImageList]="modifiedArticle.updatedImages">
                 </app-slider-edit-mode>
               </div>
             </div>

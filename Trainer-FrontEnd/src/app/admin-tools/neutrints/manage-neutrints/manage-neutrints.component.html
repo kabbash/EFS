@@ -5,7 +5,7 @@
    </div>
    <div>
       <span>{{'neutrints.amount' | translate}}</span>
-      <input type="number" [(ngModel)]=item.amount />     
+      <input type="number" [(ngModel)]=item.amount />
    </div>
    <div class="tables">
 
@@ -114,8 +114,33 @@
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
+            <div class="table-cell">ألانين</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.alanine /></div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">أرجنين</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.argnine /> </div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">أسبارتك أسيد</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.asparticAcid /> </div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
             <div class="table-cell">{{'neutrints.cystine' | translate}}</div>
-            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.cystine /></div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.cystine /> </div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">جلوتاميك أسيد</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.glotamicAcid /> </div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">جليسين</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.glycine /> </div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
@@ -124,28 +149,48 @@
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.isoleucine' | translate}}</div>
-            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.isoleucine /></div>
+            <div class="table-cell">الهيدروكسى برولين</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.hydroxiplorien /> </div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.leucine' | translate}}</div>
+            <div class="table-cell special-nutrient">الايزوليوسين - BCAA </div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.isoleucine /> </div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell special-nutrient">الليوسين - BCAA</div>
             <div class="table-cell text-center"><input type="number" [(ngModel)]=item.leucine /></div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.lysine' | translate}}</div>
-            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.lysine /></div>
+            <div class="table-cell special-nutrient">{{'neutrints.valine' | translate}}</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.valine /> </div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
-            <div class="table-cell">{{'neutrints.methionine' | translate}}</div>
-            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.methionine /></div>
+            <div class="table-cell">الليسين</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.lysine /> </div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">المثيونين</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.methionine /> </div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
             <div class="table-cell">{{'neutrints.phenylalanine' | translate}}</div>
-            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.phenylalanine /></div>
+            <div class="table-cell text-center"> <input type="number" [(ngModel)]=item.phenylalanine /> </div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">البرولين</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.proline /> </div>
+            <div class="table-cell text-center">g</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">السيرين</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.serine /> </div>
             <div class="table-cell text-center">g</div>
          </div>
          <div class="table-row">
@@ -161,11 +206,6 @@
          <div class="table-row">
             <div class="table-cell">{{'neutrints.tyrosine' | translate}}</div>
             <div class="table-cell text-center"><input type="number" [(ngModel)]=item.tyrosine /></div>
-            <div class="table-cell text-center">g</div>
-         </div>
-         <div class="table-row">
-            <div class="table-cell">{{'neutrints.valine' | translate}}</div>
-            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.valine /></div>
             <div class="table-cell text-center">g</div>
          </div>
       </div>
@@ -242,8 +282,24 @@
             <div class="table-cell text-center">mg</div>
          </div>
          <div class="table-row">
+            <div class="table-cell">كروميوم</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.chromuim /></div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+
+         <div class="table-row">
             <div class="table-cell">{{'neutrints.copper' | translate}}</div>
             <div class="table-cell text-center"><input type="number" [(ngModel)]=item.copper /></div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">فلوريد</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.florid /> </div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">يود</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.yod /> </div>
             <div class="table-cell text-center">mg</div>
          </div>
          <div class="table-row">
@@ -259,6 +315,11 @@
          <div class="table-row">
             <div class="table-cell">{{'neutrints.manganese' | translate}}</div>
             <div class="table-cell text-center"><input type="number" [(ngModel)]=item.manganese /></div>
+            <div class="table-cell text-center">mg</div>
+         </div>
+         <div class="table-row">
+            <div class="table-cell">موليبيدنيم</div>
+            <div class="table-cell text-center"><input type="number" [(ngModel)]=item.moly /></div>
             <div class="table-cell text-center">mg</div>
          </div>
          <div class="table-row">
