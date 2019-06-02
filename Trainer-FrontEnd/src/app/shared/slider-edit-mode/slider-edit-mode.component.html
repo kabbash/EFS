@@ -73,7 +73,9 @@
 <!-- <div class="add-new-img-wrapper" [ngClass]="{'no-pics':!sliderData.length}" >
   <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)">إضافة صوره جديده</button>
 </div> -->
-<div class="carousel-container" *ngIf="sliderData.length">
+<div class="carousel-container" 
+[ngStyle]="{'width' :imagesWidth }"
+*ngIf="sliderData.length">
   <ngb-carousel *ngIf="sliderData">
     <ng-template ngbSlide *ngFor="let image of sliderData;let i = index">
       <div class="edit-image-wrapper">
@@ -99,7 +101,8 @@
     </ng-template>
   </ngb-carousel>
 </div>
-<div class="carousel-container" *ngIf="!sliderData.length">
+<div class="carousel-container" [ngStyle]="{'width' :imagesWidth }"
+*ngIf="!sliderData.length">
   <ngb-carousel *ngIf="sliderData">
     <ng-template ngbSlide *ngFor="let dummy of [1,2,3]">
       <div class="carousel-default-img" 

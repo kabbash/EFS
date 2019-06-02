@@ -249,6 +249,22 @@ li.page-item.active .page-link {
   z-index: 5;
 }
 
+.form-tip{
+  color: #00bcd4;
+  border: 1px solid #00bcd4;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+}
+
+.theme-btn{
+  background-color: #00bcd4 !important;
+  color:white;  
+}
+.theme-btn-secondary{
+  background-color:#778899;
+  color:white;  
+}
 .carousel-default-img {
   /* background-image: url(assets/images/articles-default.jpg); */
   background-size: cover;

@@ -9,7 +9,7 @@
     flex-flow: row;
     align-items: center;
     background-color: white;
-    width: 450px;
+    width: 475px;
     margin-top: 50px;
     border-radius: 10px;
 }
@@ -54,9 +54,11 @@
 }
 
 .product-description .desc-item {
-    padding: 10px 0;
-    border-bottom: .5px solid gainsboro;
-    padding: 16px 18px;
+    padding-bottom: 10px;
+    text-align: center;    
+    /* border-bottom: .5px solid gainsboro;
+    padding: 16px 18px; */
+
 }
 
 .product-description .desc-item:last-child {
@@ -64,7 +66,7 @@
 }
 
 .product-description .desc-item>div {
-    width: 95%;
+    width: 90%;
 }
 
 .product-description .desc-entity {

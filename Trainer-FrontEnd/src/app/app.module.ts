@@ -17,7 +17,6 @@ import { AuthGuard } from './auth/guards/auth.guard';
 import { NgbUTCStringAdapter } from './shared/services/ngb-string.adapter';
 import { AppConfig } from '../config/app.config';
 import { BannersResolver } from './admin-tools/resolvers/banners.resolver';
-import { TrainingResolver } from './admin-tools/resolvers/training-resolver';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 export function CreateTranslateLoader(http: HttpClient) {
