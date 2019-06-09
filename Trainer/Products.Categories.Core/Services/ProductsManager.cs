@@ -191,6 +191,9 @@ namespace Products.Core.Services
                 }
 
                 oldProduct.IsActive = product.IsActive = null;
+                if (user.IsAdmin)
+                    oldProduct.IsActive = true;
+
                 oldProduct.IsSpecial = product.IsSpecial;
                 oldProduct.Price = product.Price;
                 oldProduct.ExpDate = product.ExpDate;

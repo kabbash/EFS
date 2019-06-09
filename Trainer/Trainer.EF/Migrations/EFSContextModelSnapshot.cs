@@ -471,6 +471,30 @@ namespace Trainer.EF.Migrations
 
                     b.Property<decimal>("Zinc");
 
+                    b.Property<decimal>("alanine");
+
+                    b.Property<decimal>("argnine");
+
+                    b.Property<decimal>("asparticAcid");
+
+                    b.Property<decimal>("chromuim");
+
+                    b.Property<decimal>("florid");
+
+                    b.Property<decimal>("glotamicAcid");
+
+                    b.Property<decimal>("glycine");
+
+                    b.Property<decimal>("hydroxiplorien");
+
+                    b.Property<decimal>("moly");
+
+                    b.Property<decimal>("proline");
+
+                    b.Property<decimal>("serine");
+
+                    b.Property<decimal>("yod");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedBy");

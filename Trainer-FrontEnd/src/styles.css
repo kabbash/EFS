@@ -1,23 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css?family=Cairo:300,400,600,700|Tajawal:300,400,500,700&amp;subset=arabic,latin-ext');
-@import '../node_modules/@swimlane/ngx-datatable/release/index.css';
-@import '../node_modules/@swimlane/ngx-datatable/release/themes/material.css';
-@import '../node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
-@import url('https://fonts.googleapis.com/css?family=Cairo:300,400,600,700|Tajawal:300,400,500,700&amp;subset=arabic,latin-ext');
+@import url("https://fonts.googleapis.com/css?family=Cairo:300,400,600,700|Tajawal:300,400,500,700&amp;subset=arabic,latin-ext");
+@import "../node_modules/@swimlane/ngx-datatable/release/index.css";
+@import "../node_modules/@swimlane/ngx-datatable/release/themes/material.css";
+@import "../node_modules/@swimlane/ngx-datatable/release/assets/icons.css";
+@import url("https://fonts.googleapis.com/css?family=Cairo:300,400,600,700|Tajawal:300,400,500,700&amp;subset=arabic,latin-ext");
 @font-face {
-  font-family: 'Cocon-Light';
-  src: url('/assets/fonts/Cocon® Next Arabic-Light') format('otf')
+  font-family: "Cocon-Light";
+  src: url("/assets/fonts/Cocon® Next Arabic-Light") format("otf");
 }
 
 @font-face {
-  font-family: 'Cocon-bold';
-  src: url('/assets/fonts/Cocon-Bold-Font.otf') format('otf')
+  font-family: "Cocon-bold";
+  src: url("/assets/fonts/Cocon-Bold-Font.otf") format("otf");
 }
 
-html, body {
+html,
+body {
   /* direction: ltr; */
-  font-family: 'Cairo', sans-serif !important;
+  font-family: "Cairo", sans-serif !important;
   text-align: right !important;
   height: 100%;
   margin: 0;
@@ -124,6 +125,7 @@ div.body-most {
   padding: 20px;
   border: 1px solid gray;
   border-radius: 10px;
+  max-width: 250px;
 }
 
 .product-details-component-modal div.modal-dialog {
@@ -140,7 +142,8 @@ div.body-most {
 }
 
 .product-details-component-modal .modal-body .modal-img img {
-  height: 185px;
+  max-height: 250px;
+  max-width: 250px
 }
 
 .product-details-component-modal .modal-body .modal-description {
@@ -171,14 +174,14 @@ div.body-most {
 
 .modal-description .desc-item {
   padding: 10px 0;
-  border-bottom: .5px solid #333;
+  border-bottom: 0.5px solid #333;
 }
 
 .modal-description .desc-item:last-child {
   border-bottom: none;
 }
 
-.modal-description .desc-item>div {
+.modal-description .desc-item > div {
   width: 90%;
 }
 
@@ -206,7 +209,8 @@ div.body-most {
   direction: ltr;
 }
 
-a.page-link:hover, a.page-link {
+a.page-link:hover,
+a.page-link {
   color: #00bcd4;
 }
 
@@ -245,16 +249,32 @@ li.page-item.active .page-link {
   z-index: 5;
 }
 
+.form-tip{
+  color: #00bcd4;
+  border: 1px solid #00bcd4;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+}
+
+.theme-btn{
+  background-color: #00bcd4 !important;
+  color:white;  
+}
+.theme-btn-secondary{
+  background-color:#778899;
+  color:white;  
+}
 .carousel-default-img {
-  background-image: url(assets/images/articles-default.jpg);
+  /* background-image: url(assets/images/articles-default.jpg); */
   background-size: cover;
   background-position: 50%;
   height: 500px;
 }
 
 .carousel-darker-overlay {
-  height: 100%;
-  background-color: rgba(0, 0, 0, .6);
+  /* height: 100%; */
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .dropdown-menu {
@@ -296,14 +316,14 @@ li.page-item.active .page-link {
 
 .loading-container {
   position: relative;
-  min-height: 620px
+  min-height: 620px;
 }
 
 .loading-overlay {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, .75);
+  background-color: rgba(0, 0, 0, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -367,14 +387,14 @@ span pre {
   word-break: break-word;
   white-space: normal;
   flex-wrap: wrap;
-  font-family: 'Cairo', 'sans-serif'
+  font-family: "Cairo", "sans-serif";
 }
 
 .darker-background {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, .2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
@@ -385,11 +405,13 @@ span pre {
   text-align: center;
 }
 
-.ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group, .ngx-datatable.material.single-selection .datatable-body-row.active {
+.ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group,
+.ngx-datatable.material.single-selection .datatable-body-row.active {
   background-color: #00bcd4;
 }
 
-.ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group:hover, .ngx-datatable.material.single-selection .datatable-body-row.active:hover {
+.ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group:hover,
+.ngx-datatable.material.single-selection .datatable-body-row.active:hover {
   background-color: #00bcd4;
 }
 
@@ -413,15 +435,18 @@ span pre {
   overflow-x: hidden;
 }
 
-.datatable-row-center datatable-body-cell:not(:first-child), .datatable-row-center datatable-header-cell:not(:first-child) {
+.datatable-row-center datatable-body-cell:not(:first-child),
+.datatable-row-center datatable-header-cell:not(:first-child) {
   width: 25% !important;
 }
 
-.datatable-row-center datatable-body-cell:not(:first-child)>div, .datatable-row-center datatable-header-cell:not(:first-child)>div {
+.datatable-row-center datatable-body-cell:not(:first-child) > div,
+.datatable-row-center datatable-header-cell:not(:first-child) > div {
   text-align: center;
 }
 
-.datatable-row-center datatable-body-cell:first-child, .datatable-row-center datatable-header-cell:first-child {
+.datatable-row-center datatable-body-cell:first-child,
+.datatable-row-center datatable-header-cell:first-child {
   width: 50% !important;
 }
 
@@ -454,7 +479,7 @@ span pre {
 }
 
 .container-search .search:hover {
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .container-search .search::before {
@@ -469,7 +494,7 @@ span pre {
   height: 2px;
   background: white;
   transform: rotate(45deg);
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .container-search .search::after {
@@ -484,7 +509,7 @@ span pre {
   height: 25px;
   border-radius: 50%;
   border: 2px solid white;
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .container-search input {
@@ -522,19 +547,19 @@ span pre {
   cursor: text;
 }
 
-.container-search input:focus~.search {
+.container-search input:focus ~ .search {
   right: -250px;
   background: #151515;
   z-index: 6;
 }
 
-.container-search input:focus~.search::before {
+.container-search input:focus ~ .search::before {
   top: 0;
   left: 0;
   width: 25px;
 }
 
-.container-search input:focus~.search::after {
+.container-search input:focus ~ .search::after {
   top: 0;
   left: 0;
   width: 25px;
@@ -584,7 +609,8 @@ span pre {
   width: 20px;
 }
 
-.calculator-form-container select ,  .calculator-form-container input {
+.calculator-form-container select,
+.calculator-form-container input {
   background-color: #e7e8e9 !important;
   border: none !important;
 }
@@ -620,6 +646,7 @@ span pre {
   display: flex;
   position: relative;
   overflow: hidden;
+  flex-wrap: wrap;
 }
 
 .calculator-form-container .card {
@@ -681,11 +708,20 @@ span pre {
   left: 0;
 }
 
-.calc-presshere-links{
+.calc-presshere-links {
   color: #00bcd4;
   text-decoration: none;
   font-size: 20px;
 }
 .calc-presshere-links:hover {
-  color:#FF9800;
+  color: #ff9800;
+}
+
+@media (max-width: 720px) {
+  .mobile-view-calc {
+    display: flex;
+  }
+  .mobile-view-calc .text-left {
+    text-align: right !important;
+  }
 }

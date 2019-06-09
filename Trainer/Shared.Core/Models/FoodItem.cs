@@ -61,6 +61,18 @@ namespace Shared.Core.Models
         public decimal Selenium { get; set; }
         public decimal Sodium { get; set; }
         public decimal Zinc { get; set; }
+        public decimal alanine { get; set; }
+        public decimal argnine { get; set; }
+        public decimal asparticAcid { get; set; }
+        public decimal glotamicAcid { get; set; }
+        public decimal glycine { get; set; }
+        public decimal hydroxiplorien { get; set; }
+        public decimal proline { get; set; }
+        public decimal serine { get; set; }
+        public decimal chromuim { get; set; }
+        public decimal florid { get; set; }
+        public decimal yod { get; set; }
+        public decimal moly { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? UpdatedAt { get; set; }

@@ -10,3 +10,7 @@
 .app-body {
     width: 100%;
 }
+
+.txt-radius{
+    border-radius: 0.25rem !important;
+  }

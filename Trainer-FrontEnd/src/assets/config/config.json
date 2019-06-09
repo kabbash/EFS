@@ -13,16 +13,16 @@
             "pageSize": 10
         },
         "articlesForAny": {
-            "pageSize": 10
+            "pageSize": 12
         },
         "articlesForAdmin": {
-            "pageSize": 10
+            "pageSize": 12
         },
         "articlesForWriters": {
-            "pageSize": 10
+            "pageSize": 12
         },
         "itemsForReview": {
-            "pageSize": 10
+            "pageSize": 12
         },
         "usersForAdmin": {
             "pageSize": 10

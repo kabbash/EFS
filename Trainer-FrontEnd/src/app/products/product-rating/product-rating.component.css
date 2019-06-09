@@ -54,7 +54,7 @@
 }
 
 .star {
-    font-size: 4rem;
+    font-size: 3rem;
     color: gray;
 }
 
@@ -88,4 +88,15 @@
     color: white;
     margin: 20px 0 30px;
     cursor: pointer;
+}
+
+.title-label{
+    color: #00bcd4;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.add-rate-text{
+    color: #00bcd4;
+    font-weight: bold;
 }

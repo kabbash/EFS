@@ -7,7 +7,7 @@
   background-image: url("./../../../../assets/images/homepage-opinions.png");
 
   /* Set a specific height */
-  height: 500px;
+  /* height: 500px; */
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
@@ -15,12 +15,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 0px;
 }
 
 .Testimonials .header-section h3 {
   color: #fff !important;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 800;
 }
 
@@ -43,6 +43,7 @@
   top: auto;
   bottom: 0px;
   margin-top: 20px;
+  min-height: 128px;
 
 }
 
@@ -99,6 +100,26 @@
   margin: auto;
 }
 
+.training-btn{
+  justify-content: center;
+  padding-bottom: 50px;
+  margin-top: 20px;
+}
+
+.button-stroke a:hover {
+  text-decoration: unset;
+  color: #fff;
+}
+
+.button-stroke {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-stroke a.button-white {
+  color: #fff;
+}
 
 
   @media (max-width: 520px) {

@@ -26,7 +26,7 @@ export class ArticlesListItemComponent implements OnInit {
 
   ngOnInit() {
     this.cardName = this.articleDto.name;
-    this.cardShortDescription = this.hideDescription ? '' : this.articleDto.description.substr(0, 200);
+    // this.cardShortDescription = this.hideDescription ? '' : this.articleDto.description.substr(0, 200);
     this.cardImage = environment.filesBaseUrl + this.articleDto.profilePicture;
     this.cardPlace = this.articleDto.place;
     this.cardDate = this.articleDto.date ? this.utilService.getArabicDate(this.articleDto.date) : '';

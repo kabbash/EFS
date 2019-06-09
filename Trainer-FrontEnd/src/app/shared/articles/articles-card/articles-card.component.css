@@ -1,11 +1,11 @@
 :host {
-    width: 400px;
-    height: 300px;
+    width: 350px;
+    height: 262px;
     display: flex;
     margin: 0 15px 30px;
     background: rgba(255, 255, 255, .75);
     border-radius: 12px;
-    box-shadow: 0 0px 19px 0px rgba(255, 255, 255, .5);
+    box-shadow: 0 0px 10px 0px rgba(255, 255, 255, .5);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -37,10 +37,11 @@
 }
 
 .card-title-container p {
-    color: white;
+    color: #312e2f;
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
     margin-top: 15px;
+    font-weight: 600;
 }
 
 :host:hover .card-title-container p {

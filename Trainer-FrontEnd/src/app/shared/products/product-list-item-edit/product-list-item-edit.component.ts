@@ -53,25 +53,23 @@ export class ProductListItemEditComponent implements OnInit {
       price: [this.product.price, [Validators.required, Validators.pattern(/^\d+$/)]],
       description: [this.product.description, [Validators.required, Validators.maxLength(250)]],
       // profilePicture: [this.profilePicture, [Validators.required]],
-      expDate: [this.product.expDate, [Validators.required]],
+      expDate: [null ,[]],
       isSpecial: [this.product.isSpecial],
       categoryId: [this.product.categoryId, [Validators.required, Validators.min(1)]],
-      phoneNumber: [this.product.phoneNumber, [Validators.required,Validators.maxLength(20)]]
+      phoneNumber: [this.product.phoneNumber, [Validators.required, Validators.maxLength(20)]]
     });
-
   }
 
   get f() { return this.editForm.controls; }
 
 
   getData(isUpdate?: boolean) {
-
     let editedProduct = new productListItemDto();
     editedProduct.name = this.f.name.value;
     editedProduct.price = this.f.price.value;
     editedProduct.description = this.f.description.value;
     editedProduct.isSpecial = this.f.isSpecial ? this.f.isSpecial.value : false;
-    editedProduct.expDate = this.f.expDate.value;
+    editedProduct.expDate = this.f.expDate ? this.f.expDate.value : null;
     editedProduct.categoryId = this.f.categoryId.value;
     editedProduct.updatedImages = this.product.updatedImages;
     editedProduct.isActive = this.product.isActive;
@@ -86,6 +84,15 @@ export class ProductListItemEditComponent implements OnInit {
   }
 
 
+  isSpecialRequired() {
 
+    let categoryId =this.f.categoryId.value;
+    if (!categoryId || categoryId == 0)
+      return false;
 
+    return this.getParentCategoryId(categoryId) == 10;
+  }
+  getParentCategoryId(categoryId) {
+    return this.categories.find(c => c.id == categoryId).parentId;
+  }
 }
