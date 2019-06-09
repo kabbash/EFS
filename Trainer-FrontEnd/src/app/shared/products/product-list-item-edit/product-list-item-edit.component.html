@@ -3,19 +3,14 @@
         <div class="product-description">
 
             <div class="desc-item text-center remove-bottom-border">
-                <h3>اضافة منتج جديد</h3>
+                <h3> {{product.id ? 'تعديل المنتج' : 'اضافة منتج جديد'}}</h3>
             </div>
-            <div class="desc-item">
-                <div class="form-group-inline">
-                    <select class="form-control" [value]=product.categoryId formControlName="categoryId"
-                        [ngClass]="{ 'is-invalid': submitted && f.categoryId.errors,'is-valid': submitted && !f.categoryId.errors}">
-                        <option [value]="0" selected> فئه المنتج </option>
-                        <option *ngFor="let category of categories" [value]="category.id">
-                            {{category.name}}
-                        </option>
-                    </select>
-                </div>
-            </div>
+            <hr/>
+            <p class="form-tip">
+                برجاء العلم انه سيتم مراجعة المنتج أولا من خلالنا فى خلال 24 ساعة.   
+                للتأكد من عدم وجود اى بيانات ناقصة. وسيتم عرضه للمستخدمين
+                 بعدها او اخطارك فى حالة احتياجنا للمزيد من المعلومات. شكرا لتفهمكم.  
+            </p>
             <div *ngIf="showProductType" class="desc-item">
                 <div class="form-group-inline">
                     <!-- <label class="desc-entity">النوع</label> -->
@@ -36,13 +31,6 @@
             </div>
             <div class="desc-item">
                 <div class="form-group-inline">
-                    <input type="number" class="form-control" [value]="product.price" formControlName="price"
-                        placeholder="السعر بالأرقام"
-                        [ngClass]="{ 'is-invalid': submitted && f.price.errors,'is-valid': submitted && !f.price.errors}">
-                </div>
-            </div>
-            <div class="desc-item">
-                <div class="form-group-inline">
                     <input type="text" class="form-control" [value]="product.name" formControlName="name"
                         placeholder="اسم المنتج"
                         [ngClass]="{ 'is-invalid': submitted && f.name.errors,'is-valid': submitted && !f.name.errors}">
@@ -51,6 +39,24 @@
                     class="text-danger col-sm-12">
                     <div *ngIf="f.name.errors.maxlength">
                         {{'products.formValidations.nameMaxLength' | translate}}</div>
+                </div>
+            </div>
+            <div class="desc-item">
+                <div class="form-group-inline">
+                    <select class="form-control" style="height: auto;" [value]=product.categoryId formControlName="categoryId"
+                        [ngClass]="{ 'is-invalid': submitted && f.categoryId.errors,'is-valid': submitted && !f.categoryId.errors}">
+                        <option [value]="0" selected> فئه المنتج </option>
+                        <option *ngFor="let category of categories" [value]="category.id">
+                            {{category.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="desc-item">
+                <div class="form-group-inline">
+                    <input type="number" class="form-control" [value]="product.price" formControlName="price"
+                        placeholder="السعر بالأرقام"
+                        [ngClass]="{ 'is-invalid': submitted && f.price.errors,'is-valid': submitted && !f.price.errors}">
                 </div>
             </div>
             <div class="desc-item" *ngIf="isSpecialRequired()">

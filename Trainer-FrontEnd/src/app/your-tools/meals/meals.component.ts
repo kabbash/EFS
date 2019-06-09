@@ -39,13 +39,21 @@ export class MealsComponent implements OnInit {
       let foodItem = new FoodItem();
       for (const key in foodItem) {
         if (key != 'id' && key != 'amount' && typeof foodItem[key] === 'number') {
-          foodItem[key] = a[key] + b[key];
+          foodItem[key] = this.getFormatted(Number(a[key]) + Number(b[key]));
         }
       }
       return foodItem;
     }, new FoodItem())
   }
 
+  getFormatted(x : number) : string{
+    var arr = x.toString().split('.');
+    if(arr.length <= 1 || arr[1].length == 1)
+      return x.toString();
+    else 
+      return x.toFixed(2);      
+  }
+  
   getValues() {
     this.loading = true;
     return this.service.get(`?searchText=${this.searchTxt}&pageNo=1&pageSize=50`)

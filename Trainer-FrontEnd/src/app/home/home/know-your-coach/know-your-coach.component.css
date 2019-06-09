@@ -30,7 +30,7 @@
 
 .Coach .header-section h3 {
   color: #fff !important;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 800;
 }
 
@@ -74,4 +74,9 @@
 
 .know-font {
   font-size: 17px;
+}
+
+.count-number {
+  font-size: 40px;
+  font-weight: 600;
 }
