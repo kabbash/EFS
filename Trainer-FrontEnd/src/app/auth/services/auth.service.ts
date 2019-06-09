@@ -1,21 +1,55 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Roles } from '../models/roles.enum';
 import { User } from '../models/user';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { apiUrl } from '../../../config/api.config';
 import { ResultMessage } from '../../shared/models/result-message';
+import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs/internal/observable/of';
+import { Router } from '@angular/router';
+import { ErrorHandlingService } from '../../shared/services/error-handling.service';
+import { AuthenticationErrorsCode } from '../../user-account/models/authentication-error-code.enum';
+import { config } from '../../config/pages-config';
+import { PAGES } from '../../config/defines';
+import { first } from 'rxjs/internal/operators/first';
+import { finalize } from 'rxjs/internal/operators/finalize';
+import { AppService } from 'src/app/app.service';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor(private repositoryService: RepositoryService) { }
+  public fbLoginSubject = new Subject<any>();
+  constructor(private repositoryService: RepositoryService, private http: HttpClient,
+  private router: Router, private errorHandlingService: ErrorHandlingService,
+  private appService: AppService, private ngZone: NgZone) { }
 
   login(userName: string, password: string) {
     return this.repositoryService.create<User>(apiUrl.userAccount.login, { userName, password })
       .pipe(map(result => this.setUserToken(result)));
+  }
+
+  loginWithFb(FB, returnUrl) {
+   
+        
+    FB.login((res) => {
+      FB.api('/me', {fields: 'name,email'}, (response) => {
+        this.repositoryService.post<User>('authentication/loginFb', response).subscribe(result => {
+          this.setUserToken(result);
+          if (result.status == 200)
+            this.fbLoginSubject.next();
+  
+        }, error => {
+          if (error.error.errorCode == AuthenticationErrorsCode.EmailNotConfirmed)
+            this.router.navigate([config.userAccount.emailNotConfirmed.route]);
+          else
+            this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
+        });
+      });
+    }, {scope: 'public_profile'});
+    
   }
 
   isLoggedIn(): boolean {

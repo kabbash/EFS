@@ -177,3 +177,18 @@ WHERE [e].[ParentId] = @__get_Item_0"
 2019-05-21 00:10:29.929 +02:00 [Information] Executing ObjectResult, writing value of type '"Shared.Core.Utilities.Models.ResultMessage"'.
 2019-05-21 00:10:29.956 +02:00 [Information] Executed action "Trainer.Controllers.ArticlesController.GetForAdmin (Trainer)" in 1113.5113ms
 2019-05-21 00:10:29.961 +02:00 [Information] Request finished in 1591.2072ms 200 application/json; charset=utf-8
+2019-05-21 23:38:41.353 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/api/values  
+2019-05-21 23:38:41.353 +02:00 [Information] Request starting HTTP/1.1 DEBUG http://localhost:4300/  0
+2019-05-21 23:38:41.439 +02:00 [Information] Request finished in 92.0187ms 200 
+2019-05-21 23:38:42.422 +02:00 [Information] Request finished in 1062.6269ms 404 
+2019-05-21 23:39:07.254 +02:00 [Information] Request starting HTTP/1.1 GET http://localhost:44394/signin-facebook  
+2019-05-21 23:39:07.313 +02:00 [Information] Error from RemoteAuthentication: "The oauth state was missing or invalid.".
+2019-05-21 23:39:07.947 +02:00 [Error] An unhandled exception has occurred while executing the request.
+System.Exception: An error was encountered while handling the remote login. ---> System.Exception: The oauth state was missing or invalid.
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler`1.HandleRequestAsync()
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Cors.Infrastructure.CorsMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-05-21 23:39:08.106 +02:00 [Information] Request finished in 846.7416ms 500 text/html; charset=utf-8
