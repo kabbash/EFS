@@ -232,6 +232,77 @@ namespace Authentication.Services
 
 
         }
+
+        public ResultMessage RegisterFBUser(FacebookLoginDto userData)
+        {
+           
+            try
+            {
+                var userEntity = new AspNetUsers()
+                {
+                    Email = userData.Email,
+                    FullName = userData.Name,
+                    FacebookId = userData.Id,
+                    EmailConfirmed = true,
+                    UserName = userData.Email
+
+                };
+
+                var user = _unitOfWork.UsersRepository.Get().FirstOrDefault(c => c.FacebookId == userData.Id || c.Email == userData.Email);
+                if (user != null)
+                {
+                    if (user.Email != userData.Email)
+                    {
+                        user.Email = userData.Email;
+                        user.UserName = userData.Email;
+                        user.FullName = userData.Name;
+                        _unitOfWork.UsersRepository.Update(user);
+                        _unitOfWork.Commit();
+                    }
+                    else
+                    {
+                        user.FacebookId = userData.Id;
+                        user.FullName = userData.Name;
+                        CreatePasswordHash(userData.Id, out byte[] passwordHashUpdate, out byte[] passwordSaltUpdate);
+                        user.PasswordHash = passwordHashUpdate;
+                        user.PasswordSalt = passwordSaltUpdate;
+                        _unitOfWork.UsersRepository.Update(user);
+                        _unitOfWork.Commit();
+                    }
+                        
+                    return Authenticate(user.UserName, user.FacebookId);
+                }
+
+                userEntity.Id = Guid.NewGuid().ToString();
+                userEntity.UserName = userEntity.Email;
+                userEntity.SecurityStamp = Helper.GenerateToken();
+
+                CreatePasswordHash(userData.Id, out byte[] passwordHash, out byte[] passwordSalt);
+                userEntity.PasswordHash = passwordHash;
+                userEntity.PasswordSalt = passwordSalt;
+
+                _unitOfWork.UsersRepository.Insert(userEntity);
+                _unitOfWork.Commit();
+
+                AddRoleToUser(new UserRoleDto
+                {
+                    RoleName = "RegularUser",
+                    Username = userData.Email
+                });
+
+                var replacements = SetRegisterMailReplacements(userEntity.FullName, userEntity.Email, _settings.EmailSettings.RegisterEmail.VerifyEmailUrl, userEntity.SecurityStamp);
+                _emailService.SendEmailAsync(userEntity.Email, _settings.EmailSettings.RegisterEmail.Subject, EmailTemplatesEnum.Register, replacements);
+                return Authenticate(userEntity.UserName, userEntity.FacebookId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, string.Empty);
+                return new ResultMessage { Status = HttpStatusCode.InternalServerError };
+            }
+
+
+        }
+
         public ResultMessage VerifyEmail(string token)
         {
             try
