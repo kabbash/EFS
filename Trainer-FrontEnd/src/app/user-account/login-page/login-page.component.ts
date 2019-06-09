@@ -8,7 +8,6 @@ import { AppService } from '../../app.service';
 import { AuthenticationErrorsCode } from '../models/authentication-error-code.enum';
 import { PAGES } from '../../config/defines';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
-import { RepositoryService } from 'src/app/shared/services/repository.service';
 
 declare var FB: any;
 
@@ -30,7 +29,7 @@ export class LoginPageComponent implements OnInit {
     private authenticationService: AuthService,
     private appService: AppService,
     private errorHandlingService: ErrorHandlingService,
-    private repository: RepositoryService, private ngZone: NgZone) {
+    private ngZone: NgZone) {
 
   }
 

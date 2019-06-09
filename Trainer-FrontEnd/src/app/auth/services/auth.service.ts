@@ -6,15 +6,12 @@ import { RepositoryService } from '../../shared/services/repository.service';
 import { apiUrl } from '../../../config/api.config';
 import { ResultMessage } from '../../shared/models/result-message';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs/internal/observable/of';
 import { Router } from '@angular/router';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 import { AuthenticationErrorsCode } from '../../user-account/models/authentication-error-code.enum';
 import { config } from '../../config/pages-config';
 import { PAGES } from '../../config/defines';
-import { first } from 'rxjs/internal/operators/first';
-import { finalize } from 'rxjs/internal/operators/finalize';
-import { AppService } from 'src/app/app.service';
+import { AppService } from '../../app.service';
 import { Subject } from 'rxjs/internal/Subject';
 
 @Injectable({
