@@ -9,7 +9,7 @@
   <div class="product-rating-row"><span class="title-label">اسم المنتج</span> : <span>{{product.name}}</span></div>
   <div class="product-rating-row"><span class="title-label">الوصف</span> : <span>{{product.description}}</span></div>
   <div class="product-rating-row comments"><span class="title-label">التعليقات</span> : </div>
-  <app-comments *ngFor="let review of product.reviews" [commentOwner]="review.reviwer.fullName"
+  <app-comments *ngFor="let review of product.reviews" [commentOwner]="review.reviwer?.fullName || ''"
     [currentRate]="review.rate" [commentDate]="util.getDateFormatted(review.updatedAt || review.createdAt)"
     [comment]="review.comment"></app-comments>
   <div class="details-footer">
