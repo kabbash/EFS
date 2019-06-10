@@ -14,6 +14,7 @@ namespace Shared.Core.Models
         }
 
         public string Id { get; set; }
+        public string FacebookId { get; set; }
         public string Hometown { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { Router, ActivatedRoute, Route } from '@angular/router';
 import { config } from '../../config/pages-config';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -9,6 +9,7 @@ import { AuthenticationErrorsCode } from '../models/authentication-error-code.en
 import { PAGES } from '../../config/defines';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 
+declare var FB: any;
 
 @Component({
   selector: 'app-login-page',
@@ -27,11 +28,13 @@ export class LoginPageComponent implements OnInit {
     private fb: FormBuilder,
     private authenticationService: AuthService,
     private appService: AppService,
-    private errorHandlingService: ErrorHandlingService) {
+    private errorHandlingService: ErrorHandlingService,
+    private ngZone: NgZone) {
 
   }
 
   ngOnInit() {
+    this.initFbSdk()
     this.form = this.fb.group(
       {
         "userName": ['', [Validators.required, Validators.email]],
@@ -71,5 +74,40 @@ export class LoginPageComponent implements OnInit {
         else
           this.errorHandlingService.handle(error, PAGES.AUTHENTICATOIN);
       });
+  }
+  initFbSdk() {
+    (window as any).fbAsyncInit = function() {
+      FB.init({
+        appId      : '337689443612615',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v3.3'
+      });
+        
+      FB.AppEvents.logPageView();   
+        
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  }
+
+  signinWithFb() {
+    this.ngZone.run(() => {
+      this.authenticationService.loginWithFb(FB, this.returnUrl);
+    this.authenticationService.fbLoginSubject.subscribe(data => {
+      this.ngZone.run(() => {
+        return this.router.navigate([this.returnUrl]);      
+        
+      }).then();
+    })
+    });
+    
+    
   }
 }

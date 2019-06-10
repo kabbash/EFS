@@ -18,5 +18,6 @@ namespace Authentication.Interfaces
         ResultMessage SetResetedPassword(SetPasswordDto data);
         ResultMessage ChangePassword(ChanePasswordDto data);
         ResultMessage UpdateUserAccess(UserAccessDto userAccessDto);
+        ResultMessage RegisterFBUser(FacebookLoginDto userData);
     }
 }

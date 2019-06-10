@@ -83,7 +83,7 @@ namespace Trainer
             ConfigureValidations(services);
             ConfigureManagers(services);
             ConfigureSettings(services);
-            ConfigureJwtAuthentication(services);
+            // ConfigureJwtAuthentication(services);
             ConfigureMapstr();
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
@@ -112,6 +112,11 @@ namespace Trainer
                 { "Bearer", Enumerable.Empty<string>() },
             });
 
+            });
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
         }
 

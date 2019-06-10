@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, Route } from '@angular/router';
 import { config } from '../../config/pages-config';
-
+declare var FB: any;
 
 @Component({
   selector: 'app-login-page',
@@ -14,6 +14,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
   navigateToRegister() {

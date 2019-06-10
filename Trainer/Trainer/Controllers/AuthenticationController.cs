@@ -19,6 +19,12 @@ namespace Trainer.Controllers
         {
             return GetStatusCodeResult(_userService.Authenticate(userParam.Username, userParam.Password));
         }
+        [AllowAnonymous]
+        [HttpPost("loginFb")]
+        public IActionResult AuthenticateFb([FromBody] FacebookLoginDto user)
+        {
+            return GetStatusCodeResult(_userService.RegisterFBUser(user));
+        }
         [Authorize(Roles = "Admin")]
         [HttpGet]
         [Route("GetAll")]

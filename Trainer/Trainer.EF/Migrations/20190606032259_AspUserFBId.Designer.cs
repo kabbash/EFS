@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trainer.EF;
 
 namespace Trainer.EF.Migrations
 {
     [DbContext(typeof(EFSContext))]
-    partial class EFSContextModelSnapshot : ModelSnapshot
+    [Migration("20190606032259_AspUserFBId")]
+    partial class AspUserFBId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -470,30 +472,6 @@ namespace Trainer.EF.Migrations
                     b.Property<decimal>("Water");
 
                     b.Property<decimal>("Zinc");
-
-                    b.Property<decimal>("alanine");
-
-                    b.Property<decimal>("argnine");
-
-                    b.Property<decimal>("asparticAcid");
-
-                    b.Property<decimal>("chromuim");
-
-                    b.Property<decimal>("florid");
-
-                    b.Property<decimal>("glotamicAcid");
-
-                    b.Property<decimal>("glycine");
-
-                    b.Property<decimal>("hydroxiplorien");
-
-                    b.Property<decimal>("moly");
-
-                    b.Property<decimal>("proline");
-
-                    b.Property<decimal>("serine");
-
-                    b.Property<decimal>("yod");
 
                     b.HasKey("Id");
 

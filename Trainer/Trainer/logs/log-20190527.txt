@@ -1,0 +1,4 @@
+2019-05-27 23:22:46.791 +02:00 [Information] Executed action method "Trainer.Controllers.AuthenticationController.AuthenticateFb (Trainer)", returned result "Microsoft.AspNetCore.Mvc.StatusCodeResult" in 171516206.6656ms.
+2019-05-27 23:22:46.873 +02:00 [Information] Executing HttpStatusCodeResult, setting HTTP status code 200
+2019-05-27 23:22:46.878 +02:00 [Information] Executed action "Trainer.Controllers.AuthenticationController.AuthenticateFb (Trainer)" in 171516523.7963ms
+2019-05-27 23:22:46.884 +02:00 [Information] Request finished in 171516558.8955ms 200 
