@@ -39,7 +39,7 @@
             [ngClass]="{'selected-router':currentRoute =='/yourTools/meals' || currentRoute =='/yourTools/calculators' || currentRoute =='/yourTools/allCalculators'}">أدواتك<i
               class="fa fa-chevron-down arrow-margin"></i></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-item nav-link" routerLinkActive="active"
+            <li *ngIf="authService.isLoggedIn() && authService.isAdmin()"><a class="nav-item nav-link" routerLinkActive="active"
                 [ngClass]="{'selected-dd-router':currentRoute =='/yourTools/meals'}"
                 [routerLink]="['/yourTools/meals']">حساب سعرات نظامك الغذائى</a>
             </li>

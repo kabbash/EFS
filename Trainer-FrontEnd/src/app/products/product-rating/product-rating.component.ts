@@ -45,6 +45,7 @@ export class ProductRatingComponent implements OnInit {
       const reveiw = new Review();
       reveiw.comment = this.rate.comment;
       reveiw.rate = this.rate.rate;
+      reveiw.isCurrent = true;
       reveiw.reviwer = new Reviewer();
       reveiw.reviwer.fullName = user.fullName;
       reveiw.createdAt = this.util.getDateFormatted((new Date()).toISOString());
@@ -61,7 +62,7 @@ export class ProductRatingComponent implements OnInit {
         this.errorHandlingService.handle(error, PAGES.RATING);
       });
     }
-
+   
   }
 
 }
