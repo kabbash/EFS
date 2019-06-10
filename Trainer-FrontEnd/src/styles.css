@@ -257,11 +257,11 @@ button.btn.admin-add-button {
   margin: 20px;
 }
 
-.theme-btn{
+button.theme-btn{
   background-color: #00bcd4 !important;
   color:white;  
 }
-.theme-btn-secondary{
+button.theme-btn-secondary{
   background-color:#778899;
   color:white;  
 }
