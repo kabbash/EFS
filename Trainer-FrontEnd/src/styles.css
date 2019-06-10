@@ -65,25 +65,25 @@ body {
   }
 }
 
-.btn-primary-1 {
+button.btn-primary-1 {
   color: #fff;
   background-color: #14818f;
   border-color: #0e3c42;
 }
 
-.btn-blue {
+a.btn-blue {
   color: #fff;
   background-color: #14818f;
   border-color: #0e3c42;
 }
 
-.btn-black {
+a.btn-black {
   color: #fff;
   background-color: black;
   border-color: rgb(2, 2, 2);
 }
 
-.btn-white {
+a.btn-white {
   color: black;
   background-color: white;
   border-color: wheat;
@@ -237,7 +237,7 @@ li.page-item.active .page-link {
   padding-top: 10%;
 }
 
-.btn.admin-add-button {
+button.btn.admin-add-button {
   position: ABSOLUTE;
   left: 10px;
   bottom: 30px;
