@@ -5,7 +5,7 @@
     flex-wrap: wrap;
     /* padding-top: 40px; */
     flex-direction: column;
-    margin-top: 10%;
+    /* margin-top: 10%; */
 }
 
 :host ::ng-deep div.card-img-container {

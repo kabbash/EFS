@@ -1,5 +1,5 @@
 <app-search-filter (search)="filterItems()" [hidden]="!hasItems" ></app-search-filter>
-<div class="no-results-search-wrapper" *ngIf="!articlesList.length">
+<div class="no-results-search-wrapper-articles" *ngIf="!articlesList.length">
   <div class="no-results-search"><i class="fa fa-warning waring-search-icon"></i>{{hasItems ? 'لا يوجد اى نتائج للبحث' : 'لا يوجد اي مقالات سابقه'}}</div>
 </div>
 <div class="row articles-admin-wrapper">

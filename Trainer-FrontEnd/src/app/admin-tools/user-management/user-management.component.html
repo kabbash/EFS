@@ -29,7 +29,7 @@
     </select>
   </div>
   <div class="col-sm-2 submit-filter-button">
-    <button type="button" (click)="search()" class="btn buy-price filter-search-button">بحـث</button>
+    <button type="button" (click)="search()" class="btn btn-info">بحـث</button>
   </div>
 </div>
 <div class="data-table" *ngIf="appService.isBrowser()">
@@ -107,7 +107,7 @@
           {{'manageUsers.roles.'+ item | translate}}
         </option>
       </select>
-      <button (click)="addRole()" class="btn buy-price filter-search-button">إضافة</button>
+      <button (click)="addRole()" class="btn btn-info">إضافة</button>
     </div>
   </div>
   <div *ngIf="selected[0]?.roles?.length > 0">

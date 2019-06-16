@@ -209,8 +209,8 @@ namespace Trainer.EF
                         FullName = "admin",
                         UserName = "admin@efs.com",
                         PasswordSalt = hmac.Key,
-                        PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes("1234")),
-                        PhoneNumber = "01012345678"
+                        PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes("sJr$YK8jf@")),
+                        PhoneNumber = "01097976064"
 
                     },
                     new AspNetUsers {
