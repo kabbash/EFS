@@ -26,6 +26,7 @@ namespace Shared.Core.Models
         public string UpdatedBy { get; set; }
         public bool? IsActive { get; set; }
         public string RejectReason { get; set; }
+        public bool IsDraft { get; set; }
 
         [ForeignKey("CreatedBy")]
         public virtual AspNetUsers Author { get; set; }

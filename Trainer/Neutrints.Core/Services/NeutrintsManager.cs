@@ -28,7 +28,7 @@ namespace Neutrints.Core.Services
             try
             {
                 PagedResult<FoodItemDto> result = new PagedResult<FoodItemDto>();
-                result = _unitOfWork.FoodItemsRepository.Get(includeProperties: includeProperities ?? "").ApplyFilter(filter).OrderBy(c=>c.Id).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                result = _unitOfWork.FoodItemsRepository.Get(includeProperties: includeProperities ?? "").ApplyFilter(filter).Where(c => !c.IsDraft).OrderBy(c => c.Id).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
                 return new ResultMessage()
                 {
                     Data = result,
@@ -57,6 +57,8 @@ namespace Neutrints.Core.Services
 
             try
             {
+                _logger.LogInformation($"START: FOOD.Insert: Name:{newFoodItemDto.Name}");
+
                 var newFoodItem = newFoodItemDto.Adapt<FoodItem>();
                 newFoodItem.CreatedAt = DateTime.Now;
                 newFoodItem.CreatedBy = newFoodItemDto.CreatedBy;
@@ -64,6 +66,9 @@ namespace Neutrints.Core.Services
 
                 _unitOfWork.FoodItemsRepository.Insert(newFoodItem);
                 _unitOfWork.Commit();
+
+                _logger.LogInformation($"END: FOOD.Insert: Name:{newFoodItemDto.Name}");
+
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.OK,
@@ -84,10 +89,13 @@ namespace Neutrints.Core.Services
         {
             try
             {
+                _logger.LogInformation($"START: FOOD.GetById: {id}");
+
                 var foodItem = _unitOfWork.FoodItemsRepository.GetById(id);
 
-                if (foodItem != null)
+                if (foodItem != null &&  ! foodItem.IsDraft)
                 {
+                    _logger.LogInformation($"END: FOOD.GetById: {id} --SUCCESS");
 
                     return new ResultMessage()
                     {
@@ -96,11 +104,14 @@ namespace Neutrints.Core.Services
                     };
                 }
                 else
+                {
+                    _logger.LogInformation($"END: FOOD.GetById: {id} --NOTFOUND");
                     return new ResultMessage()
                     {
                         Status = HttpStatusCode.NotFound,
                         ErrorCode = (int)FoodItemsErrorsCodeEnum.NotFoundError
                     };
+                }
             }
             catch (Exception ex)
             {
@@ -124,8 +135,10 @@ namespace Neutrints.Core.Services
 
             try
             {
+                _logger.LogInformation($"START: FOOD.Update: Name:{foodItem.Name}");
+
                 var oldFoodItem = _unitOfWork.FoodItemsRepository.GetById(id);
-                if (oldFoodItem != null)
+                if (oldFoodItem != null && ! oldFoodItem.IsDraft)
                 {
                     oldFoodItem.Name = foodItem.Name;
                     oldFoodItem.Alcohol = foodItem.Alcohol;
@@ -189,6 +202,7 @@ namespace Neutrints.Core.Services
                     _unitOfWork.FoodItemsRepository.Update(oldFoodItem);
                     _unitOfWork.Commit();
 
+                    _logger.LogInformation($"END: FOOD.Update: Name:{foodItem.Name} --SUCCESS");
 
                     return new ResultMessage
                     {
@@ -198,6 +212,8 @@ namespace Neutrints.Core.Services
                 }
                 else
                 {
+                    _logger.LogInformation($"END: FOOD.Update: Name:{foodItem.Name} --NOTFOUND");
+
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound,
@@ -219,8 +235,27 @@ namespace Neutrints.Core.Services
         {
             try
             {
-                _unitOfWork.FoodItemsRepository.Delete(id);
+                _logger.LogInformation($"START: FOOD.Delete: ID:{id}");
+
+                var oldFoodItem = _unitOfWork.FoodItemsRepository.GetById(id);
+                if (oldFoodItem == null || oldFoodItem.IsDraft)
+                {
+                    _logger.LogInformation($"END: FOOD.Delete: ID:{id} --NOTFOUND");
+
+                    return new ResultMessage
+                    {
+                        Status = HttpStatusCode.NotFound
+
+                    };
+                }
+
+                oldFoodItem.IsDraft = true;
+                oldFoodItem.UpdatedAt = DateTime.Now;
+                _unitOfWork.FoodItemsRepository.Update(oldFoodItem);
                 _unitOfWork.Commit();
+
+                _logger.LogInformation($"END: FOOD.Delete: ID:{id} --SUCCESS");
+
                 return new ResultMessage()
                 {
                     Status = HttpStatusCode.OK

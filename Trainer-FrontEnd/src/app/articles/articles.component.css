@@ -4,7 +4,7 @@
     justify-content: center;
     min-height: 620px;
     /* The image used */
-    background-image: url("/assets/images/cover.jpg");
+    background-image: url("/assets/images/cover.png");
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: 50% 0%;

@@ -101,6 +101,11 @@ a.btn-white {
   color: black;
 }
 
+div.form-title{
+  padding-top: 2rem;
+  font-size: 22px;
+  font-weight: 600;
+}
 div.modal-body {
   padding-top: 0;
   display: flex;
@@ -361,6 +366,15 @@ button.btn.admin-add-button {
   width: 100%;
   max-height: 100px;
   margin-bottom: 100px;
+  margin-top:10%;
+
+}
+
+.no-results-search-wrapper-articles {
+  width: 100%;
+  max-height: 100px;
+  top: 40%;
+  position: absolute;
 }
 
 .form-radio {

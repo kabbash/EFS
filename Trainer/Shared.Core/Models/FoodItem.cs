@@ -77,6 +77,7 @@ namespace Shared.Core.Models
         public string CreatedBy { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string UpdatedBy { get; set; }
+        public bool IsDraft { get; set; }
 
         [ForeignKey("CreatedBy")]
         public virtual AspNetUsers Author { get; set; }

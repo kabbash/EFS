@@ -1,5 +1,5 @@
 <app-search-filter (search)="reloadItems()" *ngIf="hasItems"></app-search-filter>
-<div class="no-results-search-wrapper" *ngIf="! productsList.length">
+<div class="no-results-search-wrapper"  style="position:relative" *ngIf="! productsList.length">
   <div class="no-results-search"><i class="fa fa-warning waring-search-icon"></i>
     {{ hasItems ? 'لا يوجد اى نتائج للبحث ' : 'لا يوجد لديك اي منتجـات '}}
   </div>

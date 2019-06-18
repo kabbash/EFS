@@ -8,7 +8,7 @@
 <div class="products-container">
     <app-client-filter *ngIf="hasItems" (search)="filterItems()"></app-client-filter>
 
-    <div class="no-results-search-wrapper" *ngIf="( !products.length && !hasSpecialProducts)">
+    <div class="no-results-search-wrapper" style="position:relative" *ngIf="( !products.length && !hasSpecialProducts)">
         <div class="no-results-search"><i class="fa fa-warning waring-search-icon"></i>
             {{ hasItems ? 'لا يوجد اى نتائج للبحث '  : 'لا يوجد اي منتجـات حاليـا فى هذ
                 القسـم'}}

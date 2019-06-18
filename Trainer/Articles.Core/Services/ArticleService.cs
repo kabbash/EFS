@@ -40,12 +40,16 @@ namespace Articles.Core.Services
         {
             try
             {
+                _logger.LogInformation($"START: Article.GetAll: CatId:{filter.CategoryId} ,PageNo:{filter.PageNo} , PageSize:{filter.PageSize} , SearchTxt:{filter.SearchText} , Status:{filter.Status}");
+
                 PagedResult<ArticleGetDto> result = new PagedResult<ArticleGetDto>();
 
                 if (filter.CategoryId == (int)PredefinedArticlesCategories.Championships)
-                    result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).ApplyChampionshipsFilter().OrderByDescending(c => c.Date.HasValue).ThenBy(c => c.Date).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                    result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).Where(c => !c.IsDraft).ApplyChampionshipsFilter().OrderByDescending(c => c.Date.HasValue).ThenBy(c => c.Date).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
                 else
-                    result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).OrderByDescending(c => c.CreatedAt).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+                    result = _unitOfWork.ArticlesRepository.Get().ApplyFilter(filter).Where(c => !c.IsDraft).OrderByDescending(c => c.CreatedAt).GetPaged(filter.PageNo, filter.PageSize).Adapt(result);
+
+                _logger.LogInformation($"END: Article.GetAll --SUCCESS");
 
                 return new ResultMessage
                 {
@@ -67,10 +71,14 @@ namespace Articles.Core.Services
         {
             try
             {
+                _logger.LogInformation($"START: Article.GetById: {id}");
+
                 var article = _unitOfWork.ArticlesRepository.GetById(id);
 
-                if (article == null)
+                if (article == null || article.IsDraft)
                 {
+                    _logger.LogInformation($"END: Article.GetById: {id}  --NOTFOUND");
+
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound
@@ -87,6 +95,8 @@ namespace Articles.Core.Services
                         Id = c.Id,
                         IsProfilePicture = c.Path == articleDto.ProfilePicture
                     }).ToList();
+
+                _logger.LogInformation($"END: Article.GetById: {id}  --SUCCESS");
 
                 return new ResultMessage
                 {
@@ -105,9 +115,12 @@ namespace Articles.Core.Services
         }
         public ResultMessage Insert(ArticleAddDto article, IUserDto user)
         {
+            _logger.LogInformation($"START: Article.Insert: Name:{article.Name}");
+
             var validationResult = _addValidator.Validate(article);
             if (!validationResult.IsValid)
             {
+                _logger.LogInformation($"END: Article.Insert: Name:{article.Name}  --VALIDATION");
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.BadRequest,
@@ -145,6 +158,8 @@ namespace Articles.Core.Services
                 sliderDto.ParentId = articleEntity.Id;
                 _sliderManager.Add(sliderDto);
 
+                _logger.LogInformation($"END: Article.Insert: Name:{article.Name}  --SUCCESS");
+
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.OK
@@ -162,9 +177,12 @@ namespace Articles.Core.Services
         }
         public ResultMessage Update(ArticleAddDto article, int articleId, IUserDto user)
         {
+            _logger.LogInformation($"START: Article.Update: Name:{article.Name}");
+
             var validationResult = _addValidator.Validate(article);
             if (!validationResult.IsValid)
             {
+                _logger.LogInformation($"END: Article.Update: Id:{articleId} -- VALIDATION");
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.BadRequest,
@@ -174,8 +192,9 @@ namespace Articles.Core.Services
             try
             {
                 var articleData = _unitOfWork.ArticlesRepository.GetById(articleId);
-                if (articleData == null)
+                if (articleData == null || articleData.IsDraft)
                 {
+                    _logger.LogInformation($"END: Article.Update: Id:{articleId} -- NOTFOUND");
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound,
@@ -208,6 +227,8 @@ namespace Articles.Core.Services
                     if (sliderDto.Items.Count > 0)
                         _sliderManager.Update(sliderDto);
 
+                    _logger.LogInformation($"END: Article.Update: ID:{articleId} --SUCCESS");
+
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.OK
@@ -215,6 +236,8 @@ namespace Articles.Core.Services
                 }
                 else
                 {
+                    _logger.LogInformation($"END: Article.Update: Id:{articleId} -- UNAuthorized");
+
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.Unauthorized
@@ -235,9 +258,13 @@ namespace Articles.Core.Services
         {
             try
             {
+                _logger.LogInformation($"START: Article.Delete: Id:{id}");
+
                 var article = _unitOfWork.ArticlesRepository.GetById(id);
-                if (article == null)
+                if (article == null || article.IsDraft)
                 {
+                    _logger.LogInformation($"END: Article.Delete: Id:{id} -- NOTFOUND");
+
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound
@@ -247,12 +274,12 @@ namespace Articles.Core.Services
 
                 if (user.IsAdmin || (user.Id == article.CreatedBy && (!article.IsActive.HasValue || !article.IsActive.Value)))
                 {
-                    var articleFolder = article.SubFolderName;
-                    if (!string.IsNullOrEmpty(articleFolder))
-                        _attachmentsManager.DeleteFolder(articleFolder, AttachmentTypesEnum.Articles);
-
-                    _unitOfWork.ArticlesRepository.Delete(id);
+                    article.UpdatedAt = DateTime.Now;
+                    article.UpdatedBy = user.Id;
+                    article.IsDraft = true;
+                    _unitOfWork.ArticlesRepository.Update(article);
                     _unitOfWork.Commit();
+                    _logger.LogInformation($"END: Article.Delete: Id:{id}  --SUCCESS");
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.OK
@@ -260,6 +287,8 @@ namespace Articles.Core.Services
                 }
                 else
                 {
+                    _logger.LogInformation($"END: Article.Delete: Id:{id} -- UNAuthorized");
+
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.Unauthorized
@@ -281,9 +310,13 @@ namespace Articles.Core.Services
         {
             try
             {
+                _logger.LogInformation($"START: Article.Approve: Id:{id}");
+
                 var articleData = _unitOfWork.ArticlesRepository.GetById(id);
                 if (articleData == null)
                 {
+                    _logger.LogInformation($"END: Article.Approve: Id:{id} -- NOTFOUND");
+
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound,
@@ -292,9 +325,11 @@ namespace Articles.Core.Services
 
                 articleData.UpdatedAt = DateTime.Now;
                 articleData.IsActive = true;
-                //articleData.UpdatedBy = userId;
                 _unitOfWork.ArticlesRepository.Update(articleData);
                 _unitOfWork.Commit();
+
+                _logger.LogInformation($"END: Article.Approve: Id:{id} --SUCCESS");
+
                 return new ResultMessage
                 {
                     Status = HttpStatusCode.OK
@@ -312,6 +347,8 @@ namespace Articles.Core.Services
         }
         public ResultMessage Reject(RejectDto rejectDto, IUserDto user)
         {
+            _logger.LogInformation($"START: Article.Reject: Id:{rejectDto.Id}");
+
             var validationResult = _rejectValidator.Validate(rejectDto);
             if (!validationResult.IsValid)
             {
@@ -326,6 +363,8 @@ namespace Articles.Core.Services
                 var articleData = _unitOfWork.ArticlesRepository.GetById(rejectDto.Id);
                 if (articleData == null)
                 {
+                    _logger.LogInformation($"END: Article.Reject: Id:{rejectDto.Id} --NotFound");
+
                     return new ResultMessage
                     {
                         Status = HttpStatusCode.NotFound,
@@ -339,6 +378,7 @@ namespace Articles.Core.Services
 
                 _unitOfWork.ArticlesRepository.Update(articleData);
                 _unitOfWork.Commit();
+                _logger.LogInformation($"END: Article.Reject: Id:{rejectDto.Id} --SUCCESS");
 
                 return new ResultMessage
                 {

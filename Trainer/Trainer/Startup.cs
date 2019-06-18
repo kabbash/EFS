@@ -83,7 +83,7 @@ namespace Trainer
             ConfigureValidations(services);
             ConfigureManagers(services);
             ConfigureSettings(services);
-            // ConfigureJwtAuthentication(services);
+            ConfigureJwtAuthentication(services);
             ConfigureMapstr();
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
