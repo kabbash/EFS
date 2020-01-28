@@ -1,0 +1,37 @@
+:host {
+    width: 985px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 30px;
+}
+
+:host ::ng-deep div.card-img-container {
+    background-size: contain;
+}
+
+.short-desc {
+    background: rgba(255, 255, 255, .75);
+    border-radius: 12px;
+    box-shadow: 0 0px 19px 0px rgba(255, 255, 255, .5);
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 10px;
+    color: #333;
+    padding: 20px;
+    /* margin-bottom: 25px; */
+}
+
+.bio-name-border {
+    height: 1px;
+    background-color: white;
+    margin-top: 35px;
+}
+.section-border-wrapper {
+    width: 40%;
+    /* margin-right: 30%; */
+}

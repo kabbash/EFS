@@ -1,0 +1,149 @@
+<div class="">
+  <h2 class="secondary-color text-center calculator-title">حساب الدهون الصحيه</h2>
+  <div class="text-center white-color calculator-desc">
+    <p> الدهون ، إلى جانب الكربوهيدرات والبروتينات ، هي واحدة من ثلاثة مغذيات كبيرة توفر الطاقة اللازمة لنظام التمثيل
+      الغذائي للشخص ، ويمكن الحصول عليها من خلال استهلاك الأطعمة المختلفة. هناك العديد من أنواع الدهون الغذائية بما في
+      ذلك الدهون المشبعة والدهون غير المشبعة والدهون غير المشبعة الأحادية والدهون غير المشبعة المتعددة والأحماض الدهنية
+      أوميجا 3. في حين أن الدهون الغذائية ضرورية لوظيفة الجسم المناسبة ، فإن الدهون الغذائية الزائدة تؤدي إلى زيادة
+      الوزن ، ويرتبط الوزن الزائد بالنتائج الصحية السيئة. ارجع إلى حاسبة الدهون في الجسم للحصول على مزيد من المعلومات
+      حول الدهون الزائدة.
+      <br><br>
+      لاحظ أن النسب المئوية المقدمة تعكس نسبًا من إجمالي السعرات الحرارية اليومية، مع العلم ان الحد اليومى للدهون المسموح به هو 20% - 30% 
+    </p>
+    <p>
+        ( بعد تحديد عدد جرامات المناسبه لهدفك . يتم ضرب عدد جرامات  في 9 و خصمها من سعرات نظامك الغذائي . لأن كل جرام دهون يحتوي علي 9 سعر حراري )
+    </p>
+  </div>
+</div>
+<div class="calculator-form-container">
+  <div class="card">
+    <div class="card-body">
+      <img src="./assets/images/percent.svg" class="percent-img" alt="">
+      <div class="img-triangle-container">
+        <img height="160" src="./assets/images/boutique-fitness-boom.jpg" alt="">
+        <div class="tri-overlay"></div>
+      </div>
+      <div class="col-sm-5 col-md-5 card-main-data">
+        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="select1">النوع</label>
+            <div class="col-md-9 col-form-label">
+              <div class="form-check gender">
+                <span>
+                  <input class="form-check-input" type="radio" name="gender" id="male" value="0"
+                    [(ngModel)]="calculator.gender" checked>
+                  <label class="form-check-label" for="male">
+                    ذكر
+                  </label>
+                </span>
+                <span>
+                  <input class="form-check-input" type="radio" name="gender" id="female" value="1"
+                    [(ngModel)]="calculator.gender">
+                  <label class="form-check-label" for="female">
+                    أنثى
+                  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">السن</label>
+            <div class="col-md-5">
+              <input type="text" id="text-input" [(ngModel)]="calculator.age" name="text-input" class="form-control">
+            </div>
+            <label class="col-md-4 col-form-label" for="text-input">من 15 - 80</label>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">الطول</label>
+            <div class="col-md-9">
+              <input type="text" id="text-input" [(ngModel)]="calculator.height" placeholder="سم" name="text-input"
+                class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">الوزن</label>
+            <div class="col-md-9">
+              <input type="text" id="text-input" [(ngModel)]="calculator.weight" placeholder="كجم" name="text-input"
+                class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="select1"> النشاط</label>
+            <div class="col-md-9">
+              <select id="select1" name="select1" class="form-control" [(ngModel)]="calculator.activityRange">
+                <option value="1">معدل الأيض الاساسي</option>
+                <option value="1.2">لا تمرين</option>
+                <option value="1.375">1-3 مرات اسبوعيا</option>
+                <option value="1.465">4-5 مرات اسبوعيا</option>
+                <option value="1.55">3-4 مرات اسبوعيا بشدة عالية</option>
+                <option value="1.725">6-7 مرات اسبوعيا بشدة عالية</option>
+                <option value="1.9">تمرين كل يوم بشده عاليه او وظيفة بدنيه</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8 mobile-view-calc">
+              <div class="col-sm-6 text-left buttons">
+                <button type="button" class="btn btn-outline-info" (click)="calculator.calcHealthyFats()">احسب</button>
+              </div>
+
+              <div class="col-sm-6 text-left buttons">
+                <button type="button" class="btn btn-outline-info" (click)="calculator.reset()">احذف</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-4 col-md-4 card-main-data" [hidden]="! calculator.showResult">
+        <h5> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> النتيجه</h5>
+        <div class="result-row">
+          <div class="result-name">الحفاظ على الوزن
+            <br>
+            <span class="kilos-per-week">وزن ثابت</span>
+          </div>
+          <div class="result-value">{{calculator.healthyFatsResult.maintainWeight}}
+            <br />
+            <span class="result-unit">جرام</span>
+          </div>
+        </div>
+        <div class="result-row">
+          <div class="result-name"> خسارة وزن <br>
+            <span class="kilos-per-week">1/2 كيلو اسبوعيا </span>
+          </div>
+          <div class="result-value">{{calculator.healthyFatsResult.lossHalfKilo}}
+            <br />
+            <span class="result-unit">جرام</span>
+          </div>
+        </div>
+        <div class="result-row">
+          <div class="result-name"> خسارة وزن <br />
+            <span class="kilos-per-week">1 كيلو اسبوعيا</span>
+          </div>
+          <div class="result-value">{{calculator.healthyFatsResult.lossOneKilo}}
+            <br />
+            <span class="result-unit">جرام</span>
+          </div>
+        </div>
+        <div class="result-row">
+          <div class="result-name">زيادة وزن<br>
+            <span class="kilos-per-week">1/2 كيلو اسبوعيا </span>
+          </div>
+          <div class="result-value">{{calculator.healthyFatsResult.gainHalfKilo}}
+            <br />
+            <span class="result-unit">جرام</span>
+          </div>
+        </div>
+        <div class="result-row">
+          <div class="result-name"> زيادة وزن<br>
+            <span class="kilos-per-week">1 كيلو اسبوعيا </span>
+          </div>
+          <div class="result-value">{{calculator.healthyFatsResult.gainOneKilo}}
+            <br />
+            <span class="result-unit">جرام</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

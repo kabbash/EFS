@@ -1,0 +1,18 @@
+.modal-content {
+    border-radius: 12px;
+}
+
+:host ::ng-deep .carousel-indicators {
+    display: none;
+}
+
+:host ::ng-deep .carousel-control-prev {
+    left: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+:host ::ng-deep .carousel-control-next {
+    right: 0;
+    background: rgba(0,0,0,0.4);
+    
+}

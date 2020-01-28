@@ -1,0 +1,13 @@
+:host {
+    flex: 1;
+    display: flow-root;
+    justify-content: center;
+    min-height: 620px;
+    /* The image used */
+    background-image: url("/assets/images/cover.png");
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

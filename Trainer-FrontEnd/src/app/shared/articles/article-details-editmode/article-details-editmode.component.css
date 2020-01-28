@@ -1,0 +1,112 @@
+.article-container{
+    /* margin:12%; */
+    margin: 5% 12% 5% 0;
+    width: 76%;
+    /* text-align: -webkit-center; */
+}
+
+
+:host ::ng-deep .carousel-caption {
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+:host ::ng-deep .carousel-control-next, :host ::ng-deep .carousel-control-prev {
+    top: 15%;
+    height: 70%;
+}
+
+.carousel-container {
+    padding-top: 40px;
+    margin-bottom: 40px;
+    width: 80%;
+}
+
+.slider-img {
+    border-radius: 12px;
+    width: 100%;
+}
+
+.edit-image {
+    height: 50px;
+    width: 50px;
+    z-index: 5;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: ABSOLUTE;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+button.close {
+    margin: -1rem -1rem auto -1rem;
+}
+
+div.modal-body {
+    min-height: 75px;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.modal-body>* {
+    margin: 10px 0;
+}
+
+div.modal-body img {
+    width: 328px
+}
+
+.simulate-img {
+    width: 100%;
+    background-color: gainsboro;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 230px;
+}
+
+.new-pic-btn{
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.input-group-nowrap {
+    position: relative;
+    display: flex;
+    /* flex-wrap: wrap; */
+    align-items: stretch;
+    width: 100%;
+}
+.calendar i{
+    color: #00bcd4;
+}
+
+.calendar{
+    margin-right: -40px;
+    border-color: transparent;
+}
+
+.form-control-group {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    /* background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
+}

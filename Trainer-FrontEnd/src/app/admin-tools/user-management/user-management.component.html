@@ -1,0 +1,121 @@
+<div class="row" class="filter-wrapper">
+  <div class="col-sm-4">
+    <span> الإسم</span>
+    <input type="text" class="form-control" [(ngModel)]="filter.searchText">
+  </div>
+  <div class="col-sm-3">
+    <span> اختر الحاله </span>
+    <select [(ngModel)]="filter.isBlocked" class="form-control">
+      <option [ngValue]="null">
+        الكل
+      </option>
+      <option [ngValue]="false">
+        النشط
+      </option>
+      <option [ngValue]="true">
+        المحظور
+      </option>
+    </select>
+  </div>
+  <div class="col-sm-3">
+    <span> اختر التصنيف </span>
+    <select [(ngModel)]="filter.role" class="form-control">
+      <option [ngValue]="null">
+        الكل
+      </option>
+      <option *ngFor="let item of roles" [ngValue]="item">
+        {{'manageUsers.roles.'+ item | translate}}
+      </option>
+    </select>
+  </div>
+  <div class="col-sm-2 submit-filter-button">
+    <button type="button" (click)="search()" class="btn btn-info">بحـث</button>
+  </div>
+</div>
+<div class="data-table" *ngIf="appService.isBrowser()">
+  <ngx-datatable class="material" [rows]="usersList" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+    [rowHeight]="'auto'" [externalPaging]="true" [count]="pagerDto.itmesCount" [offset]="pagerDto.currentPage"
+    [limit]="pagerDto.pageSize" [selected]="selected" [selectionType]="'single'" (page)='setPage($event)'
+    (select)='onSelect($event)'>
+    <ngx-datatable-column name="fullName">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>الإسم</span>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="email">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>البريد الإلكتروني</span>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <!-- <ngx-datatable-column name="roles">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>التصنيف</span>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <ul>
+          <li *ngFor="let item of value">
+            {{'manageUsers.roles.'+ item | translate}}
+          </li>
+        </ul>
+      </ng-template>
+    </ngx-datatable-column> -->
+    <ngx-datatable-column name="emailConfirmed">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>مؤكد</span>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value ? 'نعم' : 'لا' }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="isBlocked">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>محظور</span>
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value ? 'نعم' : 'لا' }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Block">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <!-- <span>حظر</span> -->
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <button class="btn" [ngClass]="{'btn-danger':!row.isBlocked,'btn-dark':row.isBlocked}"
+          (click)="updateUserAccess(row.email, !row.isBlocked)">
+          <!-- <i class="fa fa-ban" aria-hidden="true"></i> -->
+          {{row.isBlocked? "فك حظر"  : "حظر"}}
+        </button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
+<div class="selection" id="GoToSelection" [ngClass]="{'hide-till-selection':!selected?.length}">
+  <div *ngIf="selected?.length > 0">
+    <div class="selected-name">{{selected[0].fullName}}</div>
+    <div class="add-select-wrapper">
+      <select [(ngModel)]="roleToAdd" class="form-control">
+        <option selected value="">
+          <span>إضافة تصنيف</span>
+        </option>
+        <option *ngFor="let item of roles" [ngValue]="item">
+          {{'manageUsers.roles.'+ item | translate}}
+        </option>
+      </select>
+      <button (click)="addRole()" class="btn btn-info">إضافة</button>
+    </div>
+  </div>
+  <div *ngIf="selected[0]?.roles?.length > 0">
+    <div class="selected-roles-wrapper">
+      <div class="selected-role" *ngFor='let sel of selected[0].roles'>
+        <span>{{'manageUsers.roles.'+ sel.replace(' ', '') | translate}} <i (click)="removeRole(sel)"
+            class="fa fa-times remove-role-icon" aria-hidden="true"></i> </span>
+      </div>
+    </div>
+  </div>
+</div>

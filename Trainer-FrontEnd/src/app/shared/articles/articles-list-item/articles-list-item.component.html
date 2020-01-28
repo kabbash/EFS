@@ -1,0 +1,16 @@
+<div class="card-img-container" [ngStyle]="{'background-image': 'url(' + cardImage + ')'}"></div>
+<div class="card-title-container">
+  <p class="title">
+    {{cardName}}
+  </p>
+  <p class="title date-place" *ngIf="showDateAndPlace">
+    {{cardDate}}
+    <br>
+    {{cardPlace}}
+  </p>
+  <!-- <p *ngIf="!hideDescription" [innerHTML]="cardShortDescription" class="short-desc" style="-webkit-box-orient: vertical;">
+  </p> -->
+  <div class="read-more" [hidden]="hideShowMorelink">
+    <span>إقرأ المزيد</span>
+  </div>
+</div>

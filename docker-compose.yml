@@ -1,0 +1,73 @@
+version: "3.2"
+services:
+  web_server:
+    build: ./Trainer
+    image: trainer_web
+    volumes:
+      - type: bind
+        source: ./server-backup/wwwroot
+        target: /app/wwwroot
+      - type: bind
+        source: ./server-backup/logs
+        target: /app/logs
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "4400:4400"
+    depends_on:
+      - db
+    networks:
+      - webnet  
+  db:
+    image: microsoft/mssql-server-linux:2017-latest
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 2000M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "1433:1433"
+    volumes:
+      - type: bind
+        source: ./server-backup/database
+        target: /var/opt/mssql/data
+    ports: 
+      - "1433:1433"
+    environment:
+        SA_PASSWORD: "efs-app-123"
+        ACCEPT_EULA: "Y"
+  web_frontend:
+      build: ./Trainer-FrontEnd
+      image: trainer_frontend
+      # volumes:
+      # - type: volume
+      #   source: frontend-data
+      #   target: /app
+      deploy:
+        replicas: 1
+        resources:
+          limits:
+            cpus: "0.1"
+            memory: 50M
+        restart_policy:
+          condition: on-failure
+      ports:
+        - "80:80"
+      depends_on:
+        - web_server
+      networks:
+        - webnet
+networks:
+  webnet:
+
+
+    

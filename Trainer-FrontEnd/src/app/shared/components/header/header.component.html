@@ -1,0 +1,149 @@
+<nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+  <div class="container-header">
+    <a class="navbar-brand" [routerLink]="['/home']"><img src="assets/images/logo1.png" width="70" alt=""></a>
+    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas" (click)="toggleClass()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse offcanvas-collapse esf-nav" id="navbarsExampleDefault">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item dropdown " *ngIf="authService.isLoggedIn() && smallSize">
+          <a class="nav-link dropdown-anchore" id="userListItem"><i
+              class="fa fa-user user-margin"></i>{{authService.getUserInfo()?.fullName}}<i
+              class="fa fa-chevron-down arrow-margin"></i></a>
+          <ul class="dropdown-menu">
+            <li *ngIf="authService.isAdmin()"><a class="nav-item nav-link" routerLinkActive="active"
+                [routerLink]="[configUrls.admin.route]">صفحة
+                التحكم</a></li>
+            <li *ngIf="authService.isArticlesWriter()"> <a class="nav-item nav-link" routerLinkActive="active"
+                [routerLink]="[configUrls.writers.articleslist.route]"> مقالاتى</a></li>
+            <li *ngIf="authService.isLoggedIn()"><a class="nav-item nav-link" routerLinkActive="active"
+                [routerLink]="[configUrls.users.productslist.route]">
+                منتجاتى</a></li>
+            <li><a class="nav-item nav-link" routerLinkActive="active"
+                [routerLink]="[configUrls.userAccount.changePassword.route]">نغيير
+                كلمة المرور</a></li>
+            <li><a class="nav-item nav-link" (click)="logout()">تسجيل
+                الخروج</a></li>
+          </ul>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" [ngClass]="{'selected-router':currentRoute =='/home' || currentRoute =='/'}"
+          [routerLink]="['/home']">الرئيسية
+            <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-anchore"
+            [ngClass]="{'selected-router':currentRoute =='/yourTools/meals' || currentRoute =='/yourTools/calculators' || currentRoute =='/yourTools/allCalculators'}">أدواتك<i
+              class="fa fa-chevron-down arrow-margin"></i></a>
+          <ul class="dropdown-menu">
+            <li *ngIf="authService.isLoggedIn() && authService.isAdmin()"><a class="nav-item nav-link" routerLinkActive="active"
+                [ngClass]="{'selected-dd-router':currentRoute =='/yourTools/meals'}"
+                [routerLink]="['/yourTools/meals']">حساب سعرات نظامك الغذائى</a>
+            </li>
+            <li><a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute =='/yourTools/allCalculators'}" routerLinkActive="active"
+                [routerLink]="['/yourTools/allCalculators']">حاسبات متعدده لاحتياجات جسمك</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/onlinetraining']">التدريب اون لاين</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+            [ngClass]="{'selected-router':currentRoute =='/articles/articlesCategories'|| (currentRoute && currentRoute.search('articles/articlesList') != -1 )}"
+            routerLinkActive="active" [routerLink]="['/articles/articlesCategories']"> المقالات</a>
+        </li>
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-anchore"
+            [ngClass]="{'selected-router':currentRoute =='/products/productsCategories' ||
+            (currentRoute && currentRoute.split('/')[2] =='manageproduct') || currentRoute =='/products/productReviews'|| (currentRoute && currentRoute.search('products/productsList') != -1)}">بيع
+            / شراء<i class="fa fa-chevron-down arrow-margin"></i></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute =='/products/productsCategories'}"
+                routerLinkActive="active" [routerLink]="['/products/productsCategories']">شراء
+                منتج</a></li>
+            <li><a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute &&( currentRoute && currentRoute.split('/')[2] =='manageproduct')}"
+                routerLinkActive="active" [routerLink]="[configUrls.users.manageproduct.route, 0]">بيع منتج</a></li>
+            <!-- <li *ngIf="authService.isLoggedIn()"><a class="nav-item nav-link" routerLinkActive="active" [routerLink]="[configUrls.users.productslist.route]">
+              منتجاتى</a></li> -->
+
+            <li style="text-align: right;"><a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute =='/products/productReviews'}"
+                [routerLink]="['/products/productReviews']">تقييمات المكملات فى السوق المصرى</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-anchore"
+            [ngClass]="{'selected-router':currentRoute =='/articles/news' || currentRoute =='/articles/championships'}">أخبار و مواعيد<i
+              class="fa fa-chevron-down arrow-margin"></i></a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-item nav-link" [ngClass]="{'selected-dd-router':currentRoute =='/articles/news'}"
+                [routerLink]="['/articles/news']">أخبار كمال الأجسام</a></li>
+            <li><a class="nav-item nav-link" [ngClass]="{'selected-dd-router':currentRoute =='/articles/championships'}"
+                [routerLink]="['/articles/championships']">مواعيد البطولات</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active"
+            [ngClass]="{'selected-router':currentRoute =='/articles/food'|| (currentRoute && currentRoute.split('/')[2]=='articleDetails')}"
+            [routerLink]="['/articles/food']"> وصفات الطعام</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'selected-router':currentRoute =='/contactus/bio'}" routerLinkActive="active"
+            [routerLink]="['/contactus/bio']">  دكتور عبدالله ؟</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" routerLinkActive="active"
+            [ngClass]="{'selected-router':currentRoute =='/contactus/contactusForm'}"
+            [routerLink]="['/contactus/contactusForm']"> تواصل معنا</a>
+
+        </li>
+        <li class="nav-item " *ngIf="!authService.isLoggedIn()">
+          <a class="nav-link" [routerLink]="['/userAccount/loginPage']"> تسجيل الدخول </a>
+        </li>
+
+        <li class="nav-item dropdown " id="userNameElm" [hidden]="!(authService.isLoggedIn() && !smallSize)">
+          <a class="nav-link dropdown-anchore" id="userListItem"><i
+              class="fa fa-user user-margin"></i>{{authService.getUserInfo()?.fullName}}<i
+              class="fa fa-chevron-down arrow-margin"></i></a>
+          <ul class="dropdown-menu user-dropdown">
+
+            <li *ngIf="authService.isAdmin()"><a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute && currentRoute.split('/')[1] =='admin'}"
+                routerLinkActive="active" [routerLink]="[configUrls.admin.route]">صفحة
+                التحكم</a></li>
+            <li *ngIf="authService.isArticlesWriter()"> <a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute ==configUrls.writers.articleslist.route}"
+                routerLinkActive="active" [routerLink]="[configUrls.writers.articleslist.route]"> مقالاتى</a></li>
+            <li *ngIf="authService.isLoggedIn()"><a class="nav-item nav-link"
+                [ngClass]="{'selected-dd-router':currentRoute == configUrls.users.productslist.route}"
+                routerLinkActive="active" [routerLink]="[configUrls.users.productslist.route]">
+                منتجاتى</a></li>
+
+            <li><a class="nav-item nav-link" routerLinkActive="active"
+                [ngClass]="{'selected-dd-router':currentRoute == configUrls.userAccount.changePassword.route}"
+                [routerLink]="[configUrls.userAccount.changePassword.route]">نغيير
+                كلمة المرور</a></li>
+            <li><a class="nav-item nav-link" (click)="logout()">تسجيل
+                الخروج</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- <form class="form-inline my-2 my-lg-0" id="search" *ngIf="!hideSearch">
+        <a class="btn btn-outline-primary my-2 my-sm-0" id="btn-search" (click)="SearchBox()"><i class="fa fa-search"></i></a>
+
+      </form> -->
+    </div>
+    <!-- <div class="form-search" id="search-box" *ngIf="!hideSearch">
+      <div class="container">
+        <input class="mr-sm-2 app-search" type="text" placeholder="اكتب كلمات البحث هنا..." aria-label="Search">
+        <i class="fa fa-times" (click)="Close()"></i>
+      </div>
+    </div> -->
+  </div>
+</nav>

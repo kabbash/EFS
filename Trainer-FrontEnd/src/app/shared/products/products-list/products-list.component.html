@@ -1,0 +1,40 @@
+<button *ngIf="isManageProductReview" class="btn admin-add-button" (click)="gotoAddProductReview()"><i
+        class="fa fa-plus"></i></button>
+
+<div *ngIf="!isProductReview && !isManageProductReview && hasItems && categoryDescription "
+    class="products-container short-desc">
+    {{categoryDescription}}
+</div>
+<div class="products-container">
+    <app-client-filter *ngIf="hasItems" (search)="filterItems()"></app-client-filter>
+
+    <div class="no-results-search-wrapper" style="position:relative" *ngIf="( !products.length && !hasSpecialProducts)">
+        <div class="no-results-search"><i class="fa fa-warning waring-search-icon"></i>
+            {{ hasItems ? 'لا يوجد اى نتائج للبحث '  : 'لا يوجد اي منتجـات حاليـا فى هذ
+                القسـم'}}
+        </div>
+    </div>
+    <!-- Special Products -->
+    <div class="col-md-12" style="display: contents;" *ngIf="currentPageSpecialProducts.length">
+        <app-product-item *ngFor="let product of currentPageSpecialProducts" (click)="openProductDetails(product)"
+            [price]="product.price" [product]="product" [currentRate]="product.rate" [cardName]="product.name"
+            [cardImage]="baseurl + product.profilePicture" [isSpecial]="true" [comingSoon]="product.isForAd">
+        </app-product-item>
+        <div class="section-border-wrapper">
+            <div class="bio-name-border"></div>
+        </div>
+    </div>
+    <div *ngIf="products.length && currentPageSpecialProducts.length" class="separator"
+        style="width:100%;height: 50px;">
+    </div>
+    <app-product-item *ngFor="let product of products" (click)="openProductDetails(product)" [price]="product.price"
+        [product]="product" [currentRate]="product.rate" [cardName]="product.name"
+        [cardImage]="baseurl + product.profilePicture" [isSpecial]="false"></app-product-item>
+</div>
+<div class="pagination-container" *ngIf="pagerData.pagesCount > 1">
+    <ngb-pagination [collectionSize]="pagerData.itmesCount" [pageSize]="pagerData.pageSize"
+        [(page)]="pagerData.currentPage" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+        (pageChange)="getNextPage()"></ngb-pagination>
+</div>
+<app-modal *ngIf="!isProductReview && !isManageProductReview" class="product-details-component-modal"
+    [product]="selectedProduct" (rateUpdated)="rateUpdated($event)"></app-modal>

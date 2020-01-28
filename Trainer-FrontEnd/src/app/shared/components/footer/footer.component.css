@@ -1,0 +1,140 @@
+/* footer */
+
+#Footer {
+  /* The image used */
+  background-color: #221e1e;
+  background-image: url("/assets/images/footer.jpg");
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: 50% 4%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top: 5px solid #f8f9fa;
+}
+
+/* #Footer.show-logo {} */
+
+#Footer h4 {
+  color: #00bcd4;
+}
+
+#Footer ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#Footer a {
+  color: #00bcd4;
+}
+
+.footer_copy {
+  background-color: #f8f9fa;
+  height: 25px;
+  /* line-height: 50px; */
+  /* margin-top: 20px; */
+}
+
+/* .footer_copy.show-logo {
+  /* margin-top: 20px; 
+} */
+
+#Footer .footer_copy .copyright {
+  /* float: left; */
+  font-size: 13px;
+  text-align: center;
+  padding-top: 3px;
+}
+
+#Footer .footer_copy .social {
+  float: right;
+  margin-right: 20px;
+}
+
+#Footer .footer_copy .social li {
+  display: inline-block;
+  margin-right: 6px;
+}
+
+#Footer .footer_copy .social li a {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 15px !important;
+  line-height: 15px !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.fa {
+  font-size: 18px;
+}
+
+.justify-content-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between !important;
+  flex-wrap: wrap;
+  padding: 30px 0;
+}
+
+.links-to-creator {
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  font-size: 18px;
+  font-family: cairo;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.links-to-creator:hover {
+  color: #00bcd4;
+  text-decoration: underline;
+}
+
+.links-to-creator i {
+  margin-right: 10px;
+  width: 25px;
+  text-align: left;
+}
+
+.footer-mask {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.widgets_wrapper .container {
+  /* padding: 50px 0; */
+  margin: auto;
+}
+
+.space-even {
+  justify-content: space-evenly;
+}
+
+/* .links-to-creator i {
+  /* visibility: hidden;
+} */
+
+@media (max-width: 720px) {
+  .footer_copy {
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+  .textwidget {
+    display: FLEX;
+    align-items: center;
+    justify-content: center;
+  }
+  .textwidget > div {
+    width: 230px;
+  }
+  .footer-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+  }
+}

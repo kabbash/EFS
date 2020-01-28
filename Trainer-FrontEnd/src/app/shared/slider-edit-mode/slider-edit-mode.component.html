@@ -1,0 +1,117 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">إضافة صوره جديده</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="simulate-img" 
+    [ngStyle]="{'background-image':'url(' +  newImage.path + ')' , 'max-height': imagesHeight , 'max-width' :imagesWidth}">
+  </div>
+    <app-file-uploader (fileChanged)="onFileSelect($event)"></app-file-uploader>
+    <input _ngcontent-c11="" class="form-control" *ngIf="!hideText" [(ngModel)]="newImage.title" placeholder="العنوان"
+      type="text">
+    <div class="p-checkbox">
+      <label for="mainPage">استخدم هذه الصورة للواجهه</label>
+      <input _ngcontent-c11 [(ngModel)]="newImage.isProfilePicture" name="mainPage" placeholder="الصورة الرئيسية"
+        type="checkbox">
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="addNewImage(modal)">حفظ</button>
+  </div>
+</ng-template>
+<ng-template #edit let-editModal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">تعديل الصوره</h4>
+    <button type="button" class="close" aria-label="Close" (click)="editModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img [src]="baseurl + selectedImg.path" alt="">
+    <input _ngcontent-c11="" *ngIf="!hideText" class="form-control" [(ngModel)]="selectedImg.title"
+      placeholder="العنوان" type="text">
+
+    <div class="p-checkbox">
+      <label for="mainPage2">استخدم هذه الصورة للواجهه</label>
+      <input _ngcontent-c11 name="mainPage2" [(ngModel)]="selectedImg.isProfilePicture" placeholder="الصورة الرئيسية"
+        type="checkbox">
+    </div>
+  </div>
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="eidtImage(editModal)">حفظ</button>
+  </div>
+</ng-template>
+
+<ng-template #delete let-deleteModal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">مسح صوره</h4>
+    <button type="button" class="close" aria-label="Close" (click)="deleteModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>هل انت متأكد من مسح الصوره ؟</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="deleteSlide(delete)">مسح</button>
+  </div>
+</ng-template>
+
+<div class="add-new-img-wrapper" *ngIf="sliderData.length<3 && sliderData.length !== 0">
+  <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)">إضافة صوره جديده يمكنك إضافة
+    {{3-sliderData.length }} صوره</button>
+</div>
+<div class="add-new-img-wrapper" *ngIf="sliderData.length === 0">
+  <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)"> لا توجد صور قم بإضافة صوره جديده</button>
+</div>
+<!-- <div class="add-new-img-wrapper" [ngClass]="{'no-pics':!sliderData.length}" >
+  <button class="btn btn-outline-dark new-pic-btn" (click)="open(content)">إضافة صوره جديده</button>
+</div> -->
+<div class="carousel-container" 
+[ngStyle]="{'width' :imagesWidth }"
+*ngIf="sliderData.length">
+  <ngb-carousel *ngIf="sliderData">
+    <ng-template ngbSlide *ngFor="let image of sliderData;let i = index">
+      <div class="edit-image-wrapper">
+        <div class="edit-image" (click)="open(edit,i)">
+          <i class="fa fa-edit"></i>
+        </div>
+        <div class="edit-image" (click)="deleteSlideModal(delete,i)">
+          <i class="fa fa-trash"></i>
+        </div>
+        <div class="edit-image" (click)="cropClicked(i)">
+          <i class="fa fa-crop"></i>
+        </div>
+      </div>
+      <img [src]="!image.isNew ? (baseurl + image.path) : (image.path)" class="slider-img"
+      [ngStyle]="{'max-height': imagesHeight , 'max-width' :imagesWidth  }"
+      alt="images">
+      <!-- <button (click)="cropClicked()"  class="btn btn-danger crop-btn"><i class="fa fa-crop"></i></button> -->
+
+      <div class="carousel-caption" *ngIf="!hideText && image.title">
+        <h3>{{image.title}}</h3>
+        <!-- <p>{{image.description}}</p> -->
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+<div class="carousel-container" [ngStyle]="{'width' :imagesWidth }"
+*ngIf="!sliderData.length">
+  <ngb-carousel *ngIf="sliderData">
+    <ng-template ngbSlide *ngFor="let dummy of [1,2,3]">
+      <div class="carousel-default-img" 
+      [ngStyle]="{'background-image': 'url(' + defaultImage + ')' , 'max-height': imagesHeight , 'max-width' :imagesWidth  }" >
+        <div class="carousel-darker-overlay">
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+<app-image-cropper #cropper [imageEvent]="imageEvent" (imageCroppedEvent)="onFileSelect($event, true)">
+</app-image-cropper>

@@ -1,0 +1,23 @@
+
+
+<div class="article-container">
+  <div class="article-title">
+    <h2> {{article.name}} </h2>
+  </div>
+  <div class="carousel-container" *ngIf="article.images.length">
+    <ngb-carousel *ngIf="article.images">
+      <ng-template ngbSlide *ngFor="let image of article.images;let i = index">
+          <div class="carousel-darker-overlay">
+            <img [src]="image.isNew? image.path : (baseurl + image.path)" class="slider-img" alt="article images">
+            <div [ngClass]="{'carousel-caption': (image.title) }" >
+              <h3>{{image.title}}</h3>
+              <!-- <p>{{image.text}}</p> -->
+            </div>
+          </div>
+        
+      </ng-template>
+    </ngb-carousel>
+  </div>
+ 
+  <div class="article-details-container" [innerHTML]="article.description"></div>
+</div>

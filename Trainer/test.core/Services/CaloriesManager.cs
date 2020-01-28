@@ -1,41 +1,50 @@
-﻿using Mapster;
+﻿using FluentValidation;
+using Mapster;
 using Microsoft.AspNetCore.JsonPatch;
-using Shared.Core;
+using Microsoft.Extensions.Options;
 using Shared.Core.Models;
+using Shared.Core.Resources;
+using Shared.Core.Utilities.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using test.core.Interfaces;
 using test.core.Model;
 
 namespace test.core.Services
 {
-    public class CaloriesManager: ICaloriesManager
+    public class CaloriesManager : ICaloriesManager
     {
         protected IUnitOfWork _unitOfWork;
-        public CaloriesManager(IUnitOfWork unitOfWork)
+        private readonly IValidator<CaloriesDto> _validator;
+        public CaloriesManager(IUnitOfWork unitOfWork, IValidator<CaloriesDto> validator)
         {
             _unitOfWork = unitOfWork;
+            _validator = validator;
         }
         public IEnumerable<CaloriesDto> GetAll()
         {
             IEnumerable<CaloriesDto> result = new List<CaloriesDto>();
-            result =  _unitOfWork.TestRepository.Get().Adapt(result);
+            result = _unitOfWork.TestRepository.Get().Adapt(result);
             return result;
         }
 
-        public bool Insert(CaloriesDto calory)
+        public string Insert(CaloriesDto calory)
         {
-            try {
+            var validationResult = _validator.Validate(calory);
+
+            if (!validationResult.IsValid)
+                return "";
+
+            try
+            {
 
                 _unitOfWork.TestRepository.Insert(calory.Adapt<Calories>());
                 _unitOfWork.Commit();
-                return true;
+                return "";
             }
-            catch(Exception error)
+            catch (Exception error)
             {
-                return false;
+                return "false";
             }
         }
 
@@ -98,7 +107,7 @@ namespace test.core.Services
             try
             {
                 var calory = _unitOfWork.TestRepository.GetById(id);
-         
+
                 if (calory != null)
                 {
                     var caloryDto = calory.Adapt<CaloriesDto>();
@@ -116,7 +125,7 @@ namespace test.core.Services
             {
 
                 return false;
-            }  
+            }
         }
     }
 }

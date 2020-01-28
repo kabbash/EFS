@@ -1,0 +1,6 @@
+<div *ngFor="let site of map; let i = index">
+  <div>
+    <span class="page-name" (click)="navigateTo(site.route,i)">{{site.name}}</span>
+    <span class="separator">/</span>
+  </div>
+</div>

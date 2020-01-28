@@ -1,0 +1,15 @@
+<div class="form-group col-xs-12  dropdown-form">
+  <div class="dropdown row">
+    <label class="col-md-3" for="{{id}}">{{label}}
+      <span [ngClass]="{'required': isRequired}" *ngIf="isRequired" style="color:red">*</span>
+    </label>
+    <div class="col-md-9">
+      <select [disabled]="isDisabled" class="selectpicker form-control" name="{{name}}" id="{{id}}" [(ngModel)]="selected"
+        (change)="onSelect($event.target.value)">
+        <option class="other-option" value="{{item.value}}" *ngFor="let item of data">
+          {{item.label}}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

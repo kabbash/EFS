@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">Simple pagination</div>
+        <div class="card-body">
+          <p>Default pagination:</p>
+          <ngb-pagination [collectionSize]="70" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+  
+          <p>No direction links:</p>
+          <ngb-pagination [collectionSize]="70" [(page)]="page" [directionLinks]="false"></ngb-pagination>
+  
+          <p>With boundary links:</p>
+          <ngb-pagination [collectionSize]="70" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+  
+          <hr>
+  
+          <pre>Current page: {{page}}</pre>
+        </div>
+      </div>
+    </div>
+  
+  
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">Advanced pagination</div>
+        <div class="card-body">
+          <p>Restricted size, no rotation:</p>
+          <ngb-pagination [collectionSize]="120" [(page)]="pageAdvanced" [maxSize]="5" [boundaryLinks]="true"></ngb-pagination>
+  
+          <p>Restricted size with rotation:</p>
+          <ngb-pagination [collectionSize]="120" [(page)]="pageAdvanced" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+  
+          <p>Restricted size with rotation and no ellipses:</p>
+          <ngb-pagination [collectionSize]="120" [(page)]="pageAdvanced" [maxSize]="5" [rotate]="true" [ellipses]="false"
+            [boundaryLinks]="true"></ngb-pagination>
+  
+          <hr>
+  
+          <pre>Current page: {{pageAdvanced}}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">Pagination size !</div>
+        <div class="card-body">
+          <ngb-pagination [collectionSize]="50" [(page)]="currentPage" size="lg"></ngb-pagination>
+          <ngb-pagination [collectionSize]="50" [(page)]="currentPage"></ngb-pagination>
+          <ngb-pagination [collectionSize]="50" [(page)]="currentPage" size="sm"></ngb-pagination>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,39 @@
+/* section why  */
+.why-sect {
+    height: 10px;
+    background-color: #f8f9fa;
+    line-height: 50px !important;
+  
+  }
+  
+  .why-sect p ,.why-sect div {
+    color: #000000;
+    margin: auto;
+    height: 50px;
+    font-size: 25px;
+    animation: myfont 2s;
+    /* animation-iteration-count: 10000; */
+  }
+
+  /* .why-sect p.animate-offer{
+    font-size: 18px;
+    color: aliceblue;
+  } */
+
+  .apply-now{
+    text-align: center;
+    color: white;
+    font-weight: bold;
+  }
+  
+  @keyframes myfont {
+    0% {font-size:18px;}
+    50% {font-size:25px;}
+    100% {font-size:18px;}
+  }
+  
+  @media (max-width: 520px) {
+    .why-sect p {
+      font-size: 16px
+    } 
+   }

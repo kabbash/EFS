@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <strong> برنامج تدريب </strong>
+        </div>
+        <div class="card-body">
+          <form (submit)="submit()" class="form-horizontal" [formGroup]="programForm">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input"> الاسـم </label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text"
+                  formControlName="name" [(ngModel)]="program.name">
+                <div *ngIf="programForm.controls['name'].touched && programForm.controls['name'].errors" class="text-danger">
+                  <div *ngIf="programForm.controls['name'].errors.required">{{'programForm.formValidations.nameRequired'
+                    | translate}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input"> المميزات </label>
+              <div class="col-md-9">
+                <textarea rows="3" id="text-description" name="features" class="form-control" formControlName="features"
+                  [(ngModel)]="program.features"></textarea>
+                <div *ngIf="programForm.controls['features'].touched && programForm.controls['features'].errors" class="text-danger">
+                  <div *ngIf="programForm.controls['features'].errors.required">{{'programForm.formValidations.featuresRequired'
+                    | translate}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="file-input">الصوره</label>
+              <div class="col-md-9">
+                <app-file-uploader formControlName=profilePictureFile (fileChanged)="onFileSelect($event)" [buttonValue]="'اضافة صوره'"></app-file-uploader>
+                <div *ngIf="programForm.controls['profilePictureFile'].touched && programForm.controls['profilePictureFile'].errors"
+                  class="text-danger">
+                  <div *ngIf="programForm.controls['profilePictureFile'].errors.required">{{'programForm.formValidations.profilePictureFileRequired'
+                    | translate}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> {{ programId >
+                0 ? 'تعديل ' : 'اضـافة' }} </button>
+              <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> اعادة تعيين </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <app-otraining-program [localImageUrl]="addedImageUrl"  [program]="program"></app-otraining-program>
+    </div>
+  </div>
+</div>

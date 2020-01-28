@@ -1,16 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="wwwroot\" />
+    <Compile Remove="wwwroot\Attachments\Articles Categories\**" />
+    <Content Remove="wwwroot\Attachments\Articles Categories\**" />
+    <EmbeddedResource Remove="wwwroot\Attachments\Articles Categories\**" />
+    <None Remove="wwwroot\Attachments\Articles Categories\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="mapster" Version="3.2.0" />
+    <Content Remove="wwwroot\EmailTemplates\ContactUs.html" />
+    <Content Remove="wwwroot\EmailTemplates\RegisterTemplate.html" />
+    <Content Remove="wwwroot\EmailTemplates\ResetPassword.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.0.100" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.2" />
@@ -19,12 +27,45 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Articles.Core\Articles.Core.csproj" />
+    <ProjectReference Include="..\AttachmentsManager\Attachments.Core.csproj" />
+    <ProjectReference Include="..\Authentication\Authentication.csproj" />
+    <ProjectReference Include="..\Banner.Core\Banner.Core.csproj" />
+    <ProjectReference Include="..\Home.Core\Home.Core.csproj" />
+    <ProjectReference Include="..\ItemsReview\ItemsReview.csproj" />
+    <ProjectReference Include="..\Lookups.Core\Lookups.Core.csproj" />
+    
+    <ProjectReference Include="..\Neutrints.Core\Neutrints.Core.csproj" />
+    
+    <ProjectReference Include="..\OTraining.Core\OTraining.Core.csproj" />
+
+    <ProjectReference Include="..\Products.Categories.Core\Products.Core.csproj" />
+
+    <ProjectReference Include="..\MailProvider.Core\MailProvider.Core.csproj" />
+
+    <ProjectReference Include="..\Rating.Core\Rating.Core.csproj" />
+   
     <ProjectReference Include="..\Shared.Core\Shared.Core.csproj" />
-    <ProjectReference Include="..\test.core\test.core.csproj" />
     <ProjectReference Include="..\Trainer.EF\Trainer.EF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Files\Programs\" />
+    <Folder Include="wwwroot\Images\" />
+    <Folder Include="wwwroot\Tmp\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\EmailTemplates\ContactUs.html" />
+    <None Include="wwwroot\EmailTemplates\ResetPassword.html" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,98 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" *ngIf="product" role="document">
+        <div class="modal-content bg-light">
+            <div class="modal-close-container">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="body-most">
+                    <div class="modal-img">
+                        <div class="img-wrapper product-img-wrapper">
+                            <ngb-carousel>
+                                <ng-template ngbSlide *ngFor="let image of product.images">
+                                    <img [src]="baseUrl + image.path" alt="Random first slide">
+                                </ng-template>
+
+                            </ngb-carousel>
+                        </div>
+                    </div>
+                    <div class="modal-description">
+                        <div class="modal-btn-buy">
+                            <div class="buy-price">السعر <span>&nbsp; {{product.price}} &nbsp;</span> ج م</div>
+                        </div>
+                        <div class="desc-item">
+                            <div>
+                                <span class="desc-entity">الإسم</span>
+                                &nbsp;
+                                :
+                                &nbsp;
+                                {{product.name}}
+                            </div>
+                        </div>
+                        <div class="desc-item">
+                            <div>
+                                <span class="desc-entity">الوصف</span>
+                                &nbsp;
+                                :
+                                &nbsp;
+                                {{product.description}}
+                            </div>
+                        </div>
+                        <div class="desc-item">
+                            <div>
+                                <span class="desc-entity">تاريخ الإنتهاء</span>
+                                &nbsp;
+                                :
+                                &nbsp;
+                                {{product.expDate}}
+                            </div>
+                        </div>
+                        <div class="desc-item">
+                            <div>
+                                <span class="desc-entity">البائع</span>
+                                &nbsp;
+                                :
+                                &nbsp;
+                                {{product.seller.fullName}}
+                            </div>
+                        </div>
+                        <div class="desc-item">
+                            <div>
+                                <span class="desc-entity">للشــراء</span>
+                                &nbsp;
+                                :
+                                &nbsp;
+                                {{product.seller.phoneNumber}}
+                            </div>
+                        </div>
+                        <!-- <div class="desc-item">
+                      <div>
+                          <span class="desc-entity">معلومات إضافيه</span>
+                          &nbsp;
+                          :
+                          &nbsp;
+                          whey protien gold
+                      </div>
+                  </div> -->
+                    </div>
+                </div>
+                <div class="rate-add">
+
+                    <div>
+                        <span class="rate">
+                            <span class="rating-word">اضف تقييمك</span> &nbsp;
+                            <ngb-rating [(rate)]="rate" max="5" class="star rating-stars" (click)="addRate()">
+                                <ng-template let-fill="fill" let-index="index">
+                                    <span class="star" [class.filled-modal]="fill === 100">&#9733;</span>
+                                </ng-template>
+                            </ngb-rating>&nbsp;
+                            <span class="filled-modal">({{product.rate}})</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

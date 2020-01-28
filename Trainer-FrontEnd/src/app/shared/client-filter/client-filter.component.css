@@ -1,0 +1,56 @@
+:host {
+    /* width: 985px; */
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    /* margin-top:4%; */
+    /* padding-bottom: 30px; */
+}
+
+:host ::ng-deep app-articles-list-item {
+    width: 350px;
+}
+
+.filter-wrapper {
+    display: FLEX;
+    align-items: center;
+    width: 75%;
+    /* margin-top: 60px; */
+    background-color: rgba(222, 221, 221, 0.8);    
+    padding: 14px 0 22px;
+    border-radius: 12px;
+    max-height: 100px;
+}
+
+.submit-filter-button {
+    min-height: 61px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+
+.submit-filter-button  button{
+    color: white;
+} 
+
+.filter-wrapper .form-control {
+    padding-top: 0;
+}
+
+.filter-wrapper span {
+    color: #212529;
+}
+
+.articles-admin-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.article-search-button{
+    color: white;
+}

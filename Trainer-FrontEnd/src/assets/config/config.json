@@ -1,0 +1,34 @@
+{
+    "pagination": {
+        "productsForAny": {
+            "pageSize": 16
+        },
+        "specialProductsForAny": {
+            "pageSize": 8
+        },
+        "productsForAdmin": {
+            "pageSize": 10
+        },
+        "productsForOwners": {
+            "pageSize": 10
+        },
+        "articlesForAny": {
+            "pageSize": 12
+        },
+        "articlesForAdmin": {
+            "pageSize": 12
+        },
+        "articlesForWriters": {
+            "pageSize": 12
+        },
+        "itemsForReview": {
+            "pageSize": 12
+        },
+        "usersForAdmin": {
+            "pageSize": 10
+        },
+        "neutrintsForAdmin": {
+            "pageSize": 10
+        }
+    }
+}

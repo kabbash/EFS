@@ -1,0 +1,46 @@
+<div class="col-md-10 auto-margin">
+  <div class="card">
+    <div class="card-header" style="text-align: center;">
+      <strong>التدريب الاونلاين</strong>
+    </div>
+    <div class="card-body">
+      <form class="form-horizontal" [formGroup]="onlinetrainingForm">
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="textarea-input">التفاصيـل</label>
+          <div class="col-md-9">
+            <textarea id="textarea-input" [(ngModel)]="onlineTrainingDetails.description" name="textarea-input" rows="3"
+              class="form-control" formControlName="description"></textarea>
+            <div *ngIf="(submitted || onlinetrainingForm.controls['description'].touched ) && f.description.errors"
+              class="text-danger">
+              <div *ngIf="f.description.errors.required"> {{'onlinetrainingForm.formValidations.descriptionRequired' |
+                translate}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="textarea-input">للاشتـراك </label>
+          <div class="col-md-9">
+            <textarea id="textarea-input" [(ngModel)]="onlineTrainingDetails.forJoin" name="textarea-input" rows="3"
+              class="form-control" formControlName="forJoin"></textarea>
+            <div *ngIf="(submitted || onlinetrainingForm.controls['forJoin'].touched ) && f.forJoin.errors"
+              class="text-danger">
+              <div *ngIf="f.forJoin.errors.required"> {{'onlinetrainingForm.formValidations.forJoinRequired' |
+                translate}}</div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer row">
+      <div class="col-md-12" style="text-align: center;">
+        <button class="btn btn-primary-1" (click)="update()"><i class="fa fa-dot-circle-o"></i> تعديل </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class=" col-md-10 auto-margin">
+  <app-otraining-program *ngFor="let program of onlineTrainingPrograms" [showActionBtns]="false" [program]="program"
+    (editClicked)="editProgram($event)" (deleteClicked)="deleteProgram($event)"></app-otraining-program>
+</div>
+<button class="btn admin-add-button" (click)="addProgram()"> <i _ngcontent-c6="" class="fa fa-plus"></i></button>

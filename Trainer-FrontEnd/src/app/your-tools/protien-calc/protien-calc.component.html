@@ -1,0 +1,85 @@
+<div class="">
+  <h2 class="secondary-color text-center calculator-title">حساب البروتين</h2>
+  <div class="text-center white-color calculator-desc">
+    <p> بناءً على المعلومات المعطاة ، فيما يلي توصيات تناول البروتين الأساسية من مؤسسات موثوقة متعددة:
+      <br>
+      جمعية الحمية الأمريكية (ADA): على الأقل 60 - 108 جرام / يوم.
+      <br>
+      مراكز السيطرة على الأمراض والوقاية منها (CDC): 54 - 188 جرام / يوم (10-35٪ من السعرات الحرارية اليومية).
+      <br>
+      الحد الأدنى المأمون لمنظمة الصحة العالمية: 50 جرام / يوم.</p>
+      <p>
+          ( بعد تحديد عدد جرامات المناسبه لهدفك . يتم ضرب عدد جرامات  في ٤ و خصمها من سعرات نظامك الغذائي . لأن كل جرام بروتين يحتوي علي ٤ سعر حراري )
+      </p>
+      <br>
+      <p> لا يعتمد على هذه الحاسبة اذا كانت نسبة دهون جسمك فوق ال 30% ، لمعرفة نسبة دهون جسمك ( <a class="calc-presshere-links" [routerLink]="['/yourTools/fatCalc']">اضغط هنا </a> )</p>
+  </div>
+</div>
+<div class="calculator-form-container">
+  <div class="card">
+    <div class="card-body">
+      <img src="./assets/images/percent.svg" class="percent-img" alt="">
+      <div class="img-triangle-container">
+        <img height="160" src="./assets/images/boutique-fitness-boom.jpg" alt="">
+        <div class="tri-overlay"></div>
+      </div>
+      <div class="col-sm-5 col-md-5 card-main-data">
+        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">         
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">الوزن</label>
+            <div class="col-md-9">
+              <input type="text" id="text-input" [(ngModel)]="calculator.weight" placeholder="كجم" name="text-input"
+                class="form-control">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8 mobile-view-calc">
+              <div class="col-sm-6 text-left buttons">
+                <button type="button" class="btn btn-outline-info" (click)="calculator.calcProtein()">احسب</button>
+              </div>
+
+              <div class="col-sm-6 text-left buttons">
+                <button type="button" class="btn btn-outline-info" (click)="calculator.reset()">احذف</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-4 col-md-4 card-main-data" [hidden]="! calculator.showResult">
+        <h5> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> النتيجه</h5>
+        <div class="result-row">
+          <div class="result-name">الحفاظ على الوزن
+            <br>
+            <span class="kilos-per-week">1.2 من الوزن</span>
+          </div>
+          <div class="result-value">{{calculator.proteinResult.maintainWeight}}
+            <br />
+            <span class="result-unit">جرام</span>
+          </div>
+        </div>
+        <div class="result-row">
+          <div class="result-name">زيادة الوزن مع زيادة الكتله العضليه 
+            <br>
+            <span class="kilos-per-week">1.2 - 1.6 من الوزن</span>
+          </div>
+          <div class="result-value">{{calculator.proteinResult.gainWeight}}
+            <br />
+            <span class="result-unit">جرام</span>
+          </div>
+        </div>
+        <div class="result-row">
+          <div class="result-name">خسارة الوزن مع الحفاظ على الكتله العضليه
+            <br>
+            <span class="kilos-per-week">1.6 - 2.2 من الوزن</span>
+          </div>
+          <div class="result-value">{{calculator.proteinResult.lossWeight}}
+            <br />
+            <span class="result-unit">جرام</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+:host {
+    width: 985px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    flex-direction: column;
+    align-items: center
+}
+
+.all-calculators-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    height: 262px;
+    width: 285px;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    border-radius: 12px;
+}
+
+.card a {
+    color: #00bcd4;
+}
+
+.card img {
+    height: 130px;
+    margin-bottom: 45px;
+    border-radius: 10px;
+}
+
+.disabled {
+    cursor: not-allowed;
+    opacity: .5;
+}
+
+.disabled span {
+    color: tomato;
+    font-weight: bold;
+    transform: rotate(-45deg);
+    font-size: 30px;
+}

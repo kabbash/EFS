@@ -1,0 +1,62 @@
+<div class="online-training-container">
+  <div class="online-training-desc desc-style">
+    <div class="desc-title ">
+      <button class=" title-style">التدريب اون لاين</button>
+    </div>
+    <div class="desc-content container">
+      <p>
+        {{otrainingModel.detailsDto.description}}
+      </p>
+    </div>
+  </div>
+  <div class="packages container">
+    <div class="desc-title">
+      <button class=" title-style">البرامج</button>
+    </div>
+    <div class="packages-item">
+      <app-otraining-program *ngFor="let programModel of otrainingModel.programsDto" [showActionBtns]="true"
+        [program]="programModel">
+      </app-otraining-program>
+    </div>
+  </div>
+  <div class="container slider-transform-section adjust-transform-sections">
+    <div class="desc-title ">
+      <button class=" title-style">بعض التحولات</button>
+    </div>
+    <section class="slider">
+      <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li *ngFor="let banner of transformBanners; let i = index" data-target="#myCarousel2" [attr.data-slide-to]="i"
+            [ngClass]="{'active': i===0}"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div *ngFor="let banner of transformBanners; let i = index" class="carousel-item dashboard-carousel"
+            [ngClass]="{'active': i == 0}" [ngStyle]="{'background-image': 'url('+ banner?.imagePath + ')'}">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel2" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel2" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </section>
+
+    <div class="section-border-wrapper">
+      <div class="bio-name-border"></div>
+    </div>
+  </div>
+  <div class="apply-desc desc-style" id="nextSection">
+    <div class="desc-title ">
+      <button class=" title-style">طريقه الاشتراك</button>
+    </div>
+    <div class="desc-content container">
+      <p>
+        {{otrainingModel.detailsDto.forJoin}}
+      </p>
+    </div>
+  </div>
+</div>

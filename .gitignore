@@ -25,7 +25,7 @@ bin/
 Bin/
 obj/
 Obj/
-
+out/
 # Visual Studio 2015 cache/options directory
 .vs/
 
@@ -194,9 +194,7 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 
-# SQL Server files
-*.mdf
-*.ldf
+
 
 # Business Intelligence projects
 *.rdl.data
@@ -282,3 +280,7 @@ src/assets/icon-font/fonts/untitled-font-3.eot
 src/assets/icon-font/fonts/untitled-font-3.ttf
 /.scannerwork
 
+/Trainer/.vscode
+/Trainer/Trainer/.vscode
+/Trainer/Trainer/wwwroot/Files
+/Trainer/Trainer/logs

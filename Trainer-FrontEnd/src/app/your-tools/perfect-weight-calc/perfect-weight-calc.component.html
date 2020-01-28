@@ -1,0 +1,84 @@
+<div class="">
+  <h2 class="secondary-color text-center calculator-title">حساب الوزن المثالي</h2>
+  <div class="text-center white-color calculator-desc">
+    <p>تقوم حاسبة الوزن المثالي بحساب وزن الجسم المثالي (IBW) بناءً على الطول والجنس والعمر. لقد تم السعي وراء فكرة
+      العثور على IBW باستخدام صيغة من قبل العديد من الخبراء لفترة طويلة. حاليًا ، لا تزال هناك العديد من الصيغ الشائعة ،
+      وتوفر حاسبة الوزن المثالي نتائجها من أجل المقارنات جنبًا إلى جنب.</p>
+  </div>
+</div>
+<div class="calculator-form-container">
+  <div class="card">
+    <div class="card-body">
+      <img src="./assets/images/percent.svg" class="percent-img" alt="">
+      <div class="img-triangle-container">
+        <img height="160" src="./assets/images/boutique-fitness-boom.jpg" alt="">
+        <div class="tri-overlay"></div>
+      </div>
+      <div class="col-sm-5 col-md-5 card-main-data">
+        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="select1">النوع</label>
+            <div class="col-md-9 col-form-label">
+              <div class="form-check gender">
+                <span>
+                  <input class="form-check-input" type="radio" name="gender" id="male" value="0"
+                    [(ngModel)]="calculator.gender" checked>
+                  <label class="form-check-label" for="male">
+                    ذكر
+                  </label>
+                </span>
+                <span>
+                  <input class="form-check-input" type="radio" name="gender" id="female" value="1"
+                    [(ngModel)]="calculator.gender">
+                  <label class="form-check-label" for="female">
+                    أنثى
+                  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">السن</label>
+            <div class="col-md-5">
+              <input type="text" id="text-input" [(ngModel)]="calculator.age" name="text-input" class="form-control">
+            </div>
+            <label class="col-md-4 col-form-label" for="text-input">من 15 - 80</label>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="text-input">الطول</label>
+            <div class="col-md-9">
+              <input type="text" id="text-input" [(ngModel)]="calculator.height" placeholder="سم" name="text-input"
+                class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8 mobile-view-calc">
+              <div class="col-sm-6 text-left buttons">
+                <button type="button" class="btn btn-outline-info" (click)="calculator.calcPerfectWeight()">احسب</button>
+              </div>
+
+              <div class="col-sm-6 text-left buttons">
+                <button type="button" class="btn btn-outline-info" (click)="calculator.reset()">احذف</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-4 col-md-4 card-main-data" [hidden]="! calculator.showResult">
+        <h5> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> النتيجه</h5>
+        <div class="result-row">
+          <div class="result-name">الوزن المثالى 
+            <br>
+            <span class="kilos-per-week">Miller 1983</span>
+          </div>
+          <div class="result-value">{{calculator.perfectWeightResult.miller}}
+            <br />
+            <span class="result-unit">كجم</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

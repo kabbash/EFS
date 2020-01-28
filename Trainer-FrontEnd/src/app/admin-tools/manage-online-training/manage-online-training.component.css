@@ -1,0 +1,21 @@
+:host {
+    width: 985px;
+    padding-top: 40px;
+}
+
+.form-check-label {
+    padding-right: 1.25rem;
+}
+
+.card {
+    margin-bottom: 30px;
+}
+
+
+:host ::ng-deep .caption>span {
+    display: none;
+}
+
+.auto-margin{
+    margin: auto;
+}

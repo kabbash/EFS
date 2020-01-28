@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <strong> مراجعـة المنتجات</strong>
+        </div>
+        <div class="card-body">
+          <form (submit)="submit()" class="form-horizontal" [formGroup]="reviewForm">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">الاسم</label>
+              <div class="col-md-9">
+                <input type="text" id="name" name="name" class="form-control" placeholder="Text" formControlName="name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input">الوصف</label>
+              <div class="col-md-9">
+                <input type="text" id="description" name="description" class="form-control" placeholder="Text" formControlName="description">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="file-input">File input</label>
+              <div class="col-md-9">
+                <app-file-uploader formControlName=profilePictureFile (fileChanged)="onFileSelect($event)"></app-file-uploader>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> اضافة</button>
+              <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> اعادة تعيين</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-4">
+      <app-product-item #itemForReview [cardName]="reviewForm.value['name']" [cardImage]="productReviewService.productReviewToUpdate ?(baseUrl + reviewForm.value['profilePicture']) : reviewForm.value['profilePicture']" (cropEvent)="openCropper()" [showImageCropIcon]="imageAdded"></app-product-item>
+    </div>
+  </div>
+  <app-image-cropper #cropper [imageEvent]="imageEvent" (imageCroppedEvent)="onFileSelect($event, true)"></app-image-cropper>
+</div>

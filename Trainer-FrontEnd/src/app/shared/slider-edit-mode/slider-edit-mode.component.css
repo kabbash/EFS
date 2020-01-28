@@ -1,0 +1,116 @@
+.carousel-container {
+    padding-top: 40px;
+    margin-bottom: 20px;
+    /* width: 60%; */
+}
+
+.slider-img {
+    border-radius: 12px;
+    /* max-width: 100%;
+    max-height: 230px; */
+}
+
+:host ::ng-deep .carousel-caption {
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+:host ::ng-deep .carousel-item {
+    text-align: center;
+}
+
+:host ::ng-deep .carousel-control-next, :host ::ng-deep .carousel-control-prev {
+    top: 15%;
+    height: 70%;
+}
+
+.edit-image {
+    height: 50px;
+    width: 50px;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-image:hover {
+    font-size: 25px;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: font-size .3s ease;
+}
+
+.edit-image-wrapper {
+    height: 50px;
+    z-index: 5;
+    position: relative;
+    top: 0;
+    left: 0;
+    position: ABSOLUTE;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+}
+
+button.close {
+    margin: -1rem -1rem auto -1rem;
+}
+
+div.modal-body {
+    min-height: 75px;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.modal-body>* {
+    margin: 10px 0;
+}
+
+div.modal-body img {
+    width: 328px
+}
+
+.simulate-img {
+    width: 100%;
+    background-color: gainsboro;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 250px;
+}
+
+.new-pic-btn {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.add-new-img-wrapper {
+    margin-top: 15px;
+    margin-bottom: -15px;
+    width: 80%;
+    background-color: #dedddd;
+    padding: 10px;
+}
+
+.no-pics {
+    margin-bottom: 30px;
+}
+
+.p-checkbox {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.p-checkbox input {
+    margin-left: 10px;
+    height: 18px;
+    width: 18px;
+}

@@ -1,0 +1,186 @@
+<div class="">
+   <h2 class="secondary-color text-center calculator-title">حساب السعرات الحراريه</h2>
+   <div class="text-center white-color calculator-desc">
+
+
+
+
+      <p> إن أفضل طريقه للحصول على الجسم المثالى سواء كان هدفك هو زيادة وزن الجسم والضخامه العضليه او هدفك هو التنشيف مع
+         الحفاظ على الكتله العضليه. فكل ما يتطلبه الأمر كبدايه ، تستطيع عن طريق هذه الحاسبه حساب عدد السعرات الحراريه فى
+         نظامك الغذائى التى يحتاجها جسمك حسب هدفك
+         .</p>
+      <p> ادخل وزنك و طولك و مقاسات المتر فى الحاسبة. </p>
+      <p>      يفضل اختيار معادلة ( كاتش ماكردل ) وإدخال نسبة دهون جسمك ليتم حساب بدقة أكثر. </p>
+      <p>
+            لحساب نسبة دهون جسمك أولا ( <a class="calc-presshere-links" [routerLink]="['/yourTools/fatCalc']">اضغط هنا </a> )
+         </p>
+   </div>
+</div>
+<div class="calculator-form-container">
+   <div class="card">
+      <div class="card-body">
+         <img src="./assets/images/percent.svg" class="percent-img" alt="">
+         <div class="img-triangle-container">
+            <img height="160" src="./assets/images/boutique-fitness-boom.jpg" alt="">
+            <div class="tri-overlay"></div>
+         </div>
+         <div class="col-sm-5 col-md-5 card-main-data">
+            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="select1">النوع</label>
+                  <div class="col-md-9 col-form-label">
+                     <div class="form-check gender">
+                        <span>
+                           <input class="form-check-input" type="radio" name="gender" id="male" value="0"
+                              [(ngModel)]="calculator.gender" checked>
+                           <label class="form-check-label" for="male">
+                              ذكر
+                           </label>
+                        </span>
+                        <span>
+                           <input class="form-check-input" type="radio" name="gender" id="female" value="1"
+                              [(ngModel)]="calculator.gender">
+                           <label class="form-check-label" for="female">
+                              أنثى
+                           </label>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="text-input">السن</label>
+                  <div class="col-md-5">
+                     <input type="text" id="text-input" [(ngModel)]="calculator.age" name="text-input"
+                        class="form-control">
+                  </div>
+                  <label class="col-md-4 col-form-label" for="text-input">من 15 - 80</label>
+               </div>
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="text-input">الطول</label>
+                  <div class="col-md-9">
+                     <input type="text" id="text-input" [(ngModel)]="calculator.height" placeholder="سم"
+                        name="text-input" class="form-control">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="text-input">الوزن</label>
+                  <div class="col-md-9">
+                     <input type="text" id="text-input" [(ngModel)]="calculator.weight" placeholder="كجم"
+                        name="text-input" class="form-control">
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="select1"> النشاط</label>
+                  <div class="col-md-9">
+                     <select id="select1" name="select1" class="form-control" [(ngModel)]="calculator.activityRange">
+                        <option value="1">معدل الأيض الاساسي</option>
+                        <option value="1.2">لا تمرين</option>
+                        <option value="1.375">1-3 مرات اسبوعيا</option>
+                        <option value="1.465">4-5 مرات اسبوعيا</option>
+                        <option value="1.55">3-4 مرات اسبوعيا بشدة عالية</option>
+                        <option value="1.725">6-7 مرات اسبوعيا بشدة عالية</option>
+                        <option value="1.9">تمرين كل يوم بشده عاليه او وظيفة بدنيه</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="form-group row">
+                  <label class="col-md-3 col-form-label">المعادلة</label>
+                  <div class="col-md-9 col-form-label">
+                     <div class="form-check">
+                        <input class="form-check-input" [(ngModel)]="calculator.equation" type="radio" name="radios"
+                           id="radio1" value="0" checked>
+                        <label class="form-check-label" for="radio1">
+                           ملفين سانت جوير
+                        </label>
+                     </div>
+                     <div class="form-check">
+                        <input class="form-check-input" [(ngModel)]="calculator.equation" type="radio" name="radios"
+                           id="radio2" value="1">
+                        <label class="form-check-label" for="radio2">
+                           هاريس بندكت
+                        </label>
+                     </div>
+                     <div class="form-check">
+                        <input class="form-check-input" [(ngModel)]="calculator.equation" type="radio" name="radios"
+                           id="radio3" value="2">
+                        <label class="form-check-label" for="radio3">
+                           كاتش ماكردل
+                        </label>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group row" [hidden]="calculator.equation != '2'">
+                  <label class="col-md-3 col-form-label" for="text-input"> الدهون </label>
+                  <div class="col-md-3">
+                     <input type="text" id="text-input" [(ngModel)]="calculator.fats" name="text-input"
+                        class="form-control" placeholder="%">
+                  </div>
+                  <!-- <label class="col-md-4 col-form-label" for="text-input"></label> -->
+               </div>
+               <div class="form-group row">
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-8 mobile-view-calc">
+                     <div class="col-sm-6 text-left buttons">
+                        <button type="button" class="btn btn-outline-info"
+                           (click)="calculator.calcCalories()">احسب</button>
+                     </div>
+
+                     <div class="col-sm-6 text-left buttons">
+                        <button type="button" class="btn btn-outline-info" (click)="calculator.reset()">احذف</button>
+                     </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+         <div class="col-sm-4 col-md-4 card-main-data" [hidden]="!calculator.showResult">
+            <h5> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> النتيجه</h5>
+            <div class="result-row">
+               <div class="result-name">الحفاظ على الوزن
+                  <br>
+                  <span class="kilos-per-week">وزن ثابت</span>
+               </div>
+               <div class="result-value">{{calculator.caloriesResult.maintainWeight}}
+                  <br />
+                  <span class="result-unit">كالورى/يوم</span>
+               </div>
+            </div>
+            <div class="result-row">
+               <div class="result-name"> خسارة وزن <br>
+                  <span class="kilos-per-week">1/2 كيلو اسبوعيا </span>
+               </div>
+               <div class="result-value">{{calculator.caloriesResult.lossHalfKilo}}
+                  <br />
+                  <span class="result-unit">كالورى/يوم</span>
+               </div>
+            </div>
+            <div class="result-row">
+               <div class="result-name"> خسارة وزن <br />
+                  <span class="kilos-per-week">1 كيلو اسبوعيا</span>
+               </div>
+               <div class="result-value">{{calculator.caloriesResult.lossOneKilo}}
+                  <br />
+                  <span class="result-unit">كالورى/يوم</span>
+               </div>
+            </div>
+            <div class="result-row">
+               <div class="result-name">زيادة وزن<br>
+                  <span class="kilos-per-week">1/2 كيلو اسبوعيا </span>
+               </div>
+               <div class="result-value">{{calculator.caloriesResult.gainHalfKilo}}
+                  <br />
+                  <span class="result-unit">كالورى/يوم</span>
+               </div>
+            </div>
+            <div class="result-row">
+               <div class="result-name"> زيادة وزن<br>
+                  <span class="kilos-per-week">1 كيلو اسبوعيا </span>
+               </div>
+               <div class="result-value">{{calculator.caloriesResult.gainOneKilo}}
+                  <br />
+                  <span class="result-unit">كالورى/يوم</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

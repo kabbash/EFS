@@ -1,0 +1,37 @@
+:host {
+    height: 50px;
+    color: #333;
+    direction: rtl;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, .75);
+    padding: 33px 20px;
+    border-radius: 12px;
+}
+
+:host>div:last-child span.separator {
+    display: none;
+}
+
+:host>div:last-child span.page-name {
+    cursor: inherit;
+    color: #00bcd4;
+}
+
+:host>div:last-child span.page-name:hover {
+    text-decoration: none;
+}
+
+.separator {
+    margin: 0 5px 0 9px;
+}
+
+.page-name {
+    cursor: pointer;
+}
+
+.page-name:hover {
+    text-decoration: underline;
+    text-decoration-color: #00bcd4;
+}

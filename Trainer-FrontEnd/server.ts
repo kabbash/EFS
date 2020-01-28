@@ -6,15 +6,32 @@ import { enableProdMode } from '@angular/core';
 
 import * as express from 'express';
 import { join } from 'path';
+import 'localstorage-polyfill';
+// const MockBrowser = require('mock-browser').mocks.MockBrowser;
+// const mock = new MockBrowser();
+const domino = require('domino');
+const fs = require('fs');
+const path = require('path');
+const DIST_FOLDER = join(process.cwd(), 'dist');
 
+const templateA = fs
+  .readFileSync(path.join(DIST_FOLDER, 'browser/index.html'))
+  .toString();
+const win = domino.createWindow(templateA);
+win.Object = Object;
+win.Math = Math;
+console.log(global);
+global['window'] = win;
+global['document'] = win.document;
+global['branch'] = null;
+global['object'] = win.object;
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
 // Express server
 const app = express();
 
-const PORT = process.env.PORT || 4000;
-const DIST_FOLDER = join(process.cwd(), 'dist');
+const PORT = 80;
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
@@ -50,4 +67,5 @@ app.get('*', (req, res) => {
 // Start up the Node server
 app.listen(PORT, () => {
   console.log(`Node server listening on http://localhost:${PORT}`);
+  console.log(DIST_FOLDER);
 });

@@ -1,0 +1,10 @@
+:host {
+    display: flex;
+    min-height: 620px;
+    background-image: url(/assets/images/cover.png);
+    background-attachment: fixed;
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+

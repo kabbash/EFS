@@ -1,0 +1,14 @@
+<!-- <div class="row" class="filter-wrapper">
+  <div class="col-sm-10">
+    <input type="text" class="form-control" [(ngModel)]="searchTxt">
+  </div>
+  <div class="col-sm-2 submit-filter-button">
+    <button type="button" (click)="searchClicked()" class="btn buy-price filter-search-button">بحـث</button>
+  </div>
+</div> -->
+
+
+<div class="container-search">
+  <input type="text" [(ngModel)]="searchTxt" (keyup)="onKey($event)" placeholder="Search...">
+  <div class="search"></div>
+</div>

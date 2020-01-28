@@ -1,0 +1,82 @@
+/* know your coach */
+
+:host {
+  display: flex;
+  background-color: #221e1e;
+  background-image: url("/assets/images/knowing-dr.jpg");
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.Coach {
+  padding-top: 60px;
+  position: relative;
+  overflow: hidden;
+  /* background: rgba(0, 0, 0, 0.8); */
+  flex: 1;
+  padding-bottom: 40px;
+}
+
+.reverse-order {
+  flex-direction: row-reverse;
+}
+
+.Coach .container {
+  bottom: 0;
+}
+
+.Coach .header-section h3 {
+  color: #fff !important;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.coach-data {
+  padding-top: 55px;
+  color: #fff;
+}
+
+.button-stroke a:hover {
+  text-decoration: unset;
+  color: #fff;
+}
+
+.button-stroke {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-stroke a.button-white {
+  color: #fff;
+}
+
+.counter .count-text {
+  color: #00bcd4;
+  font-size: 28px;
+  margin-top: 30px;
+}
+
+@media (max-width: 767px) {
+  .row {
+    position: relative;
+  }
+  .absoluteItem {
+    position: absolute;
+  }
+  .coach-data {
+    padding-top: 10px;
+  }
+}
+
+.know-font {
+  font-size: 17px;
+}
+
+.count-number {
+  font-size: 40px;
+  font-weight: 600;
+}

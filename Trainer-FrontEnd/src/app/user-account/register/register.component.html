@@ -1,0 +1,79 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card mx-4">
+            <div class="card-body p-4">
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <h2> حساب جديد</h2>
+                <hr>
+                <p class="form-tip">برجاء التأكد من البريد الالكترونى جيدا لانك لن تتمكن من تفعيل حسابك الا من خلاله</p>
+                <!-- <ul>
+                  <li> برجاء التأكد من البريد الالكترونى جيدا لانك لن تتمكن من تفعيل حسابك الا من خلاله</li>
+                </ul> -->
+                <div class="form-group mb-3">
+                  <input type="text" class="form-control" placeholder="إسم المستخدم" autocomplete="fullName"
+                    formControlName="fullName" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }">
+                </div>
+                <div class="form-group mb-3">
+                  <input type="text" class="form-control" placeholder="البريد الإلكتروني" autocomplete="email"
+                    formControlName="email" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                  <div *ngIf="submitted && f.email.errors" class="col-sm-12 text-danger">
+                    <div *ngIf="f.email.errors.email"> {{'commonValidations.email.invalid' | translate}}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <input type="text" class="form-control txt-radius" placeholder="رقم الهاتـف" autocomplete="phoneNumber"
+                    formControlName="phoneNumber" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }">
+                  <div *ngIf="submitted && f.phoneNumber.errors" class="col-sm-12 text-danger">
+                    <!-- <div *ngIf="f.phoneNumber.errors.required">
+                      {{'registerForm.formValidations.phoneRequired' | translate}}</div> -->
+                    <div *ngIf="f.phoneNumber.errors.pattern">
+                      {{'commonValidations.phoneNumber.invalid' | translate}}</div>
+                    <div *ngIf="! f.phoneNumber.errors.pattern && f.phoneNumber.errors.minlength">
+                      {{'commonValidations.phoneNumber.minlength' | translate}}</div>
+                    <div *ngIf="! f.phoneNumber.errors.pattern && f.phoneNumber.errors.maxlength">
+                      {{'commonValidations.phoneNumber.maxlength' | translate}}</div>
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <input type="password" class="txt-radius form-control" placeholder="كلمة المرور" autocomplete="new-password"
+                    formControlName="password" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                  <div *ngIf="submitted && f.password.errors" class="text-danger col-sm-12">
+                    <!-- <div *ngIf="f.password.errors.required">
+                      {{'commonValidations.password.passwordRequired' | translate}}</div> -->
+                    <div *ngIf="f.password.errors.minlength">
+                      {{'commonValidations.password.minlength' | translate}}</div>
+                    <div *ngIf="f.password.errors.maxlength">
+                      {{'commonValidations.password.maxlength' | translate}}</div>
+                  </div>
+                </div> 
+                <div class="form-group mb-4">
+                  <input type="password" class="txt-radius form-control" placeholder="تأكيد كلمة المرور"
+                    autocomplete="new-password" formControlName="confirmPassword" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+                  <div *ngIf="submitted && f.confirmPassword.errors" class="text-danger col-sm-12">
+                  </div>
+                  <div *ngIf="! f.confirmPassword.errors && registerForm.hasError('passwordMismatch')"
+                    class="text-danger col-sm-12">
+                    <div> {{'registerForm.formValidations.passwordNotMatch' | translate}}</div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-block theme-btn">إنشاء</button>
+                <br>
+                <button type="button" class="btn btn-block theme-btn-secondary" (click)="navigateToLogin()">تسجيل
+                  الدخول</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

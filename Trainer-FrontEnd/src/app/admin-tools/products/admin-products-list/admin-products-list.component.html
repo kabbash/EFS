@@ -1,0 +1,15 @@
+<app-search-filter (search)="reloadItems()"></app-search-filter>
+<div class="no-results-search-wrapper" *ngIf="!productsList.length">
+  <div class="no-results-search"><i class="fa fa-warning waring-search-icon"></i>لا يوجد اي نتائج للبحث</div>
+</div>
+<div class="row admin-product-list-wrapper">
+  <button class="btn admin-add-button" (click)="addProduct()"> <i _ngcontent-c6="" class="fa fa-plus"></i></button>
+  <div *ngFor="let product of productsList">
+    <app-product-item  (click)="openProductModal(product)" [price]="product.price + ' EGP'" [currentRate]="product.rate"
+      [cardName]="product.name" [cardImage]="baseurl + product.profilePicture"></app-product-item>
+  </div>
+  <div class="pagination-container" *ngIf="pagerData.pagesCount > 1">
+    <ngb-pagination [collectionSize]="pagerData.itmesCount" [pageSize]="pagerData.pageSize" [(page)]="pagerData.currentPage"
+      [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getNextPage()"></ngb-pagination>
+  </div>
+</div>

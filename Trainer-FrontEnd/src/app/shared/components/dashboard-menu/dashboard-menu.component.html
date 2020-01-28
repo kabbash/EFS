@@ -1,0 +1,57 @@
+<ng-content></ng-content>
+<div class="username-avatar">
+    <img src="assets/images/user-avatar.svg" height="68">
+    <div>
+        <div>اهلا</div>
+        <div>كابتن عبدالله</div>
+    </div>
+</div>
+
+<a routerLinkActive="active" [routerLink]="['/admin/users']">
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>{{'adminMenu.users' | translate}}</span>
+    </div>
+</a>
+
+<a routerLinkActive="active" [routerLink]="['/admin/articleslist']">
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>المقالات</span>
+    </div>
+</a>
+<a routerLinkActive="active" [routerLink]="['/admin/ProductList']">
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>المنتجات</span>
+    </div>
+</a>
+<a routerLinkActive="active" [routerLink]="['/admin/manageProductsCategories']">
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>{{'adminMenu.manageProductCategories' | translate}}</span>
+    </div>
+</a>
+<a routerLinkActive="active" [routerLink]="['/admin/manageArticlesCategories']">
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>{{'adminMenu.manageArticleCategories' | translate}}</span>
+    </div>
+</a>
+<a routerLinkActive="active" [routerLink]="['/admin/neutrintsList']">
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>جدول السعرات</span>
+    </div>
+</a>
+<a routerLinkActive="active" [routerLink]="['/admin/itemReviewList']">
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>{{'adminMenu.itemReviewList' | translate}}</span>
+    </div>
+</a>
+
+<a routerLinkActive="active" [routerLink]="['/admin/manageBanners']">
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>{{'adminMenu.manageBanners' | translate}}</span>
+    </div>
+</a>
+
+<a routerLinkActive="active" [routerLink]="['/admin/onlineTraining']">
+    <div class="dash-item">
+        <i class="fa fa-edit"></i><span>{{'adminMenu.onlineTraining' | translate}}</span>
+    </div>
+</a>

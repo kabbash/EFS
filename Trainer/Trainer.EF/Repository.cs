@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shared.Core;
+using Shared.Core.Utilities.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace Trainer.EF
 {
@@ -18,7 +16,7 @@ namespace Trainer.EF
             _dbSet = _context.Set<T>();
         }
 
-        public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
+        public IQueryable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
         {
             IQueryable<T> query = _dbSet;
 
@@ -35,11 +33,11 @@ namespace Trainer.EF
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                return orderBy(query);
             }
             else
             {
-                return query.ToList();
+                return query;
             }
         }
 

@@ -1,0 +1,80 @@
+<div class="col-md-8">
+   <div class="card">
+      <div class="card-header" style="text-align:center">
+         <strong>تواصل معنا</strong>
+      </div>
+      <p class="form-tip">
+         للإعلانات المميزه من فضلك قم بإدخال البريد الإلكتروني ورقم التليفون حتي نستطيع التواصل معك و تقديم الدعم
+         المطلوب.
+      </p>
+      <div class="card-body">
+         <form class="form-horizontal" [formGroup]="contactusForm">
+            <div class="form-group row">
+               <label class="col-md-3 col-form-label" for="text-input">الإسم</label>
+               <div class="col-md-9">
+                  <input type="text" id="text-input" name="text-input" class="form-control" formControlName="name"
+                     [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                  <div *ngIf="(submitted || contactusForm.controls['name'].touched ) && f.name.errors"
+                     class="text-danger">
+                     <!-- <div *ngIf="f.name.errors.required"> {{'contactus.formValidations.nameRequired' | translate}}</div> -->
+                     <div *ngIf="f.name.errors.maxlength"> {{'contactus.formValidations.nameMaxLength' | translate}}
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group row">
+               <label class="col-md-3 col-form-label" for="email-input">البريد الإلكتروني</label>
+               <div class="col-md-9">
+                  <input type="email" id="email-input" name="email-input" class="form-control" formControlName="email"
+                     [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                  <div *ngIf="(submitted || contactusForm.controls['email'].touched ) && f.email.errors"
+                     class="text-danger">
+                     <!-- <div *ngIf="f.email.errors.required"> {{'contactus.formValidations.emailRequired' | translate}}
+                     </div> -->
+                     <div *ngIf="f.email.errors.email"> {{'commonValidations.email.invalid' | translate}}</div>
+                     <div *ngIf="f.email.errors.maxlength"> {{'commonValidations.email.maxlength' | translate}}
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="form-group row">
+               <label class="col-md-3 col-form-label" for="text-input">رقم الهاتف</label>
+               <div class="col-md-9">
+                  <input type="text" id="text-input" name="text-input" class="form-control"
+                     formControlName="phoneNumber" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }">
+                  <div *ngIf="(submitted || contactusForm.controls['phoneNumber'].touched ) && f.phoneNumber.errors"
+                     class="text-danger">
+                     <div *ngIf="!f.phoneNumber.errors.pattern && f.phoneNumber.errors.maxlength">
+                        {{'commonValidations.phoneNumber.maxlength' | translate}}</div>
+                     <div *ngIf="!f.phoneNumber.errors.pattern &&  f.phoneNumber.errors.minlength">
+                        {{'commonValidations.phoneNumber.minlength' | translate}}</div>
+                     <div *ngIf="f.phoneNumber.errors.pattern">
+                        {{'commonValidations.phoneNumber.invalid' | translate}}</div>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group row">
+               <label class="col-md-3 col-form-label" for="textarea-input">التفاصيـل</label>
+               <div class="col-md-9">
+                  <textarea id="textarea-input" name="textarea-input" rows="8" class="form-control"
+                     formControlName="details" [ngClass]="{ 'is-invalid': submitted && f.details.errors }"></textarea>
+                  <div *ngIf="(submitted || contactusForm.controls['details'].touched ) && f.details.errors"
+                     class="text-danger">
+                     <!-- <div *ngIf="f.details.errors.required"> {{'contactus.formValidations.detailsRequired' | translate}}
+                     </div> -->
+                     <div *ngIf="f.details.errors.maxlength">
+                        {{'contactus.formValidations.detailsMaxLength' | translate}}</div>
+                  </div>
+               </div>
+            </div>
+         </form>
+      </div>
+      <div class="card-footer row">
+         <span class="col-md-3"></span>
+         <div class="col-md-9">
+            <button class="btn btn-primary-1" (click)="send()"><i class="fa fa-dot-circle-o"></i> إرسال</button>
+         </div>
+      </div>
+   </div>
+</div>

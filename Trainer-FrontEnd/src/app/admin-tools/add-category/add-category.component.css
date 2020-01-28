@@ -1,0 +1,11 @@
+:host {
+    display: flex;
+    padding-top: 45px;
+    background: black;
+    min-height: 620px;
+    flex: 1;
+}
+
+/* .card {
+    height: 300px; 
+} */
