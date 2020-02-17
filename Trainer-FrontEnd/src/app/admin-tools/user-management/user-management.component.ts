@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PagerDto } from '../../shared/models/pager.dto';
-import { AppConfig } from '../../../config/app.config';
 import { UsersService } from '../services/users.service';
 import { User } from '../../auth/models/user';
 import { AppService } from '../../app.service';
@@ -8,6 +7,7 @@ import { UsersFilter } from '../../shared/models/users/users-filter';
 import { ActivatedRoute } from '@angular/router';
 import { Roles } from '../../auth/models/roles.enum';
 import { first, finalize } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-user-management',
@@ -25,7 +25,7 @@ export class UserManagementComponent implements OnInit {
 
   ngOnInit() {
     this.roles = Object.keys(Roles);
-    this.pagerDto.pageSize = this.filter.pageSize = AppConfig.settings.pagination.usersForAdmin.pageSize;
+    this.pagerDto.pageSize = this.filter.pageSize = environment.usersForAdminPageSize;
     this.route.data.subscribe(result => {
       this.pagerDto = result.users.data;
       this.usersList = result.users.data.results;

@@ -4,7 +4,6 @@ import { Observable, throwError } from 'rxjs';
 import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
 import { RepositoryService } from '../../shared/services/repository.service';
 import { Injectable } from '@angular/core';
-import { AppConfig } from '../../../config/app.config';
 import { map, catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';

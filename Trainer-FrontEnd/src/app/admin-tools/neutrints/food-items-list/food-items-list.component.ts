@@ -6,10 +6,10 @@ import { FoodIemFilter } from '../../../shared/models/neutrints/food-item-filter
 import { NeutrintsService } from '../../../shared/services/neutrints.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../../app.service';
-import { AppConfig } from '../../../../config/app.config';
 import { config } from '../../../config/pages-config';
 import { first, finalize } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-food-items-list',
@@ -25,7 +25,7 @@ export class FoodItemsListComponent implements OnInit {
     public appService: AppService, private router: Router) { }
 
   ngOnInit() {
-    this.pagerDto.pageSize = this.filter.pageSize = AppConfig.settings.pagination.neutrintsForAdmin.pageSize;
+    this.pagerDto.pageSize = this.filter.pageSize = environment.neutrintsForAdminPageSize;
     this.route.data.subscribe(result => {
       this.pagerDto = result.foodItemsList.data;
       this.foodItemsList = result.foodItemsList.data.results;

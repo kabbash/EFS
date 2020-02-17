@@ -50,7 +50,7 @@
                <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="text-input">السن</label>
                   <div class="col-md-5">
-                     <input type="text" id="text-input" [(ngModel)]="calculator.age" name="text-input"
+                     <input type="text" [(ngModel)]="calculator.age" name="text-input"
                         class="form-control">
                   </div>
                   <label class="col-md-4 col-form-label" for="text-input">من 15 - 80</label>
@@ -58,14 +58,14 @@
                <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="text-input">الطول</label>
                   <div class="col-md-9">
-                     <input type="text" id="text-input" [(ngModel)]="calculator.height" placeholder="سم"
+                     <input type="text" [(ngModel)]="calculator.height" placeholder="سم"
                         name="text-input" class="form-control">
                   </div>
                </div>
                <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="text-input">الوزن</label>
                   <div class="col-md-9">
-                     <input type="text" id="text-input" [(ngModel)]="calculator.weight" placeholder="كجم"
+                     <input type="text" [(ngModel)]="calculator.weight" placeholder="كجم"
                         name="text-input" class="form-control">
                   </div>
                </div>
@@ -112,7 +112,7 @@
                <div class="form-group row" [hidden]="calculator.equation != '2'">
                   <label class="col-md-3 col-form-label" for="text-input"> الدهون </label>
                   <div class="col-md-3">
-                     <input type="text" id="text-input" [(ngModel)]="calculator.fats" name="text-input"
+                     <input type="text" [(ngModel)]="calculator.fats" name="text-input"
                         class="form-control" placeholder="%">
                   </div>
                   <!-- <label class="col-md-4 col-form-label" for="text-input"></label> -->

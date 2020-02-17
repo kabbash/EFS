@@ -5,7 +5,6 @@ import { WritersService } from '../services/articles-writers.services';
 import { articleListItemDto } from '../../shared/models/articles/article-list-item-dto';
 import { environment } from '../../../environments/environment';
 import { PagerDto } from '../../shared/models/pager.dto';
-import { AppConfig } from '../../../config/app.config';
 import { SearchFilterComponent } from '../../shared/search-filter/search-filter.component';
 import { AppService } from '../../app.service';
 import { config } from '../../config/pages-config';
@@ -27,7 +26,7 @@ export class WritersArticlesListComponent implements OnInit {
   articles: articleListItemDto[];
   pagerData: PagerDto;
   public championshipsCategory= PredefinedCategories.Championships;
-  private pageSize = AppConfig.settings.pagination.articlesForWriters.pageSize;
+  private pageSize = environment.articlesForWritersPageSize;
   hasItems: boolean;
 
   @ViewChild(SearchFilterComponent) searchFilterComponent: SearchFilterComponent;

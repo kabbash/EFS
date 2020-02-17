@@ -6,7 +6,6 @@ import { AdminProductsService } from '../../services/admin.products.service';
 import { environment } from '../../../../environments/environment';
 import { PagerDto } from '../../../shared/models/pager.dto';
 import { SearchFilterComponent } from '../../../shared/search-filter/search-filter.component';
-import { AppConfig } from '../../../../config/app.config';
 import { AppService } from '../../../../app/app.service';
 
 @Component({
@@ -19,7 +18,7 @@ export class AdminProductsListComponent implements OnInit {
   baseurl = environment.filesBaseUrl;
   selectedProduct: productListItemDto;
   pagerData: PagerDto;
-  private pageSize = AppConfig.settings.pagination.productsForAdmin.pageSize;
+  private pageSize = environment.productsForAdminPageSize;
 
   @ViewChild(SearchFilterComponent) searchFilterComponent: SearchFilterComponent;
 

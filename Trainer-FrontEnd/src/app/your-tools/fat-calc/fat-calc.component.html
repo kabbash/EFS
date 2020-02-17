@@ -15,7 +15,6 @@
 <div class="calculator-form-container">
   <div class="card">
     <div class="card-body">
-      <img src="./assets/images/percent.svg" class="percent-img" alt="">
       <div class="img-triangle-container">
         <img height="160" src="./assets/images/boutique-fitness-boom.jpg" alt="">
         <div class="tri-overlay"></div>
@@ -46,21 +45,21 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="text-input">السن</label>
             <div class="col-md-5">
-              <input type="text" id="text-input" [(ngModel)]="calculator.age" name="text-input" class="form-control">
+              <input type="text" [(ngModel)]="calculator.age" name="text-input" class="form-control">
             </div>
             <label class="col-md-4 col-form-label" for="text-input">من 15 - 80</label>
           </div>
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="text-input">الطول</label>
             <div class="col-md-9">
-              <input type="text" id="text-input" [(ngModel)]="calculator.height" placeholder="سم" name="text-input"
+              <input type="text" [(ngModel)]="calculator.height" placeholder="سم" name="text-input"
                 class="form-control">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="text-input">الوزن</label>
             <div class="col-md-9">
-              <input type="text" id="text-input" [(ngModel)]="calculator.weight" placeholder="كجم" name="text-input"
+              <input type="text" [(ngModel)]="calculator.weight" placeholder="كجم" name="text-input"
                 class="form-control">
             </div>
           </div>
@@ -68,7 +67,7 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="text-input">الرقبه</label>
             <div class="col-md-9">
-              <input type="text" id="text-input" [(ngModel)]="calculator.neck" placeholder="سم" name="text-input"
+              <input type="text" [(ngModel)]="calculator.neck" placeholder="سم" name="text-input"
                 class="form-control">
             </div>
           </div>
@@ -76,17 +75,18 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="text-input">الوسط</label>
             <div class="col-md-9">
-              <input type="text" id="text-input" [(ngModel)]="calculator.waist" placeholder="سم" name="text-input"
+              <input type="text" [(ngModel)]="calculator.waist" placeholder="سم" name="text-input"
                 class="form-control">
             </div>
           </div>
           <div class="form-group row" [hidden]="calculator.gender !== '1'">
             <label class="col-md-3 col-form-label" for="text-input">المؤخرة</label>
             <div class="col-md-9">
-              <input type="text" id="text-input" [(ngModel)]="calculator.hip" placeholder="سم" name="text-input"
+              <input type="text" [(ngModel)]="calculator.hip" placeholder="سم" name="text-input"
                 class="form-control">
             </div>
           </div>
+          <img src="./assets/images/fats-calc-ex.jpg" class="fats-img" alt="">
 
           <div class="form-group row">
             <div class="col-sm-4"></div>

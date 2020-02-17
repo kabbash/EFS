@@ -5,11 +5,11 @@ import { articleListItemDto } from '../../shared/models/articles/article-list-it
 import { RepositoryService } from '../../shared/services/repository.service';
 import { ResultMessage } from '../../shared/models/result-message';
 import { PredefinedCategories } from '../../shared/models/articles/articles-predefined-categories.enum';
-import { AppConfig } from '../../../config/app.config';
 import { map, catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlingService } from '../../shared/services/error-handling.service';
 import { PAGES } from '../../config/defines';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class NewsResolver implements Resolve<Observable<ResultMessage<articleListItemDto[]>>> {
@@ -17,7 +17,7 @@ export class NewsResolver implements Resolve<Observable<ResultMessage<articleLis
   constructor(private repositoryService: RepositoryService, private errorHandlingService: ErrorHandlingService) {
   }
     resolve(route: ActivatedRouteSnapshot): Observable<ResultMessage<articleListItemDto[]>> {
-      const pageSize = AppConfig.settings.pagination.articlesForAny.pageSize;
+      const pageSize = environment.articlesForAnyPageSize;
       return  this.repositoryService.getData<articleListItemDto[]>('articles?pageNo=1&pageSize='
       + pageSize + '&categoryId=' + PredefinedCategories.News).pipe(
         map((data: Observable<ResultMessage<articleListItemDto[]>>) => data), catchError((error: HttpErrorResponse) => {

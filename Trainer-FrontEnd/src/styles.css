@@ -598,6 +598,7 @@ span pre {
 
 .calculator-desc {
   font-size: 19px;
+  margin: 5%;
 }
 
 .calculator-desc p {
@@ -717,6 +718,12 @@ span pre {
 
 .calculator-form-container .percent-img {
   position: absolute;
+  height: 300px;
+  bottom: -44px;
+  left: 0;
+}
+
+.calculator-form-container .fats-img{
   height: 300px;
   bottom: -44px;
   left: 0;

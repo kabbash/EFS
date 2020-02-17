@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { productListItemDto } from '../../shared/models/products/product-list-item-dto';
 import { environment } from '../../../environments/environment';
 import { PagerDto } from '../../shared/models/pager.dto';
-import { AppConfig } from '../../../config/app.config';
 import { SearchFilterComponent } from '../../shared/search-filter/search-filter.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
@@ -22,7 +21,7 @@ export class ProductsListComponent implements OnInit {
   selectedProduct: productListItemDto;
   pagerData: PagerDto;
   hasItems = false;
-  private pageSize = AppConfig.settings.pagination.productsForAdmin.pageSize;
+  private pageSize = environment.productsForAdminPageSize;
 
   @ViewChild(SearchFilterComponent) searchFilterComponent: SearchFilterComponent;
 

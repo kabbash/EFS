@@ -11,7 +11,6 @@ import { ModalComponent } from '../../modal/modal.component';
 import { ProductsService } from '../../../products/products.service';
 import { ClientFilterComponent } from '../../client-filter/client-filter.component';
 import { RatingDto } from '../../models/rating.dto';
-import { AppConfig } from '../../../../config/app.config';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -34,7 +33,7 @@ export class ProductsListComponent implements OnInit {
   pagerData: PagerDto;
   nextPageUrl: string;
   hasItems = false;
-  specialProductsPageSize: number = AppConfig.settings.pagination.specialProductsForAny.pageSize;
+  specialProductsPageSize: number = environment.specialProductsForAnyPageSize;
 
   @ViewChild(ClientFilterComponent) searchFilterComponent: ClientFilterComponent;
 

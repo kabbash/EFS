@@ -39,7 +39,7 @@ namespace MailProvider.Core.Services
                 {
                     Host = _settings.EmailSettings.MailServerAddress, // set your SMTP server name here
                     Port = _settings.EmailSettings.MailServerPort, // Port 
-                    EnableSsl = true,
+                    EnableSsl = false,
                     Credentials = new NetworkCredential(_settings.EmailSettings.UserId, _settings.EmailSettings.UserPassword),
                 };
 
@@ -50,6 +50,7 @@ namespace MailProvider.Core.Services
                     IsBodyHtml = true
                 })
                 {
+                    mailMessage.To.Add(_settings.EmailSettings.FromAddress);
                     await smtpClient.SendMailAsync(mailMessage);
                 }
             }

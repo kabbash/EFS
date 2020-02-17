@@ -15,16 +15,15 @@ import { AuthService } from './auth/services/auth.service';
 import { ItemReviewResolver } from './admin-tools/resolvers/item-review.resolver';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { NgbUTCStringAdapter } from './shared/services/ngb-string.adapter';
-import { AppConfig } from '../config/app.config';
 import { BannersResolver } from './admin-tools/resolvers/banners.resolver';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 export function CreateTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
-export function initializeApp(appConfig: AppConfig) {
-  return () => appConfig.load();
-}
+// export function initializeApp(appConfig: AppConfig) {
+//   return () => appConfig.load();
+// }
 
 @NgModule({
   declarations: [
@@ -59,12 +58,12 @@ export function initializeApp(appConfig: AppConfig) {
     ItemReviewResolver,
     AuthGuard,
     { provide: NgbDateAdapter, useClass: NgbUTCStringAdapter },
-    AppConfig,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeApp,
-      deps: [AppConfig], multi: true
-    },
+    //AppConfig,
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initializeApp,
+    //   deps: [AppConfig], multi: true
+    // },
     BannersResolver
   ],
 
