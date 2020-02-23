@@ -87,6 +87,7 @@ export class ProductsListComponent implements OnInit {
       this.router.navigate([config.products.productRating.route + '/' + product.id]);
     } else {
       this.selectedProduct = product;
+      //console.log(product);
     }
   }
 
