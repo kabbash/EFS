@@ -40,7 +40,7 @@
     "core-js": "^2.5.4",
     "firebase": "^7.8.0",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jsonpath": "^1.0.1",
     "localstorage-polyfill": "^1.0.1",
     "mock-browser": "^0.92.14",
