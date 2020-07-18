@@ -39,7 +39,7 @@ namespace Articles.Core.Extensions
 
         public static IQueryable<Shared.Core.Models.Articles> ApplyChampionshipsFilter(this IQueryable<Shared.Core.Models.Articles> articles)
         {
-            return articles.Where(c => !c.Date.HasValue || c.Date.GetValueOrDefault().Date >= DateTime.Now.Date);
+            return articles.Where(c => c.Date >= DateTime.Now.Date);
         }
 
     }

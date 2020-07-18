@@ -6,8 +6,6 @@ using Rating.Core.Interfaces;
 using Rating.Core.Models;
 using Shared.Core.Utilities.Enums;
 using Shared.Core.Utilities.Models;
-using System;
-using System.Net;
 using DBModels = Shared.Core.Models;
 
 namespace Trainer.Controllers

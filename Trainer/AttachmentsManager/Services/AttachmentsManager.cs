@@ -14,13 +14,13 @@ namespace Attachments.Core.Services
 {
     public class AttachmentsManager : IAttachmentsManager
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly AppSettings _settings;
         private readonly IValidator<UploadFileDto> _validator;
         private readonly ILogger<AttachmentsManager> _logger;
 
 
-        public AttachmentsManager(IOptions<AppSettings> settings, IValidator<UploadFileDto> validator, IHostingEnvironment environment, ILogger<AttachmentsManager> logger)
+        public AttachmentsManager(IOptions<AppSettings> settings, IValidator<UploadFileDto> validator, IWebHostEnvironment environment, ILogger<AttachmentsManager> logger)
         {
             _settings = settings.Value;
             _validator = validator;

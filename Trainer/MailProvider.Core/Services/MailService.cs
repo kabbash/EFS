@@ -19,10 +19,10 @@ namespace MailProvider.Core.Services
     public class MailService : IEmailService
     {
         private readonly AppSettings _settings;
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly ILogger<MailService> _logger;
 
-        public MailService(IOptions<AppSettings> settings, IHostingEnvironment environment, ILogger<MailService> logger)
+        public MailService(IOptions<AppSettings> settings, IWebHostEnvironment environment, ILogger<MailService> logger)
         {
             _settings = settings.Value;
             _hostingEnvironment = environment;
