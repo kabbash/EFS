@@ -1,5 +1,6 @@
 ﻿using Banner.Core.Interfaces;
 using Banner.Core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Trainer.Controllers
@@ -20,25 +21,28 @@ namespace Trainer.Controllers
         }
 
         [HttpGet("{id}")]
-
+        //[Authorize(Roles = "Admin")]
         public ActionResult GetById(int id)
         {
             return GetStatusCodeResult(_bannerManager.GetById(id));
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Post([FromForm] BannerDto banner)
         {
             return GetStatusCodeResult(_bannerManager.Add(banner));
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Put([FromForm] BannerDto banner , int id)
         {
             return GetStatusCodeResult(_bannerManager.Update(banner, id));
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles= "Admin")]
         public ActionResult Delete(int id)
         {
             return GetStatusCodeResult(_bannerManager.Delete(id));

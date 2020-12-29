@@ -21,12 +21,14 @@ namespace Trainer.Controllers
             _neutrintsManager = neutrintsManager;
         }
         [HttpGet]
+        [Authorize]
         public ActionResult Get([FromQuery]FoodIemFilter filter)
         {
             return GetStatusCodeResult(_neutrintsManager.GetAll(filter));
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult Get(int id)
         {
             return GetStatusCodeResult(_neutrintsManager.GetById(id));

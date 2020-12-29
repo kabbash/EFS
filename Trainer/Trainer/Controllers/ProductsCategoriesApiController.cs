@@ -1,6 +1,7 @@
 ﻿using Attachments.Core.Interfaces;
 using Attachments.Core.Models;
 using Lookups.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Products.Core.Interfaces;
 using Products.Core.Models;
@@ -37,6 +38,7 @@ namespace Trainer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Post([FromForm] ProductsCategoryDto categoryDto)
         {
             categoryDto.ProfilePicture = _attachmentManager.Save(new SavedFileDto
@@ -50,6 +52,7 @@ namespace Trainer.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Put(int id, [FromForm] ProductsCategoryDto categoryDto)
         {
             if (categoryDto.ProfilePictureFile != null) {
@@ -65,6 +68,7 @@ namespace Trainer.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             return GetStatusCodeResult(_categoriesManager.Delete(id));

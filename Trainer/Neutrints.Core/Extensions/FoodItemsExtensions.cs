@@ -14,7 +14,7 @@ namespace Neutrints.Core.Extensions
                 return foodItems;
 
             if (!string.IsNullOrEmpty(filter.SearchText))
-                foodItems = foodItems.Where(p => p.Name.ToLower().Contains(filter.SearchText.ToLower()));
+                foodItems = foodItems.Where(p => p.Name.Trim().ToLower().Contains(filter.SearchText.ToLower()) || p.NameAR.Trim().ToLower().Contains(filter.SearchText.ToLower()));
 
             return foodItems;
         }

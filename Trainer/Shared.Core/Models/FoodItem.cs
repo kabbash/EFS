@@ -8,8 +8,8 @@ namespace Shared.Core.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string NameAR { get; set; }
         public decimal Amount { get; set; }
-        public decimal Calories { get; set; }
         public decimal Energy { get; set; }
         public decimal Alcohol { get; set; }
         public decimal Caffiene { get; set; }

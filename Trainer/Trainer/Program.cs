@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.IO;
+using System.Linq;
+using Trainer.EF;
 
 namespace Trainer
 {
@@ -8,7 +12,17 @@ namespace Trainer
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var appContext = services.GetRequiredService<EFSContext>();
+
+                if (appContext.Database.GetPendingMigrations().Any())
+                    appContext.Database.Migrate();
+            }
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

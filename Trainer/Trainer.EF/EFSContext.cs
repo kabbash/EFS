@@ -7,7 +7,7 @@ namespace Trainer.EF
     public partial class EFSContext : DbContext
     {
         private readonly System.Security.Cryptography.HMACSHA512 hmac;
-        
+
         public EFSContext()
         {
         }
@@ -16,7 +16,6 @@ namespace Trainer.EF
             : base(options)
         {
             hmac = new System.Security.Cryptography.HMACSHA512();
-            Database.Migrate();
         }
 
         public virtual DbSet<Articles> Articles { get; set; }
@@ -86,9 +85,9 @@ namespace Trainer.EF
                 entity.Property(e => e.UpdatedBy).HasMaxLength(128);
                 entity.HasData(new ArticlesCategories[]
                 {
-                    new ArticlesCategories {Id= 1 , Name = "وصفات الطعام" , PredefinedKey= 2, CreatedAt= DateTime.Now.ToUniversalTime(), CreatedBy= "admin", ProfilePicture="Files/Articles%20Categories/food.png"},
-                    new ArticlesCategories {Id=2, Name = "الأخبار" , PredefinedKey= 1, CreatedAt= DateTime.Now.ToUniversalTime(), CreatedBy= "admin", ProfilePicture="Files/Articles%20Categories/news.png"},
-                    new ArticlesCategories {Id=3, Name = "البطولات" , PredefinedKey= 3, CreatedAt= DateTime.Now.ToUniversalTime(), CreatedBy= "admin", ProfilePicture="Files/Articles%20Categories/championships.png"}
+                    new ArticlesCategories {Id= 1 , Name = "وصفات الطعام" , PredefinedKey= 2, CreatedAt= new DateTime(2020,12,30), CreatedBy= "admin", ProfilePicture="Files/Articles%20Categories/food.png"},
+                    new ArticlesCategories {Id=2, Name = "الأخبار" , PredefinedKey= 1, CreatedAt= new DateTime(2020,12,30), CreatedBy= "admin", ProfilePicture="Files/Articles%20Categories/news.png"},
+                    new ArticlesCategories {Id=3, Name = "البطولات" , PredefinedKey= 3, CreatedAt= new DateTime(2020,12,30), CreatedBy= "admin", ProfilePicture="Files/Articles%20Categories/championships.png"}
 
 
                 });
@@ -236,7 +235,7 @@ namespace Trainer.EF
 
                     }
                 });
-            });         
+            });
             modelBuilder.Entity<Products>(entity =>
             {
                 entity.HasIndex(e => e.CategoryId);
@@ -306,7 +305,7 @@ namespace Trainer.EF
                     .HasForeignKey(d => d.ParentId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Products_Images_Products");
-            });           
+            });
         }
     }
 }

@@ -47,18 +47,8 @@ namespace Neutrints.Core.Services
         }
         public ResultMessage Insert(FoodItemDto newFoodItemDto)
         {
-            //var validationResult = _validator.Validate(newFoodItemDto);
-            //if (!validationResult.IsValid)
-            //    return new ResultMessage
-            //    {
-            //        Status = HttpStatusCode.BadRequest,
-            //        ValidationMessages = validationResult.GetErrorsList()
-            //    };
-
             try
             {
-                _logger.LogInformation($"START: FOOD.Insert: Name:{newFoodItemDto.Name}");
-
                 var newFoodItem = newFoodItemDto.Adapt<FoodItem>();
                 newFoodItem.CreatedAt = DateTime.Now;
                 newFoodItem.CreatedBy = newFoodItemDto.CreatedBy;
@@ -66,8 +56,6 @@ namespace Neutrints.Core.Services
 
                 _unitOfWork.FoodItemsRepository.Insert(newFoodItem);
                 _unitOfWork.Commit();
-
-                _logger.LogInformation($"END: FOOD.Insert: Name:{newFoodItemDto.Name}");
 
                 return new ResultMessage
                 {
@@ -89,14 +77,10 @@ namespace Neutrints.Core.Services
         {
             try
             {
-                _logger.LogInformation($"START: FOOD.GetById: {id}");
-
                 var foodItem = _unitOfWork.FoodItemsRepository.GetById(id);
 
                 if (foodItem != null &&  ! foodItem.IsDraft)
                 {
-                    _logger.LogInformation($"END: FOOD.GetById: {id} --SUCCESS");
-
                     return new ResultMessage()
                     {
                         Data = foodItem.Adapt<FoodItemDto>(),
@@ -105,7 +89,6 @@ namespace Neutrints.Core.Services
                 }
                 else
                 {
-                    _logger.LogInformation($"END: FOOD.GetById: {id} --NOTFOUND");
                     return new ResultMessage()
                     {
                         Status = HttpStatusCode.NotFound,
@@ -141,6 +124,7 @@ namespace Neutrints.Core.Services
                 if (oldFoodItem != null && ! oldFoodItem.IsDraft)
                 {
                     oldFoodItem.Name = foodItem.Name;
+                    oldFoodItem.NameAR = foodItem.NameAR;
                     oldFoodItem.Alcohol = foodItem.Alcohol;
                     oldFoodItem.Amount = foodItem.Amount;
                     oldFoodItem.B1 = foodItem.B1;
@@ -151,7 +135,6 @@ namespace Neutrints.Core.Services
                     oldFoodItem.B6 = foodItem.B6;
                     oldFoodItem.Caffiene = foodItem.Caffiene;
                     oldFoodItem.Calcuim = foodItem.Calcuim;
-                    oldFoodItem.Calories = foodItem.Calories;
                     oldFoodItem.Carbs = foodItem.Carbs;
                     oldFoodItem.Cholesterol = foodItem.Cholesterol;
                     oldFoodItem.Copper = foodItem.Copper;

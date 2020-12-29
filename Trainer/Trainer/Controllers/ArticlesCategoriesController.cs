@@ -2,6 +2,7 @@
 using Attachments.Core.Interfaces;
 using Attachments.Core.Models;
 using Lookups.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Core.Models;
 using Shared.Core.Utilities.Enums;
@@ -29,6 +30,7 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_Manager.GetAll());
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Post([FromForm] ArticlesCategoriesDto category)
         {
             category.ProfilePicture = _attachmentManager.Save(new SavedFileDto
@@ -42,7 +44,6 @@ namespace Trainer.Controllers
             return Ok(success);
         }
 
-        // GET api/calories/5
         [HttpGet("{id}")]
         public ActionResult<ResultMessage> Get(byte id)
         {
@@ -51,8 +52,8 @@ namespace Trainer.Controllers
         }
 
 
-        // PUT api/calories/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult<ResultMessage> Put(int id, [FromForm] ArticlesCategoriesDto category)
         {
             if (category.ProfilePictureFile != null) {
@@ -68,8 +69,8 @@ namespace Trainer.Controllers
             return GetStatusCodeResult(_Manager.Update(category, id));
         }
 
-        // DELETE api/calories/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             return GetStatusCodeResult(_Manager.Delete(id));
