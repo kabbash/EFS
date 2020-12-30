@@ -8,7 +8,7 @@ namespace Trainer.EF.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "NameAR",
+                name: "ArabicTxt",
                 table: "FoodItems",
                 nullable: true);
         }
@@ -16,7 +16,7 @@ namespace Trainer.EF.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "NameAR",
+                name: "ArabicTxt",
                 table: "FoodItems");         
         }
     }

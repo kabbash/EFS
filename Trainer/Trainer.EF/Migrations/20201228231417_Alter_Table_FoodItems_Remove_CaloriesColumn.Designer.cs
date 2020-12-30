@@ -616,7 +616,7 @@ namespace Trainer.EF.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NameAR")
+                    b.Property<string>("ArabicTxt")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("NetCarbs")

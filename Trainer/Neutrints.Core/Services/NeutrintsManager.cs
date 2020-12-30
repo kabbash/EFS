@@ -124,7 +124,7 @@ namespace Neutrints.Core.Services
                 if (oldFoodItem != null && ! oldFoodItem.IsDraft)
                 {
                     oldFoodItem.Name = foodItem.Name;
-                    oldFoodItem.NameAR = foodItem.NameAR;
+                    oldFoodItem.ArabicTxt = foodItem.ArabicTxt;
                     oldFoodItem.Alcohol = foodItem.Alcohol;
                     oldFoodItem.Amount = foodItem.Amount;
                     oldFoodItem.B1 = foodItem.B1;
