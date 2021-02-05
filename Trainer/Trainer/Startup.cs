@@ -81,28 +81,25 @@ namespace Trainer
             ConfigureJwtAuthentication(services);
             ConfigureMapstr();
 
-            services.AddControllers()
-                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
-            //services.AddMvc()
-            //        .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-            //        .AddJsonOptions(
-            //options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            //);
-
-            // to be changed to client side app origin only
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            });            
+                options.AddPolicy("MyPolicy",
+                    builder => builder.WithOrigins("https://www.egyfitstore.com")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
+            services.AddControllers()
+                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddSerilog();        
             app.UseStaticFiles();
+            app.UseCors("CorsPolicy");
             app.UseRouting();
-            app.UseCors("AllowAllOrigins");
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

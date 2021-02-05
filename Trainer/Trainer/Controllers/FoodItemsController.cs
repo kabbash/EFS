@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Neutrints.Core.Interfaces;
 using Neutrints.Core.Models;
@@ -21,14 +16,12 @@ namespace Trainer.Controllers
             _neutrintsManager = neutrintsManager;
         }
         [HttpGet]
-        [Authorize]
         public ActionResult Get([FromQuery]FoodIemFilter filter)
         {
             return GetStatusCodeResult(_neutrintsManager.GetAll(filter));
         }
 
         [HttpGet("{id}")]
-        [Authorize]
         public ActionResult Get(int id)
         {
             return GetStatusCodeResult(_neutrintsManager.GetById(id));
