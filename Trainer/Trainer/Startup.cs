@@ -84,7 +84,7 @@ namespace Trainer
             services.AddCors(options =>
             {
                 options.AddPolicy("MyPolicy",
-                    builder => builder.WithOrigins("https://www.egyfitstore.com","http://localhost:4200")
+                    builder => builder.WithOrigins("https://www.egyfitstore.com", "https://egyfitstore.com","http://localhost:4200")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials());
