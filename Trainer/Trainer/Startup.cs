@@ -98,8 +98,8 @@ namespace Trainer
         {
             loggerFactory.AddSerilog();        
             app.UseStaticFiles();
-            app.UseCors("MyPolicy");
             app.UseRouting();
+            app.UseCors("MyPolicy");
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
